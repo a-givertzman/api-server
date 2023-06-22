@@ -1,3 +1,7 @@
+#![allow(non_snake_case)]
+
+use std::fs;
+
 use serde::{Serialize, Deserialize};
 use sqlite::Connection;
 
@@ -9,6 +13,11 @@ fn main() {
     // drop(&connection);
     // create(&connection);
     sel(&connection);
+    let path = "src/qury-format.json";
+    let jsonString = fs::read_to_string(&path)
+        .expect(&format!("Error read file {}", path));
+    println!("jsonString: {:?}", jsonString);
+    SqlQuery::new(jsonString);
 }
 
 
@@ -52,12 +61,25 @@ fn sel(connection: &Connection) {
 
 #[derive(Debug, Serialize, Deserialize)]
 struct SqlQuery {
-    pub sql: HashMap<String, DsLineConf>,
+    auth_token: String,
+    id: u64,
+    sql: String,
 
 }
 impl SqlQuery {
     pub fn new(jsonString: String) -> SqlQuery {
-        let lines: HashMap<String, DsLineConf> = serde_json::from_str(&configJson).unwrap();
-        DsConfig{lines}
+        let raw: SqlQuery = serde_json::from_str(&jsonString).unwrap();
+        println!("raw: {:?}", raw);
+        raw
     }
 }
+
+
+// enum Value {
+//     Null,
+//     Bool(bool),
+//     Number(Number),
+//     String(String),
+//     Array(Vec<Value>),
+//     Object(Map<String, Value>),
+// }
