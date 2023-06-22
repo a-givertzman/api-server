@@ -13,11 +13,19 @@ fn main() {
     // drop(&connection);
     // create(&connection);
     sel(&connection);
+
     let path = "src/qury-format.json";
     let jsonString = fs::read_to_string(&path)
         .expect(&format!("Error read file {}", path));
     println!("jsonString: {:?}", jsonString);
     SqlQuery::new(jsonString);
+
+    let path = "src/reply-format.json";
+    let jsonString = fs::read_to_string(&path)
+        .expect(&format!("Error read file {}", path));
+    println!("jsonString: {:?}", jsonString);
+    SqlReply::new(jsonString);
+
 }
 
 
