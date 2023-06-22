@@ -74,7 +74,22 @@ impl SqlQuery {
     }
 }
 
+#[derive(Debug, Serialize, Deserialize)]
+struct SqlReply {
+    auth_token: String,
+    id: u64,
+    sql: String,
+    data: Vec<(String, Option<String>)>,
+    errors: Vec<String>,
 
+}
+impl SqlReply {
+    pub fn new(jsonString: String) -> SqlReply {
+        let raw: SqlReply = serde_json::from_str(&jsonString).unwrap();
+        println!("raw: {:?}", raw);
+        raw
+    }
+}
 // enum Value {
 //     Null,
 //     Bool(bool),
