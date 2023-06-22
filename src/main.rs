@@ -52,13 +52,11 @@ fn sel(connection: &Connection) {
 
 #[derive(Debug, Serialize, Deserialize)]
 struct SqlQuery {
-    pub lines: HashMap<String, DsLineConf>,
+    pub sql: HashMap<String, DsLineConf>,
 
 }
 impl SqlQuery {
-    pub fn new(path: String) -> SqlQuery {
-        let configJson = fs::read_to_string(&path)
-            .expect(&format!("Error read file {}", path));
+    pub fn new(jsonString: String) -> SqlQuery {
         let lines: HashMap<String, DsLineConf> = serde_json::from_str(&configJson).unwrap();
         DsConfig{lines}
     }
