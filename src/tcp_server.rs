@@ -190,7 +190,7 @@ impl TcpServer {
                     cancel = true;
                 },
             };
-            thread::sleep(self.reconnectDelay);
+            // thread::sleep(self.reconnectDelay);
             if cancel { break };
         }
         warn!("[TcpServer] listenStream exit");

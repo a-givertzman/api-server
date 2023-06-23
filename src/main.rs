@@ -5,7 +5,7 @@ mod api_reply;
 mod tcp_server;
 mod sql_query;
 
-use std::{fs, sync::{Arc, Mutex}, env, thread, time::Duration, cell::RefCell};
+use std::{fs, sync::{Arc, Mutex}, env, thread, time::Duration, cell::RefCell, collections::HashMap};
 
 use log::{debug, warn};
 use rusqlite::{Connection};
@@ -46,6 +46,8 @@ fn testSel(con: &Connection) {
     // let query = "SELECT * FROM users WHERE age > 50";
     SqlQuery::new(con, sql.to_string()).execute().unwrap();
     let sql = "SELECT * FROM `dep_objects`;";
+    SqlQuery::new(con, sql.to_string()).execute().unwrap();
+    let sql = "SELECT * FROM `do_data`;";
     SqlQuery::new(con, sql.to_string()).execute().unwrap();
 }
 
@@ -102,6 +104,46 @@ fn create(connection: &Connection) {
         ",
     );
 
+
+    executeQuery(
+        connection, 
+        "CREATE TABLE `do_data` (
+            id INTEGER PRIMARY KEY,
+            name TEXT,
+            well TEXT,
+            pad TEXT,
+            prep_object TEXT,
+            field TEXT,
+            company TEXT,
+            activity TEXT,
+            comment TEXT,
+            date_planning TEXT,
+            date_fact TEXT,
+            date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+            responsible_person TEXT,
+            obj_status TEXT,
+            failure TEXT
+        );",
+    );
+
+    let doData = getDoData();
+    let mut query = vec![];
+    for item in doData {
+        let mut names = vec![];
+        let mut values = vec![];
+        for (name, value) in item {
+            names.push(name.to_string());
+            values.push(format!("'{}'", value.to_string()));
+        }
+        let insert = format!("INSERT INTO do_data ({}) VALUES ({});", names.join(", "), values.join(", "));
+        query.push(insert);
+    }
+    let query = query.join(";   ");
+    debug!("doData query: {}", query);
+    executeQuery(
+        connection, 
+        &query
+    );
     executeQuery(
         connection, 
         "CREATE TABLE `users` (
@@ -127,4 +169,283 @@ fn create(connection: &Connection) {
     );
     // connection.execute(query, ()).unwrap();
 
+}
+
+
+fn getDoData() -> Vec<HashMap<&'static str, &'static str>> {
+    let doData = vec![
+        HashMap::from([
+          ("id", "213"),
+          ("name", "Cкважина"),
+          ("well", "1512"),
+          ("pad", "12"),
+          ("prep_object", "ДНС-2 Еты-Пуровского"),
+          ("field", "Еты-Пуровское"),
+          ("company", "ГПН-ННГ"),
+          ("activity", ""),
+          ("comment", ""),
+          ("date_planning", ""),
+          ("date_fact", ""),
+          ("date_creation", "01.04.2023"),
+          ("responsible_person", ""),
+          ("obj_status", ""),
+          ("failure", ""),
+        ]),
+        HashMap::from([
+          ("id", "214"),
+          ("name", "Cкважина"),
+          ("well", "1557"),
+          ("pad", "22А"),
+          ("prep_object", "ДНС-2 Еты-Пуровского"),
+          ("field", "Еты-Пуровское"),
+          ("company", "ГПН-ННГ"),
+          ("activity", ""),
+          ("comment", ""),
+          ("date_planning", ""),
+          ("date_fact", ""),
+          ("date_creation", "01.04.2023"),
+          ("responsible_person", ""),
+          ("obj_status", ""),
+          ("failure", ""),
+        ]),
+        HashMap::from([
+            ("id", "215"),
+            ("name", "Cкважина"),
+            ("well", "3100"),
+            ("pad", "251Б"),
+            ("prep_object", "ДНС-2 Еты-Пуровского"),
+            ("field", "Еты-Пуровское"),
+            ("company", "ГПН-ННГ"),
+            ("activity", ""),
+            ("comment", ""),
+            ("date_planning", ""),
+            ("date_fact", ""),
+            ("date_creation", "01.04.2023"),
+            ("responsible_person", ""),
+            ("obj_status", ""),
+            ("failure", ""),
+          ]),
+          HashMap::from([
+            ("id", "216"),
+            ("name", "Cкважина"),
+            ("well", "3101"),
+            ("pad", "263Б"),
+            ("prep_object", "ДНС-2 Еты-Пуровского"),
+            ("field", "Еты-Пуровское"),
+            ("company", "ГПН-ННГ"),
+            ("activity", ""),
+            ("comment", ""),
+            ("date_planning", ""),
+            ("date_fact", ""),
+            ("date_creation", "01.04.2023"),
+            ("responsible_person", ""),
+            ("obj_status", ""),
+            ("failure", ""),
+          ]),
+          HashMap::from([
+            ("id", "217"),
+            ("name", "Cкважина"),
+            ("well", "3133"),
+            ("pad", "250"),
+            ("prep_object", "ДНС-2 Еты-Пуровского"),
+            ("field", "Еты-Пуровское"),
+            ("company", "ГПН-ННГ"),
+            ("activity", ""),
+            ("comment", ""),
+            ("date_planning", ""),
+            ("date_fact", ""),
+            ("date_creation", "01.04.2023"),
+            ("responsible_person", ""),
+            ("obj_status", ""),
+            ("failure", ""),
+          ]),
+          HashMap::from([
+            ("id", "218"),
+            ("name", "Cкважина"),
+            ("well", "4141"),
+            ("pad", "266"),
+            ("prep_object", "ДНС-2 Еты-Пуровского"),
+            ("field", "Еты-Пуровское"),
+            ("company", "ГПН-ННГ"),
+            ("activity", ""),
+            ("comment", ""),
+            ("date_planning", ""),
+            ("date_fact", ""),
+            ("date_creation", "01.04.2023"),
+            ("responsible_person", ""),
+            ("obj_status", ""),
+            ("failure", ""),
+          ]),
+          HashMap::from([
+            ("id", "261"),
+            ("name", "Cкважина"),
+            ("well", "1406г"),
+            ("pad", "11"),
+            ("prep_object", "ДНС-2 Еты-Пуровского"),
+            ("field", "Еты-Пуровское"),
+            ("company", "ГПН-ННГ"),
+            ("activity", ""),
+            ("comment", ""),
+            ("date_planning", ""),
+            ("date_fact", ""),
+            ("date_creation", "01.04.2023"),
+            ("responsible_person", ""),
+            ("obj_status", ""),
+            ("failure", ""),
+          ]),
+          HashMap::from([
+            ("id", "262"),
+            ("name", "Cкважина"),
+            ("well", "1426"),
+            ("pad", "11"),
+            ("prep_object", "ДНС-2 Еты-Пуровского"),
+            ("field", "Еты-Пуровское"),
+            ("company", "ГПН-ННГ"),
+            ("activity", ""),
+            ("comment", ""),
+            ("date_planning", ""),
+            ("date_fact", ""),
+            ("date_creation", "01.04.2023"),
+            ("responsible_person", ""),
+            ("obj_status", ""),
+            ("failure", ""),
+          ]),
+          HashMap::from([
+            ("id", "263"),
+            ("name", "Cкважина"),
+            ("well", "1716"),
+            ("pad", "33"),
+            ("prep_object", "ДНС-2 Еты-Пуровского"),
+            ("field", "Еты-Пуровское"),
+            ("company", "ГПН-ННГ"),
+            ("activity", ""),
+            ("comment", ""),
+            ("date_planning", ""),
+            ("date_fact", ""),
+            ("date_creation", "01.04.2023"),
+            ("responsible_person", ""),
+            ("obj_status", ""),
+            ("failure", ""),
+          ]),
+          HashMap::from([
+            ("id", "264"),
+            ("name", "Cкважина"),
+            ("well", "266ПО"),
+            ("pad", "251Б"),
+            ("prep_object", "ДНС-2 Еты-Пуровского"),
+            ("field", "Еты-Пуровское"),
+            ("company", "ГПН-ННГ"),
+            ("activity", ""),
+            ("comment", ""),
+            ("date_planning", ""),
+            ("date_fact", ""),
+            ("date_creation", "01.04.2023"),
+            ("responsible_person", ""),
+            ("obj_status", ""),
+            ("failure", ""),
+          ]),
+          HashMap::from([
+            ("id", "302"),
+            ("name", "Cкважина"),
+            ("well", "1721"),
+            ("pad", "178"),
+            ("prep_object", "ДНС-1 Еты-Пуровского"),
+            ("field", "Еты-Пуровское"),
+            ("company", "ГПН-ННГ"),
+            ("activity", ""),
+            ("comment", ""),
+            ("date_planning", ""),
+            ("date_fact", ""),
+            ("date_creation", "01.04.2023"),
+            ("responsible_person", ""),
+            ("obj_status", ""),
+            ("failure", ""),
+          ]),
+          HashMap::from([
+            ("id", "303"),
+            ("name", "Cкважина"),
+            ("well", "1722"),
+            ("pad", "178"),
+            ("prep_object", "ДНС-1 Еты-Пуровского"),
+            ("field", "Еты-Пуровское"),
+            ("company", "ГПН-ННГ"),
+            ("activity", ""),
+            ("comment", ""),
+            ("date_planning", ""),
+            ("date_fact", ""),
+            ("date_creation", "01.04.2023"),
+            ("responsible_person", ""),
+            ("obj_status", ""),
+            ("failure", ""),
+          ]),
+          HashMap::from([
+            ("id", "304"),
+            ("name", "Cкважина"),
+            ("well", "1816"),
+            ("pad", "17"),
+            ("prep_object", "ДНС-1 Еты-Пуровского"),
+            ("field", "Еты-Пуровское"),
+            ("company", "ГПН-ННГ"),
+            ("activity", ""),
+            ("comment", ""),
+            ("date_planning", ""),
+            ("date_fact", ""),
+            ("date_creation", "01.04.2023"),
+            ("responsible_person", ""),
+            ("obj_status", ""),
+            ("failure", ""),
+          ]),
+          HashMap::from([
+            ("id", "305"),
+            ("name", "Cкважина"),
+            ("well", "2020"),
+            ("pad", "1Б"),
+            ("prep_object", "ДНС-1 Еты-Пуровского"),
+            ("field", "Еты-Пуровское"),
+            ("company", "ГПН-ННГ"),
+            ("activity", ""),
+            ("comment", ""),
+            ("date_planning", ""),
+            ("date_fact", ""),
+            ("date_creation", "01.04.2023"),
+            ("responsible_person", ""),
+            ("obj_status", ""),
+            ("failure", ""),
+          ]),
+          HashMap::from([
+            ("id", "306"),
+            ("name", "Cкважина"),
+            ("well", "2062"),
+            ("pad", "17"),
+            ("prep_object", "ДНС-1 Еты-Пуровского"),
+            ("field", "Еты-Пуровское"),
+            ("company", "ГПН-ННГ"),
+            ("activity", ""),
+            ("comment", ""),
+            ("date_planning", ""),
+            ("date_fact", ""),
+            ("date_creation", "01.04.2023"),
+            ("responsible_person", ""),
+            ("obj_status", ""),
+            ("failure", ""),
+          ]),
+          HashMap::from([
+            ("id", "307"),
+            ("name", "Cкважина"),
+            ("well", "2063"),
+            ("pad", "17"),
+            ("prep_object", "ДНС-1 Еты-Пуровского"),
+            ("field", "Еты-Пуровское"),
+            ("company", "ГПН-ННГ"),
+            ("activity", ""),
+            ("comment", ""),
+            ("date_planning", ""),
+            ("date_fact", ""),
+            ("date_creation", "01.04.2023"),
+            ("responsible_person", ""),
+            ("obj_status", ""),
+            ("failure", ""),
+          ]),
+    ];
+    doData
 }
