@@ -185,7 +185,9 @@ impl TcpServer {
                 &sqlReply.asBytes(),
             ) {
                 Ok(_) => {},
-                Err(_) => todo!(),
+                Err(err) => {
+                    warn!("[TcpServer] error sending reply: {:?}", err);
+                },
             };
             thread::sleep(self.reconnectDelay);
             if cancel { break };
