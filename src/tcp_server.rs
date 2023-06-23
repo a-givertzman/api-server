@@ -187,40 +187,6 @@ impl TcpServer {
                 Ok(_) => {},
                 Err(_) => todo!(),
             };
-
-            // let sqlReply = if sqlQuery.sql == "SELECT * FROM dep-objects" {
-            //     SqlReply {
-            //         auth_token: sqlQuery.auth_token,
-            //         id: sqlQuery.id,
-            //         sql: sqlQuery.sql,
-            //         data: vec![
-            //            (String::from("name"), Some(String::from("Все ДО"))),
-            //            (String::from("name"), Some(String::from("ГПН-Восток"))),
-            //            (String::from("name"), Some(String::from("ГПН-ННГ"))),
-            //            (String::from("name"), Some(String::from("ГПН-Оренбург"))),
-            //            (String::from("name"), Some(String::from("ГПН-Хантос"))),
-            //            (String::from("name"), Some(String::from("Мессояха"))),
-            //            (String::from("name"), Some(String::from("СН-МНГ"))),
-            //          ],
-            //         errors: vec![],
-            //     }
-                  
-            // } else {
-            //     SqlReply {
-            //        auth_token: sqlQuery.auth_token,
-            //        id: sqlQuery.id,
-            //        sql: sqlQuery.sql,
-            //        data: vec![],
-            //        errors: vec![],
-            //    }
-            // };
-            // match Self::writeToTcpStream(
-            //     stream,
-            //     &sqlReply.asBytes(),
-            // ) {
-            //     Ok(_) => {},
-            //     Err(_) => todo!(),
-            // };
             thread::sleep(self.reconnectDelay);
             if cancel { break };
         }
