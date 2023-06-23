@@ -187,6 +187,7 @@ impl TcpServer {
                 Ok(_) => {},
                 Err(err) => {
                     warn!("[TcpServer] error sending reply: {:?}", err);
+                    cancel = true;
                 },
             };
             thread::sleep(self.reconnectDelay);
