@@ -180,6 +180,7 @@ impl TcpServer {
                     vec!["Error: Wrong SQL syntax in query".to_string()],
                 )
             };
+            thread::sleep(Duration::from_millis(1500));
             match Self::writeToTcpStream(
                 stream,
                 &sqlReply.asBytes(),
