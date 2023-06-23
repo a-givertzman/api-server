@@ -1,39 +1,84 @@
 #![allow(non_snake_case)]
 
+use std::{collections::HashMap, cell::RefCell};
+
 use log::{debug, warn};
-use serde::{Serialize, Deserialize};
+use rusqlite::{Connection, Statement, Error};
 
+type RowMap = HashMap<String, serde_json::Value>;
 ///
-#[derive(Debug, Serialize, Deserialize)]
+/// 
 pub struct SqlQuery {
-    pub auth_token: String,
-    pub id: String,
-    pub sql: String,
-
+    connection: RefCell<Connection>,
+    sql: String,
 }
+
 impl SqlQuery {
-    pub fn fromJson(jsonString: String) -> Self {
-        let raw: SqlQuery = serde_json::from_str(&jsonString).unwrap();
-        println!("raw: {:?}", raw);
-        raw
+    ///
+    pub fn new(connection: RefCell<Connection>, sql: String) -> Self {
+        Self {
+            connection: connection,
+            sql: sql.to_string(),
+        }
     }
-    pub fn fromBytes(bytes: Vec<u8>) -> Self {
-        let string = String::from_utf8(bytes).unwrap();
-        let string = string.trim_matches(char::from(0));
-        debug!("[SqlQuery.fromBytes] string: {:#?}", string);
-        let query: SqlQuery = match serde_json::from_str(&string) {
-            Ok(value) => {value},
-            Err(err) => {
-                warn!("[SqlQuery.fromBytes] json conversion error: {:?}", err);
-                SqlQuery {
-                    auth_token: String::from("none"),
-                    id: String::from("0"),
-                    sql: String::new(),
+    ///
+    pub fn execute(&self) -> Result<Vec<RowMap>, Error> {
+        let connection = self.connection.borrow();
+        warn!(".execute | preparing sql: {:?}", self.sql);
+        let result = match connection.prepare(self.sql.as_str()) {
+            Ok(stmt) => {
+                let mut cNames = vec![];
+                for item in stmt.column_names() {
+                    cNames.push(item.to_string());
                 }
+                let mut stmt = SqlQuery::fakeStmtClone(stmt);
+                let sqlRows = stmt.query([]);
+                let mut result = vec![];
+                match sqlRows {
+                    Ok(mut rows) => {
+                        while let Some(row) = rows.next().unwrap() {
+                            // ...
+                            debug!("row: {:?}", row);
+                            let mut rowMap = HashMap::new();
+                            for cName in cNames.iter() {
+                                let value: rusqlite::types::Value = row.get(cName.as_str()).expect(&format!("Error getting value from \"{}\" field", cName));
+                                let value: serde_json::Value = match value {
+                                    rusqlite::types::Value::Null => serde_json::Value::Null,
+                                    rusqlite::types::Value::Integer(v) => serde_json::Value::Number(serde_json::Number::from(v)),
+                                    rusqlite::types::Value::Real(v) => serde_json::Value::Number(serde_json::Number::from_f64(v).unwrap()),
+                                    rusqlite::types::Value::Text(v) => serde_json::Value::String(v),
+                                    rusqlite::types::Value::Blob(v) => {
+                                        let mut arr = vec![];
+                                        for i in v {
+                                            arr.push(
+                                                serde_json::Value::Number(
+                                                    serde_json::Number::from(i)
+                                                )
+                                            )
+                                        }
+                                        serde_json::Value::Array(arr)
+                                    }
+                                };
+                                rowMap.insert(String::from(cName), value);
+                            }
+                            result.push(rowMap);
+                        }
+                    },
+                    Err(err) => {
+                        warn!("getting rows error: {:?}", err);
+                    },
+                };
+                Ok(result)
+            },
+            Err(err) => {
+                Err(err)
             },
         };
-        // debug!("[DsPoint] point: {:#?}", point);
-        query
+        result
     }
-
+    ///
+    fn fakeStmtClone<'a>(stmt: Statement<'a>) -> Statement<'a> {
+        stmt
+    }
+    
 }

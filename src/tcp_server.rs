@@ -6,6 +6,7 @@ use log::{
     debug,
     warn,
 };
+use rusqlite::Connection;
 use std::{
     net::{
         SocketAddr, 
@@ -24,7 +25,7 @@ use std::{
     },     
     thread,
     time::Duration,
-    error::Error, 
+    error::Error, cell::RefCell, 
 };
 use std::time::SystemTime;
 use chrono::{
@@ -33,10 +34,10 @@ use chrono::{
     SecondsFormat,
 };
 
-use crate::{sql_query::SqlQuery, sql_reply::SqlReply};
+use crate::{api_query::ApiQuery, api_reply::SqlReply, sql_query::SqlQuery};
 
 
-const EOF: u8 = 4;
+// const EOF: u8 = 4;
 
 
 ///
@@ -61,6 +62,7 @@ impl TcpServer {
             // cancel: false,
         }
     }
+    ///
     pub fn run(this: Arc<Mutex<Self>>) -> Result<(), Box<dyn Error>> {
         debug!("[TcpServer] starting...");
         info!("[TcpServer] enter");
@@ -118,100 +120,6 @@ impl TcpServer {
         Ok(())
     }
     ///
-    /// 
-    // fn handleConnection(&mut self, mut stream: TcpStream) -> Result<(), Box<dyn Error>> {
-    //     // let mut s1 = Arc::new(Mutex::new(stream.try_clone().unwrap()));
-    //     Ok(())
-    // }
-    ///
-    /// 
-    // fn buildPoint(&self, name: &str, value: &f64, timestamp: &SystemTime) -> DsPoint {
-    //     DsPoint {
-    //         dataType: todo!(),
-    //         history: todo!(),
-    //         alarm: todo!(),
-    //         // class: String::from("commonCmd"),
-    //         // datatype: String::from("real"),
-    //         name: format!("/line1/ied12/db902_panel_controls/{}", name.to_owned()),
-    //         value: *value,
-    //         status: 0,
-    //         timestamp: DateTime::<Utc>::from(*timestamp).to_rfc3339_opts(SecondsFormat::Micros, true),
-    //     }
-    // }
-    ///
-    /// Sending messages to remote client
-    // fn sendToConnection(&mut self, stream: &mut TcpStream) {
-    //     debug!("[TcpServer] start to sending messages...");
-    //     let len = 4096;
-    //     let delay = 1.0 / (len as f64);
-    //     let mut i = 0;
-    //     // let mut phi = 0.0;
-    //     println!("sending delay: {:#?}", delay);
-    //     let now: DateTime<Utc> = SystemTime::now().into();
-    //     println!("first: {:?}", now.to_rfc3339_opts(SecondsFormat::Micros, true));
-    //     let mut points;
-    //     let mut errHappen = false;
-    //     loop {
-    //         // println!("buf: {:#?}", buf);
-    //         let mut queue = is.queueRx.lock().unwrap();
-    //         let length = queue.len();
-    //         let mut items = Vec::with_capacity(length);
-    //         for _ in 0..length {
-    //             match queue.dequeue() {
-    //                 Some(item) => {
-    //                     items.push(item);
-    //                 },
-    //                 None => {},
-    //             }
-    //         }
-    //         points = items.iter().map(|item| {
-    //             let (value, timestamp) = item;
-    //             self.buildPoint("Platform.sin", value, timestamp)
-    //         });
-    //         for point in points {
-    //             // debug!("sending point: {:#?}", point);
-    //             let jsonString = point.toJson();
-    //             errHappen = false;
-    //             match jsonString {
-    //                 Ok(value) => {
-    //                     match Self::writeToTcpStream(stream, value.as_bytes()) {
-    //                         Ok(_) => {},
-    //                         Err(_) => {
-    //                             errHappen = true;
-    //                             break;
-    //                         },
-    //                     };
-    //                     match Self::writeToTcpStream(stream, &[EOF]) {
-    //                         Ok(_) => {},
-    //                         Err(_) => {
-    //                             errHappen = true;
-    //                             break;
-    //                         },
-    //                     };
-    //                 },
-    //                 Err(err) => {
-    //                     warn!("error converting point to json: {:?},\n\tdetales: {:?}", point, err);
-    //                 },
-    //             }
-    //             if errHappen { break };
-    //         }
-    //         if errHappen { break };
-    //         i = (i + 1) % len;
-    //         // phi = PI2 * (i as f64) / (len as f64);
-    //         thread::sleep(Duration::from_secs_f64(delay));
-    //     }
-    //     match stream.shutdown(Shutdown::Both) {
-    //         Ok(_) => {
-    //             warn!("[TcpServer] sendToConnection stream.shutdown done");
-    //         },
-    //         Err(err) => {
-    //             warn!("[TcpServer] sendToConnection stream.shutdown error: {:?}", err);
-    //         },
-    //     };
-    //     warn!("[TcpServer] sendToConnection exit");
-    // }
-    ///
-    /// 
     fn writeToTcpStream(stream: &mut TcpStream, bytes: &[u8]) -> Result<(), Box<dyn Error>> {
         match stream.write(bytes) {
             Ok(_) => Ok(()),
@@ -238,37 +146,39 @@ impl TcpServer {
                     cancel = true;
                 },
             };
-            // debug!("[TcpServer] buf: {:#?}", buf);
-            // let parts = buf.split(|b| {*b == EOF});
-            // let bytes: Vec<_> = parts.take(1).collect();
             // debug!("[TcpServer] bytes: {:#?}", bytes[0]);
-            let sqlQuery = SqlQuery::fromBytes(buf.to_vec());
+            let sqlQuery = ApiQuery::fromBytes(buf.to_vec());
             debug!("[TcpServer] received point: {:?}", sqlQuery);
-            let sqlReply = if sqlQuery.sql == "SELECT * FROM dep-objects" {
-                SqlReply {
-                    auth_token: sqlQuery.auth_token,
-                    id: sqlQuery.id,
-                    sql: sqlQuery.sql,
-                    data: vec![
-                       (String::from("name"), Some(String::from("Все ДО"))),
-                       (String::from("name"), Some(String::from("ГПН-Восток"))),
-                       (String::from("name"), Some(String::from("ГПН-ННГ"))),
-                       (String::from("name"), Some(String::from("ГПН-Оренбург"))),
-                       (String::from("name"), Some(String::from("ГПН-Хантос"))),
-                       (String::from("name"), Some(String::from("Мессояха"))),
-                       (String::from("name"), Some(String::from("СН-МНГ"))),
-                     ],
-                    errors: vec![],
+            let sqlReply = if !sqlQuery.sql.is_empty() {
+                let path = "./database.sqlite";
+                let connection = Connection::open(path).unwrap();            
+                let result = SqlQuery::new(RefCell::new(connection), sqlQuery.sql.clone()).execute();
+                match result {
+                    Ok(rows) => {                        
+                        SqlReply {
+                            auth_token: sqlQuery.auth_token,
+                            id: sqlQuery.id,
+                            sql: sqlQuery.sql,
+                            data: rows,
+                            errors: vec![],
+                        }
+                    },
+                    Err(err) => {
+                        SqlReply::error(
+                            sqlQuery.auth_token,
+                            sqlQuery.id,
+                            sqlQuery.sql,
+                            vec![err.to_string()],
+                        )
+                    },
                 }
-                  
             } else {
-                SqlReply {
-                   auth_token: sqlQuery.auth_token,
-                   id: sqlQuery.id,
-                   sql: sqlQuery.sql,
-                   data: vec![],
-                   errors: vec![],
-               }
+                SqlReply::error(
+                    sqlQuery.auth_token,
+                    sqlQuery.id,
+                    sqlQuery.sql,
+                    vec!["Error: Wrong SQL syntax in query".to_string()],
+                )
             };
             match Self::writeToTcpStream(
                 stream,
@@ -277,9 +187,44 @@ impl TcpServer {
                 Ok(_) => {},
                 Err(_) => todo!(),
             };
+
+            // let sqlReply = if sqlQuery.sql == "SELECT * FROM dep-objects" {
+            //     SqlReply {
+            //         auth_token: sqlQuery.auth_token,
+            //         id: sqlQuery.id,
+            //         sql: sqlQuery.sql,
+            //         data: vec![
+            //            (String::from("name"), Some(String::from("Все ДО"))),
+            //            (String::from("name"), Some(String::from("ГПН-Восток"))),
+            //            (String::from("name"), Some(String::from("ГПН-ННГ"))),
+            //            (String::from("name"), Some(String::from("ГПН-Оренбург"))),
+            //            (String::from("name"), Some(String::from("ГПН-Хантос"))),
+            //            (String::from("name"), Some(String::from("Мессояха"))),
+            //            (String::from("name"), Some(String::from("СН-МНГ"))),
+            //          ],
+            //         errors: vec![],
+            //     }
+                  
+            // } else {
+            //     SqlReply {
+            //        auth_token: sqlQuery.auth_token,
+            //        id: sqlQuery.id,
+            //        sql: sqlQuery.sql,
+            //        data: vec![],
+            //        errors: vec![],
+            //    }
+            // };
+            // match Self::writeToTcpStream(
+            //     stream,
+            //     &sqlReply.asBytes(),
+            // ) {
+            //     Ok(_) => {},
+            //     Err(_) => todo!(),
+            // };
             thread::sleep(self.reconnectDelay);
             if cancel { break };
         }
         warn!("[TcpServer] listenStream exit");
     }
 }
+
