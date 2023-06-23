@@ -152,7 +152,7 @@ impl TcpServer {
             let sqlReply = if !sqlQuery.sql.is_empty() {
                 let path = "./database.sqlite";
                 let connection = Connection::open(path).unwrap();            
-                let result = SqlQuery::new(RefCell::new(connection), sqlQuery.sql.clone()).execute();
+                let result = SqlQuery::new(&connection, sqlQuery.sql.clone()).execute();
                 match result {
                     Ok(rows) => {                        
                         SqlReply {

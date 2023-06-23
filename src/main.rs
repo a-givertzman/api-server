@@ -5,10 +5,10 @@ mod api_reply;
 mod tcp_server;
 mod sql_query;
 
-use std::{fs, sync::{Arc, Mutex}, env, thread, time::Duration, collections::HashMap, cell::RefCell};
+use std::{fs, sync::{Arc, Mutex}, env, thread, time::Duration, cell::RefCell};
 
 use log::{debug, warn};
-use rusqlite::{Connection, types::Value, Statement};
+use rusqlite::{Connection};
 
 use crate::{api_query::ApiQuery, api_reply::SqlReply, tcp_server::TcpServer, sql_query::SqlQuery};
 
@@ -24,23 +24,7 @@ fn main() {
     let connection = Connection::open(path).unwrap();
     drop(&connection);
     create(&connection);
-    let sql = "SELECT * FROM `users`;";
-    // let query = "SELECT * FROM users WHERE age > 50";
-
-    SqlQuery::new(RefCell::new(connection), sql.to_string()).execute();
-    // sel(&connection, sql);
-
-    let path = "src/qury-format.json";
-    let jsonString = fs::read_to_string(&path)
-        .expect(&format!("Error read file {}", path));
-    println!("jsonString: {:?}", jsonString);
-    ApiQuery::fromJson(jsonString);
-
-    let path = "src/reply-format.json";
-    let jsonString = fs::read_to_string(&path)
-        .expect(&format!("Error read file {}", path));
-    println!("jsonString: {:?}", jsonString);
-    SqlReply::new(jsonString);
+    testSel(&connection);
 
     let tcpServer = Arc::new(Mutex::new(
         TcpServer::new(
@@ -56,10 +40,36 @@ fn main() {
     }
 }
 
+
+fn testSel(con: &Connection) {
+    let sql = "SELECT * FROM `users`;";
+    // let query = "SELECT * FROM users WHERE age > 50";
+    SqlQuery::new(con, sql.to_string()).execute().unwrap();
+    let sql = "SELECT * FROM `dep_objects`;";
+    SqlQuery::new(con, sql.to_string()).execute().unwrap();
+}
+
+fn _testApiQuery() {
+    let path = "src/qury-format.json";
+    let jsonString = fs::read_to_string(&path)
+        .expect(&format!("Error read file {}", path));
+    println!("jsonString: {:?}", jsonString);
+    ApiQuery::fromJson(jsonString);
+}
+
+fn _testApiReply() {
+    let path = "src/reply-format.json";
+    let jsonString = fs::read_to_string(&path)
+        .expect(&format!("Error read file {}", path));
+    println!("jsonString: {:?}", jsonString);
+    SqlReply::new(jsonString);
+}
+
+
 fn executeQuery(connection: &Connection, sql: &str) {
-    match connection.execute(sql, ()) {
+    match connection.execute_batch(sql) {
         Ok(res) => {
-            debug!("qyery result: {}", res)
+            debug!("qyery result: {:?}", res)
         },
         Err(err) => {
             warn!("qyery result: {}", err)
@@ -69,10 +79,29 @@ fn executeQuery(connection: &Connection, sql: &str) {
 
 fn drop(connection: &Connection) {
     executeQuery(connection, "DROP TABLE IF EXISTS `users`;");
-    // let query = "DROP TABLE IF EXISTS `users`;";
+    executeQuery(connection, "DROP TABLE IF EXISTS `dep_objects`;");
 }
 
 fn create(connection: &Connection) {
+    executeQuery(
+        connection, 
+        "CREATE TABLE IF NOT EXISTS `dep_objects` (
+            name TEXT, 
+            created TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
+        );",
+    );
+    executeQuery(
+        connection, 
+        "
+            INSERT INTO dep_objects(name) VALUES ('ГПН-Восток');
+            INSERT INTO dep_objects(name) VALUES ('ГПН-ННГ');
+            INSERT INTO dep_objects(name) VALUES ('ГПН-Оренбург');
+            INSERT INTO dep_objects(name) VALUES ('ГПН-Хантос');
+            INSERT INTO dep_objects(name) VALUES ('Мессояха');
+            INSERT INTO dep_objects(name) VALUES ('СН-МНГ');
+        ",
+    );
+
     executeQuery(
         connection, 
         "CREATE TABLE `users` (

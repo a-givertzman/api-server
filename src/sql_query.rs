@@ -1,6 +1,6 @@
 #![allow(non_snake_case)]
 
-use std::{collections::HashMap, cell::RefCell};
+use std::{collections::HashMap};
 
 use log::{debug, warn};
 use rusqlite::{Connection, Statement, Error};
@@ -8,23 +8,23 @@ use rusqlite::{Connection, Statement, Error};
 type RowMap = HashMap<String, serde_json::Value>;
 ///
 /// 
-pub struct SqlQuery {
-    connection: RefCell<Connection>,
+pub struct SqlQuery<'a> {
+    connection: &'a Connection,
     sql: String,
 }
 
-impl SqlQuery {
+impl<'a> SqlQuery<'a> {
     ///
-    pub fn new(connection: RefCell<Connection>, sql: String) -> Self {
+    pub fn new(connection: &'a Connection, sql: String) -> SqlQuery<'a> {
         Self {
-            connection: connection,
+            connection,
             sql: sql.to_string(),
         }
     }
     ///
     pub fn execute(&self) -> Result<Vec<RowMap>, Error> {
-        let connection = self.connection.borrow();
-        warn!(".execute | preparing sql: {:?}", self.sql);
+        let connection = self.connection;
+        debug!(".execute | preparing sql: {:?}", self.sql);
         let result = match connection.prepare(self.sql.as_str()) {
             Ok(stmt) => {
                 let mut cNames = vec![];
@@ -71,13 +71,14 @@ impl SqlQuery {
                 Ok(result)
             },
             Err(err) => {
+                warn!(".execute | preparing sql error: {:?}", err);
                 Err(err)
             },
         };
         result
     }
     ///
-    fn fakeStmtClone<'a>(stmt: Statement<'a>) -> Statement<'a> {
+    fn fakeStmtClone<'b>(stmt: Statement<'b>) -> Statement<'b> {
         stmt
     }
     
