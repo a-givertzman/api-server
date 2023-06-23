@@ -4,10 +4,10 @@ mod sql_query;
 mod sql_reply;
 mod tcp_server;
 
-use std::{fs, sync::{Arc, Mutex}, env, thread, time::Duration, collections::HashMap};
+use std::{fs, sync::{Arc, Mutex}, env, thread, time::Duration, collections::HashMap, cell::RefCell, rc::Rc};
 
 use log::{debug, warn};
-use rusqlite::Connection;
+use rusqlite::{Connection, types::Value, Statement, CachedStatement};
 use serde::{Serialize, Deserialize};
 
 use crate::{sql_query::SqlQuery, sql_reply::SqlReply, tcp_server::TcpServer};
@@ -95,49 +95,69 @@ fn create(connection: &Connection) {
 
 }
 
+
 fn sel(connection: &Connection) {
     let query = "SELECT * FROM `users`;";
     // let query = "SELECT * FROM users WHERE age > 50";
-    match connection.prepare(query) {
-        Ok(mut stmt) => {
-            let rowIter = stmt.query_map([], |row| {
-                debug!("row: {:?}", row);
-                // for &(name, value) in row.iter() {
-                //     println!("{} = {}", name, value.unwrap());
-                // }
-                let mut hm = HashMap::new();
-                // row.
-                let name: String = row.get(0)?;
-                let age: String = row.get(0)?;
-                let created: String = row.get(0)?;
-                hm.insert("name", name);
-                hm.insert("age", age);
-                hm.insert("created", created);
-                Ok(hm)
-            }).unwrap();
+    let mut stmt = connection.prepare_cached(query).unwrap();
+        // Ok(stmt) => {
+            // let cNames = stmt.column_names().clone();
+            // let rowIter = stmt.query_map([], |row| {
+            //     debug!("row: {:?}", row);
+            //     // for &(name, value) in row.iter() {
+            //     //     println!("{} = {}", name, value.unwrap());
+            //     // }
+            //     let mut hm = HashMap::new();
+            //     // row.
+            //     for cName in cNames {
+            //         let value: Value = row.get_unwrap(cName);
+            //         hm.insert(cName, value);
+            //     }
+            //     Ok(hm)
+            // }).unwrap();
             //  {
             //     Ok(_) => {},
             //     Err(err) => {
             //         warn!("query_map error: {:?}", err)
             //     },
             // };
-            for item in rowIter {
-                debug!("row: {:?}", item.unwrap());
-            }
-        },
-        Err(err) => {
-            warn!("prepare error: {:?}", err)
-        },
-    };
+            // for item in rowIter {
+            //     debug!("row: {:?}", item.unwrap());
+            // }
+    //     },
+    //     Err(err) => {
+    //         warn!("prepare error: {:?}", err)
+    //     },
+    // };
+    // let mut rows = vec![];
+    // let cNames = &mut stmt.column_names().clone();
+    let mut cNames = vec![];
+    let mut stmt = names(stmt, &mut cNames);
+    let sqlRows = stmt.query_map([], |row| {
+        let mut rowMap = HashMap::new();
+        for cName in cNames.iter() {
+            let value: Value = row.get(cName.as_str()).expect(&format!("Error getting value from \"{}\" field", cName));
+            rowMap.insert(cName, value);
+        }
+        Ok(rowMap)
+    }).unwrap();
+    for row in sqlRows {
+        match row {
+            Ok(row) => {
+                debug!("row: {:?}", row);
+            },
+            Err(err) => {
+                warn!("getting rows error: {:?}", err);
+            },
+        }
+    }
 }
-
-
-
-// enum Value {
-//     Null,
-//     Bool(bool),
-//     Number(Number),
-//     String(String),
-//     Array(Vec<Value>),
-//     Object(Map<String, Value>),
-// }
+///
+fn names<'a>(stmt: CachedStatement<'a>, cNames: &mut Vec<String>) -> CachedStatement<'a> {
+    let nVec = &mut stmt.column_names().clone();
+    cNames.clear();
+    for item in nVec {
+        cNames.push(item.to_string());
+    }
+    return stmt;
+}
