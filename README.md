@@ -51,7 +51,7 @@ databases:                      # list currently avalible databases
     "id": "123",
     "sql": {
         "database": "database name",
-        "Some valid sql query",
+        "sql": "Some valid sql query",
     },
     "data": [
 
