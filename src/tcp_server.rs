@@ -152,7 +152,7 @@ impl TcpServer {
             };
             // debug!("[TcpServer] bytes: {:#?}", bytes[0]);
             let reply = self.apiServer.build(buf.to_vec());
-            thread::sleep(Duration::from_millis(1500));
+            // thread::sleep(Duration::from_millis(1500));
             match Self::writeToTcpStream(
                 stream,
                 &reply,
