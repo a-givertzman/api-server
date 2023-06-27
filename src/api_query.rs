@@ -57,19 +57,6 @@ impl ApiQuery {
                 query: ApiQueryType::Error,
             }
         }
-        // let query: ApiQuery = match serde_json::from_str(&string) {
-        //     Ok(value) => {value},
-        //     Err(err) => {
-        //         warn!("[SqlQuery.fromBytes] json conversion error: {:?}", err);
-        //         ApiQuery {
-        //             auth_token: String::from("none"),
-        //             id: String::from("0"),
-        //             query: ApiQueryType::Error,
-        //         }
-        //     },
-        // };
-        // debug!("[DsPoint] point: {:#?}", point);
-        // query
     }
 
 }

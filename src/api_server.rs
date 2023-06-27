@@ -28,8 +28,9 @@ impl ApiServer {
                 )    
             },
             ApiQueryType::Sql(sqlQuery) => {
-                let path = self.config.dataBases[0].path.clone();
                 // let path = "./database.sqlite";
+                // let path = self.config.dataBases[0].path.clone();
+                let path = sqlQuery.database;
                 debug!("[ApiServer] database address: {:?}", path);
                 let connection = Connection::open(path).unwrap();            
                 let result = SqlQuery::new(&connection, sqlQuery.sql.clone()).execute();
