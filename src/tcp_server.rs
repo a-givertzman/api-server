@@ -34,7 +34,12 @@ use chrono::{
     SecondsFormat,
 };
 
-use crate::{api_query::ApiQuery, api_reply::SqlReply, sql_query::SqlQuery};
+use crate::{
+    api_query::ApiQuery, 
+    api_reply::SqlReply, 
+    sql_query::SqlQuery, 
+    api_server::ApiServer,
+};
 
 
 // const EOF: u8 = 4;
@@ -48,17 +53,18 @@ pub struct TcpServer {
     // listener: Option<TcpListener>,
     reconnectDelay: Duration,
     pub isConnected: bool,
+    apiServer: ApiServer,
     // cancel: bool,
 }
-
 impl TcpServer {
-    pub fn new(addr: &str) -> Self {
+    pub fn new(addr: &str, apiServer: ApiServer) -> Self {
         Self {
             addr: addr.parse().unwrap(),
             // stream: None,
             // listener: None,
             reconnectDelay: Duration::from_secs(3),
             isConnected: false,
+            apiServer: apiServer,
             // cancel: false,
         }
     }

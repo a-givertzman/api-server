@@ -1,6 +1,7 @@
 #![allow(non_snake_case)]
 
 mod config;
+mod api_server;
 mod api_query;
 mod api_reply;
 mod tcp_server;
@@ -11,7 +12,7 @@ use std::{fs, sync::{Arc, Mutex}, env, thread, time::Duration, cell::RefCell, co
 use log::{debug, warn};
 use rusqlite::{Connection};
 
-use crate::{api_query::ApiQuery, api_reply::SqlReply, tcp_server::TcpServer, sql_query::SqlQuery, config::Config};
+use crate::{api_query::ApiQuery, api_reply::SqlReply, tcp_server::TcpServer, sql_query::SqlQuery, config::Config, api_server::ApiServer};
 
 fn main() {
     env::set_var("RUST_LOG", "debug");
@@ -25,7 +26,7 @@ fn main() {
     let path: &str = &format!("{}/config.yaml", dir.to_str().unwrap());
     debug!("reading config file: {}", path);
     let config = Config::new(path);
-    
+
     // let path = ":memory";
     let path = "./database.sqlite";
     let connection = Connection::open(path).unwrap();
@@ -36,6 +37,7 @@ fn main() {
     let tcpServer = Arc::new(Mutex::new(
         TcpServer::new(
             config.address.as_str(),
+            ApiServer::new(&config,)
             // "127.0.0.1:8899", 
         ),
     ));
