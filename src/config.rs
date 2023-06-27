@@ -1,6 +1,7 @@
 use std::fs;
 
 use linked_hash_map::LinkedHashMap;
+use log::debug;
 use yaml_rust::{YamlLoader, Yaml};
 
 
@@ -20,10 +21,14 @@ impl Config {
                 format!("Config | error reading 'databases' from config file {:?}", &path).as_str(),
             );
         for item in dataBasesVec {
-            let dataBaseConfigMap = item[0].as_hash().expect(
-                format!("Config | error reading 'databases' from config file {:?}", &path).as_str(),
-            );
-            let dataBaseConfig = DataBaseConfig::new(dataBaseConfigMap);
+            debug!("Config | database config item: {:?}", item);
+            let dataBaseConfigMapEnty = item.as_hash().expect(
+                format!("Config | error reading database config {:?}", &item).as_str(),
+            ).iter().next().unwrap();
+            let dataBaseConfigKey = dataBaseConfigMapEnty.0.as_str().unwrap();
+            let dataBaseConfigMap = dataBaseConfigMapEnty.1.as_hash().unwrap();
+            // debug!("Config | dataBaseConfigMap: {:?}", dataBaseConfigMap);
+            let dataBaseConfig = DataBaseConfig::new(dataBaseConfigKey, dataBaseConfigMap);
             dataBases.push(dataBaseConfig);
         }
         Config {
@@ -47,7 +52,8 @@ pub struct DataBaseConfig {
     pass: String,
 }
 impl DataBaseConfig {
-    pub fn new(configMap: &LinkedHashMap<Yaml, Yaml>) -> DataBaseConfig {
+    pub fn new(configKey: &str, configMap: &LinkedHashMap<Yaml, Yaml>) -> DataBaseConfig {
+        debug!("DataBaseConfig | configMap: {:?}", configMap);
         let path = &configMap[&Yaml::String("path".to_string())]
             .as_str()
             .expect(
