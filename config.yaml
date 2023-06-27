@@ -1,7 +1,7 @@
 address: '127.0.0.1:8899'       # self ip:port address where api service will be alvalible
 databases:                      # list currently avalible databases
-    - database1:                 # database service name
-        name: 'database1'        # database instance name
+    - database:                 # database service name
+        name: 'database'        # database instance name
         type: sqlite            # the type of the dattabase
         path: 'database.sqlite' # path / ip:pot to the database file / host 
         user: root              # database access user

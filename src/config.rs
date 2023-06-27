@@ -30,7 +30,7 @@ impl Config {
             let dataBaseConfigMap = dataBaseConfigMapEnty.1.as_hash().unwrap();
             // debug!("Config | dataBaseConfigMap: {:?}", dataBaseConfigMap);
             let dataBaseConfig = DataBaseConfig::new(dataBaseConfigKey, dataBaseConfigMap);
-            dataBases.insert(dataBaseConfigKey.to_string(), dataBaseConfig);
+            dataBases.insert((&dataBaseConfig.name).clone(), dataBaseConfig);
         }
         Config {
             address: String::from(
