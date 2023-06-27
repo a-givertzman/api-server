@@ -14,14 +14,22 @@ pub struct ApiQuery {
 
 }
 impl ApiQuery {
+    fn parseJsonString(value: &serde_json::Value, name: &str) -> String {
+        if let serde_json::Value::String(sql) = &value[name] {
+            sql.clone()
+        } else {
+            String::new()
+        }
+    }
     ///
-    pub fn sql(jsonMap: &serde_json::Map<String, serde_json::Value>) -> Self {
+    pub fn sql(jsonMap: &serde_json::Value) -> Self {
+        let sql = &jsonMap["sql"];
         ApiQuery {
-            auth_token: jsonMap["auth_token"].to_string(),
-            id: jsonMap["id"].to_string(),
+            auth_token: ApiQuery::parseJsonString(&jsonMap, "auth_token"),
+            id: ApiQuery::parseJsonString(&jsonMap, "id"),
             query: ApiQueryType::Sql(ApiQuerySql {
-                database: jsonMap["sql"]["database"].to_string(),
-                sql: jsonMap["sql"]["sql"].to_string(),
+                database: ApiQuery::parseJsonString(&sql, "database"),
+                sql: ApiQuery::parseJsonString(&sql, "sql"),
             }),
         }
     }
@@ -36,11 +44,11 @@ impl ApiQuery {
         let string = String::from_utf8(bytes).unwrap();
         let string = string.trim_matches(char::from(0));
         debug!("[SqlQuery.fromBytes] string: {:?}", string);
-        let mut json: serde_json::Value = serde_json::from_str(string).unwrap();
+        let json: serde_json::Value = serde_json::from_str(string).unwrap();
         let obj = json.as_object().expect(format!("[SqlQuery.fromBytes] error parsing json: {:?}", string).as_str());
         debug!("[SqlQuery.fromBytes] obj: {:?}", obj);
         if obj.contains_key("sql") {
-            ApiQuery::sql(obj)
+            ApiQuery::sql(&json)
         } else {
             warn!("[SqlQuery.fromBytes] json conversion error in: {:?}", obj);
             ApiQuery {
