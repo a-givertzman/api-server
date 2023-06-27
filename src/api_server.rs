@@ -19,7 +19,9 @@ impl<'a> ApiServer<'_> {
         let sqlQuery = ApiQuery::fromBytes(bytes);
         debug!("[TcpServer] received point: {:?}", sqlQuery);
         let sqlReply = if !sqlQuery.sql.is_empty() {
-            let path = "./database.sqlite";
+            let path = self.config.address;
+            // let path = "./database.sqlite";
+            debug!("[ApiServer] database address: {:?}", path);
             let connection = Connection::open(path).unwrap();            
             let result = SqlQuery::new(&connection, sqlQuery.sql.clone()).execute();
             match result {
