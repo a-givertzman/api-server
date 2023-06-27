@@ -1,7 +1,7 @@
 use std::fs;
 
 use linked_hash_map::LinkedHashMap;
-use log::debug;
+use log::{debug, trace};
 use yaml_rust::{YamlLoader, Yaml};
 
 
@@ -22,7 +22,7 @@ impl Config {
                 format!("Config | error reading 'databases' from config file {:?}", &path).as_str(),
             );
         for item in dataBasesVec {
-            debug!("Config | database config item: {:?}", item);
+            trace!("Config | database config item: {:?}", item);
             let dataBaseConfigMapEnty = item.as_hash().expect(
                 format!("Config | error reading database config {:?}", &item).as_str(),
             ).iter().next().unwrap();
@@ -48,14 +48,14 @@ impl Config {
 
 #[derive(Debug, Clone)]
 pub struct DataBaseConfig {
-    path: String,
-    name: String,
-    user: String,
-    pass: String,
+    pub path: String,
+    pub name: String,
+    pub user: String,
+    pub pass: String,
 }
 impl DataBaseConfig {
-    pub fn new(configKey: &str, configMap: &LinkedHashMap<Yaml, Yaml>) -> DataBaseConfig {
-        debug!("DataBaseConfig | configMap: {:?}", configMap);
+    pub fn new(_configKey: &str, configMap: &LinkedHashMap<Yaml, Yaml>) -> DataBaseConfig {
+        trace!("DataBaseConfig | configMap: {:?}", configMap);
         let path = &configMap[&Yaml::String("path".to_string())]
             .as_str()
             .expect(

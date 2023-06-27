@@ -34,12 +34,10 @@ fn main() {
     create(&connection);
     testSel(&connection);
 
-    let apiServer = ApiServer::new(config.clone());
-
     let tcpServer = Arc::new(Mutex::new(
         TcpServer::new(
             config.address.as_str(),
-            apiServer,
+            ApiServer::new(config.clone()),
             // "127.0.0.1:8899", 
         ),
     ));
