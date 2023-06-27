@@ -23,19 +23,10 @@ fn main() {
     env_logger::init();
 
     debug!("starting api server...");
-
     let dir = std::env::current_dir().unwrap();
     let path: &str = &format!("{}/config.yaml", dir.to_str().unwrap());
     debug!("reading config file: {}", path);
     let config = Config::new(path);
-
-    // let path = ":memory";
-    let path = "./database.sqlite";
-    let connection = Connection::open(path).unwrap();
-    drop(&connection);
-    create(&connection);
-    testSel(&connection);
-
     let tcpServer = Arc::new(Mutex::new(
         TcpServer::new(
             config.address.as_str(),
@@ -53,7 +44,16 @@ fn main() {
 }
 
 
-fn testSel(con: &Connection) {
+fn _rebuildSqliteTables() {
+    // let path = ":memory";
+    let path = "./database.sqlite";
+    let connection = Connection::open(path).unwrap();
+    _drop(&connection);
+    _create(&connection);
+    _testSel(&connection);    
+}
+
+fn _testSel(con: &Connection) {
     let sql = "SELECT * FROM `users`;";
     // let query = "SELECT * FROM users WHERE age > 50";
     SqlQuery::new(con, sql.to_string()).execute().unwrap();
@@ -80,7 +80,7 @@ fn _testApiReply() {
 }
 
 
-fn executeQuery(connection: &Connection, sql: &str) {
+fn _executeQuery(connection: &Connection, sql: &str) {
     match connection.execute_batch(sql) {
         Ok(res) => {
             debug!("qyery result: {:?}", res)
@@ -91,20 +91,20 @@ fn executeQuery(connection: &Connection, sql: &str) {
     }();
 }
 
-fn drop(connection: &Connection) {
-    executeQuery(connection, "DROP TABLE IF EXISTS `users`;");
-    executeQuery(connection, "DROP TABLE IF EXISTS `dep_objects`;");
+fn _drop(connection: &Connection) {
+    _executeQuery(connection, "DROP TABLE IF EXISTS `users`;");
+    _executeQuery(connection, "DROP TABLE IF EXISTS `dep_objects`;");
 }
 
-fn create(connection: &Connection) {
-    executeQuery(
+fn _create(connection: &Connection) {
+    _executeQuery(
         connection, 
         "CREATE TABLE IF NOT EXISTS `dep_objects` (
             name TEXT, 
             created TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
         );",
     );
-    executeQuery(
+    _executeQuery(
         connection, 
         "
             INSERT INTO dep_objects(name) VALUES ('ГПН-Восток');
@@ -117,7 +117,7 @@ fn create(connection: &Connection) {
     );
 
 
-    executeQuery(
+    _executeQuery(
         connection, 
         "CREATE TABLE `do_data` (
             id INTEGER PRIMARY KEY,
@@ -138,7 +138,7 @@ fn create(connection: &Connection) {
         );",
     );
 
-    let doData = getDoData();
+    let doData = _getDoData();
     let mut query = vec![];
     for item in doData {
         let mut names = vec![];
@@ -152,11 +152,11 @@ fn create(connection: &Connection) {
     }
     let query = query.join(";   ");
     debug!("doData query: {}", query);
-    executeQuery(
+    _executeQuery(
         connection, 
         &query
     );
-    executeQuery(
+    _executeQuery(
         connection, 
         "CREATE TABLE `users` (
             name TEXT, 
@@ -164,15 +164,15 @@ fn create(connection: &Connection) {
             created TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
         );",
     );
-    executeQuery(
+    _executeQuery(
         connection, 
         "INSERT INTO users(name, age) VALUES ('Alice', 42);",
     );
-    executeQuery(
+    _executeQuery(
         connection, 
         "INSERT INTO users(name, age) VALUES ('Bob', 69);",
     );
-    executeQuery(
+    _executeQuery(
         connection, 
         "
             INSERT INTO users(name, age) VALUES ('Bob1', 1);
@@ -184,7 +184,7 @@ fn create(connection: &Connection) {
 }
 
 
-fn getDoData() -> Vec<HashMap<&'static str, &'static str>> {
+fn _getDoData() -> Vec<HashMap<&'static str, &'static str>> {
     let doData = vec![
         HashMap::from([
           ("id", "213"),
