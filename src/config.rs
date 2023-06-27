@@ -1,4 +1,4 @@
-use std::fs;
+use std::{fs, collections::HashMap};
 
 use linked_hash_map::LinkedHashMap;
 use log::{debug, trace};
@@ -8,14 +8,14 @@ use yaml_rust::{YamlLoader, Yaml};
 #[derive(Debug, Clone)]
 pub struct Config {
     pub address: String,
-    pub dataBases: Vec<DataBaseConfig>,
+    pub dataBases: HashMap<String, DataBaseConfig>,
 }
 impl Config {
     pub fn new(path: &str) -> Config {
         let configYaml = fs::read_to_string(&path).expect(&format!("Error read file {}", path));
         let yamlVec = YamlLoader::load_from_str(&configYaml).unwrap();
         let yamlDoc = &yamlVec[0];
-        let mut dataBases = vec![];
+        let mut dataBases = HashMap::new();
         let dataBasesVec = yamlDoc["databases"]
             .as_vec()
             .expect(
@@ -30,7 +30,7 @@ impl Config {
             let dataBaseConfigMap = dataBaseConfigMapEnty.1.as_hash().unwrap();
             // debug!("Config | dataBaseConfigMap: {:?}", dataBaseConfigMap);
             let dataBaseConfig = DataBaseConfig::new(dataBaseConfigKey, dataBaseConfigMap);
-            dataBases.push(dataBaseConfig);
+            dataBases.insert(dataBaseConfigKey.to_string(), dataBaseConfig);
         }
         Config {
             address: String::from(
