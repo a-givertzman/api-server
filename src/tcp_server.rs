@@ -153,43 +153,11 @@ impl TcpServer {
                 },
             };
             // debug!("[TcpServer] bytes: {:#?}", bytes[0]);
-            let sqlQuery = ApiQuery::fromBytes(buf.to_vec());
-            debug!("[TcpServer] received point: {:?}", sqlQuery);
-            let sqlReply = if !sqlQuery.sql.is_empty() {
-                let path = "./database.sqlite";
-                let connection = Connection::open(path).unwrap();            
-                let result = SqlQuery::new(&connection, sqlQuery.sql.clone()).execute();
-                match result {
-                    Ok(rows) => {                        
-                        SqlReply {
-                            auth_token: sqlQuery.auth_token,
-                            id: sqlQuery.id,
-                            sql: sqlQuery.sql,
-                            data: rows,
-                            errors: vec![],
-                        }
-                    },
-                    Err(err) => {
-                        SqlReply::error(
-                            sqlQuery.auth_token,
-                            sqlQuery.id,
-                            sqlQuery.sql,
-                            vec![err.to_string()],
-                        )
-                    },
-                }
-            } else {
-                SqlReply::error(
-                    sqlQuery.auth_token,
-                    sqlQuery.id,
-                    sqlQuery.sql,
-                    vec!["Error: Wrong SQL syntax in query".to_string()],
-                )
-            };
+            let reply = self.apiServer.build(buf.to_vec());
             thread::sleep(Duration::from_millis(1500));
             match Self::writeToTcpStream(
                 stream,
-                &sqlReply.asBytes(),
+                &reply,
             ) {
                 Ok(_) => {},
                 Err(err) => {
