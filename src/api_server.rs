@@ -30,7 +30,7 @@ impl ApiServer {
             ApiQueryType::Sql(sqlQuery) => {
                 // let path = "./database.sqlite";
                 // let path = self.config.dataBases[0].path.clone();
-                let path = sqlQuery.database;
+                let path = format!("{}.sqlite", sqlQuery.database);
                 debug!("[ApiServer] database address: {:?}", path);
                 let connection = Connection::open_with_flags(path, OpenFlags::SQLITE_OPEN_READ_WRITE); // ::open(path).unwrap();            
                 match connection {
