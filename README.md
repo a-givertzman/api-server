@@ -2,9 +2,9 @@
 
 Just a simple wrapper for databases
 
-    - [x] SQLite
-    - [ ] MySQL
-    - [ ] PostgreSQL
+- [x] SQLite
+- [ ] MySQL
+- [ ] PostgreSQL
 
 ## Config
 - for configure api server use file config.yaml
