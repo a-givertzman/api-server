@@ -21,8 +21,11 @@ fn main() {
 
     debug!("starting api server...");
 
-    debug!("starting api server...");
-    let config = Config::new("./../config.yaml");
+    let dir = std::env::current_dir().unwrap();
+    let path: &str = &format!("{}/config.yaml", dir.to_str().unwrap());
+    debug!("reading config file: {}", path);
+    let config = Config::new(path);
+    
     // let path = ":memory";
     let path = "./database.sqlite";
     let connection = Connection::open(path).unwrap();
