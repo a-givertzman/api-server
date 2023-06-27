@@ -1,5 +1,6 @@
 #![allow(non_snake_case)]
 
+mod config;
 mod api_query;
 mod api_reply;
 mod tcp_server;

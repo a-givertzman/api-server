@@ -1,9 +1,12 @@
-struct Config {
+
+pub struct Config {
     address: String,
-    dataBases: List<DataBaseConfig>
+    dataBases: Vec<DataBaseConfig>
 }
 impl Config {
-
+    pub fn new() {
+        
+    }
 }
 
 
@@ -11,5 +14,5 @@ struct DataBaseConfig {
 
 }
 impl DataBaseConfig {
-    
+
 }
