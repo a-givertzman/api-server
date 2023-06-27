@@ -7,6 +7,7 @@ Just a simple wrapper for databases
 - [ ] PostgreSQL
 
 ## Config
+
 - for configure api server use file config.yaml
 - the cobfig file mast be located in the root folder with executable
 
@@ -30,4 +31,7 @@ databases:                      # list currently avalible databases
 ## Build for windows
 
 ### cross-compile for windows
+
+```bash
 cargo build --target x86_64-pc-windows-gnu
+```
