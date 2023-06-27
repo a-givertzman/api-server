@@ -4,14 +4,14 @@ use rusqlite::Connection;
 use crate::{config::Config, api_query::ApiQuery, sql_query::SqlQuery, api_reply::SqlReply};
 
 ///
-pub struct ApiServer {
-
+pub struct ApiServer<'a> {
+    config: &'a Config
 }
-impl ApiServer {
+impl<'a> ApiServer<'_> {
     ///
     pub fn new(config: &Config) -> ApiServer {
         ApiServer {
-
+            config,
         }
     }
     ///

@@ -6,13 +6,12 @@ use log::{
     debug,
     warn,
 };
-use rusqlite::Connection;
 use std::{
     net::{
         SocketAddr, 
         TcpStream, 
         TcpListener, 
-        Shutdown,
+        // Shutdown,
     }, 
     io::{
         // BufReader, 
@@ -25,19 +24,16 @@ use std::{
     },     
     thread,
     time::Duration,
-    error::Error, cell::RefCell, 
+    error::Error, 
 };
-use std::time::SystemTime;
-use chrono::{
-    DateTime,
-    Utc,
-    SecondsFormat,
-};
+// use std::time::SystemTime;
+// use chrono::{
+//     DateTime,
+//     Utc,
+//     SecondsFormat,
+// };
 
 use crate::{
-    api_query::ApiQuery, 
-    api_reply::SqlReply, 
-    sql_query::SqlQuery, 
     api_server::ApiServer,
 };
 
