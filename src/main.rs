@@ -11,7 +11,7 @@ use std::{fs, sync::{Arc, Mutex}, env, thread, time::Duration, cell::RefCell, co
 use log::{debug, warn};
 use rusqlite::{Connection};
 
-use crate::{api_query::ApiQuery, api_reply::SqlReply, tcp_server::TcpServer, sql_query::SqlQuery};
+use crate::{api_query::ApiQuery, api_reply::SqlReply, tcp_server::TcpServer, sql_query::SqlQuery, config::Config};
 
 fn main() {
     env::set_var("RUST_LOG", "debug");
@@ -20,6 +20,9 @@ fn main() {
     env_logger::init();
 
     debug!("starting api server...");
+
+    debug!("starting api server...");
+    let config = Config::new("./../config.yaml");
     // let path = ":memory";
     let path = "./database.sqlite";
     let connection = Connection::open(path).unwrap();
@@ -29,7 +32,8 @@ fn main() {
 
     let tcpServer = Arc::new(Mutex::new(
         TcpServer::new(
-            "127.0.0.1:8899", 
+            config.address.as_str(),
+            // "127.0.0.1:8899", 
         ),
     ));
     TcpServer::run(tcpServer.clone()).unwrap();
