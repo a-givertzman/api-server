@@ -33,7 +33,7 @@ impl ApiServer {
                         // let path = "./database.sqlite";
                         // let path = self.config.dataBases[0].path.clone();
                         let dir = std::env::current_dir().unwrap();
-                        let path: &str = &format!("{}/{}.sqlite", dir.to_str().unwrap(), sqlQuery.database);
+                        let path: &str = &format!("{}/{}", dir.to_str().unwrap(), dbConfig.path);
                         debug!("[ApiServer] database address: {:?}", path);
                         let connection = Connection::open_with_flags(path, OpenFlags::SQLITE_OPEN_READ_WRITE); // ::open(path).unwrap();            
                         match connection {
