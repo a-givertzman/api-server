@@ -17,7 +17,7 @@ impl ApiServer {
     ///
     pub fn build(&self, bytes: Vec<u8>) -> Vec<u8> {
         let apiQuery = ApiQuery::fromBytes(bytes);
-        debug!("[TcpServer] received point: {:?}", apiQuery);
+        debug!("[TcpServer] received ApiQuery: {:?}", apiQuery);
         let sqlReply = match apiQuery.query.clone() {
             ApiQueryType::Error => {
                 SqlReply::error(
