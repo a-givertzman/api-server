@@ -24,7 +24,7 @@ impl ApiServer {
                     apiQuery.auth_token,
                     apiQuery.id,
                     apiQuery.query,
-                    vec!["Error: Wrong SQL syntax in query".to_string()],
+                    vec!["Error: Wrong query structure".to_string()],
                 )    
             },
             ApiQueryType::Sql(sqlQuery) => {
