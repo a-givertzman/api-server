@@ -1,5 +1,5 @@
 use log::debug;
-use rusqlite::Connection;
+use rusqlite::{Connection, OpenFlags};
 
 use crate::{config::Config, api_query::ApiQuery, sql_query::SqlQuery, api_reply::SqlReply, api_query_type::ApiQueryType};
 
@@ -32,17 +32,29 @@ impl ApiServer {
                 // let path = self.config.dataBases[0].path.clone();
                 let path = sqlQuery.database;
                 debug!("[ApiServer] database address: {:?}", path);
-                let connection = Connection::open(path).unwrap();            
-                let result = SqlQuery::new(&connection, sqlQuery.sql.clone()).execute();
-                match result {
-                    Ok(rows) => {                        
-                        SqlReply {
-                            auth_token: apiQuery.auth_token,
-                            id: apiQuery.id,
-                            query: apiQuery.query,
-                            data: rows,
-                            errors: vec![],
-                        }
+                let connection = Connection::open_with_flags(path, OpenFlags::SQLITE_OPEN_READ_WRITE); // ::open(path).unwrap();            
+                match connection {
+                    Ok(connection) => {
+                        let result = SqlQuery::new(&connection, sqlQuery.sql.clone()).execute();
+                        match result {
+                            Ok(rows) => {                        
+                                SqlReply {
+                                    auth_token: apiQuery.auth_token,
+                                    id: apiQuery.id,
+                                    query: apiQuery.query,
+                                    data: rows,
+                                    errors: vec![],
+                                }
+                            },
+                            Err(err) => {
+                                SqlReply::error(
+                                    apiQuery.auth_token,
+                                    apiQuery.id,
+                                    apiQuery.query,
+                                    vec![err.to_string()],
+                                )
+                            },
+                        }                        
                     },
                     Err(err) => {
                         SqlReply::error(
@@ -53,6 +65,7 @@ impl ApiServer {
                         )
                     },
                 }
+
                     
             },
         };
