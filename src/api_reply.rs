@@ -2,15 +2,16 @@
 
 use std::collections::HashMap;
 
-// use rusqlite::types::Value;
 use serde::{Serialize, Deserialize};
+
+use crate::api_query_type::ApiQueryType;
 
 ///
 #[derive(Debug, Serialize, Deserialize)]
 pub struct SqlReply {
     pub auth_token: String,
     pub id: String,
-    pub sql: String,
+    pub query: ApiQueryType,
     pub data: Vec<HashMap<String, serde_json::Value>>, //Vec<(String, Option<String>)>,
     pub errors: Vec<String>,
 
@@ -43,13 +44,13 @@ impl SqlReply {
     pub fn error(
         auth_token: String,
         id: String,
-        sql: String, 
+        query: ApiQueryType, 
         errors: Vec<String>
     ) -> Self {
         SqlReply {
             auth_token: auth_token,
             id: id,
-            sql: sql,
+            query: query,
             data: vec![],
             errors: errors,
         }        

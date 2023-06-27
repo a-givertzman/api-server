@@ -2,6 +2,8 @@
 
 mod config;
 mod api_server;
+mod api_query_type;
+mod api_query_sql;
 mod api_query;
 mod api_reply;
 mod tcp_server;

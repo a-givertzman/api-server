@@ -3,19 +3,16 @@
 use log::{debug, warn};
 use serde::{Serialize, Deserialize};
 
-use crate::api_query_type::ApiQueryType;
-
 ///
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct ApiQuery {
-    pub auth_token: String,
-    pub id: String,
-    pub query: ApiQueryType,
+pub struct ApiQuerySql {
+    pub database: String,
+    pub sql: String,
 
 }
-impl ApiQuery {
+impl ApiQuerySql {
     pub fn fromJson(jsonString: String) -> Self {
-        let raw: ApiQuery = serde_json::from_str(&jsonString).unwrap();
+        let raw: ApiQuerySql = serde_json::from_str(&jsonString).unwrap();
         println!("raw: {:?}", raw);
         raw
     }
@@ -23,14 +20,13 @@ impl ApiQuery {
         let string = String::from_utf8(bytes).unwrap();
         let string = string.trim_matches(char::from(0));
         debug!("[SqlQuery.fromBytes] string: {:#?}", string);
-        let query: ApiQuery = match serde_json::from_str(&string) {
+        let query: ApiQuerySql = match serde_json::from_str(&string) {
             Ok(value) => {value},
             Err(err) => {
                 warn!("[SqlQuery.fromBytes] json conversion error: {:?}", err);
-                ApiQuery {
-                    auth_token: String::from("none"),
-                    id: String::from("0"),
-                    query: ApiQueryType::Error,
+                ApiQuerySql {
+                    database: String::from("none"),
+                    sql: String::new(),
                 }
             },
         };
