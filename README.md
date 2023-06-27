@@ -14,7 +14,7 @@ Just a simple wrapper for databases
 ```
 address: '127.0.0.1:8899'       # self ip:port address where api service will be alvalible
 databases:                      # list currently avalible databases
-    - database:                 # database service name
+    - database:                 # internal database service name
         name: 'database'        # database instance name
         type: sqlite            # the type of the dattabase
         path: 'database.sqlite' # path / ip:pot to the database file / host 
