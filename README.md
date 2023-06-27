@@ -1,5 +1,9 @@
 # API Server
 
+Just a simple wrapper for databases
+    - [x] SQLite
+    - [ ] MySQL
+    - [ ] PostgreSQL
 ## Build for windows
 
 ### cross-compile for windows
