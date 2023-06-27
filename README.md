@@ -28,6 +28,40 @@ databases:                      # list currently avalible databases
         pass: root
 ```
 
+## Message format
+
+- Request
+
+```json
+{
+    "auth_token": "123zxy456!@#",
+    "id": "123",
+    "sql": {
+        "database": "database name",
+        "sql": "Some valid sql query"
+    }
+}
+```
+
+- Reply
+
+```json
+{
+    "auth_token": "123zxy456!@#",
+    "id": "123",
+    "sql": {
+        "database": "database name",
+        "Some valid sql query",
+    },
+    "data": [
+
+    ],
+    "errors": [
+
+    ]
+}
+```
+
 ## Build for windows
 
 ### cross-compile for windows
