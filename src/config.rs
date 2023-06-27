@@ -5,6 +5,7 @@ use log::debug;
 use yaml_rust::{YamlLoader, Yaml};
 
 
+#[derive(Debug, Clone)]
 pub struct Config {
     pub address: String,
     pub dataBases: Vec<DataBaseConfig>,
@@ -45,6 +46,7 @@ impl Config {
 }
 
 
+#[derive(Debug, Clone)]
 pub struct DataBaseConfig {
     path: String,
     name: String,

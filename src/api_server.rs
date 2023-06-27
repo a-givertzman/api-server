@@ -4,12 +4,12 @@ use rusqlite::Connection;
 use crate::{config::Config, api_query::ApiQuery, sql_query::SqlQuery, api_reply::SqlReply};
 
 ///
-pub struct ApiServer<'a> {
-    config: &'a Config
+pub struct ApiServer {
+    config: Config
 }
-impl<'a> ApiServer<'_> {
+impl ApiServer {
     ///
-    pub fn new(config: &Config) -> ApiServer {
+    pub fn new(config: Config) -> ApiServer {
         ApiServer {
             config,
         }
@@ -19,7 +19,7 @@ impl<'a> ApiServer<'_> {
         let sqlQuery = ApiQuery::fromBytes(bytes);
         debug!("[TcpServer] received point: {:?}", sqlQuery);
         let sqlReply = if !sqlQuery.sql.is_empty() {
-            let path = self.config.address;
+            let path = self.config.address.clone();
             // let path = "./database.sqlite";
             debug!("[ApiServer] database address: {:?}", path);
             let connection = Connection::open(path).unwrap();            

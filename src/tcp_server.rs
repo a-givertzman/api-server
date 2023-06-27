@@ -53,9 +53,11 @@ pub struct TcpServer {
     // cancel: bool,
 }
 impl TcpServer {
-    pub fn new(addr: &str, apiServer: ApiServer) -> Self {
+    ///
+    pub fn new(addr: &str, apiServer: ApiServer) -> TcpServer {
+        let addr = addr.parse().unwrap();
         Self {
-            addr: addr.parse().unwrap(),
+            addr: addr,
             // stream: None,
             // listener: None,
             reconnectDelay: Duration::from_secs(3),
