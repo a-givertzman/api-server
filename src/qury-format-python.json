@@ -1,0 +1,8 @@
+{
+    "auth_token": "123zxy456!@#",
+    "id": "123",
+    "python": {
+        "script": "database name",
+        "params": "Some valid sql query"
+    }
+}
