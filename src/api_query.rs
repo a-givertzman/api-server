@@ -23,7 +23,7 @@ impl ApiQuery {
     }
     ///
     pub fn python(jsonMap: &serde_json::Value) -> Self {
-        let sql = &jsonMap["sql"];
+        let sql = &jsonMap["python"];
         ApiQuery {
             auth_token: ApiQuery::parseJsonString(&jsonMap, "auth_token"),
             id: ApiQuery::parseJsonString(&jsonMap, "id"),

@@ -28,6 +28,7 @@ impl ApiServer {
                 )    
             },
             ApiQueryType::Sql(sqlQuery) => {
+                debug!("[ApiServer] ApiQueryType: Sql");
                 match self.config.services.get(&sqlQuery.database) {
                     Some(dbConfig) => {
                         // let path = "./database.sqlite";
@@ -80,6 +81,8 @@ impl ApiServer {
                 }                    
             },
             ApiQueryType::Python(pyQuery) => {
+                debug!("[ApiServer] ApiQueryType: Python");
+                debug!("[ApiServer] ApiQueryType: Python script: {}", pyQuery.script);
                 match self.config.services.get(&pyQuery.script) {
                     Some(dbConfig) => {
                         // let path = "./database.sqlite";
