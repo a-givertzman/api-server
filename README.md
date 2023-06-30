@@ -104,13 +104,24 @@ databases:                      # list currently avalible API services
 import sys
 import json
 
-for line in sys.stdin:
-    if 'Exit' == line.rstrip():
-        break
-    parsed = json.loads(line)
-    print(f'sys.stdin line: {line}')
-    print(f'parsed json line: {parsed}')
-print("Done")
+# reading input params from stdin
+lines = sys.stdin.read()
+# parsing input params from the string
+parsed = json.loads(lines)
+
+# your code...
+# you can do some calculations
+# you cam use some data stored in the databases
+
+# build map to be returned to the frontend
+result = {
+    "aa": parsed['a'] * 2,
+    "bb": parsed['b'] * 2,
+}
+# returning data to the frontend
+print(
+    json.dumps(result)
+)
 ```
 
 ## Build for windows
