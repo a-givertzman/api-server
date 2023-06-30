@@ -76,9 +76,15 @@ databases:                      # list currently avalible API services
     "auth_token": "123zxy456!@#",
     "id": "123",
     "sql": {
+        "comment": "optional dippending on your request type",
         "database": "database name",
         "sql": "Some valid sql query",
     },
+    "python": {
+        "comment": "optional dippending on your request type",
+        "script": "python script service name",
+        "params": "Some valid params for python script"
+    }
     "data": [
 
     ],
