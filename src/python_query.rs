@@ -48,26 +48,26 @@ impl PythonQuery {
                     .write_all(self.params.as_bytes()).unwrap();
                 let output = child.wait_with_output().unwrap();
                 debug!("PythonQuery.execute | command output: {:?}", output);
-                let result = if output.status.success() {
+                if output.status.success() {
                     let mut result: Vec<RowMap> = vec![];
-                    let mut row: RowMap = HashMap::new();
+                    let row: RowMap = HashMap::new();
                     let rawOutput = String::from_utf8(output.stdout).unwrap();
                     debug!("PythonQuery.execute | rawOutput: {:?}", rawOutput);
-                    row = serde_json::from_str(rawOutput.as_str()).unwrap();
-                    result.push(row);
-                    // let words = raw_output.split_whitespace()
-                    //     .map(|s| s.to_lowercase())
-                    //     .collect::<HashSet<_>>();
-                    // debug!("PythonQuery.execute | Found {} unique words:", words.len());
-                    // debug!("PythonQuery.execute | {:?}", words);
-                    Ok(result)
+                    match serde_json::from_str(rawOutput.as_str()) {
+                        Ok(row) => {
+                            result.push(row);
+                            Ok(result)        
+                        },
+                        Err(err) => {
+                            warn!("PythonQuery.execute | python script result json parsing error: {:?}", err);
+                            Err(err.to_string())        
+                        },
+                    }
                 } else {
                     let err = String::from_utf8(output.stderr).unwrap();
                     warn!("PythonQuery.execute | python script error: {:?}", err);
                     Err(err)
-                    // error_chain::bail!("External command failed:\n {}", err);
-                };
-                result
+                }
             },
             Err(err) => {
                 warn!("PythonQuery.execute | python script error: {:?}", err);
