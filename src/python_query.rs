@@ -34,11 +34,11 @@ impl PythonQuery {
         debug!("PythonQuery.execute | executing command: {:?}", program);
 
         match Command::new(program)
-                    .arg(path)
-                    .stdin(Stdio::piped())
-                    .stderr(Stdio::piped())
-                    .stdout(Stdio::piped())
-                    .spawn() {
+            .arg(path)
+            .stdin(Stdio::piped())
+            .stderr(Stdio::piped())
+            .stdout(Stdio::piped())
+            .spawn() {
             Ok(mut child) => {
                 debug!("PythonQuery.execute | command child: {:?}", &child);
                 debug!("PythonQuery.execute | sending stdin data...");
@@ -50,8 +50,11 @@ impl PythonQuery {
                 debug!("PythonQuery.execute | command output: {:?}", output);
                 let result = if output.status.success() {
                     let mut result: Vec<RowMap> = vec![];
+                    let mut row: RowMap = HashMap::new();
                     let rawOutput = String::from_utf8(output.stdout).unwrap();
                     debug!("PythonQuery.execute | rawOutput: {:?}", rawOutput);
+                    row = serde_json::from_str(rawOutput.as_str()).unwrap();
+                    result.push(row);
                     // let words = raw_output.split_whitespace()
                     //     .map(|s| s.to_lowercase())
                     //     .collect::<HashSet<_>>();

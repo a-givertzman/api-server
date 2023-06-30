@@ -5,6 +5,13 @@ for line in sys.stdin:
     if 'Exit' == line.rstrip():
         break
     parsed = json.loads(line)
-    print(f'sys.stdin line: {line}')
-    print(f'parsed json line: {parsed}')
-print("Done")
+    result = {
+        "a": parsed['a'] * 2,
+        "b": parsed['b'] * 2,
+    }
+    
+    # print(f'sys.stdin line: {line}')
+    # print(f'parsed json line: {parsed}')
+print(
+    json.dumps(result)
+)
