@@ -3,10 +3,10 @@
 Just a simple api server 
 
 - runs puthon script:
-    - [ ] Python script received some json data via stdin
-    - [ ] Python script handle some algorithms
-    - [ ] Python script van access to the databases data
-    - [ ] Python script returns some json data
+    - [x] Python script received some json data via stdin
+    - [x] Python script handle some algorithms
+    - [x] Python script can access to the databases data
+    - [x] Python script returns some json data
 - wrapping databases:
     - [x] SQLite
     - [x] Python script
