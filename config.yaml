@@ -21,7 +21,7 @@ databases:                      # list currently avalible databases
     - py-test-script:               # internal unique API service name
         name: 'py-test'                 # the name of the script handler (must be specified in the API request, field 'database')
         type: python                    # the type of the service
-        path: 'scripts/read_std_in.py'  # the path to the python script file
+        path: 'scripts/script_tamplate.py'  # the path to the python script file
         user: root                      # can be used to restrict assecc to the python script
         pass: root                      # can be used to restrict assecc to the python script
 
