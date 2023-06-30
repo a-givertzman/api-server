@@ -12,7 +12,7 @@ for line in sys.stdin:
     
     # print(f'sys.stdin line: {line}')
     # print(f'parsed json line: {parsed}')
-print(result)
-# print(
-#     json.dumps(result)
-# )
+# print(result)
+print(
+    json.dumps(result)
+)
