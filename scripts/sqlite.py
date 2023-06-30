@@ -1,3 +1,6 @@
+import sqlite3
+from sqlite3 import Error
+
 def createConnection(db_file):
     '''create a database connection to the SQLite database
         specified by the db_file
@@ -14,6 +17,12 @@ def createConnection(db_file):
 def select(conn, sql: str):
     '''Query all rows from table'''
     cur = conn.cursor()
-    cur.execute("SELECT * FROM tasks")
+    cur.execute(sql)
     rows = cur.fetchall()
     return rows
+
+conn = createConnection('./../database22.sqlite')
+if conn:
+    rows = select(conn, 'select * from `dep_objects`;')
+    for row in rows:
+        print(row)
