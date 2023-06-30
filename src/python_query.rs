@@ -15,7 +15,7 @@ type RowMap = HashMap<String, serde_json::Value>;
 /// 
 pub struct PythonQuery {
     path: String,
-    sql: String,
+    params: String,
 }
 
 impl PythonQuery {
@@ -23,15 +23,17 @@ impl PythonQuery {
     pub fn new(path: &str, sql: String) -> PythonQuery {
         Self {
             path: path.into(),
-            sql: sql.to_string(),
+            params: sql.to_string(),
         }
     }
     ///
     pub fn execute(&self) -> Result<Vec<RowMap>, String> {
         let path = self.path.clone();
-        debug!("PythonQuery.execute | calling script: {:?}\n\twith params: {:?}", self.path, self.sql);
+        debug!("PythonQuery.execute | script: {:?}\n\twith params: {:?}", self.path, self.params);
+        let command = format!("python3 {}", path);
+        debug!("PythonQuery.execute | executing command: {:?}", command);
 
-        match Command::new(path).stdin(Stdio::piped())
+        match Command::new(command).stdin(Stdio::piped())
                     .stderr(Stdio::piped())
                     .stdout(Stdio::piped())
                     .spawn() {
@@ -39,7 +41,7 @@ impl PythonQuery {
                 child.stdin
                     .as_mut()
                     .ok_or("Child process stdin has not been captured!").unwrap()
-                    .write_all(b"import this; copyright(); credits(); exit()").unwrap();
+                    .write_all(self.params.as_bytes()).unwrap();
                 let output = child.wait_with_output().unwrap();
                 let result = if output.status.success() {
                     let mut result: Vec<RowMap> = vec![];
@@ -59,6 +61,7 @@ impl PythonQuery {
                 result
             },
             Err(err) => {
+                warn!("PythonQuery.execute | python script error: {:?}", err);
                 Err(err.to_string())
             },
         }
