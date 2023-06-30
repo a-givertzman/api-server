@@ -50,7 +50,6 @@ impl PythonQuery {
                 debug!("PythonQuery.execute | command output: {:?}", output);
                 if output.status.success() {
                     let mut result: Vec<RowMap> = vec![];
-                    let row: RowMap = HashMap::new();
                     let rawOutput = String::from_utf8(output.stdout).unwrap();
                     debug!("PythonQuery.execute | rawOutput: {:?}", rawOutput);
                     match serde_json::from_str(rawOutput.as_str()) {
@@ -59,19 +58,22 @@ impl PythonQuery {
                             Ok(result)        
                         },
                         Err(err) => {
-                            warn!("PythonQuery.execute | python script result json parsing error: {:?}", err);
-                            Err(err.to_string())        
+                            let message = format!("PythonQuery.execute | python script result json parsing error: {:?}", err);
+                            warn!("{}", message);
+                            Err(message)        
                         },
                     }
                 } else {
                     let err = String::from_utf8(output.stderr).unwrap();
-                    warn!("PythonQuery.execute | python script error: {:?}", err);
-                    Err(err)
+                    let message = format!("PythonQuery.execute | python script error: {:?}", err);
+                    warn!("{}", message);
+                    Err(message)
                 }
             },
             Err(err) => {
-                warn!("PythonQuery.execute | python script error: {:?}", err);
-                Err(err.to_string())
+                let message = format!("PythonQuery.execute | python script error: {:?}", err);
+                warn!("{}", message);
+                Err(message)
             },
         }
     }    
