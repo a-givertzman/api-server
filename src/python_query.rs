@@ -31,11 +31,11 @@ impl PythonQuery {
         let path = self.path.clone();
         debug!("PythonQuery.execute | calling script: {:?}\n\twith params: {:?}", self.path, self.sql);
 
-        let mut child = match Command::new(path).stdin(Stdio::piped())
+        match Command::new(path).stdin(Stdio::piped())
                     .stderr(Stdio::piped())
                     .stdout(Stdio::piped())
                     .spawn() {
-            Ok(child) => {
+            Ok(mut child) => {
                 child.stdin
                     .as_mut()
                     .ok_or("Child process stdin has not been captured!").unwrap()
@@ -56,11 +56,11 @@ impl PythonQuery {
                     Err(err)
                     // error_chain::bail!("External command failed:\n {}", err);
                 };
-                Ok(result)
+                result
             },
             Err(err) => {
-                err.to_string()
+                Err(err.to_string())
             },
-        };
+        }
     }    
 }
