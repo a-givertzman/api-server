@@ -86,10 +86,11 @@ impl ApiServer {
                         // let path = self.config.dataBases[0].path.clone();
                         let dir = std::env::current_dir().unwrap();
                         let path: &str = &format!("{}/{}", dir.to_str().unwrap(), dbConfig.path);
-                        debug!("[ApiServer] database address: {:?}", path);
-                        let connection = Connection::open_with_flags(path, OpenFlags::SQLITE_OPEN_READ_WRITE); // ::open(path).unwrap();            
-                        match connection {
-                            Ok(connection) => {
+                        debug!("[ApiServer] script path: {:?}", path);
+                        // let connection = Connection::open_with_flags(path, OpenFlags::SQLITE_OPEN_READ_WRITE); // ::open(path).unwrap();
+                        let exists = std::path::Path::new(path).exists();
+                        match exists {
+                            true => {
                                 let result = PythonQuery::new(path, pyQuery.sql.clone()).execute();
                                 match result {
                                     Ok(rows) => {                        
@@ -111,12 +112,12 @@ impl ApiServer {
                                     },
                                 }                        
                             },
-                            Err(err) => {
+                            false => {
                                 SqlReply::error(
                                     apiQuery.auth_token,
                                     apiQuery.id,
                                     apiQuery.query,
-                                    vec![err.to_string()],
+                                    vec![format!("pyton script does not exists: {}", path)],
                                 )
                             },
                         }

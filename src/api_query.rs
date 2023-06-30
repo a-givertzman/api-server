@@ -3,7 +3,7 @@
 use log::{debug, warn};
 use serde::{Serialize, Deserialize};
 
-use crate::{api_query_type::ApiQueryType, api_query_sql::ApiQuerySql};
+use crate::{api_query_type::ApiQueryType, api_query_sql::ApiQuerySql, python_query::PythonQuery, api_query_python::ApiQueryPython};
 
 ///
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -19,6 +19,18 @@ impl ApiQuery {
             sql.clone()
         } else {
             String::new()
+        }
+    }
+    ///
+    pub fn python(jsonMap: &serde_json::Value) -> Self {
+        let sql = &jsonMap["sql"];
+        ApiQuery {
+            auth_token: ApiQuery::parseJsonString(&jsonMap, "auth_token"),
+            id: ApiQuery::parseJsonString(&jsonMap, "id"),
+            query: ApiQueryType::Python(ApiQueryPython {
+                script: ApiQuery::parseJsonString(&sql, "database"),
+                sql: ApiQuery::parseJsonString(&sql, "sql"),
+            }),
         }
     }
     ///
@@ -49,6 +61,9 @@ impl ApiQuery {
         debug!("[SqlQuery.fromBytes] obj: {:?}", obj);
         if obj.contains_key("sql") {
             ApiQuery::sql(&json)
+        
+        } else if obj.contains_key("python") {
+            ApiQuery::python(&json)
         } else {
             warn!("[SqlQuery.fromBytes] json conversion error in: {:?}", obj);
             ApiQuery {
