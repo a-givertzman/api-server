@@ -28,8 +28,8 @@ impl ApiQuery {
             auth_token: ApiQuery::parseJsonString(&jsonMap, "auth_token"),
             id: ApiQuery::parseJsonString(&jsonMap, "id"),
             query: ApiQueryType::Python(ApiQueryPython {
-                script: ApiQuery::parseJsonString(&sql, "database"),
-                sql: ApiQuery::parseJsonString(&sql, "sql"),
+                script: ApiQuery::parseJsonString(&sql, "script"),
+                sql: ApiQuery::parseJsonString(&sql, "params"),
             }),
         }
     }
@@ -61,7 +61,6 @@ impl ApiQuery {
         debug!("[SqlQuery.fromBytes] obj: {:?}", obj);
         if obj.contains_key("sql") {
             ApiQuery::sql(&json)
-        
         } else if obj.contains_key("python") {
             ApiQuery::python(&json)
         } else {
