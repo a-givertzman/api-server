@@ -19,20 +19,26 @@ Just a simple api server
 - the cobfig file mast be located in the root folder with executable
 
 ```
-address: '127.0.0.1:8899'       # self ip:port address where api service will be alvalible
-databases:                      # list currently avalible databases
-    - database:                 # internal database service name
-        name: 'database'        # database instance name
-        type: sqlite            # the type of the dattabase
-        path: 'database.sqlite' # path / ip:pot to the database file / host 
-        user: root              # database access user
-        pass: root              # database access password
-    - new-database:
+address: '127.0.0.1:8899'       # self ip:port address where API services will be alvalible
+databases:                      # list currently avalible API services
+    - sqlite-database:              # internal unique API service name
+        name: 'database'                # database instance name
+        type: sqlite                    # the type of the service (sqlite / mysql/ postgresql / python)
+        path: 'database.sqlite'         # path / ip:pot to the database file / host 
+        user: root                      # database access user
+        pass: root                      # database access password
+    - mysql-database:
         name: 'new-database'
         type: mysql
         path: '127.0.0.1:3306'
         user: root
         pass: root
+    - py-test-script:               # internal unique API service name
+        name: 'py-test'                 # the name of the script handler (must be specified in the API request, field 'database')
+        type: python                    # the type of the service
+        path: 'scripts/read_std_in.py'  # the path to the python script file
+        user: root                      # can be used to restrict assecc to the python script
+        pass: root                      # can be used to restrict assecc to the python script
 ```
 
 ## Message format
