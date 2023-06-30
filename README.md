@@ -43,7 +43,20 @@ databases:                      # list currently avalible API services
 
 ## Message format
 
-- Request
+- Request Python
+
+```json
+{
+    "auth_token": "123zxy456!@#",
+    "id": "123",
+    "python": {
+        "script": "python script service name",
+        "params": "Some valid params for python script"
+    }
+}
+```
+
+- Request SQL
 
 ```json
 {
