@@ -91,7 +91,7 @@ impl ApiServer {
                         let exists = std::path::Path::new(path).exists();
                         match exists {
                             true => {
-                                let result = PythonQuery::new(path, pyQuery.sql.clone()).execute();
+                                let result = PythonQuery::new(path, pyQuery.params.clone()).execute();
                                 match result {
                                     Ok(rows) => {                        
                                         SqlReply {

@@ -7,7 +7,7 @@ use serde::{Serialize, Deserialize};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ApiQueryPython {
     pub script: String,
-    pub sql: String,
+    pub params: String,
 
 }
 impl ApiQueryPython {
@@ -26,7 +26,7 @@ impl ApiQueryPython {
                 warn!("[ApiQueryPython.fromBytes] json conversion error: {:?}", err);
                 ApiQueryPython {
                     script: String::from("none"),
-                    sql: String::new(),
+                    params: String::new(),
                 }
             },
         };

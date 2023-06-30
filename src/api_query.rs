@@ -29,7 +29,7 @@ impl ApiQuery {
             id: ApiQuery::parseJsonString(&jsonMap, "id"),
             query: ApiQueryType::Python(ApiQueryPython {
                 script: ApiQuery::parseJsonString(&sql, "script"),
-                sql: ApiQuery::parseJsonString(&sql, "params"),
+                params: ApiQuery::parseJsonString(&sql, "params"),
             }),
         }
     }
