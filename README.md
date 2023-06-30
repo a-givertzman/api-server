@@ -1,10 +1,17 @@
 # API Server
 
-Just a simple wrapper for databases
+Just a simple api server 
 
-- [x] SQLite
-- [ ] MySQL
-- [ ] PostgreSQL
+- runs puthon script:
+    - [ ] Python script received some json data via stdin
+    - [ ] Python script handle some algorithms
+    - [ ] Python script van access to the databases data
+    - [ ] Python script returns some json data
+- wrapped databases:
+    - [x] SQLite
+    - [x] Python script
+    - [ ] MySQL
+    - [ ] PostgreSQL
 
 ## Config
 

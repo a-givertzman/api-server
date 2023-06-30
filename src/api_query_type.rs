@@ -10,6 +10,7 @@ use crate::api_query_sql::ApiQuerySql;
 pub enum ApiQueryType {
     Error,
     Sql(ApiQuerySql),
+    Py(ApiQueryPy)
 }
 
 // impl Serialize for ApiQueryType {
