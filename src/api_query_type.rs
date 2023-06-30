@@ -1,16 +1,24 @@
 #![allow(non_snake_case)]
 
-use log::debug;
-use serde::{Serialize, Deserialize, Serializer, ser::SerializeStruct};
+// use log::debug;
+use serde::{
+    Serialize, 
+    Deserialize, 
+    // Serializer, 
+    // ser::SerializeStruct,
+};
 
-use crate::api_query_sql::ApiQuerySql;
+use crate::{
+    api_query_sql::ApiQuerySql, 
+    api_query_python::ApiQueryPython,
+};
 
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub enum ApiQueryType {
     Error,
     Sql(ApiQuerySql),
-    Py(ApiQueryPy)
+    Python(ApiQueryPython),
 }
 
 // impl Serialize for ApiQueryType {

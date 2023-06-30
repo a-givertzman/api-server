@@ -5,32 +5,32 @@ use serde::{Serialize, Deserialize};
 
 ///
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct ApiQuerySql {
-    pub database: String,
+pub struct ApiQueryPython {
+    pub script: String,
     pub sql: String,
 
 }
-impl ApiQuerySql {
+impl ApiQueryPython {
     pub fn fromJson(jsonString: String) -> Self {
-        let raw: ApiQuerySql = serde_json::from_str(&jsonString).unwrap();
+        let raw: ApiQueryPython = serde_json::from_str(&jsonString).unwrap();
         println!("raw: {:?}", raw);
         raw
     }
     pub fn fromBytes(bytes: Vec<u8>) -> Self {
         let string = String::from_utf8(bytes).unwrap();
         let string = string.trim_matches(char::from(0));
-        debug!("[ApiQuerySql.fromBytes] string: {:#?}", string);
-        let query: ApiQuerySql = match serde_json::from_str(&string) {
+        debug!("[ApiQueryPython.fromBytes] string: {:#?}", string);
+        let query: ApiQueryPython = match serde_json::from_str(&string) {
             Ok(value) => {value},
             Err(err) => {
-                warn!("[ApiQuerySql.fromBytes] json conversion error: {:?}", err);
-                ApiQuerySql {
-                    database: String::from("none"),
+                warn!("[ApiQueryPython.fromBytes] json conversion error: {:?}", err);
+                ApiQueryPython {
+                    script: String::from("none"),
                     sql: String::new(),
                 }
             },
         };
-        // debug!("[ApiQuerySql.fromBytes] bytes: {:?}", bytes);
+        // debug!("[ApiQueryPython.fromBytes] bytes: {:?}", pobytesint);
         query
     }
 

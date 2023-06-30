@@ -8,7 +8,7 @@ use yaml_rust::{YamlLoader, Yaml};
 #[derive(Debug, Clone)]
 pub struct Config {
     pub address: String,
-    pub dataBases: HashMap<String, DataBaseConfig>,
+    pub services: HashMap<String, ServiceConfig>,
 }
 impl Config {
     pub fn new(path: &str) -> Config {
@@ -29,7 +29,7 @@ impl Config {
             let dataBaseConfigKey = dataBaseConfigMapEnty.0.as_str().unwrap();
             let dataBaseConfigMap = dataBaseConfigMapEnty.1.as_hash().unwrap();
             // debug!("Config | dataBaseConfigMap: {:?}", dataBaseConfigMap);
-            let dataBaseConfig = DataBaseConfig::new(dataBaseConfigKey, dataBaseConfigMap);
+            let dataBaseConfig = ServiceConfig::new(dataBaseConfigKey, dataBaseConfigMap);
             dataBases.insert((&dataBaseConfig.name).clone(), dataBaseConfig);
         }
         Config {
@@ -40,21 +40,21 @@ impl Config {
                         format!("Config | error reading 'address' from config file {:?}", &path).as_str(),
                     )
             ),
-            dataBases: dataBases,
+            services: dataBases,
         }
     }
 }
 
 
 #[derive(Debug, Clone)]
-pub struct DataBaseConfig {
+pub struct ServiceConfig {
     pub path: String,
     pub name: String,
     pub user: String,
     pub pass: String,
 }
-impl DataBaseConfig {
-    pub fn new(_configKey: &str, configMap: &LinkedHashMap<Yaml, Yaml>) -> DataBaseConfig {
+impl ServiceConfig {
+    pub fn new(_configKey: &str, configMap: &LinkedHashMap<Yaml, Yaml>) -> ServiceConfig {
         trace!("DataBaseConfig | configMap: {:?}", configMap);
         let path = &configMap[&Yaml::String("path".to_string())]
             .as_str()
@@ -76,7 +76,7 @@ impl DataBaseConfig {
             .expect(
                 format!("DataBaseConfig | error reading 'pass' from config {:?}", &configMap).as_str(),
             );
-        DataBaseConfig {
+        ServiceConfig {
             path: path.to_string(),
             name: name.to_string(),
             user: user.to_string(),

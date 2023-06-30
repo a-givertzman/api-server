@@ -1,7 +1,7 @@
 use log::debug;
 use rusqlite::{Connection, OpenFlags};
 
-use crate::{config::Config, api_query::ApiQuery, sql_query::SqlQuery, api_reply::SqlReply, api_query_type::ApiQueryType};
+use crate::{config::Config, api_query::ApiQuery, sql_query::SqlQuery, api_reply::SqlReply, api_query_type::ApiQueryType, python_query::PythonQuery};
 
 ///
 pub struct ApiServer {
@@ -28,7 +28,7 @@ impl ApiServer {
                 )    
             },
             ApiQueryType::Sql(sqlQuery) => {
-                match self.config.dataBases.get(&sqlQuery.database) {
+                match self.config.services.get(&sqlQuery.database) {
                     Some(dbConfig) => {
                         // let path = "./database.sqlite";
                         // let path = self.config.dataBases[0].path.clone();
@@ -78,6 +78,58 @@ impl ApiServer {
                         )
                     },
                 }                    
+            },
+            ApiQueryType::Python(pyQuery) => {
+                match self.config.services.get(&pyQuery.script) {
+                    Some(dbConfig) => {
+                        // let path = "./database.sqlite";
+                        // let path = self.config.dataBases[0].path.clone();
+                        let dir = std::env::current_dir().unwrap();
+                        let path: &str = &format!("{}/{}", dir.to_str().unwrap(), dbConfig.path);
+                        debug!("[ApiServer] database address: {:?}", path);
+                        let connection = Connection::open_with_flags(path, OpenFlags::SQLITE_OPEN_READ_WRITE); // ::open(path).unwrap();            
+                        match connection {
+                            Ok(connection) => {
+                                let result = PythonQuery::new(path, pyQuery.sql.clone()).execute();
+                                match result {
+                                    Ok(rows) => {                        
+                                        SqlReply {
+                                            auth_token: apiQuery.auth_token,
+                                            id: apiQuery.id,
+                                            query: apiQuery.query,
+                                            data: rows,
+                                            errors: vec![],
+                                        }
+                                    },
+                                    Err(err) => {
+                                        SqlReply::error(
+                                            apiQuery.auth_token,
+                                            apiQuery.id,
+                                            apiQuery.query,
+                                            vec![err.to_string()],
+                                        )
+                                    },
+                                }                        
+                            },
+                            Err(err) => {
+                                SqlReply::error(
+                                    apiQuery.auth_token,
+                                    apiQuery.id,
+                                    apiQuery.query,
+                                    vec![err.to_string()],
+                                )
+                            },
+                        }
+                    },
+                    None => {
+                        SqlReply::error(
+                            apiQuery.auth_token,
+                            apiQuery.id,
+                            apiQuery.query,
+                            vec![format!("ApiServer.build | Error: Script with the namne '{}' can't be found", pyQuery.script)],
+                        )
+                    },
+                }
             },
         };
         sqlReply.asBytes()

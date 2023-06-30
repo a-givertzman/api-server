@@ -75,6 +75,25 @@ databases:                      # list currently avalible API services
 }
 ```
 
+## Python script format
+- can be called by the API request
+- json data can be passed as input parameters to the python script
+- output of the script will be returned to the frontend in the json field "data"
+- if script will be crushed with error, that error wil be returned to the frontend in the json field "errors"
+
+```
+import sys
+import json
+
+for line in sys.stdin:
+    if 'Exit' == line.rstrip():
+        break
+    parsed = json.loads(line)
+    print(f'sys.stdin line: {line}')
+    print(f'parsed json line: {parsed}')
+print("Done")
+```
+
 ## Build for windows
 
 ### cross-compile for windows

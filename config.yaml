@@ -18,3 +18,10 @@ databases:                      # list currently avalible databases
     #     path: '127.0.0.1:3306'
     #     user: root
     #     pass: root
+    - py-test-script:               # internal unique API service name
+        name: 'py-test'                 # the name of the script handler (must be specified in the API request, field 'database')
+        type: python                    # the type of the service
+        path: 'scripts/read_std_in.py'  # the path to the python script file
+        user: root                      # can be used to restrict assecc to the python script
+        pass: root                      # can be used to restrict assecc to the python script
+
