@@ -7,7 +7,7 @@ Just a simple api server
     - [ ] Python script handle some algorithms
     - [ ] Python script van access to the databases data
     - [ ] Python script returns some json data
-- wrapped databases:
+- wrapping databases:
     - [x] SQLite
     - [x] Python script
     - [ ] MySQL
