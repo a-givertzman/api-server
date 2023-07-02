@@ -136,21 +136,21 @@ impl TcpServer {
     ///
     /// Listening incoming messages from remote client
     fn listenStream(&mut self, stream: &mut TcpStream) {
-        debug!("[TcpServer] start to reading messages...");
+        debug!("[TcpServer.listenStream] start to reading messages...");
         let mut cancel = false;
         while !cancel {
             let mut buf = [0; 4096];
             match stream.read(&mut buf) {
                 Ok(bytesRead) => {
-                    debug!("[TcpServer] bytes read: {:#?}", bytesRead);
+                    debug!("[TcpServer.listenStream] bytes read: {:#?}", bytesRead);
                     cancel = bytesRead <= 0;
                 },
                 Err(err) => {
-                    warn!("[TcpServer] TcpStream read error: {:#?}", err);
+                    warn!("[TcpServer.listenStream] TcpStream read error: {:#?}", err);
                     cancel = true;
                 },
             };
-            // debug!("[TcpServer] bytes: {:#?}", bytes[0]);
+            // debug!("[TcpServer.listenStream] bytes: {:#?}", bytes[0]);
             let reply = self.apiServer.build(buf.to_vec());
             // thread::sleep(Duration::from_millis(1500));
             match Self::writeToTcpStream(
@@ -159,15 +159,14 @@ impl TcpServer {
             ) {
                 Ok(_) => {},
                 Err(err) => {
-                    warn!("[TcpServer] error sending reply: {:?}", err);
+                    warn!("[TcpServer.listenStream] error sending reply: {:?}", err);
                     cancel = true;
                 },
             };
             // thread::sleep(self.reconnectDelay);
             cancel = true;
-            if cancel { break };
         }
-        warn!("[TcpServer] listenStream exit");
+        info!("[TcpServer.listenStream] listenStream exit");
     }
 }
 
