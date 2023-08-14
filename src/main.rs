@@ -40,7 +40,6 @@ fn main() {
         TcpServer::new(
             config.address.as_str(),
             ApiServer::new(config.clone()),
-            // "127.0.0.1:8899", 
         ),
     ));
     TcpServer::run(tcpServer.clone()).unwrap();
