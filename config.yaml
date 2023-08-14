@@ -1,13 +1,13 @@
 address: '127.0.0.1:8899'       # self ip:port address where API service will be alvalible
 services:                      # list of currently avalible API services
-    - database-sqlite:                 # internal database service name
+    - database-sqlite:                 # internal unique API service name
         name: 'database'        # database instance name
         type: sqlite            # the type of the dattabase
         path: 'database.sqlite' # path / ip:pot to the database file / host 
         user: root              # database access user
         pass: root              # database access password
-    - database-sqlite1:                 # internal database service name
-        name: 'database1'        # database instance name
+    - database-sqlite1:                 # internal unique API service name
+        name: 'database1'       # database instance name
         type: sqlite            # the type of the dattabase
         path: 'database22.sqlite' # path / ip:pot to the database file / host 
         user: root              # database access user
@@ -18,16 +18,15 @@ services:                      # list of currently avalible API services
     #     path: '127.0.0.1:3306'
     #     user: root
     #     pass: root
-    - py-test-script:               # internal unique API service name
-        name: 'py-test'                 # the name of the python script (must be specified in the API request, field 'path')
-        type: python                    # the type of the service
+    - py-test-script:                   # internal unique API service name
+        name: 'py-test'          # the name of the python script (must be specified in the API request, field 'path')
+        type: python             # the type of the service
         path: 'extensions/scripts/script_tamplate.py'  # the path to the python script file
-        user: root                      # can be used to restrict assecc to the python script
-        pass: root                      # can be used to restrict assecc to the python script
+        user: root               # can be used to restrict assecc to the python script
+        pass: root               # can be used to restrict assecc to the python script
     - executable-test-app:              # internal unique API service name
-        name: 'executable-test'         # the name of the exequtable (must be specified in the API request, field 'path')
-        type: bin                       # the type of the service
+        name: 'executable-test'  # the name of the exequtable (must be specified in the API request, field 'path')
+        type: bin                # the type of the service
         path: 'extensions/bin/simple-executable'  # the path to the extension exequtable file
-        user: root                      # can be used to restrict assecc to the python script
-        pass: root                      # can be used to restrict assecc to the python script
-
+        user: root               # can be used to restrict assecc to the python script
+        pass: root               # can be used to restrict assecc to the python script
