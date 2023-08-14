@@ -9,7 +9,7 @@ obj = {
     "auth_token": "123zxy456!@#",
     "id": "123",
     "executable": {
-        "name": "executable-test-app",
+        "name": "executable-test",
         "params": {
             "a": 4,
             "b": 7,
