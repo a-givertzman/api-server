@@ -33,7 +33,11 @@ impl Config {
             let serviceConfigMap = serviceConfigMapEnty.1.as_hash().unwrap();
             // debug!("Config | dataBaseConfigMap: {:?}", dataBaseConfigMap);
             let serviceConfig = ServiceConfig::new(serviceConfigKey, serviceConfigMap);
-            services.insert((&serviceConfig.name).clone(), serviceConfig);
+            if services.contains_key(&serviceConfig.name) {
+                panic!("Duplicated name in the services: '{}'", &serviceConfig.name)
+            } else {
+                services.insert((&serviceConfig.name).clone(), serviceConfig);
+            }
         }
         Config {
             address: String::from(
