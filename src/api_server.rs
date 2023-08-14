@@ -40,8 +40,7 @@ impl ApiServer {
                                 let connection = Connection::open_with_flags(path, OpenFlags::SQLITE_OPEN_READ_WRITE); // ::open(path).unwrap();            
                                 match connection {
                                     Ok(connection) => {
-                                        let result = SqlQuery::new(&connection, sqlQuery.sql.clone()).execute();
-                                        match result {
+                                        match SqlQuery::new(&connection, sqlQuery.sql.clone()).execute() {
                                             Ok(rows) => {                        
                                                 SqlReply {
                                                     auth_token: apiQuery.auth_token,
@@ -59,7 +58,7 @@ impl ApiServer {
                                                     vec![err.to_string()],
                                                 )
                                             },
-                                        }                        
+                                        }
                                     },
                                     Err(err) => {
                                         SqlReply::error(
