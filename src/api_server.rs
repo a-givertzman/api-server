@@ -1,7 +1,15 @@
 use log::debug;
 use rusqlite::{Connection, OpenFlags};
 
-use crate::{config::Config, api_query::ApiQuery, sql_query::SqlQuery, api_reply::SqlReply, api_query_type::ApiQueryType, python_query::PythonQuery};
+use crate::{
+    config::Config, 
+    api_query::ApiQuery, 
+    api_reply::SqlReply, 
+    api_query_type::ApiQueryType, 
+    sql_query::SqlQuery, 
+    python_query::PythonQuery, 
+    executable_query::ExecutableQuery
+};
 
 ///
 pub struct ApiServer {
@@ -136,10 +144,11 @@ impl ApiServer {
                     },
 
 
-                    ApiQueryType::Executable(pyQuery) => {
-                        debug!("[ApiServer] ApiQueryType: Python");
-                        debug!("[ApiServer] ApiQueryType: Python script: {}", pyQuery.script);
-                        match self.config.services.get(&pyQuery.script) {
+                    ApiQueryType::Executable(exQuery) => {
+                        debug!("[ApiServer] ApiQueryType: Executable");
+                        debug!("[ApiServer] ApiQueryType: Executable name: {}", exQuery.name);
+                        debug!("[ApiServer] ApiQueryType: Executable name: {:?}", exQuery);
+                        match self.config.services.get(&exQuery.name) {
                             Some(dbConfig) => {
                                 // let path = "./database.sqlite";
                                 // let path = self.config.dataBases[0].path.clone();
@@ -150,7 +159,7 @@ impl ApiServer {
                                 let exists = std::path::Path::new(path).exists();
                                 match exists {
                                     true => {
-                                        match PythonQuery::new(path, pyQuery.params.clone()).execute() {
+                                        match ExecutableQuery::new(path, exQuery.params.clone()).execute() {
                                             Ok(rows) => {                        
                                                 SqlReply {
                                                     auth_token: apiQuery.auth_token,
@@ -185,7 +194,7 @@ impl ApiServer {
                                     apiQuery.auth_token,
                                     apiQuery.id,
                                     apiQuery.query,
-                                    vec![format!("ApiServer.build | Error: Script with the namne '{}' can't be found", pyQuery.script)],
+                                    vec![format!("ApiServer.build | Error: Executable with the namne '{}' can't be found", exQuery.name)],
                                 )
                             },
                         }
