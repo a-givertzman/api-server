@@ -95,8 +95,7 @@ impl ApiServer {
                                 let exists = std::path::Path::new(path).exists();
                                 match exists {
                                     true => {
-                                        let result = PythonQuery::new(path, pyQuery.params.clone()).execute();
-                                        match result {
+                                        match PythonQuery::new(path, pyQuery.params.clone()).execute() {
                                             Ok(rows) => {                        
                                                 SqlReply {
                                                     auth_token: apiQuery.auth_token,
@@ -114,7 +113,7 @@ impl ApiServer {
                                                     vec![err.to_string()],
                                                 )
                                             },
-                                        }                        
+                                        }
                                     },
                                     false => {
                                         SqlReply::error(
