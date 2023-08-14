@@ -1,9 +1,7 @@
 import json
 import socket
+import time
 
-
-clientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-clientSocket.connect(('127.0.0.1', 8899))
 
 obj = {
     "auth_token": "123zxy456!@#",
@@ -16,13 +14,14 @@ obj = {
         },
     }
 }
-
 jsonStr = json.dumps(obj)
-
-clientSocket.sendall(jsonStr.encode('utf-8'))
-
-data = clientSocket.recv(4096)
-
-received = json.loads(data)
-
-print(f'received: {received}')
+sendBytes = jsonStr.encode('utf-8')
+for i in range(1000):
+    clientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    clientSocket.connect(('127.0.0.1', 8899))
+    clientSocket.sendall(sendBytes)
+    data = clientSocket.recv(4096)
+    received = json.loads(data)
+    print(f'received: {received}')
+    clientSocket.close()
+    # time.sleep(100 / 1000)
