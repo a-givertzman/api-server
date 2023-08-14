@@ -19,15 +19,15 @@ services:                      # list of currently avalible API services
     #     user: root
     #     pass: root
     - py-test-script:               # internal unique API service name
-        name: 'py-test'                 # the name of the script handler (must be specified in the API request, field 'database')
+        name: 'py-test'                 # the name of the python script (must be specified in the API request, field 'path')
         type: python                    # the type of the service
-        path: 'scripts/script_tamplate.py'  # the path to the python script file
+        path: 'extensions/scripts/script_tamplate.py'  # the path to the python script file
         user: root                      # can be used to restrict assecc to the python script
         pass: root                      # can be used to restrict assecc to the python script
-    - py-test-script:               # internal unique API service name
-        name: 'py-test'                 # the name of the script handler (must be specified in the API request, field 'database')
-        type: python                    # the type of the service
-        path: 'scripts/script_tamplate.py'  # the path to the python script file
+    - bin-test-app:                 # internal unique API service name
+        name: 'bin-test'                 # the name of the exequtable (must be specified in the API request, field 'path')
+        type: bin                       # the type of the service
+        path: 'extensions/bin/simple-executable'  # the path to the extension exequtable file
         user: root                      # can be used to restrict assecc to the python script
         pass: root                      # can be used to restrict assecc to the python script
 
