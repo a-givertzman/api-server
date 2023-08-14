@@ -1,5 +1,5 @@
-address: '127.0.0.1:8899'       # self ip:port address where api service will be alvalible
-databases:                      # list currently avalible databases
+address: '127.0.0.1:8899'       # self ip:port address where API service will be alvalible
+services:                      # list of currently avalible API services
     - database-sqlite:                 # internal database service name
         name: 'database'        # database instance name
         type: sqlite            # the type of the dattabase
@@ -18,6 +18,12 @@ databases:                      # list currently avalible databases
     #     path: '127.0.0.1:3306'
     #     user: root
     #     pass: root
+    - py-test-script:               # internal unique API service name
+        name: 'py-test'                 # the name of the script handler (must be specified in the API request, field 'database')
+        type: python                    # the type of the service
+        path: 'scripts/script_tamplate.py'  # the path to the python script file
+        user: root                      # can be used to restrict assecc to the python script
+        pass: root                      # can be used to restrict assecc to the python script
     - py-test-script:               # internal unique API service name
         name: 'py-test'                 # the name of the script handler (must be specified in the API request, field 'database')
         type: python                    # the type of the service

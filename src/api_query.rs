@@ -57,9 +57,8 @@ impl ApiQuery {
             Ok(string) => {
                 let string = string.trim_matches(char::from(0));
                 debug!("[SqlQuery.fromBytes] string: {:?}", string);
-                match serde_json::from_str::<serde_json::Value>(string) {        // let json: serde_json::Value = 
+                match serde_json::from_str::<serde_json::Value>(string) {
                     Ok(json) => {
-                        // let obj = json.as_object().expect(format!("[SqlQuery.fromBytes] error parsing json: {:?}", string).as_str());
                         match json.as_object() {
                             Some(obj) => {
                                 debug!("[SqlQuery.fromBytes] obj: {:?}", obj);

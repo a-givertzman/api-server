@@ -18,22 +18,22 @@ impl Config {
         let configYaml = fs::read_to_string(&path).expect(&format!("Error read file {}", path));
         let yamlVec = YamlLoader::load_from_str(&configYaml).unwrap();
         let yamlDoc = &yamlVec[0];
-        let mut dataBases = HashMap::new();
-        let dataBasesVec = yamlDoc["databases"]
+        let mut services = HashMap::new();
+        let servicesVec = yamlDoc["services"]
             .as_vec()
             .expect(
-                format!("Config | error reading 'databases' from config file {:?}", &path).as_str(),
+                format!("Config | error reading 'services' from config file {:?}", &path).as_str(),
             );
-        for item in dataBasesVec {
-            trace!("Config | database config item: {:?}", item);
-            let dataBaseConfigMapEnty = item.as_hash().expect(
+        for item in servicesVec {
+            trace!("Config | service config item: {:?}", item);
+            let serviceConfigMapEnty = item.as_hash().expect(
                 format!("Config | error reading database config {:?}", &item).as_str(),
             ).iter().next().unwrap();
-            let dataBaseConfigKey = dataBaseConfigMapEnty.0.as_str().unwrap();
-            let dataBaseConfigMap = dataBaseConfigMapEnty.1.as_hash().unwrap();
+            let serviceConfigKey = serviceConfigMapEnty.0.as_str().unwrap();
+            let serviceConfigMap = serviceConfigMapEnty.1.as_hash().unwrap();
             // debug!("Config | dataBaseConfigMap: {:?}", dataBaseConfigMap);
-            let dataBaseConfig = ServiceConfig::new(dataBaseConfigKey, dataBaseConfigMap);
-            dataBases.insert((&dataBaseConfig.name).clone(), dataBaseConfig);
+            let serviceConfig = ServiceConfig::new(serviceConfigKey, serviceConfigMap);
+            services.insert((&serviceConfig.name).clone(), serviceConfig);
         }
         Config {
             address: String::from(
@@ -43,7 +43,7 @@ impl Config {
                         format!("Config | error reading 'address' from config file {:?}", &path).as_str(),
                     )
             ),
-            services: dataBases,
+            services,
         }
     }
 }
