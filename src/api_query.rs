@@ -52,25 +52,45 @@ impl ApiQuery {
         raw
     }
     ///
-    pub fn fromBytes(bytes: Vec<u8>) -> Self {
-        let string = String::from_utf8(bytes).unwrap();
-        let string = string.trim_matches(char::from(0));
-        debug!("[SqlQuery.fromBytes] string: {:?}", string);
-        let json: serde_json::Value = serde_json::from_str(string).unwrap();
-        let obj = json.as_object().expect(format!("[SqlQuery.fromBytes] error parsing json: {:?}", string).as_str());
-        debug!("[SqlQuery.fromBytes] obj: {:?}", obj);
-        if obj.contains_key("sql") {
-            ApiQuery::sql(&json)
-        } else if obj.contains_key("python") {
-            ApiQuery::python(&json)
-        } else {
-            warn!("[SqlQuery.fromBytes] json conversion error in: {:?}", obj);
-            ApiQuery {
-                auth_token: String::from("none"),
-                id: String::from("0"),
-                query: ApiQueryType::Error,
-            }
+    pub fn fromBytes(bytes: Vec<u8>) -> Result<Self, Box<dyn std::error::Error>> {
+        match String::from_utf8(bytes) {
+            Ok(string) => {
+                let string = string.trim_matches(char::from(0));
+                debug!("[SqlQuery.fromBytes] string: {:?}", string);
+                match serde_json::from_str::<serde_json::Value>(string) {        // let json: serde_json::Value = 
+                    Ok(json) => {
+                        // let obj = json.as_object().expect(format!("[SqlQuery.fromBytes] error parsing json: {:?}", string).as_str());
+                        match json.as_object() {
+                            Some(obj) => {
+                                debug!("[SqlQuery.fromBytes] obj: {:?}", obj);
+                                Ok(                                    
+                                    if obj.contains_key("sql") {
+                                        ApiQuery::sql(&json)
+                                    } else if obj.contains_key("python") {
+                                        ApiQuery::python(&json)
+                                    } else {
+                                        warn!("[SqlQuery.fromBytes] json conversion error in: {:?}", obj);
+                                        ApiQuery {
+                                            auth_token: String::from("none"),
+                                            id: String::from("0"),
+                                            query: ApiQueryType::Error,
+                                        }
+                                    }
+                                )
+                            },
+                            None => {
+                                Err(format!("[SqlQuery.fromBytes] error parsing json: {:?}", string).into())
+                            },
+                        }
+                    },
+                    Err(err) => {
+                        Err(Box::new(err))
+                    },
+                }
+            },
+            Err(err) => {
+                Err(Box::new(err))
+            },
         }
     }
-
 }
