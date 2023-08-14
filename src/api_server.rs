@@ -134,6 +134,64 @@ impl ApiServer {
                             },
                         }
                     },
+
+
+                    ApiQueryType::Executable(pyQuery) => {
+                        debug!("[ApiServer] ApiQueryType: Python");
+                        debug!("[ApiServer] ApiQueryType: Python script: {}", pyQuery.script);
+                        match self.config.services.get(&pyQuery.script) {
+                            Some(dbConfig) => {
+                                // let path = "./database.sqlite";
+                                // let path = self.config.dataBases[0].path.clone();
+                                let dir = std::env::current_dir().unwrap();
+                                let path: &str = &format!("{}/{}", dir.to_str().unwrap(), dbConfig.path);
+                                debug!("[ApiServer] script path: {:?}", path);
+                                // let connection = Connection::open_with_flags(path, OpenFlags::SQLITE_OPEN_READ_WRITE); // ::open(path).unwrap();
+                                let exists = std::path::Path::new(path).exists();
+                                match exists {
+                                    true => {
+                                        match PythonQuery::new(path, pyQuery.params.clone()).execute() {
+                                            Ok(rows) => {                        
+                                                SqlReply {
+                                                    auth_token: apiQuery.auth_token,
+                                                    id: apiQuery.id,
+                                                    query: apiQuery.query,
+                                                    data: rows,
+                                                    errors: vec![],
+                                                }
+                                            },
+                                            Err(err) => {
+                                                SqlReply::error(
+                                                    apiQuery.auth_token,
+                                                    apiQuery.id,
+                                                    apiQuery.query,
+                                                    vec![err.to_string()],
+                                                )
+                                            },
+                                        }
+                                    },
+                                    false => {
+                                        SqlReply::error(
+                                            apiQuery.auth_token,
+                                            apiQuery.id,
+                                            apiQuery.query,
+                                            vec![format!("pyton script does not exists: {}", path)],
+                                        )
+                                    },
+                                }
+                            },
+                            None => {
+                                SqlReply::error(
+                                    apiQuery.auth_token,
+                                    apiQuery.id,
+                                    apiQuery.query,
+                                    vec![format!("ApiServer.build | Error: Script with the namne '{}' can't be found", pyQuery.script)],
+                                )
+                            },
+                        }
+                    },
+
+
                 }
             },
             Err(err) => {
