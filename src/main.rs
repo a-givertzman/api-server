@@ -6,6 +6,7 @@ mod api_query_type;
 mod api_query_sql;
 mod api_query_python;
 mod api_query_executable;
+mod api_query_unknown;
 mod api_query;
 mod api_reply;
 mod tcp_server;

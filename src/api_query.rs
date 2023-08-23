@@ -7,7 +7,8 @@ use crate::{
     api_query_type::ApiQueryType, 
     api_query_sql::ApiQuerySql, 
     api_query_python::ApiQueryPython, 
-    api_query_executable::ApiQueryExecutable
+    api_query_executable::ApiQueryExecutable, 
+    api_query_unknown::ApiQueryUnknown,
 };
 
 ///
@@ -78,13 +79,26 @@ impl ApiQuery {
         }
     }
     ///
+    pub fn unknown(jsonMap: &serde_json::Value) -> Self {
+        debug!("[ApiQuery.unknown] jsonMap: {:?}", &jsonMap);
+        // let ex = &jsonMap["unknown"];
+        // debug!("[ApiQuery.unknown] ex: {:?}", &ex);
+        ApiQuery {
+            auth_token: ApiQuery::parseJsonString(&jsonMap, "auth_token"),
+            id: ApiQuery::parseJsonString(&jsonMap, "id"),
+            query: ApiQueryType::Unknown(ApiQueryUnknown {
+                query: (*jsonMap).clone(),
+            }),
+        }
+    }
+    ///
     pub fn fromJson(jsonString: String) -> Self {
         let raw: ApiQuery = serde_json::from_str(&jsonString).unwrap();
         println!("raw: {:?}", raw);
         raw
     }
     ///
-    pub fn fromBytes(bytes: Vec<u8>) -> Result<Self, Box<dyn std::error::Error>> {
+    pub fn fromBytes(bytes: Vec<u8>) -> Self {
         match String::from_utf8(bytes) {
             Ok(string) => {
                 let string = string.trim_matches(char::from(0));
@@ -94,35 +108,44 @@ impl ApiQuery {
                         match json.as_object() {
                             Some(obj) => {
                                 debug!("[ApiQuery.fromBytes] obj: {:?}", obj);
-                                Ok(                                    
-                                    if obj.contains_key("sql") {
-                                        ApiQuery::sql(&json)
-                                    } else if obj.contains_key("python") {
-                                        ApiQuery::python(&json)
-                                    } else if obj.contains_key("executable") {
-                                        ApiQuery::executable(&json)
-                                    } else {
-                                        warn!("[ApiQuery.fromBytes] json conversion error in: {:?}", obj);
-                                        ApiQuery {
-                                            auth_token: String::from("none"),
-                                            id: String::from("0"),
-                                            query: ApiQueryType::Error,
-                                        }
-                                    }
-                                )
+                                if obj.contains_key("sql") {
+                                    ApiQuery::sql(&json)
+                                } else if obj.contains_key("python") {
+                                    ApiQuery::python(&json)
+                                } else if obj.contains_key("executable") {
+                                    ApiQuery::executable(&json)
+                                } else {
+                                    warn!("[ApiQuery.fromBytes] json conversion error in: {:?}", obj);
+                                    ApiQuery::unknown(&json)
+                                }
                             },
                             None => {
-                                Err(format!("[ApiQuery.fromBytes] error parsing json: {:?}", string).into())
+                                // Err(format!("[ApiQuery.fromBytes] error parsing json: {:?}", string).into())
+                                ApiQuery {
+                                    auth_token: "Uncnown".into(),
+                                    id: "Uncnown".into(),
+                                    query: ApiQueryType::Error,
+                                }
                             },
                         }
                     },
                     Err(err) => {
-                        Err(Box::new(err))
+                        // Err(Box::new(err))
+                        ApiQuery {
+                            auth_token: "Uncnown".into(),
+                            id: "Uncnown".into(),
+                            query: ApiQueryType::Error,
+                        }
                     },
                 }
             },
             Err(err) => {
-                Err(Box::new(err))
+                // Err(Box::new(err))
+                ApiQuery {
+                    auth_token: "Uncnown".into(),
+                    id: "Uncnown".into(),
+                    query: ApiQueryType::Error,
+                }
             },
         }
     }

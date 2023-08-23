@@ -9,7 +9,8 @@ use serde::{
 use crate::{
     api_query_sql::ApiQuerySql, 
     api_query_python::ApiQueryPython, 
-    api_query_executable::ApiQueryExecutable,
+    api_query_executable::ApiQueryExecutable, 
+    api_query_unknown::ApiQueryUnknown,
 };
 
 
@@ -18,5 +19,6 @@ pub enum ApiQueryType {
     Error,
     Sql(ApiQuerySql),
     Python(ApiQueryPython),
-    Executable(ApiQueryExecutable)
+    Executable(ApiQueryExecutable),
+    Unknown(ApiQueryUnknown),
 }
