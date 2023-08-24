@@ -13,7 +13,7 @@ pub struct SqlReply {
     pub id: String,
     pub query: ApiQueryType,
     pub data: Vec<HashMap<String, serde_json::Value>>, //Vec<(String, Option<String>)>,
-    pub errors: Vec<String>,
+    pub error: String,
 
 }
 impl SqlReply {
@@ -28,7 +28,8 @@ impl SqlReply {
     }
     ///
     pub fn appendError(&mut self, err: String) {
-        self.errors.push(err);
+        self.error.push_str("|\n");
+        self.error.push_str(err.as_str());
     }
     ///
     pub fn asBytes(&self) -> Vec<u8> {
@@ -45,14 +46,14 @@ impl SqlReply {
         auth_token: String,
         id: String,
         query: ApiQueryType, 
-        errors: Vec<String>
+        error: String,
     ) -> Self {
         SqlReply {
             auth_token: auth_token,
             id: id,
             query: query,
             data: vec![],
-            errors: errors,
+            error,
         }        
     }
 }

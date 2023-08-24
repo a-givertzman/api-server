@@ -26,12 +26,12 @@ impl ApiServer {
     pub fn build(&self, bytes: Vec<u8>) -> Vec<u8> {
         let apiQuery = ApiQuery::fromBytes(bytes);
         let sqlReply = match apiQuery.query.clone() {            
-            ApiQueryType::Error => {
+            ApiQueryType::Error(err) => {
                 SqlReply::error(
                     apiQuery.auth_token,
                     apiQuery.id,
                     apiQuery.query,
-                    vec!["Error: Wrong query structure".to_string()],
+                    err.err,
                 )    
             },
             ApiQueryType::Sql(sqlQuery) => {
@@ -53,7 +53,7 @@ impl ApiServer {
                                             id: apiQuery.id,
                                             query: apiQuery.query,
                                             data: rows,
-                                            errors: vec![],
+                                            error: String::new(),
                                         }
                                     },
                                     Err(err) => {
@@ -61,7 +61,7 @@ impl ApiServer {
                                             apiQuery.auth_token,
                                             apiQuery.id,
                                             apiQuery.query,
-                                            vec![err.to_string()],
+                                            err.to_string(),
                                         )
                                     },
                                 }
@@ -71,7 +71,7 @@ impl ApiServer {
                                     apiQuery.auth_token,
                                     apiQuery.id,
                                     apiQuery.query,
-                                    vec![err.to_string()],
+                                    err.to_string(),
                                 )
                             },
                         }
@@ -81,7 +81,7 @@ impl ApiServer {
                             apiQuery.auth_token,
                             apiQuery.id,
                             apiQuery.query,
-                            vec![format!("ApiServer.build | Error: Database with the namne '{}' can't be found", sqlQuery.database)],
+                            format!("ApiServer.build | Error: Database with the namne '{}' can't be found", sqlQuery.database),
                         )
                     },
                 }                    
@@ -107,7 +107,7 @@ impl ApiServer {
                                             id: apiQuery.id,
                                             query: apiQuery.query,
                                             data: rows,
-                                            errors: vec![],
+                                            error: String::new(),
                                         }
                                     },
                                     Err(err) => {
@@ -115,7 +115,7 @@ impl ApiServer {
                                             apiQuery.auth_token,
                                             apiQuery.id,
                                             apiQuery.query,
-                                            vec![err.to_string()],
+                                            err.to_string(),
                                         )
                                     },
                                 }
@@ -125,7 +125,7 @@ impl ApiServer {
                                     apiQuery.auth_token,
                                     apiQuery.id,
                                     apiQuery.query,
-                                    vec![format!("pyton script does not exists: {}", path)],
+                                    format!("pyton script does not exists: {}", path),
                                 )
                             },
                         }
@@ -135,7 +135,7 @@ impl ApiServer {
                             apiQuery.auth_token,
                             apiQuery.id,
                             apiQuery.query,
-                            vec![format!("ApiServer.build | Error: Script with the namne '{}' can't be found", pyQuery.script)],
+                            format!("ApiServer.build | Error: Script with the namne '{}' can't be found", pyQuery.script),
                         )
                     },
                 }
@@ -162,7 +162,7 @@ impl ApiServer {
                                             id: apiQuery.id,
                                             query: apiQuery.query,
                                             data: rows,
-                                            errors: vec![],
+                                            error: String::new(),
                                         }
                                     },
                                     Err(err) => {
@@ -170,7 +170,7 @@ impl ApiServer {
                                             apiQuery.auth_token,
                                             apiQuery.id,
                                             apiQuery.query,
-                                            vec![err.to_string()],
+                                            err.to_string(),
                                         )
                                     },
                                 }
@@ -180,7 +180,7 @@ impl ApiServer {
                                     apiQuery.auth_token,
                                     apiQuery.id,
                                     apiQuery.query,
-                                    vec![format!("pyton script does not exists: {}", path)],
+                                    format!("pyton script does not exists: {}", path),
                                 )
                             },
                         }
@@ -190,7 +190,7 @@ impl ApiServer {
                             apiQuery.auth_token,
                             apiQuery.id,
                             apiQuery.query,
-                            vec![format!("ApiServer.build | Error: Executable with the namne '{}' can't be found", exQuery.name)],
+                            format!("ApiServer.build | Error: Executable with the namne '{}' can't be found", exQuery.name),
                         )
                     },
                 }
@@ -200,7 +200,7 @@ impl ApiServer {
                     apiQuery.auth_token,
                     apiQuery.id,
                     apiQuery.query,
-                    vec!["Uncnown type of API query".into()],
+                    "Uncnown type of API query".into(),
                 )
             },
         };
