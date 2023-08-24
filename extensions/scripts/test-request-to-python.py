@@ -14,24 +14,24 @@ print(f'count: {count}')
 obj = {
     "auth_token": "123zxy456!@#",
     "id": "123",
-    "sql": {
-        "database": "py-test",
-        "sql=": "select * from `dep_objects;",
-    },
+    # "sql": {
+    #     "database": "py-test",
+    #     "sql": "select 1;",
+    # },
     # "python": {
     #     "script": "py-test",
-    #     "params=": {
+    #     "params": {
     #         "a": 4,
     #         "b": 7,
     #     },
     # },
-    # "executable": {
-    #     "script": "py-test",
-    #     "params=": {
-    #         "a": 4,
-    #         "b": 7,
-    #     },
-    # }
+    "executable": {
+        "name": "executable-test",
+        "params": {
+            "a": 4,
+            "b": 7,
+        },
+    }
 }
 jsonStr = json.dumps(obj)
 sendBytes = jsonStr.encode('utf-8')
