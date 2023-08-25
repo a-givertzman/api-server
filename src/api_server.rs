@@ -74,50 +74,20 @@ impl ApiServer {
                                 let dir = std::env::current_dir().unwrap();
                                 let path: &str = &format!("{}/{}", dir.to_str().unwrap(), dbConfig.path);
                                 debug!("[ApiServer] database address: {:?}", path);
-                                match (&connection).clone() {
-                                    Ok(connection) => {
-                                        Self::execute(
-                                            Box::new(SqlQueryMysql::new(&connection, sqlQuery.sql.clone())),
-                                            apiQuery.auth_token,
-                                            apiQuery.id,
-                                            apiQuery.query.toString(),
-                                        )
-                                    },
-                                    Err(err) => {
-                                        SqlReply::error(
-                                            apiQuery.auth_token,
-                                            apiQuery.id,
-                                            apiQuery.query.toString(),
-                                            format!("ApiServer.build | Database connection error: '{}' can't be found", err),
-                                        )
-                                        // Err(err.to_string())
-                                    },
-                                }
+                                Self::execute(
+                                    Box::new(SqlQueryMysql::new(dbConfig.clone(), sqlQuery.sql.clone(), None)),
+                                    apiQuery.auth_token,
+                                    apiQuery.id,
+                                    apiQuery.query.toString(),
+                                )
                             },
                             ApiServiceType::PostgreSql => {
-                                let dir = std::env::current_dir().unwrap();
-                                let path: &str = &format!("{}/{}", dir.to_str().unwrap(), dbConfig.path);
-                                debug!("[ApiServer] database address: {:?}", path);
-                                let connection = Connection::open_with_flags(path, OpenFlags::SQLITE_OPEN_READ_WRITE); // ::open(path).unwrap();            
-                                match connection {
-                                    Ok(connection) => {
-                                        Self::execute(
-                                            Box::new(SqlQueryPostgre::new(&connection, sqlQuery.sql.clone())),
-                                            apiQuery.auth_token,
-                                            apiQuery.id,
-                                            apiQuery.query.toString(),
-                                        )
-                                    },
-                                    Err(err) => {
-                                        SqlReply::error(
-                                            apiQuery.auth_token,
-                                            apiQuery.id,
-                                            apiQuery.query.toString(),
-                                            format!("ApiServer.build | Database connection error: '{}' can't be found", err),
-                                        )                                        
-                                        // Err(err.to_string())
-                                    },
-                                }                                
+                                Self::execute(
+                                    Box::new(SqlQueryPostgre::new(dbConfig,self.clone(), sqlQuery.sql.clone(), None)),
+                                    apiQuery.auth_token,
+                                    apiQuery.id,
+                                    apiQuery.query.toString(),
+                                )
                             },
                             _ => SqlReply::error(
                                 apiQuery.auth_token,
