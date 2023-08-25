@@ -14,15 +14,15 @@ type RowMap = HashMap<String, serde_json::Value>;
 
 
 /// 
-pub struct SqlQueryPostrgre {
+pub struct SqlQueryPostgre {
     dbConfig: ServiceConfig,
     connection: Option<Client>,
     sql: String,
 }
 
-impl SqlQueryPostrgre {
+impl SqlQueryPostgre {
     ///
-    pub fn new(dbConfig: ServiceConfig, sql: String, connection: Option<Client>) -> SqlQueryPostrgre {
+    pub fn new(dbConfig: ServiceConfig, sql: String, connection: Option<Client>) -> SqlQueryPostgre {
         Self {
             connection,
             dbConfig,
@@ -31,9 +31,9 @@ impl SqlQueryPostrgre {
     }
 }
 
-impl SqlQuery for SqlQueryPostrgre {
+impl SqlQuery for SqlQueryPostgre {
     fn execute(&self) -> Result<Vec<RowMap>, ErrorString> {
-        let mut connection = match self.connection {
+        let connection = match self.connection {
             Some(connection) => {
                 Ok(connection)
             },

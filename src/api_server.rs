@@ -1,14 +1,13 @@
 use log::debug;
-use rusqlite::{Connection, OpenFlags, Error};
 
 use crate::{
     config::Config, 
     api_query::ApiQuery, 
     api_reply::SqlReply, 
     api_query_type::ApiQueryType, 
-    sql_query_sqlite::{SqlQuerySqlite, SqlQueryMysql, SqlQueryPostgre}, 
+    sql_query_sqlite::SqlQuerySqlite, 
     python_query::PythonQuery, 
-    executable_query::ExecutableQuery, api_service_type::ApiServiceType, sql_query::SqlQuery
+    executable_query::ExecutableQuery, api_service_type::ApiServiceType, sql_query::SqlQuery, sql_query_mysql::SqlQueryMysql, sql_query_postgre::SqlQueryPostgre
 };
 
 ///
@@ -83,7 +82,7 @@ impl ApiServer {
                             },
                             ApiServiceType::PostgreSql => {
                                 Self::execute(
-                                    Box::new(SqlQueryPostgre::new(dbConfig,self.clone(), sqlQuery.sql.clone(), None)),
+                                    Box::new(SqlQueryPostgre::new(dbConfig.clone(), sqlQuery.sql.clone(), None)),
                                     apiQuery.auth_token,
                                     apiQuery.id,
                                     apiQuery.query.toString(),
