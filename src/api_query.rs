@@ -35,22 +35,22 @@ impl ApiQuery {
             )
         }
     }
-    ///
-    fn parseJsonObject(jsonString: &serde_json::Value, key: &str) -> Result<serde_json::Map<String, serde_json::Value>, String> {
-        if let serde_json::Value::Object(value) = &jsonString[key] {
-            debug!("[ApiQuery.parseJsonObject] key: {} | value: {:?}", &key, &value);
-            Result::Ok(
-                value.clone(),
-            )
-        } else {
-            let msg = format!("[ApiQuery.parseJsonObject] key not found: \"{}\"", &key);
-            warn!("{}", msg);
-            Err(
-                msg.into(),
-            )
-        }
-    }
-    ///
+    // ///
+    // fn parseJsonObject(jsonString: &serde_json::Value, key: &str) -> Result<serde_json::Map<String, serde_json::Value>, String> {
+    //     if let serde_json::Value::Object(value) = &jsonString[key] {
+    //         debug!("[ApiQuery.parseJsonObject] key: {} | value: {:?}", &key, &value);
+    //         Result::Ok(
+    //             value.clone(),
+    //         )
+    //     } else {
+    //         let msg = format!("[ApiQuery.parseJsonObject] key not found: \"{}\"", &key);
+    //         warn!("{}", msg);
+    //         Err(
+    //             msg.into(),
+    //         )
+    //     }
+    // }
+    // ///
 //     pub fn python(auth_token: String, id: String, jsonMap: &serde_json::Value) -> Self {
 //         let py = &jsonMap["python"];
 //         match ApiQuery::parseJsonString(&py, "script") {
