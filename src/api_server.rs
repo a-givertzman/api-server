@@ -6,9 +6,9 @@ use crate::{
     api_query::ApiQuery, 
     api_reply::SqlReply, 
     api_query_type::ApiQueryType, 
-    sql_query::SqlQuerySqlite, 
+    sql_query_sqlite::{SqlQuerySqlite, SqlQueryMysql, SqlQueryPostgre}, 
     python_query::PythonQuery, 
-    executable_query::ExecutableQuery, api_service_type::ApiServiceType
+    executable_query::ExecutableQuery, api_service_type::ApiServiceType, sql_query::SqlQuery
 };
 
 ///
@@ -38,27 +38,57 @@ impl ApiServer {
                 debug!("[ApiServer] ApiQueryType: Sql");
                 match self.config.services.get(&sqlQuery.database) {
                     Some(dbConfig) => {
-                        match dbConfig.serviceType {
-                            ApiServiceType::Sqlite => todo!(),
-                            ApiServiceType::MySql => todo!(),
-                            ApiServiceType::PostgreSql => todo!(),
-                            _ => SqlReply::error(
-                                apiQuery.auth_token,
-                                apiQuery.id,
-                                apiQuery.query.toString(),
-                                format!("ApiServer.build | Error: Database service with the namne '{}' can't be found", sqlQuery.database),
-                            ),
+                        let sqlQuery: Result<Box<dyn SqlQuery>, String> = match dbConfig.serviceType {
+                            ApiServiceType::Sqlite => {
+                                let dir = std::env::current_dir().unwrap();
+                                let path: &str = &format!("{}/{}", dir.to_str().unwrap(), dbConfig.path);
+                                debug!("[ApiServer] database address: {:?}", path);
+                                let connection = Connection::open_with_flags(path, OpenFlags::SQLITE_OPEN_READ_WRITE); // ::open(path).unwrap();            
+                                match connection {
+                                    Ok(connection) => {
+                                        Ok(Box::new(SqlQuerySqlite::new(&connection, sqlQuery.sql.clone())))
+                                    },
+                                    Err(err) => {
+                                        Err(err.to_string())
+                                    },
+                                }
+                            },
+                            ApiServiceType::MySql => {
+                                let dir = std::env::current_dir().unwrap();
+                                let path: &str = &format!("{}/{}", dir.to_str().unwrap(), dbConfig.path);
+                                debug!("[ApiServer] database address: {:?}", path);
+                                let connection = Connection::open_with_flags(path, OpenFlags::SQLITE_OPEN_READ_WRITE); // ::open(path).unwrap();            
+                                match connection {
+                                    Ok(connection) => {
+                                        Ok(Box::new(SqlQueryMysql::new(&connection, sqlQuery.sql.clone())))
+                                    },
+                                    Err(err) => {
+                                        Err(err.to_string())
+                                    },
+                                }                                
+                            },
+                            ApiServiceType::PostgreSql => {
+                                let dir = std::env::current_dir().unwrap();
+                                let path: &str = &format!("{}/{}", dir.to_str().unwrap(), dbConfig.path);
+                                debug!("[ApiServer] database address: {:?}", path);
+                                let connection = Connection::open_with_flags(path, OpenFlags::SQLITE_OPEN_READ_WRITE); // ::open(path).unwrap();            
+                                match connection {
+                                    Ok(connection) => {
+                                        Ok(Box::new(SqlQueryPostgre::new(&connection, sqlQuery.sql.clone())))
+                                    },
+                                    Err(err) => {
+                                        Err(err.to_string())
+                                    },
+                                }                                
+                            },
+                            _ => Err(format!("ApiServer.build | Error: Database service with the namne '{}' can't be found", sqlQuery.database)),
                         };
 
                         // let path = "./database.sqlite";
                         // let path = self.config.dataBases[0].path.clone();
-                        let dir = std::env::current_dir().unwrap();
-                        let path: &str = &format!("{}/{}", dir.to_str().unwrap(), dbConfig.path);
-                        debug!("[ApiServer] database address: {:?}", path);
-                        let connection = Connection::open_with_flags(path, OpenFlags::SQLITE_OPEN_READ_WRITE); // ::open(path).unwrap();            
-                        match connection {
-                            Ok(connection) => {
-                                match SqlQuerySqlite::new(&connection, sqlQuery.sql.clone()).execute() {
+                        match sqlQuery {
+                            Ok(sqlQuery) => {
+                                match sqlQuery.execute() {
                                     Ok(rows) => {                        
                                         SqlReply {
                                             auth_token: apiQuery.auth_token,

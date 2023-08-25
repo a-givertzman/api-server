@@ -11,10 +11,11 @@ mod api_query_error;
 mod api_query;
 mod api_reply;
 mod tcp_server;
-mod sql_query;
 mod python_query;
 mod executable_query;
 mod api_service_type;
+mod sql_query;
+mod sql_query_sqlite;
 
 use std::{
     sync::{Arc, Mutex}, 
