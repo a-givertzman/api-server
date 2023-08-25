@@ -155,7 +155,7 @@ impl ApiQuery {
                                                 debug!("[ApiQuery.fromBytes] obj: {:?}", obj);
                                                 if obj.contains_key(ApiQueryTypeName::Sql.value()) {
                                                     debug!("[ApiQuery.fromBytes] detected: {}", ApiQueryTypeName::Sql.value());
-                                                    match ApiQuerySql::fromJson(json) {
+                                                    match ApiQuerySql::fromJson(json.clone()) {
                                                         Ok(apiQuerySql) => {
                                                             ApiQuery {
                                                                 auth_token,
@@ -177,7 +177,7 @@ impl ApiQuery {
                                                     // ApiQuery::sql(auth_token, id, &json)
                                                 } else if obj.contains_key(ApiQueryTypeName::Python.value()) {
                                                     debug!("[ApiQuery.fromBytes] detected: {}", ApiQueryTypeName::Python.value());
-                                                    match ApiQueryPython::fromJson(json) {
+                                                    match ApiQueryPython::fromJson(json.clone()) {
                                                         Ok(apiQueryPython) => {
                                                             ApiQuery {
                                                                 auth_token,
@@ -198,7 +198,7 @@ impl ApiQuery {
                                                     }
                                                 } else if obj.contains_key(ApiQueryTypeName::Executable.value()) {
                                                     debug!("[ApiQuery.fromBytes] detected: {}", ApiQueryTypeName::Executable.value());
-                                                    match ApiQueryExecutable::fromJson(json) {
+                                                    match ApiQueryExecutable::fromJson(json.clone()) {
                                                         Ok(apiQueryExecutable) => {
                                                             ApiQuery {
                                                                 auth_token,

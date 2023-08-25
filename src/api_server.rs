@@ -30,7 +30,7 @@ impl ApiServer {
                 SqlReply::error(
                     apiQuery.auth_token,
                     apiQuery.id,
-                    apiQuery.query,
+                    apiQuery.query.toString(),
                     err.err,
                 )    
             },
@@ -51,7 +51,7 @@ impl ApiServer {
                                         SqlReply {
                                             auth_token: apiQuery.auth_token,
                                             id: apiQuery.id,
-                                            query: apiQuery.query,
+                                            query: apiQuery.query.toString(),
                                             data: rows,
                                             error: String::new(),
                                         }
@@ -60,7 +60,7 @@ impl ApiServer {
                                         SqlReply::error(
                                             apiQuery.auth_token,
                                             apiQuery.id,
-                                            apiQuery.query,
+                                            apiQuery.query.toString(),
                                             err.to_string(),
                                         )
                                     },
@@ -70,7 +70,7 @@ impl ApiServer {
                                 SqlReply::error(
                                     apiQuery.auth_token,
                                     apiQuery.id,
-                                    apiQuery.query,
+                                    apiQuery.query.toString(),
                                     err.to_string(),
                                 )
                             },
@@ -80,7 +80,7 @@ impl ApiServer {
                         SqlReply::error(
                             apiQuery.auth_token,
                             apiQuery.id,
-                            apiQuery.query,
+                            apiQuery.query.toString(),
                             format!("ApiServer.build | Error: Database with the namne '{}' can't be found", sqlQuery.database),
                         )
                     },
@@ -105,7 +105,7 @@ impl ApiServer {
                                         SqlReply {
                                             auth_token: apiQuery.auth_token,
                                             id: apiQuery.id,
-                                            query: apiQuery.query,
+                                            query: apiQuery.query.toString(),
                                             data: rows,
                                             error: String::new(),
                                         }
@@ -114,7 +114,7 @@ impl ApiServer {
                                         SqlReply::error(
                                             apiQuery.auth_token,
                                             apiQuery.id,
-                                            apiQuery.query,
+                                            apiQuery.query.toString(),
                                             err.to_string(),
                                         )
                                     },
@@ -124,7 +124,7 @@ impl ApiServer {
                                 SqlReply::error(
                                     apiQuery.auth_token,
                                     apiQuery.id,
-                                    apiQuery.query,
+                                    apiQuery.query.toString(),
                                     format!("pyton script does not exists: {}", path),
                                 )
                             },
@@ -134,7 +134,7 @@ impl ApiServer {
                         SqlReply::error(
                             apiQuery.auth_token,
                             apiQuery.id,
-                            apiQuery.query,
+                            apiQuery.query.toString(),
                             format!("ApiServer.build | Error: Script with the namne '{}' can't be found", pyQuery.script),
                         )
                     },
@@ -160,7 +160,7 @@ impl ApiServer {
                                         SqlReply {
                                             auth_token: apiQuery.auth_token,
                                             id: apiQuery.id,
-                                            query: apiQuery.query,
+                                            query: apiQuery.query.toString(),
                                             data: rows,
                                             error: String::new(),
                                         }
@@ -169,7 +169,7 @@ impl ApiServer {
                                         SqlReply::error(
                                             apiQuery.auth_token,
                                             apiQuery.id,
-                                            apiQuery.query,
+                                            apiQuery.query.toString(),
                                             err.to_string(),
                                         )
                                     },
@@ -179,7 +179,7 @@ impl ApiServer {
                                 SqlReply::error(
                                     apiQuery.auth_token,
                                     apiQuery.id,
-                                    apiQuery.query,
+                                    apiQuery.query.toString(),
                                     format!("pyton script does not exists: {}", path),
                                 )
                             },
@@ -189,7 +189,7 @@ impl ApiServer {
                         SqlReply::error(
                             apiQuery.auth_token,
                             apiQuery.id,
-                            apiQuery.query,
+                            apiQuery.query.toString(),
                             format!("ApiServer.build | Error: Executable with the namne '{}' can't be found", exQuery.name),
                         )
                     },
@@ -199,7 +199,7 @@ impl ApiServer {
                 SqlReply::error(
                     apiQuery.auth_token,
                     apiQuery.id,
-                    apiQuery.query,
+                    apiQuery.query.toString(),
                     "Uncnown type of API query".into(),
                 )
             },

@@ -30,5 +30,8 @@ impl ApiQueryUnknown {
         // debug!("[ApiQueryUnknown.fromBytes] bytes: {:?}", pobytesint);
         query
     }
-
+    ///
+    pub fn toString(self) -> String {
+        format!("Query: {}", self.query)
+    }
 }

@@ -24,6 +24,17 @@ pub enum ApiQueryType {
     Executable(ApiQueryExecutable),
     Unknown(ApiQueryUnknown),
 }
+impl ApiQueryType {
+    pub fn toString(&self) -> String {
+        match self {
+            ApiQueryType::Error(apiQueryError) => apiQueryError.to_owned().toString(),
+            ApiQueryType::Sql(apiQuerySql) => apiQuerySql.to_owned().toString(),
+            ApiQueryType::Python(apiQueryPython) => apiQueryPython.to_owned().toString(),
+            ApiQueryType::Executable(apiQueryExecutable) => apiQueryExecutable.to_owned().toString(),
+            ApiQueryType::Unknown(apiQueryUnknown) => apiQueryUnknown.to_owned().toString(),
+        }
+    }
+}
 
 
 
