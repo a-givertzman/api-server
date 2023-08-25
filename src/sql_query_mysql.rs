@@ -11,15 +11,15 @@ type RowMap = HashMap<String, serde_json::Value>;
 
 
 /// 
-pub struct SqlQuerySqlite {
+pub struct SqlQueryMysql {
     dbConfig: ServiceConfig,
     connection: Option<Connection>,
     sql: String,
 }
 
-impl SqlQuerySqlite {
+impl SqlQueryMysql {
     ///
-    pub fn new(dbConfig: ServiceConfig, sql: String, connection: Option<Connection>) -> SqlQuerySqlite {
+    pub fn new(dbConfig: ServiceConfig, sql: String, connection: Option<Connection>) -> SqlQueryMysql {
         Self {
             connection,
             dbConfig,
@@ -32,32 +32,14 @@ impl SqlQuerySqlite {
     }
 }
 
-impl SqlQuery for SqlQuerySqlite {
+impl SqlQuery for SqlQueryMysql {
     fn execute(&self) -> Result<Vec<RowMap>, ErrorString> {
-        let connection: Result<Connection, ErrorString> = match self.connection {
+        let connection = match self.connection {
             Some(connection) => {
                 Ok(connection)
             },
             None => {
-                match std::env::current_dir() {
-                    Ok(dir) => {
-                        match dir.to_str() {
-                            Some(dir) => {
-                                let path: &str = &format!("{}/{}", dir, self.dbConfig.path);
-                                debug!("[ApiServer] database address: {:?}", path);
-                
-                                match Connection::open_with_flags(path, OpenFlags::SQLITE_OPEN_READ_WRITE) {        // ::open(path).unwrap();
-                                    Ok(c) => Ok(c),
-                                    Err(err) => Err(format!("SqlQuery.execute | Database connection error: {}", err)),
-                                }
-                            },
-                            None => {
-                                Err(format!("SqlQuery.execute | Invalid path to the Database file: {:?}/{}", dir, self.dbConfig.path))
-                            },
-                        }
-                    },
-                    Err(err) => Err(format!("SqlQuery.execute | Database connection error: {}", err)),
-                }
+                Connection::open_with_flags(self.dbConfig.path, OpenFlags::SQLITE_OPEN_READ_WRITE)        // ::open(path).unwrap();
             },
         };
         match connection {
@@ -69,7 +51,7 @@ impl SqlQuery for SqlQuerySqlite {
                         for item in stmt.column_names() {
                             cNames.push(item.to_string());
                         }
-                        let mut stmt = SqlQuerySqlite::fakeStmtClone(stmt);
+                        let mut stmt = SqlQueryMysql::fakeStmtClone(stmt);
                         let sqlRows = stmt.query([]);
                         let mut result = vec![];
                         match sqlRows {
@@ -114,7 +96,7 @@ impl SqlQuery for SqlQuerySqlite {
                     },
                 }
             },
-            Err(err) => Err(format!("SqlQuery.execute | Database connection error: {}", err)),
+            Err(err) => Err(format!("SqlQuery.execute | Database connection error: '{}' can't be found", err)),
         }
     }
 }

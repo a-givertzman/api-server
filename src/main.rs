@@ -1,5 +1,7 @@
 #![allow(non_snake_case)]
 
+extern crate postgres;
+
 mod config;
 mod api_server;
 mod api_query_type;
@@ -16,6 +18,8 @@ mod executable_query;
 mod api_service_type;
 mod sql_query;
 mod sql_query_sqlite;
+mod sql_query_postgre;
+mod sql_query_mysql;
 
 use std::{
     sync::{Arc, Mutex}, 

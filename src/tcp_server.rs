@@ -139,8 +139,9 @@ impl TcpServer {
         debug!("[TcpServer.listenStream] start to reading messages...");
         let mut cancel = false;
         while !cancel {
-            let mut buf = [0; 4096];
-            match stream.read(&mut buf) {
+            // let mut buf = [0; 4096];
+            let mut buf = Vec::new();
+            match stream.read_to_end(&mut buf) {
                 Ok(bytesRead) => {
                     debug!("[TcpServer.listenStream] bytes read: {:#?}", bytesRead);
                     cancel = bytesRead <= 0;
@@ -151,7 +152,7 @@ impl TcpServer {
                 },
             };
             // debug!("[TcpServer.listenStream] bytes: {:#?}", bytes[0]);
-            let reply = self.apiServer.build(buf.to_vec());
+            let reply = self.apiServer.build(buf);
             // thread::sleep(Duration::from_millis(1500));
             match Self::writeToTcpStream(
                 stream,
