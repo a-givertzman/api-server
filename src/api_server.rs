@@ -6,9 +6,9 @@ use crate::{
     api_query::ApiQuery, 
     api_reply::SqlReply, 
     api_query_type::ApiQueryType, 
-    sql_query::SqlQuery, 
+    sql_query::SqlQuerySqlite, 
     python_query::PythonQuery, 
-    executable_query::ExecutableQuery
+    executable_query::ExecutableQuery, api_service_type::ApiServiceType
 };
 
 ///
@@ -38,6 +38,18 @@ impl ApiServer {
                 debug!("[ApiServer] ApiQueryType: Sql");
                 match self.config.services.get(&sqlQuery.database) {
                     Some(dbConfig) => {
+                        match dbConfig.serviceType {
+                            ApiServiceType::Sqlite => todo!(),
+                            ApiServiceType::MySql => todo!(),
+                            ApiServiceType::PostgreSql => todo!(),
+                            _ => SqlReply::error(
+                                apiQuery.auth_token,
+                                apiQuery.id,
+                                apiQuery.query.toString(),
+                                format!("ApiServer.build | Error: Database service with the namne '{}' can't be found", sqlQuery.database),
+                            ),
+                        };
+
                         // let path = "./database.sqlite";
                         // let path = self.config.dataBases[0].path.clone();
                         let dir = std::env::current_dir().unwrap();
@@ -46,7 +58,7 @@ impl ApiServer {
                         let connection = Connection::open_with_flags(path, OpenFlags::SQLITE_OPEN_READ_WRITE); // ::open(path).unwrap();            
                         match connection {
                             Ok(connection) => {
-                                match SqlQuery::new(&connection, sqlQuery.sql.clone()).execute() {
+                                match SqlQuerySqlite::new(&connection, sqlQuery.sql.clone()).execute() {
                                     Ok(rows) => {                        
                                         SqlReply {
                                             auth_token: apiQuery.auth_token,
@@ -81,7 +93,7 @@ impl ApiServer {
                             apiQuery.auth_token,
                             apiQuery.id,
                             apiQuery.query.toString(),
-                            format!("ApiServer.build | Error: Database with the namne '{}' can't be found", sqlQuery.database),
+                            format!("ApiServer.build | Error: Database service with the namne '{}' can't be found", sqlQuery.database),
                         )
                     },
                 }                    

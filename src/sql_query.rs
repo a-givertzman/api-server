@@ -1,6 +1,6 @@
 #![allow(non_snake_case)]
 
-use std::{collections::HashMap};
+use std::collections::HashMap;
 
 use log::{debug, warn};
 use rusqlite::{Connection, Statement, Error};
@@ -8,14 +8,14 @@ use rusqlite::{Connection, Statement, Error};
 type RowMap = HashMap<String, serde_json::Value>;
 ///
 /// 
-pub struct SqlQuery<'a> {
+pub struct SqlQuerySqlite<'a> {
     connection: &'a Connection,
     sql: String,
 }
 
-impl<'a> SqlQuery<'a> {
+impl<'a> SqlQuerySqlite<'a> {
     ///
-    pub fn new(connection: &'a Connection, sql: String) -> SqlQuery<'a> {
+    pub fn new(connection: &'a Connection, sql: String) -> SqlQuerySqlite<'a> {
         Self {
             connection,
             sql: sql.to_string(),
@@ -31,7 +31,7 @@ impl<'a> SqlQuery<'a> {
                 for item in stmt.column_names() {
                     cNames.push(item.to_string());
                 }
-                let mut stmt = SqlQuery::fakeStmtClone(stmt);
+                let mut stmt = SqlQuerySqlite::fakeStmtClone(stmt);
                 let sqlRows = stmt.query([]);
                 let mut result = vec![];
                 match sqlRows {

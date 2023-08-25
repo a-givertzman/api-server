@@ -7,6 +7,8 @@ use std::{fs, collections::HashMap};
 use linked_hash_map::LinkedHashMap;
 use yaml_rust::{YamlLoader, Yaml};
 
+use crate::api_service_type::ApiServiceType;
+
 
 #[derive(Debug, Clone)]
 pub struct Config {
@@ -56,23 +58,33 @@ impl Config {
 
 #[derive(Debug, Clone)]
 pub struct ServiceConfig {
-    pub path: String,
     pub name: String,
+    pub serviceType: ApiServiceType,
+    pub path: String,
     pub user: String,
     pub pass: String,
 }
 impl ServiceConfig {
     pub fn new(_configKey: &str, configMap: &LinkedHashMap<Yaml, Yaml>) -> ServiceConfig {
         trace!("DataBaseConfig | configMap: {:?}", configMap);
-        let path = &configMap[&Yaml::String("path".to_string())]
-            .as_str()
-            .expect(
-                format!("DataBaseConfig | error reading 'path' from config {:?}", &configMap).as_str(),
-            );
         let name = &configMap[&Yaml::String("name".to_string())]
             .as_str()
             .expect(
                 format!("DataBaseConfig | error reading 'name' from config {:?}", &configMap).as_str(),
+            );
+        let serviceType = serde_json::from_str(
+            &configMap[&Yaml::String("type".to_string())]
+                .as_str()
+                .expect(
+                    format!("DataBaseConfig | error reading 'type' from config {:?}", &configMap).as_str(),
+                )
+        ).expect(
+            format!("DataBaseConfig | error reading 'type' from config {:?}", &configMap).as_str(),
+        );
+        let path = &configMap[&Yaml::String("path".to_string())]
+            .as_str()
+            .expect(
+                format!("DataBaseConfig | error reading 'path' from config {:?}", &configMap).as_str(),
             );
         let user = &configMap[&Yaml::String("user".to_string())]
             .as_str()
@@ -85,8 +97,9 @@ impl ServiceConfig {
                 format!("DataBaseConfig | error reading 'pass' from config {:?}", &configMap).as_str(),
             );
         ServiceConfig {
-            path: path.to_string(),
             name: name.to_string(),
+            serviceType: serviceType,
+            path: path.to_string(),
             user: user.to_string(),
             pass: pass.to_string(),
         }

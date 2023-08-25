@@ -14,6 +14,7 @@ mod tcp_server;
 mod sql_query;
 mod python_query;
 mod executable_query;
+mod api_service_type;
 
 use std::{
     sync::{Arc, Mutex}, 
