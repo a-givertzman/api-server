@@ -13,10 +13,10 @@ pub struct ApiQueryExecutable {
 impl ApiQueryExecutable {
     ///
     pub fn fromJson(jsonMap: serde_json::Value) -> Result<Self, String> {
-        let key = "database";
+        let key = "name";
         if let serde_json::Value::String(name) = &jsonMap[key] {
             debug!("[ApiQueryExecutable.fromJson] field '{}': {:?}", &key, &name);
-            let key = "sql";
+            let key = "params";
             if let serde_json::Value::Object(params) = &jsonMap[key] {
                 debug!("[ApiQueryExecutable.fromJson] field '{}': {:?}", &key, &params);
                 return Ok(ApiQueryExecutable {
@@ -36,26 +36,26 @@ impl ApiQueryExecutable {
         }
     }
     ///
-    pub fn fromBytes(bytes: Vec<u8>) -> Self {
-        let refBytes = &bytes;
-        let string = String::from_utf8(refBytes.to_owned()).unwrap();
-        let string = string.trim_matches(char::from(0));
-        debug!("[ApiQueryExecutable.fromBytes] string: {:#?}", string);
-        let query: ApiQueryExecutable = match serde_json::from_str(&string) {
-            Ok(value) => {value},
-            Err(err) => {
-                warn!("[ApiQueryExecutable.fromBytes] json conversion error: {:?}", err);
-                let collected: Vec<String> = bytes.iter().map(|a| a.to_string()).collect();
-                ApiQueryExecutable {
-                    name: String::from("none"),
-                    params: serde_json::Map::new(),
-                    src: collected.join(", "),
-                }
-            },
-        };
-        // debug!("[ApiQueryExecutable.fromBytes] bytes: {:?}", pobytesint);
-        query
-    }
+    // pub fn fromBytes(bytes: Vec<u8>) -> Self {
+    //     let refBytes = &bytes;
+    //     let string = String::from_utf8(refBytes.to_owned()).unwrap();
+    //     let string = string.trim_matches(char::from(0));
+    //     debug!("[ApiQueryExecutable.fromBytes] string: {:#?}", string);
+    //     let query: ApiQueryExecutable = match serde_json::from_str(&string) {
+    //         Ok(value) => {value},
+    //         Err(err) => {
+    //             warn!("[ApiQueryExecutable.fromBytes] json conversion error: {:?}", err);
+    //             let collected: Vec<String> = bytes.iter().map(|a| a.to_string()).collect();
+    //             ApiQueryExecutable {
+    //                 name: String::from("none"),
+    //                 params: serde_json::Map::new(),
+    //                 src: collected.join(", "),
+    //             }
+    //         },
+    //     };
+    //     // debug!("[ApiQueryExecutable.fromBytes] bytes: {:?}", pobytesint);
+    //     query
+    // }
     ///
     pub fn toString(self) -> String {
         self.src

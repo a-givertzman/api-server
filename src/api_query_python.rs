@@ -13,10 +13,10 @@ pub struct ApiQueryPython {
 impl ApiQueryPython {
     ///
     pub fn fromJson(jsonMap: serde_json::Value) -> Result<Self, String> {
-        let key = "database";
+        let key = "script";
         if let serde_json::Value::String(script) = &jsonMap[key] {
             debug!("[ApiQueryPython.fromJson] field '{}': {:?}", &key, &script);
-            let key = "sql";
+            let key = "params";
             if let serde_json::Value::Object(params) = &jsonMap[key] {
                 debug!("[ApiQueryPython.fromJson] field '{}': {:?}", &key, &params);
                 return Ok(ApiQueryPython {
