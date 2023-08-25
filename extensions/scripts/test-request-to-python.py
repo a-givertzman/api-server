@@ -18,20 +18,20 @@ obj = {
     #     "database": "py-test",
     #     "sql": "select 1;",
     # },
-    # "python": {
-    #     "script": "py-test",
-    #     "params": {
-    #         "a": 4,
-    #         "b": 7,
-    #     },
-    # },
-    "executable": {
-        "name": "executable-test",
+    "python": {
+        "script": "py-test",
         "params": {
             "a": 4,
             "b": 7,
         },
-    }
+    },
+    # "executable": {
+    #     "name": "executable-test",
+    #     "params": {
+    #         "a": 4,
+    #         "b": 7,
+    #     },
+    # }
 }
 
 jsonStr = json.dumps(obj)
@@ -47,21 +47,34 @@ for i in range(count):
     clientSocket.close()
     # time.sleep(100 / 1000)
 
-
+exit()
 invalidJson = [
+    '"auth_token": "123zxy456!@#", "id": "123", "sql": {"database": "py-test", "sql": "select 1;"}}',
+    '{"auth_token": "123zxy456!@#", "id": "123", "sql": {"database": "py-test", "sql": "select 1;"}',
+    '{"auth_token": "123zxy456!@#", "id": "123", "sql": {"database": "py-tes',
+
+    '"auth_token": "123zxy456!@#", "id": "123", "python": {"script": "py-test", "params": {"a": 4, "b": 7}}}',
+    '{"auth_token": "123zxy456!@#", "id": "123", "python": {"script": "py-test", "params": {"a": 4, "b": 7}}',
+    '{"auth_token": "123zxy456!@#", "id": "123", "python": {"script": "py-test", ',
+
     '"auth_token": "123zxy456!@#", "id": "123", "executable": {"name": "executable-test", "params": {"a": 4, "b": 7}}}',
     '{"auth_token": "123zxy456!@#", "id": "123", "executable": {"name": "executable-test", "params": {"a": 4, "b": 7}}',
+    '{"auth_token": "123zxy456!@#", "id": "123", "executable": {"name": "executable-test", ',
 ]
 
 
 print(f'\n\n\t INVALID QUERIES')
-clientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-clientSocket.connect(('127.0.0.1', 8899))
 for jsonStr in invalidJson:
-    print(f'jsonStr: {jsonStr}')
+    print(f'\njsonStr: {jsonStr}')
+    clientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    clientSocket.connect(('127.0.0.1', 8899))
     sendBytes = jsonStr.encode('utf-8')
     clientSocket.sendall(sendBytes)
     data = clientSocket.recv(4096)
-    received = json.loads(data)
-    print(f'received: {json.dumps(received, indent = 4)}')
-clientSocket.close()
+    try:
+        received = json.loads(data)
+        print(f'received: {json.dumps(received, indent = 4)}')
+    except Exception as err:
+        print(f'received: {received}')
+    clientSocket.close()
+

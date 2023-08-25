@@ -121,22 +121,22 @@ impl ApiQuery {
     //     }
     // }
     ///
-    pub fn unknown(auth_token: String, id: String, jsonMap: &serde_json::Value) -> Self {
-        debug!("[ApiQuery.unknown] jsonMap: {:?}", &jsonMap);
-        ApiQuery {
-            auth_token,
-            id,
-            query: ApiQueryType::Unknown(ApiQueryUnknown {
-                query: (*jsonMap).clone(),
-            }),
-        }
-    }
+    // pub fn unknown(auth_token: String, id: String, jsonMap: &serde_json::Value) -> Self {
+    //     debug!("[ApiQuery.unknown] jsonMap: {:?}", &jsonMap);
+    //     ApiQuery {
+    //         auth_token,
+    //         id,
+    //         query: ApiQueryType::Unknown(ApiQueryUnknown {
+    //             query: (*jsonMap).clone(),
+    //         }),
+    //     }
+    // }
     ///
-    pub fn fromJson(jsonString: String) -> Self {
-        let raw: ApiQuery = serde_json::from_str(&jsonString).unwrap();
-        println!("raw: {:?}", raw);
-        raw
-    }
+    // pub fn fromJson(jsonString: String) -> Self {
+    //     let raw: ApiQuery = serde_json::from_str(&jsonString).unwrap();
+    //     println!("raw: {:?}", raw);
+    //     raw
+    // }
     ///
     pub fn fromBytes(bytes: Vec<u8>) -> Self {
         let refBytes = &bytes;
@@ -220,7 +220,14 @@ impl ApiQuery {
                                                     // ApiQuery::executable(auth_token, id, &json)
                                                 } else {
                                                     warn!("[ApiQuery.fromBytes] unknown tupe of query: {:?}", obj);
-                                                    ApiQuery::unknown(auth_token, id, &json)
+                                                    ApiQuery {
+                                                        auth_token,
+                                                        id,
+                                                        query: ApiQueryType::Unknown(ApiQueryUnknown {
+                                                            query: json,
+                                                        }),
+                                                    }                                            
+                                                    // ApiQuery::unknown(auth_token, id, &json)
                                                 }
                                             },
                                             None => {
