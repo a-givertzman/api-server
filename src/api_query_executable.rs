@@ -11,11 +11,30 @@ pub struct ApiQueryExecutable {
 
 }
 impl ApiQueryExecutable {
-    pub fn fromJson(jsonString: String) -> Self {
-        let raw: ApiQueryExecutable = serde_json::from_str(&jsonString).unwrap();
-        println!("raw: {:?}", raw);
-        raw
+    ///
+    pub fn fromJson(jsonMap: serde_json::Value) -> Result<Self, String> {
+        let key = "database";
+        if let serde_json::Value::String(name) = jsonMap[key] {
+            debug!("[ApiQueryExecutable.fromJson] field '{}': {:?}", &key, &name);
+            let key = "sql";
+            if let serde_json::Value::Object(params) = jsonMap[key] {
+                debug!("[ApiQueryExecutable.fromJson] field '{}': {:?}", &key, &params);
+                return Ok(ApiQueryExecutable {
+                    name, 
+                    params, 
+                });
+            } else {
+                let msg = format!("[ApiQueryExecutable.fromJson] field '{}' not found", key);
+                warn!("{}", msg);
+                return Err(msg);
+            }
+        } else {
+            let msg = format!("[ApiQueryExecutable.fromJson] field '{}' not found", key);
+            warn!("{}", msg);
+            return Err(msg);
+        }
     }
+    ///
     pub fn fromBytes(bytes: Vec<u8>) -> Self {
         let string = String::from_utf8(bytes).unwrap();
         let string = string.trim_matches(char::from(0));
@@ -33,5 +52,4 @@ impl ApiQueryExecutable {
         // debug!("[ApiQueryExecutable.fromBytes] bytes: {:?}", pobytesint);
         query
     }
-
 }

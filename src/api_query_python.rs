@@ -11,11 +11,30 @@ pub struct ApiQueryPython {
 
 }
 impl ApiQueryPython {
-    pub fn fromJson(jsonString: String) -> Self {
-        let raw: ApiQueryPython = serde_json::from_str(&jsonString).unwrap();
-        println!("raw: {:?}", raw);
-        raw
+    ///
+    pub fn fromJson(jsonMap: serde_json::Value) -> Result<Self, String> {
+        let key = "database";
+        if let serde_json::Value::String(script) = jsonMap[key] {
+            debug!("[ApiQueryPython.fromJson] field '{}': {:?}", &key, &script);
+            let key = "sql";
+            if let serde_json::Value::Object(params) = jsonMap[key] {
+                debug!("[ApiQueryPython.fromJson] field '{}': {:?}", &key, &params);
+                return Ok(ApiQueryPython {
+                    script, 
+                    params, 
+                });
+            } else {
+                let msg = format!("[ApiQueryPython.fromJson] field '{}' not found", key);
+                warn!("{}", msg);
+                return Err(msg);
+            }
+        } else {
+            let msg = format!("[ApiQueryPython.fromJson] field '{}' not found", key);
+            warn!("{}", msg);
+            return Err(msg);
+        }
     }
+    ///
     pub fn fromBytes(bytes: Vec<u8>) -> Self {
         let string = String::from_utf8(bytes).unwrap();
         let string = string.trim_matches(char::from(0));

@@ -33,7 +33,9 @@ obj = {
         },
     }
 }
+
 jsonStr = json.dumps(obj)
+print(f'jsonStr: {jsonStr}')
 sendBytes = jsonStr.encode('utf-8')
 for i in range(count):
     clientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -44,3 +46,22 @@ for i in range(count):
     print(f'received: {json.dumps(received, indent = 4)}')
     clientSocket.close()
     # time.sleep(100 / 1000)
+
+
+invalidJson = [
+    '"auth_token": "123zxy456!@#", "id": "123", "executable": {"name": "executable-test", "params": {"a": 4, "b": 7}}}',
+    '{"auth_token": "123zxy456!@#", "id": "123", "executable": {"name": "executable-test", "params": {"a": 4, "b": 7}}',
+]
+
+
+print(f'\n\n\t INVALID QUERIES')
+clientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+clientSocket.connect(('127.0.0.1', 8899))
+for jsonStr in invalidJson:
+    print(f'jsonStr: {jsonStr}')
+    sendBytes = jsonStr.encode('utf-8')
+    clientSocket.sendall(sendBytes)
+    data = clientSocket.recv(4096)
+    received = json.loads(data)
+    print(f'received: {json.dumps(received, indent = 4)}')
+clientSocket.close()

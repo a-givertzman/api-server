@@ -6,7 +6,8 @@ use serde::{Serialize, Deserialize};
 ///
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ApiQueryError {
-    pub query: serde_json::Value,
+    // pub query: serde_json::Value,
+    pub query: String,
     pub err: String,
 }
 impl ApiQueryError {
@@ -25,7 +26,8 @@ impl ApiQueryError {
                 let msg = format!("[ApiQueryError.fromBytes] json conversion error: {:?}", err);
                 warn!("{}", msg);
                 ApiQueryError {
-                    query: serde_json::Value::default(),
+                    // query: serde_json::Value::default(),
+                    query: String::new(),
                     err: msg,
                 }
             },

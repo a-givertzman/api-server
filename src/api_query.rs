@@ -51,109 +51,75 @@ impl ApiQuery {
         }
     }
     ///
-    pub fn sql(auth_token: String, id: String, jsonMap: &serde_json::Value) -> Self {
-        let sql = &jsonMap["sql"];
-        match ApiQuery::parseJsonString(&sql, "database") {
-            Ok(database) => {
-                match ApiQuery::parseJsonString(&sql, "sql") {
-                    Ok(sql) => ApiQuery {
-                        auth_token,
-                        id,
-                        query: ApiQueryType::Sql(ApiQuerySql {
-                            database: database,
-                            sql: sql,
-                        }),
-                    },
-                    Err(err) => ApiQuery {
-                        auth_token,
-                        id,
-                        query: ApiQueryType::Error(ApiQueryError{
-                            query: jsonMap.clone(),
-                            err,
-                        }),
-                    },
-                }
-            },
-            Err(err) => ApiQuery {
-                auth_token,
-                id,
-                query: ApiQueryType::Error(ApiQueryError{
-                    query: jsonMap.clone(),
-                    err,
-                }),
-            },
-        }
-    }
+//     pub fn python(auth_token: String, id: String, jsonMap: &serde_json::Value) -> Self {
+//         let py = &jsonMap["python"];
+//         match ApiQuery::parseJsonString(&py, "script") {
+//             Ok(script) => {
+//                 match ApiQuery::parseJsonObject(&py, "params") {
+//                     Ok(params) => ApiQuery {
+//                         auth_token,
+//                         id,
+//                         query: ApiQueryType::Python(ApiQueryPython {
+//                             script,
+//                             params,
+//                         }),
+//                     },
+//                     Err(err) => ApiQuery {
+//                         auth_token,
+//                         id,
+//                         query: ApiQueryType::Error(ApiQueryError{
+//                             query: jsonMap.to_string(),
+//                             err,
+//                         }),
+//                     },
+//                 }
+//             },
+//             Err(err) => ApiQuery {
+//                 auth_token,
+//                 id,
+//                 query: ApiQueryType::Error(ApiQueryError{
+//                     query: jsonMap.to_string(),
+//                     err,
+//                 }),
+//             },
+// }
+//     }
     ///
-    pub fn python(auth_token: String, id: String, jsonMap: &serde_json::Value) -> Self {
-        let py = &jsonMap["python"];
-        match ApiQuery::parseJsonString(&py, "script") {
-            Ok(script) => {
-                match ApiQuery::parseJsonObject(&py, "params") {
-                    Ok(params) => ApiQuery {
-                        auth_token,
-                        id,
-                        query: ApiQueryType::Python(ApiQueryPython {
-                            script,
-                            params,
-                        }),
-                    },
-                    Err(err) => ApiQuery {
-                        auth_token,
-                        id,
-                        query: ApiQueryType::Error(ApiQueryError{
-                            query: jsonMap.clone(),
-                            err,
-                        }),
-                    },
-                }
-            },
-            Err(err) => ApiQuery {
-                auth_token,
-                id,
-                query: ApiQueryType::Error(ApiQueryError{
-                    query: jsonMap.clone(),
-                    err,
-                }),
-            },
-}
-    }
-    ///
-    pub fn executable(auth_token: String, id: String, jsonMap: &serde_json::Value) -> Self {
-        debug!("[ApiQuery.executable] jsonMap: {:?}", &jsonMap);
-        let ex = &jsonMap["executable"];
-        debug!("[ApiQuery.executable] ex: {:?}", &ex);
-        match ApiQuery::parseJsonString(&ex, "name") {
-            Ok(name) => {
-                match ApiQuery::parseJsonObject(&ex, "params") {
-                    Ok(params) => ApiQuery {
-                        auth_token,
-                        id,
-                        query: ApiQueryType::Executable(ApiQueryExecutable {
-                            name,
-                            params,
-                        }),
-                    },
-                    Err(err) => ApiQuery {
-                        auth_token,
-                        id,
-                        query: ApiQueryType::Error(ApiQueryError{
-                            query: jsonMap.clone(),
-                            err,
-                        }),
-                    },
-                }
-            },
-            Err(err) => ApiQuery {
-                auth_token,
-                id,
-                query: ApiQueryType::Error(ApiQueryError{
-                    query: jsonMap.clone(),
-                    err,
-                }),
-            },
-        }
-    }
+    // pub fn executable(auth_token: String, id: String, jsonMap: &serde_json::Value) -> Self {
+    //     debug!("[ApiQuery.executable] jsonMap: {:?}", &jsonMap);
+    //     let ex = &jsonMap["executable"];
+    //     debug!("[ApiQuery.executable] ex: {:?}", &ex);
+    //     match ApiQuery::parseJsonString(&ex, "name") {
+    //         Ok(name) => {
+    //             match ApiQuery::parseJsonObject(&ex, "params") {
+    //                 Ok(params) => ApiQuery {
+    //                     auth_token,
+    //                     id,
+    //                     query: ApiQueryType::Executable(ApiQueryExecutable {
+    //                         name,
+    //                         params,
+    //                     }),
+    //                 },
+    //                 Err(err) => ApiQuery {
+    //                     auth_token,
+    //                     id,
+    //                     query: ApiQueryType::Error(ApiQueryError{
+    //                         query: jsonMap.to_string(),
+    //                         err,
+    //                     }),
+    //                 },
+    //             }
+    //         },
+    //         Err(err) => ApiQuery {
+    //             auth_token,
+    //             id,
+    //             query: ApiQueryType::Error(ApiQueryError{
+    //                 query: jsonMap.to_string(),
+    //                 err,
+    //             }),
+    //         },
+    //     }
+    // }
     ///
     pub fn unknown(auth_token: String, id: String, jsonMap: &serde_json::Value) -> Self {
         debug!("[ApiQuery.unknown] jsonMap: {:?}", &jsonMap);
@@ -189,13 +155,69 @@ impl ApiQuery {
                                                 debug!("[ApiQuery.fromBytes] obj: {:?}", obj);
                                                 if obj.contains_key(ApiQueryTypeName::Sql.value()) {
                                                     debug!("[ApiQuery.fromBytes] detected: {}", ApiQueryTypeName::Sql.value());
-                                                    ApiQuery::sql(auth_token, id, &json)
+                                                    match ApiQuerySql::fromJson(json) {
+                                                        Ok(apiQuerySql) => {
+                                                            ApiQuery {
+                                                                auth_token,
+                                                                id,
+                                                                query: ApiQueryType::Sql( apiQuerySql ),
+                                                            }
+                                                        },
+                                                        Err(err) => {
+                                                            ApiQuery {
+                                                                auth_token: "Uncnown".into(),
+                                                                id: "Uncnown".into(),
+                                                                query: ApiQueryType::Error(ApiQueryError{
+                                                                    query: json.to_string(),
+                                                                    err: err,
+                                                                }),
+                                                            }            
+                                                        },
+                                                    }
+                                                    // ApiQuery::sql(auth_token, id, &json)
                                                 } else if obj.contains_key(ApiQueryTypeName::Python.value()) {
                                                     debug!("[ApiQuery.fromBytes] detected: {}", ApiQueryTypeName::Python.value());
-                                                    ApiQuery::python(auth_token, id, &json)
+                                                    match ApiQueryPython::fromJson(json) {
+                                                        Ok(apiQueryPython) => {
+                                                            ApiQuery {
+                                                                auth_token,
+                                                                id,
+                                                                query: ApiQueryType::Python( apiQueryPython ),
+                                                            }
+                                                        },
+                                                        Err(err) => {
+                                                            ApiQuery {
+                                                                auth_token: "Uncnown".into(),
+                                                                id: "Uncnown".into(),
+                                                                query: ApiQueryType::Error(ApiQueryError{
+                                                                    query: json.to_string(),
+                                                                    err: err,
+                                                                }),
+                                                            }            
+                                                        },
+                                                    }
                                                 } else if obj.contains_key(ApiQueryTypeName::Executable.value()) {
                                                     debug!("[ApiQuery.fromBytes] detected: {}", ApiQueryTypeName::Executable.value());
-                                                    ApiQuery::executable(auth_token, id, &json)
+                                                    match ApiQueryExecutable::fromJson(json) {
+                                                        Ok(apiQueryExecutable) => {
+                                                            ApiQuery {
+                                                                auth_token,
+                                                                id,
+                                                                query: ApiQueryType::Executable( apiQueryExecutable ),
+                                                            }
+                                                        },
+                                                        Err(err) => {
+                                                            ApiQuery {
+                                                                auth_token: "Uncnown".into(),
+                                                                id: "Uncnown".into(),
+                                                                query: ApiQueryType::Error(ApiQueryError{
+                                                                    query: json.to_string(),
+                                                                    err: err,
+                                                                }),
+                                                            }            
+                                                        },
+                                                    }
+                                                    // ApiQuery::executable(auth_token, id, &json)
                                                 } else {
                                                     warn!("[ApiQuery.fromBytes] unknown tupe of query: {:?}", obj);
                                                     ApiQuery::unknown(auth_token, id, &json)
@@ -208,7 +230,7 @@ impl ApiQuery {
                                                     auth_token: "Uncnown".into(),
                                                     id: "Uncnown".into(),
                                                     query: ApiQueryType::Error(ApiQueryError{
-                                                        query: json,
+                                                        query: json.to_string(),
                                                         err: msg,
                                                     }),
                                                 }
@@ -220,7 +242,7 @@ impl ApiQuery {
                                             auth_token: "Uncnown".into(),
                                             id: "Uncnown".into(),
                                             query: ApiQueryType::Error(ApiQueryError{
-                                                query: json,
+                                                query: json.to_string(),
                                                 err
                                             }),
                                         }                                                
@@ -232,7 +254,7 @@ impl ApiQuery {
                                     auth_token: "Uncnown".into(),
                                     id: "Uncnown".into(),
                                     query: ApiQueryType::Error(ApiQueryError{
-                                        query: json,
+                                        query: json.to_string(),
                                         err,
                                     }),
                                 }
@@ -261,7 +283,7 @@ impl ApiQuery {
                     auth_token: "Uncnown".into(),
                     id: "Uncnown".into(),
                     query: ApiQueryType::Error(ApiQueryError{
-                        query: serde_json::value::Value::String(collected.join(",")),
+                        query: collected.join(","),
                         err: err.to_string()
                     }),
                 }
