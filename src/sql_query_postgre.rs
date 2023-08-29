@@ -40,9 +40,9 @@ impl SqlQuery for SqlQueryPostgre {
             },
             None => {
                 let path = if !self.dbConfig.user.is_empty() && !self.dbConfig.pass.is_empty() {
-                    format!("postgresql://{}:{}@{}", self.dbConfig.user, self.dbConfig.pass, self.dbConfig.path)    // postgresql://user:secret@localhost
+                    format!("postgresql://{}:{}@{}/{}", self.dbConfig.user, self.dbConfig.pass, self.dbConfig.path, self.dbConfig.name)    // postgresql://user:secret@localhost
                 } else {
-                    format!("postgresql://{}", self.dbConfig.path)                                                  // postgresql://localhost
+                    format!("postgresql://{}/{}", self.dbConfig.path, self.dbConfig.name)                                                  // postgresql://localhost
                 };
                 debug!("SqlQueryPostgre.execute | connecting with params: {:?}", &path);
                 match Client::connect(&path, NoTls) {
