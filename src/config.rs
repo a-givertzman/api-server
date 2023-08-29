@@ -1,6 +1,6 @@
 use log::{
     // debug,
-    trace
+    trace, debug
 };
 
 use std::{fs, collections::HashMap};
@@ -72,12 +72,14 @@ impl ServiceConfig {
             .expect(
                 format!("DataBaseConfig | error reading 'name' from config {:?}", &configMap).as_str(),
             );
-        let serviceType = serde_json::from_str(
-            &configMap[&Yaml::String("type".to_string())]
-                .as_str()
-                .expect(
-                    format!("DataBaseConfig | error reading 'type' from config {:?}", &configMap).as_str(),
-                )
+        let apiServiceTypeConfig = configMap[&Yaml::String("type".to_string())];
+            // .as_str()
+            // .expect(
+            //     format!("DataBaseConfig | error reading 'type' from config {:?}", &configMap).as_str(),
+            // );
+            debug!("DataBaseConfig | apiServiceTypeConfig {:?}", &apiServiceTypeConfig);
+        let serviceType = serde_yaml::from_str(
+            apiServiceTypeConfig,
         ).expect(
             format!("DataBaseConfig | error reading 'type' from config {:?}", &configMap).as_str(),
         );

@@ -8,18 +8,19 @@ use serde::{
 
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-// #[serde(rename_all = "lowercase")]
-#[serde(tag = "type", content = "value")]
+#[serde(rename_all = "lowercase")]
+// #[serde(tag = "type", content = "value")]
+// #[serde(tag = "type")]
 pub enum ApiServiceType {
-    #[serde(rename = "sqlite")]
+    // #[serde(rename = "sqlite")]
     Sqlite,
-    #[serde(rename = "mysql")]
+    // #[serde(rename = "mysql")]
     MySql,
-    #[serde(rename = "postgresql")]
+    // #[serde(rename = "postgresql")]
     PostgreSql,
-    #[serde(rename = "python")]
+    // #[serde(rename = "python")]
     Python,
-    #[serde(rename = "bin")]
+    // #[serde(rename = "bin")]
     Bin,
 }
 // impl ApiQueryType {
