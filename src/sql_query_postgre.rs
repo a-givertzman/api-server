@@ -44,6 +44,7 @@ impl SqlQuery for SqlQueryPostgre {
                 } else {
                     format!("postgresql://{}", self.dbConfig.path)                                                  // postgresql://localhost
                 };
+                debug!("SqlQueryPostgre.execute | connecting with params: {:?}", &path);
                 match Client::connect(&path, NoTls) {
                     Ok(conn) => {
                         newConn = conn;
