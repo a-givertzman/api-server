@@ -15,7 +15,7 @@ obj = {
     "auth_token": "123zxy456!@#",
     "id": "123",
     "sql": {
-        "database": "py-test",
+        "database": "database1",
         "sql": "select 1;",
     },
     # "python": {
@@ -34,9 +34,9 @@ obj = {
     # }
 }
 
-jsonStr = json.dumps(obj)
-print(f'jsonStr: {jsonStr}')
-sendBytes = jsonStr.encode('utf-8')
+requestJsonStr = json.dumps(obj)
+print(f'requestJsonStr: {requestJsonStr}')
+sendBytes = requestJsonStr.encode('utf-8')
 for i in range(count):
     clientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     clientSocket.connect(('127.0.0.1', 8899))
@@ -47,11 +47,11 @@ for i in range(count):
     clientSocket.close()
     # time.sleep(100 / 1000)
 
-exit()
+# exit()
 invalidJson = [
-    '"auth_token": "123zxy456!@#", "id": "123", "sql": {"database": "py-test", "sql": "select 1;"}}',
-    '{"auth_token": "123zxy456!@#", "id": "123", "sql": {"database": "py-test", "sql": "select 1;"}',
-    '{"auth_token": "123zxy456!@#", "id": "123", "sql": {"database": "py-tes',
+    '"auth_token": "123zxy456!@#", "id": "123", "sql": {"database": "database", "sql": "select 1;"}}',
+    '{"auth_token": "123zxy456!@#", "id": "123", "sql": {"database": "database", "sql": "select 1;"}',
+    '{"auth_token": "123zxy456!@#", "id": "123", "sql": {"database": "databas',
 
     '"auth_token": "123zxy456!@#", "id": "123", "python": {"script": "py-test", "params": {"a": 4, "b": 7}}}',
     '{"auth_token": "123zxy456!@#", "id": "123", "python": {"script": "py-test", "params": {"a": 4, "b": 7}}',
@@ -60,15 +60,30 @@ invalidJson = [
     '"auth_token": "123zxy456!@#", "id": "123", "executable": {"name": "executable-test", "params": {"a": 4, "b": 7}}}',
     '{"auth_token": "123zxy456!@#", "id": "123", "executable": {"name": "executable-test", "params": {"a": 4, "b": 7}}',
     '{"auth_token": "123zxy456!@#", "id": "123", "executable": {"name": "executable-test", ',
+
+    '{"auth_tokenNNN": "123zxy456!@#", "id": "123", "sql": {"database": "database", "sql": "select 1;"}}',
+    '{"auth_token": "123zxy456!@#", "idDDD": "123", "sql": {"database": "database", "sql": "select 1;"}}',
+
+    '{"auth_token": "123zxy456!@#", "id": "123", "sql": {"database": "database", "sql": "select 1;"}}',
+    '{"auth_token": "123zxy456!@#", "id": "123", "sqlLLL": {"database": "database", "sql": "select 1;"}}',
+    '{"auth_token": "123zxy456!@#", "id": "123", "sql": {"databaseEEEEE": "database", "sql": "select 1;"}}',
+    '{"auth_token": "123zxy456!@#", "id": "123", "sql": {"database": "database", "sqlLLL": "select 1;"}}',
+    '{"auth_token": "123zxy456!@#", "id": "123", "sql": {"database": "database@", "sql": "select 1;"}}',
+
+    '{"auth_token": "123zxy456!@#", "id": "123", "python": {"script": "py-test", "params": "select 1;"}}',
+    '{"auth_token": "123zxy456!@#", "id": "123", "pythonLLL": {"script": "py-test", "params": "select 1;"}}',
+    '{"auth_token": "123zxy456!@#", "id": "123", "python": {"script@@@": "py-test", "params": "select 1;"}}',
+    '{"auth_token": "123zxy456!@#", "id": "123", "python": {"script": "py-test", "params@@@": "select 1;"}}',
+    '{"auth_token": "123zxy456!@#", "id": "123", "python": {"script": "py-test@@@", "params": "select 1;"}}',
 ]
 
 
 print(f'\n\n\t INVALID QUERIES')
-for jsonStr in invalidJson:
-    print(f'\njsonStr: {jsonStr}')
+for requestJsonStr in invalidJson:
+    print(f'\requestJsonStr: {requestJsonStr}')
     clientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     clientSocket.connect(('127.0.0.1', 8899))
-    sendBytes = jsonStr.encode('utf-8')
+    sendBytes = requestJsonStr.encode('utf-8')
     clientSocket.sendall(sendBytes)
     data = clientSocket.recv(4096)
     try:
