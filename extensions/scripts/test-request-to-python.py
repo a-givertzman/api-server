@@ -12,12 +12,12 @@ count = args.count
 print(f'count: {count}')
 
 obj = {
-    "auth_token": "123zxy456!@#",
-    "id": "123",
-    "sql": {
-        "database": "database1",
-        "sql": "select 1;",
-    },
+    # "auth_token": "123zxy456!@#",
+    # "id": "123",
+    # "sql": {
+    #     "database": "database1",
+    #     "sql": "select 1;",
+    # },
     # "python": {
     #     "script": "py-test",
     #     "params": {
@@ -34,47 +34,63 @@ obj = {
     # }
 }
 
-requestJsonStr = json.dumps(obj)
-print(f'requestJsonStr: {requestJsonStr}')
-sendBytes = requestJsonStr.encode('utf-8')
-for i in range(count):
-    clientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    clientSocket.connect(('127.0.0.1', 8899))
-    clientSocket.sendall(sendBytes)
-    data = clientSocket.recv(4096)
-    received = json.loads(data)
-    print(f'received: {json.dumps(received, indent = 4)}')
-    clientSocket.close()
-    # time.sleep(100 / 1000)
+if obj:
+    requestJsonStr = json.dumps(obj)
+    print(f'requestJsonStr: {requestJsonStr}')
+    sendBytes = requestJsonStr.encode('utf-8')
+    for i in range(count):
+        clientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        clientSocket.connect(('127.0.0.1', 8899))
+        clientSocket.sendall(sendBytes)
+        data = clientSocket.recv(4096)
+        received = json.loads(data)
+        print(f'received: {json.dumps(received, indent = 4)}')
+        clientSocket.close()
+        # time.sleep(100 / 1000)
 
 # exit()
 invalidJson = [
-    '"auth_token": "123zxy456!@#", "id": "123", "sql": {"database": "database", "sql": "select 1;"}}',
-    '{"auth_token": "123zxy456!@#", "id": "123", "sql": {"database": "database", "sql": "select 1;"}',
-    '{"auth_token": "123zxy456!@#", "id": "123", "sql": {"database": "databas',
+    # '"auth_token": "123zxy456!@#", "id": "123", "sql": {"database": "database", "sql": "select 1;"}}',
+    # '{"auth_token": "123zxy456!@#", "id": "123", "sql": {"database": "database", "sql": "select 1;"}',
+    # '{"auth_token": "123zxy456!@#", "id": "123", "sql": {"database": "databas',
 
-    '"auth_token": "123zxy456!@#", "id": "123", "python": {"script": "py-test", "params": {"a": 4, "b": 7}}}',
-    '{"auth_token": "123zxy456!@#", "id": "123", "python": {"script": "py-test", "params": {"a": 4, "b": 7}}',
-    '{"auth_token": "123zxy456!@#", "id": "123", "python": {"script": "py-test", ',
+    # '"auth_token": "123zxy456!@#", "id": "123", "python": {"script": "py-test", "params": {"a": 4, "b": 7}}}',
+    # '{"auth_token": "123zxy456!@#", "id": "123", "python": {"script": "py-test", "params": {"a": 4, "b": 7}}',
+    # '{"auth_token": "123zxy456!@#", "id": "123", "python": {"script": "py-test", ',
 
-    '"auth_token": "123zxy456!@#", "id": "123", "executable": {"name": "executable-test", "params": {"a": 4, "b": 7}}}',
-    '{"auth_token": "123zxy456!@#", "id": "123", "executable": {"name": "executable-test", "params": {"a": 4, "b": 7}}',
-    '{"auth_token": "123zxy456!@#", "id": "123", "executable": {"name": "executable-test", ',
+    # '"auth_token": "123zxy456!@#", "id": "123", "executable": {"name": "executable-test", "params": {"a": 4, "b": 7}}}',
+    # '{"auth_token": "123zxy456!@#", "id": "123", "executable": {"name": "executable-test", "params": {"a": 4, "b": 7}}',
+    # '{"auth_token": "123zxy456!@#", "id": "123", "executable": {"name": "executable-test", ',
 
-    '{"auth_tokenNNN": "123zxy456!@#", "id": "123", "sql": {"database": "database", "sql": "select 1;"}}',
-    '{"auth_token": "123zxy456!@#", "idDDD": "123", "sql": {"database": "database", "sql": "select 1;"}}',
+    # '{"auth_tokenNNN": "123zxy456!@#", "id": "123", "sql": {"database": "database", "sql": "select 1;"}}',
+    # '{"auth_token": "123zxy456!@#", "idDDD": "123", "sql": {"database": "database", "sql": "select 1;"}}',
+    # '{"auth_token": "123zxy456!@#", "id": "123", "sql@@@": {"database": "database", "sql": "select 1;"}}',
+    # '{"auth_token": "123zxy456!@#", "id": "123", "python@@@": {"script": "py-test", "params": {"a": 4, "b": 7}}}',
+    # '{"auth_token": "123zxy456!@#", "id": "123", "executable@@@": {"name": "executable-test", "params": {"a": 4, "b": 7}}}',
 
-    '{"auth_token": "123zxy456!@#", "id": "123", "sql": {"database": "database", "sql": "select 1;"}}',
-    '{"auth_token": "123zxy456!@#", "id": "123", "sqlLLL": {"database": "database", "sql": "select 1;"}}',
-    '{"auth_token": "123zxy456!@#", "id": "123", "sql": {"databaseEEEEE": "database", "sql": "select 1;"}}',
-    '{"auth_token": "123zxy456!@#", "id": "123", "sql": {"database": "database", "sqlLLL": "select 1;"}}',
-    '{"auth_token": "123zxy456!@#", "id": "123", "sql": {"database": "database@", "sql": "select 1;"}}',
+    # '{"auth_token": "123zxy456!@#", "id": "123", "sql": {"database": "database", "sql": "select 1;"}}',
+    # '{"auth_token": "123zxy456!@#", "id": "123", "sql": {"database@@@": "database", "sql": "select 1;"}}',
+    # '{"auth_token": "123zxy456!@#", "id": "123", "sql": {"database": "database", "sql@@@": "select 1;"}}',
+    # '{"auth_token": "123zxy456!@#", "id": "123", "sql": {"database": "database@@@", "sql": "select 1;"}}',
+    # '{"auth_token": "123zxy456!@#", "id": "123", "sql": {"database": "database", "sql": "select@ 1;"}}',
 
-    '{"auth_token": "123zxy456!@#", "id": "123", "python": {"script": "py-test", "params": "select 1;"}}',
-    '{"auth_token": "123zxy456!@#", "id": "123", "pythonLLL": {"script": "py-test", "params": "select 1;"}}',
-    '{"auth_token": "123zxy456!@#", "id": "123", "python": {"script@@@": "py-test", "params": "select 1;"}}',
-    '{"auth_token": "123zxy456!@#", "id": "123", "python": {"script": "py-test", "params@@@": "select 1;"}}',
-    '{"auth_token": "123zxy456!@#", "id": "123", "python": {"script": "py-test@@@", "params": "select 1;"}}',
+    # '{"auth_token": "123zxy456!@#", "id": "123", "sql": {"database": "db-postgres", "sql": "select 1;"}}',
+    '{"auth_token": "123zxy456!@#", "id": "123", "sql": {"database@@@": "database", "sql": "select 1;"}}',
+    # '{"auth_token": "123zxy456!@#", "id": "123", "sql": {"database": "database", "sql@@@": "select 1;"}}',
+    # '{"auth_token": "123zxy456!@#", "id": "123", "sql": {"database": "database@@@", "sql": "select 1;"}}',
+    # '{"auth_token": "123zxy456!@#", "id": "123", "sql": {"database": "database", "sql": "select@ 1;"}}',
+
+    # '{"auth_token": "123zxy456!@#", "id": "123", "python": {"script": "py-test", "params": {"a": 4, "b": 7}}}',
+    # '{"auth_token": "123zxy456!@#", "id": "123", "python": {"script@@@": "py-test", "params": {"a": 4, "b": 7}}}',
+    # '{"auth_token": "123zxy456!@#", "id": "123", "python": {"script": "py-test@@@", "params": {"a": 4, "b": 7}}}',
+    # '{"auth_token": "123zxy456!@#", "id": "123", "python": {"script": "py-test", "params@@@": {"a": 4, "b": 7}}}',
+    # '{"auth_token": "123zxy456!@#", "id": "123", "python": {"script": "py-test", "params": "invalid params"}}',
+
+    # '{"auth_token": "123zxy456!@#", "id": "123", "executable": {"name": "executable-test", "params": {"a": 4, "b": 7}}}',
+    # '{"auth_token": "123zxy456!@#", "id": "123", "executable": {"name@@@": "executable-test", "params": {"a": 4, "b": 7}}}',
+    # '{"auth_token": "123zxy456!@#", "id": "123", "executable": {"name": "executable-test@@@", "params": {"a": 4, "b": 7}}}',
+    # '{"auth_token": "123zxy456!@#", "id": "123", "executable": {"name": "executable-test", "params@@@": {"a": 4, "b": 7}}}',
+    # '{"auth_token": "123zxy456!@#", "id": "123", "executable": {"name": "executable-test", "params": "invalid params"}}',
 ]
 
 

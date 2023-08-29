@@ -25,12 +25,12 @@ impl ApiQueryPython {
                     src: jsonMap.to_string(),
                 });
             } else {
-                let msg = format!("[ApiQueryPython.fromJson] field '{}' not found", key);
+                let msg = format!("[ApiQueryPython.fromJson] field '{}' of type Map not found or invalid content", key);
                 warn!("{}", msg);
                 return Err(msg);
             }
         } else {
-            let msg = format!("[ApiQueryPython.fromJson] field '{}' not found", key);
+            let msg = format!("[ApiQueryPython.fromJson] field '{}' of type String not found or invalid content", key);
             warn!("{}", msg);
             return Err(msg);
         }
