@@ -46,13 +46,13 @@ impl SqlQuery for SqlQueryMysql {
                         newConn = conn;
                         Ok(&newConn)
                     },
-                    Err(err) => Err(format!("SqlQuery.execute | Database connection error: {}", err)),
+                    Err(err) => Err(format!("SqlQueryMysql.execute | Database connection error: {}", err)),
                 }
             },
         };
         match connection {
             Ok(connection) => {
-                debug!("SqlQuery.execute | preparing sql: {:?}", self.sql);
+                debug!("SqlQueryMysql.execute | preparing sql: {:?}", self.sql);
                 match connection.prepare(self.sql.as_str()) {
                     Ok(stmt) => {
                         let mut cNames = vec![];
@@ -69,7 +69,7 @@ impl SqlQuery for SqlQueryMysql {
                                     debug!("row: {:?}", row);
                                     let mut rowMap = HashMap::new();
                                     for cName in cNames.iter() {
-                                        let value: rusqlite::types::Value = row.get(cName.as_str()).expect(&format!("Error getting value from \"{}\" field", cName));
+                                        let value: rusqlite::types::Value = row.get(cName.as_str()).expect(&format!("SqlQueryMysql.execute | Error getting value from \"{}\" field", cName));
                                         let value: serde_json::Value = match value {
                                             rusqlite::types::Value::Null => serde_json::Value::Null,
                                             rusqlite::types::Value::Integer(v) => serde_json::Value::Number(serde_json::Number::from(v)),
@@ -93,18 +93,18 @@ impl SqlQuery for SqlQueryMysql {
                                 }
                             },
                             Err(err) => {
-                                warn!("getting rows error: {:?}", err);
+                                warn!("SqlQueryMysql.execute | getting rows error: {:?}", err);
                             },
                         }
                         Ok(result)
                     },
                     Err(err) => {
-                        warn!(".execute | preparing sql error: {:?}", err);
+                        warn!("SqlQueryMysql.execute | preparing sql error: {:?}", err);
                         Err(err.to_string())
                     },
                 }
             },
-            Err(err) => Err(format!("SqlQuery.execute | Database connection error: '{}' can't be found", err)),
+            Err(err) => Err(format!("SqlQueryMysql.execute | Database connection error: '{}' can't be found", err)),
         }
     }
 }

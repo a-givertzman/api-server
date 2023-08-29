@@ -57,7 +57,7 @@ impl SqlQuery for SqlQueryPostgre {
         };
         match connection {
             Ok(connection) => {
-                debug!("SqlQuery.execute | preparing sql: {:?}", self.sql);
+                debug!("SqlQueryPostgre.execute | preparing sql: {:?}", self.sql);
                 match connection.prepare(self.sql.as_str()) {
                     Ok(stmt) => {
                         let mut cNames = vec![];
@@ -110,7 +110,7 @@ impl SqlQuery for SqlQueryPostgre {
                                             Type::FLOAT8_ARRAY => json!(row.get::<_, Vec<f64>>(idx)),
                                             Type::CHAR_ARRAY | Type::TEXT_ARRAY | Type::VARCHAR_ARRAY => json!(row.get::<_, Vec<String>>(idx)),
                                              
-                                            _ => serde_json::Value::String(format!("Type {} is not implemented yet", column.type_()))
+                                            _ => serde_json::Value::String(format!("SqlQueryPostgre.execute | Type {} is not implemented yet", column.type_()))
                                         };
                                         rowMap.insert(String::from(idx), value);
                                     }
@@ -118,18 +118,18 @@ impl SqlQuery for SqlQueryPostgre {
                                 }
                             },
                             Err(err) => {
-                                warn!("getting rows error: {:?}", err);
+                                warn!("SqlQueryPostgre.execute | getting rows error: {:?}", err);
                             },
                         }
                         Ok(result)
                     },
                     Err(err) => {
-                        warn!(".execute | preparing sql error: {:?}", err);
+                        warn!("SqlQueryPostgre.execute | preparing sql error: {:?}", err);
                         Err(err.to_string())
                     },
                 }
             },
-            Err(err) => Err(format!("SqlQuery.execute | Database connection error: '{}' can't be found", err)),
+            Err(err) => Err(format!("SqlQueryPostgre.execute | Database connection error: '{}'", err)),
         }
     }
 }
