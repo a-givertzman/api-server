@@ -33,8 +33,9 @@ impl SqlQuerySqlite {
 }
 
 impl SqlQuery for SqlQuerySqlite {
-    fn execute(&self) -> Result<Vec<RowMap>, ErrorString> {
-        let connection: Result<Connection, ErrorString> = match self.connection {
+    fn execute(&mut self) -> Result<Vec<RowMap>, ErrorString> {
+        let newConn: Connection;
+        let connection: Result<&Connection, ErrorString> = match &self.connection {
             Some(connection) => {
                 Ok(connection)
             },
@@ -47,7 +48,10 @@ impl SqlQuery for SqlQuerySqlite {
                                 debug!("[ApiServer] database address: {:?}", path);
                 
                                 match Connection::open_with_flags(path, OpenFlags::SQLITE_OPEN_READ_WRITE) {        // ::open(path).unwrap();
-                                    Ok(c) => Ok(c),
+                                    Ok(conn) => {
+                                        newConn = conn;
+                                        Ok(&newConn)
+                                    },
                                     Err(err) => Err(format!("SqlQuery.execute | Database connection error: {}", err)),
                                 }
                             },

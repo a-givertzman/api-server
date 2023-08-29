@@ -33,15 +33,19 @@ impl SqlQueryMysql {
 }
 
 impl SqlQuery for SqlQueryMysql {
-    fn execute(&self) -> Result<Vec<RowMap>, ErrorString> {
-        let connection: Result<Connection, String> = match self.connection {
+    fn execute(&mut self) -> Result<Vec<RowMap>, ErrorString> {
+        let newConn: Connection;
+        let connection: Result<&Connection, String> = match &self.connection {
             Some(connection) => {
                 Ok(connection)
             },
             None => {
                 let path = self.dbConfig.path.clone();
                 match Connection::open_with_flags(path, OpenFlags::SQLITE_OPEN_READ_WRITE) {        // ::open(path).unwrap();
-                    Ok(c) => Ok(c),
+                    Ok(conn) => {
+                        newConn = conn;
+                        Ok(&newConn)
+                    },
                     Err(err) => Err(format!("SqlQuery.execute | Database connection error: {}", err)),
                 }
             },

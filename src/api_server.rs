@@ -22,7 +22,7 @@ impl ApiServer {
         }
     }
     ///
-    fn execute(sqlQuery: Box<dyn SqlQuery>, auth_token: String, id: String, query: String) -> SqlReply {
+    fn execute(mut sqlQuery: Box<dyn SqlQuery>, auth_token: String, id: String, query: String) -> SqlReply {
         match sqlQuery.execute() {
             Ok(rows) => {                        
                 SqlReply {

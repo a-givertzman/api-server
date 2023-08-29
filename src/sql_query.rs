@@ -5,5 +5,5 @@ pub type RowMap = HashMap<String, serde_json::Value>;
 pub type ErrorString = String;
 ///
 pub trait SqlQuery {
-    fn execute(&self) -> Result<Vec<RowMap>, ErrorString>;
+    fn execute(&mut self) -> Result<Vec<RowMap>, ErrorString>;
 }

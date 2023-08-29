@@ -19,7 +19,7 @@ pub struct SqlQueryPostgre {
     connection: Option<Client>,
     sql: String,
 }
-
+///
 impl SqlQueryPostgre {
     ///
     pub fn new(dbConfig: ServiceConfig, sql: String, connection: Option<Client>) -> SqlQueryPostgre {
@@ -32,8 +32,9 @@ impl SqlQueryPostgre {
 }
 
 impl SqlQuery for SqlQueryPostgre {
-    fn execute(&self) -> Result<Vec<RowMap>, ErrorString> {
-        let connection = match self.connection {
+    fn execute(&mut self) -> Result<Vec<RowMap>, ErrorString> {
+        let mut newConn: Client;
+        let connection = match &mut self.connection {
             Some(connection) => {
                 Ok(connection)
             },
@@ -43,14 +44,19 @@ impl SqlQuery for SqlQueryPostgre {
                 } else {
                     format!("postgresql://{}", self.dbConfig.path)                                                  // postgresql://localhost
                 };
-                Client::connect(
-                    &path, 
-                    NoTls,
-                )
+                match Client::connect(&path, NoTls) {
+                    Ok(conn) => {
+                        newConn = conn;
+                        Ok(&mut newConn)
+                    },
+                    Err(err) => {
+                        Err(err)
+                    },
+                }
             },
         };
         match connection {
-            Ok(mut connection) => {
+            Ok(connection) => {
                 debug!("SqlQuery.execute | preparing sql: {:?}", self.sql);
                 match connection.prepare(self.sql.as_str()) {
                     Ok(stmt) => {
@@ -61,7 +67,7 @@ impl SqlQuery for SqlQueryPostgre {
                         let sqlRows = connection.query(&stmt, &[]);
                         let mut result = vec![];
                         match sqlRows {
-                            Ok(mut rows) => {
+                            Ok(rows) => {
                                 for row in rows {
                                     // ...
                                     debug!("row: {:?}", row);
