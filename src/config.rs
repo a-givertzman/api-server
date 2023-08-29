@@ -72,11 +72,11 @@ impl ServiceConfig {
             .expect(
                 format!("DataBaseConfig | error reading 'name' from config {:?}", &configMap).as_str(),
             );
-        let apiServiceTypeConfig = configMap[&Yaml::String("type".to_string())];
-            // .as_str()
-            // .expect(
-            //     format!("DataBaseConfig | error reading 'type' from config {:?}", &configMap).as_str(),
-            // );
+        let apiServiceTypeConfig = configMap[&Yaml::String("type".to_string())]
+            .as_str()
+            .expect(
+                format!("DataBaseConfig | error reading 'type' from config {:?}", &configMap).as_str(),
+            );
             debug!("DataBaseConfig | apiServiceTypeConfig {:?}", &apiServiceTypeConfig);
         let serviceType = serde_yaml::from_str(
             apiServiceTypeConfig,
