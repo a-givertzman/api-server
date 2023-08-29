@@ -46,7 +46,6 @@ impl SqlQuery for SqlQuerySqlite {
                             Some(dir) => {
                                 let path: &str = &format!("{}/{}", dir, self.dbConfig.path);
                                 debug!("SqlQuerySqlite.execute | database address: {:?}", path);
-                
                                 match Connection::open_with_flags(path, OpenFlags::SQLITE_OPEN_READ_WRITE) {        // ::open(path).unwrap();
                                     Ok(conn) => {
                                         newConn = conn;

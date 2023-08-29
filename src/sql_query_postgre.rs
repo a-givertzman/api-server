@@ -51,6 +51,7 @@ impl SqlQuery for SqlQueryPostgre {
                         Ok(&mut newConn)
                     },
                     Err(err) => {
+                        debug!("SqlQueryPostgre.execute | connection error: {:?}", &err);
                         Err(err)
                     },
                 }

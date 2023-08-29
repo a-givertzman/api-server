@@ -13,9 +13,9 @@ services:                      # list of currently avalible API services
         user: root              # database access user
         pass: root              # database access password
     - database-postgres:
-        name: 'db-postgres-test'
+        name: 'db_postgres_test'
         type: postgres
-        path: '127.0.0.1:5433'  #'postgresql://postgres@localhost:5433' 
+        path: '127.0.0.1:5432'  #'postgresql://postgres@localhost:5433' 
         user: db_postgres_test
         pass: db_postgres_test
     - py-test-script:                   # internal unique API service name

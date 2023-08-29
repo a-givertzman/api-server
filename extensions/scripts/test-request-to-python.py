@@ -158,7 +158,7 @@ invalidJson = [
     # '{"auth_token": "123zxy456!@#", "id": "123", "sql": {"database": "database@@@", "sql": "select 1;"}}',
     # '{"auth_token": "123zxy456!@#", "id": "123", "sql": {"database": "database", "sql": "select@ 1;"}}',
 
-    '{"auth_token": "123zxy456!@#", "id": "123", "sql": {"database": "db-postgres-test", "sql": "select 1;"}}',
+    '{"auth_token": "123zxy456!@#", "id": "123", "sql": {"database": "db_postgres_test", "sql": "select 1;"}}',
     # '{"auth_token": "123zxy456!@#", "id": "123", "sql": {"database@@@": "db-postgres", "sql": "select 1;"}}',
     # '{"auth_token": "123zxy456!@#", "id": "123", "sql": {"database": "db-postgres", "sql@@@": "select 1;"}}',
     # '{"auth_token": "123zxy456!@#", "id": "123", "sql": {"database": "db-postgres@@@", "sql": "select 1;"}}',
