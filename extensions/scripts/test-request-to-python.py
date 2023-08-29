@@ -4,6 +4,19 @@ import socket
 import time
 import psycopg2
 
+def recvAll(sock: socket.socket | None):
+    data = bytearray()
+    if (sock):
+        buff_size = 4096
+        __connected = True
+        __cancel = False
+        while __connected and (not __cancel):
+            part = sock.recv(buff_size)
+            data.extend(part)
+            if len(part) < buff_size:
+                break
+    return data
+
 def connectPsqlRoot(autocommit = False):
     conn = psycopg2.connect(
         host="localhost",
@@ -62,17 +75,17 @@ else:
 
 
 
-result = psqlQuery(cur, """
-SELECT 1 FROM pg_database WHERE datname = 'db_postgres_test';
-""")
-if result:
-    pass
-else: 
-    conn, cursor = connectPsql(autocommit=True)
-    cursor.execute(f'CREATE DATABASE {dbName}')
-    cursor.execute(f'GRANT ALL PRIVILEGES ON DATABASE {dbName} TO {dbUser}')
-    cursor.close()
-    conn.close()
+# result = psqlQuery(cur, """
+# SELECT 1 FROM pg_database WHERE datname = 'db_postgres_test';
+# """)
+# if result:
+#     pass
+# else: 
+#     conn, cursor = connectPsql(autocommit=True)
+#     cursor.execute(f'CREATE DATABASE {dbName}')
+#     cursor.execute(f'GRANT ALL PRIVILEGES ON DATABASE {dbName} TO {dbUser}')
+#     cursor.close()
+#     conn.close()
 
 conn, cur = connectPsql(autocommit=True)
 cur.execute(f"""
@@ -116,6 +129,14 @@ obj = {
     #         "b": 7,
     #     },
     # }
+    "auth_token": "123zxy456!@#",
+    "id": "123",
+    "sql": {
+        "database": "db_postgres_test",
+        # "sql": "insert into test (title, description) values ('title 1', 'descroption2');",
+        # "sql": "SELECT * FROM pg_catalog.pg_tables;",
+        "sql": "SELECT * FROM test;",
+    },
 }
 
 if obj:
@@ -126,7 +147,8 @@ if obj:
         clientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         clientSocket.connect(('127.0.0.1', 8899))
         clientSocket.sendall(sendBytes)
-        data = clientSocket.recv(4096)
+        data = recvAll(clientSocket)
+        # data = clientSocket.recv(4096)
         received = json.loads(data)
         print(f'received: {json.dumps(received, indent = 4)}')
         clientSocket.close()
@@ -158,7 +180,8 @@ invalidJson = [
     # '{"auth_token": "123zxy456!@#", "id": "123", "sql": {"database": "database@@@", "sql": "select 1;"}}',
     # '{"auth_token": "123zxy456!@#", "id": "123", "sql": {"database": "database", "sql": "select@ 1;"}}',
 
-    '{"auth_token": "123zxy456!@#", "id": "123", "sql": {"database": "db_postgres_test", "sql": "select 1;"}}',
+    # '{"auth_token": "123zxy456!@#", "id": "123", "sql": {"database": "db_postgres_test", "sql": "SELECT * FROM pg_catalog.pg_tables;"}}',
+    # '{"auth_token": "123zxy456!@#", "id": "123", "sql": {"database": "db_postgres_test", "sql": "select 1;"}}',
     # '{"auth_token": "123zxy456!@#", "id": "123", "sql": {"database@@@": "db-postgres", "sql": "select 1;"}}',
     # '{"auth_token": "123zxy456!@#", "id": "123", "sql": {"database": "db-postgres", "sql@@@": "select 1;"}}',
     # '{"auth_token": "123zxy456!@#", "id": "123", "sql": {"database": "db-postgres@@@", "sql": "select 1;"}}',
@@ -180,7 +203,7 @@ invalidJson = [
 
 print(f'\n\n\t INVALID QUERIES')
 for requestJsonStr in invalidJson:
-    print(f'\requestJsonStr: {requestJsonStr}')
+    print(f'\nrequestJsonStr: {requestJsonStr}')
     clientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     clientSocket.connect(('127.0.0.1', 8899))
     sendBytes = requestJsonStr.encode('utf-8')

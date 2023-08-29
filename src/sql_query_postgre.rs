@@ -71,7 +71,6 @@ impl SqlQuery for SqlQueryPostgre {
                         match sqlRows {
                             Ok(rows) => {
                                 for row in rows {
-                                    // ...
                                     debug!("row: {:?}", row);
                                     let mut rowMap = HashMap::new();
                                     for column in row.columns() {
@@ -83,7 +82,22 @@ impl SqlQuery for SqlQueryPostgre {
                                             Type::INT8 => json!(row.get::<_, i64>(idx)),
                                             Type::FLOAT4 => json!(row.get::<_, f32>(idx)),
                                             Type::FLOAT8 => json!(row.get::<_, f64>(idx)),
-                                            Type::CHAR | Type::TEXT | Type::VARCHAR => json!(row.get::<_, String>(idx)),
+                                            Type::CHAR | Type::TEXT | Type::VARCHAR => {
+                                                let dbValue = match row.try_get::<_, Option<String>>(idx) {
+                                                    Ok(value) => {
+                                                        match value {
+                                                            Some(v) => v,
+                                                            None => String::new(),
+                                                        }
+                                                    },
+                                                    Err(err) => {
+                                                        debug!("SqlQueryPostgre.execute | Error parsing value of type CHAR | TEXT | VARCHAR: {:?}    code: {:?}", err, err.as_db_error());
+                                                        String::new()
+                                                    },
+                                                };
+                                                serde_json::Value::String(dbValue)
+                                            },
+                                            Type::NAME => json!(row.get::<_, String>(idx)),
                                             Type::TIMESTAMP => {
                                                 let dt: chrono::NaiveDateTime = row.get(idx);
                                                 json!(dt)
@@ -112,7 +126,7 @@ impl SqlQuery for SqlQueryPostgre {
                                             Type::FLOAT8_ARRAY => json!(row.get::<_, Vec<f64>>(idx)),
                                             Type::CHAR_ARRAY | Type::TEXT_ARRAY | Type::VARCHAR_ARRAY => json!(row.get::<_, Vec<String>>(idx)),
                                              
-                                            _ => serde_json::Value::String(format!("SqlQueryPostgre.execute | Type {} is not implemented yet", column.type_()))
+                                            _ => serde_json::Value::String(format!("SqlQueryPostgre.execute | Type '{}' is not implemented yet", column.type_()))
                                         };
                                         rowMap.insert(String::from(idx), value);
                                     }
@@ -123,6 +137,7 @@ impl SqlQuery for SqlQueryPostgre {
                                 warn!("SqlQueryPostgre.execute | getting rows error: {:?}", err);
                             },
                         }
+                        // debug!("SqlQueryPostgre.execute | result: {:?}", result);
                         Ok(result)
                     },
                     Err(err) => {
