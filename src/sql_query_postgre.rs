@@ -30,7 +30,7 @@ impl SqlQueryPostgre {
         }
     }
 }
-
+///
 impl SqlQuery for SqlQueryPostgre {
     fn execute(&mut self) -> Result<Vec<RowMap>, ErrorString> {
         let mut newConn: Client;
@@ -76,56 +76,30 @@ impl SqlQuery for SqlQueryPostgre {
                                     for column in row.columns() {
                                         let idx = column.name();
                                         let value: serde_json::Value = match column.type_().to_owned() {
-                                            Type::BOOL => json!(row.get::<_, bool>(idx)),
-                                            Type::INT2 => json!(row.get::<_, i16>(idx)),
-                                            Type::INT4 => json!(row.get::<_, i32>(idx)),
-                                            Type::INT8 => json!(row.get::<_, i64>(idx)),
-                                            Type::FLOAT4 => json!(row.get::<_, f32>(idx)),
-                                            Type::FLOAT8 => json!(row.get::<_, f64>(idx)),
-                                            Type::CHAR | Type::TEXT | Type::VARCHAR => {
-                                                let dbValue = match row.try_get::<_, Option<String>>(idx) {
-                                                    Ok(value) => {
-                                                        match value {
-                                                            Some(v) => v,
-                                                            None => String::new(),
-                                                        }
-                                                    },
-                                                    Err(err) => {
-                                                        debug!("SqlQueryPostgre.execute | Error parsing value of type CHAR | TEXT | VARCHAR: {:?}    code: {:?}", err, err.as_db_error());
-                                                        String::new()
-                                                    },
-                                                };
-                                                serde_json::Value::String(dbValue)
-                                            },
-                                            Type::NAME => json!(row.get::<_, String>(idx)),
-                                            Type::TIMESTAMP => {
-                                                let dt: chrono::NaiveDateTime = row.get(idx);
-                                                json!(dt)
-                                            },
-                                            Type::TIMESTAMPTZ => {
-                                                // let dt: DateTime<Utc> = row.get::<_, DateTime<Utc>>(idx);
-                                                json!(row.get::<_, DateTime<Utc>>(idx))
-                                            },
-                                            Type::DATE => {
-                                                // let dt: chrono::NaiveDate = row.get(idx);
-                                                json!(row.get::<_, chrono::NaiveDate>(idx))
-                                            },
-                                            Type::TIME => {
-                                                // let dt: chrono::NaiveTime = row.get(idx);
-                                                json!(row.get::<_, chrono::NaiveTime>(idx))
-                                            },
-                                            Type::JSON | Type::JSONB => {
-                                                let v: serde_json::Value = row.get(idx);
-                                                json!(v)
-                                            },
-                                            Type::BOOL_ARRAY => json!(row.get::<_, Vec<bool>>(idx)),
-                                            Type::INT2_ARRAY => json!(row.get::<_, Vec<i16>>(idx)),
-                                            Type::INT4_ARRAY => json!(row.get::<_, Vec<i32>>(idx)),
-                                            Type::INT8_ARRAY => json!(row.get::<_, Vec<i64>>(idx)),
-                                            Type::FLOAT4_ARRAY => json!(row.get::<_, Vec<f32>>(idx)),
-                                            Type::FLOAT8_ARRAY => json!(row.get::<_, Vec<f64>>(idx)),
-                                            Type::CHAR_ARRAY | Type::TEXT_ARRAY | Type::VARCHAR_ARRAY => json!(row.get::<_, Vec<String>>(idx)),
-                                             
+                                            Type::BOOL => row.asJson(row.try_get::<_, Option<bool>>(idx)),// .asget::<_, Option<bool>>(idx)),
+                                            Type::INT2 => row.asJson(row.try_get::<_, Option<i16>>(idx)),
+                                            Type::INT4 => row.asJson(row.try_get::<_, Option<i32>>(idx)),
+                                            Type::INT8 => row.asJson(row.try_get::<_, Option<i64>>(idx)),
+                                            Type::FLOAT4 => row.asJson(row.try_get::<_, Option<f32>>(idx)),
+                                            Type::FLOAT8 => row.asJson(row.try_get::<_, Option<f64>>(idx)),
+                                            Type::CHAR 
+                                            | Type::TEXT | Type::VARCHAR => row.asJson(row.try_get::<_, Option<String>>(idx)),
+                                            Type::NAME => row.asJson(row.try_get::<_, Option<String>>(idx)),
+                                            Type::TIMESTAMP => row.asJson(row.try_get::<_, Option<chrono::NaiveDateTime>>(idx)),
+                                            Type::TIMESTAMPTZ => row.asJson(row.try_get::<_, Option<DateTime<Utc>>>(idx)),
+                                            Type::DATE => row.asJson(row.try_get::<_, Option<chrono::NaiveDate>>(idx)),
+                                            Type::TIME => row.asJson(row.try_get::<_, Option<chrono::NaiveTime>>(idx)),
+                                            Type::JSON 
+                                            | Type::JSONB => row.asJson(row.try_get::<_, Option<serde_json::Value>>(idx)),
+                                            Type::BOOL_ARRAY => row.asJson(row.try_get::<_, Option<Vec<bool>>>(idx)),
+                                            Type::INT2_ARRAY => row.asJson(row.try_get::<_, Option<Vec<i16>>>(idx)),
+                                            Type::INT4_ARRAY => row.asJson(row.try_get::<_, Option<Vec<i32>>>(idx)),
+                                            Type::INT8_ARRAY => row.asJson(row.try_get::<_, Option<Vec<i64>>>(idx)),
+                                            Type::FLOAT4_ARRAY => row.asJson(row.try_get::<_, Option<Vec<f32>>>(idx)),
+                                            Type::FLOAT8_ARRAY => row.asJson(row.try_get::<_, Option<Vec<f64>>>(idx)),
+                                            Type::CHAR_ARRAY 
+                                            | Type::TEXT_ARRAY 
+                                            | Type::VARCHAR_ARRAY => row.asJson(row.try_get::<_, Option<Vec<String>>>(idx)),
                                             _ => serde_json::Value::String(format!("SqlQueryPostgre.execute | Type '{}' is not implemented yet", column.type_()))
                                         };
                                         rowMap.insert(String::from(idx), value);
@@ -148,5 +122,356 @@ impl SqlQuery for SqlQueryPostgre {
             },
             Err(err) => Err(format!("SqlQueryPostgre.execute | Database connection error: '{}'", err)),
         }
+    }
+}
+
+
+trait ParsePostgresType<T> {
+    // fn asJson(&self, idx: &str) -> serde_json::Value
+    fn asJson(&self, row:  Result<Option<T>, postgres::error::Error>) -> serde_json::Value
+        where Self: Sized;
+}
+
+impl ParsePostgresType<bool> for postgres::row::Row {
+    fn asJson(&self, dbValue: Result<Option<bool>, postgres::error::Error>) -> serde_json::Value 
+            where Self: Sized {
+        let dbValue = match dbValue {
+            Ok(value) => {
+                match value {
+                    Some(v) => v,
+                    None => false,
+                }
+            },
+            Err(err) => {
+                debug!("SqlQueryPostgre.execute | Error parsing value of type BOOL: {:?}    code: {:?}", err, err.as_db_error());
+                false
+            },
+        };
+        json!(dbValue)
+    }
+}
+impl ParsePostgresType<i16> for postgres::row::Row {
+    fn asJson(&self, dbValue: Result<Option<i16>, postgres::error::Error>) -> serde_json::Value 
+            where Self: Sized {
+        let dbValue = match dbValue {
+            Ok(value) => {
+                match value {
+                    Some(v) => v,
+                    None => 0,
+                }
+            },
+            Err(err) => {
+                debug!("SqlQueryPostgre.execute | Error parsing value of type BOOL: {:?}    code: {:?}", err, err.as_db_error());
+                0
+            },
+        };
+        json!(dbValue)
+    }
+}
+impl ParsePostgresType<i32> for postgres::row::Row {
+    fn asJson(&self, dbValue: Result<Option<i32>, postgres::error::Error>) -> serde_json::Value 
+            where Self: Sized {
+        let dbValue = match dbValue {
+            Ok(value) => {
+                match value {
+                    Some(v) => v,
+                    None => 0,
+                }
+            },
+            Err(err) => {
+                debug!("SqlQueryPostgre.execute | Error parsing value of type BOOL: {:?}    code: {:?}", err, err.as_db_error());
+                0
+            },
+        };
+        json!(dbValue)
+    }
+}
+impl ParsePostgresType<i64> for postgres::row::Row {
+    fn asJson(&self, dbValue: Result<Option<i64>, postgres::error::Error>) -> serde_json::Value 
+            where Self: Sized {
+        let dbValue = match dbValue {
+            Ok(value) => {
+                match value {
+                    Some(v) => v,
+                    None => 0,
+                }
+            },
+            Err(err) => {
+                debug!("SqlQueryPostgre.execute | Error parsing value of type BOOL: {:?}    code: {:?}", err, err.as_db_error());
+                0
+            },
+        };
+        json!(dbValue)
+    }
+}
+impl ParsePostgresType<f32> for postgres::row::Row {
+    fn asJson(&self, dbValue: Result<Option<f32>, postgres::error::Error>) -> serde_json::Value 
+            where Self: Sized {
+        let dbValue = match dbValue {
+            Ok(value) => {
+                match value {
+                    Some(v) => v,
+                    None => 0.0,
+                }
+            },
+            Err(err) => {
+                debug!("SqlQueryPostgre.execute | Error parsing value of type BOOL: {:?}    code: {:?}", err, err.as_db_error());
+                0.0
+            },
+        };
+        json!(dbValue)
+    }
+}
+impl ParsePostgresType<f64> for postgres::row::Row {
+    fn asJson(&self, dbValue: Result<Option<f64>, postgres::error::Error>) -> serde_json::Value 
+            where Self: Sized {
+        let dbValue = match dbValue {
+            Ok(value) => {
+                match value {
+                    Some(v) => v,
+                    None => 0.0,
+                }
+            },
+            Err(err) => {
+                debug!("SqlQueryPostgre.execute | Error parsing value of type BOOL: {:?}    code: {:?}", err, err.as_db_error());
+                0.0
+            },
+        };
+        json!(dbValue)
+    }
+}
+impl ParsePostgresType<chrono::NaiveDateTime> for postgres::row::Row {
+    fn asJson(&self, dbValue: Result<Option<chrono::NaiveDateTime>, postgres::error::Error>) -> serde_json::Value 
+            where Self: Sized {
+        let dbValue = match dbValue {
+            Ok(value) => {
+                match value {
+                    Some(v) => v,
+                    None => chrono::NaiveDateTime::default(),
+                }
+            },
+            Err(err) => {
+                debug!("SqlQueryPostgre.execute | Error parsing value of type BOOL: {:?}    code: {:?}", err, err.as_db_error());
+                chrono::NaiveDateTime::default()
+            },
+        };
+        json!(dbValue)
+    }
+}
+impl ParsePostgresType<DateTime<Utc>> for postgres::row::Row {
+    fn asJson(&self, dbValue: Result<Option<DateTime<Utc>>, postgres::error::Error>) -> serde_json::Value 
+            where Self: Sized {
+        let dbValue = match dbValue {
+            Ok(value) => {
+                match value {
+                    Some(v) => v,
+                    None => DateTime::default(),
+                }
+            },
+            Err(err) => {
+                debug!("SqlQueryPostgre.execute | Error parsing value of type BOOL: {:?}    code: {:?}", err, err.as_db_error());
+                DateTime::default()
+            },
+        };
+        json!(dbValue)
+    }
+}
+impl ParsePostgresType<chrono::NaiveDate> for postgres::row::Row {
+    fn asJson(&self, dbValue: Result<Option<chrono::NaiveDate>, postgres::error::Error>) -> serde_json::Value 
+            where Self: Sized {
+        let dbValue = match dbValue {
+            Ok(value) => {
+                match value {
+                    Some(v) => v,
+                    None => chrono::NaiveDate::default(),
+                }
+            },
+            Err(err) => {
+                debug!("SqlQueryPostgre.execute | Error parsing value of type BOOL: {:?}    code: {:?}", err, err.as_db_error());
+                chrono::NaiveDate::default()
+            },
+        };
+        json!(dbValue)
+    }
+}
+impl ParsePostgresType<chrono::NaiveTime> for postgres::row::Row {
+    fn asJson(&self, dbValue: Result<Option<chrono::NaiveTime>, postgres::error::Error>) -> serde_json::Value 
+            where Self: Sized {
+        let dbValue = match dbValue {
+            Ok(value) => {
+                match value {
+                    Some(v) => v,
+                    None => chrono::NaiveTime::default(),
+                }
+            },
+            Err(err) => {
+                debug!("SqlQueryPostgre.execute | Error parsing value of type BOOL: {:?}    code: {:?}", err, err.as_db_error());
+                chrono::NaiveTime::default()
+            },
+        };
+        json!(dbValue)
+    }
+}
+impl ParsePostgresType<serde_json::Value> for postgres::row::Row {
+    fn asJson(&self, dbValue: Result<Option<serde_json::Value>, postgres::error::Error>) -> serde_json::Value 
+            where Self: Sized {
+        let dbValue = match dbValue {
+            Ok(value) => {
+                match value {
+                    Some(v) => v,
+                    None => serde_json::Value::Null,
+                }
+            },
+            Err(err) => {
+                debug!("SqlQueryPostgre.execute | Error parsing value of type CHAR | TEXT | VARCHAR: {:?}    code: {:?}", err, err.as_db_error());
+                serde_json::Value::Null
+            },
+        };
+        json!(dbValue)
+    }
+}
+impl ParsePostgresType<String> for postgres::row::Row {
+    fn asJson(&self, dbValue: Result<Option<String>, postgres::error::Error>) -> serde_json::Value 
+            where Self: Sized {
+        let dbValue = match dbValue {
+            Ok(value) => {
+                match value {
+                    Some(v) => v,
+                    None => String::new(),
+                }
+            },
+            Err(err) => {
+                debug!("SqlQueryPostgre.execute | Error parsing value of type CHAR | TEXT | VARCHAR: {:?}    code: {:?}", err, err.as_db_error());
+                String::new()
+            },
+        };
+        json!(dbValue)
+    }
+}
+
+impl ParsePostgresType<Vec<bool>> for postgres::row::Row {
+    fn asJson(&self, dbValue: Result<Option<Vec<bool>>, postgres::error::Error>) -> serde_json::Value 
+            where Self: Sized {
+        let dbValue = match dbValue {
+            Ok(value) => {
+                match value {
+                    Some(v) => v,
+                    None => vec![],
+                }
+            },
+            Err(err) => {
+                debug!("SqlQueryPostgre.execute | Error parsing value of type CHAR | TEXT | VARCHAR: {:?}    code: {:?}", err, err.as_db_error());
+                vec![]
+            },
+        };
+        json!(dbValue)
+    }
+}
+impl ParsePostgresType<Vec<i16>> for postgres::row::Row {
+    fn asJson(&self, dbValue: Result<Option<Vec<i16>>, postgres::error::Error>) -> serde_json::Value 
+            where Self: Sized {
+        let dbValue = match dbValue {
+            Ok(value) => {
+                match value {
+                    Some(v) => v,
+                    None => vec![],
+                }
+            },
+            Err(err) => {
+                debug!("SqlQueryPostgre.execute | Error parsing value of type CHAR | TEXT | VARCHAR: {:?}    code: {:?}", err, err.as_db_error());
+                vec![]
+            },
+        };
+        json!(dbValue)
+    }
+}
+impl ParsePostgresType<Vec<i32>> for postgres::row::Row {
+    fn asJson(&self, dbValue: Result<Option<Vec<i32>>, postgres::error::Error>) -> serde_json::Value 
+            where Self: Sized {
+        let dbValue = match dbValue {
+            Ok(value) => {
+                match value {
+                    Some(v) => v,
+                    None => vec![],
+                }
+            },
+            Err(err) => {
+                debug!("SqlQueryPostgre.execute | Error parsing value of type CHAR | TEXT | VARCHAR: {:?}    code: {:?}", err, err.as_db_error());
+                vec![]
+            },
+        };
+        json!(dbValue)
+    }
+}
+impl ParsePostgresType<Vec<i64>> for postgres::row::Row {
+    fn asJson(&self, dbValue: Result<Option<Vec<i64>>, postgres::error::Error>) -> serde_json::Value 
+            where Self: Sized {
+        let dbValue = match dbValue {
+            Ok(value) => {
+                match value {
+                    Some(v) => v,
+                    None => vec![],
+                }
+            },
+            Err(err) => {
+                debug!("SqlQueryPostgre.execute | Error parsing value of type CHAR | TEXT | VARCHAR: {:?}    code: {:?}", err, err.as_db_error());
+                vec![]
+            },
+        };
+        json!(dbValue)
+    }
+}
+impl ParsePostgresType<Vec<f32>> for postgres::row::Row {
+    fn asJson(&self, dbValue: Result<Option<Vec<f32>>, postgres::error::Error>) -> serde_json::Value 
+            where Self: Sized {
+        let dbValue = match dbValue {
+            Ok(value) => {
+                match value {
+                    Some(v) => v,
+                    None => vec![],
+                }
+            },
+            Err(err) => {
+                debug!("SqlQueryPostgre.execute | Error parsing value of type CHAR | TEXT | VARCHAR: {:?}    code: {:?}", err, err.as_db_error());
+                vec![]
+            },
+        };
+        json!(dbValue)
+    }
+}
+impl ParsePostgresType<Vec<f64>> for postgres::row::Row {
+    fn asJson(&self, dbValue: Result<Option<Vec<f64>>, postgres::error::Error>) -> serde_json::Value 
+            where Self: Sized {
+        let dbValue = match dbValue {
+            Ok(value) => {
+                match value {
+                    Some(v) => v,
+                    None => vec![],
+                }
+            },
+            Err(err) => {
+                debug!("SqlQueryPostgre.execute | Error parsing value of type CHAR | TEXT | VARCHAR: {:?}    code: {:?}", err, err.as_db_error());
+                vec![]
+            },
+        };
+        json!(dbValue)
+    }
+}
+impl ParsePostgresType<Vec<String>> for postgres::row::Row {
+    fn asJson(&self, dbValue: Result<Option<Vec<String>>, postgres::error::Error>) -> serde_json::Value 
+            where Self: Sized {
+        let dbValue = match dbValue {
+            Ok(value) => {
+                match value {
+                    Some(v) => v,
+                    None => vec![],
+                }
+            },
+            Err(err) => {
+                debug!("SqlQueryPostgre.execute | Error parsing value of type CHAR | TEXT | VARCHAR: {:?}    code: {:?}", err, err.as_db_error());
+                vec![]
+            },
+        };
+        json!(dbValue)
     }
 }
