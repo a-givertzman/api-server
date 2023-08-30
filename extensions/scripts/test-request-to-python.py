@@ -44,24 +44,28 @@ def connectPsql(autocommit = False):
 
 def psqlQuery(cur, sql, autocommit = False):
     cur.execute(sql)
-    records = cur.fetchall()
-    print(f'result: {records}')
-    return records
+    try:
+        records = cur.fetchall()
+        print(f'result: {records}')
+        return records
+    except Exception as err:
+        print(f'psqlQuery | error: {err}')
+        return None
 
-
-_, cur = connectPsqlRoot()
-result = psqlQuery(cur, f"""
+_, curSel = connectPsqlRoot()
+result = psqlQuery(curSel, f"""
 SELECT 1 FROM pg_user WHERE usename = '{dbUser}';
 """)
 if result:
     pass
 else:
-    result = psqlQuery(cur, f"""
-    CREATE USER {dbUser} WITH PASSWORD '{dbPass}';
+    _, cur = connectPsqlRoot(autocommit=True)
+    cur.execute(f"""
+    CREATE USER {dbUser} WITH PASSWORD '{dbPass}' CREATEDB CREATEROLE;
     """)
 
 
-result = psqlQuery(cur, """
+result = psqlQuery(curSel, """
 SELECT 1 FROM pg_database WHERE datname = 'db_postgres_test';
 """)
 if result:
