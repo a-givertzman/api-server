@@ -1,0 +1,1 @@
+pytest --no-header --tb=short -vv tests/integration/
