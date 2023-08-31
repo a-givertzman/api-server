@@ -1,6 +1,6 @@
 #![allow(non_snake_case)]
 
-use log::{debug, warn};
+// use log::{debug, warn};
 use serde::{Serialize, Deserialize};
 
 ///
@@ -31,7 +31,7 @@ impl ApiQueryUnknown {
     //     query
     // }
     ///
-    pub fn toString(self) -> String {
-        format!("Query: {}", self.query)
+    pub fn srcQuery(self) -> String {
+        format!("{}", self.query)
     }
 }

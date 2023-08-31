@@ -25,13 +25,13 @@ pub enum ApiQueryType {
     Unknown(ApiQueryUnknown),
 }
 impl ApiQueryType {
-    pub fn toString(&self) -> String {
+    pub fn srcQuery(&self) -> String {
         match self {
-            ApiQueryType::Error(apiQueryError) => apiQueryError.to_owned().query,
-            ApiQueryType::Sql(apiQuerySql) => apiQuerySql.to_owned().toString(),
-            ApiQueryType::Python(apiQueryPython) => apiQueryPython.to_owned().toString(),
-            ApiQueryType::Executable(apiQueryExecutable) => apiQueryExecutable.to_owned().toString(),
-            ApiQueryType::Unknown(apiQueryUnknown) => apiQueryUnknown.to_owned().toString(),
+            ApiQueryType::Error(apiQueryError) => apiQueryError.to_owned().srcQuery(),
+            ApiQueryType::Sql(apiQuerySql) => apiQuerySql.to_owned().srcQuery(),
+            ApiQueryType::Python(apiQueryPython) => apiQueryPython.to_owned().srcQuery(),
+            ApiQueryType::Executable(apiQueryExecutable) => apiQueryExecutable.to_owned().srcQuery(),
+            ApiQueryType::Unknown(apiQueryUnknown) => apiQueryUnknown.to_owned().srcQuery(),
         }
     }
 }

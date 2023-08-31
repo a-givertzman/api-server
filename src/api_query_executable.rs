@@ -57,7 +57,7 @@ impl ApiQueryExecutable {
     //     query
     // }
     ///
-    pub fn toString(self) -> String {
+    pub fn srcQuery(self) -> String {
         self.src
     }
 }

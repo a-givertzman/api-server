@@ -40,4 +40,7 @@ impl ApiQueryError {
     pub fn toString(self) -> String {
         format!("Query: {}\nerror: {}", self.query, self.err)
     }
+    pub fn srcQuery(self) -> String {
+        format!("{}", self.query)
+    }
 }
