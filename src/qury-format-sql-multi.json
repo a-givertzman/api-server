@@ -1,0 +1,18 @@
+{
+    "auth_token": "123zxy456!@#",
+    "id": "123",
+    "multi": {
+        "0": {
+            "sql": {
+                "database": "database name",
+                "sql": "Some valid sql query"
+            } 
+        },
+        "1": {
+            "sql": {
+                "database": "database name",
+                "sql": "Some valid sql query"
+            } 
+        }
+    }
+}
