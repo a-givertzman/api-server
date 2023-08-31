@@ -30,9 +30,7 @@ impl SqlQueryPostgre {
         }
     }
     ///
-    fn asJson(t: Type, row: &postgres::Row, idx: &str) -> serde_json::Value 
-            where Self: Sized 
-    {
+    fn asJson(t: Type, row: &postgres::Row, idx: &str) -> serde_json::Value {
         let dbValue = row.try_get::<_, Option<_>>(idx);
         let dbValue = match dbValue {
             Ok(value) => {
