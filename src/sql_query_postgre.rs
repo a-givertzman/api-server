@@ -42,7 +42,7 @@ impl SqlQueryPostgre {
                 }
             },
             Err(err) => {
-                debug!("SqlQueryPostgre.asJson | Error parsing value of type '{:?}': {:?}    code: {:?}", t, err, err.as_db_error());
+                debug!("SqlQueryPostgre.asJson | Error parsing value of type '{:?}': {:?}\t db-err-code: {:?}", t, err, err.code());
                 Self::asJsonDefaultValue(t)
             },
         };
