@@ -165,8 +165,8 @@ impl ApiQuery {
                                                         },
                                                         Err(err) => {
                                                             ApiQuery {
-                                                                auth_token: "Uncnown".into(),
-                                                                id: "Uncnown".into(),
+                                                                auth_token: "Unknown".into(),
+                                                                id: "Unknown".into(),
                                                                 query: ApiQueryType::Error(ApiQueryError{
                                                                     query: json.to_string(),
                                                                     err: err,
@@ -187,8 +187,8 @@ impl ApiQuery {
                                                         },
                                                         Err(err) => {
                                                             ApiQuery {
-                                                                auth_token: "Uncnown".into(),
-                                                                id: "Uncnown".into(),
+                                                                auth_token: "Unknown".into(),
+                                                                id: "Unknown".into(),
                                                                 query: ApiQueryType::Error(ApiQueryError{
                                                                     query: json.to_string(),
                                                                     err: err,
@@ -208,8 +208,8 @@ impl ApiQuery {
                                                         },
                                                         Err(err) => {
                                                             ApiQuery {
-                                                                auth_token: "Uncnown".into(),
-                                                                id: "Uncnown".into(),
+                                                                auth_token: "Unknown".into(),
+                                                                id: "Unknown".into(),
                                                                 query: ApiQueryType::Error(ApiQueryError{
                                                                     query: json.to_string(),
                                                                     err: err,
@@ -234,8 +234,8 @@ impl ApiQuery {
                                                 let msg = format!("[ApiQuery.fromBytes] unknown tupe of query: {:?}", string).into();
                                                 warn!("{}", msg);
                                                 ApiQuery {
-                                                    auth_token: "Uncnown".into(),
-                                                    id: "Uncnown".into(),
+                                                    auth_token: "Unknown".into(),
+                                                    id: "Unknown".into(),
                                                     query: ApiQueryType::Error(ApiQueryError{
                                                         query: json.to_string(),
                                                         err: msg,
@@ -246,8 +246,8 @@ impl ApiQuery {
                                     },
                                     Err(err) => {
                                         ApiQuery {
-                                            auth_token: "Uncnown".into(),
-                                            id: "Uncnown".into(),
+                                            auth_token: "Unknown".into(),
+                                            id: "Unknown".into(),
                                             query: ApiQueryType::Error(ApiQueryError{
                                                 query: json.to_string(),
                                                 err
@@ -258,8 +258,8 @@ impl ApiQuery {
                             },
                             Err(err) => {
                                 ApiQuery {
-                                    auth_token: "Uncnown".into(),
-                                    id: "Uncnown".into(),
+                                    auth_token: "Unknown".into(),
+                                    id: "Unknown".into(),
                                     query: ApiQueryType::Error(ApiQueryError{
                                         query: json.to_string(),
                                         err,
@@ -272,8 +272,8 @@ impl ApiQuery {
                         let msg = format!("[ApiQuery.fromBytes] json parsing error: {:?}, \n\t json: {:?}", err, string);
                         warn!("{}", msg);
                         ApiQuery {
-                            auth_token: "Uncnown".into(),
-                            id: "Uncnown".into(),
+                            auth_token: "Unknown".into(),
+                            id: "Unknown".into(),
                             query: ApiQueryType::Error(ApiQueryError{
                                 query: string.into(),
                                 err: err.to_string(),
@@ -287,8 +287,8 @@ impl ApiQuery {
                 warn!("{}", msg);
                 let collected: Vec<String> = refBytes.iter().map(|a| a.to_string()).collect();
                 ApiQuery {
-                    auth_token: "Uncnown".into(),
-                    id: "Uncnown".into(),
+                    auth_token: "Unknown".into(),
+                    id: "Unknown".into(),
                     query: ApiQueryType::Error(ApiQueryError{
                         query: collected.join(","),
                         err: err.to_string()

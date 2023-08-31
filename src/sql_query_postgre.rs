@@ -29,6 +29,62 @@ impl SqlQueryPostgre {
             sql,
         }
     }
+    ///
+    fn asJson(t: Type, row: postgres::Row, idx: &str) -> serde_json::Value 
+            where Self: Sized 
+    {
+        let dbValue = row.try_get::<_, Option<_>>(idx);
+        let dbValue = match dbValue {
+            Ok(value) => {
+                match value {
+                    Some(v) => v,
+                    None => {
+                        match t {
+                            Type::BOOL => false,
+                            Type::INT2 => 0,
+                            _ => {
+                                debug!("SqlQueryPostgre.asJson | Error parsing value of unknown type '{}'", t);
+                                serde_json::Value::Null
+                            }
+                        }
+                        // false,
+                    }
+                }
+            },
+            Err(err) => {
+                debug!("SqlQueryPostgre.asJson | Error parsing value of type BOOL: {:?}    code: {:?}", err, err.as_db_error());
+                false
+            },
+        };
+        json!(dbValue)
+    }    
+    //
+    // fn asJson<T>(t: Type, dbValue: Result<Option<T>, postgres::error::Error>) -> serde_json::Value 
+    //         where Self: Sized {
+    //     let dbValue = match dbValue {
+    //         Ok(value) => {
+    //             match value {
+    //                 Some(v) => v,
+    //                 None => {
+    //                     match t {
+    //                         Type::BOOL => false,
+    //                         Type::INT2 => 0,
+    //                         _ => {
+    //                             debug!("SqlQueryPostgre.asJson | Error parsing value of unknown type '{:?}'", T);
+
+    //                         }
+    //                     }
+    //                     false,
+    //                 }
+    //             }
+    //         },
+    //         Err(err) => {
+    //             debug!("SqlQueryPostgre.asJson | Error parsing value of type BOOL: {:?}    code: {:?}", err, err.as_db_error());
+    //             false
+    //         },
+    //     };
+    //     json!(dbValue)
+    // }    
 }
 ///
 impl SqlQuery for SqlQueryPostgre {
@@ -75,34 +131,35 @@ impl SqlQuery for SqlQueryPostgre {
                                     let mut rowMap = HashMap::new();
                                     for column in row.columns() {
                                         let idx = column.name();
-                                        let value: serde_json::Value = match column.type_().to_owned() {
-                                            Type::BOOL => row.asJson(row.try_get::<_, Option<bool>>(idx)),// .asget::<_, Option<bool>>(idx)),
-                                            Type::INT2 => row.asJson(row.try_get::<_, Option<i16>>(idx)),
-                                            Type::INT4 => row.asJson(row.try_get::<_, Option<i32>>(idx)),
-                                            Type::INT8 => row.asJson(row.try_get::<_, Option<i64>>(idx)),
-                                            Type::FLOAT4 => row.asJson(row.try_get::<_, Option<f32>>(idx)),
-                                            Type::FLOAT8 => row.asJson(row.try_get::<_, Option<f64>>(idx)),
-                                            Type::BPCHAR => row.asJson(row.try_get::<_, Option<String>>(idx)),
-                                            Type::CHAR 
-                                            | Type::TEXT | Type::VARCHAR => row.asJson(row.try_get::<_, Option<String>>(idx)),
-                                            Type::NAME => row.asJson(row.try_get::<_, Option<String>>(idx)),
-                                            Type::TIMESTAMP => row.asJson(row.try_get::<_, Option<chrono::NaiveDateTime>>(idx)),
-                                            Type::TIMESTAMPTZ => row.asJson(row.try_get::<_, Option<DateTime<Utc>>>(idx)),
-                                            Type::DATE => row.asJson(row.try_get::<_, Option<chrono::NaiveDate>>(idx)),
-                                            Type::TIME => row.asJson(row.try_get::<_, Option<chrono::NaiveTime>>(idx)),
-                                            Type::JSON 
-                                            | Type::JSONB => row.asJson(row.try_get::<_, Option<serde_json::Value>>(idx)),
-                                            Type::BOOL_ARRAY => row.asJson(row.try_get::<_, Option<Vec<bool>>>(idx)),
-                                            Type::INT2_ARRAY => row.asJson(row.try_get::<_, Option<Vec<i16>>>(idx)),
-                                            Type::INT4_ARRAY => row.asJson(row.try_get::<_, Option<Vec<i32>>>(idx)),
-                                            Type::INT8_ARRAY => row.asJson(row.try_get::<_, Option<Vec<i64>>>(idx)),
-                                            Type::FLOAT4_ARRAY => row.asJson(row.try_get::<_, Option<Vec<f32>>>(idx)),
-                                            Type::FLOAT8_ARRAY => row.asJson(row.try_get::<_, Option<Vec<f64>>>(idx)),
-                                            Type::CHAR_ARRAY 
-                                            | Type::TEXT_ARRAY 
-                                            | Type::VARCHAR_ARRAY => row.asJson(row.try_get::<_, Option<Vec<String>>>(idx)),
-                                            _ => serde_json::Value::String(format!("SqlQueryPostgre.execute | Type '{}' is not implemented yet", column.type_()))
-                                        };
+                                        let value: serde_json::Value = Self::asJson(t, row, idx);
+                                        // let value: serde_json::Value = match column.type_().to_owned() {
+                                            // Type::BOOL => Self::asJson::<Type::BOOL>(row.try_get::<_, Option<bool>>(idx)),// .asget::<_, Option<bool>>(idx)),
+                                            // Type::INT2 => row.asJson(row.try_get::<_, Option<i16>>(idx)),
+                                            // Type::INT4 => row.asJson(row.try_get::<_, Option<i32>>(idx)),
+                                            // Type::INT8 => row.asJson(row.try_get::<_, Option<i64>>(idx)),
+                                            // Type::FLOAT4 => row.asJson(row.try_get::<_, Option<f32>>(idx)),
+                                            // Type::FLOAT8 => row.asJson(row.try_get::<_, Option<f64>>(idx)),
+                                            // Type::BPCHAR => row.asJson(row.try_get::<_, Option<String>>(idx)),
+                                            // Type::CHAR 
+                                            // | Type::TEXT | Type::VARCHAR => row.asJson(row.try_get::<_, Option<String>>(idx)),
+                                            // Type::NAME => row.asJson(row.try_get::<_, Option<String>>(idx)),
+                                            // Type::TIMESTAMP => row.asJson(row.try_get::<_, Option<chrono::NaiveDateTime>>(idx)),
+                                            // Type::TIMESTAMPTZ => row.asJson(row.try_get::<_, Option<DateTime<Utc>>>(idx)),
+                                            // Type::DATE => row.asJson(row.try_get::<_, Option<chrono::NaiveDate>>(idx)),
+                                            // Type::TIME => row.asJson(row.try_get::<_, Option<chrono::NaiveTime>>(idx)),
+                                            // Type::JSON 
+                                            // | Type::JSONB => row.asJson(row.try_get::<_, Option<serde_json::Value>>(idx)),
+                                            // Type::BOOL_ARRAY => row.asJson(row.try_get::<_, Option<Vec<bool>>>(idx)),
+                                            // Type::INT2_ARRAY => row.asJson(row.try_get::<_, Option<Vec<i16>>>(idx)),
+                                            // Type::INT4_ARRAY => row.asJson(row.try_get::<_, Option<Vec<i32>>>(idx)),
+                                            // Type::INT8_ARRAY => row.asJson(row.try_get::<_, Option<Vec<i64>>>(idx)),
+                                            // Type::FLOAT4_ARRAY => row.asJson(row.try_get::<_, Option<Vec<f32>>>(idx)),
+                                            // Type::FLOAT8_ARRAY => row.asJson(row.try_get::<_, Option<Vec<f64>>>(idx)),
+                                            // Type::CHAR_ARRAY 
+                                            // | Type::TEXT_ARRAY 
+                                            // | Type::VARCHAR_ARRAY => row.asJson(row.try_get::<_, Option<Vec<String>>>(idx)),
+                                            // _ => serde_json::Value::String(format!("SqlQueryPostgre.execute | Type '{}' is not implemented yet", column.type_()))
+                                        // };
                                         rowMap.insert(String::from(idx), value);
                                     }
                                     result.push(rowMap);

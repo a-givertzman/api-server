@@ -52,12 +52,12 @@ impl ApiServer {
                 SqlReply::error(
                     apiQuery.auth_token,
                     apiQuery.id,
-                    apiQuery.query.toString(),
+                    apiQuery.query.srcQuery(),
                     err.err,
                 )    
             },
             ApiQueryType::Sql(sqlQuery) => {
-                debug!("[ApiServer] ApiQueryType: Sql");
+                debug!("ApiServer.build | ApiQueryType: Sql");
                 match self.config.services.get(&sqlQuery.database) {
                     Some(dbConfig) => {
                         match dbConfig.serviceType {
@@ -66,18 +66,18 @@ impl ApiServer {
                                     Box::new(SqlQuerySqlite::new(dbConfig.clone(), sqlQuery.sql.clone(), None)),
                                     apiQuery.auth_token,
                                     apiQuery.id,
-                                    apiQuery.query.toString(),
+                                    apiQuery.query.srcQuery(),
                                 )
                             },
                             ApiServiceType::MySql => {
                                 let dir = std::env::current_dir().unwrap();
                                 let path: &str = &format!("{}/{}", dir.to_str().unwrap(), dbConfig.path);
-                                debug!("[ApiServer] database address: {:?}", path);
+                                debug!("ApiServer.build | database address: {:?}", path);
                                 Self::execute(
                                     Box::new(SqlQueryMysql::new(dbConfig.clone(), sqlQuery.sql.clone(), None)),
                                     apiQuery.auth_token,
                                     apiQuery.id,
-                                    apiQuery.query.toString(),
+                                    apiQuery.query.srcQuery(),
                                 )
                             },
                             ApiServiceType::PostgreSql => {
@@ -85,13 +85,13 @@ impl ApiServer {
                                     Box::new(SqlQueryPostgre::new(dbConfig.clone(), sqlQuery.sql.clone(), None)),
                                     apiQuery.auth_token,
                                     apiQuery.id,
-                                    apiQuery.query.toString(),
+                                    apiQuery.query.srcQuery(),
                                 )
                             },
                             _ => SqlReply::error(
                                 apiQuery.auth_token,
                                 apiQuery.id,
-                                apiQuery.query.toString(),
+                                apiQuery.query.srcQuery(),
                                 format!("ApiServer.build | Error: Database service with the namne '{}' can't be found", sqlQuery.database),
                             ),
                         }
@@ -99,21 +99,21 @@ impl ApiServer {
                     None => SqlReply::error(
                         apiQuery.auth_token,
                         apiQuery.id,
-                        apiQuery.query.toString(),
+                        apiQuery.query.srcQuery(),
                         format!("ApiServer.build | Error: Database service with the namne '{}' can't be found", sqlQuery.database),
                     ),
                 }                    
             },
             ApiQueryType::Python(pyQuery) => {
-                debug!("[ApiServer] ApiQueryType: Python");
-                debug!("[ApiServer] ApiQueryType: Python script: {}", pyQuery.script);
+                debug!("ApiServer.build | ApiQueryType: Python");
+                debug!("ApiServer.build | ApiQueryType: Python script: {}", pyQuery.script);
                 match self.config.services.get(&pyQuery.script) {
                     Some(dbConfig) => {
                         // let path = "./database.sqlite";
                         // let path = self.config.dataBases[0].path.clone();
                         let dir = std::env::current_dir().unwrap();
                         let path: &str = &format!("{}/{}", dir.to_str().unwrap(), dbConfig.path);
-                        debug!("[ApiServer] script path: {:?}", path);
+                        debug!("ApiServer.build | script path: {:?}", path);
                         // let connection = Connection::open_with_flags(path, OpenFlags::SQLITE_OPEN_READ_WRITE); // ::open(path).unwrap();
                         let exists = std::path::Path::new(path).exists();
                         match exists {
@@ -123,7 +123,7 @@ impl ApiServer {
                                         SqlReply {
                                             auth_token: apiQuery.auth_token,
                                             id: apiQuery.id,
-                                            query: apiQuery.query.toString(),
+                                            query: apiQuery.query.srcQuery(),
                                             data: rows,
                                             error: String::new(),
                                         }
@@ -132,7 +132,7 @@ impl ApiServer {
                                         SqlReply::error(
                                             apiQuery.auth_token,
                                             apiQuery.id,
-                                            apiQuery.query.toString(),
+                                            apiQuery.query.srcQuery(),
                                             err.to_string(),
                                         )
                                     },
@@ -142,8 +142,8 @@ impl ApiServer {
                                 SqlReply::error(
                                     apiQuery.auth_token,
                                     apiQuery.id,
-                                    apiQuery.query.toString(),
-                                    format!("pyton script does not exists: {}", path),
+                                    apiQuery.query.srcQuery(),
+                                    format!("ApiServer.build | pyton script does not exists: {}", path),
                                 )
                             },
                         }
@@ -152,23 +152,23 @@ impl ApiServer {
                         SqlReply::error(
                             apiQuery.auth_token,
                             apiQuery.id,
-                            apiQuery.query.toString(),
+                            apiQuery.query.srcQuery(),
                             format!("ApiServer.build | Error: Script with the namne '{}' can't be found", pyQuery.script),
                         )
                     },
                 }
             },
             ApiQueryType::Executable(exQuery) => {
-                debug!("[ApiServer] ApiQueryType: Executable");
-                debug!("[ApiServer] ApiQueryType: Executable name: {}", exQuery.name);
-                debug!("[ApiServer] ApiQueryType: Executable name: {:?}", exQuery);
+                debug!("ApiServer.build | ApiQueryType: Executable");
+                debug!("ApiServer.build | ApiQueryType: Executable name: {}", exQuery.name);
+                debug!("ApiServer.build | ApiQueryType: Executable name: {:?}", exQuery);
                 match self.config.services.get(&exQuery.name) {
                     Some(dbConfig) => {
                         // let path = "./database.sqlite";
                         // let path = self.config.dataBases[0].path.clone();
                         let dir = std::env::current_dir().unwrap();
                         let path: &str = &format!("{}/{}", dir.to_str().unwrap(), dbConfig.path);
-                        debug!("[ApiServer] script path: {:?}", path);
+                        debug!("ApiServer.build | script path: {:?}", path);
                         // let connection = Connection::open_with_flags(path, OpenFlags::SQLITE_OPEN_READ_WRITE); // ::open(path).unwrap();
                         let exists = std::path::Path::new(path).exists();
                         match exists {
@@ -178,7 +178,7 @@ impl ApiServer {
                                         SqlReply {
                                             auth_token: apiQuery.auth_token,
                                             id: apiQuery.id,
-                                            query: apiQuery.query.toString(),
+                                            query: apiQuery.query.srcQuery(),
                                             data: rows,
                                             error: String::new(),
                                         }
@@ -187,7 +187,7 @@ impl ApiServer {
                                         SqlReply::error(
                                             apiQuery.auth_token,
                                             apiQuery.id,
-                                            apiQuery.query.toString(),
+                                            apiQuery.query.srcQuery(),
                                             err.to_string(),
                                         )
                                     },
@@ -197,8 +197,8 @@ impl ApiServer {
                                 SqlReply::error(
                                     apiQuery.auth_token,
                                     apiQuery.id,
-                                    apiQuery.query.toString(),
-                                    format!("pyton script does not exists: {}", path),
+                                    apiQuery.query.srcQuery(),
+                                    format!("ApiServer.build | Error: Executable does not exists: {}", path),
                                 )
                             },
                         }
@@ -207,7 +207,7 @@ impl ApiServer {
                         SqlReply::error(
                             apiQuery.auth_token,
                             apiQuery.id,
-                            apiQuery.query.toString(),
+                            apiQuery.query.srcQuery(),
                             format!("ApiServer.build | Error: Executable with the namne '{}' can't be found", exQuery.name),
                         )
                     },
@@ -217,8 +217,8 @@ impl ApiServer {
                 SqlReply::error(
                     apiQuery.auth_token,
                     apiQuery.id,
-                    apiQuery.query.toString(),
-                    "Uncnown type of API query".into(),
+                    apiQuery.query.srcQuery(),
+                    "ApiServer.build | Error: Unknown type of API query".into(),
                 )
             },
         };
