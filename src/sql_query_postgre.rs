@@ -82,6 +82,7 @@ impl SqlQuery for SqlQueryPostgre {
                                             Type::INT8 => row.asJson(row.try_get::<_, Option<i64>>(idx)),
                                             Type::FLOAT4 => row.asJson(row.try_get::<_, Option<f32>>(idx)),
                                             Type::FLOAT8 => row.asJson(row.try_get::<_, Option<f64>>(idx)),
+                                            Type::BPCHAR => row.asJson(row.try_get::<_, Option<String>>(idx)),
                                             Type::CHAR 
                                             | Type::TEXT | Type::VARCHAR => row.asJson(row.try_get::<_, Option<String>>(idx)),
                                             Type::NAME => row.asJson(row.try_get::<_, Option<String>>(idx)),

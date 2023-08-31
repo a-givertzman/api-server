@@ -1,14 +1,10 @@
 #![allow(non_snake_case)]
 
-use std::{collections::{HashMap, HashSet}};
+use std::collections::HashMap;
 use std::io::Write;
 use std::process::{Command, Stdio};
 
 use log::{debug, warn};
-use rusqlite::{
-    // Connection, Statement, 
-    Error
-};
 
 type RowMap = HashMap<String, serde_json::Value>;
 ///

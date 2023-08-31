@@ -33,9 +33,7 @@ use std::{
 //     SecondsFormat,
 // };
 
-use crate::{
-    api_server::ApiServer,
-};
+use crate::api_server::ApiServer;
 
 
 // const EOF: u8 = 4;
@@ -165,7 +163,7 @@ impl TcpServer {
                 },
             };
             // thread::sleep(self.reconnectDelay);
-            cancel = true;
+            // cancel = true;
         }
         info!("[TcpServer.listenStream] listenStream exit");
     }
