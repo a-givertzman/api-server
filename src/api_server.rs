@@ -43,8 +43,10 @@ impl ApiServer {
             },
         }
     }
-
-    ///
+    /// - Received API query as bytes
+    /// - Parses bytes into ApiQuery struct
+    /// - Dippending on ApiQueryType call private execute method
+    /// - Returns ApiReply with data or error
     pub fn build(&self, bytes: Vec<u8>) -> Vec<u8> {
         let apiQuery = ApiQuery::fromBytes(bytes);
         let sqlReply = match apiQuery.query.clone() {            
