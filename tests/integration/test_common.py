@@ -1,5 +1,5 @@
 import json
-from request import request_bytes
+from request import request_bytes, request_dict
 
 def test_common_non_utf8_encoding(subtests):
     data_maps = [
@@ -110,3 +110,76 @@ def test_common_invalid_key(subtests):
             assert received_json['data'] == expected_json['data']
             assert (len(received_json['error']) > 0) == (len(expected_json['error']) > 0)
             assert received_json['query'] == expected_json['query']
+
+def test_common_multirequest(subtests):
+    data_maps = [
+        {
+            'input': {
+                "auth_token": "123zxy456!@#", 
+                "id": "123", 
+                "multi": {
+                    "0": {
+                        "sql": {
+                            "database": "database",
+                            "sql": "SELECT COUNT(*) FROM do_data;"
+                        }
+                    },
+                    "1": {
+                        "python": {
+                            "script": "py-test",
+                            "params": {
+                                "a": 4,
+                                "b": 7,
+                            }
+                        }
+                    },
+                    "2": {
+                        "executable": {
+                            "name": "executable-test",
+                            "params": {
+                                "a": 4,
+                                "b": 7,
+                            }
+                        }
+                    }
+                }
+            },
+            'output': {
+                "auth_token": "123zxy456!@#", 
+                "id": "123", 
+                "multi": {
+                    "0": {
+                        "query": r'{"database":"database","sql":"SELECT COUNT(*) FROM do_data;"}',
+                        "data": [{'COUNT(*)': 16}],
+                        "error": "",
+                    },
+                    "1": {
+                        "query": r'{"script":"py-test","params":{"a":4,"b":7}}',
+                        "data": [{'aa': 8, 'bb': 14}],
+                        "error": "",
+                    },
+                    "2": {
+                        "query": r'{"name":"executable-test","params":{"a":4,"b":7}}',
+                        "data": [{'c': 0.5714285714285714, 'a': 4, 'b': 7}],
+                        "error": "",
+                    }
+                }
+            }
+        }
+    ]
+    for i, entry in enumerate(data_maps):
+        with subtests.test(msg=f'item {i}'):
+            data_map = entry['input']
+            expected_json = entry['output']
+            received_json = request_dict(data_map)
+            print(received_json)
+            assert received_json['auth_token'] == expected_json['auth_token']
+            assert received_json['id'] == expected_json['id']
+            received_json_multi = received_json['multi']
+            expected_json_multi = expected_json['multi']
+            assert received_json_multi['query']
+            for key, expected_item in expected_json_multi.items():
+                assert received_json_multi[key]['query'] == expected_item['query']
+                assert received_json_multi[key]['data'] == expected_item['data']
+                assert (len(received_json_multi[key]['error']) > 0) == (len(expected_item['error']) > 0)
+
