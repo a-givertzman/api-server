@@ -44,15 +44,15 @@ def test_python_invalid_key(subtests):
     data_maps = [
         {
             'input': r'{"auth_token":"123zxy456!@#","id":"123","python":{"script":"py-test","params":{"a":4,"b@@@":7}}}',
-            'output': {"auth_token": "123zxy456!@#", "id": "123", 'data': [], 'error': 'Script param \'b\' not found', 'query': r'{"auth_token":"123zxy456!@#","id":"123","python":{"script":"py-test","params":{"a": 4,"b@@@":7}}}'},
+            'output': {"auth_token": "123zxy456!@#", "id": "123", 'data': [], 'error': 'Script param \'b\' not found', 'query': r'{"script":"py-test","params":{"a":4,"b@@@":7}}'},
         },
         {
             'input': r'{"auth_token":"123zxy456!@#","id":"123","python":{"script":"py-test","params":{"a@@@":4,"b":7}}}',
-            'output': {"auth_token": "123zxy456!@#", "id": "123", 'data': [], 'error': 'Script param \'a\' not found', 'query': r'{"auth_token":"123zxy456!@#","id":"123","python":{"script":"py-test","params":{"a@@@":4,"b":7}}}'},
+            'output': {"auth_token": "123zxy456!@#", "id": "123", 'data': [], 'error': 'Script param \'a\' not found', 'query': r'{"script":"py-test","params":{"a@@@":4,"b":7}}'},
         },
         {
             'input': r'{"auth_token":"123zxy456!@#","id":"123","python":{"script":"py-test","params@@@":{"a":4,"b":7}}}',
-            'output': {"auth_token": "123zxy456!@#", "id": "123", 'data': [], 'error': '[ApiQueryPython.fromJson] field \'params\' of type Map not found', 'query': r'{"auth_token":"123zxy456!@#","id":"123","python":{"script":"py-test","params@@@":{"a":4,"b":7}}}'},
+            'output': {"auth_token": "123zxy456!@#", "id": "123", 'data': [], 'error': '[ApiQueryPython.fromJson] field \'params\' of type Map not found', 'query': r'{"script":"py-test","params@@@":{"a":4,"b":7}}'},
         },
         {
             'input': r'{"auth_token":"123zxy456!@#","id":"123","python":{"script@@@":"py-test","params":{"a":4,"b":7}}}',
@@ -76,11 +76,11 @@ def test_python_known_service_with_name_of_another_service(subtests):
     data_maps = [
         {
             'input': r'{"auth_token":"123zxy456!@#","id":"123","python":{"script":"database","params":{"a": 4, "b": 7}}}',
-            'output': {"auth_token": "123zxy456!@#", "id": "123", 'data': [], 'error': 'ApiServer.build | Error: Python service with the name \'database\' can\'t be found', 'query': r'{"auth_token":"123zxy456!@#","id":"123","python":{"script":"database","params":{"a": 4, "b": 7}}}'},
+            'output': {"auth_token": "123zxy456!@#", "id": "123", 'data': [], 'error': 'ApiServer.build | Error: Python service with the name \'database\' can\'t be found', 'query': r'{"script":"database","params":{"a": 4, "b": 7}}'},
         },
         {
             'input': r'{"auth_token":"123zxy456!@#","id":"123","python":{"script":"executable-test","params":{"a": 4, "b": 7}}}',
-            'output': {"auth_token": "123zxy456!@#", "id": "123", 'data': [], 'error': 'ApiServer.build | Error: Python service with the name \'executable-test\' can\'t be found', 'query': r'{"auth_token":"123zxy456!@#","id":"123","python":{"script":"executable-test","params":{"a": 4, "b": 7}}}'},
+            'output': {"auth_token": "123zxy456!@#", "id": "123", 'data': [], 'error': 'ApiServer.build | Error: Python service with the name \'executable-test\' can\'t be found', 'query': r'{"script":"executable-test","params":{"a": 4, "b": 7}}'},
         },
     ]
     for i, entry in enumerate(data_maps):

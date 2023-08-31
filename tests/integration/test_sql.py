@@ -68,11 +68,11 @@ def test_sql_known_service_with_name_of_another_service(subtests):
     data_maps = [
         {
             'input': r'{"auth_token":"123zxy456!@#","id":"123","sql":{"database":"py-test","sql":"select id from do_data;"}}',
-            'output': {"auth_token": "123zxy456!@#", "id": "123", 'data': [], 'error': 'ApiServer.build | Error: Database service with the name \'py-test\' can\'t be found', 'query': r'{"auth_token":"123zxy456!@#","id":"123","sql":{"database":"py-test","sql":"select * from do_data;"}}'},
+            'output': {"auth_token": "123zxy456!@#", "id": "123", 'data': [], 'error': 'ApiServer.build | Error: Database service with the name \'py-test\' can\'t be found', 'query': r'{"database":"py-test","sql":"select id from do_data;"}'},
         },
         {
             'input': r'{"auth_token":"123zxy456!@#","id":"123","sql":{"database":"executable-test","sql":"select id from do_data;"}}',
-            'output': {"auth_token": "123zxy456!@#", "id": "123", 'data': [], 'error': 'ApiServer.build | Error: Database service with the name \'executable-test\' can\'t be found', 'query': r'{"auth_token":"123zxy456!@#","id":"123","sql":{"database":"executable-test","sql":"select * from do_data;"}}'},
+            'output': {"auth_token": "123zxy456!@#", "id": "123", 'data': [], 'error': 'ApiServer.build | Error: Database service with the name \'executable-test\' can\'t be found', 'query': r'{"database":"executable-test","sql":"select id from do_data;"}'},
         },
     ]
     for i, entry in enumerate(data_maps):

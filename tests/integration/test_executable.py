@@ -44,19 +44,19 @@ def test_executable_invalid_key(subtests):
     data_maps = [
         {
             'input': r'{"auth_token":"123zxy456!@#","id":"123","executable":{"name":"executable-test","params":{"a":4,"b@@@":7}}}',
-            'output': {"auth_token": "123zxy456!@#", "id": "123", 'data': [], 'error': 'Executable param \'b\' not found', 'query': r'{"auth_token":"123zxy456!@#","id":"123","executable":{"name":"executable-test","params":{"a": 4,"b@@@":7}}}'},
+            'output': {"auth_token": "123zxy456!@#", "id": "123", 'data': [], 'error': 'Executable param \'b\' not found', 'query': r'{"name":"executable-test","params":{"a":4,"b@@@":7}}'},
         },
         {
             'input': r'{"auth_token":"123zxy456!@#","id":"123","executable":{"name":"executable-test","params":{"a@@@":4,"b":7}}}',
-            'output': {"auth_token": "123zxy456!@#", "id": "123", 'data': [], 'error': 'Executable param \'a\' not found', 'query': r'{"auth_token":"123zxy456!@#","id":"123","executable":{"name":"executable-test","params":{"a@@@":4,"b":7}}}'},
+            'output': {"auth_token": "123zxy456!@#", "id": "123", 'data': [], 'error': 'Executable param \'a\' not found', 'query': r'{"name":"executable-test","params":{"a@@@":4,"b":7}}'},
         },
         {
             'input': r'{"auth_token":"123zxy456!@#","id":"123","executable":{"name":"executable-test","params@@@":{"a":4,"b":7}}}',
-            'output': {"auth_token": "123zxy456!@#", "id": "123", 'data': [], 'error': '[ApiQueryExecutable.fromJson] field \'params\' of type Map not found', 'query': r'{"auth_token":"123zxy456!@#","id":"123","executable":{"name":"executable-test","params@@@":{"a":4,"b":7}}}'},
+            'output': {"auth_token": "123zxy456!@#", "id": "123", 'data': [], 'error': '[ApiQueryExecutable.fromJson] field \'params\' of type Map not found', 'query': r'{"name":"executable-test","params@@@":{"a":4,"b":7}}'},
         },
         {
             'input': r'{"auth_token":"123zxy456!@#","id":"123","executable":{"name@@@":"executable-test","params":{"a":4,"b":7}}}',
-            'output': {"auth_token": "123zxy456!@#", "id": "123", 'data': [], 'error': '[ApiQueryExecutable.fromJson] field \'name\' of type String not found', 'query': r'{"auth_token":"123zxy456!@#","id":"123","executable":{"name@@@":"executable-test","params":{"a":4,"b":7}}}'},
+            'output': {"auth_token": "123zxy456!@#", "id": "123", 'data': [], 'error': '[ApiQueryExecutable.fromJson] field \'name\' of type String not found', 'query': r'{"name@@@":"executable-test","params":{"a":4,"b":7}}}'},
         },
     ]
     for i, entry in enumerate(data_maps):
@@ -76,11 +76,11 @@ def test_executable_known_service_with_name_of_another_service(subtests):
     data_maps = [
         {
             'input': r'{"auth_token":"123zxy456!@#","id":"123","executable":{"name":"py-test","params":{"a": 4, "b": 7}}}',
-            'output': {"auth_token": "123zxy456!@#", "id": "123", 'data': [], 'error': 'ApiServer.build | Error: Executable service with the name \'py-test\' can\'t be found', 'query': r'{"auth_token":"123zxy456!@#","id":"123","executable":{"name":"py-test","params":{"a": 4, "b": 7}}}'},
+            'output': {"auth_token": "123zxy456!@#", "id": "123", 'data': [], 'error': 'ApiServer.build | Error: Executable service with the name \'py-test\' can\'t be found', 'query': r'{"name":"py-test","params":{"a": 4, "b": 7}}'},
         },
         {
             'input': r'{"auth_token":"123zxy456!@#","id":"123","executable":{"name":"database","params":{"a": 4, "b": 7}}}',
-            'output': {"auth_token": "123zxy456!@#", "id": "123", 'data': [], 'error': 'ApiServer.build | Error: Executable service with the name \'database\' can\'t be found', 'query': r'{"auth_token":"123zxy456!@#","id":"123","executable":{"name":"database,"params":{"a": 4, "b": 7}}}'},
+            'output': {"auth_token": "123zxy456!@#", "id": "123", 'data': [], 'error': 'ApiServer.build | Error: Executable service with the name \'database\' can\'t be found', 'query': r'{"name":"database","params":{"a": 4, "b": 7}}'},
         },
     ]
     for i, entry in enumerate(data_maps):
