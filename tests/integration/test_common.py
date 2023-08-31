@@ -21,12 +21,12 @@ def test_common_non_utf8_encoding(subtests):
             data_bytes = bytes(entry['input'], encoding='utf-32-le')
             received = request_bytes(data_bytes)
             received_json = json.loads(received)
-            output = entry['output']
-            assert received_json['auth_token'] == output['auth_token']
-            assert received_json['id'] == output['id']
-            assert received_json['data'] == output['data']
-            assert (len(received_json['error']) > 0) == (len(output['error']) > 0)
-            assert received_json['query'] == output['query']
+            expected_json = entry['output']
+            assert received_json['auth_token'] == expected_json['auth_token']
+            assert received_json['id'] == expected_json['id']
+            assert received_json['data'] == expected_json['data']
+            assert (len(received_json['error']) > 0) == (len(expected_json['error']) > 0)
+            assert received_json['query'] == expected_json['query']
 
 def test_common_multiservice_request(subtests):
     data_maps = [
@@ -52,12 +52,12 @@ def test_common_multiservice_request(subtests):
             data_bytes = bytes(entry['input'], encoding='utf8')
             received = request_bytes(data_bytes)
             received_json = json.loads(received)
-            output = entry['output']
-            assert received_json['auth_token'] == output['auth_token']
-            assert received_json['id'] == output['id']
-            assert received_json['data'] == output['data']
-            assert (len(received_json['error']) > 0) == (len(output['error']) > 0)
-            assert received_json['query'] == output['query']
+            expected_json = entry['output']
+            assert received_json['auth_token'] == expected_json['auth_token']
+            assert received_json['id'] == expected_json['id']
+            assert received_json['data'] == expected_json['data']
+            assert (len(received_json['error']) > 0) == (len(expected_json['error']) > 0)
+            assert received_json['query'] == expected_json['query']
 
 def test_common_invalid_key(subtests):
     data_maps = [
@@ -101,13 +101,12 @@ def test_common_invalid_key(subtests):
     for i, entry in enumerate(data_maps):
         with subtests.test(msg=f'item {i}'):
             data_map = entry['input']
-            output = entry['output'] 
+            expected_json = entry['output'] 
             data_bytes = bytes(data_map, encoding='utf8')
             received = request_bytes(data_bytes)
             received_json = json.loads(received)
-            output = entry['output']
-            assert received_json['auth_token'] == output['auth_token']
-            assert received_json['id'] == output['id']
-            assert received_json['data'] == output['data']
-            assert (len(received_json['error']) > 0) == (len(output['error']) > 0)
-            assert received_json['query'] == output['query']
+            assert received_json['auth_token'] == expected_json['auth_token']
+            assert received_json['id'] == expected_json['id']
+            assert received_json['data'] == expected_json['data']
+            assert (len(received_json['error']) > 0) == (len(expected_json['error']) > 0)
+            assert received_json['query'] == expected_json['query']
