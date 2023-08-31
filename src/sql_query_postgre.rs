@@ -1,6 +1,6 @@
 #![allow(non_snake_case)]
 
-use chrono::{DateTime, Utc};
+use chrono::{DateTime, Utc, NaiveTime, NaiveDate, NaiveDateTime};
 use postgres::{Client, NoTls, types::Type};
 use serde_json::json;
 
@@ -30,7 +30,7 @@ impl SqlQueryPostgre {
         }
     }
     ///
-    fn asJson(t: Type, row: postgres::Row, idx: &str) -> serde_json::Value 
+    fn asJson(t: Type, row: &postgres::Row, idx: &str) -> serde_json::Value 
             where Self: Sized 
     {
         let dbValue = row.try_get::<_, Option<_>>(idx);
@@ -39,52 +39,75 @@ impl SqlQueryPostgre {
                 match value {
                     Some(v) => v,
                     None => {
-                        match t {
-                            Type::BOOL => false,
-                            Type::INT2 => 0,
-                            _ => {
-                                debug!("SqlQueryPostgre.asJson | Error parsing value of unknown type '{}'", t);
-                                serde_json::Value::Null
-                            }
-                        }
-                        // false,
+                        Self::asJsonDefaultValue(t)
                     }
                 }
             },
             Err(err) => {
-                debug!("SqlQueryPostgre.asJson | Error parsing value of type BOOL: {:?}    code: {:?}", err, err.as_db_error());
-                false
+                debug!("SqlQueryPostgre.asJson | Error parsing value of type '{:?}': {:?}    code: {:?}", t, err, err.as_db_error());
+                Self::asJsonDefaultValue(t)
             },
         };
         json!(dbValue)
-    }    
-    //
-    // fn asJson<T>(t: Type, dbValue: Result<Option<T>, postgres::error::Error>) -> serde_json::Value 
-    //         where Self: Sized {
-    //     let dbValue = match dbValue {
-    //         Ok(value) => {
-    //             match value {
-    //                 Some(v) => v,
-    //                 None => {
-    //                     match t {
-    //                         Type::BOOL => false,
-    //                         Type::INT2 => 0,
-    //                         _ => {
-    //                             debug!("SqlQueryPostgre.asJson | Error parsing value of unknown type '{:?}'", T);
-
-    //                         }
-    //                     }
-    //                     false,
-    //                 }
-    //             }
-    //         },
-    //         Err(err) => {
-    //             debug!("SqlQueryPostgre.asJson | Error parsing value of type BOOL: {:?}    code: {:?}", err, err.as_db_error());
-    //             false
-    //         },
-    //     };
-    //     json!(dbValue)
-    // }    
+    }   
+    ///
+    fn asJsonDefaultValue(t: Type) -> serde_json::Value {
+        match t {
+            Type::BOOL => json!(false),
+            Type::INT2 => json!(0),
+            Type::INT4 => json!(0),
+            Type::INT8 => json!(0),
+            Type::FLOAT4 => json!(0.0),
+            Type::FLOAT8 => json!(0.0),
+            Type::BPCHAR => json!(0.0),
+            Type::CHAR 
+            | Type::TEXT | Type::VARCHAR => json!(String::new()),
+            Type::NAME => json!(String::new()),
+            Type::TIMESTAMP => json!(NaiveDateTime::default()),
+            Type::TIMESTAMPTZ => {
+                let value: DateTime<Utc> = DateTime::default();
+                json!(value)
+            },
+            Type::DATE => json!(NaiveDate::default()),
+            Type::TIME => json!(NaiveTime::default()),
+            Type::JSON 
+            | Type::JSONB => json!(serde_json::Value::Null),
+            Type::BOOL_ARRAY => {
+                let value: Vec<bool> = vec![];
+                json!(value)
+            },
+            Type::INT2_ARRAY => {
+                let value: Vec<i16> = vec![];
+                json!(value)
+            },
+            Type::INT4_ARRAY => {
+                let value: Vec<i32> = vec![];
+                json!(value)
+            },
+            Type::INT8_ARRAY => {
+                let value: Vec<i64> = vec![];
+                json!(value)
+            },
+            Type::FLOAT4_ARRAY => {
+                let value: Vec<f32> = vec![];
+                json!(value)
+            },
+            Type::FLOAT8_ARRAY => {
+                let value: Vec<f64> = vec![];
+                json!(value)
+            },
+            Type::CHAR_ARRAY 
+            | Type::TEXT_ARRAY 
+            | Type::VARCHAR_ARRAY => {
+                let value: Vec<String> = vec![];
+                json!(value)
+            },
+            _ => {
+                debug!("SqlQueryPostgre.asJson | Error parsing value of unknown type '{}'", t);
+                serde_json::Value::Null
+            }
+        }
+    } 
 }
 ///
 impl SqlQuery for SqlQueryPostgre {
@@ -131,7 +154,7 @@ impl SqlQuery for SqlQueryPostgre {
                                     let mut rowMap = HashMap::new();
                                     for column in row.columns() {
                                         let idx = column.name();
-                                        let value: serde_json::Value = Self::asJson(t, row, idx);
+                                        let value: serde_json::Value = Self::asJson(column.type_().to_owned(), &row, idx);
                                         // let value: serde_json::Value = match column.type_().to_owned() {
                                             // Type::BOOL => Self::asJson::<Type::BOOL>(row.try_get::<_, Option<bool>>(idx)),// .asget::<_, Option<bool>>(idx)),
                                             // Type::INT2 => row.asJson(row.try_get::<_, Option<i16>>(idx)),
