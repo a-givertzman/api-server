@@ -2,6 +2,7 @@
 
 use chrono::{DateTime, Utc, NaiveTime, NaiveDate, NaiveDateTime};
 use postgres::{Client, NoTls, types::Type};
+use serde::Serialize;
 use serde_json::json;
 
 use std::collections::HashMap;
@@ -62,14 +63,14 @@ impl SqlQueryPostgre {
                 serde_json::Value::Null
             }
         }
-    }    
+    }
     ///
-    fn asJson_<T>(t: &Type, row: &postgres::Row, idx: &str) -> serde_json::Value {
+    fn asJson_<'a, T: postgres::types::FromSql<'a> + Serialize>(t: &Type, row: &'a postgres::Row, idx: &str) -> serde_json::Value {
         let dbValue = row.try_get::<_, Option<T>>(idx);
-        let dbValue = match dbValue {
+        match dbValue {
             Ok(value) => {
                 match value {
-                    Some(v) => v,
+                    Some(v) => json!(v),
                     None => {
                         Self::asJsonDefaultValue(t)
                     }
@@ -79,8 +80,8 @@ impl SqlQueryPostgre {
                 warn!("SqlQueryPostgre.asJson | Error parsing value of type '{:?}': {:?}\t db-err-code: {:?}", t, err, err.code());
                 Self::asJsonDefaultValue(t)
             },
-        };
-        json!(dbValue)
+        }
+        // json!(dbValue)
     }   
     ///
     fn asJsonDefaultValue(t: &Type) -> serde_json::Value {
