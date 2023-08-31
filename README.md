@@ -11,7 +11,7 @@ Just a simple api server
     - [x] SQLite
     - [x] Python script
     - [ ] MySQL
-    - [ ] PostgreSQL
+    - [x] PostgreSQL
 
 ## Config
 
