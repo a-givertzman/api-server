@@ -4,7 +4,6 @@ Just a simple api server
 
 - wrapping databases:
   - [x] SQLite
-  - [x] Python script
   - [ ] MySQL
   - [x] PostgreSQL
 - runs puthon script:

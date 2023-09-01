@@ -2,7 +2,6 @@ import argparse
 import json
 import socket
 import time
-import psycopg2
 import socket_utils
 import create_postgres_database
 

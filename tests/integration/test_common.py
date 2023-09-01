@@ -1,5 +1,5 @@
 import json
-from request import request_bytes
+from request import sockerSendBytes
 
 def test_common_non_utf8_encoding(subtests):
     data_maps = [
@@ -19,7 +19,7 @@ def test_common_non_utf8_encoding(subtests):
     for i, entry in enumerate(data_maps):
         with subtests.test(msg=f'item {i}'):
             data_bytes = bytes(entry['input'], encoding='utf-32-le')
-            received = request_bytes(data_bytes)
+            received = sockerSendBytes(data_bytes)
             received_json = json.loads(received)
             expected_json = entry['output']
             assert received_json['auth_token'] == expected_json['auth_token']
@@ -50,7 +50,7 @@ def test_common_multiservice_request(subtests):
     for i, entry in enumerate(data_maps):
         with subtests.test(msg=f'item {i}'):
             data_bytes = bytes(entry['input'], encoding='utf8')
-            received = request_bytes(data_bytes)
+            received = sockerSendBytes(data_bytes)
             received_json = json.loads(received)
             expected_json = entry['output']
             assert received_json['auth_token'] == expected_json['auth_token']
@@ -103,7 +103,7 @@ def test_common_invalid_key(subtests):
             data_map = entry['input']
             expected_json = entry['output'] 
             data_bytes = bytes(data_map, encoding='utf8')
-            received = request_bytes(data_bytes)
+            received = sockerSendBytes(data_bytes)
             received_json = json.loads(received)
             assert received_json['auth_token'] == expected_json['auth_token']
             assert received_json['id'] == expected_json['id']

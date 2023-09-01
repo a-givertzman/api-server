@@ -1,7 +1,7 @@
 import json
 import socket
 
-def request_bytes(data: bytes) -> bytes:
+def sockerSendBytes(data: bytes) -> bytes:
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.connect(('127.0.0.1', 8899))
     sock.send(data)
@@ -12,5 +12,5 @@ def request_bytes(data: bytes) -> bytes:
 def request_dict(data_map: dict) -> dict:
     data_json = json.dumps(data_map)
     package = bytes(data_json, encoding='utf8')
-    received = request_bytes(package)
+    received = sockerSendBytes(package)
     return json.loads(received)

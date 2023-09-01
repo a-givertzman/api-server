@@ -1,7 +1,3 @@
-import argparse
-import json
-import socket
-import time
 import psycopg2
 
 
