@@ -31,7 +31,7 @@ impl SqlQueryPostgre {
         }
     }
     ///
-    fn asJson(&self, t: &Type, row: &postgres::Row, idx: &str) -> (serde_json::Value, String) {
+    fn asJson(&self, t: &Type, row: &postgres::Row, idx: &str) -> (serde_json::Value, ErrorString) {
         match t.to_owned() {
             Type::BOOL => (self.asJson_::<bool>(t, row, idx), String::new()),
             Type::INT2 => (self.asJson_::<i16>(t, row, idx), String::new()),
@@ -178,7 +178,7 @@ impl SqlQuery for SqlQueryPostgre {
                                     let mut rowMap = HashMap::new();
                                     for column in row.columns() {
                                         let idx = column.name();
-                                        let (value, err): (serde_json::Value, String) = self.asJson(column.type_(), &row, &idx);
+                                        let (value, err): (serde_json::Value, ErrorString) = self.asJson(column.type_(), &row, &idx);
                                         parseErrors.push(err);
                                         rowMap.insert(String::from(idx), value);
                                     }
