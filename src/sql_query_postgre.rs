@@ -190,7 +190,8 @@ impl SqlQuery for SqlQueryPostgre {
                                 parseErrors.push(msg)
                             },
                         }
-                        // debug!("SqlQueryPostgre.execute | result: {:?}", result);
+                        debug!("SqlQueryPostgre.execute | result: {:?}", result);
+                        debug!("SqlQueryPostgre.execute | parseErrors: {:?}", parseErrors);
                         if parseErrors.is_empty() {
                             Ok(result)
                         } else {
