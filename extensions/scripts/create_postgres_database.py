@@ -3,7 +3,6 @@ import json
 import socket
 import time
 import psycopg2
-import 
 
 
 def connectPsqlRoot(autocommit = False):

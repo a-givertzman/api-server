@@ -31,48 +31,53 @@ impl SqlQueryPostgre {
         }
     }
     ///
-    fn asJson(t: &Type, row: &postgres::Row, idx: &str) -> serde_json::Value {
+    fn asJson(&self, t: &Type, row: &postgres::Row, idx: &str) -> (serde_json::Value, String) {
         match t.to_owned() {
-            Type::BOOL => Self::asJson_::<bool>(t, row, idx),
-            Type::INT2 => Self::asJson_::<i16>(t, row, idx),
-            Type::INT4 => Self::asJson_::<i32>(t, row, idx),
-            Type::INT8 => Self::asJson_::<i64>(t, row, idx),
-            Type::FLOAT4 => Self::asJson_::<f32>(t, row, idx),
-            Type::FLOAT8 => Self::asJson_::<f64>(t, row, idx),
-            Type::BPCHAR => Self::asJson_::<String>(t, row, idx),
+            Type::BOOL => (self.asJson_::<bool>(t, row, idx), String::new()),
+            Type::INT2 => (self.asJson_::<i16>(t, row, idx), String::new()),
+            Type::INT4 => (self.asJson_::<i32>(t, row, idx), String::new()),
+            Type::INT8 => (self.asJson_::<i64>(t, row, idx), String::new()),
+            Type::FLOAT4 => (self.asJson_::<f32>(t, row, idx), String::new()),
+            Type::FLOAT8 => (self.asJson_::<f64>(t, row, idx), String::new()),
+            Type::BPCHAR => (self.asJson_::<String>(t, row, idx), String::new()),
             Type::CHAR 
-            | Type::TEXT | Type::VARCHAR => Self::asJson_::<String>(t, row, idx),
-            Type::NAME => Self::asJson_::<String>(t, row, idx),
-            Type::TIMESTAMP => Self::asJson_::<NaiveDateTime>(t, row, idx),
-            Type::TIMESTAMPTZ => Self::asJson_::<DateTime<Utc>>(t, row, idx),
-            Type::DATE => Self::asJson_::<NaiveDate>(t, row, idx),
-            Type::TIME => Self::asJson_::<NaiveTime>(t, row, idx),
+            | Type::TEXT | Type::VARCHAR => (self.asJson_::<String>(t, row, idx), String::new()),
+            Type::NAME => (self.asJson_::<String>(t, row, idx), String::new()),
+            Type::TIMESTAMP => (self.asJson_::<NaiveDateTime>(t, row, idx), String::new()),
+            Type::TIMESTAMPTZ => (self.asJson_::<DateTime<Utc>>(t, row, idx), String::new()),
+            Type::DATE => (self.asJson_::<NaiveDate>(t, row, idx), String::new()),
+            Type::TIME => (self.asJson_::<NaiveTime>(t, row, idx), String::new()),
             Type::JSON 
-            | Type::JSONB => Self::asJson_::<serde_json::Value>(t, row, idx),
-            Type::BOOL_ARRAY => Self::asJson_::<Vec<bool>>(t, row, idx),
-            Type::INT2_ARRAY => Self::asJson_::<Vec<i16>>(t, row, idx),
-            Type::INT4_ARRAY => Self::asJson_::<Vec<i32>>(t, row, idx),
-            Type::INT8_ARRAY => Self::asJson_::<Vec<i64>>(t, row, idx),
-            Type::FLOAT4_ARRAY => Self::asJson_::<Vec<f32>>(t, row, idx),
-            Type::FLOAT8_ARRAY => Self::asJson_::<Vec<f64>>(t, row, idx),
+            | Type::JSONB => (self.asJson_::<serde_json::Value>(t, row, idx), String::new()),
+            Type::BOOL_ARRAY => (self.asJson_::<Vec<bool>>(t, row, idx), String::new()),
+            Type::INT2_ARRAY => (self.asJson_::<Vec<i16>>(t, row, idx), String::new()),
+            Type::INT4_ARRAY => (self.asJson_::<Vec<i32>>(t, row, idx), String::new()),
+            Type::INT8_ARRAY => (self.asJson_::<Vec<i64>>(t, row, idx), String::new()),
+            Type::FLOAT4_ARRAY => (self.asJson_::<Vec<f32>>(t, row, idx), String::new()),
+            Type::FLOAT8_ARRAY => (self.asJson_::<Vec<f64>>(t, row, idx), String::new()),
             Type::CHAR_ARRAY 
             | Type::TEXT_ARRAY 
-            | Type::VARCHAR_ARRAY => Self::asJson_::<Vec<String>>(t, row, idx),
+            | Type::VARCHAR_ARRAY => (self.asJson_::<Vec<String>>(t, row, idx), String::new()),
             _ => {
-                debug!("SqlQueryPostgre.asJson | Error parsing value of unknown type '{}'", t);
-                serde_json::Value::Null
+                let msg = format!("SqlQueryPostgre.asJson | Error parsing value of unknown type '{}'", t);
+                warn!("{}", msg);
+                // serde_json::Value::Null
+                (serde_json::Value::default(), msg)
             }
         }
     }
     ///
-    fn asJson_<'a, T: postgres::types::FromSql<'a> + Serialize>(t: &Type, row: &'a postgres::Row, idx: &str) -> serde_json::Value {
+    fn asJson_<'a, T: postgres::types::FromSql<'a> + Serialize>(&self, t: &Type, row: &'a postgres::Row, idx: &str) -> serde_json::Value {
         let dbValue = row.try_get::<_, Option<T>>(idx);
         match dbValue {
             Ok(value) => {
                 match value {
                     Some(v) => json!(v),
                     None => {
-                        Self::asJsonDefaultValue(t)
+                        match self.dbConfig.replaceNullWithDefault {
+                            Some(_) => Self::asJsonDefaultValue(t),
+                            None => json!(()),
+                        }
                     }
                 }
             },
@@ -81,7 +86,6 @@ impl SqlQueryPostgre {
                 Self::asJsonDefaultValue(t)
             },
         }
-        // json!(dbValue)
     }   
     ///
     fn asJsonDefaultValue(t: &Type) -> serde_json::Value {
@@ -102,7 +106,7 @@ impl SqlQueryPostgre {
             Type::DATE => json!(NaiveDate::default()),
             Type::TIME => json!(NaiveTime::default()),
             Type::JSON 
-            | Type::JSONB => json!(serde_json::Value::Null),
+            | Type::JSONB => json!({}),
             Type::BOOL_ARRAY => {
                 let value: Vec<bool> = vec![];
                 json!(value)
@@ -122,7 +126,7 @@ impl SqlQueryPostgre {
                 json!(value)
             },
             _ => {
-                debug!("SqlQueryPostgre.asJson | Error parsing value of unknown type '{}'", t);
+                warn!("SqlQueryPostgre.asJson | Error parsing value of unknown type '{}'", t);
                 serde_json::Value::Null
             }
         }
@@ -168,12 +172,14 @@ impl SqlQuery for SqlQueryPostgre {
                         let mut result = vec![];
                         match sqlRows {
                             Ok(rows) => {
+                                let mut parseErrors = vec![];
                                 for row in rows {
                                     debug!("row: {:?}", row);
                                     let mut rowMap = HashMap::new();
                                     for column in row.columns() {
                                         let idx = column.name();
-                                        let value: serde_json::Value = Self::asJson(column.type_(), &row, &idx);
+                                        let (value, err): (serde_json::Value, String) = self.asJson(column.type_(), &row, &idx);
+                                        parseErrors.push(err);
                                         rowMap.insert(String::from(idx), value);
                                     }
                                     result.push(rowMap);
@@ -187,8 +193,9 @@ impl SqlQuery for SqlQueryPostgre {
                         Ok(result)
                     },
                     Err(err) => {
-                        warn!("SqlQueryPostgre.execute | preparing sql error: {:?}", err);
-                        Err(err.to_string())
+                        let msg = format!("SqlQueryPostgre.execute | preparing sql error: {:?}", err);
+                        warn!("{}", msg);
+                        Err(msg)
                     },
                 }
             },
