@@ -64,7 +64,7 @@ if obj:
         clientSocket.close()
         # time.sleep(100 / 1000)
 
-# exit()
+
 invalidJson = [
     # '"auth_token": "123zxy456!@#", "id": "123", "sql": {"database": "database", "sql": "select 1;"}}',
     # '{"auth_token": "123zxy456!@#", "id": "123", "sql": {"database": "database", "sql": "select 1;"}',
@@ -111,18 +111,19 @@ invalidJson = [
 ]
 
 
-print(f'\n\n\t INVALID QUERIES')
-for requestJsonStr in invalidJson:
-    print(f'\nrequestJsonStr: {requestJsonStr}')
-    clientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    clientSocket.connect(('127.0.0.1', 8899))
-    sendBytes = requestJsonStr.encode('utf-8')
-    clientSocket.sendall(sendBytes)
-    data = clientSocket.recv(4096)
-    try:
-        received = json.loads(data)
-        print(f'received: {json.dumps(received, indent = 4)}')
-    except Exception as err:
-        print(f'received: {received}')
-    clientSocket.close()
+if invalidJson:
+    print(f'\n\n\t INVALID QUERIES')
+    for requestJsonStr in invalidJson:
+        print(f'\nrequestJsonStr: {requestJsonStr}')
+        clientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        clientSocket.connect(('127.0.0.1', 8899))
+        sendBytes = requestJsonStr.encode('utf-8')
+        clientSocket.sendall(sendBytes)
+        data = clientSocket.recv(4096)
+        try:
+            received = json.loads(data)
+            print(f'received: {json.dumps(received, indent = 4)}')
+        except Exception as err:
+            print(f'received: {received}')
+        clientSocket.close()
 
