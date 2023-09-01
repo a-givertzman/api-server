@@ -1,22 +1,22 @@
 # API Server
 
-Just a simple api server 
+Just a simple api server
 
 - wrapping databases:
-    - [x] SQLite
-    - [x] Python script
-    - [ ] MySQL
-    - [x] PostgreSQL
+  - [x] SQLite
+  - [x] Python script
+  - [ ] MySQL
+  - [x] PostgreSQL
 - runs puthon script:
-    - [x] Python script received some json data via stdin
-    - [x] Python script handle some algorithms
-    - [x] Python script can access to the databases data via self API or directly
-    - [x] Python script returns some json data
+  - [x] Python script received some json data via stdin
+  - [x] Python script handle some algorithms
+  - [x] Python script can access to the databases data via self API or directly
+  - [x] Python script returns some json data
 - runs binaty executable:
-    - [x] Executable received some json data via stdin
-    - [x] Executable handle some algorithms
-    - [x] Executable can access to the databases data via self API or directly
-    - [x] Executable returns some json data
+  - [x] Executable received some json data via stdin
+  - [x] Executable handle some algorithms
+  - [x] Executable can access to the databases data via self API or directly
+  - [x] Executable returns some json data
 
 ## Config
 
@@ -55,19 +55,6 @@ services:                                   # list of currently avalible API ser
 
 ## Message format
 
-- Request Python
-
-```json
-{
-    "auth_token": "123zxy456!@#",
-    "id": "123",
-    "python": {
-        "script": "python script service name",
-        "params": "Some valid params for python script"
-    }
-}
-```
-
 - Request SQL
 
 ```json
@@ -75,8 +62,34 @@ services:                                   # list of currently avalible API ser
     "auth_token": "123zxy456!@#",
     "id": "123",
     "sql": {
-        "database": "database name",
+        "database": "database service name",
         "sql": "Some valid sql query"
+    }
+}
+```
+
+- Request Python
+
+```json
+{
+    "auth_token": "123zxy456!@#",
+    "id": "123",
+    "python": {
+        "script": "python service name",
+        "params": "Some valid params for python script (json)"
+    }
+}
+```
+
+- Request Executable
+
+```json
+{
+    "auth_token": "123zxy456!@#",
+    "id": "123",
+    "executable": {
+        "name": "executable service name",
+        "params": "Some valid params for executable (json)"
     }
 }
 ```
@@ -87,32 +100,22 @@ services:                                   # list of currently avalible API ser
 {
     "auth_token": "123zxy456!@#",
     "id": "123",
-    "sql": {
-        "comment": "optional dippending on your request type",
-        "database": "database name",
-        "sql": "Some valid sql query",
-    },
-    "python": {
-        "comment": "optional dippending on your request type",
-        "script": "python script service name",
-        "params": "Some valid params for python script"
-    }
+    "query": "{\"database\":\"database name\",\"sql\":\"Some valid sql query\"}",    
     "data": [
 
     ],
-    "errors": [
-
-    ]
+    "error": "Some error info"
 }
 ```
 
 ## Python script format
+
 - can be called by the API request
 - json data can be passed as input parameters to the python script
 - output of the script will be returned to the frontend in the json field "data"
 - if script will be crushed with error, that error wil be returned to the frontend in the json field "errors"
 
-```
+```python
 import sys
 import json
 
