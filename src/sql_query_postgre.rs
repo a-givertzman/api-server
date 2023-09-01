@@ -61,7 +61,6 @@ impl SqlQueryPostgre {
             _ => {
                 let msg = format!("SqlQueryPostgre.asJson | Error parsing value of unknown type '{}'", t);
                 warn!("{}", msg);
-                // serde_json::Value::Null
                 (serde_json::Value::default(), msg)
             }
         }
@@ -82,7 +81,7 @@ impl SqlQueryPostgre {
                 }
             },
             Err(err) => {
-                warn!("SqlQueryPostgre.asJson | Error parsing value of type '{:?}': {:?}\t db-err-code: {:?}", t, err, err.code());
+                warn!("SqlQueryPostgre.asJson_ | Error parsing value of type '{:?}': {:?}\t db-err-code: {:?}", t, err, err.code());
                 Self::asJsonDefaultValue(t)
             },
         }
@@ -126,7 +125,7 @@ impl SqlQueryPostgre {
                 json!(value)
             },
             _ => {
-                warn!("SqlQueryPostgre.asJson | Error parsing value of unknown type '{}'", t);
+                warn!("SqlQueryPostgre.asJsonDefaultValue | Error parsing value of unknown type '{}'", t);
                 serde_json::Value::Null
             }
         }
@@ -164,6 +163,7 @@ impl SqlQuery for SqlQueryPostgre {
                 debug!("SqlQueryPostgre.execute | preparing sql: {:?}", self.sql);
                 match connection.prepare(self.sql.as_str()) {
                     Ok(stmt) => {
+                        let mut parseErrors = vec![];
                         let mut cNames = vec![];
                         for column in stmt.columns() {
                             cNames.push(column.name().to_string());
@@ -172,7 +172,6 @@ impl SqlQuery for SqlQueryPostgre {
                         let mut result = vec![];
                         match sqlRows {
                             Ok(rows) => {
-                                let mut parseErrors = vec![];
                                 for row in rows {
                                     debug!("row: {:?}", row);
                                     let mut rowMap = HashMap::new();
@@ -186,11 +185,17 @@ impl SqlQuery for SqlQueryPostgre {
                                 }
                             },
                             Err(err) => {
-                                warn!("SqlQueryPostgre.execute | getting rows error: {:?}", err);
+                                let msg = format!("SqlQueryPostgre.execute | getting rows error: {:?}", err);
+                                warn!("{}", msg);
+                                parseErrors.push(msg)
                             },
                         }
                         // debug!("SqlQueryPostgre.execute | result: {:?}", result);
-                        Ok(result)
+                        if parseErrors.is_empty() {
+                            Ok(result)
+                        } else {
+                            Err(parseErrors.join("\n"))
+                        }
                     },
                     Err(err) => {
                         let msg = format!("SqlQueryPostgre.execute | preparing sql error: {:?}", err);

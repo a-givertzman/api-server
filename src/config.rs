@@ -99,18 +99,18 @@ impl ServiceConfig {
             .expect(
                 format!("ServiceConfig.new | error reading 'pass' from config {:?}", &configMap).as_str(),
             );
-        let replaceNullWithDefault = &configMap[&Yaml::String("pass".to_string())];
-            debug!("ServiceConfig.new | replaceNullWithDefault {:?}", replaceNullWithDefault);
-            // .expect(
-            //     format!("ServiceConfig.new | error reading 'pass' from config {:?}", &configMap).as_str(),
-            // );
+        let replaceNullWithDefault = match &configMap.get(&Yaml::String("replaceNullWithDefault".to_string())) {
+            Some(_) => Some(()),
+            None => None,
+        };
+        debug!("ServiceConfig.new | replaceNullWithDefault {:?}", replaceNullWithDefault);
         ServiceConfig {
             name: name.to_string(),
             serviceType: serviceType,
             path: path.to_string(),
             user: user.to_string(),
             pass: pass.to_string(),
-            replaceNullWithDefault: None,
+            replaceNullWithDefault: replaceNullWithDefault,
         }
     }
 }
