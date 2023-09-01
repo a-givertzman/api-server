@@ -43,8 +43,10 @@ class TestSqlPostgres(unittest.TestCase):
         assert received_json['query'] == expected_json['query']
 
     def test_invalid_key(self):
+        print(f'test_invalid_key')
         data_maps = [
             {
+                # 'input': r'{"auth_token":"123zxy456!@#","id":"123","sql":{"database":"db_postgres_test", "sql": "select 1;"}}',
                 'input': r'{"auth_token":"123zxy456!@#","id":"123","sql":{"database":"db_postgres_test", "sql@@@": "select 1;"}}',
                 'output': {"auth_token": "123zxy456!@#", "id": "123", 'data': [], 'error': '[ApiQuerySql.fromJson] field \'sql\' of type String not found', 'query': r'{"auth_token":"123zxy456!@#","id":"123","sql":{"database":"db_postgres_test","sql@@@":"select 1;"}}'},
             },
@@ -60,7 +62,7 @@ class TestSqlPostgres(unittest.TestCase):
             received = sockerSendBytes(data_bytes)
             received_json = json.loads(received)
             print(f'test_invalid_key | request: {entry["input"]}')
-            print(f'test_invalid_key | reply: {entry["output"]}')
+            print(f'test_invalid_key | reply: {received_json}')
             print(f"test_invalid_key | received: {received_json['auth_token']} | expected: {expected_json['auth_token']}")
             assert received_json['auth_token'] == expected_json['auth_token']
             assert received_json['id'] == expected_json['id']

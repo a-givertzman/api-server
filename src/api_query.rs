@@ -28,7 +28,7 @@ impl ApiQuery {
                 value.clone(),
             )
         } else {
-            let msg = format!("[ApiQuery.parseJsonString] field '{}' not found", &key);
+            let msg = format!("[ApiQuery.parseJsonString] field '{}' of type String not found or invalid content", &key);
             warn!("{}", msg);
             Err(
                 msg.into(),
@@ -43,7 +43,7 @@ impl ApiQuery {
     //             value.clone(),
     //         )
     //     } else {
-    //         let msg = format!("[ApiQuery.parseJsonObject] key not found: \"{}\"", &key);
+    //         let msg = format!("[ApiQuery.parseJsonObject] key '{}' of type String not found or invalid content", &key);
     //         warn!("{}", msg);
     //         Err(
     //             msg.into(),

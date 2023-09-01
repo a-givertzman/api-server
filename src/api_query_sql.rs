@@ -27,12 +27,12 @@ impl ApiQuerySql {
                     src: jsonMap.to_string(),
                 });
             } else {
-                let msg = format!("[ApiQuerySql.fromJson] field '{}' not found", key);
+                let msg = format!("[ApiQuerySql.fromJson] field '{}' of type String not found or invalid content", key);
                 warn!("{}", msg);
                 return Err(msg);
             }
         } else {
-            let msg = format!("[ApiQuerySql.fromJson] field '{}' not found", key);
+            let msg = format!("[ApiQuerySql.fromJson] field '{}' of type String not found or invalid content", key);
             warn!("{}", msg);
             return Err(msg);
         }
