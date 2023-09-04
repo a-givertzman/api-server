@@ -94,7 +94,7 @@ impl ApiServer {
                                 apiQuery.auth_token,
                                 apiQuery.id,
                                 apiQuery.query.srcQuery(),
-                                format!("ApiServer.build | Error: Database service with the namne '{}' can't be found", sqlQuery.database),
+                                format!("ApiServer.build | Error: Database service with the name '{}' can't be found", sqlQuery.database),
                             ),
                         }
                     },
@@ -102,7 +102,7 @@ impl ApiServer {
                         apiQuery.auth_token,
                         apiQuery.id,
                         apiQuery.query.srcQuery(),
-                        format!("ApiServer.build | Error: Database service with the namne '{}' can't be found", sqlQuery.database),
+                        format!("ApiServer.build | Error: Database service with the name '{}' can't be found", sqlQuery.database),
                     ),
                 }                    
             },
@@ -155,7 +155,7 @@ impl ApiServer {
                             apiQuery.auth_token,
                             apiQuery.id,
                             apiQuery.query.srcQuery(),
-                            format!("ApiServer.build | Error: Script with the namne '{}' can't be found", pyQuery.script),
+                            format!("ApiServer.build | Error: Script with the name '{}' can't be found", pyQuery.script),
                         )
                     },
                 }
@@ -210,7 +210,7 @@ impl ApiServer {
                             apiQuery.auth_token,
                             apiQuery.id,
                             apiQuery.query.srcQuery(),
-                            format!("ApiServer.build | Error: Executable with the namne '{}' can't be found", exQuery.name),
+                            format!("ApiServer.build | Error: Executable with the name '{}' can't be found", exQuery.name),
                         )
                     },
                 }
