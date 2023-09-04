@@ -309,7 +309,7 @@ class TestSqlPostgres(unittest.TestCase):
 
 if __name__ == '__main__':
     createDatabase()
-    # g = conftest.api_server()
-    # next(g)
+    g = conftest.api_server()
+    next(g)
     unittest.main()
-    # next(g)
+    next(g)
