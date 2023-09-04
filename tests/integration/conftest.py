@@ -1,7 +1,7 @@
 import os
 from subprocess import Popen, DEVNULL, run
 import time
-import pytest
+# import pytest
 
 def run_api_server():
     Popen(
@@ -16,7 +16,7 @@ def kill_all_servers():
             pid = int(pid_str)
             run(['kill', '-9', f'{pid}'])
 
-@pytest.fixture(autouse=True, scope="session")
+# @pytest.fixture(autouse=True, scope="session")
 def api_server():
     kill_all_servers()
     run_api_server()

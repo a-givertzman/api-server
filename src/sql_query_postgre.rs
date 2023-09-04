@@ -55,6 +55,7 @@ impl SqlQueryPostgre {
             Type::INT8_ARRAY => (self.asJson_::<Vec<i64>>(t, row, idx), String::new()),
             Type::FLOAT4_ARRAY => (self.asJson_::<Vec<f32>>(t, row, idx), String::new()),
             Type::FLOAT8_ARRAY => (self.asJson_::<Vec<f64>>(t, row, idx), String::new()),
+            Type::BPCHAR_ARRAY => (self.asJson_::<Vec<String>>(t, row, idx), String::new()),
             Type::CHAR_ARRAY 
             | Type::TEXT_ARRAY 
             | Type::VARCHAR_ARRAY => (self.asJson_::<Vec<String>>(t, row, idx), String::new()),
@@ -178,7 +179,9 @@ impl SqlQuery for SqlQueryPostgre {
                                     for column in row.columns() {
                                         let idx = column.name();
                                         let (value, err): (serde_json::Value, ErrorString) = self.asJson(column.type_(), &row, &idx);
-                                        parseErrors.push(err);
+                                        if !err.is_empty() {
+                                            parseErrors.push(err);
+                                        }
                                         rowMap.insert(String::from(idx), value);
                                     }
                                     result.push(rowMap);

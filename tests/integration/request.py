@@ -1,11 +1,13 @@
 import json
 import socket
 
+from socket_utils import recvAll
+
 def sockerSendBytes(data: bytes) -> bytes:
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.connect(('127.0.0.1', 8899))
     sock.send(data)
-    received = sock.recv(4096)
+    received = recvAll(sock)
     sock.close()
     return received
 
