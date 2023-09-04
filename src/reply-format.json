@@ -1,14 +1,9 @@
 {
     "auth_token": "123zxy456!@#",
     "id": "123",
-    "sql": {
-        "database": "database name",
-        "sql": "Some valid sql query"
-    },    
+    "query": "{\"database\":\"database name\",\"sql\":\"Some valid sql query\"}",    
     "data": [
 
     ],
-    "errors": [
-
-    ]
+    "error": "Some error info"
 }

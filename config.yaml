@@ -12,12 +12,13 @@ services:                      # list of currently avalible API services
         path: 'database22.sqlite' # path / ip:pot to the database file / host 
         user: root              # database access user
         pass: root              # database access password
-    # - new-database:
-    #     name: 'new-database'
-    #     type: mysql
-    #     path: '127.0.0.1:3306'
-    #     user: root
-    #     pass: root
+    - database-postgres:
+        name: 'db_postgres_test'
+        type: postgres
+        path: '127.0.0.1:5432'  #'postgresql://postgres@localhost:5433' 
+        user: db_postgres_test
+        pass: db_postgres_test
+        # replaceNullWithDefault:
     - py-test-script:                   # internal unique API service name
         name: 'py-test'          # the name of the python script (must be specified in the API request, field 'path')
         type: python             # the type of the service

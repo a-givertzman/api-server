@@ -1,11 +1,13 @@
 use log::{
     // debug,
-    trace
+    trace, debug
 };
 
 use std::{fs, collections::HashMap};
 use linked_hash_map::LinkedHashMap;
 use yaml_rust::{YamlLoader, Yaml};
+
+use crate::api_service_type::ApiServiceType;
 
 
 #[derive(Debug, Clone)]
@@ -56,39 +58,59 @@ impl Config {
 
 #[derive(Debug, Clone)]
 pub struct ServiceConfig {
-    pub path: String,
     pub name: String,
+    pub serviceType: ApiServiceType,
+    pub path: String,
     pub user: String,
     pub pass: String,
+    pub replaceNullWithDefault: Option<()>,
 }
 impl ServiceConfig {
     pub fn new(_configKey: &str, configMap: &LinkedHashMap<Yaml, Yaml>) -> ServiceConfig {
-        trace!("DataBaseConfig | configMap: {:?}", configMap);
-        let path = &configMap[&Yaml::String("path".to_string())]
-            .as_str()
-            .expect(
-                format!("DataBaseConfig | error reading 'path' from config {:?}", &configMap).as_str(),
-            );
+        trace!("ServiceConfig.new | configMap: {:?}", configMap);
         let name = &configMap[&Yaml::String("name".to_string())]
             .as_str()
             .expect(
-                format!("DataBaseConfig | error reading 'name' from config {:?}", &configMap).as_str(),
+                format!("ServiceConfig.new | error reading 'name' from config {:?}", &configMap).as_str(),
+            );
+        let apiServiceTypeConfig = configMap[&Yaml::String("type".to_string())]
+            .as_str()
+            .expect(
+                format!("ServiceConfig.new | error reading 'type' from config {:?}", &configMap).as_str(),
+            );
+            debug!("ServiceConfig.new | apiServiceTypeConfig {:?}", &apiServiceTypeConfig);
+        let serviceType = serde_yaml::from_str(
+            apiServiceTypeConfig,
+        ).expect(
+            format!("ServiceConfig.new | error reading 'type' from config {:?}", &configMap).as_str(),
+        );
+        let path = &configMap[&Yaml::String("path".to_string())]
+            .as_str()
+            .expect(
+                format!("ServiceConfig.new | error reading 'path' from config {:?}", &configMap).as_str(),
             );
         let user = &configMap[&Yaml::String("user".to_string())]
             .as_str()
             .expect(
-                format!("DataBaseConfig | error reading 'user' from config {:?}", &configMap).as_str(),
+                format!("ServiceConfig.new | error reading 'user' from config {:?}", &configMap).as_str(),
             );
         let pass = &configMap[&Yaml::String("pass".to_string())]
             .as_str()
             .expect(
-                format!("DataBaseConfig | error reading 'pass' from config {:?}", &configMap).as_str(),
+                format!("ServiceConfig.new | error reading 'pass' from config {:?}", &configMap).as_str(),
             );
+        let replaceNullWithDefault = match &configMap.get(&Yaml::String("replaceNullWithDefault".to_string())) {
+            Some(_) => Some(()),
+            None => None,
+        };
+        debug!("ServiceConfig.new | replaceNullWithDefault {:?}", replaceNullWithDefault);
         ServiceConfig {
-            path: path.to_string(),
             name: name.to_string(),
+            serviceType: serviceType,
+            path: path.to_string(),
             user: user.to_string(),
             pass: pass.to_string(),
+            replaceNullWithDefault: replaceNullWithDefault,
         }
     }
 }

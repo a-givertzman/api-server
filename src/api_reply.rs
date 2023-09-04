@@ -4,32 +4,31 @@ use std::collections::HashMap;
 
 use serde::{Serialize, Deserialize};
 
-use crate::api_query_type::ApiQueryType;
-
 ///
 #[derive(Debug, Serialize, Deserialize)]
 pub struct SqlReply {
     pub auth_token: String,
     pub id: String,
-    pub query: ApiQueryType,
+    pub query: String,      //ApiQueryType,
     pub data: Vec<HashMap<String, serde_json::Value>>, //Vec<(String, Option<String>)>,
-    pub errors: Vec<String>,
+    pub error: String,
 
 }
 impl SqlReply {
-    pub fn new(jsonString: String) -> SqlReply {
-        let raw: SqlReply = serde_json::from_str(&jsonString).unwrap();
-        println!("raw: {:?}", raw);
-        raw
-    }
-    ///
-    pub fn appendData(&mut self, row: HashMap<String, serde_json::Value>) {
-        self.data.push(row);
-    }
-    ///
-    pub fn appendError(&mut self, err: String) {
-        self.errors.push(err);
-    }
+    // pub fn new(jsonString: String) -> SqlReply {
+    //     let raw: SqlReply = serde_json::from_str(&jsonString).unwrap();
+    //     println!("raw: {:?}", raw);
+    //     raw
+    // }
+    // ///
+    // pub fn appendData(&mut self, row: HashMap<String, serde_json::Value>) {
+    //     self.data.push(row);
+    // }
+    // ///
+    // pub fn appendError(&mut self, err: String) {
+    //     self.error.push_str("|\n");
+    //     self.error.push_str(err.as_str());
+    // }
     ///
     pub fn asBytes(&self) -> Vec<u8> {
         let result = serde_json::to_string(&self);
@@ -44,15 +43,15 @@ impl SqlReply {
     pub fn error(
         auth_token: String,
         id: String,
-        query: ApiQueryType, 
-        errors: Vec<String>
+        query: String,  //ApiQueryType, 
+        error: String,
     ) -> Self {
         SqlReply {
             auth_token: auth_token,
             id: id,
             query: query,
             data: vec![],
-            errors: errors,
+            error,
         }        
     }
 }

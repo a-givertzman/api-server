@@ -9,9 +9,21 @@ edition = "2021"
 log = "^0.4"
 env_logger = "^0.10"
 
-chrono = "^0.4"
+chrono = { version = "^0.4", features = ["serde"] }
 
 rusqlite = { version = "^0.29", features = ["bundled"] }
+
+postgres = { version = "^0.19", features = ["with-chrono-0_4", "with-serde_json-1"] }
+
+# [features]
+# with-bit-vec-0_6 = ["tokio-postgres/with-bit-vec-0_6"]
+# with-chrono-0_4 = ["tokio-postgres/with-chrono-0_4"]
+# with-eui48-0_4 = ["tokio-postgres/with-eui48-0_4"]
+# with-geo-types-0_4 = ["tokio-postgres/with-geo-types-0_4"]
+# with-serde_json-1 = ["tokio-postgres/with-serde_json-1"]
+# with-uuid-0_8 = ["tokio-postgres/with-uuid-0_8"]
+
+serde_yaml = "^0.9"
 
 serde = { version = "^1.0", features = ["derive"] }
 serde_json = "^1.0"

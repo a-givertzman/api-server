@@ -33,9 +33,7 @@ use std::{
 //     SecondsFormat,
 // };
 
-use crate::{
-    api_server::ApiServer,
-};
+use crate::api_server::ApiServer;
 
 
 // const EOF: u8 = 4;
@@ -140,6 +138,7 @@ impl TcpServer {
         let mut cancel = false;
         while !cancel {
             let mut buf = [0; 4096];
+            // let mut buf = Vec::new();
             match stream.read(&mut buf) {
                 Ok(bytesRead) => {
                     debug!("[TcpServer.listenStream] bytes read: {:#?}", bytesRead);
@@ -151,7 +150,7 @@ impl TcpServer {
                 },
             };
             // debug!("[TcpServer.listenStream] bytes: {:#?}", bytes[0]);
-            let reply = self.apiServer.build(buf.to_vec());
+            let reply = self.apiServer.build(buf.into());
             // thread::sleep(Duration::from_millis(1500));
             match Self::writeToTcpStream(
                 stream,
@@ -164,7 +163,7 @@ impl TcpServer {
                 },
             };
             // thread::sleep(self.reconnectDelay);
-            cancel = true;
+            // cancel = true;
         }
         info!("[TcpServer.listenStream] listenStream exit");
     }
