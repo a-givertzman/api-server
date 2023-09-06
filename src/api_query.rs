@@ -8,7 +8,7 @@ use crate::{
     api_query_sql::ApiQuerySql, 
     api_query_python::ApiQueryPython, 
     api_query_executable::ApiQueryExecutable, 
-    api_query_unknown::ApiQueryUnknown, api_query_error::ApiQueryError,
+    api_query_unknown::ApiQueryUnknown, api_query_error::ApiQueryError, api_query_keepalive::ApiQueryKeepAlive,
 };
 
 ///
@@ -136,22 +136,46 @@ impl ApiQuery {
                                 let mut id = "Unknown".to_string();
                                 let key = "auth_token";
                                 let keyType = "String";
-                                if let serde_json::Value::String(value) = &obj[key] {
-                                    auth_token = value.into();
-                                } else {
-                                    let msg = format!("[ApiQuery.fromBytes] field '{}' of type {} not found or invalid content", &key, &keyType);
-                                    errors.push(msg)
-                                }
+                                let msg = format!("[ApiQuery.fromBytes] field '{}' of type {} not found or invalid content", &key, &keyType);
+                                match &obj.get(key) {
+                                    Some(jsonValue) => {
+                                        if let serde_json::Value::String(value) = jsonValue {
+                                            auth_token = value.into();
+                                        } else {
+                                            errors.push(msg);
+                                        }
+                                    },
+                                    None => {
+                                        errors.push(msg);
+                                    },
+                                };
                                 let key = "id";
-                                if let serde_json::Value::String(value) = &obj[key] {
-                                    id = value.into();
-                                } else {
-                                    let msg = format!("[ApiQuery.fromBytes] field '{}' of type {} not found or invalid content", &key, &keyType);
-                                    errors.push(msg)
-                                }
+                                let msg = format!("[ApiQuery.fromBytes] field '{}' of type {} not found or invalid content", &key, &keyType);
+                                match &obj.get(key) {
+                                    Some(jsonValue) => {
+                                        if let serde_json::Value::String(value) = jsonValue {
+                                            id = value.into();
+                                        } else {
+                                            let msg = format!("[ApiQuery.fromBytes] field '{}' of type {} not found or invalid content", &key, &keyType);
+                                            errors.push(msg)
+                                        }
+                                    },
+                                    None => {
+                                        errors.push(msg);
+                                    },
+                                };
                                 if errors.is_empty() {
                                     debug!("[ApiQuery.fromBytes] obj: {:?}", obj);
-                                    if obj.contains_key(ApiQueryTypeName::Sql.value()) {
+                                    if obj.contains_key(ApiQueryTypeName::KeepAlive.value()) {
+                                        debug!("[ApiQuery.fromBytes] detected: {}", ApiQueryTypeName::KeepAlive.value());
+                                        ApiQuery {
+                                            auth_token,
+                                            id,
+                                            query: ApiQueryType::KeepAlive(ApiQueryKeepAlive {
+                                                query: json,
+                                            }),
+                                        }                        
+                                    } else if obj.contains_key(ApiQueryTypeName::Sql.value()) {
                                         Self::parseApiQuerySql(json, auth_token, id)
                                     } else if obj.contains_key(ApiQueryTypeName::Python.value()) {
                                         Self::parseApiQueryPython(json, auth_token, id)
@@ -177,68 +201,6 @@ impl ApiQuery {
                                         }),
                                     }
                                 }
-                                // match ApiQuery::parseJsonString(&json, "auth_token") {
-                                //     Ok(auth_token) => {
-                                //         match ApiQuery::parseJsonString(&json, "id") {
-                                //             Ok(id) => {
-                                //                 match json.as_object() {
-                                //                     Some(obj) => {
-                                //                         debug!("[ApiQuery.fromBytes] obj: {:?}", obj);
-                                //                         if obj.contains_key(ApiQueryTypeName::Sql.value()) {
-                                //                             Self::parseApiQuerySql(json, auth_token, id)
-                                //                         } else if obj.contains_key(ApiQueryTypeName::Python.value()) {
-                                //                             Self::parseApiQueryPython(json, auth_token, id)
-                                //                         } else if obj.contains_key(ApiQueryTypeName::Executable.value()) {
-                                //                             Self::parseApiQueryExecutable(json, auth_token, id)
-                                //                         } else {
-                                //                             warn!("[ApiQuery.fromBytes] unknown tupe of query: {:?}", obj);
-                                //                             ApiQuery {
-                                //                                 auth_token,
-                                //                                 id,
-                                //                                 query: ApiQueryType::Unknown(ApiQueryUnknown {
-                                //                                     query: json,
-                                //                                 }),
-                                //                             }                                            
-                                //                         }
-                                //                     },
-                                //                     None => {
-                                //                         let msg = format!("[ApiQuery.fromBytes] unknown tupe of query: {:?}", string).into();
-                                //                         warn!("{}", msg);
-                                //                         ApiQuery {
-                                //                             auth_token,
-                                //                             id,
-                                //                             query: ApiQueryType::Error(ApiQueryError{
-                                //                                 query: json.to_string(),
-                                //                                 err: msg,
-                                //                             }),
-                                //                         }
-                                //                     },
-                                //                 }                                        
-                                //             },
-                                //             Err(err) => {
-                                //                 ApiQuery {
-                                //                     auth_token: "Unknown".into(),
-                                //                     id: "Unknown".into(),
-                                //                     query: ApiQueryType::Error(ApiQueryError{
-                                //                         query: json.to_string(),
-                                //                         err
-                                //                     }),
-                                //                 }                                                
-                                //             },
-                                //         }
-                                //     },
-                                //     Err(err) => {
-                                //         ApiQuery {
-                                //             auth_token: "Unknown".into(),
-                                //             id: "Unknown".into(),
-                                //             query: ApiQueryType::Error(ApiQueryError{
-                                //                 query: json.to_string(),
-                                //                 err,
-                                //             }),
-                                //         }
-                                //     },
-                                // }                                
-
                             },
                             None => {
                                 let msg = format!("[ApiQuery.fromBytes] json parsing error: type Map not found in json: {:?}", string);
@@ -269,7 +231,8 @@ impl ApiQuery {
                 }
             },
             Err(err) => {
-                let msg = format!("[ApiQuery.fromBytes] bytes parsing error: {:?}, \n\t bytes: {:?}", err, refBytes);
+                let msg = format!("[ApiQuery.fromBytes] bytes parsing error: {:?}", err);
+                // let msg = format!("[ApiQuery.fromBytes] bytes parsing error: {:?}, \n\t bytes: {:?}", err, refBytes);
                 warn!("{}", msg);
                 let collected: Vec<String> = refBytes.iter().map(|a| a.to_string()).collect();
                 ApiQuery {

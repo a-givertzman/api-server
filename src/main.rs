@@ -9,6 +9,7 @@ mod api_query_sql;
 mod api_query_python;
 mod api_query_executable;
 mod api_query_unknown;
+mod api_query_keepalive;
 mod api_query_error;
 mod api_query;
 mod api_reply;
@@ -54,10 +55,10 @@ fn main() {
         ),
     ));
     TcpServer::run(tcpServer.clone()).unwrap();
-    println!("tcpServer.isConnected: {:?}", tcpServer.lock().unwrap().isConnected);
-    thread::sleep(Duration::from_secs_f64(10.0));
-    println!("tcpServer.isConnected: {:?}", tcpServer.lock().unwrap().isConnected);
-    while tcpServer.lock().unwrap().isConnected {
-        thread::sleep(Duration::from_secs_f64(1.0));
-    }
+    // println!("tcpServer.isConnected: {:?}", tcpServer.lock().unwrap().isConnected);
+    // thread::sleep(Duration::from_secs_f64(10.0));
+    // println!("tcpServer.isConnected: {:?}", tcpServer.lock().unwrap().isConnected);
+    // while tcpServer.lock().unwrap().isConnected {
+    //     thread::sleep(Duration::from_secs_f64(1.0));
+    // }
 }

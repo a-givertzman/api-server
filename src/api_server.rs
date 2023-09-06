@@ -47,16 +47,32 @@ impl ApiServer {
     /// - Parses bytes into ApiQuery struct
     /// - Dippending on ApiQueryType call private execute method
     /// - Returns ApiReply with data or error
-    pub fn build(&self, bytes: Vec<u8>) -> Vec<u8> {
+    // pub fn build(&self, bytes: Vec<u8>) -> Vec<u8> {
+    pub fn build(&self, bytes: Vec<u8>) -> ApiServerResult {
         let apiQuery = ApiQuery::fromBytes(bytes);
-        let sqlReply = match apiQuery.query.clone() {            
+        match apiQuery.query.clone() {            
             ApiQueryType::Error(err) => {
-                SqlReply::error(
-                    apiQuery.auth_token,
-                    apiQuery.id,
-                    apiQuery.query.srcQuery(),
-                    err.err,
-                )    
+                ApiServerResult {
+                    keepConnection: KeepConnection::Drop,
+                    data: SqlReply::error(
+                        apiQuery.auth_token,
+                        apiQuery.id,
+                        apiQuery.query.srcQuery(),
+                        err.err,
+                    ).asBytes(),
+                }
+            },
+            ApiQueryType::KeepAlive(keepAliveQuery) => {
+                ApiServerResult {
+                    keepConnection: KeepConnection::Keep,
+                    data: SqlReply {
+                        auth_token: apiQuery.auth_token,
+                        id: apiQuery.id,
+                        query: keepAliveQuery.srcQuery(),
+                        data: vec![],
+                        error: String::new(),
+                    }.asBytes(),
+                }
             },
             ApiQueryType::Sql(sqlQuery) => {
                 debug!("ApiServer.build | ApiQueryType: Sql");
@@ -64,46 +80,61 @@ impl ApiServer {
                     Some(dbConfig) => {
                         match dbConfig.serviceType {
                             ApiServiceType::Sqlite => {
-                                Self::execute(
-                                    Box::new(SqlQuerySqlite::new(dbConfig.clone(), sqlQuery.sql.clone(), None)),
-                                    apiQuery.auth_token,
-                                    apiQuery.id,
-                                    apiQuery.query.srcQuery(),
-                                )
+                                ApiServerResult {
+                                    keepConnection: KeepConnection::Drop,
+                                    data: Self::execute(
+                                        Box::new(SqlQuerySqlite::new(dbConfig.clone(), sqlQuery.sql.clone(), None)),
+                                        apiQuery.auth_token,
+                                        apiQuery.id,
+                                        sqlQuery.srcQuery(),
+                                    ).asBytes(),
+                                }
                             },
                             ApiServiceType::MySql => {
                                 let dir = std::env::current_dir().unwrap();
                                 let path: &str = &format!("{}/{}", dir.to_str().unwrap(), dbConfig.path);
                                 debug!("ApiServer.build | database address: {:?}", path);
-                                Self::execute(
-                                    Box::new(SqlQueryMysql::new(dbConfig.clone(), sqlQuery.sql.clone(), None)),
-                                    apiQuery.auth_token,
-                                    apiQuery.id,
-                                    apiQuery.query.srcQuery(),
-                                )
+                                ApiServerResult {
+                                    keepConnection: KeepConnection::Drop,
+                                    data: Self::execute(
+                                        Box::new(SqlQueryMysql::new(dbConfig.clone(), sqlQuery.sql.clone(), None)),
+                                        apiQuery.auth_token,
+                                        apiQuery.id,
+                                        apiQuery.query.srcQuery(),
+                                    ).asBytes(),
+                                }
                             },
                             ApiServiceType::PostgreSql => {
-                                Self::execute(
-                                    Box::new(SqlQueryPostgre::new(dbConfig.clone(), sqlQuery.sql.clone(), None)),
+                                ApiServerResult {
+                                    keepConnection: KeepConnection::Drop,
+                                    data: Self::execute(
+                                        Box::new(SqlQueryPostgre::new(dbConfig.clone(), sqlQuery.sql.clone(), None)),
+                                        apiQuery.auth_token,
+                                        apiQuery.id,
+                                        apiQuery.query.srcQuery(),
+                                    ).asBytes(),
+                                }
+                            },
+                            _ => ApiServerResult {
+                                keepConnection: KeepConnection::Drop,
+                                data: SqlReply::error(
                                     apiQuery.auth_token,
                                     apiQuery.id,
                                     apiQuery.query.srcQuery(),
-                                )
-                            },
-                            _ => SqlReply::error(
-                                apiQuery.auth_token,
-                                apiQuery.id,
-                                apiQuery.query.srcQuery(),
-                                format!("ApiServer.build | Error: Database service with the name '{}' can't be found", sqlQuery.database),
-                            ),
+                                    format!("ApiServer.build | Error: Database service with the name '{}' can't be found", sqlQuery.database),
+                                ).asBytes(),
+                            }
                         }
                     },
-                    None => SqlReply::error(
-                        apiQuery.auth_token,
-                        apiQuery.id,
-                        apiQuery.query.srcQuery(),
-                        format!("ApiServer.build | Error: Database service with the name '{}' can't be found", sqlQuery.database),
-                    ),
+                    None => ApiServerResult {
+                        keepConnection: KeepConnection::Drop,
+                        data: SqlReply::error(
+                            apiQuery.auth_token,
+                            apiQuery.id,
+                            apiQuery.query.srcQuery(),
+                            format!("ApiServer.build | Error: Database service with the name '{}' can't be found", sqlQuery.database),
+                        ).asBytes(),
+                    },
                 }                    
             },
             ApiQueryType::Python(pyQuery) => {
@@ -122,41 +153,53 @@ impl ApiServer {
                             true => {
                                 match PythonQuery::new(path, pyQuery.params.clone()).execute() {
                                     Ok(rows) => {                        
-                                        SqlReply {
-                                            auth_token: apiQuery.auth_token,
-                                            id: apiQuery.id,
-                                            query: apiQuery.query.srcQuery(),
-                                            data: rows,
-                                            error: String::new(),
+                                        ApiServerResult {
+                                            keepConnection: KeepConnection::Drop,
+                                            data: SqlReply {
+                                                auth_token: apiQuery.auth_token,
+                                                id: apiQuery.id,
+                                                query: apiQuery.query.srcQuery(),
+                                                data: rows,
+                                                error: String::new(),
+                                            }.asBytes(),
                                         }
                                     },
                                     Err(err) => {
-                                        SqlReply::error(
-                                            apiQuery.auth_token,
-                                            apiQuery.id,
-                                            apiQuery.query.srcQuery(),
-                                            err.to_string(),
-                                        )
+                                        ApiServerResult {
+                                            keepConnection: KeepConnection::Drop,
+                                            data: SqlReply::error(
+                                                apiQuery.auth_token,
+                                                apiQuery.id,
+                                                apiQuery.query.srcQuery(),
+                                                err.to_string(),
+                                            ).asBytes(),
+                                        }
                                     },
                                 }
                             },
                             false => {
-                                SqlReply::error(
-                                    apiQuery.auth_token,
-                                    apiQuery.id,
-                                    apiQuery.query.srcQuery(),
-                                    format!("ApiServer.build | pyton script does not exists: {}", path),
-                                )
+                                ApiServerResult {
+                                    keepConnection: KeepConnection::Drop,
+                                    data: SqlReply::error(
+                                        apiQuery.auth_token,
+                                        apiQuery.id,
+                                        apiQuery.query.srcQuery(),
+                                        format!("ApiServer.build | pyton script does not exists: {}", path),
+                                    ).asBytes(),
+                                }
                             },
                         }
                     },
                     None => {
-                        SqlReply::error(
-                            apiQuery.auth_token,
-                            apiQuery.id,
-                            apiQuery.query.srcQuery(),
-                            format!("ApiServer.build | Error: Script with the name '{}' can't be found", pyQuery.script),
-                        )
+                        ApiServerResult {
+                            keepConnection: KeepConnection::Drop,
+                            data: SqlReply::error(
+                                apiQuery.auth_token,
+                                apiQuery.id,
+                                apiQuery.query.srcQuery(),
+                                format!("ApiServer.build | Error: Script with the name '{}' can't be found", pyQuery.script),
+                            ).asBytes(),
+                        }
                     },
                 }
             },
@@ -177,53 +220,80 @@ impl ApiServer {
                             true => {
                                 match ExecutableQuery::new(path, exQuery.params.clone()).execute() {
                                     Ok(rows) => {                        
-                                        SqlReply {
-                                            auth_token: apiQuery.auth_token,
-                                            id: apiQuery.id,
-                                            query: apiQuery.query.srcQuery(),
-                                            data: rows,
-                                            error: String::new(),
+                                        ApiServerResult {
+                                            keepConnection: KeepConnection::Drop,
+                                            data: SqlReply {
+                                                auth_token: apiQuery.auth_token,
+                                                id: apiQuery.id,
+                                                query: apiQuery.query.srcQuery(),
+                                                data: rows,
+                                                error: String::new(),
+                                            }.asBytes(),
                                         }
                                     },
                                     Err(err) => {
-                                        SqlReply::error(
-                                            apiQuery.auth_token,
-                                            apiQuery.id,
-                                            apiQuery.query.srcQuery(),
-                                            err.to_string(),
-                                        )
+                                        ApiServerResult {
+                                            keepConnection: KeepConnection::Drop,
+                                            data: SqlReply::error(
+                                                apiQuery.auth_token,
+                                                apiQuery.id,
+                                                apiQuery.query.srcQuery(),
+                                                err.to_string(),
+                                            ).asBytes()
+                                        }
                                     },
                                 }
                             },
                             false => {
-                                SqlReply::error(
-                                    apiQuery.auth_token,
-                                    apiQuery.id,
-                                    apiQuery.query.srcQuery(),
-                                    format!("ApiServer.build | Error: Executable does not exists: {}", path),
-                                )
+                                ApiServerResult {
+                                    keepConnection: KeepConnection::Drop,
+                                    data: SqlReply::error(
+                                        apiQuery.auth_token,
+                                        apiQuery.id,
+                                        apiQuery.query.srcQuery(),
+                                        format!("ApiServer.build | Error: Executable does not exists: {}", path),
+                                    ).asBytes(),
+                                }
                             },
                         }
                     },
                     None => {
-                        SqlReply::error(
-                            apiQuery.auth_token,
-                            apiQuery.id,
-                            apiQuery.query.srcQuery(),
-                            format!("ApiServer.build | Error: Executable with the name '{}' can't be found", exQuery.name),
-                        )
+                        ApiServerResult {
+                            keepConnection: KeepConnection::Drop,
+                            data: SqlReply::error(
+                                apiQuery.auth_token,
+                                apiQuery.id,
+                                apiQuery.query.srcQuery(),
+                                format!("ApiServer.build | Error: Executable with the name '{}' can't be found", exQuery.name),
+                            ).asBytes()
+                        }
                     },
                 }
             },
             ApiQueryType::Unknown(_) => {
-                SqlReply::error(
-                    apiQuery.auth_token,
-                    apiQuery.id,
-                    apiQuery.query.srcQuery(),
-                    "ApiServer.build | Error: Unknown type of API query".into(),
-                )
+                ApiServerResult {
+                    keepConnection: KeepConnection::Drop,
+                    data: SqlReply::error(
+                        apiQuery.auth_token,
+                        apiQuery.id,
+                        apiQuery.query.srcQuery(),
+                        "ApiServer.build | Error: Unknown type of API query".into(),
+                    ).asBytes(),
+                }
             },
-        };
-        sqlReply.asBytes()
+        }
+        // sqlReply.asBytes()
     }
+}
+
+
+pub struct ApiServerResult {
+    pub keepConnection: KeepConnection,
+    pub data: Vec<u8>,
+}
+
+#[derive(PartialEq)]
+pub enum KeepConnection {
+    Keep,
+    Drop,
 }
