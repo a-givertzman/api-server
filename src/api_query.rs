@@ -17,7 +17,7 @@ pub struct ApiQuery {
     pub auth_token: String,
     pub id: String,
     pub query: ApiQueryType,
-
+    pub keepAlive: bool,
 }
 impl ApiQuery {
     ///
@@ -60,6 +60,7 @@ impl ApiQuery {
                     auth_token,
                     id,
                     query: ApiQueryType::Sql( apiQuerySql ),
+                    keepAlive: keepAlive,
                 }
             },
             Err(err) => {
@@ -70,7 +71,8 @@ impl ApiQuery {
                         query: json.to_string(),
                         err: err,
                     }),
-                }            
+                    keepAlive: keepAlive,
+                }
             },
         }
     }
@@ -83,6 +85,7 @@ impl ApiQuery {
                     auth_token,
                     id,
                     query: ApiQueryType::Python( apiQueryPython ),
+                    keepAlive: keepAlive,
                 }
             },
             Err(err) => {
@@ -93,7 +96,8 @@ impl ApiQuery {
                         query: json.to_string(),
                         err: err,
                     }),
-                }            
+                    keepAlive: keepAlive,
+                }
             },
         }
     }
@@ -106,6 +110,7 @@ impl ApiQuery {
                     auth_token,
                     id,
                     query: ApiQueryType::Executable( apiQueryExecutable ),
+                    keepAlive: keepAlive,
                 }
             },
             Err(err) => {
@@ -116,7 +121,8 @@ impl ApiQuery {
                         query: json.to_string(),
                         err: err,
                     }),
-                }            
+                    keepAlive: keepAlive,
+                }
             },
         }
     }
@@ -158,7 +164,8 @@ impl ApiQuery {
                                             query: ApiQueryType::KeepAlive(ApiQueryKeepAlive {
                                                 query: json,
                                             }),
-                                        }                        
+                                            keepAlive: keepAlive,
+                                        }
                                     } else if obj.contains_key(ApiQueryTypeName::Sql.value()) {
                                         Self::parseApiQuerySql(json, auth_token, id, keepAlive)
                                     } else if obj.contains_key(ApiQueryTypeName::Python.value()) {
@@ -173,7 +180,8 @@ impl ApiQuery {
                                             query: ApiQueryType::Unknown(ApiQueryUnknown {
                                                 query: json,
                                             }),
-                                        }                                            
+                                            keepAlive: keepAlive,
+                                        }
                                     }
                                 } else {
                                     ApiQuery {
@@ -183,6 +191,7 @@ impl ApiQuery {
                                             query: json.to_string(),
                                             err: format!("{}", errors.join("\n")),
                                         }),
+                                        keepAlive: keepAlive,
                                     }
                                 }
                             },
@@ -196,7 +205,8 @@ impl ApiQuery {
                                         query: string.into(),
                                         err: msg,
                                     }),
-                                }        
+                                    keepAlive: false,
+                                }
                             },
                         }
                     },
@@ -210,6 +220,7 @@ impl ApiQuery {
                                 query: string.into(),
                                 err: err.to_string(),
                             }),
+                            keepAlive: false,
                         }
                     },
                 }
@@ -226,6 +237,7 @@ impl ApiQuery {
                         query: collected.join(","),
                         err: err.to_string()
                     }),
+                    keepAlive: false,
                 }
             },
         }
