@@ -62,6 +62,7 @@ dependencies = [
 name = "api-server"
 version = "0.1.0"
 dependencies = [
+ "bytes",
  "chrono",
  "env_logger",
  "linked-hash-map",
