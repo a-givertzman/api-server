@@ -8,7 +8,9 @@ use crate::{
     api_query_sql::ApiQuerySql, 
     api_query_python::ApiQueryPython, 
     api_query_executable::ApiQueryExecutable, 
-    api_query_unknown::ApiQueryUnknown, api_query_error::ApiQueryError, api_query_keepalive::ApiQueryKeepAlive, sql_query::ErrorString,
+    api_query_unknown::ApiQueryUnknown, 
+    api_query_error::ApiQueryError, 
+    sql_query::ErrorString,
 };
 
 ///
@@ -119,8 +121,11 @@ impl ApiQuery {
                                     Err(err) => errors.push(err.to_string()),
                                 };
                                 match obj.getValue("keep-alive") {
-                                    Ok(value) => keepAlive = value,
-                                    Err(err) => errors.push(err.to_string()),
+                                    Ok(value) => {
+                                        debug!("[ApiQuery.fromBytes] keep-alive detected");
+                                        keepAlive = value;
+                                    },
+                                    Err(_) => {},
                                 };
                                 if errors.is_empty() {
                                     debug!("[ApiQuery.fromBytes] obj: {:?}", obj);

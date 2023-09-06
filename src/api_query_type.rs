@@ -7,7 +7,6 @@ use serde::{
 };
 
 use crate::{
-    api_query_keepalive::ApiQueryKeepAlive,
     api_query_sql::ApiQuerySql,
     api_query_python::ApiQueryPython, 
     api_query_executable::ApiQueryExecutable, 

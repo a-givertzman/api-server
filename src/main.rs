@@ -9,7 +9,6 @@ mod api_query_sql;
 mod api_query_python;
 mod api_query_executable;
 mod api_query_unknown;
-mod api_query_keepalive;
 mod api_query_error;
 mod api_query;
 mod api_reply;
@@ -25,8 +24,6 @@ mod sql_query_mysql;
 use std::{
     sync::{Arc, Mutex}, 
     env, 
-    thread, 
-    time::Duration, 
 };
 
 use log::debug;
