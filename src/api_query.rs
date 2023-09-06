@@ -244,10 +244,6 @@ impl ApiQuery {
     }
 }
 
-enum ApiServerClientConnection {
-    KeepAlive,
-    Close,
-}
 
 trait GetJsonObjValue<T> {
     fn getValue(&self, key: &str) -> Result<T, ErrorString>;
