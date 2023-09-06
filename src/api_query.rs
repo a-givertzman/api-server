@@ -20,38 +20,6 @@ pub struct ApiQuery {
     pub keepAlive: bool,
 }
 impl ApiQuery {
-    ///
-    // fn parseJsonString(jsonString: &serde_json::Value, key: &str) -> Result<String, String> {
-    //     if let serde_json::Value::String(value) = &jsonString[key] {
-    //         debug!("[ApiQuery.parseJsonString] key: {} | value: {:?}", &key, &value);
-    //         Result::Ok(
-    //             value.clone(),
-    //         )
-    //     } else {
-    //         let msg = format!("[ApiQuery.parseJsonString] field '{}' of type String not found or invalid content", &key);
-    //         warn!("{}", msg);
-    //         Err(
-    //             msg.into(),
-    //         )
-    //     }
-    // }
-    // ///
-    // fn parseJsonObject(jsonString: &serde_json::Value, key: &str) -> Result<serde_json::Map<String, serde_json::Value>, String> {
-    //     if let serde_json::Value::Object(value) = &jsonString[key] {
-    //         debug!("[ApiQuery.parseJsonObject] key: {} | value: {:?}", &key, &value);
-    //         Result::Ok(
-    //             value.clone(),
-    //         )
-    //     } else {
-    //         let msg = format!("[ApiQuery.parseJsonObject] key '{}' of type String not found or invalid content", &key);
-    //         warn!("{}", msg);
-    //         Err(
-    //             msg.into(),
-    //         )
-    //     }
-    // }
-    // ///
-    ///
     fn parseApiQuerySql(json: serde_json::Value, auth_token: String, id: String, keepAlive: bool) -> ApiQuery {
         debug!("[ApiQuery.parseApiQuerySql] detected: {}", ApiQueryTypeName::Sql.value());
         match ApiQuerySql::fromJson(json[ApiQueryTypeName::Sql.value()].clone()) {
@@ -129,6 +97,9 @@ impl ApiQuery {
     ///
     /// builds ApiQuery from bytes
     pub fn fromBytes(bytes: Vec<u8>) -> Self {
+        let mut auth_token = "Unknown".to_string();
+        let mut id = "Unknown".to_string();
+        let mut keepAlive = false;
         let refBytes = &bytes;
         match String::from_utf8(refBytes.to_owned()) {
             Ok(string) => {
@@ -139,9 +110,6 @@ impl ApiQuery {
                         match json.as_object() {
                             Some(obj) => {
                                 let mut errors = vec![];
-                                let mut auth_token = "Unknown".to_string();
-                                let mut id = "Unknown".to_string();
-                                let mut keepAlive = false;
                                 match obj.getValue("auth_token") {
                                     Ok(value) => auth_token = value,
                                     Err(err) => errors.push(err.to_string()),
@@ -156,17 +124,7 @@ impl ApiQuery {
                                 };
                                 if errors.is_empty() {
                                     debug!("[ApiQuery.fromBytes] obj: {:?}", obj);
-                                    if obj.contains_key(ApiQueryTypeName::KeepAlive.value()) {
-                                        debug!("[ApiQuery.fromBytes] detected: {}", ApiQueryTypeName::KeepAlive.value());
-                                        ApiQuery {
-                                            auth_token,
-                                            id,
-                                            query: ApiQueryType::KeepAlive(ApiQueryKeepAlive {
-                                                query: json,
-                                            }),
-                                            keepAlive: keepAlive,
-                                        }
-                                    } else if obj.contains_key(ApiQueryTypeName::Sql.value()) {
+                                    if obj.contains_key(ApiQueryTypeName::Sql.value()) {
                                         Self::parseApiQuerySql(json, auth_token, id, keepAlive)
                                     } else if obj.contains_key(ApiQueryTypeName::Python.value()) {
                                         Self::parseApiQueryPython(json, auth_token, id, keepAlive)
@@ -180,18 +138,18 @@ impl ApiQuery {
                                             query: ApiQueryType::Unknown(ApiQueryUnknown {
                                                 query: json,
                                             }),
-                                            keepAlive: keepAlive,
+                                            keepAlive,
                                         }
                                     }
                                 } else {
                                     ApiQuery {
-                                        auth_token: auth_token,
-                                        id: id,
+                                        auth_token,
+                                        id,
                                         query: ApiQueryType::Error(ApiQueryError{
                                             query: json.to_string(),
                                             err: format!("{}", errors.join("\n")),
                                         }),
-                                        keepAlive: keepAlive,
+                                        keepAlive,
                                     }
                                 }
                             },
@@ -199,13 +157,13 @@ impl ApiQuery {
                                 let msg = format!("[ApiQuery.fromBytes] json parsing error: type Map not found in json: {:?}", string);
                                 warn!("{}", msg);
                                 ApiQuery {
-                                    auth_token: "Unknown".into(),
-                                    id: "Unknown".into(),
+                                    auth_token,
+                                    id,
                                     query: ApiQueryType::Error(ApiQueryError{
                                         query: string.into(),
                                         err: msg,
                                     }),
-                                    keepAlive: false,
+                                    keepAlive,
                                 }
                             },
                         }
@@ -214,13 +172,13 @@ impl ApiQuery {
                         let msg = format!("[ApiQuery.fromBytes] json parsing error: {:?}, \n\t json: {:?}", err, string);
                         warn!("{}", msg);
                         ApiQuery {
-                            auth_token: "Unknown".into(),
-                            id: "Unknown".into(),
+                            auth_token,
+                            id,
                             query: ApiQueryType::Error(ApiQueryError{
                                 query: string.into(),
                                 err: err.to_string(),
                             }),
-                            keepAlive: false,
+                            keepAlive,
                         }
                     },
                 }
@@ -231,13 +189,13 @@ impl ApiQuery {
                 warn!("{}", msg);
                 let collected: Vec<String> = refBytes.iter().map(|a| a.to_string()).collect();
                 ApiQuery {
-                    auth_token: "Unknown".into(),
-                    id: "Unknown".into(),
+                    auth_token,
+                    id,
                     query: ApiQueryType::Error(ApiQueryError{
                         query: collected.join(","),
                         err: err.to_string()
                     }),
-                    keepAlive: false,
+                    keepAlive,
                 }
             },
         }

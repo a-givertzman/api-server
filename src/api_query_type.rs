@@ -20,7 +20,6 @@ use crate::{
 // #[serde(rename_all = "lowercase")]
 pub enum ApiQueryType {
     Error(ApiQueryError),
-    KeepAlive(ApiQueryKeepAlive),
     Sql(ApiQuerySql),
     Python(ApiQueryPython),
     Executable(ApiQueryExecutable),
@@ -29,7 +28,6 @@ pub enum ApiQueryType {
 impl ApiQueryType {
     pub fn srcQuery(&self) -> String {
         match self {
-            ApiQueryType::KeepAlive(apiQueryKeepAlive) => apiQueryKeepAlive.to_owned().srcQuery(),
             ApiQueryType::Error(apiQueryError) => apiQueryError.to_owned().srcQuery(),
             ApiQueryType::Sql(apiQuerySql) => apiQuerySql.to_owned().srcQuery(),
             ApiQueryType::Python(apiQueryPython) => apiQueryPython.to_owned().srcQuery(),
@@ -45,12 +43,10 @@ pub enum ApiQueryTypeName {
     Sql,
     Python,
     Executable,
-    KeepAlive,
 }
 impl ApiQueryTypeName {
     pub fn value(&self) -> &str {
         match *self {
-            ApiQueryTypeName::KeepAlive => "keep-alive",
             ApiQueryTypeName::Sql => "sql",
             ApiQueryTypeName::Python => "python",
             ApiQueryTypeName::Executable => "executable",

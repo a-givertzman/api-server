@@ -145,7 +145,7 @@ impl TcpServer {
                     // debug!("TcpServer.listenStream ({}) | received bytes: {:?}", threadName, data);
                     // debug!("TcpServer.listenStream ({}) | received string: {:?}", threadName, String::from_utf8(data));                
                     let result = self.apiServer.build(bytes);
-                    if result.keepConnection == api_server::KeepConnection::Keep {
+                    if result.keepAlive {
                         cancel = false;
                         // cancel = (result.keepConnection == api_server::KeepConnection::Drop);
                     }

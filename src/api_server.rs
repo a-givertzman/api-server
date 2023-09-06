@@ -53,25 +53,13 @@ impl ApiServer {
         match apiQuery.query.clone() {            
             ApiQueryType::Error(err) => {
                 ApiServerResult {
-                    keepConnection: KeepConnection::Drop,
+                    keepAlive: apiQuery.keepAlive,
                     data: SqlReply::error(
                         apiQuery.auth_token,
                         apiQuery.id,
                         apiQuery.query.srcQuery(),
                         err.err,
                     ).asBytes(),
-                }
-            },
-            ApiQueryType::KeepAlive(keepAliveQuery) => {
-                ApiServerResult {
-                    keepConnection: KeepConnection::Keep,
-                    data: SqlReply {
-                        auth_token: apiQuery.auth_token,
-                        id: apiQuery.id,
-                        query: keepAliveQuery.srcQuery(),
-                        data: vec![],
-                        error: String::new(),
-                    }.asBytes(),
                 }
             },
             ApiQueryType::Sql(sqlQuery) => {
@@ -81,7 +69,7 @@ impl ApiServer {
                         match dbConfig.serviceType {
                             ApiServiceType::Sqlite => {
                                 ApiServerResult {
-                                    keepConnection: KeepConnection::Drop,
+                                    keepAlive: apiQuery.keepAlive,
                                     data: Self::execute(
                                         Box::new(SqlQuerySqlite::new(dbConfig.clone(), sqlQuery.sql.clone(), None)),
                                         apiQuery.auth_token,
@@ -95,7 +83,7 @@ impl ApiServer {
                                 let path: &str = &format!("{}/{}", dir.to_str().unwrap(), dbConfig.path);
                                 debug!("ApiServer.build | database address: {:?}", path);
                                 ApiServerResult {
-                                    keepConnection: KeepConnection::Drop,
+                                    keepAlive: apiQuery.keepAlive,
                                     data: Self::execute(
                                         Box::new(SqlQueryMysql::new(dbConfig.clone(), sqlQuery.sql.clone(), None)),
                                         apiQuery.auth_token,
@@ -106,7 +94,7 @@ impl ApiServer {
                             },
                             ApiServiceType::PostgreSql => {
                                 ApiServerResult {
-                                    keepConnection: KeepConnection::Drop,
+                                    keepAlive: apiQuery.keepAlive,
                                     data: Self::execute(
                                         Box::new(SqlQueryPostgre::new(dbConfig.clone(), sqlQuery.sql.clone(), None)),
                                         apiQuery.auth_token,
@@ -116,7 +104,7 @@ impl ApiServer {
                                 }
                             },
                             _ => ApiServerResult {
-                                keepConnection: KeepConnection::Drop,
+                                keepAlive: apiQuery.keepAlive,
                                 data: SqlReply::error(
                                     apiQuery.auth_token,
                                     apiQuery.id,
@@ -127,7 +115,7 @@ impl ApiServer {
                         }
                     },
                     None => ApiServerResult {
-                        keepConnection: KeepConnection::Drop,
+                        keepAlive: apiQuery.keepAlive,
                         data: SqlReply::error(
                             apiQuery.auth_token,
                             apiQuery.id,
@@ -154,7 +142,7 @@ impl ApiServer {
                                 match PythonQuery::new(path, pyQuery.params.clone()).execute() {
                                     Ok(rows) => {                        
                                         ApiServerResult {
-                                            keepConnection: KeepConnection::Drop,
+                                            keepAlive: apiQuery.keepAlive,
                                             data: SqlReply {
                                                 auth_token: apiQuery.auth_token,
                                                 id: apiQuery.id,
@@ -166,7 +154,7 @@ impl ApiServer {
                                     },
                                     Err(err) => {
                                         ApiServerResult {
-                                            keepConnection: KeepConnection::Drop,
+                                            keepAlive: apiQuery.keepAlive,
                                             data: SqlReply::error(
                                                 apiQuery.auth_token,
                                                 apiQuery.id,
@@ -179,7 +167,7 @@ impl ApiServer {
                             },
                             false => {
                                 ApiServerResult {
-                                    keepConnection: KeepConnection::Drop,
+                                    keepAlive: apiQuery.keepAlive,
                                     data: SqlReply::error(
                                         apiQuery.auth_token,
                                         apiQuery.id,
@@ -192,7 +180,7 @@ impl ApiServer {
                     },
                     None => {
                         ApiServerResult {
-                            keepConnection: KeepConnection::Drop,
+                            keepAlive: apiQuery.keepAlive,
                             data: SqlReply::error(
                                 apiQuery.auth_token,
                                 apiQuery.id,
@@ -221,7 +209,7 @@ impl ApiServer {
                                 match ExecutableQuery::new(path, exQuery.params.clone()).execute() {
                                     Ok(rows) => {                        
                                         ApiServerResult {
-                                            keepConnection: KeepConnection::Drop,
+                                            keepAlive: apiQuery.keepAlive,
                                             data: SqlReply {
                                                 auth_token: apiQuery.auth_token,
                                                 id: apiQuery.id,
@@ -233,7 +221,7 @@ impl ApiServer {
                                     },
                                     Err(err) => {
                                         ApiServerResult {
-                                            keepConnection: KeepConnection::Drop,
+                                            keepAlive: apiQuery.keepAlive,
                                             data: SqlReply::error(
                                                 apiQuery.auth_token,
                                                 apiQuery.id,
@@ -246,7 +234,7 @@ impl ApiServer {
                             },
                             false => {
                                 ApiServerResult {
-                                    keepConnection: KeepConnection::Drop,
+                                    keepAlive: apiQuery.keepAlive,
                                     data: SqlReply::error(
                                         apiQuery.auth_token,
                                         apiQuery.id,
@@ -259,7 +247,7 @@ impl ApiServer {
                     },
                     None => {
                         ApiServerResult {
-                            keepConnection: KeepConnection::Drop,
+                            keepAlive: apiQuery.keepAlive,
                             data: SqlReply::error(
                                 apiQuery.auth_token,
                                 apiQuery.id,
@@ -272,7 +260,7 @@ impl ApiServer {
             },
             ApiQueryType::Unknown(_) => {
                 ApiServerResult {
-                    keepConnection: KeepConnection::Drop,
+                    keepAlive: apiQuery.keepAlive,
                     data: SqlReply::error(
                         apiQuery.auth_token,
                         apiQuery.id,
@@ -288,12 +276,6 @@ impl ApiServer {
 
 
 pub struct ApiServerResult {
-    pub keepConnection: KeepConnection,
+    pub keepAlive: bool,
     pub data: Vec<u8>,
-}
-
-#[derive(PartialEq)]
-pub enum KeepConnection {
-    Keep,
-    Drop,
 }
