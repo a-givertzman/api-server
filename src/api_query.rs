@@ -8,7 +8,7 @@ use crate::{
     api_query_sql::ApiQuerySql, 
     api_query_python::ApiQueryPython, 
     api_query_executable::ApiQueryExecutable, 
-    api_query_unknown::ApiQueryUnknown, api_query_error::ApiQueryError, api_query_keepalive::ApiQueryKeepAlive,
+    api_query_unknown::ApiQueryUnknown, api_query_error::ApiQueryError, api_query_keepalive::ApiQueryKeepAlive, sql_query::ErrorString,
 };
 
 ///
@@ -52,7 +52,7 @@ impl ApiQuery {
     // }
     // ///
     ///
-    fn parseApiQuerySql(json: serde_json::Value, auth_token: String, id: String) -> ApiQuery {
+    fn parseApiQuerySql(json: serde_json::Value, auth_token: String, id: String, keepAlive: bool) -> ApiQuery {
         debug!("[ApiQuery.parseApiQuerySql] detected: {}", ApiQueryTypeName::Sql.value());
         match ApiQuerySql::fromJson(json[ApiQueryTypeName::Sql.value()].clone()) {
             Ok(apiQuerySql) => {
@@ -75,7 +75,7 @@ impl ApiQuery {
         }
     }
     ///
-    fn parseApiQueryPython(json: serde_json::Value, auth_token: String, id: String) -> ApiQuery {
+    fn parseApiQueryPython(json: serde_json::Value, auth_token: String, id: String, keepAlive: bool) -> ApiQuery {
         debug!("[ApiQuery.fromBytes] detected: {}", ApiQueryTypeName::Python.value());
         match ApiQueryPython::fromJson(json[ApiQueryTypeName::Python.value()].clone()) {
             Ok(apiQueryPython) => {
@@ -98,7 +98,7 @@ impl ApiQuery {
         }
     }
     ///
-    fn parseApiQueryExecutable(json: serde_json::Value, auth_token: String, id: String) -> ApiQuery {
+    fn parseApiQueryExecutable(json: serde_json::Value, auth_token: String, id: String, keepAlive: bool) -> ApiQuery {
         debug!("[ApiQuery.fromBytes] detected: {}", ApiQueryTypeName::Executable.value());
         match ApiQueryExecutable::fromJson(json[ApiQueryTypeName::Executable.value()].clone()) {
             Ok(apiQueryExecutable) => {
@@ -136,52 +136,18 @@ impl ApiQuery {
                                 let mut auth_token = "Unknown".to_string();
                                 let mut id = "Unknown".to_string();
                                 let mut keepAlive = false;
-                                let key = "auth_token";
-                                let keyType = "String";
-                                let msg = format!("[ApiQuery.fromBytes] field '{}' of type {} not found or invalid content", &key, &keyType);
-                                match &obj.get(key) {
-                                    Some(jsonValue) => {
-                                        if let serde_json::Value::String(value) = jsonValue {
-                                            auth_token = value.into();
-                                        } else {
-                                            errors.push(msg);
-                                        }
-                                    },
-                                    None => {
-                                        errors.push(msg);
-                                    },
+                                match obj.getValue("auth_token") {
+                                    Ok(value) => auth_token = value,
+                                    Err(err) => errors.push(err.to_string()),
                                 };
-                                let key = "id";
-                                let msg = format!("[ApiQuery.fromBytes] field '{}' of type {} not found or invalid content", &key, &keyType);
-                                match &obj.get(key) {
-                                    Some(jsonValue) => {
-                                        if let serde_json::Value::String(value) = jsonValue {
-                                            id = value.into();
-                                        } else {
-                                            let msg = format!("[ApiQuery.fromBytes] field '{}' of type {} not found or invalid content", &key, &keyType);
-                                            errors.push(msg)
-                                        }
-                                    },
-                                    None => {
-                                        errors.push(msg);
-                                    },
+                                match obj.getValue("id") {
+                                    Ok(value) => id = value,
+                                    Err(err) => errors.push(err.to_string()),
                                 };
-                                let key = "id";
-                                let msg = format!("[ApiQuery.fromBytes] field '{}' of type {} not found or invalid content", &key, &keyType);
-                                match &obj.get(key) {
-                                    Some(jsonValue) => {
-                                        if let serde_json::Value::Bool(value) = jsonValue {
-                                            keepAlive = *value;
-                                        } else {
-                                            let msg = format!("[ApiQuery.fromBytes] field '{}' of type {} not found or invalid content", &key, &keyType);
-                                            errors.push(msg)
-                                        }
-                                    },
-                                    None => {
-                                        errors.push(msg);
-                                    },
+                                match obj.getValue("keep-alive") {
+                                    Ok(value) => keepAlive = value,
+                                    Err(err) => errors.push(err.to_string()),
                                 };
-
                                 if errors.is_empty() {
                                     debug!("[ApiQuery.fromBytes] obj: {:?}", obj);
                                     if obj.contains_key(ApiQueryTypeName::KeepAlive.value()) {
@@ -194,11 +160,11 @@ impl ApiQuery {
                                             }),
                                         }                        
                                     } else if obj.contains_key(ApiQueryTypeName::Sql.value()) {
-                                        Self::parseApiQuerySql(json, auth_token, id)
+                                        Self::parseApiQuerySql(json, auth_token, id, keepAlive)
                                     } else if obj.contains_key(ApiQueryTypeName::Python.value()) {
-                                        Self::parseApiQueryPython(json, auth_token, id)
+                                        Self::parseApiQueryPython(json, auth_token, id, keepAlive)
                                     } else if obj.contains_key(ApiQueryTypeName::Executable.value()) {
-                                        Self::parseApiQueryExecutable(json, auth_token, id)
+                                        Self::parseApiQueryExecutable(json, auth_token, id, keepAlive)
                                     } else {
                                         warn!("[ApiQuery.fromBytes] unknown tupe of query: {:?}", obj);
                                         ApiQuery {
@@ -272,16 +238,16 @@ enum ApiServerClientConnection {
 }
 
 trait GetJsonObjValue<T> {
-    fn getValue(&self, key: &str) -> Result<T, String>;
+    fn getValue(&self, key: &str) -> Result<T, ErrorString>;
 }
 
 impl GetJsonObjValue<String> for serde_json::map::Map<String, serde_json::Value> {
-    fn getValue(&self, key: &str) -> Result<String, String> {
+    fn getValue(&self, key: &str) -> Result<String, ErrorString> {
         let msg = format!("[ApiQuery.fromBytes] field '{}' of type {:?} not found or invalid content", &key, "String");
         match self.get(key) {
             Some(jsonValue) => {
                 if let serde_json::Value::String(value) = jsonValue {
-                    Ok(value.into())
+                    Ok(value.to_string())
                 } else {
                     Err(msg)
                 }
@@ -293,20 +259,21 @@ impl GetJsonObjValue<String> for serde_json::map::Map<String, serde_json::Value>
     }
 }
 
+impl GetJsonObjValue<bool> for serde_json::map::Map<String, serde_json::Value> {
+    fn getValue(&self, key: &str) -> Result<bool, ErrorString> {
+        let msg = format!("[ApiQuery.fromBytes] field '{}' of type {:?} not found or invalid content", &key, "String");
+        match self.get(key) {
+            Some(jsonValue) => {
+                if let serde_json::Value::Bool(value) = jsonValue {
+                    Ok(*value)
+                } else {
+                    Err(msg)
+                }
+            },
+            None => {
+                Err(msg)
+            },
+        }
+    }
+}
 
-
-// let key = "auth_token";
-// let keyType = "String";
-// let msg = format!("[ApiQuery.fromBytes] field '{}' of type {} not found or invalid content", &key, &keyType);
-// match &obj.get(key) {
-//     Some(jsonValue) => {
-//         if let serde_json::Value::String(value) = jsonValue {
-//             auth_token = value.into();
-//         } else {
-//             errors.push(msg);
-//         }
-//     },
-//     None => {
-//         errors.push(msg);
-//     },
-// };
