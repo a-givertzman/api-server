@@ -138,7 +138,7 @@ impl TcpServer {
     fn listenStream(&mut self, stream: &mut TcpStream, threadName: &str) {
         debug!("TcpServer.listenStream ({}) | start to reading messages...", threadName);
         let mut cancel = false;
-        self.configureSocket(stream, threadName, Duration::from_secs(10), false);
+        // self.configureSocket(stream, threadName, Duration::from_secs(10), false);
         while !cancel {
             match self.readAll(stream, threadName) {
                 ConnectionStatus::Active(bytes) => {
@@ -237,7 +237,7 @@ impl TcpServer {
                         std::io::ErrorKind::UnexpectedEof => todo!(),
                         std::io::ErrorKind::OutOfMemory => todo!(),
                         std::io::ErrorKind::Other => todo!(),
-                        _ => ConnectionStatus::Active(result),
+                        _ => ConnectionStatus::Closed,
                     }
                     // return ConnectionStatus::Closed;
                 },

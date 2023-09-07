@@ -1,6 +1,7 @@
 #![allow(non_snake_case)]
 
 use chrono::{DateTime, Utc, NaiveTime, NaiveDate, NaiveDateTime};
+use rust_decimal::Decimal;
 use std::collections::HashMap;
 use bytes::BytesMut;
 use postgres::{Client, NoTls, types::{Type, to_sql_checked, FromSql, self}};
@@ -40,7 +41,7 @@ impl SqlQueryPostgre {
             Type::INT8 => (self.asJson_::<i64>(t, row, idx), String::new()),
             Type::FLOAT4 => (self.asJson_::<f32>(t, row, idx), String::new()),
             Type::FLOAT8 => (self.asJson_::<f64>(t, row, idx), String::new()),
-            Type::NUMERIC => (self.asJson_::<f64>(t, row, idx), String::new()),
+            Type::NUMERIC => (self.asJson_::<Decimal>(t, row, idx), String::new()),
             Type::BPCHAR => (self.asJson_::<String>(t, row, idx), String::new()),
             Type::CHAR 
             | Type::TEXT | Type::VARCHAR => (self.asJson_::<String>(t, row, idx), String::new()),
@@ -205,6 +206,7 @@ impl SqlQuery for SqlQueryPostgre {
                             trace!("SqlQueryPostgre.execute | result: {:?}", result);
                         } else {
                             debug!("SqlQueryPostgre.execute | result: {:?} rows fetched", result.len());
+                            debug!("SqlQueryPostgre.execute | result: {:?}", result);
                         }
                         if parseErrors.len() > 0 {
                             warn!("SqlQueryPostgre.execute | parseErrors: {:?}", parseErrors);
