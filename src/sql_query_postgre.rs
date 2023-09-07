@@ -201,7 +201,6 @@ impl SqlQuery for SqlQueryPostgre {
                                 parseErrors.push(msg)
                             },
                         }
-                        debug!("SqlQueryPostgre.execute | max_level: {:?}", log::max_level());
                         if log::max_level() == LevelFilter::Trace {
                             trace!("SqlQueryPostgre.execute | result: {:?}", result);
                         } else {

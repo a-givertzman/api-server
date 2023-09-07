@@ -142,8 +142,8 @@ impl TcpServer {
         while !cancel {
             match self.readAll(stream, threadName) {
                 ConnectionStatus::Active(bytes) => {
-                    // debug!("TcpServer.listenStream ({}) | received bytes: {:?}", threadName, data);
-                    // debug!("TcpServer.listenStream ({}) | received string: {:?}", threadName, String::from_utf8(data));                
+                    // debug!("TcpServer.listenStream ({}) | received bytes: {:?}", threadName, &bytes);
+                    debug!("TcpServer.listenStream ({}) | received string: {:?}", threadName, String::from_utf8(bytes.clone()));                
                     let result = self.apiServer.build(bytes);
                     if result.keepAlive {
                         cancel = false;
@@ -195,7 +195,51 @@ impl TcpServer {
                 },
                 Err(err) => {
                     warn!("TcpServer.readAll ({}) | error reading from socket: {:?}", threadName, err);
-                    return ConnectionStatus::Closed;
+                    warn!("TcpServer.readAll ({}) | error kind: {:?}", threadName, err.kind());
+                    return match err.kind() {
+                        std::io::ErrorKind::NotFound => todo!(),
+                        std::io::ErrorKind::PermissionDenied => ConnectionStatus::Closed,
+                        std::io::ErrorKind::ConnectionRefused => ConnectionStatus::Closed,
+                        std::io::ErrorKind::ConnectionReset => ConnectionStatus::Closed,
+                        // std::io::ErrorKind::HostUnreachable => ConnectionStatus::Closed,
+                        // std::io::ErrorKind::NetworkUnreachable => ConnectionStatus::Closed,
+                        std::io::ErrorKind::ConnectionAborted => ConnectionStatus::Closed,
+                        std::io::ErrorKind::NotConnected => ConnectionStatus::Closed,
+                        std::io::ErrorKind::AddrInUse => ConnectionStatus::Closed,
+                        std::io::ErrorKind::AddrNotAvailable => ConnectionStatus::Closed,
+                        // std::io::ErrorKind::NetworkDown => ConnectionStatus::Closed,
+                        std::io::ErrorKind::BrokenPipe => ConnectionStatus::Closed,
+                        std::io::ErrorKind::AlreadyExists => todo!(),
+                        std::io::ErrorKind::WouldBlock => ConnectionStatus::Closed,
+                        // std::io::ErrorKind::NotADirectory => todo!(),
+                        // std::io::ErrorKind::IsADirectory => todo!(),
+                        // std::io::ErrorKind::DirectoryNotEmpty => todo!(),
+                        // std::io::ErrorKind::ReadOnlyFilesystem => todo!(),
+                        // std::io::ErrorKind::FilesystemLoop => todo!(),
+                        // std::io::ErrorKind::StaleNetworkFileHandle => todo!(),
+                        std::io::ErrorKind::InvalidInput => todo!(),
+                        std::io::ErrorKind::InvalidData => todo!(),
+                        std::io::ErrorKind::TimedOut => todo!(),
+                        std::io::ErrorKind::WriteZero => todo!(),
+                        // std::io::ErrorKind::StorageFull => todo!(),
+                        // std::io::ErrorKind::NotSeekable => todo!(),
+                        // std::io::ErrorKind::FilesystemQuotaExceeded => todo!(),
+                        // std::io::ErrorKind::FileTooLarge => todo!(),
+                        // std::io::ErrorKind::ResourceBusy => todo!(),
+                        // std::io::ErrorKind::ExecutableFileBusy => todo!(),
+                        // std::io::ErrorKind::Deadlock => todo!(),
+                        // std::io::ErrorKind::CrossesDevices => todo!(),
+                        // std::io::ErrorKind::TooManyLinks => todo!(),
+                        // std::io::ErrorKind::InvalidFilename => todo!(),
+                        // std::io::ErrorKind::ArgumentListTooLong => todo!(),
+                        std::io::ErrorKind::Interrupted => todo!(),
+                        std::io::ErrorKind::Unsupported => todo!(),
+                        std::io::ErrorKind::UnexpectedEof => todo!(),
+                        std::io::ErrorKind::OutOfMemory => todo!(),
+                        std::io::ErrorKind::Other => todo!(),
+                        _ => ConnectionStatus::Active(result),
+                    }
+                    // return ConnectionStatus::Closed;
                 },
             };
         }
