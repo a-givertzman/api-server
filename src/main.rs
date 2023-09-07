@@ -35,7 +35,7 @@ use crate::{
 };
 
 fn main() {
-    env::set_var("RUST_LOG", "debug");
+    env::set_var("RUST_LOG", "debug");  // off / error / warn / info / debug / trace
     // env::set_var("RUST_BACKTRACE", "1");
     env::set_var("RUST_BACKTRACE", "full");
     env_logger::init();

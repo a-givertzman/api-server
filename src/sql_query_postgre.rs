@@ -8,7 +8,7 @@ use serde::Serialize;
 use serde_json::json;
 
 
-use log::{debug, warn};
+use log::{debug, warn, trace, LevelFilter};
 
 use crate::{sql_query::{SqlQuery, ErrorString}, config::ServiceConfig};
 
@@ -182,7 +182,7 @@ impl SqlQuery for SqlQueryPostgre {
                         match sqlRows {
                             Ok(rows) => {
                                 for row in rows {
-                                    debug!("row: {:?}", row);
+                                    trace!("SqlQueryPostgre.execute | row: {:?}", row);
                                     let mut rowMap = HashMap::new();
                                     for column in row.columns() {
                                         let idx = column.name();
@@ -201,8 +201,15 @@ impl SqlQuery for SqlQueryPostgre {
                                 parseErrors.push(msg)
                             },
                         }
-                        debug!("SqlQueryPostgre.execute | result: {:?}", result);
-                        debug!("SqlQueryPostgre.execute | parseErrors: {:?}", parseErrors);
+                        debug!("SqlQueryPostgre.execute | max_level: {:?}", log::max_level());
+                        if log::max_level() == LevelFilter::Trace {
+                            trace!("SqlQueryPostgre.execute | result: {:?}", result);
+                        } else {
+                            debug!("SqlQueryPostgre.execute | result: {:?} rows fetched", result.len());
+                        }
+                        if parseErrors.len() > 0 {
+                            warn!("SqlQueryPostgre.execute | parseErrors: {:?}", parseErrors);
+                        }
                         if parseErrors.is_empty() {
                             Ok(result)
                         } else {
