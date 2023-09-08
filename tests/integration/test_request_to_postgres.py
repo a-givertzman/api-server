@@ -2,6 +2,7 @@ import argparse
 import json
 import socket
 import time
+import re
 import threading
 from ds_socket import DsSocket
 from request import sockerSendBytes
@@ -113,12 +114,12 @@ invalidJson = [
     '{"auth_token": "crane_data_server", "id": "crane_data_server", "keep-alive": "true", "sql": {"database": "crane_data_server", "sql": "select 1;"}}',
     # '{"auth_token": "crane_data_server", "id": "crane_data_server", "keep-alive": "true", "sql": {"database": "crane_data_server", "sql": "select id, type, name from tags;"}}',
     '{"auth_token": "crane_data_server", "id": "crane_data_server", "keep-alive": "true", "sql": {"database": "crane_data_server", "sql": "select * from event_test where pid = 11 and value = \'0\';"}}',
-    # '{"auth_token": "crane_data_server", "id": "crane_data_server", "keep-alive": "true", "sql": {"database": "crane_data_server", "sql": "select * from event_test where pid = 127 and value = \'250\';"}}',
-    # '{"auth_token": "crane_data_server", "id": "crane_data_server", "keep-alive": "true", "sql": {"database": "crane_data_server", "sql": "select * from event_test where pid = 127 and value = \'251\';"}}',
-    # '{"auth_token": "crane_data_server", "id": "crane_data_server", "keep-alive": "true", "sql": {"database": "crane_data_server", "sql": "select * from event_test where pid = 127 and value = \'252\';"}}',
-    # '{"auth_token": "crane_data_server", "id": "crane_data_server", "keep-alive": "true", "sql": {"database": "crane_data_server", "sql": "select * from event_test where pid = 127 and value = \'253\';"}}',
-    # '{"auth_token": "crane_data_server", "id": "crane_data_server", "keep-alive": "true", "sql": {"database": "crane_data_server", "sql": "select * from event_test where pid = 127 and value = \'254\';"}}',
-    # '{"auth_token": "crane_data_server", "id": "crane_data_server", "keep-alive": "true", "sql": {"database": "crane_data_server", "sql": "select * from event_test where pid = 127 and value = \'255\';"}}',
+    '{"auth_token": "crane_data_server", "id": "crane_data_server", "keep-alive": "true", "sql": {"database": "crane_data_server", "sql": "select * from event_test where pid = 127 and value = \'250\';"}}',
+    '{"auth_token": "crane_data_server", "id": "crane_data_server", "keep-alive": "true", "sql": {"database": "crane_data_server", "sql": "select * from event_test where pid = 127 and value = \'251\';"}}',
+    '{"auth_token": "crane_data_server", "id": "crane_data_server", "keep-alive": "true", "sql": {"database": "crane_data_server", "sql": "select * from event_test where pid = 127 and value = \'252\';"}}',
+    '{"auth_token": "crane_data_server", "id": "crane_data_server", "keep-alive": "true", "sql": {"database": "crane_data_server", "sql": "select * from event_test where pid = 127 and value = \'253\';"}}',
+    '{"auth_token": "crane_data_server", "id": "crane_data_server", "keep-alive": "true", "sql": {"database": "crane_data_server", "sql": "select * from event_test where pid = 127 and value = \'254\';"}}',
+    '{"auth_token": "crane_data_server", "id": "crane_data_server", "keep-alive": "true", "sql": {"database": "crane_data_server", "sql": "select * from event_test where pid = 127 and value = \'255\';"}}',
     # '{"auth_token": "crane_data_server", "id": "crane_data_server", "keep-alive": "true", "sql": {"database": "crane_data_server", "sql": "select 1;"}}',
     # '{"auth_token": "crane_data_server", "id": "crane_data_server", "keep-alive": "true", "sql": {"database": "crane_data_server", "sql": "select 1;"}}',
     # '{"auth_token": "crane_data_server", "id": "crane_data_server", "keep-alive": "true", "sql": {"database": "crane_data_server", "sql": "select id, type, name from tags;"}}',
@@ -171,14 +172,27 @@ def target():
             )
             for requestJsonStr in invalidJson:
                 print(f'\n{threadName} | requestJsonStr: {requestJsonStr}')
+                sent = json.loads(requestJsonStr)
                 sendBytes = requestJsonStr.encode('utf-8')
                 sock.send(sendBytes)
                 received = sock.read()
-                try:
-                    received = json.loads(data)
-                    print(f'{threadName} | received: {json.dumps(received, indent = 4)}')
-                except Exception as err:
-                    print(f'{threadName} | received: {received}')
+                if received.hasError:
+                    data = json.loads(received.error)
+                    raise Exception(f'{threadName} | ERROR in received: {json.dumps(data, indent = 4)}')
+                    # print(f'{threadName} | ERROR in received: {json.dumps(data, indent = 4)}')
+                else:
+                    data = json.loads(received.data)
+                    print(f'{threadName} | received: {json.dumps(data, indent = 4)}')
+                    sentSql: str = sent['sql']['sql']
+                    print(f"{threadName} | sentSql: {sentSql}")
+                    if 'select * from event_test where pid =' in sentSql:
+                        sentValue = re.search(r"value\s*=\s*'(\d+)'\s*;", sentSql).group(1)
+                        sentValue = int(str(sentValue))
+                        print(f"{threadName} | match: {sentValue}")
+                        receivedValue = data['data'][0]['value']
+                        receivedValue = int(str(receivedValue))
+                        print(f"{threadName} | sentValue: {sentValue}   receivedValue: {receivedValue}")
+                        assert receivedValue == sentValue
             sock.close()
 
 threads = []
@@ -189,3 +203,6 @@ for _ in range(10):
 
 for t in threads:
     t.join()
+
+# {"auth_token": "crane_data_server", "id": "crane_data_server", "keep-alive": "true", "sql": {"database": "crane_data_server", "sql": "select * from event_test where pid = 127 and value = '255';"}}
+# b'{"auth_token":"crane_data_server","id":"crane_data_server","query":"{\\"database\\":\\"crane_data_server\\",\\"sql\\":\\"select * from event_test where pid = 127 and value = \'255\';\\"}","data":[{"value":"255","status":"0","pid":127,"uid":"1.000000000005","timestamp":"2022-04-26T15:46:01.005"}],"error":""}') 
