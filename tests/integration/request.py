@@ -5,7 +5,7 @@ from socket_utils import recvAll
 
 def sockerSendBytes(data: bytes) -> bytes:
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock.connect(('127.0.0.1', 8899))
+    sock.connect(('127.0.0.1', 8080))
     sock.send(data)
     received = recvAll(sock)
     sock.close()

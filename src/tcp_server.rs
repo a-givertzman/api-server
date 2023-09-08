@@ -100,6 +100,7 @@ impl TcpServer {
                         let threadName = format!("TcpServer tread {:?}", tcpThreads.len());
                         let threadJoinHandle = thread::Builder::new().name(threadName.clone()).spawn(move || {
                                 debug!("TcpServer.run | started in {:?}", thread::current().name().unwrap());
+                                stream.set_nodelay(true).unwrap();
                                 me.lock().unwrap().listenStream(&mut stream, &threadName);
                             }).unwrap();
                         tcpThreads.push(TcpThread{
