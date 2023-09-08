@@ -1,5 +1,6 @@
 import argparse
 import json
+import random
 import socket
 import time
 import re
@@ -112,14 +113,14 @@ invalidJson = [
     # '{"auth_token": "123zxy456!@#", "id": "123", "executable": {"name": "executable-test", "params@@@": {"a": 4, "b": 7}}}',
     # '{"auth_token": "123zxy456!@#", "id": "123", "executable": {"name": "executable-test", "params": "invalid params"}}',
     '{"auth_token": "crane_data_server", "id": "crane_data_server", "keep-alive": "true", "sql": {"database": "crane_data_server", "sql": "select 1;"}}',
-    # '{"auth_token": "crane_data_server", "id": "crane_data_server", "keep-alive": "true", "sql": {"database": "crane_data_server", "sql": "select id, type, name from tags;"}}',
+    '{"auth_token": "crane_data_server", "id": "crane_data_server", "keep-alive": "true", "sql": {"database": "crane_data_server", "sql": "select id, type, name from tags;"}}',
     '{"auth_token": "crane_data_server", "id": "crane_data_server", "keep-alive": "true", "sql": {"database": "crane_data_server", "sql": "select * from event_test where pid = 11 and value = \'0\';"}}',
     '{"auth_token": "crane_data_server", "id": "crane_data_server", "keep-alive": "true", "sql": {"database": "crane_data_server", "sql": "select * from event_test where pid = 127 and value = \'250\';"}}',
-    '{"auth_token": "crane_data_server", "id": "crane_data_server", "keep-alive": "true", "sql": {"database": "crane_data_server", "sql": "select * from event_test where pid = 127 and value = \'251\';"}}',
-    '{"auth_token": "crane_data_server", "id": "crane_data_server", "keep-alive": "true", "sql": {"database": "crane_data_server", "sql": "select * from event_test where pid = 127 and value = \'252\';"}}',
-    '{"auth_token": "crane_data_server", "id": "crane_data_server", "keep-alive": "true", "sql": {"database": "crane_data_server", "sql": "select * from event_test where pid = 127 and value = \'253\';"}}',
-    '{"auth_token": "crane_data_server", "id": "crane_data_server", "keep-alive": "true", "sql": {"database": "crane_data_server", "sql": "select * from event_test where pid = 127 and value = \'254\';"}}',
-    '{"auth_token": "crane_data_server", "id": "crane_data_server", "keep-alive": "true", "sql": {"database": "crane_data_server", "sql": "select * from event_test where pid = 127 and value = \'255\';"}}',
+    # '{"auth_token": "crane_data_server", "id": "crane_data_server", "keep-alive": "true", "sql": {"database": "crane_data_server", "sql": "select * from event_test where pid = 127 and value = \'251\';"}}',
+    # '{"auth_token": "crane_data_server", "id": "crane_data_server", "keep-alive": "true", "sql": {"database": "crane_data_server", "sql": "select * from event_test where pid = 127 and value = \'252\';"}}',
+    # '{"auth_token": "crane_data_server", "id": "crane_data_server", "keep-alive": "true", "sql": {"database": "crane_data_server", "sql": "select * from event_test where pid = 127 and value = \'253\';"}}',
+    # '{"auth_token": "crane_data_server", "id": "crane_data_server", "keep-alive": "true", "sql": {"database": "crane_data_server", "sql": "select * from event_test where pid = 127 and value = \'254\';"}}',
+    # '{"auth_token": "crane_data_server", "id": "crane_data_server", "keep-alive": "true", "sql": {"database": "crane_data_server", "sql": "select * from event_test where pid = 127 and value = \'255\';"}}',
     # '{"auth_token": "crane_data_server", "id": "crane_data_server", "keep-alive": "true", "sql": {"database": "crane_data_server", "sql": "select 1;"}}',
     # '{"auth_token": "crane_data_server", "id": "crane_data_server", "keep-alive": "true", "sql": {"database": "crane_data_server", "sql": "select 1;"}}',
     # '{"auth_token": "crane_data_server", "id": "crane_data_server", "keep-alive": "true", "sql": {"database": "crane_data_server", "sql": "select id, type, name from tags;"}}',
@@ -175,6 +176,8 @@ def target():
                 sent = json.loads(requestJsonStr)
                 sendBytes = requestJsonStr.encode('utf-8')
                 sock.send(sendBytes)
+                milles = random.randint(5, 100)
+                time.sleep(milles / 1000)
                 received = sock.read()
                 if received.hasError:
                     data = json.loads(received.error)

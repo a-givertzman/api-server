@@ -22,13 +22,14 @@ impl ApiServer {
         }
     }
     ///
-    fn execute(mut sqlQuery: Box<dyn SqlQuery>, auth_token: String, id: String, query: String) -> SqlReply {
+    fn execute(mut sqlQuery: Box<dyn SqlQuery>, auth_token: String, id: String, keepAlive: bool, query: String) -> SqlReply {
         match sqlQuery.execute() {
             Ok(rows) => {                        
                 SqlReply {
-                    auth_token: auth_token,
-                    id: id,
-                    query: query,
+                    auth_token,
+                    id,
+                    keepAlive,
+                    query,
                     data: rows,
                     error: String::new(),
                 }
@@ -37,6 +38,7 @@ impl ApiServer {
                 SqlReply::error(
                     auth_token,
                     id,
+                    keepAlive,
                     query,
                     err.to_string(),
                 )
@@ -57,6 +59,7 @@ impl ApiServer {
                     data: SqlReply::error(
                         apiQuery.auth_token,
                         apiQuery.id,
+                        apiQuery.keepAlive,
                         apiQuery.query.srcQuery(),
                         err.err,
                     ).asBytes(),
@@ -74,6 +77,7 @@ impl ApiServer {
                                         Box::new(SqlQuerySqlite::new(dbConfig.clone(), sqlQuery.sql.clone(), None)),
                                         apiQuery.auth_token,
                                         apiQuery.id,
+                                        apiQuery.keepAlive,
                                         sqlQuery.srcQuery(),
                                     ).asBytes(),
                                 }
@@ -88,6 +92,7 @@ impl ApiServer {
                                         Box::new(SqlQueryMysql::new(dbConfig.clone(), sqlQuery.sql.clone(), None)),
                                         apiQuery.auth_token,
                                         apiQuery.id,
+                                        apiQuery.keepAlive,
                                         apiQuery.query.srcQuery(),
                                     ).asBytes(),
                                 }
@@ -99,6 +104,7 @@ impl ApiServer {
                                         Box::new(SqlQueryPostgre::new(dbConfig.clone(), sqlQuery.sql.clone(), None)),
                                         apiQuery.auth_token,
                                         apiQuery.id,
+                                        apiQuery.keepAlive,
                                         apiQuery.query.srcQuery(),
                                     ).asBytes(),
                                 }
@@ -108,6 +114,7 @@ impl ApiServer {
                                 data: SqlReply::error(
                                     apiQuery.auth_token,
                                     apiQuery.id,
+                                    apiQuery.keepAlive,
                                     apiQuery.query.srcQuery(),
                                     format!("ApiServer.build | Error: Database service with the name '{}' can't be found", sqlQuery.database),
                                 ).asBytes(),
@@ -119,6 +126,7 @@ impl ApiServer {
                         data: SqlReply::error(
                             apiQuery.auth_token,
                             apiQuery.id,
+                            apiQuery.keepAlive,
                             apiQuery.query.srcQuery(),
                             format!("ApiServer.build | Error: Database service with the name '{}' can't be found", sqlQuery.database),
                         ).asBytes(),
@@ -146,6 +154,7 @@ impl ApiServer {
                                             data: SqlReply {
                                                 auth_token: apiQuery.auth_token,
                                                 id: apiQuery.id,
+                                                keepAlive: apiQuery.keepAlive,
                                                 query: apiQuery.query.srcQuery(),
                                                 data: rows,
                                                 error: String::new(),
@@ -158,6 +167,7 @@ impl ApiServer {
                                             data: SqlReply::error(
                                                 apiQuery.auth_token,
                                                 apiQuery.id,
+                                                apiQuery.keepAlive,
                                                 apiQuery.query.srcQuery(),
                                                 err.to_string(),
                                             ).asBytes(),
@@ -171,6 +181,7 @@ impl ApiServer {
                                     data: SqlReply::error(
                                         apiQuery.auth_token,
                                         apiQuery.id,
+                                        apiQuery.keepAlive,
                                         apiQuery.query.srcQuery(),
                                         format!("ApiServer.build | pyton script does not exists: {}", path),
                                     ).asBytes(),
@@ -184,6 +195,7 @@ impl ApiServer {
                             data: SqlReply::error(
                                 apiQuery.auth_token,
                                 apiQuery.id,
+                                apiQuery.keepAlive,
                                 apiQuery.query.srcQuery(),
                                 format!("ApiServer.build | Error: Script with the name '{}' can't be found", pyQuery.script),
                             ).asBytes(),
@@ -213,6 +225,7 @@ impl ApiServer {
                                             data: SqlReply {
                                                 auth_token: apiQuery.auth_token,
                                                 id: apiQuery.id,
+                                                keepAlive: apiQuery.keepAlive,
                                                 query: apiQuery.query.srcQuery(),
                                                 data: rows,
                                                 error: String::new(),
@@ -225,6 +238,7 @@ impl ApiServer {
                                             data: SqlReply::error(
                                                 apiQuery.auth_token,
                                                 apiQuery.id,
+                                                apiQuery.keepAlive,
                                                 apiQuery.query.srcQuery(),
                                                 err.to_string(),
                                             ).asBytes()
@@ -238,6 +252,7 @@ impl ApiServer {
                                     data: SqlReply::error(
                                         apiQuery.auth_token,
                                         apiQuery.id,
+                                        apiQuery.keepAlive,
                                         apiQuery.query.srcQuery(),
                                         format!("ApiServer.build | Error: Executable does not exists: {}", path),
                                     ).asBytes(),
@@ -251,6 +266,7 @@ impl ApiServer {
                             data: SqlReply::error(
                                 apiQuery.auth_token,
                                 apiQuery.id,
+                                apiQuery.keepAlive,
                                 apiQuery.query.srcQuery(),
                                 format!("ApiServer.build | Error: Executable with the name '{}' can't be found", exQuery.name),
                             ).asBytes()
@@ -264,6 +280,7 @@ impl ApiServer {
                     data: SqlReply::error(
                         apiQuery.auth_token,
                         apiQuery.id,
+                        apiQuery.keepAlive,
                         apiQuery.query.srcQuery(),
                         "ApiServer.build | Error: Unknown type of API query".into(),
                     ).asBytes(),

@@ -9,6 +9,7 @@ use serde::{Serialize, Deserialize};
 pub struct SqlReply {
     pub auth_token: String,
     pub id: String,
+    pub keepAlive: bool,
     pub query: String,      //ApiQueryType,
     pub data: Vec<HashMap<String, serde_json::Value>>, //Vec<(String, Option<String>)>,
     pub error: String,
@@ -43,13 +44,15 @@ impl SqlReply {
     pub fn error(
         auth_token: String,
         id: String,
+        keepAlive: bool,
         query: String,  //ApiQueryType, 
         error: String,
     ) -> Self {
         SqlReply {
-            auth_token: auth_token,
-            id: id,
-            query: query,
+            auth_token,
+            id,
+            keepAlive,
+            query,
             data: vec![],
             error,
         }        

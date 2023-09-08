@@ -58,7 +58,7 @@ class DsSocket:
                 self.log.info(f'connected to:\n\t{self.__socket}')
                 self.__connected = True
                 # self.__socket.settimeout(0.5)
-                self.__socket.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, True)  # True - disable Nagle Algorithm
+                # self.__socket.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, True)  # True - disable Nagle Algorithm
                 if callable(self.__onConnected): 
                     self.__onConnected(self.__socket)
             except OSError as error:
