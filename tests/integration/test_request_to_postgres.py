@@ -203,6 +203,3 @@ for _ in range(10):
 
 for t in threads:
     t.join()
-
-# {"auth_token": "crane_data_server", "id": "crane_data_server", "keep-alive": "true", "sql": {"database": "crane_data_server", "sql": "select * from event_test where pid = 127 and value = '255';"}}
-# b'{"auth_token":"crane_data_server","id":"crane_data_server","query":"{\\"database\\":\\"crane_data_server\\",\\"sql\\":\\"select * from event_test where pid = 127 and value = \'255\';\\"}","data":[{"value":"255","status":"0","pid":127,"uid":"1.000000000005","timestamp":"2022-04-26T15:46:01.005"}],"error":""}') 
