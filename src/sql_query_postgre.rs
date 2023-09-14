@@ -4,7 +4,7 @@ use chrono::{DateTime, Utc, NaiveTime, NaiveDate, NaiveDateTime};
 use rust_decimal::Decimal;
 use std::collections::HashMap;
 use bytes::BytesMut;
-use postgres::{Client, NoTls, types::{Type, to_sql_checked, FromSql, self}};
+use postgres::{Client, NoTls, types::{Type, to_sql_checked, FromSql, self, Kind}};
 use serde::Serialize;
 use serde_json::json;
 
@@ -62,16 +62,30 @@ impl SqlQueryPostgre {
             Type::CHAR_ARRAY 
             | Type::TEXT_ARRAY 
             | Type::VARCHAR_ARRAY => (self.asJson_::<Vec<String>>(t, row, idx), String::new()),
+            // Type::ANYENUM => {
+            //     warn!("SqlQueryPostgre.asJson | Type::ANYENUM | type '{}'", t);
+                
+            //     (self.asJson_::<GenericEnum>(t, row, idx), String::new())
+            // },
             _ => {
+                // if t in Type::ANYENUM
                 // warn!("SqlQueryPostgre.asJson | parsing type '{}'", t.name());
-                if t.name() == "tag_type_enum" {
-                    let v = self.asJson_::<GenericEnum>(t, row, idx);
-                    // warn!("SqlQueryPostgre.execute | parsed value: {:?}", v);
-                    return (v, String::new());
+                return match t.to_owned().kind() {
+                    Kind::Enum(_) => {
+                        (self.asJson_::<GenericEnum>(t, row, idx), String::new())
+                    }
+                    _ => {
+                        let msg = format!("SqlQueryPostgre.asJson | Error parsing value of unknown type '{:?}'", t.to_owned());
+                        warn!("{}", msg);
+                        (serde_json::Value::default(), msg)
+                    },
                 }
-                let msg = format!("SqlQueryPostgre.asJson | Error parsing value of unknown type '{}'", t);
-                warn!("{}", msg);
-                (serde_json::Value::default(), msg)
+                // if matches!(t.to_owned().kind(), Kind::Enum() {
+                //     let v = self.asJson_::<GenericEnum>(t, row, idx);
+                //     // let v = self.asJson_::<String>(t, row, idx);
+                //     // warn!("SqlQueryPostgre.execute | parsed value: {:?}", v);
+                //     return (v, String::new());
+                // }
             }
         }
     }
