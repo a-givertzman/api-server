@@ -138,18 +138,15 @@ impl TcpServer {
     /// Listening incoming messages from remote client
     fn listenStream(&mut self, stream: &mut TcpStream, threadName: &str) {
         debug!("TcpServer.listenStream ({}) | start to reading messages...", threadName);
-        let mut cancel = false;
+        let mut keepAlive = true;
         // self.configureSocket(stream, threadName, Duration::from_secs(10), false);
-        while !cancel {
+        while keepAlive {
             match self.readAll(stream, threadName) {
                 ConnectionStatus::Active(bytes) => {
                     // debug!("TcpServer.listenStream ({}) | received bytes: {:?}", threadName, &bytes);
                     debug!("TcpServer.listenStream ({}) | received string: {:?}", threadName, String::from_utf8(bytes.clone()));                
                     let result = self.apiServer.build(bytes);
-                    if result.keepAlive {
-                        cancel = false;
-                        // cancel = (result.keepConnection == api_server::KeepConnection::Drop);
-                    }
+                    keepAlive = result.keepAlive;
                     let reply = result.data;
                     match Self::writeToTcpStream(stream, &reply, threadName) {
                         Ok(_) => {},
@@ -165,7 +162,7 @@ impl TcpServer {
                     return
                 },
             }
-            thread::sleep(Duration::from_millis(500))
+            thread::sleep(Duration::from_millis(100))
         }
         info!("TcpServer.listenStream ({}) | listenStream exit", threadName);
     }
