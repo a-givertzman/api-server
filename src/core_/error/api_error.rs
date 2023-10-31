@@ -10,16 +10,16 @@ use serde_json::json;
 #[derive(Debug, Clone, Deserialize)]
 pub struct ApiError {
     message: String,
-    details: Option<serde_json::Value>,
+    details: String,
     debug: bool,
 }
 impl ApiError {
     ///
     /// 
-    pub fn new(message: impl Into<String>, detils: Option<serde_json::Value>) -> Self {
+    pub fn new(message: impl Into<String>, details: impl Into<String>) -> Self {
         Self {
             message: message.into(),
-            details: detils,
+            details: details.into(),
             debug: false,
         }        
     }
@@ -27,8 +27,8 @@ impl ApiError {
     /// 
     pub fn empty() -> Self {
         Self {
-            message: "No errors".to_string(),
-            details: None,
+            message: "".to_string(),
+            details: "".to_string(),
             debug: false,
         }
     }
@@ -38,21 +38,21 @@ impl ApiError {
         self.debug = debug;
         self
     }
-    ///
-    /// appends error details
-    pub fn append(&mut self, err: impl Serialize) {
-        self.details = Some(            
-            match &self.details {
-                Some(details) => {
-                    json!(HashMap::from([
-                        ("curr", json!(err)),
-                        ("prev", details.to_owned()),
-                    ]))
-                },
-                None => json!(err),
-            }
-        )
-    }
+    // ///
+    // /// appends error details
+    // pub fn append(&mut self, err: impl Serialize) {
+    //     self.details = Some(            
+    //         match &self.details.is_empty() {
+    //             false => {
+                    
+    //                     ("curr", json!(err)),
+    //                     ("prev", details.to_owned()),
+    //                 ]))
+    //             },
+    //             true => json!(err),
+    //         }
+    //     )
+    // }
     ///
     /// returns json representation of the accomulated errors
     /// - deppending on "debug" option:
@@ -80,8 +80,8 @@ impl ApiError {
             true => {
                 let result = serde_json::to_value(
                     HashMap::from([
-                        ("message", MsgType::String(self.message.clone())),
-                        ("details", MsgType::Value(self.details().to_owned())),
+                        ("message", self.message.clone()),
+                        ("details", self.details),
                     ])
                 );
                 match result {
@@ -96,14 +96,6 @@ impl ApiError {
                 }
 
             }
-        }
-    }
-    ///
-    /// 
-    fn details(&self) -> &serde_json::Value {
-        match &self.details {
-            Some(details) => details,
-            None => &serde_json::Value::Null,
         }
     }
     ///

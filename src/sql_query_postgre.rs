@@ -163,8 +163,12 @@ impl SqlQuery for SqlQueryPostgre {
                         Ok(&mut newConn)
                     },
                     Err(err) => {
-                        debug!("SqlQueryPostgre.execute | connection error: {:?}", &err);
-                        Err(err)
+                        let msg = format!("SqlQueryPostgre.execute | connection error: {:?}", &err);
+                        warn!("{:?}", msg);
+                        Err(ApiError::new(
+                            "Postgres connection error",
+                            msg,
+                        ))
                     },
                 }
             },
@@ -214,8 +218,8 @@ impl SqlQuery for SqlQueryPostgre {
                         } else {
                             warn!("SqlQueryPostgre.execute | parseErrors: {:?}", parseErrors);
                             Err(ApiError::new(
-                                "SqlQueryPostgre.execute | rows parsing errors", 
-                                Some(json!(parseErrors.join("\n"))), 
+                                "Postgres rows parsing errors", 
+                                format!("SqlQueryPostgre.execute | rows parsing errors: {:?}", parseErrors.join("\n")), 
                             ))
                         }
                     },
@@ -223,16 +227,13 @@ impl SqlQuery for SqlQueryPostgre {
                         let msg = format!("SqlQueryPostgre.execute | preparing sql error: {}", err);
                         warn!("{}", msg);
                         Err(ApiError::new(
+                            "Postgres preparing sql error",
                             msg, 
-                            None, 
                         ))
                     },
                 }
             },
-            Err(err) => Err(ApiError::new(
-                err.to_string(), 
-                None, 
-            )),
+            Err(err) => Err(err),
         }
     }
 }
