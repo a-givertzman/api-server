@@ -1,28 +1,38 @@
+#![allow(non_snake_case)]
+
 use log::debug;
 
 use crate::{
     config::Config, 
-    api_query::ApiQuery, 
+    api_query::api_query::ApiQuery, 
     api_reply::SqlReply, 
-    api_query_type::ApiQueryType, 
+    api_query::api_query_type::ApiQueryType, 
     sql_query_sqlite::SqlQuerySqlite, 
     python_query::PythonQuery, 
-    executable_query::ExecutableQuery, api_service_type::ApiServiceType, sql_query::SqlQuery, sql_query_mysql::SqlQueryMysql, sql_query_postgre::SqlQueryPostgre
+    executable_query::ExecutableQuery, 
+    api_service_type::ApiServiceType, 
+    sql_query::SqlQuery, 
+    sql_query_mysql::SqlQueryMysql, 
+    sql_query_postgre::SqlQueryPostgre, 
+    core_::error::api_error::ApiError
 };
 
 ///
+/// 
 pub struct ApiServer {
     config: Config
 }
 impl ApiServer {
     ///
+    /// 
     pub fn new(config: Config) -> ApiServer {
         ApiServer {
             config,
         }
     }
     ///
-    fn execute(mut sqlQuery: Box<dyn SqlQuery>, auth_token: String, id: String, keepAlive: bool, query: String) -> SqlReply {
+    /// 
+    fn execute(mut sqlQuery: Box<dyn SqlQuery>, auth_token: String, id: String, keepAlive: bool, query: serde_json::Value, debug: bool) -> SqlReply {
         match sqlQuery.execute() {
             Ok(rows) => {                        
                 SqlReply {
@@ -31,7 +41,7 @@ impl ApiServer {
                     keepAlive,
                     query,
                     data: rows,
-                    error: String::new(),
+                    error: ApiError::empty(),
                 }
             },
             Err(err) => {
@@ -40,7 +50,7 @@ impl ApiServer {
                     id,
                     keepAlive,
                     query,
-                    err.to_string(),
+                    err.debug(debug),
                 )
             },
         }
@@ -53,7 +63,7 @@ impl ApiServer {
     pub fn build(&self, bytes: Vec<u8>) -> ApiServerResult {
         let apiQuery = ApiQuery::fromBytes(bytes);
         match apiQuery.query.clone() {            
-            ApiQueryType::Error(err) => {
+            ApiQueryType::Error(errQuery) => {
                 ApiServerResult {
                     keepAlive: apiQuery.keepAlive,
                     data: SqlReply::error(
@@ -61,7 +71,7 @@ impl ApiServer {
                         apiQuery.id,
                         apiQuery.keepAlive,
                         apiQuery.query.srcQuery(),
-                        err.err,
+                        errQuery.err().debug(apiQuery.debug),
                     ).asBytes(),
                 }
             },
@@ -79,6 +89,7 @@ impl ApiServer {
                                         apiQuery.id,
                                         apiQuery.keepAlive,
                                         sqlQuery.srcQuery(),
+                                        apiQuery.debug,
                                     ).asBytes(),
                                 }
                             },
@@ -94,6 +105,7 @@ impl ApiServer {
                                         apiQuery.id,
                                         apiQuery.keepAlive,
                                         apiQuery.query.srcQuery(),
+                                        apiQuery.debug,
                                     ).asBytes(),
                                 }
                             },
@@ -106,6 +118,7 @@ impl ApiServer {
                                         apiQuery.id,
                                         apiQuery.keepAlive,
                                         apiQuery.query.srcQuery(),
+                                        apiQuery.debug,
                                     ).asBytes(),
                                 }
                             },
@@ -116,7 +129,10 @@ impl ApiServer {
                                     apiQuery.id,
                                     apiQuery.keepAlive,
                                     apiQuery.query.srcQuery(),
-                                    format!("ApiServer.build | Error: Database service with the name '{}' can't be found", sqlQuery.database),
+                                    ApiError::new(
+                                        format!("ApiServer.build | Error: Database service with the name '{}' can't be found", sqlQuery.database),
+                                        None,
+                                    ).debug(apiQuery.debug),
                                 ).asBytes(),
                             }
                         }
@@ -128,7 +144,10 @@ impl ApiServer {
                             apiQuery.id,
                             apiQuery.keepAlive,
                             apiQuery.query.srcQuery(),
-                            format!("ApiServer.build | Error: Database service with the name '{}' can't be found", sqlQuery.database),
+                            ApiError::new(
+                                format!("ApiServer.build | Error: Database service with the name '{}' can't be found", sqlQuery.database),
+                                None,
+                            ).debug(apiQuery.debug),
                         ).asBytes(),
                     },
                 }                    
@@ -157,7 +176,7 @@ impl ApiServer {
                                                 keepAlive: apiQuery.keepAlive,
                                                 query: apiQuery.query.srcQuery(),
                                                 data: rows,
-                                                error: String::new(),
+                                                error: ApiError::empty(),
                                             }.asBytes(),
                                         }
                                     },
@@ -169,7 +188,7 @@ impl ApiServer {
                                                 apiQuery.id,
                                                 apiQuery.keepAlive,
                                                 apiQuery.query.srcQuery(),
-                                                err.to_string(),
+                                                err.debug(apiQuery.debug),
                                             ).asBytes(),
                                         }
                                     },
@@ -183,7 +202,10 @@ impl ApiServer {
                                         apiQuery.id,
                                         apiQuery.keepAlive,
                                         apiQuery.query.srcQuery(),
-                                        format!("ApiServer.build | pyton script does not exists: {}", path),
+                                        ApiError::new(
+                                            format!("ApiServer.build | pyton script does not exists: {}", path), 
+                                            None
+                                        ).debug(apiQuery.debug),
                                     ).asBytes(),
                                 }
                             },
@@ -197,7 +219,10 @@ impl ApiServer {
                                 apiQuery.id,
                                 apiQuery.keepAlive,
                                 apiQuery.query.srcQuery(),
-                                format!("ApiServer.build | Error: Script with the name '{}' can't be found", pyQuery.script),
+                                ApiError::new(
+                                    format!("ApiServer.build | Error: Script with the name '{}' can't be found", pyQuery.script),
+                                    None,
+                                ).debug(apiQuery.debug),
                             ).asBytes(),
                         }
                     },
@@ -228,7 +253,7 @@ impl ApiServer {
                                                 keepAlive: apiQuery.keepAlive,
                                                 query: apiQuery.query.srcQuery(),
                                                 data: rows,
-                                                error: String::new(),
+                                                error: ApiError::empty(),
                                             }.asBytes(),
                                         }
                                     },
@@ -240,7 +265,7 @@ impl ApiServer {
                                                 apiQuery.id,
                                                 apiQuery.keepAlive,
                                                 apiQuery.query.srcQuery(),
-                                                err.to_string(),
+                                                err.debug(apiQuery.debug),
                                             ).asBytes()
                                         }
                                     },
@@ -254,7 +279,10 @@ impl ApiServer {
                                         apiQuery.id,
                                         apiQuery.keepAlive,
                                         apiQuery.query.srcQuery(),
-                                        format!("ApiServer.build | Error: Executable does not exists: {}", path),
+                                        ApiError::new(
+                                            format!("ApiServer.build | Error: Executable does not exists: {}", path),
+                                            None,
+                                        ).debug(apiQuery.debug),
                                     ).asBytes(),
                                 }
                             },
@@ -268,7 +296,10 @@ impl ApiServer {
                                 apiQuery.id,
                                 apiQuery.keepAlive,
                                 apiQuery.query.srcQuery(),
-                                format!("ApiServer.build | Error: Executable with the name '{}' can't be found", exQuery.name),
+                                ApiError::new(
+                                    format!("ApiServer.build | Error: Executable with the name '{}' can't be found", exQuery.name),
+                                    None,
+                                ).debug(apiQuery.debug),
                             ).asBytes()
                         }
                     },
@@ -282,7 +313,10 @@ impl ApiServer {
                         apiQuery.id,
                         apiQuery.keepAlive,
                         apiQuery.query.srcQuery(),
-                        "ApiServer.build | Error: Unknown type of API query".into(),
+                        ApiError::new(
+                            "ApiServer.build | Error: Unknown type of API query",
+                            None,
+                        ).debug(apiQuery.debug),
                     ).asBytes(),
                 }
             },

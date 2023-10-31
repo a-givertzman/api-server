@@ -4,8 +4,9 @@ use std::collections::HashMap;
 
 use log::{debug, warn};
 use rusqlite::{Connection, Statement, OpenFlags};
+use serde_json::json;
 
-use crate::{sql_query::{SqlQuery, ErrorString}, config::ServiceConfig};
+use crate::{sql_query::SqlQuery, config::ServiceConfig, core_::error::api_error::ApiError};
 
 type RowMap = HashMap<String, serde_json::Value>;
 
@@ -33,7 +34,7 @@ impl SqlQueryMysql {
 }
 
 impl SqlQuery for SqlQueryMysql {
-    fn execute(&mut self) -> Result<Vec<RowMap>, ErrorString> {
+    fn execute(&mut self) -> Result<Vec<RowMap>, ApiError> {
         let newConn: Connection;
         let connection: Result<&Connection, String> = match &self.connection {
             Some(connection) => {
@@ -93,18 +94,29 @@ impl SqlQuery for SqlQueryMysql {
                                 }
                             },
                             Err(err) => {
-                                warn!("SqlQueryMysql.execute | getting rows error: {:?}", err);
+                                warn!("SqlQueryMysql.execute | can't get rows: {:?}", err);
                             },
                         }
                         Ok(result)
                     },
                     Err(err) => {
-                        warn!("SqlQueryMysql.execute | preparing sql error: {:?}", err);
-                        Err(err.to_string())
+                        let msg = format!("SqlQueryMysql.execute | preparing sql error: {:?}", err);
+                        warn!("{}", &msg);
+                        Err(ApiError::new(
+                            msg, 
+                            None, 
+                        ))
                     },
                 }
             },
-            Err(err) => Err(format!("SqlQueryMysql.execute | Database connection error: '{}' can't be found", err)),
+            Err(err) => {
+                let msg = format!("SqlQueryMysql.execute | Database connection error: '{}' can't be found", err);
+                warn!("{}", msg);
+                Err(ApiError::new(
+                    msg, 
+                    None, 
+                ))
+            }
         }
     }
 }

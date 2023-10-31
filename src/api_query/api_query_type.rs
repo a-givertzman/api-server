@@ -7,27 +7,27 @@ use serde::{
 };
 
 use crate::{
-    api_query_sql::ApiQuerySql,
-    api_query_python::ApiQueryPython, 
-    api_query_executable::ApiQueryExecutable, 
-    api_query_unknown::ApiQueryUnknown, 
-    api_query_error::ApiQueryError,
+    api_query::api_query_sql::ApiQuerySql,
+    api_query::api_query_python::ApiQueryPython, 
+    api_query::api_query_executable::ApiQueryExecutable, 
+    api_query::api_query_unknown::ApiQueryUnknown, 
+    api_query::api_query_error::ApiQueryError, 
 };
 
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 // #[serde(rename_all = "lowercase")]
 pub enum ApiQueryType {
-    Error(ApiQueryError),
     Sql(ApiQuerySql),
     Python(ApiQueryPython),
     Executable(ApiQueryExecutable),
     Unknown(ApiQueryUnknown),
+    Error(ApiQueryError),
 }
 impl ApiQueryType {
-    pub fn srcQuery(&self) -> String {
+    pub fn srcQuery(&self) -> serde_json::Value {
         match self {
-            ApiQueryType::Error(apiQueryError) => apiQueryError.to_owned().srcQuery(),
+            ApiQueryType::Error(apiError) => apiError.to_owned().srcQuery(),
             ApiQueryType::Sql(apiQuerySql) => apiQuerySql.to_owned().srcQuery(),
             ApiQueryType::Python(apiQueryPython) => apiQueryPython.to_owned().srcQuery(),
             ApiQueryType::Executable(apiQueryExecutable) => apiQueryExecutable.to_owned().srcQuery(),

@@ -4,15 +4,17 @@ use std::collections::HashMap;
 
 use serde::{Serialize, Deserialize};
 
+use crate::core_::error::api_error::ApiError;
+
 ///
 #[derive(Debug, Serialize, Deserialize)]
 pub struct SqlReply {
     pub auth_token: String,
     pub id: String,
     pub keepAlive: bool,
-    pub query: String,      //ApiQueryType,
+    pub query: serde_json::Value,
     pub data: Vec<HashMap<String, serde_json::Value>>, //Vec<(String, Option<String>)>,
-    pub error: String,
+    pub error: ApiError,
 
 }
 impl SqlReply {
@@ -45,8 +47,8 @@ impl SqlReply {
         auth_token: String,
         id: String,
         keepAlive: bool,
-        query: String,  //ApiQueryType, 
-        error: String,
+        query: serde_json::Value, 
+        error: ApiError,
     ) -> Self {
         SqlReply {
             auth_token,

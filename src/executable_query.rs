@@ -6,6 +6,8 @@ use std::process::{Command, Stdio};
 
 use log::{debug, warn};
 
+use crate::core_::error::api_error::ApiError;
+
 type RowMap = HashMap<String, serde_json::Value>;
 ///
 /// 
@@ -23,7 +25,7 @@ impl ExecutableQuery {
         }
     }
     ///
-    pub fn execute(&self) -> Result<Vec<RowMap>, String> {
+    pub fn execute(&self) -> Result<Vec<RowMap>, ApiError> {
         let program = self.path.clone();
         debug!("ExecutableQuery.execute | executing: {:?}\n\twith params: {:?}", self.path, self.params);
         debug!("ExecutableQuery.execute | executing command: {:?}", program);
@@ -56,27 +58,27 @@ impl ExecutableQuery {
                                 Err(err) => {
                                     let message = format!("ExecutableQuery.execute | executable result json parsing error: {:?}", err);
                                     warn!("{}", message);
-                                    Err(message)        
+                                    Err(ApiError::new(message, None))        
                                 },
                             }
                         } else {
                             let err = String::from_utf8(output.stderr).unwrap();
                             let message = format!("ExecutableQuery.execute | executable error: {:?}", err);
                             warn!("{}", message);
-                            Err(message)
+                            Err(ApiError::new(message, None))        
                         }
                     },
                     Err(err) => {
                         let message = format!("ExecutableQuery.execute | executable error: {:?}", err);
                         warn!("{}", message);
-                        Err(message)
+                        Err(ApiError::new(message, None))        
                     },
                 }
             },
             Err(err) => {
                 let message = format!("PythonQuery.execute | executable params parsing error: {:?}", err);
                 warn!("{}", message);
-                Err(message)
+                Err(ApiError::new(message, None))        
             },
         }
     }    

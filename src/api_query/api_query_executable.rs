@@ -3,16 +3,18 @@
 use log::{debug, warn};
 use serde::{Serialize, Deserialize};
 
+use crate::core_::error::api_error::ApiError;
+
 ///
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ApiQueryExecutable {
     pub name: String,
     pub params: serde_json::Map<String, serde_json::Value>,
-    src: String,
+    src: serde_json::Value,
 }
 impl ApiQueryExecutable {
     ///
-    pub fn fromJson(jsonMap: serde_json::Value) -> Result<Self, String> {
+    pub fn fromJson(jsonMap: serde_json::Value, debug: bool) -> Result<Self, ApiError> {
         let key = "name";
         if let serde_json::Value::String(name) = &jsonMap[key] {
             debug!("[ApiQueryExecutable.fromJson] field '{}': {:?}", &key, &name);
@@ -22,17 +24,17 @@ impl ApiQueryExecutable {
                 return Ok(ApiQueryExecutable {
                     name: name.to_owned(), 
                     params: params.to_owned(), 
-                    src: jsonMap.to_string(),
+                    src: jsonMap,
                 });
             } else {
                 let msg = format!("[ApiQueryExecutable.fromJson] field '{}' of type Map not found or invalid content", key);
                 warn!("{}", msg);
-                return Err(msg);
+                return Err(ApiError::new(msg, None));
             }
         } else {
             let msg = format!("[ApiQueryExecutable.fromJson] field '{}' of type String not found or invalid content", key);
             warn!("{}", msg);
-            return Err(msg);
+                return Err(ApiError::new(msg, None));
         }
     }
     ///
@@ -57,7 +59,7 @@ impl ApiQueryExecutable {
     //     query
     // }
     ///
-    pub fn srcQuery(self) -> String {
+    pub fn srcQuery(self) -> serde_json::Value {
         self.src
     }
 }

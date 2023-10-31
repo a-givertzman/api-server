@@ -11,7 +11,7 @@ use serde_json::json;
 
 use log::{debug, warn, trace, LevelFilter};
 
-use crate::{sql_query::{SqlQuery, ErrorString}, config::ServiceConfig};
+use crate::{sql_query::SqlQuery, config::ServiceConfig, core_::error::api_error::ApiError};
 
 type RowMap = HashMap<String, serde_json::Value>;
 
@@ -33,7 +33,7 @@ impl SqlQueryPostgre {
         }
     }
     ///
-    fn asJson(&self, t: &Type, row: &postgres::Row, idx: &str) -> (serde_json::Value, ErrorString) {
+    fn asJson(&self, t: &Type, row: &postgres::Row, idx: &str) -> (serde_json::Value, String) {
         match t.to_owned() {
             Type::BOOL => (self.asJson_::<bool>(t, row, idx), String::new()),
             Type::INT2 => (self.asJson_::<i16>(t, row, idx), String::new()),
@@ -144,7 +144,7 @@ impl SqlQueryPostgre {
 }
 ///
 impl SqlQuery for SqlQueryPostgre {
-    fn execute(&mut self) -> Result<Vec<RowMap>, ErrorString> {
+    fn execute(&mut self) -> Result<Vec<RowMap>, ApiError> {
         let mut newConn: Client;
         let connection = match &mut self.connection {
             Some(connection) => {
@@ -188,7 +188,7 @@ impl SqlQuery for SqlQueryPostgre {
                                     let mut rowMap = HashMap::new();
                                     for column in row.columns() {
                                         let idx = column.name();
-                                        let (value, err): (serde_json::Value, ErrorString) = self.asJson(column.type_(), &row, &idx);
+                                        let (value, err): (serde_json::Value, String) = self.asJson(column.type_(), &row, &idx);
                                         if !err.is_empty() {
                                             parseErrors.push(err);
                                         }
@@ -209,23 +209,30 @@ impl SqlQuery for SqlQueryPostgre {
                             debug!("SqlQueryPostgre.execute | result: {:?} rows fetched", result.len());
                             debug!("SqlQueryPostgre.execute | result: {:?}", result);
                         }
-                        if parseErrors.len() > 0 {
-                            warn!("SqlQueryPostgre.execute | parseErrors: {:?}", parseErrors);
-                        }
                         if parseErrors.is_empty() {
                             Ok(result)
                         } else {
-                            Err(parseErrors.join("\n"))
+                            warn!("SqlQueryPostgre.execute | parseErrors: {:?}", parseErrors);
+                            Err(ApiError::new(
+                                "SqlQueryPostgre.execute | rows parsing errors", 
+                                Some(json!(parseErrors.join("\n"))), 
+                            ))
                         }
                     },
                     Err(err) => {
-                        let msg = format!("SqlQueryPostgre.execute | preparing sql error: {:?}", err);
+                        let msg = format!("SqlQueryPostgre.execute | preparing sql error: {}", err);
                         warn!("{}", msg);
-                        Err(msg)
+                        Err(ApiError::new(
+                            msg, 
+                            None, 
+                        ))
                     },
                 }
             },
-            Err(err) => Err(format!("SqlQueryPostgre.execute | Database connection error: '{}'", err)),
+            Err(err) => Err(ApiError::new(
+                err.to_string(), 
+                None, 
+            )),
         }
     }
 }

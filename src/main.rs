@@ -2,14 +2,9 @@
 
 extern crate postgres;
 
+mod core_;
 mod config;
 mod api_server;
-mod api_query_type;
-mod api_query_sql;
-mod api_query_python;
-mod api_query_executable;
-mod api_query_unknown;
-mod api_query_error;
 mod api_query;
 mod api_reply;
 mod tcp_server;

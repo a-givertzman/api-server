@@ -5,7 +5,7 @@ use std::collections::HashMap;
 use log::{debug, warn};
 use rusqlite::{Connection, Statement, OpenFlags};
 
-use crate::{sql_query::{SqlQuery, ErrorString}, config::ServiceConfig};
+use crate::{sql_query::SqlQuery, config::ServiceConfig, core_::error::api_error::ApiError};
 
 type RowMap = HashMap<String, serde_json::Value>;
 
@@ -33,9 +33,9 @@ impl SqlQuerySqlite {
 }
 
 impl SqlQuery for SqlQuerySqlite {
-    fn execute(&mut self) -> Result<Vec<RowMap>, ErrorString> {
+    fn execute(&mut self) -> Result<Vec<RowMap>, ApiError> {
         let newConn: Connection;
-        let connection: Result<&Connection, ErrorString> = match &self.connection {
+        let connection: Result<&Connection, ApiError> = match &self.connection {
             Some(connection) => {
                 Ok(connection)
             },
@@ -51,15 +51,24 @@ impl SqlQuery for SqlQuerySqlite {
                                         newConn = conn;
                                         Ok(&newConn)
                                     },
-                                    Err(err) => Err(format!("SqlQuerySqlite.execute | Database connection error: {}", err)),
+                                    Err(err) => Err( ApiError::new(
+                                        format!("SqlQuerySqlite.execute | Database connection error: {}", err),
+                                        None,
+                                    )),
                                 }
                             },
                             None => {
-                                Err(format!("SqlQuerySqlite.execute | Invalid path to the Database file: {:?}/{}", dir, self.dbConfig.path))
+                                Err( ApiError::new(
+                                    format!("SqlQuerySqlite.execute | Invalid path to the Database file: {:?}/{}", dir, self.dbConfig.path),
+                                    None,
+                                ))
                             },
                         }
                     },
-                    Err(err) => Err(format!("SqlQuerySqlite.execute | Database connection error: {}", err)),
+                    Err(err) => Err( ApiError::new(
+                        format!("SqlQuerySqlite.execute | Database connection error: {}", err), 
+                        None,
+                    )),
                 }
             },
         };
@@ -112,12 +121,17 @@ impl SqlQuery for SqlQuerySqlite {
                         Ok(result)
                     },
                     Err(err) => {
-                        warn!("SqlQuerySqlite.execute | preparing sql error: {:?}", err);
-                        Err(err.to_string())
+                        let msg = format!("SqlQuerySqlite.execute | preparing sql error: {:?}", err);
+                        warn!("{}", msg);
+                        Err(ApiError::new(msg, None))
                     },
                 }
             },
-            Err(err) => Err(format!("SqlQuerySqlite.execute | Database connection error: {}", err)),
+            Err(err) => {
+                let msg = format!("SqlQuerySqlite.execute | Database connection error: {:?}", err);
+                warn!("{}", msg);
+                Err(err)
+            },
         }
     }
 }

@@ -14,5 +14,6 @@
                 "sql": "Some valid sql query"
             } 
         }
-    }
+    },
+    "debug": false
 }
