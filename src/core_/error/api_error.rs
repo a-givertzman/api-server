@@ -3,11 +3,11 @@
 use std::collections::HashMap;
 
 // use log::{debug, warn};
-use serde::{Serialize, Deserialize};
+use serde::{Serialize, Deserialize, Serializer, ser::SerializeStruct};
 use serde_json::json;
 
 ///
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Deserialize)]
 pub struct ApiError {
     message: String,
     details: Option<serde_json::Value>,
@@ -125,7 +125,22 @@ enum MsgType {
     String(String),
 }
 
-
+impl Serialize for ApiError {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error> where
+    S: Serializer, {
+        if self.debug {
+            let mut state = serializer.serialize_struct("ApiError", 2)?;
+            state.serialize_field("message", &self.message)?;
+            state.serialize_field("details", &self.details)?;
+            state.end()
+        } else {
+            let mut state = serializer.serialize_struct("ApiError", 1)?;
+            state.serialize_field("message", &self.message)?;
+            state.end()
+        }
+        // 3 is the number of fields in the struct.
+    }
+}
 
 
 
