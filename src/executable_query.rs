@@ -31,7 +31,7 @@ impl ExecutableQuery {
         debug!("ExecutableQuery.execute | executing command: {:?}", program);
         match serde_json::to_string(&(self.params)) {
             Ok(params) => {
-                match Command::new(program)
+                match Command::new(program.clone())
                     // .arg(path)
                     .stdin(Stdio::piped())
                     .stderr(Stdio::piped())

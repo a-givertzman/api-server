@@ -29,14 +29,20 @@ impl ApiQuerySql {
                     src: jsonMap,
                 });
             } else {
-                let msg = format!("[ApiQuerySql.fromJson] field '{}' of type String not found or invalid content", key);
-                warn!("{}", msg);
-                return Err(ApiError::new(msg, None));
+                let details = format!("[ApiQuerySql.fromJson] field '{}' of type String not found or invalid content", key);
+                warn!("{}", details);
+                return Err(ApiError::new(
+                    format!("API SQL Service - invalid query (near field \"{}\")", key), 
+                    details,
+                ));
             }
         } else {
-            let msg = format!("[ApiQuerySql.fromJson] field '{}' of type String not found or invalid content", key);
-            warn!("{}", msg);
-            return Err(ApiError::new(msg, None));
+            let details = format!("[ApiQuerySql.fromJson] field '{}' of type String not found or invalid content", key);
+            warn!("{}", details);
+            return Err(ApiError::new(
+                format!("API SQL Service - invalid query (near field \"{}\")", key), 
+                details,
+            ));
         }
     }
     ///

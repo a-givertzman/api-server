@@ -92,8 +92,9 @@ impl SqlQuery for SqlQuerySqlite {
                             cNames.push(item.to_string());
                         }
                         let mut stmt = SqlQuerySqlite::fakeStmtClone(stmt);
+                        let queryResult = stmt.query([]);
                         let mut result = vec![];
-                        match stmt.query([]) {
+                        match queryResult {
                             Ok(mut rows) => {
                                 let mut parseErrors = vec![];
                                 while let Some(row) = rows.next().unwrap() {
@@ -122,7 +123,7 @@ impl SqlQuery for SqlQuerySqlite {
                                                 rowMap.insert(String::from(cName), value);
                                             },
                                             Err(err) => {
-                                                parseErrors.push(format!("SqlQuerySqlite.execute | Error getting value from \"{}\" field", cName));
+                                                parseErrors.push(format!("SqlQuerySqlite.execute | Error getting value from \"{}\" field; Error: {:?}", cName, err));
                                             },
                                         }
                                     }

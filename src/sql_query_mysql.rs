@@ -68,8 +68,9 @@ impl SqlQuery for SqlQueryMysql {
                             cNames.push(item.to_string());
                         }
                         let mut stmt = SqlQueryMysql::fakeStmtClone(stmt);
+                        let queryResult = stmt.query([]);
                         let mut result = vec![];
-                        match stmt.query([]) {
+                        match queryResult {
                             Ok(mut rows) => {
                                 let mut parseErrors = vec![];
                                 while let Some(row) = rows.next().unwrap() {
@@ -98,7 +99,7 @@ impl SqlQuery for SqlQueryMysql {
                                                 rowMap.insert(String::from(cName), value);        
                                             },
                                             Err(err) => {
-                                                parseErrors.push(format!("SqlQueryMysql.execute | Error getting value from \"{}\" field", cName));
+                                                parseErrors.push(format!("SqlQueryMysql.execute | Error getting value from \"{}\" field; Error: {:?}", cName, err));
                                             },
                                         };
                                     };

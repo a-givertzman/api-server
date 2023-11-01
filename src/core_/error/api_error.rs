@@ -81,7 +81,7 @@ impl ApiError {
                 let result = serde_json::to_value(
                     HashMap::from([
                         ("message", self.message.clone()),
-                        ("details", self.details),
+                        ("details", self.details.clone()),
                     ])
                 );
                 match result {

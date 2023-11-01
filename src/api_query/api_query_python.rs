@@ -27,14 +27,20 @@ impl ApiQueryPython {
                     src: jsonMap,
                 });
             } else {
-                let msg = format!("[ApiQueryPython.fromJson] field '{}' of type Map not found or invalid content", key);
-                warn!("{}", msg);
-                return Err(ApiError::new(msg, None));
+                let details = format!("[ApiQueryPython.fromJson] field '{}' of type Map not found or invalid content", key);
+                warn!("{}", details);
+                return Err(ApiError::new(
+                    format!("API Python Script Service - invalid query (near field \"{}\")", key), 
+                    details,
+                ));
             }
         } else {
-            let msg = format!("[ApiQueryPython.fromJson] field '{}' of type String not found or invalid content", key);
-            warn!("{}", msg);
-                return Err(ApiError::new(msg, None));
+            let details = format!("[ApiQueryPython.fromJson] field '{}' of type String not found or invalid content", key);
+            warn!("{}", details);
+            return Err(ApiError::new(
+                format!("API Python Script Service - invalid query (near field \"{}\")", key), 
+                details,
+            ));
         }
     }
     ///

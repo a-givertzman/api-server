@@ -33,7 +33,7 @@ impl PythonQuery {
         match serde_json::to_string(&(self.params)) {
             Ok(params) => {
                 match Command::new(program)
-                    .arg(path)
+                    .arg(&path)
                     .stdin(Stdio::piped())
                     .stderr(Stdio::piped())
                     .stdout(Stdio::piped())

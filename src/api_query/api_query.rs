@@ -120,7 +120,7 @@ impl ApiQuery {
                 trace!("ApiQuery.fromBytes | queryString: {:?}", queryString);
                 match serde_json::from_str::<serde_json::Value>(queryString) {
                     Ok(json) => {
-                        match json.as_object() {
+                        match &json.as_object() {
                             Some(obj) => {
                                 let mut errors = vec![];
                                 match obj.getValue("auth_token") {
@@ -151,7 +151,7 @@ impl ApiQuery {
                                             auth_token,
                                             id,
                                             query: ApiQueryType::Error( ApiQueryError::new(
-                                                json,
+                                                json.clone(),
                                                 ApiError::new(
                                                     format!("API Service - invalid query: {:?}", json), 
                                                     format!("ApiQuery.fromBytes | errors: {:?}", details), 
@@ -191,7 +191,7 @@ impl ApiQuery {
                                     auth_token,
                                     id,
                                     query: ApiQueryType::Error( ApiQueryError::new(
-                                        json, 
+                                        json.clone(), 
                                         ApiError::new(
                                             format!("API Service - invalid query: {:?}", json), 
                                             details,
