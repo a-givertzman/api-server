@@ -163,11 +163,11 @@ impl SqlQuery for SqlQueryPostgre {
                         Ok(&mut newConn)
                     },
                     Err(err) => {
-                        let msg = format!("SqlQueryPostgre.execute | connection error: {:?}", &err);
-                        warn!("{:?}", msg);
+                        let details = format!("SqlQueryPostgre.execute | connection error: {:?}", &err);
+                        warn!("{:?}", details);
                         Err(ApiError::new(
-                            "Postgres connection error",
-                            msg,
+                            "Postgres database - connection error",
+                            details,
                         ))
                     },
                 }
@@ -178,15 +178,14 @@ impl SqlQuery for SqlQueryPostgre {
                 debug!("SqlQueryPostgre.execute | preparing sql: {:?}", self.sql);
                 match connection.prepare(self.sql.as_str()) {
                     Ok(stmt) => {
-                        let mut parseErrors = vec![];
                         let mut cNames = vec![];
                         for column in stmt.columns() {
                             cNames.push(column.name().to_string());
                         }
-                        let sqlRows = connection.query(&stmt, &[]);
                         let mut result = vec![];
-                        match sqlRows {
+                        match connection.query(&stmt, &[]) {
                             Ok(rows) => {
+                                let mut parseErrors = vec![];
                                 for row in rows {
                                     trace!("SqlQueryPostgre.execute | row: {:?}", row);
                                     let mut rowMap = HashMap::new();
@@ -200,35 +199,39 @@ impl SqlQuery for SqlQueryPostgre {
                                     }
                                     result.push(rowMap);
                                 }
+                                if log::max_level() == LevelFilter::Trace {
+                                    trace!("SqlQueryPostgre.execute | result: {:?}", result);
+                                } else {
+                                    debug!("SqlQueryPostgre.execute | result: {:?} rows fetched", result.len());
+                                    debug!("SqlQueryPostgre.execute | result: {:?}", result);
+                                }
+                                if parseErrors.is_empty() {
+                                    Ok(result)
+                                } else {
+                                    let details = format!("SqlQueryPostgre.execute | rows parsing errors: {:?}", parseErrors.join("\n"));
+                                    warn!("{}", details);
+                                    Err(ApiError::new(
+                                        "Postgres database - rows parsing errors", 
+                                        details,
+                                    ))
+                                }
                             },
                             Err(err) => {
-                                let msg = format!("SqlQueryPostgre.execute | getting rows error: {:?}", err);
-                                warn!("{}", msg);
-                                parseErrors.push(msg)
+                                let details = format!("SqlQueryPostgre.execute | sql query error: {:?}", err);
+                                warn!("{}", details);
+                                Err(ApiError::new(
+                                    "Postgres database - sql query error", 
+                                    details, 
+                                ))
                             },
-                        }
-                        if log::max_level() == LevelFilter::Trace {
-                            trace!("SqlQueryPostgre.execute | result: {:?}", result);
-                        } else {
-                            debug!("SqlQueryPostgre.execute | result: {:?} rows fetched", result.len());
-                            debug!("SqlQueryPostgre.execute | result: {:?}", result);
-                        }
-                        if parseErrors.is_empty() {
-                            Ok(result)
-                        } else {
-                            warn!("SqlQueryPostgre.execute | parseErrors: {:?}", parseErrors);
-                            Err(ApiError::new(
-                                "Postgres rows parsing errors", 
-                                format!("SqlQueryPostgre.execute | rows parsing errors: {:?}", parseErrors.join("\n")), 
-                            ))
                         }
                     },
                     Err(err) => {
-                        let msg = format!("SqlQueryPostgre.execute | preparing sql error: {}", err);
-                        warn!("{}", msg);
+                        let details = format!("SqlQueryPostgre.execute | sql preparing error: {}", err);
+                        warn!("{}", details);
                         Err(ApiError::new(
-                            "Postgres preparing sql error",
-                            msg, 
+                            "Postgres database - sql preparing error",
+                            details, 
                         ))
                     },
                 }
@@ -279,6 +282,21 @@ impl FromSql<'_> for GenericEnum {
         ty.name().contains("enum")
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // #[derive(Debug)]
 // // #[derive(ToSql, FromSql, Debug, PartialEq, Serialize, Deserialize)]
 // // #[postgres(name = "process_status")]

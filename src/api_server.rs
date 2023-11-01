@@ -130,8 +130,8 @@ impl ApiServer {
                                     apiQuery.keepAlive,
                                     apiQuery.query.srcQuery(),
                                     ApiError::new(
+                                        format!("API Server - Database service with the name '{}' can't be found", sqlQuery.database),
                                         format!("ApiServer.build | Error: Database service with the name '{}' can't be found", sqlQuery.database),
-                                        None,
                                     ).debug(apiQuery.debug),
                                 ).asBytes(),
                             }
@@ -145,8 +145,8 @@ impl ApiServer {
                             apiQuery.keepAlive,
                             apiQuery.query.srcQuery(),
                             ApiError::new(
+                                format!("API Server - Database service with the name '{}' can't be found", sqlQuery.database),
                                 format!("ApiServer.build | Error: Database service with the name '{}' can't be found", sqlQuery.database),
-                                None,
                             ).debug(apiQuery.debug),
                         ).asBytes(),
                     },
@@ -203,8 +203,8 @@ impl ApiServer {
                                         apiQuery.keepAlive,
                                         apiQuery.query.srcQuery(),
                                         ApiError::new(
+                                            format!("API Server - pyton script does not exists: {}", path), 
                                             format!("ApiServer.build | pyton script does not exists: {}", path), 
-                                            None
                                         ).debug(apiQuery.debug),
                                     ).asBytes(),
                                 }
@@ -220,8 +220,8 @@ impl ApiServer {
                                 apiQuery.keepAlive,
                                 apiQuery.query.srcQuery(),
                                 ApiError::new(
+                                    format!("API Server - Script with the name '{}' can't be found", pyQuery.script),
                                     format!("ApiServer.build | Error: Script with the name '{}' can't be found", pyQuery.script),
-                                    None,
                                 ).debug(apiQuery.debug),
                             ).asBytes(),
                         }
@@ -280,8 +280,8 @@ impl ApiServer {
                                         apiQuery.keepAlive,
                                         apiQuery.query.srcQuery(),
                                         ApiError::new(
+                                            format!("API Server - Executable does not exists: {}", path),
                                             format!("ApiServer.build | Error: Executable does not exists: {}", path),
-                                            None,
                                         ).debug(apiQuery.debug),
                                     ).asBytes(),
                                 }
@@ -297,8 +297,8 @@ impl ApiServer {
                                 apiQuery.keepAlive,
                                 apiQuery.query.srcQuery(),
                                 ApiError::new(
-                                    format!("ApiServer.build | Error: Executable with the name '{}' can't be found", exQuery.name),
-                                    None,
+                                    format!("API Server - Executable service with name '{}' can't be found", exQuery.name),
+                                    format!("ApiServer.build | Error: Executable service with name '{}' can't be found", exQuery.name),
                                 ).debug(apiQuery.debug),
                             ).asBytes()
                         }
@@ -314,8 +314,8 @@ impl ApiServer {
                         apiQuery.keepAlive,
                         apiQuery.query.srcQuery(),
                         ApiError::new(
+                            "API Server - Unknown type of API query",
                             "ApiServer.build | Error: Unknown type of API query",
-                            None,
                         ).debug(apiQuery.debug),
                     ).asBytes(),
                 }

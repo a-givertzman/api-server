@@ -146,15 +146,15 @@ impl ApiQuery {
                                     Err(_) => {},
                                 };
                                 match errors.get(0) {
-                                    Some(msg) => {
+                                    Some(details) => {
                                         ApiQuery {
                                             auth_token,
                                             id,
                                             query: ApiQueryType::Error( ApiQueryError::new(
                                                 json,
                                                 ApiError::new(
-                                                    format!("ApiQuery.fromBytes | errors: {:?}", msg), 
-                                                    Some(json!(errors.join(";\n"))), 
+                                                    format!("API Service - invalid query: {:?}", json), 
+                                                    format!("ApiQuery.fromBytes | errors: {:?}", details), 
                                                 ),
                                             )),
                                             keepAlive,
@@ -185,16 +185,16 @@ impl ApiQuery {
                                 }
                             },
                             None => {
-                                let msg = format!("ApiQuery.fromBytes | json parsing error: type Map not found in json: {:?}", queryString);
-                                warn!("{}", msg);
+                                let details = format!("ApiQuery.fromBytes | json parsing error: type Map not found in json: {:?}", queryString);
+                                warn!("{}", details);
                                 ApiQuery {
                                     auth_token,
                                     id,
                                     query: ApiQueryType::Error( ApiQueryError::new(
                                         json, 
                                         ApiError::new(
-                                            msg,
-                                            None,
+                                            format!("API Service - invalid query: {:?}", json), 
+                                            details,
                                         ),
                                     )),
                                     keepAlive,
@@ -204,16 +204,16 @@ impl ApiQuery {
                         }
                     },
                     Err(err) => {
-                        let msg = format!("ApiQuery.fromBytes | json parsing error: {:?}, \n\t json: {:?}", err, queryString);
-                        warn!("{}", msg);
+                        let details = format!("ApiQuery.fromBytes | json parsing error: {:?}", err);
+                        warn!("{} \n\tin query: {}", details, queryString);
                         ApiQuery {
                             auth_token,
                             id,
                             query: ApiQueryType::Error( ApiQueryError::new(
                                 json!(queryString), 
                                 ApiError::new(
-                                    err.to_string(),
-                                    None,
+                                    format!("API Service - invalid query: {:?}", queryString), 
+                                    details,
                                 )
                             )),
                             keepAlive,
@@ -223,9 +223,8 @@ impl ApiQuery {
                 }
             },
             Err(err) => {
-                let msg = format!("ApiQuery.fromBytes | bytes parsing error: {:?}", err);
-                // let msg = format!("ApiQuery.fromBytes | bytes parsing error: {:?}, \n\t bytes: {:?}", err, refBytes);
-                warn!("{}", msg);
+                let details = format!("ApiQuery.fromBytes | bytes parsing error: {:?}", err);
+                warn!("{} \n\tin query: {:?}", details, refBytes);
                 let collected: Vec<String> = refBytes.iter().map(|a| a.to_string()).collect();
                 ApiQuery {
                     auth_token,
@@ -233,8 +232,8 @@ impl ApiQuery {
                     query: ApiQueryType::Error( ApiQueryError::new(
                         json!(collected), 
                         ApiError::new(
-                            msg,
-                            None,
+                            format!("API Service - invalid query: {:?}", refBytes), 
+                            details,
                         )
                     )),
                     keepAlive,

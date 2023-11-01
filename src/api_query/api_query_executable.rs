@@ -27,14 +27,14 @@ impl ApiQueryExecutable {
                     src: jsonMap,
                 });
             } else {
-                let msg = format!("[ApiQueryExecutable.fromJson] field '{}' of type Map not found or invalid content", key);
-                warn!("{}", msg);
-                return Err(ApiError::new(msg, None));
+                let details = format!("[ApiQueryExecutable.fromJson] field '{}' of type Map not found or invalid content", key);
+                warn!("{}", details);
+                return Err(ApiError::new(format!("Executable service - invalid query (near field \"{}\")", key), details));
             }
         } else {
-            let msg = format!("[ApiQueryExecutable.fromJson] field '{}' of type String not found or invalid content", key);
-            warn!("{}", msg);
-                return Err(ApiError::new(msg, None));
+            let details = format!("[ApiQueryExecutable.fromJson] field '{}' of type String not found or invalid content", key);
+            warn!("{}", details);
+            return Err(ApiError::new(format!("Executable service - invalid query (near field \"{}\")", key), details));
         }
     }
     ///

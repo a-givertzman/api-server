@@ -46,29 +46,39 @@ impl SqlQuery for SqlQuerySqlite {
                             Some(dir) => {
                                 let path: &str = &format!("{}/{}", dir, self.dbConfig.path);
                                 debug!("SqlQuerySqlite.execute | database address: {:?}", path);
-                                match Connection::open_with_flags(path, OpenFlags::SQLITE_OPEN_READ_WRITE) {        // ::open(path).unwrap();
+                                match Connection::open_with_flags(path, OpenFlags::SQLITE_OPEN_READ_WRITE) {
                                     Ok(conn) => {
                                         newConn = conn;
                                         Ok(&newConn)
                                     },
-                                    Err(err) => Err( ApiError::new(
-                                        format!("SqlQuerySqlite.execute | Database connection error: {}", err),
-                                        None,
-                                    )),
+                                    Err(err) => {
+                                        let detailed = format!("SqlQuerySqlite.execute | Database connection error: {}", err);
+                                        warn!("{}", detailed);
+                                        Err( ApiError::new(
+                                            "SQLite database - connection error",
+                                            detailed,
+                                        ))
+                                    },
                                 }
                             },
                             None => {
+                                let details = format!("SqlQuerySqlite.execute | Invalid path to the Database file: {:?}/{}", dir, self.dbConfig.path);
+                                warn!("{}", details);
                                 Err( ApiError::new(
-                                    format!("SqlQuerySqlite.execute | Invalid path to the Database file: {:?}/{}", dir, self.dbConfig.path),
-                                    None,
+                                    format!("SQLite database - Invalid path to the Database file \"{:?}/{}\"", dir, self.dbConfig.path),
+                                    details,
                                 ))
                             },
                         }
                     },
-                    Err(err) => Err( ApiError::new(
-                        format!("SqlQuerySqlite.execute | Database connection error: {}", err), 
-                        None,
-                    )),
+                    Err(err) => {
+                        let details = format!("SqlQuerySqlite.execute | Database connection error: {}", err);
+                        warn!("{}", details);
+                        Err( ApiError::new(
+                            "SQLite database - connection error", 
+                            details,
+                        ))
+                    },
                 }
             },
         };
@@ -82,56 +92,70 @@ impl SqlQuery for SqlQuerySqlite {
                             cNames.push(item.to_string());
                         }
                         let mut stmt = SqlQuerySqlite::fakeStmtClone(stmt);
-                        let sqlRows = stmt.query([]);
                         let mut result = vec![];
-                        match sqlRows {
+                        match stmt.query([]) {
                             Ok(mut rows) => {
+                                let mut parseErrors = vec![];
                                 while let Some(row) = rows.next().unwrap() {
-                                    // ...
                                     debug!("row: {:?}", row);
                                     let mut rowMap = HashMap::new();
                                     for cName in cNames.iter() {
-                                        let value: rusqlite::types::Value = row.get(cName.as_str()).expect(&format!("SqlQuerySqlite.execute | Error getting value from \"{}\" field", cName));
-                                        let value: serde_json::Value = match value {
-                                            rusqlite::types::Value::Null => serde_json::Value::Null,
-                                            rusqlite::types::Value::Integer(v) => serde_json::Value::Number(serde_json::Number::from(v)),
-                                            rusqlite::types::Value::Real(v) => serde_json::Value::Number(serde_json::Number::from_f64(v).unwrap()),
-                                            rusqlite::types::Value::Text(v) => serde_json::Value::String(v),
-                                            rusqlite::types::Value::Blob(v) => {
-                                                let mut arr = vec![];
-                                                for i in v {
-                                                    arr.push(
-                                                        serde_json::Value::Number(
-                                                            serde_json::Number::from(i)
-                                                        )
-                                                    )
-                                                }
-                                                serde_json::Value::Array(arr)
-                                            }
-                                        };
-                                        rowMap.insert(String::from(cName), value);
+                                        match row.get(cName.as_str()) {
+                                            Ok(value) => {
+                                                let value: serde_json::Value = match value {
+                                                    rusqlite::types::Value::Null => serde_json::Value::Null,
+                                                    rusqlite::types::Value::Integer(v) => serde_json::Value::Number(serde_json::Number::from(v)),
+                                                    rusqlite::types::Value::Real(v) => serde_json::Value::Number(serde_json::Number::from_f64(v).unwrap()),
+                                                    rusqlite::types::Value::Text(v) => serde_json::Value::String(v),
+                                                    rusqlite::types::Value::Blob(v) => {
+                                                        let mut arr = vec![];
+                                                        for i in v {
+                                                            arr.push(
+                                                                serde_json::Value::Number(
+                                                                    serde_json::Number::from(i)
+                                                                )
+                                                            )
+                                                        }
+                                                        serde_json::Value::Array(arr)
+                                                    }
+                                                };
+                                                rowMap.insert(String::from(cName), value);
+                                            },
+                                            Err(err) => {
+                                                parseErrors.push(format!("SqlQuerySqlite.execute | Error getting value from \"{}\" field", cName));
+                                            },
+                                        }
                                     }
                                     result.push(rowMap);
                                 }
+                                if parseErrors.is_empty() {
+                                    Ok(result)
+                                } else {
+                                    warn!("SqlQuerySqlite.execute | parseErrors: {:?}", parseErrors);
+                                    Err(ApiError::new(
+                                        "SQLite database - rows parsing errors", 
+                                        format!("SqlQuerySqlite.execute | rows parsing errors: {:?}", parseErrors.join("\n")), 
+                                    ))
+                                }
                             },
                             Err(err) => {
-                                warn!("SqlQuerySqlite.execute | getting rows error: {:?}", err);
+                                let detailed = format!("SqlQuerySqlite.execute | sql query error: {:?}", err);
+                                warn!("{}", detailed);
+                                Err(ApiError::new(
+                                    "SQLite database - sql query error", 
+                                    detailed, 
+                                ))
                             },
                         }
-                        Ok(result)
                     },
                     Err(err) => {
-                        let msg = format!("SqlQuerySqlite.execute | preparing sql error: {:?}", err);
-                        warn!("{}", msg);
-                        Err(ApiError::new(msg, None))
+                        let details = format!("SqlQuerySqlite.execute | preparing sql error: {:?}", err);
+                        warn!("{}", details);
+                        Err(ApiError::new("SQLite database - sql preparing error", details))
                     },
                 }
             },
-            Err(err) => {
-                let msg = format!("SqlQuerySqlite.execute | Database connection error: {:?}", err);
-                warn!("{}", msg);
-                Err(err)
-            },
+            Err(err) => Err(err),
         }
     }
 }
