@@ -70,7 +70,7 @@ impl ApiServer {
                         apiQuery.auth_token,
                         apiQuery.id,
                         apiQuery.keepAlive,
-                        apiQuery.query.srcQuery(),
+                        apiQuery.query.srcQuery(apiQuery.debug),
                         errQuery.err().debug(apiQuery.debug),
                     ).asBytes(),
                 }
@@ -88,7 +88,7 @@ impl ApiServer {
                                         apiQuery.auth_token,
                                         apiQuery.id,
                                         apiQuery.keepAlive,
-                                        apiQuery.query.srcQuery(),
+                                        apiQuery.query.srcQuery(apiQuery.debug),
                                         apiQuery.debug,
                                     ).asBytes(),
                                 }
@@ -104,7 +104,7 @@ impl ApiServer {
                                         apiQuery.auth_token,
                                         apiQuery.id,
                                         apiQuery.keepAlive,
-                                        apiQuery.query.srcQuery(),
+                                        apiQuery.query.srcQuery(apiQuery.debug),
                                         apiQuery.debug,
                                     ).asBytes(),
                                 }
@@ -117,7 +117,7 @@ impl ApiServer {
                                         apiQuery.auth_token,
                                         apiQuery.id,
                                         apiQuery.keepAlive,
-                                        apiQuery.query.srcQuery(),
+                                        apiQuery.query.srcQuery(apiQuery.debug),
                                         apiQuery.debug,
                                     ).asBytes(),
                                 }
@@ -128,7 +128,7 @@ impl ApiServer {
                                     apiQuery.auth_token,
                                     apiQuery.id,
                                     apiQuery.keepAlive,
-                                    apiQuery.query.srcQuery(),
+                                    apiQuery.query.srcQuery(apiQuery.debug),
                                     ApiError::new(
                                         format!("API Server - Database service with the name '{}' can't be found", sqlQuery.database),
                                         format!("ApiServer.build | Error: Database service with the name '{}' can't be found", sqlQuery.database),
@@ -143,7 +143,7 @@ impl ApiServer {
                             apiQuery.auth_token,
                             apiQuery.id,
                             apiQuery.keepAlive,
-                            apiQuery.query.srcQuery(),
+                            apiQuery.query.srcQuery(apiQuery.debug),
                             ApiError::new(
                                 format!("API Server - Database service with the name '{}' can't be found", sqlQuery.database),
                                 format!("ApiServer.build | Error: Database service with the name '{}' can't be found", sqlQuery.database),
@@ -174,7 +174,7 @@ impl ApiServer {
                                                 auth_token: apiQuery.auth_token,
                                                 id: apiQuery.id,
                                                 keepAlive: apiQuery.keepAlive,
-                                                query: apiQuery.query.srcQuery(),
+                                                query: apiQuery.query.srcQuery(apiQuery.debug),
                                                 data: rows,
                                                 error: ApiError::empty(),
                                             }.asBytes(),
@@ -187,7 +187,7 @@ impl ApiServer {
                                                 apiQuery.auth_token,
                                                 apiQuery.id,
                                                 apiQuery.keepAlive,
-                                                apiQuery.query.srcQuery(),
+                                                apiQuery.query.srcQuery(apiQuery.debug),
                                                 err.debug(apiQuery.debug),
                                             ).asBytes(),
                                         }
@@ -201,7 +201,7 @@ impl ApiServer {
                                         apiQuery.auth_token,
                                         apiQuery.id,
                                         apiQuery.keepAlive,
-                                        apiQuery.query.srcQuery(),
+                                        apiQuery.query.srcQuery(apiQuery.debug),
                                         ApiError::new(
                                             format!("API Server - pyton script does not exists: {}", path), 
                                             format!("ApiServer.build | pyton script does not exists: {}", path), 
@@ -218,7 +218,7 @@ impl ApiServer {
                                 apiQuery.auth_token,
                                 apiQuery.id,
                                 apiQuery.keepAlive,
-                                apiQuery.query.srcQuery(),
+                                apiQuery.query.srcQuery(apiQuery.debug),
                                 ApiError::new(
                                     format!("API Server - Script with the name '{}' can't be found", pyQuery.script),
                                     format!("ApiServer.build | Error: Script with the name '{}' can't be found", pyQuery.script),
@@ -251,7 +251,7 @@ impl ApiServer {
                                                 auth_token: apiQuery.auth_token,
                                                 id: apiQuery.id,
                                                 keepAlive: apiQuery.keepAlive,
-                                                query: apiQuery.query.srcQuery(),
+                                                query: apiQuery.query.srcQuery(apiQuery.debug),
                                                 data: rows,
                                                 error: ApiError::empty(),
                                             }.asBytes(),
@@ -264,7 +264,7 @@ impl ApiServer {
                                                 apiQuery.auth_token,
                                                 apiQuery.id,
                                                 apiQuery.keepAlive,
-                                                apiQuery.query.srcQuery(),
+                                                apiQuery.query.srcQuery(apiQuery.debug),
                                                 err.debug(apiQuery.debug),
                                             ).asBytes()
                                         }
@@ -278,7 +278,7 @@ impl ApiServer {
                                         apiQuery.auth_token,
                                         apiQuery.id,
                                         apiQuery.keepAlive,
-                                        apiQuery.query.srcQuery(),
+                                        apiQuery.query.srcQuery(apiQuery.debug),
                                         ApiError::new(
                                             format!("API Server - Executable does not exists: {}", path),
                                             format!("ApiServer.build | Error: Executable does not exists: {}", path),
@@ -295,7 +295,7 @@ impl ApiServer {
                                 apiQuery.auth_token,
                                 apiQuery.id,
                                 apiQuery.keepAlive,
-                                apiQuery.query.srcQuery(),
+                                apiQuery.query.srcQuery(apiQuery.debug),
                                 ApiError::new(
                                     format!("API Server - Executable service with name '{}' can't be found", exQuery.name),
                                     format!("ApiServer.build | Error: Executable service with name '{}' can't be found", exQuery.name),
@@ -312,7 +312,7 @@ impl ApiServer {
                         apiQuery.auth_token,
                         apiQuery.id,
                         apiQuery.keepAlive,
-                        apiQuery.query.srcQuery(),
+                        apiQuery.query.srcQuery(apiQuery.debug),
                         ApiError::new(
                             "API Server - Unknown type of API query",
                             "ApiServer.build | Error: Unknown type of API query",
