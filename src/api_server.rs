@@ -84,11 +84,11 @@ impl ApiServer {
                                 ApiServerResult {
                                     keepAlive: apiQuery.keepAlive,
                                     data: Self::execute(
-                                        Box::new(SqlQuerySqlite::new(dbConfig.clone(), sqlQuery.sql.clone(), None)),
+                                        Box::new(SqlQuerySqlite::new(dbConfig.clone(), sqlQuery.sql, None)),
                                         apiQuery.auth_token,
                                         apiQuery.id,
                                         apiQuery.keepAlive,
-                                        sqlQuery.srcQuery(),
+                                        apiQuery.query.srcQuery(),
                                         apiQuery.debug,
                                     ).asBytes(),
                                 }
@@ -100,7 +100,7 @@ impl ApiServer {
                                 ApiServerResult {
                                     keepAlive: apiQuery.keepAlive,
                                     data: Self::execute(
-                                        Box::new(SqlQueryMysql::new(dbConfig.clone(), sqlQuery.sql.clone(), None)),
+                                        Box::new(SqlQueryMysql::new(dbConfig.clone(), sqlQuery.sql, None)),
                                         apiQuery.auth_token,
                                         apiQuery.id,
                                         apiQuery.keepAlive,
@@ -113,7 +113,7 @@ impl ApiServer {
                                 ApiServerResult {
                                     keepAlive: apiQuery.keepAlive,
                                     data: Self::execute(
-                                        Box::new(SqlQueryPostgre::new(dbConfig.clone(), sqlQuery.sql.clone(), None)),
+                                        Box::new(SqlQueryPostgre::new(dbConfig.clone(), sqlQuery.sql, None)),
                                         apiQuery.auth_token,
                                         apiQuery.id,
                                         apiQuery.keepAlive,

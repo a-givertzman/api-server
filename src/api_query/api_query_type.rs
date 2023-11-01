@@ -25,13 +25,17 @@ pub enum ApiQueryType {
     Error(ApiQueryError),
 }
 impl ApiQueryType {
-    pub fn srcQuery(&self) -> serde_json::Value {
-        match self {
-            ApiQueryType::Error(apiError) => apiError.to_owned().srcQuery(),
-            ApiQueryType::Sql(apiQuerySql) => apiQuerySql.to_owned().srcQuery(),
-            ApiQueryType::Python(apiQueryPython) => apiQueryPython.to_owned().srcQuery(),
-            ApiQueryType::Executable(apiQueryExecutable) => apiQueryExecutable.to_owned().srcQuery(),
-            ApiQueryType::Unknown(apiQueryUnknown) => apiQueryUnknown.to_owned().srcQuery(),
+    pub fn srcQuery(&self, debug: bool) -> serde_json::Value {
+        if debug {
+            match self {
+                ApiQueryType::Error(apiError) => apiError.to_owned().srcQuery(),
+                ApiQueryType::Sql(apiQuerySql) => apiQuerySql.to_owned().srcQuery(),
+                ApiQueryType::Python(apiQueryPython) => apiQueryPython.to_owned().srcQuery(),
+                ApiQueryType::Executable(apiQueryExecutable) => apiQueryExecutable.to_owned().srcQuery(),
+                ApiQueryType::Unknown(apiQueryUnknown) => apiQueryUnknown.to_owned().srcQuery(),
+            }
+        } else {
+            serde_json::Value::Null
         }
     }
 }
