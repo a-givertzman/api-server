@@ -7,8 +7,6 @@ declare -a tests=(
     "tests/integration/test_sql_postgres.py"
 )
 
-cargo run --release
-
 for test in "${tests[@]}"; do
     if eval $app $test ; then
         echo "$test - succeeded"
