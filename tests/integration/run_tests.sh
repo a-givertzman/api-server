@@ -1,9 +1,9 @@
 # pytest --no-header --tb=short -vv tests/integration/
 # python3.10 -m unittest
 
-python3 -m pip install -r tests/integration/requirements.txt
+python3.10 -m pip install -r tests/integration/requirements.txt
 
-app=python3
+app=python3.10
 declare -a tests=(
     "tests/integration/test_common.py"
     "tests/integration/test_executable.py"
