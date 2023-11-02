@@ -15,7 +15,7 @@ def connectPsqlRoot(autocommit = False):
         host="localhost",
         database="postgres",
         user="postgres",
-        password="123qwe"
+        password="postgres"
     )
     cur = conn.cursor()
     conn.autocommit = autocommit
