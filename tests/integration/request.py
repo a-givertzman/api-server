@@ -4,12 +4,29 @@ import socket
 from socket_utils import recvAll
 
 def socketSendBytes(data: bytes) -> bytes:
-    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock.connect(('localhost', 8080))
-    sock.send(data)
-    received = recvAll(sock)
-    sock.close()
-    return received
+    sock = None
+    try:
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    except OSError as err:    
+        print(f'socketSendBytes | Socket error: {err}')
+        sock = None
+    try:
+        sock.connect(('localhost', 8080))
+    except OSError as err:    
+        print(f'socketSendBytes | Socket error: {err}')
+        sock.close()
+        sock = None
+    if sock:
+        try:
+            sock.send(data)
+            received = recvAll(sock)
+            sock.close()
+            return received
+        except OSError as err:    
+            print(f'socketSendBytes | Socket error: {err}')
+            sock.close()
+            sock = None
+    return {}
 
 def request_dict(data_map: dict) -> dict:
     data_json = json.dumps(data_map)

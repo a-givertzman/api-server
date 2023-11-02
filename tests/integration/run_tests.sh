@@ -7,20 +7,6 @@ declare -a tests=(
     "tests/integration/test_sql_postgres.py"
 )
 
-# if eval $cmd ; then
-#     echo "$cmd - succeeded"
-# else
-#     echo "$cmd - failed"
-#     exit 1;
-# fi
-
-# if eval $cmd ; then
-#     echo "$cmd - succeeded"
-# else
-#     echo "$cmd - failed"
-#     exit 1;
-# fi
-
 for test in "${tests[@]}"; do
     if eval $app $test ; then
         echo "$test - succeeded"
