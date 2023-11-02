@@ -1,4 +1,5 @@
 import json
+import os
 import socket
 
 from socket_utils import recvAll
@@ -11,7 +12,9 @@ def socketSendBytes(data: bytes) -> bytes:
         print(f'socketSendBytes | Socket error: {err}')
         sock = None
     try:
-        sock.connect(('0.0.0.0', 8080))
+        addr = os.environ['API_SERVER_ADDR']
+        port = int(os.environ['API_SERVER_PORT'])
+        sock.connect((addr, port))
     except OSError as err:    
         print(f'socketSendBytes | Socket error: {err}')
         sock.close()

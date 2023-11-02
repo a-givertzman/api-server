@@ -1,6 +1,10 @@
 # pytest --no-header --tb=short -vv tests/integration/
 # python3.10 -m unittest
 
+set -a # automatically export all variables
+source tests/integration/.env
+set +a
+
 python3.10 -m pip install -r tests/integration/requirements.txt
 
 app=python3.10

@@ -1,3 +1,4 @@
+import os
 import psycopg2
 
 
@@ -11,11 +12,12 @@ longString = longString + sufix + ' chars'
 
 
 def connectPsqlRoot(autocommit = False):
+    password = os.environ['POSTGRES_PASSWORD']
     conn = psycopg2.connect(
         host="localhost",
         database="postgres",
         user="postgres",
-        password="postgres"
+        password=password
     )
     cur = conn.cursor()
     conn.autocommit = autocommit

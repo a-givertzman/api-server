@@ -10,6 +10,8 @@ def run_api_server():
         shell=True, 
         # stdout=DEVNULL, stderr=DEVNULL,
     )
+    addr = os.environ['API_SERVER_ADDR']
+    port = int(os.environ['API_SERVER_PORT'])
     while 1:
         sock = None
         try:
@@ -18,13 +20,14 @@ def run_api_server():
             print(f'socketSendBytes | Socket error: {err}')
             sock = None
         try:
-            sock.connect(('localhost', 8080))
+            sock.connect((addr, port))
             sock.close()
             break
         except OSError as err:    
             print(f'socketSendBytes | Socket error: {err}')
             sock.close()
             sock = None
+        time.sleep(1.0)
 
 def kill_all_servers():
     for pid_str in os.popen('pgrep api-server').read().strip().split('\n'):
