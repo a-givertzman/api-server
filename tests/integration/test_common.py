@@ -1,6 +1,7 @@
 import json
 import unittest
 import conftest
+from create_postgres_database import createDatabase
 from request import socketSendBytes
 
 class TestCommon(unittest.TestCase):
@@ -114,7 +115,7 @@ class TestCommon(unittest.TestCase):
             self.assertEqual( received_json['query'], expected_json['query'], msg = f"\nexpected query: {expected_json['query']} \nreceived query: {received_json['query']}" )
 
 if __name__ == '__main__':
-    # createDatabase()
+    createDatabase()
     g = conftest.api_server()
     next(g)
     unittest.main()
