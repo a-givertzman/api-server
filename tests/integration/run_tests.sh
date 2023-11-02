@@ -1,5 +1,8 @@
 # pytest --no-header --tb=short -vv tests/integration/
 # python3.10 -m unittest
+
+python3 -m pip install -r tests/integration/requirements.txt
+
 app=python3
 declare -a tests=(
     "tests/integration/test_common.py"
