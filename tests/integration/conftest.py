@@ -1,4 +1,5 @@
 import os
+import socket
 from subprocess import Popen, DEVNULL, run
 import time
 # import pytest
@@ -9,7 +10,21 @@ def run_api_server():
         shell=True, 
         # stdout=DEVNULL, stderr=DEVNULL,
     )
-    time.sleep(5)
+    while 1:
+        sock = None
+        try:
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        except OSError as err:    
+            print(f'socketSendBytes | Socket error: {err}')
+            sock = None
+        try:
+            sock.connect(('localhost', 8080))
+            sock.close()
+            break
+        except OSError as err:    
+            print(f'socketSendBytes | Socket error: {err}')
+            sock.close()
+            sock = None
 
 def kill_all_servers():
     for pid_str in os.popen('pgrep api-server').read().strip().split('\n'):
