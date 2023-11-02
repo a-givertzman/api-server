@@ -94,7 +94,7 @@ class TestSqlPostgres(unittest.TestCase):
                 'output': {"auth_token": "123zxy456!@#", "id": "111", 'data': [], 'error': 'ApiServer.build | Error: Database service with the name \'py-test\' can\'t be found', 'query': ''},
             },
             {
-                'input': r'{"auth_token":"123zxy456!@#","id":"222","debug":true,"sql":{"database":"py-test","sql":"select id from do_data;"}}',
+                'input': r'{"auth_token":"123zxy456!@#","id":"22","debug":true,"sql":{"database":"py-test","sql":"select id from do_data;"}}',
                 'output': {"auth_token": "123zxy456!@#", "id": "222", 'data': [], 'error': 'ApiServer.build | Error: Database service with the name \'py-test\' can\'t be found', 'query': r'{"auth_token":"123zxy456!@#","id":"222","debug":true,"sql":{"database":"py-test","sql":"select id from do_data;"}}'},
             },
             {

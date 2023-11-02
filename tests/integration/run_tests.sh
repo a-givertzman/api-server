@@ -1,4 +1,31 @@
 # pytest --no-header --tb=short -vv tests/integration/
 # python3.10 -m unittest
-python3.10 tests/integration/test_common.py
-python3.10 tests/integration/test_sql_postgres.py
+app=python3.10
+declare -a tests=(
+    "tests/integration/test_common.py"
+    "tests/integration/test_executable.py"
+    "tests/integration/test_sql_postgres.py"
+)
+
+# if eval $cmd ; then
+#     echo "$cmd - succeeded"
+# else
+#     echo "$cmd - failed"
+#     exit 1;
+# fi
+
+# if eval $cmd ; then
+#     echo "$cmd - succeeded"
+# else
+#     echo "$cmd - failed"
+#     exit 1;
+# fi
+
+for test in "${tests[@]}"; do
+    if eval $app $test ; then
+        echo "$test - succeeded"
+    else
+        echo "$test - failed"
+        exit 1;
+    fi
+done
