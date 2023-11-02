@@ -1,6 +1,5 @@
 import json
 import unittest
-import conftest
 from create_postgres_database import createDatabase, longString
 from request import sockerSendBytes
 

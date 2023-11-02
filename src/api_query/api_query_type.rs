@@ -46,6 +46,7 @@ pub enum ApiQueryTypeName {
     Sql,
     Python,
     Executable,
+    Unknown,
 }
 impl ApiQueryTypeName {
     pub fn value(&self) -> &str {
@@ -53,6 +54,7 @@ impl ApiQueryTypeName {
             ApiQueryTypeName::Sql => "sql",
             ApiQueryTypeName::Python => "python",
             ApiQueryTypeName::Executable => "executable",
+            ApiQueryTypeName::Unknown => "unknown",
         }
     }
 }
