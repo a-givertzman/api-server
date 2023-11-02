@@ -1,6 +1,6 @@
 # pytest --no-header --tb=short -vv tests/integration/
 # python3.10 -m unittest
-app=python3.10
+app=python3
 declare -a tests=(
     "tests/integration/test_common.py"
     "tests/integration/test_executable.py"
