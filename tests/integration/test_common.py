@@ -33,20 +33,20 @@ class TestCommon(unittest.TestCase):
     def test_common_multiservice_request(self):
         data_maps = [
             {
-                'input': r'{"auth_token":"123zxy456!@#","id":"123","sql":{"database":"database","sql":"select id from do_data;"},"python":{"script":"py-test","params":{"a": 4, "b": 7}}}',
-                'output': {"auth_token": "123zxy456!@#", "id": "123", 'data': [{'id': 213}, {'id': 214}, {'id': 215}, {'id': 216}, {'id': 217}, {'id': 218}, {'id': 261}, {'id': 262}, {'id': 263}, {'id': 264}, {'id': 302}, {'id': 303}, {'id': 304}, {'id': 305}, {'id': 306}, {'id': 307}], 'error': {'message': 'Unable to perform multiservice request'}, 'query': r'{"auth_token":"123zxy456!@#","id":"123","sql":{"database":"database","sql":"select id from do_data;"},"python":{"script":"py-test","params":{"a": 4, "b": 7}}}'},
+                'input': r'{"auth_token":"123zxy456!@#","id":"01","debug":true,"sql":{"database":"database","sql":"select id from do_data;"},"python":{"script":"py-test","params":{"a": 4, "b": 7}}}',
+                'output': {"auth_token": "123zxy456!@#", "id": "01", 'data': [], 'error': {'message': 'API Service - Unable to perform multiservice request'}, 'query': r'{"auth_token":"123zxy456!@#","id":"01","debug":true,"sql":{"database":"database","sql":"select id from do_data;"},"python":{"script":"py-test","params":{"a": 4, "b": 7}}}'},
             },
             {
-                'input': r'{"auth_token":"123zxy456!@#","id":"123","python":{"script":"py-test","params":{"a": 4, "b": 7}},"executable":{"name":"executable-test","params":{"a": 4, "b": 7}}}',
-                'output': {"auth_token": "123zxy456!@#", "id": "123", 'data': [], 'error': {'message': 'Unable to perform multiservice request'}, 'query': r'{"auth_token":"123zxy456!@#","id":"123","python":{"script":"py-test","params":{"a": 4, "b": 7}},"executable":{"name":"executable-test","params":{"a": 4, "b": 7}}}'},
+                'input': r'{"auth_token":"123zxy456!@#","id":"02","debug":true,"python":{"script":"py-test","params":{"a": 4, "b": 7}},"executable":{"name":"executable-test","params":{"a": 4, "b": 7}}}',
+                'output': {"auth_token": "123zxy456!@#", "id": "02", 'data': [], 'error': {'message': 'API Service - Unable to perform multiservice request'}, 'query': r'{"auth_token":"123zxy456!@#","id":"02","debug":true,"python":{"script":"py-test","params":{"a": 4, "b": 7}},"executable":{"name":"executable-test","params":{"a": 4, "b": 7}}}'},
             },
             {
-                'input': r'{"auth_token":"123zxy456!@#","id":"123","executable":{"name":"executable-test","params":{"a": 4, "b": 7}},"sql":{"database":"database","sql":"select id from do_data;"}}',
-                'output': {"auth_token": "123zxy456!@#", "id": "123", 'data': [], 'error': {'message': 'Unable to perform multiservice request'}, 'query': r'{"auth_token":"123zxy456!@#","id":"123","executable":{"name":"executable-test","params":{"a": 4, "b": 7}},"sql":{"database":"database","sql":"select id from do_data;"}}'},
+                'input': r'{"auth_token":"123zxy456!@#","id":"03","debug":true,"executable":{"name":"executable-test","params":{"a": 4, "b": 7}},"sql":{"database":"database","sql":"select id from do_data;"}}',
+                'output': {"auth_token": "123zxy456!@#", "id": "03", 'data': [], 'error': {'message': 'API Service - Unable to perform multiservice request'}, 'query': r'{"auth_token":"123zxy456!@#","id":"03","debug":true,"executable":{"name":"executable-test","params":{"a": 4, "b": 7}},"sql":{"database":"database","sql":"select id from do_data;"}}'},
             },
             {
-                'input': r'{"auth_token":"123zxy456!@#","id":"123","sql":{"database":"database","sql":"select id from do_data;"},"python":{"script":"py-test","params":{"a": 4, "b": 7}},"executable":{"name":"executable-test","params":{"a": 4, "b": 7}}}',
-                'output': {"auth_token": "123zxy456!@#", "id": "123", 'data': [], 'error': {'message': 'Unable to perform multiservice request'}, 'query': r'{"auth_token":"123zxy456!@#","id":"123","sql":{"database":"database","sql":"select id from do_data;"},"python":{"script":"py-test","params":{"a": 4, "b": 7}},"executable":{"name":"executable-test","params":{"a": 4, "b": 7}}}'},
+                'input': r'{"auth_token":"123zxy456!@#","id":"04","debug":true,"sql":{"database":"database","sql":"select id from do_data;"},"python":{"script":"py-test","params":{"a": 4, "b": 7}},"executable":{"name":"executable-test","params":{"a": 4, "b": 7}}}',
+                'output': {"auth_token": "123zxy456!@#", "id": "04", 'data': [], 'error': {'message': 'API Service - Unable to perform multiservice request'}, 'query': r'{"auth_token":"123zxy456!@#","id":"04","debug":true,"sql":{"database":"database","sql":"select id from do_data;"},"python":{"script":"py-test","params":{"a": 4, "b": 7}},"executable":{"name":"executable-test","params":{"a": 4, "b": 7}}}'},
             },
         ]
         for i, entry in enumerate(data_maps):
@@ -57,60 +57,60 @@ class TestCommon(unittest.TestCase):
             assert received_json['auth_token'] == expected_json['auth_token']
             assert received_json['id'] == expected_json['id']
             self.assertEqual( received_json['data'], expected_json['data'], msg = f"\nexpected data: {expected_json['data']} \nreceived data: {received_json['data']}" )
-            assert (received_json['error']['message'] != '') == (expected_json['error']['message'] != '')
+            self.assertEqual( received_json['error']['message'].startswith(expected_json['error']['message']), True, msg = f"\nexpected query: {expected_json['error']['message']} \nreceived query: {received_json['error']['message']}")
             # self.assertEqual( received_json['error'], expected_json['error'], msg = f"\nexpected error: {expected_json['error']} \nreceived error: {received_json['error']}" )
             self.assertEqual( received_json['query'], expected_json['query'], msg = f"\nexpected query: {expected_json['query']} \nreceived query: {received_json['query']}" )
 
-    # def test_common_invalid_key(self):
-    #     data_maps = [
-    #         {
-    #             'input': r'{"auth_token":"123zxy456!@#","id":"123","executable@@@":{"name":"executable-test","params":{"a":4,"b":7}}}',
-    #             'output': {"auth_token": "123zxy456!@#", "id": "123", 'data': [], 'error': {'message': 'Unknown type of API query'}, 'query': r'{"auth_token":"123zxy456!@#","id":"123","executable@@@":{"name":"executable-test","params":{"a":4,"b":7}}}'},
-    #         },
-    #         {
-    #             'input': r'{"auth_token":"123zxy456!@#","id@@@":"123","executable":{"name":"executable-test","params":{"a": 4,"b":7}}}',
-    #             'output': {"auth_token": "123zxy456!@#", "id": "Unknown", 'data': [], 'error': {'message': '[ApiQuery.parseJsonString] field \'id\' of type String not found'}, 'query': r'{"auth_token":"123zxy456!@#","id@@@":"123","executable":{"name":"executable-test","params":{"a":4,"b":7}}}'},
-    #         },
-    #         {
-    #             'input': r'{"auth_token@@@":"123zxy456!@#","id":"123","executable":{"name":"executable-test","params":{"a":4,"b":7}}}',
-    #             'output': {"auth_token": "Unknown", "id": "123", 'data': [], 'error': {'message': '[ApiQuery.parseJsonString] field \'auth_token\' of type String not found'}, 'query': r'{"auth_token@@@":"123zxy456!@#","id":"123","executable":{"name":"executable-test","params":{"a":4,"b":7}}}'},
-    #         },
-    #         {
-    #             'input': r'{"auth_token":"123zxy456!@#","id":"123","python@@@":{"script":"py-test","params":{"a":4,"b":7}}}',
-    #             'output': {"auth_token": "123zxy456!@#", "id": "123", 'data': [], 'error': {'message': 'Unknown type of API query'}, 'query': r'{"auth_token":"123zxy456!@#","id":"123","python@@@":{"script":"py-test","params":{"a":4,"b":7}}}'},
-    #         },
-    #         {
-    #             'input': r'{"auth_token":"123zxy456!@#","id@@@":"123","python":{"script":"py-test","params":{"a": 4,"b":7}}}',
-    #             'output': {"auth_token": "123zxy456!@#", "id": "Unknown", 'data': [], 'error': {'message': 'ApiQuery -  field \'id\' of type String not found'}, 'query': r'{"auth_token":"123zxy456!@#","id@@@":"123","python":{"script":"py-test","params":{"a":4,"b":7}}}'},
-    #         },
-    #         {
-    #             'input': r'{"auth_token@@@":"123zxy456!@#","id":"123","python":{"script":"py-test","params":{"a":4,"b":7}}}',
-    #             'output': {"auth_token": "Unknown", "id": "123", 'data': [], 'error': {'message': '[ApiQuery.parseJsonString] field \'auth_token\' of type String not found'}, 'query': r'{"auth_token@@@":"123zxy456!@#","id":"123","python":{"script":"py-test","params":{"a":4,"b":7}}}'},
-    #         },
-    #         {
-    #             'input': r'{"auth_token":"123zxy456!@#","id":"123","sql@@@":{"database":"db-postgres","sql":"select 1;"}}',
-    #             'output': {"auth_token": "123zxy456!@#", "id": "123", 'data': [], 'error': {'message': 'Unknown type of API query'}, 'query': r'{"auth_token":"123zxy456!@#","id":"123","sql@@@":{"database":"db-postgres","sql":"select 1;"}}'},
-    #         },
-    #         {
-    #             'input': r'{"auth_token":"123zxy456!@#","id@@@":"123","sql":{"database":"db-postgres","sql":"select 1;"}}',
-    #             'output': {"auth_token": "123zxy456!@#", "id": "Unknown", 'data': [], 'error': {'message': '[ApiQuery.parseJsonString] field \'id\' not found'}, 'query': r'{"auth_token":"123zxy456!@#","id@@@":"123","sql":{"database":"db-postgres","sql":"select 1;"}}'},
-    #         },
-    #         {
-    #             'input': r'{"auth_token@@@":"123zxy456!@#","id":"123","sql":{"database":"db-postgres","sql":"select 1;"}}',
-    #             'output': {"auth_token": "Unknown", "id": "123", 'data': [], 'error': {'message': '[ApiQuery.parseJsonString] field \'auth_token\' not found'}, 'query': r'{"auth_token@@@":"123zxy456!@#","id":"123","sql":{"database":"db-postgres","sql":"select 1;"}}'},
-    #         },
-    #     ]
-    #     for i, entry in enumerate(data_maps):
-    #         data_map = entry['input']
-    #         expected_json = entry['output'] 
-    #         data_bytes = bytes(data_map, encoding='utf8')
-    #         received = sockerSendBytes(data_bytes)
-    #         received_json = json.loads(received)
-    #         assert received_json['auth_token'] == expected_json['auth_token']
-    #         assert received_json['id'] == expected_json['id']
-    #         assert received_json['data'] == expected_json['data']
-    #         assert (len(received_json['error']) > 0) == (len(expected_json['error']) > 0)
-    #         assert received_json['query'] == expected_json['query']
+    def test_common_invalid_key(self):
+        data_maps = [
+            {
+                'input': r'{"auth_token":"123zxy456!@#","id":"123","debug":true,"executable@@@":{"name":"executable-test","params":{"a":4,"b":7}}}',
+                'output': {"auth_token": "123zxy456!@#", "id": "123", 'data': [], 'error': {'message': 'Unknown type of API query'}, 'query': r'{"auth_token":"123zxy456!@#","id":"123","debug":true,"executable@@@":{"name":"executable-test","params":{"a":4,"b":7}}}'},
+            },
+            {
+                'input': r'{"auth_token":"123zxy456!@#","id@@@":"123","debug":true,"executable":{"name":"executable-test","params":{"a":4,"b":7}}}',
+                'output': {"auth_token": "123zxy456!@#", "id": "Unknown", 'data': [], 'error': {'message': '[ApiQuery.parseJsonString] field \'id\' of type String not found'}, 'query': r'{"auth_token":"123zxy456!@#","id@@@":"123","debug":true,"executable":{"name":"executable-test","params":{"a":4,"b":7}}}'},
+            },
+            {
+                'input': r'{"auth_token@@@":"123zxy456!@#","id":"123","debug":true,"executable":{"name":"executable-test","params":{"a":4,"b":7}}}',
+                'output': {"auth_token": "Unknown", "id": "123", 'data': [], 'error': {'message': '[ApiQuery.parseJsonString] field \'auth_token\' of type String not found'}, 'query': r'{"auth_token@@@":"123zxy456!@#","id":"123","debug":true,"executable":{"name":"executable-test","params":{"a":4,"b":7}}}'},
+            },
+            {
+                'input': r'{"auth_token":"123zxy456!@#","id":"123","debug":true,"python@@@":{"script":"py-test","params":{"a":4,"b":7}}}',
+                'output': {"auth_token": "123zxy456!@#", "id": "123", 'data': [], 'error': {'message': 'Unknown type of API query'}, 'query': r'{"auth_token":"123zxy456!@#","id":"123","debug":true,"python@@@":{"script":"py-test","params":{"a":4,"b":7}}}'},
+            },
+            {
+                'input': r'{"auth_token":"123zxy456!@#","id@@@":"123","debug":true,"python":{"script":"py-test","params":{"a":4,"b":7}}}',
+                'output': {"auth_token": "123zxy456!@#", "id": "Unknown", 'data': [], 'error': {'message': 'ApiQuery -  field \'id\' of type String not found'}, 'query': r'{"auth_token":"123zxy456!@#","id@@@":"123","debug":true,"python":{"script":"py-test","params":{"a":4,"b":7}}}'},
+            },
+            {
+                'input': r'{"auth_token@@@":"123zxy456!@#","id":"123","debug":true,"python":{"script":"py-test","params":{"a":4,"b":7}}}',
+                'output': {"auth_token": "Unknown", "id": "123", 'data': [], 'error': {'message': '[ApiQuery.parseJsonString] field \'auth_token\' of type String not found'}, 'query': r'{"auth_token@@@":"123zxy456!@#","id":"123","debug":true,"python":{"script":"py-test","params":{"a":4,"b":7}}}'},
+            },
+            {
+                'input': r'{"auth_token":"123zxy456!@#","id":"123","debug":true,"sql@@@":{"database":"db-postgres","sql":"select 1;"}}',
+                'output': {"auth_token": "123zxy456!@#", "id": "123", 'data': [], 'error': {'message': 'Unknown type of API query'}, 'query': r'{"auth_token":"123zxy456!@#","id":"123","debug":true,"sql@@@":{"database":"db-postgres","sql":"select 1;"}}'},
+            },
+            {
+                'input': r'{"auth_token":"123zxy456!@#","id@@@":"123","debug":true,"sql":{"database":"db-postgres","sql":"select 1;"}}',
+                'output': {"auth_token": "123zxy456!@#", "id": "Unknown", 'data': [], 'error': {'message': '[ApiQuery.parseJsonString] field \'id\' not found'}, 'query': r'{"auth_token":"123zxy456!@#","id@@@":"123","debug":true,"sql":{"database":"db-postgres","sql":"select 1;"}}'},
+            },
+            {
+                'input': r'{"auth_token@@@":"123zxy456!@#","id":"123","debug":true,"sql":{"database":"db-postgres","sql":"select 1;"}}',
+                'output': {"auth_token": "Unknown", "id": "123", 'data': [], 'error': {'message': '[ApiQuery.parseJsonString] field \'auth_token\' not found'}, 'query': r'{"auth_token@@@":"123zxy456!@#","id":"123","debug":true,"sql":{"database":"db-postgres","sql":"select 1;"}}'},
+            },
+        ]
+        for i, entry in enumerate(data_maps):
+            data_map = entry['input']
+            expected_json = entry['output'] 
+            data_bytes = bytes(data_map, encoding='utf8')
+            received = sockerSendBytes(data_bytes)
+            received_json = json.loads(received)
+            assert received_json['auth_token'] == expected_json['auth_token']
+            assert received_json['id'] == expected_json['id']
+            assert received_json['data'] == expected_json['data']
+            self.assertEqual(received_json['error']['message'] != '', expected_json['error']['message'] != '', msg = f"\nexpected query: {expected_json['error']['message']} \nreceived query: {received_json['error']['message']}")
+            self.assertEqual( received_json['query'], expected_json['query'], msg = f"\nexpected query: {expected_json['query']} \nreceived query: {received_json['query']}" )
 
 if __name__ == '__main__':
     # createDatabase()
