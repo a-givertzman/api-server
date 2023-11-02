@@ -26,7 +26,7 @@ def socketSendBytes(data: bytes) -> bytes:
             print(f'socketSendBytes | Socket error: {err}')
             sock.close()
             sock = None
-    return {}
+    return b'{}'
 
 def request_dict(data_map: dict) -> dict:
     data_json = json.dumps(data_map)
