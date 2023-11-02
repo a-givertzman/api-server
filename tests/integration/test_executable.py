@@ -109,7 +109,6 @@ class TestSqlPostgres(unittest.TestCase):
             self.assertEqual( received_json['query'], expected_json['query'], f"\nexpected query: {expected_json['query']} \nreceived query: {received_json['query']}" )
 
 if __name__ == '__main__':
-    g = conftest.api_server()
-    next(g)
+    conftest.kill_all_servers()
+    conftest.run_api_server()
     unittest.main()
-    next(g)

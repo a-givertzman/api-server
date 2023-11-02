@@ -344,7 +344,6 @@ class TestSqlPostgres(unittest.TestCase):
 
 if __name__ == '__main__':
     createDatabase()
-    g = conftest.api_server()
-    next(g)
+    conftest.kill_all_servers()
+    conftest.run_api_server()
     unittest.main()
-    next(g)
