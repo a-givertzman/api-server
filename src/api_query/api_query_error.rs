@@ -9,7 +9,7 @@ use crate::core_::error::api_error::ApiError;
 /// 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ApiQueryError {
-    query: serde_json::Value,
+    // query: serde_json::Value,
     error: ApiError,
 }
 ///
@@ -17,9 +17,9 @@ pub struct ApiQueryError {
 impl ApiQueryError {
     ///
     ///
-    pub fn new(query: serde_json::Value, error: ApiError) -> Self {
+    pub fn new(error: ApiError) -> Self {
         Self {
-            query,
+            // query,
             error,
         }
     }
@@ -28,9 +28,9 @@ impl ApiQueryError {
     pub fn err(self) -> ApiError {
         self.error
     }
-    ///
-    /// 
-    pub fn srcQuery(self) -> serde_json::Value {
-        self.query
-    }
+    // ///
+    // /// 
+    // pub fn srcQuery(self) -> serde_json::Value {
+    //     self.query
+    // }
 }

@@ -12,7 +12,7 @@ pub struct SqlReply {
     pub auth_token: String,
     pub id: String,
     pub keepAlive: bool,
-    pub query: serde_json::Value,
+    pub query: String,
     pub data: Vec<HashMap<String, serde_json::Value>>, //Vec<(String, Option<String>)>,
     pub error: ApiError,
 
@@ -47,7 +47,7 @@ impl SqlReply {
         auth_token: String,
         id: String,
         keepAlive: bool,
-        query: serde_json::Value, 
+        query: String, 
         error: ApiError,
     ) -> Self {
         SqlReply {
