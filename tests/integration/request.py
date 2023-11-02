@@ -11,7 +11,7 @@ def socketSendBytes(data: bytes) -> bytes:
         print(f'socketSendBytes | Socket error: {err}')
         sock = None
     try:
-        sock.connect(('localhost', 8080))
+        sock.connect(('0.0.0.0', 8080))
     except OSError as err:    
         print(f'socketSendBytes | Socket error: {err}')
         sock.close()
