@@ -6,7 +6,8 @@ import time
 def run_api_server():
     Popen(
         f'cd {os.path.dirname(os.path.abspath(__file__))}/../.. && cargo run --release', 
-        shell=True, stdout=DEVNULL, stderr=DEVNULL,
+        shell=True, 
+        # stdout=DEVNULL, stderr=DEVNULL,
     )
     time.sleep(5)
 
