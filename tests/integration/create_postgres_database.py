@@ -66,8 +66,8 @@ def createDatabase():
         pass
     else: 
         conn, cursor = connectPsqlRoot(autocommit=True)
-        cursor.execute(f'CREATE DATABASE {dbName}')
-        cursor.execute(f'GRANT ALL PRIVILEGES ON DATABASE {dbName} TO {dbUser}')
+        cursor.execute(f'CREATE DATABASE {dbName};')
+        cursor.execute(f'GRANT ALL PRIVILEGES ON DATABASE {dbName} TO {dbUser};')
         cursor.close()
         conn.close()
 
