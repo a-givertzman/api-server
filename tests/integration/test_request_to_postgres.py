@@ -6,7 +6,7 @@ import time
 import re
 import threading
 from ds_socket import DsSocket
-from request import sockerSendBytes
+from request import socketSendBytes
 import socket_utils
 import create_postgres_database
 

@@ -2,7 +2,7 @@ import json
 import unittest
 import conftest
 from create_postgres_database import createDatabase, longString
-from request import sockerSendBytes
+from request import socketSendBytes
 
 class TestSqlPostgres(unittest.TestCase):
 
@@ -24,7 +24,7 @@ class TestSqlPostgres(unittest.TestCase):
         for i, entry in enumerate(data_maps):
             print(f'invalid_json_without_brackets | request: {entry["input"]}')
             data_bytes = bytes(entry['input'], encoding='utf8')
-            received = sockerSendBytes(data_bytes)
+            received = socketSendBytes(data_bytes)
             received_json = json.loads(received)
             expected_json = entry['output']
             assert received_json['auth_token'] == expected_json['auth_token']
@@ -45,7 +45,7 @@ class TestSqlPostgres(unittest.TestCase):
         for index, input in enumerate(inputs):
             expected_json = expected_jsons[index]
             data_bytes = bytes(input, encoding='utf8')
-            received = sockerSendBytes(data_bytes)
+            received = socketSendBytes(data_bytes)
             received_json = json.loads(received)
             assert received_json['auth_token'] == expected_json['auth_token']
             assert received_json['id'] == expected_json['id']
@@ -77,7 +77,7 @@ class TestSqlPostgres(unittest.TestCase):
             data_map = entry['input']
             expected_json = entry['output'] 
             data_bytes = bytes(data_map, encoding='utf8')
-            received = sockerSendBytes(data_bytes)
+            received = socketSendBytes(data_bytes)
             received_json = json.loads(received)
             print(f'test_invalid_key | request: {entry["input"]}')
             print(f'test_invalid_key | reply: {received_json}')
@@ -109,7 +109,7 @@ class TestSqlPostgres(unittest.TestCase):
         ]
         for i, entry in enumerate(data_maps):
             data_bytes = bytes(entry['input'], encoding='utf-8')
-            received = sockerSendBytes(data_bytes)
+            received = socketSendBytes(data_bytes)
             received_json = json.loads(received)
             expected_json = entry['output']
             self.assertEqual( received_json['auth_token'], expected_json['auth_token'])
@@ -201,7 +201,7 @@ class TestSqlPostgres(unittest.TestCase):
         ]
         for _, entry in enumerate(data_maps):
             query = bytes(entry['input'], encoding='utf-8')
-            received = sockerSendBytes(query)
+            received = socketSendBytes(query)
             try:
                 received_json = json.loads(received)
             except Exception as err:
@@ -245,7 +245,7 @@ class TestSqlPostgres(unittest.TestCase):
         ]
         for i, entry in enumerate(data_maps):
             data_bytes = bytes(entry['input'], encoding='utf-8')
-            received = sockerSendBytes(data_bytes)
+            received = socketSendBytes(data_bytes)
             try:
                 received_json = json.loads(received)
             except Exception as err:
@@ -313,7 +313,7 @@ class TestSqlPostgres(unittest.TestCase):
         ]
         for i, entry in enumerate(data_maps):
             data_bytes = bytes(entry['input'], encoding='utf-8')
-            received = sockerSendBytes(data_bytes)
+            received = socketSendBytes(data_bytes)
             try:
                 received_json = json.loads(received)
             except Exception as err:

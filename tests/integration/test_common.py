@@ -1,7 +1,7 @@
 import json
 import unittest
 import conftest
-from request import sockerSendBytes
+from request import socketSendBytes
 
 class TestCommon(unittest.TestCase):
     def test_common_non_utf8_encoding(self):
@@ -21,7 +21,7 @@ class TestCommon(unittest.TestCase):
         ]
         for i, entry in enumerate(data_maps):
             data_bytes = bytes(entry['input'], encoding='utf-32-le')
-            received = sockerSendBytes(data_bytes)
+            received = socketSendBytes(data_bytes)
             received_json = json.loads(received)
             expected_json = entry['output']
             assert received_json['auth_token'] == expected_json['auth_token']
@@ -52,7 +52,7 @@ class TestCommon(unittest.TestCase):
         ]
         for i, entry in enumerate(data_maps):
             data_bytes = bytes(entry['input'], encoding='utf8')
-            received = sockerSendBytes(data_bytes)
+            received = socketSendBytes(data_bytes)
             received_json = json.loads(received)
             expected_json = entry['output']
             assert received_json['auth_token'] == expected_json['auth_token']
@@ -105,7 +105,7 @@ class TestCommon(unittest.TestCase):
             data_map = entry['input']
             expected_json = entry['output'] 
             data_bytes = bytes(data_map, encoding='utf8')
-            received = sockerSendBytes(data_bytes)
+            received = socketSendBytes(data_bytes)
             received_json = json.loads(received)
             assert received_json['auth_token'] == expected_json['auth_token']
             assert received_json['id'] == expected_json['id']

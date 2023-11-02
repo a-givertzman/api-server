@@ -1,5 +1,5 @@
 import json
-from request import sockerSendBytes
+from request import socketSendBytes
 
 def test_python_invalid_json_without_brackets(subtests):
     data_maps = [
@@ -19,7 +19,7 @@ def test_python_invalid_json_without_brackets(subtests):
     for i, entry in enumerate(data_maps):
         with subtests.test(msg=f'item {i}'):
             data_bytes = bytes(entry['input'], encoding='utf8')
-            received = sockerSendBytes(data_bytes)
+            received = socketSendBytes(data_bytes)
             received_json = json.loads(received)
             expected_json = entry['output']
             assert received_json['auth_token'] == expected_json['auth_token']
@@ -32,7 +32,7 @@ def test_python_invalid_json_cut():
     input = r'{"auth_token":"123zxy456!@#","id":"123","python":{"script":"'
     expected_json = {"auth_token": "Unknown", "id": "Unknown", 'data': [], 'error': 'EOF while parsing a string at line 1 column 60', 'query': r'{"auth_token":"123zxy456!@#","id":"123","python":{"script":"'}
     data_bytes = bytes(input, encoding='utf8')
-    received = sockerSendBytes(data_bytes)
+    received = socketSendBytes(data_bytes)
     received_json = json.loads(received)
     assert received_json['auth_token'] == expected_json['auth_token']
     assert received_json['id'] == expected_json['id']
@@ -64,7 +64,7 @@ def test_python_invalid_key(subtests):
             data_map = entry['input']
             expected_json = entry['output'] 
             data_bytes = bytes(data_map, encoding='utf8')
-            received = sockerSendBytes(data_bytes)
+            received = socketSendBytes(data_bytes)
             received_json = json.loads(received)
             assert received_json['auth_token'] == expected_json['auth_token']
             assert received_json['id'] == expected_json['id']
@@ -86,7 +86,7 @@ def test_python_known_service_with_name_of_another_service(subtests):
     for i, entry in enumerate(data_maps):
         with subtests.test(msg=f'item {i}'):
             data_bytes = bytes(entry['input'], encoding='utf-8')
-            received = sockerSendBytes(data_bytes)
+            received = socketSendBytes(data_bytes)
             received_json = json.loads(received)
             expected_json = entry['output']
             assert received_json['auth_token'] == expected_json['auth_token']

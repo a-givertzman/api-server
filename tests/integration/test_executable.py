@@ -1,7 +1,7 @@
 import json
 import unittest
 import conftest
-from request import sockerSendBytes
+from request import socketSendBytes
 
 class TestSqlPostgres(unittest.TestCase):
 
@@ -26,7 +26,7 @@ class TestSqlPostgres(unittest.TestCase):
         ]
         for i, entry in enumerate(data_maps):
             data_bytes = bytes(entry['input'], encoding='utf8')
-            received = sockerSendBytes(data_bytes)
+            received = socketSendBytes(data_bytes)
             received_json = json.loads(received)
             expected_json = entry['output']
             assert received_json['auth_token'] == expected_json['auth_token']
@@ -39,7 +39,7 @@ class TestSqlPostgres(unittest.TestCase):
         input = r'{"auth_token":"123zxy456!@#","id":"123","executable":{"nam'
         expected_json = {"auth_token": "Unknown", "id": "Unknown", 'data': [], 'error': 'EOF while parsing a string at line 1 column 58', 'query': r'{"auth_token":"123zxy456!@#","id":"123","executable":{"nam'}
         data_bytes = bytes(input, encoding='utf8')
-        received = sockerSendBytes(data_bytes)
+        received = socketSendBytes(data_bytes)
         received_json = json.loads(received)
         assert received_json['auth_token'] == expected_json['auth_token']
         assert received_json['id'] == expected_json['id']
@@ -70,7 +70,7 @@ class TestSqlPostgres(unittest.TestCase):
             data_map = entry['input']
             expected_json = entry['output'] 
             data_bytes = bytes(data_map, encoding='utf8')
-            received = sockerSendBytes(data_bytes)
+            received = socketSendBytes(data_bytes)
             received_json = json.loads(received)
             assert received_json['auth_token'] == expected_json['auth_token']
             assert received_json['id'] == expected_json['id']
@@ -99,7 +99,7 @@ class TestSqlPostgres(unittest.TestCase):
         ]
         for i, entry in enumerate(data_maps):
             data_bytes = bytes(entry['input'], encoding='utf-8')
-            received = sockerSendBytes(data_bytes)
+            received = socketSendBytes(data_bytes)
             received_json = json.loads(received)
             expected_json = entry['output']
             assert received_json['auth_token'] == expected_json['auth_token']
