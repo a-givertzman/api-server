@@ -59,8 +59,8 @@ def createDatabase():
         """)
 
 
-    result = psqlQuery(curSel, """
-    SELECT 1 FROM pg_database WHERE datname = 'db_postgres_test';
+    result = psqlQuery(curSel, f"""
+    SELECT 1 FROM pg_database WHERE datname = '{dbName}';
     """)
     if result:
         pass
@@ -68,6 +68,7 @@ def createDatabase():
         conn, cursor = connectPsqlRoot(autocommit=True)
         cursor.execute(f'CREATE DATABASE {dbName};')
         cursor.execute(f'GRANT ALL PRIVILEGES ON DATABASE {dbName} TO {dbUser};')
+        cursor.execute(f'ALTER DATABASE {dbName} OWNER TO {dbUser};')
         cursor.close()
         conn.close()
 
