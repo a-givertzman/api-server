@@ -61,7 +61,7 @@ impl ApiQuery {
     ///
     fn parseApiQuerySql(srcQuery: &str, json: serde_json::Value, auth_token: String, id: String, keepAlive: bool, debug: bool) -> ApiQuery {
         debug!("[ApiQuery.parseApiQuerySql] detected: {}", ApiQueryTypeName::Sql.value());
-        match ApiQuerySql::fromJson(json[ApiQueryTypeName::Sql.value()].clone(), debug) {
+        match ApiQuerySql::fromJson(json[ApiQueryTypeName::Sql.value()].clone()) {
             Ok(apiQuerySql) => {
                 ApiQuery::new(
                     auth_token,
@@ -87,7 +87,7 @@ impl ApiQuery {
     ///
     fn parseApiQueryPython(srcQuery: &str, json: serde_json::Value, auth_token: String, id: String, keepAlive: bool, debug: bool) -> ApiQuery {
         debug!("ApiQuery.fromBytes | detected: {}", ApiQueryTypeName::Python.value());
-        match ApiQueryPython::fromJson(json[ApiQueryTypeName::Python.value()].clone(), debug) {
+        match ApiQueryPython::fromJson(json[ApiQueryTypeName::Python.value()].clone()) {
             Ok(apiQueryPython) => {
                 ApiQuery::new(
                     auth_token,
@@ -113,7 +113,7 @@ impl ApiQuery {
     ///
     fn parseApiQueryExecutable(srcQuery: &str, json: serde_json::Value, auth_token: String, id: String, keepAlive: bool, debug: bool) -> ApiQuery {
         debug!("ApiQuery.fromBytes | detected: {}", ApiQueryTypeName::Executable.value());
-        match ApiQueryExecutable::fromJson(json[ApiQueryTypeName::Executable.value()].clone(), debug) {
+        match ApiQueryExecutable::fromJson(json[ApiQueryTypeName::Executable.value()].clone()) {
             Ok(apiQueryExecutable) => {
                 ApiQuery::new(
                     auth_token,

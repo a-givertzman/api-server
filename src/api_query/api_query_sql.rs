@@ -12,11 +12,10 @@ use crate::core_::error::api_error::ApiError;
 pub struct ApiQuerySql {
     pub database: String,
     pub sql: String,
-    src: serde_json::Value,
 }
 impl ApiQuerySql {
     ///
-    pub fn fromJson(jsonMap: serde_json::Value, debug: bool) -> Result<Self, ApiError> {
+    pub fn fromJson(jsonMap: serde_json::Value) -> Result<Self, ApiError> {
         let key = "database";
         if let serde_json::Value::String(database) = &jsonMap[key] {
             debug!("[ApiQuerySql.fromJson] field '{}': {:?}", &key, &database);
@@ -26,7 +25,6 @@ impl ApiQuerySql {
                 return Ok(ApiQuerySql {
                     database: database.to_owned(),
                     sql: sql.to_owned(),
-                    src: jsonMap,
                 });
             } else {
                 let details = format!("[ApiQuerySql.fromJson] field '{}' of type String not found or invalid content", key);
@@ -44,10 +42,5 @@ impl ApiQuerySql {
                 details,
             ));
         }
-    }
-    ///
-    /// 
-    pub fn srcQuery(self) -> serde_json::Value {
-        self.src
     }
 }

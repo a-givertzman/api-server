@@ -10,11 +10,10 @@ use crate::core_::error::api_error::ApiError;
 pub struct ApiQueryPython {
     pub script: String,
     pub params: serde_json::Map<String, serde_json::Value>,
-    src: serde_json::Value,
 }
 impl ApiQueryPython {
     ///
-    pub fn fromJson(jsonMap: serde_json::Value, debug: bool) -> Result<Self, ApiError> {
+    pub fn fromJson(jsonMap: serde_json::Value) -> Result<Self, ApiError> {
         let key = "script";
         if let serde_json::Value::String(script) = &jsonMap[key] {
             debug!("[ApiQueryPython.fromJson] field '{}': {:?}", &key, &script);
@@ -24,7 +23,6 @@ impl ApiQueryPython {
                 return Ok(ApiQueryPython {
                     script: script.to_owned(), 
                     params: params.to_owned(), 
-                    src: jsonMap,
                 });
             } else {
                 let details = format!("[ApiQueryPython.fromJson] field '{}' of type Map not found or invalid content", key);
@@ -42,10 +40,5 @@ impl ApiQueryPython {
                 details,
             ));
         }
-    }
-    ///
-    /// 
-    pub fn srcQuery(self) -> serde_json::Value {
-        self.src
     }
 }

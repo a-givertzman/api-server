@@ -5,7 +5,7 @@ mod tests {
     use std::{sync::Once, time::{Duration, Instant}, collections::HashMap};
     use rand::Rng;
     
-    use crate::{core_::{debug::debug_session::{DebugSession, LogLevel, Backtrace}, aprox_eq::aprox_eq::AproxEq}, api_query::{api_query::ApiQuery, api_query_type::ApiQueryType}};
+    use crate::{core_::{debug::debug_session::{DebugSession, LogLevel, Backtrace}, aprox_eq::aprox_eq::AproxEq, error::api_error::ApiError}, api_query::{api_query::ApiQuery, api_query_type::ApiQueryType, api_query_sql::ApiQuerySql, api_query_error::ApiQueryError}};
     
     // Note this useful idiom: importing names from outer (for mod tests) scope.
     // use super::*;
@@ -44,14 +44,30 @@ mod tests {
     
         let testData = [
             TestEntry {
-                input: r#"{"auth_token":"123zxy456!@#","id":"123","sql":{"database":"database","sql":"select * from do_data;"}}"#,
+                input: r#"{"auth_token":"123zxy456!@#","id":"01","debug":true,"sql":{"database":"database","sql":"select id from do_data;"},"python":{"script":"py-test","params":{"a": 4, "b": 7}}}"#,
                 out: ApiQuery::new(
-                    "Unknown".into(), "Unknown".into(), 
-                    ApiQueryType::Unknown, 
-                    r#"{"auth_token":"123zxy456!@#","id":"123","sql":{"database":"database","sql":"select * from do_data;"}}"#, 
-                    false, false
+                    "123zxy456!@#".into(), "01".into(), 
+                    ApiQueryType::Error(
+                        ApiQueryError::new(
+                            ApiError::new(
+                                "API Service - Unable to perform multiservice request: {\"auth_token\": String(\"123zxy456!@#\"), \"debug\": Bool(true), \"id\": String(\"01\"), \"python\": Object {\"params\": Object {\"a\": Number(4), \"b\": Number(7)}, \"script\": String(\"py-test\")}, \"sql\": Object {\"database\": String(\"database\"), \"sql\": String(\"select id from do_data;\")}}", 
+                                "ApiQuery.fromBytes | Unable to perform multiservice request: {\"auth_token\": String(\"123zxy456!@#\"), \"debug\": Bool(true), \"id\": String(\"01\"), \"python\": Object {\"params\": Object {\"a\": Number(4), \"b\": Number(7)}, \"script\": String(\"py-test\")}, \"sql\": Object {\"database\": String(\"database\"), \"sql\": String(\"select id from do_data;\")}}",
+                            )
+                        ),
+                    ), 
+                    r#"{"auth_token":"123zxy456!@#","id":"01","debug":true,"sql":{"database":"database","sql":"select id from do_data;"},"python":{"script":"py-test","params":{"a": 4, "b": 7}}}"#, 
+                    false, true
                 ),
             },
+            // TestEntry {
+            //     input: r#"{"auth_token":"123zxy456!@#","id":"123","sql":{"database":"database","sql":"select * from do_data;"}}"#,
+            //     out: ApiQuery::new(
+            //         "Unknown".into(), "Unknown".into(), 
+            //         ApiQueryType::Unknown, 
+            //         r#"{"auth_token":"123zxy456!@#","id":"123","sql":{"database":"database","sql":"select * from do_data;"}}"#, 
+            //         false, false
+            //     ),
+            // },
                 //     "error": {"message": "key must be a string at line 1 column 2"}, 
                 //     "query": b"{\x00\x00\x00"\x00\x00\x00a\x00\x00\x00u\x00\x00\x00t\x00\x00\x00h\x00\x00\x00_\x00\x00\x00t\x00\x00\x00o\x00\x00\x00k\x00\x00\x00e\x00\x00\x00n\x00\x00\x00"\x00\x00\x00:\x00\x00\x00"\x00\x00\x001\x00\x00\x002\x00\x00\x003\x00\x00\x00z\x00\x00\x00x\x00\x00\x00y\x00\x00\x004\x00\x00\x005\x00\x00\x006\x00\x00\x00!\x00\x00\x00@\x00\x00\x00#\x00\x00\x00"\x00\x00\x00,\x00\x00\x00"\x00\x00\x00i\x00\x00\x00d\x00\x00\x00"\x00\x00\x00:\x00\x00\x00"\x00\x00\x001\x00\x00\x002\x00\x00\x003\x00\x00\x00"\x00\x00\x00,\x00\x00\x00"\x00\x00\x00s\x00\x00\x00q\x00\x00\x00l\x00\x00\x00"\x00\x00\x00:\x00\x00\x00{\x00\x00\x00"\x00\x00\x00d\x00\x00\x00a\x00\x00\x00t\x00\x00\x00a\x00\x00\x00b\x00\x00\x00a\x00\x00\x00s\x00\x00\x00e\x00\x00\x00"\x00\x00\x00:\x00\x00\x00"\x00\x00\x00d\x00\x00\x00a\x00\x00\x00t\x00\x00\x00a\x00\x00\x00b\x00\x00\x00a\x00\x00\x00s\x00\x00\x00e\x00\x00\x00"\x00\x00\x00,\x00\x00\x00"\x00\x00\x00s\x00\x00\x00q\x00\x00\x00l\x00\x00\x00"\x00\x00\x00:\x00\x00\x00"\x00\x00\x00s\x00\x00\x00e\x00\x00\x00l\x00\x00\x00e\x00\x00\x00c\x00\x00\x00t\x00\x00\x00 \x00\x00\x00*\x00\x00\x00 \x00\x00\x00f\x00\x00\x00r\x00\x00\x00o\x00\x00\x00m\x00\x00\x00 \x00\x00\x00d\x00\x00\x00o\x00\x00\x00_\x00\x00\x00d\x00\x00\x00a\x00\x00\x00t\x00\x00\x00a\x00\x00\x00;\x00\x00\x00"\x00\x00\x00}\x00\x00\x00}"},
                 // ]))
@@ -120,7 +136,26 @@ mod tests {
             let bytes = testEntry.input.as_bytes();
             let apiQuery = ApiQuery::fromBytes(bytes.into());
 
-            assert!(apiQuery == testEntry.out, "\nparsed apiQuery: {:?} \ntarget apiQuery: {:?}", apiQuery, testEntry.out);
+            assert!(
+                apiQuery.authToken() == testEntry.out.authToken(), 
+                "\nparsed apiQuery authToken: {:?} \ntarget apiQuery authToken: {:?}", apiQuery.authToken(), testEntry.out.authToken(),
+            );
+            assert!(
+                apiQuery.id() == testEntry.out.id(), 
+                "\nparsed apiQuery id: {:?} \ntarget apiQuery id: {:?}", apiQuery.id(), testEntry.out.id(),
+            );
+            assert!(
+                apiQuery.debug == testEntry.out.debug, 
+                "\nparsed apiQuery debug: {:?} \ntarget apiQuery debug: {:?}", apiQuery.debug, testEntry.out.debug,
+            );
+            assert!(
+                apiQuery.keepAlive == testEntry.out.keepAlive, 
+                "\nparsed apiQuery keepAlive: {:?} \ntarget apiQuery keepAlive: {:?}", apiQuery.keepAlive, testEntry.out.keepAlive,
+            );
+            assert!(
+                apiQuery.query() == testEntry.out.query(), 
+                "\nparsed apiQuery query: {:?} \ntarget apiQuery query: {:?}", apiQuery.query(), testEntry.out.query(),
+            );
     
         }    
     }

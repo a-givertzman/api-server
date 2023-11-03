@@ -10,11 +10,10 @@ use crate::core_::error::api_error::ApiError;
 pub struct ApiQueryExecutable {
     pub name: String,
     pub params: serde_json::Map<String, serde_json::Value>,
-    src: serde_json::Value,
 }
 impl ApiQueryExecutable {
     ///
-    pub fn fromJson(jsonMap: serde_json::Value, debug: bool) -> Result<Self, ApiError> {
+    pub fn fromJson(jsonMap: serde_json::Value) -> Result<Self, ApiError> {
         let key = "name";
         if let serde_json::Value::String(name) = &jsonMap[key] {
             debug!("[ApiQueryExecutable.fromJson] field '{}': {:?}", &key, &name);
@@ -24,7 +23,6 @@ impl ApiQueryExecutable {
                 return Ok(ApiQueryExecutable {
                     name: name.to_owned(), 
                     params: params.to_owned(), 
-                    src: jsonMap,
                 });
             } else {
                 let details = format!("[ApiQueryExecutable.fromJson] field '{}' of type Map not found or invalid content", key);
@@ -43,7 +41,6 @@ impl ApiQueryExecutable {
             ));
         }
     }
-    ///
     // pub fn fromBytes(bytes: Vec<u8>) -> Self {
     //     let refBytes = &bytes;
     //     let string = String::from_utf8(refBytes.to_owned()).unwrap();
@@ -64,8 +61,4 @@ impl ApiQueryExecutable {
     //     // debug!("[ApiQueryExecutable.fromBytes] bytes: {:?}", pobytesint);
     //     query
     // }
-    ///
-    pub fn srcQuery(self) -> serde_json::Value {
-        self.src
-    }
 }
