@@ -15,7 +15,7 @@ use crate::{
 };
 
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 // #[serde(rename_all = "lowercase")]
 pub enum ApiQueryType {
     Sql(ApiQuerySql),

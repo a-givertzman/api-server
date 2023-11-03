@@ -2,7 +2,6 @@
 
 use log::{debug, warn, trace};
 use serde::{Serialize, Deserialize};
-use serde_json::json;
 
 use crate::{
     core_::error::api_error::ApiError, 
@@ -10,11 +9,10 @@ use crate::{
     api_query::api_query_sql::ApiQuerySql, 
     api_query::api_query_python::ApiQueryPython, 
     api_query::api_query_executable::ApiQueryExecutable, 
-    api_query::api_query_unknown::ApiQueryUnknown, 
 };
 
 ///
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct ApiQuery {
     authToken: String,
     id: String,

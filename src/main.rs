@@ -1,7 +1,9 @@
 #![allow(non_snake_case)]
+#[cfg(test)]
 
 extern crate postgres;
 
+mod tests;
 mod core_;
 mod config;
 mod api_server;

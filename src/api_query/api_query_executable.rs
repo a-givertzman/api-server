@@ -6,7 +6,7 @@ use serde::{Serialize, Deserialize};
 use crate::core_::error::api_error::ApiError;
 
 ///
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct ApiQueryExecutable {
     pub name: String,
     pub params: serde_json::Map<String, serde_json::Value>,

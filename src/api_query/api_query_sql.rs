@@ -8,7 +8,7 @@ use crate::core_::error::api_error::ApiError;
 // use crate::{api_query::ApiQuery, api_query_type::ApiQueryType, api_query_error::ApiError};
 
 ///
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct ApiQuerySql {
     pub database: String,
     pub sql: String,

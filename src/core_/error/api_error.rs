@@ -7,7 +7,7 @@ use serde::{Serialize, Deserialize, Serializer, ser::SerializeStruct};
 use serde_json::json;
 
 ///
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Deserialize, PartialEq)]
 pub struct ApiError {
     message: String,
     details: String,

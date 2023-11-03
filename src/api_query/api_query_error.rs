@@ -7,7 +7,7 @@ use crate::core_::error::api_error::ApiError;
 
 ///
 /// 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct ApiQueryError {
     // query: serde_json::Value,
     error: ApiError,

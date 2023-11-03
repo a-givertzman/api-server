@@ -79,6 +79,7 @@ dependencies = [
  "linked-hash-map",
  "log",
  "postgres",
+ "rand",
  "rusqlite",
  "rust_decimal",
  "serde",
