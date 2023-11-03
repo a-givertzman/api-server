@@ -5,6 +5,6 @@
     "python.testing.unittestEnabled": false,
     "python.testing.pytestEnabled": true,
     "python.analysis.extraPaths": [
-        "./tests/integration"
+        "./src/tests/integration"
     ]
 }

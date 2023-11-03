@@ -67,5 +67,5 @@ jobs:
 
       - name: Integration tests
         run: |
-          python3.10 -m pip install -r tests/integration/requirements.txt
-          tests/integration/run_tests.sh
+          python3.10 -m pip install -r src/tests/integration/requirements.txt
+          src/tests/integration/run_tests.sh

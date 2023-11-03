@@ -10,7 +10,7 @@ def run_api_server():
     if pingApiServer(addr, port):
         kill_all_servers()
     Popen(
-        f'cd {os.path.dirname(os.path.abspath(__file__))}/../.. && cargo run --release', 
+        f'cd {os.path.dirname(os.path.abspath(__file__))}/../../.. && cargo run --release', 
         shell=True, 
         # stdout=DEVNULL, stderr=DEVNULL,
     )

@@ -28,15 +28,11 @@ use log::debug;
 use crate::{
     config::Config, 
     tcp_server::TcpServer, 
-    api_server::ApiServer,
+    api_server::ApiServer, core_::debug::debug_session::{DebugSession, LogLevel, Backtrace},
 };
 
 fn main() {
-    env::set_var("RUST_LOG", "debug");  // off / error / warn / info / debug / trace
-    // env::set_var("RUST_BACKTRACE", "1");
-    env::set_var("RUST_BACKTRACE", "full");
-    env_logger::init();
-
+    DebugSession::init(LogLevel::Debug, Backtrace::Short);
     debug!("starting api server...");
     let dir = std::env::current_dir().unwrap();
     let path: &str = &format!("{}/config.yaml", dir.to_str().unwrap());
@@ -49,10 +45,4 @@ fn main() {
         ),
     ));
     TcpServer::run(tcpServer.clone()).unwrap();
-    // println!("tcpServer.isConnected: {:?}", tcpServer.lock().unwrap().isConnected);
-    // thread::sleep(Duration::from_secs_f64(10.0));
-    // println!("tcpServer.isConnected: {:?}", tcpServer.lock().unwrap().isConnected);
-    // while tcpServer.lock().unwrap().isConnected {
-    //     thread::sleep(Duration::from_secs_f64(1.0));
-    // }
 }

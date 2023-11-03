@@ -4,10 +4,10 @@
 #
 # to extend list of tests add new script to the following array
 declare -a tests=(
-    "tests/integration/test_common.py"
-    "tests/integration/test_executable.py"
-    "tests/integration/test_python.py"
-    "tests/integration/test_sql_postgres.py"
+    "src/tests/integration/test_common.py"
+    "src/tests/integration/test_executable.py"
+    "src/tests/integration/test_python.py"
+    "src/tests/integration/test_sql_postgres.py"
 )
 #
 # for local execution change python version here if required
@@ -20,19 +20,19 @@ echo "Python version used for testing: $python"
 # do not change all following code
 #
 set -a # automatically export all variables
-source tests/integration/.env
+source src/tests/integration/.env
 set +a
 
-$python -m pip install -r tests/integration/requirements.txt
+$python -m pip install -r src/tests/integration/requirements.txt
 
 $python -c"
-import sys; sys.path.insert(0,'$PWD/tests/integration')
+import sys; sys.path.insert(0,'$PWD/src/tests/integration')
 import conftest; conftest.kill_all_servers()
 "
 sleep 3s
 
 $python -c"
-import sys; sys.path.insert(0,'$PWD/tests/integration')
+import sys; sys.path.insert(0,'$PWD/src/tests/integration')
 import conftest; conftest.run_api_server()
 "
 
@@ -47,6 +47,6 @@ for test in "${tests[@]}"; do
 done
 
 $python -c"
-import sys; sys.path.insert(0,'$PWD/tests/integration')
+import sys; sys.path.insert(0,'$PWD/src/tests/integration')
 import conftest; conftest.kill_all_servers()
 "
