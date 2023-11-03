@@ -3,7 +3,7 @@ import unittest
 import conftest
 from request import socketSendBytes
 
-class TestSqlPostgres(unittest.TestCase):
+class TestExecutable(unittest.TestCase):
 
     def test_executable_invalid_json_without_brackets(self):
         data_maps = [

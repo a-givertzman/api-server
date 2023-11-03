@@ -5,8 +5,8 @@ import time
 # import pytest
 
 def run_api_server():
-    addr = os.environ['API_SERVER_ADDR']
-    port = int(os.environ['API_SERVER_PORT'])
+    addr = os.environ.get('API_SERVER_ADDR', '127.0.0.1')
+    port = int(os.environ.get('API_SERVER_PORT', 8080))
     if pingApiServer(addr, port):
         kill_all_servers()
     Popen(

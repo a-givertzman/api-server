@@ -12,8 +12,8 @@ def socketSendBytes(data: bytes) -> bytes:
         print(f'socketSendBytes | Socket error: {err}')
         sock = None
     try:
-        addr = os.environ['API_SERVER_ADDR']
-        port = int(os.environ['API_SERVER_PORT'])
+        addr = os.environ.get('API_SERVER_ADDR', '127.0.0.1')
+        port = int(os.environ.get('API_SERVER_PORT', 8080))
         sock.connect((addr, port))
     except OSError as err:    
         print(f'socketSendBytes | Socket error: {err}')
