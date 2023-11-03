@@ -2,8 +2,7 @@
 #[cfg(test)]
 mod tests {
     use log::{info, debug, warn};
-    use std::{sync::Once, time::{Duration, Instant}, collections::HashMap};
-    use rand::Rng;
+    use std::sync::Once;
     
     use crate::{core_::{debug::debug_session::{DebugSession, LogLevel, Backtrace}, aprox_eq::aprox_eq::AproxEq, error::api_error::ApiError}, api_query::{api_query::ApiQuery, api_query_type::ApiQueryType, api_query_sql::ApiQuerySql, api_query_error::ApiQueryError}};
     
@@ -32,7 +31,18 @@ mod tests {
     struct TestEntry {
         input: &'static str,
         out: ApiQuery,
+        queryVariant: ApiQueryTypeVariant,
     }
+
+    #[derive(std::fmt::Debug)]
+    enum ApiQueryTypeVariant {
+        Sql,
+        Python,
+        Executable,
+        Unknown,
+        Error,
+    }
+    
 
     #[test]
     fn test_api_query_from_bytes() {
@@ -41,8 +51,41 @@ mod tests {
         initEach();
         println!("");
         info!("test_api_query_from_bytes");
-    
         let testData = [
+
+            // debug
+            TestEntry {
+                input: r#"{"auth_token":"123zxy456!@#","id":"11","sql":{"database":"database","sql":"select id from do_data;"}}"#,
+                out: ApiQuery::new(
+                    "123zxy456!@#".into(), "11".into(), 
+                    ApiQueryType::Sql(ApiQuerySql{ database: "database".to_string(), sql: "select id from do_data;".to_string() }), 
+                    "", 
+                    false, false
+                ),
+                queryVariant: ApiQueryTypeVariant::Sql,
+            },
+            TestEntry {
+                input: r#"{"auth_token":"123zxy456!@#","id":"12","debug":true,"sql":{"database":"database","sql":"select id from do_data;"}}"#,
+                out: ApiQuery::new(
+                    "123zxy456!@#".into(), "12".into(), 
+                    ApiQueryType::Sql(ApiQuerySql{ database: "database".to_string(), sql: "select id from do_data;".to_string() }), 
+                    r#"{"auth_token":"123zxy456!@#","id":"12","debug":true,"sql":{"database":"database","sql":"select id from do_data;"}}"#, 
+                    false, true
+                ),
+                queryVariant: ApiQueryTypeVariant::Sql,
+            },
+
+            TestEntry {
+                input: r#"{"auth_token":"123zxy456!@#","id":"13","sql":{"database":"database","sql":"select id from do_data;"},"python":{"script":"py-test","params":{"a": 4, "b": 7}}}"#,
+                out: ApiQuery::new(
+                    "123zxy456!@#".into(), "13".into(), 
+                    ApiQueryType::Error(ApiQueryError::new(ApiError::new("", ""))), 
+                    "", 
+                    false, false
+                ),
+                queryVariant: ApiQueryTypeVariant::Error,
+            },
+
             // multyservice query
             TestEntry {
                 input: r#"{"auth_token":"123zxy456!@#","id":"01","debug":true,"sql":{"database":"database","sql":"select id from do_data;"},"python":{"script":"py-test","params":{"a": 4, "b": 7}}}"#,
@@ -52,6 +95,7 @@ mod tests {
                     r#"{"auth_token":"123zxy456!@#","id":"01","debug":true,"sql":{"database":"database","sql":"select id from do_data;"},"python":{"script":"py-test","params":{"a": 4, "b": 7}}}"#, 
                     false, true
                 ),
+                queryVariant: ApiQueryTypeVariant::Error,
             },
             TestEntry {
                 input: r#"{"auth_token":"123zxy456!@#","id":"02","debug":true,"python":{"script":"py-test","params":{"a": 4, "b": 7}},"executable":{"name":"executable-test","params":{"a": 4, "b": 7}}}"#,
@@ -61,83 +105,28 @@ mod tests {
                     r#"{"auth_token":"123zxy456!@#","id":"02","debug":true,"python":{"script":"py-test","params":{"a": 4, "b": 7}},"executable":{"name":"executable-test","params":{"a": 4, "b": 7}}}"#, 
                     false, true
                 ),
+                queryVariant: ApiQueryTypeVariant::Error,
             },
-            // {
-            //     'output': {"auth_token": "123zxy456!@#", "id": "02", 'data': [], 'error': {'message': 'API Service - Unable to perform multiservice request'}, 'query': r'{"auth_token":"123zxy456!@#","id":"02","debug":true,"python":{"script":"py-test","params":{"a": 4, "b": 7}},"executable":{"name":"executable-test","params":{"a": 4, "b": 7}}}'},
-            // },
-            // {
-            //     'input': r'{"auth_token":"123zxy456!@#","id":"03","debug":true,"executable":{"name":"executable-test","params":{"a": 4, "b": 7}},"sql":{"database":"database","sql":"select id from do_data;"}}',
-            //     'output': {"auth_token": "123zxy456!@#", "id": "03", 'data': [], 'error': {'message': 'API Service - Unable to perform multiservice request'}, 'query': r'{"auth_token":"123zxy456!@#","id":"03","debug":true,"executable":{"name":"executable-test","params":{"a": 4, "b": 7}},"sql":{"database":"database","sql":"select id from do_data;"}}'},
-            // },
-            // {
-            //     'input': r'{"auth_token":"123zxy456!@#","id":"04","debug":true,"sql":{"database":"database","sql":"select id from do_data;"},"python":{"script":"py-test","params":{"a": 4, "b": 7}},"executable":{"name":"executable-test","params":{"a": 4, "b": 7}}}',
-            //     'output': {"auth_token": "123zxy456!@#", "id": "04", 'data': [], 'error': {'message': 'API Service - Unable to perform multiservice request'}, 'query': r'{"auth_token":"123zxy456!@#","id":"04","debug":true,"sql":{"database":"database","sql":"select id from do_data;"},"python":{"script":"py-test","params":{"a": 4, "b": 7}},"executable":{"name":"executable-test","params":{"a": 4, "b": 7}}}'},
-            // },
-
-
-            // kind of query
-            
-
-            // {
-            //     'input': r'{"auth_token":"123zxy456!@#","id":"123","python":{"script":"py-test","params":{"a": 4, "b": 7}}}',
-            //     'output': {"auth_token": "Unknown", "id": "Unknown", 'data': [], 'error': {'message': 'key must be a string at line 1 column 2'}, 'query': '{\x00\x00\x00"\x00\x00\x00a\x00\x00\x00u\x00\x00\x00t\x00\x00\x00h\x00\x00\x00_\x00\x00\x00t\x00\x00\x00o\x00\x00\x00k\x00\x00\x00e\x00\x00\x00n\x00\x00\x00"\x00\x00\x00:\x00\x00\x00"\x00\x00\x001\x00\x00\x002\x00\x00\x003\x00\x00\x00z\x00\x00\x00x\x00\x00\x00y\x00\x00\x004\x00\x00\x005\x00\x00\x006\x00\x00\x00!\x00\x00\x00@\x00\x00\x00#\x00\x00\x00"\x00\x00\x00,\x00\x00\x00"\x00\x00\x00i\x00\x00\x00d\x00\x00\x00"\x00\x00\x00:\x00\x00\x00"\x00\x00\x001\x00\x00\x002\x00\x00\x003\x00\x00\x00"\x00\x00\x00,\x00\x00\x00"\x00\x00\x00p\x00\x00\x00y\x00\x00\x00t\x00\x00\x00h\x00\x00\x00o\x00\x00\x00n\x00\x00\x00"\x00\x00\x00:\x00\x00\x00{\x00\x00\x00"\x00\x00\x00s\x00\x00\x00c\x00\x00\x00r\x00\x00\x00i\x00\x00\x00p\x00\x00\x00t\x00\x00\x00"\x00\x00\x00:\x00\x00\x00"\x00\x00\x00p\x00\x00\x00y\x00\x00\x00-\x00\x00\x00t\x00\x00\x00e\x00\x00\x00s\x00\x00\x00t\x00\x00\x00"\x00\x00\x00,\x00\x00\x00"\x00\x00\x00p\x00\x00\x00a\x00\x00\x00r\x00\x00\x00a\x00\x00\x00m\x00\x00\x00s\x00\x00\x00"\x00\x00\x00:\x00\x00\x00{\x00\x00\x00"\x00\x00\x00a\x00\x00\x00"\x00\x00\x00:\x00\x00\x00 \x00\x00\x004\x00\x00\x00,\x00\x00\x00 \x00\x00\x00"\x00\x00\x00b\x00\x00\x00"\x00\x00\x00:\x00\x00\x00 \x00\x00\x007\x00\x00\x00}\x00\x00\x00}\x00\x00\x00}'},
-            // },
-            // {
-            //     'input': r'{"auth_token":"123zxy456!@#","id":"123","executable":{"name":"executable-test","params":{"a": 4, "b": 7}}}',
-            //     'output': {"auth_token": "Unknown", "id": "Unknown", 'data': [], 'error': {'message': 'key must be a string at line 1 column 2'}, 'query': '{\x00\x00\x00"\x00\x00\x00a\x00\x00\x00u\x00\x00\x00t\x00\x00\x00h\x00\x00\x00_\x00\x00\x00t\x00\x00\x00o\x00\x00\x00k\x00\x00\x00e\x00\x00\x00n\x00\x00\x00"\x00\x00\x00:\x00\x00\x00"\x00\x00\x001\x00\x00\x002\x00\x00\x003\x00\x00\x00z\x00\x00\x00x\x00\x00\x00y\x00\x00\x004\x00\x00\x005\x00\x00\x006\x00\x00\x00!\x00\x00\x00@\x00\x00\x00#\x00\x00\x00"\x00\x00\x00,\x00\x00\x00"\x00\x00\x00i\x00\x00\x00d\x00\x00\x00"\x00\x00\x00:\x00\x00\x00"\x00\x00\x001\x00\x00\x002\x00\x00\x003\x00\x00\x00"\x00\x00\x00,\x00\x00\x00"\x00\x00\x00e\x00\x00\x00x\x00\x00\x00e\x00\x00\x00c\x00\x00\x00u\x00\x00\x00t\x00\x00\x00a\x00\x00\x00b\x00\x00\x00l\x00\x00\x00e\x00\x00\x00"\x00\x00\x00:\x00\x00\x00{\x00\x00\x00"\x00\x00\x00n\x00\x00\x00a\x00\x00\x00m\x00\x00\x00e\x00\x00\x00"\x00\x00\x00:\x00\x00\x00"\x00\x00\x00e\x00\x00\x00x\x00\x00\x00e\x00\x00\x00c\x00\x00\x00u\x00\x00\x00t\x00\x00\x00a\x00\x00\x00b\x00\x00\x00l\x00\x00\x00e\x00\x00\x00-\x00\x00\x00t\x00\x00\x00e\x00\x00\x00s\x00\x00\x00t\x00\x00\x00"\x00\x00\x00,\x00\x00\x00"\x00\x00\x00p\x00\x00\x00a\x00\x00\x00r\x00\x00\x00a\x00\x00\x00m\x00\x00\x00s\x00\x00\x00"\x00\x00\x00:\x00\x00\x00{\x00\x00\x00"\x00\x00\x00a\x00\x00\x00"\x00\x00\x00:\x00\x00\x00 \x00\x00\x004\x00\x00\x00,\x00\x00\x00 \x00\x00\x00"\x00\x00\x00b\x00\x00\x00"\x00\x00\x00:\x00\x00\x00 \x00\x00\x007\x00\x00\x00}\x00\x00\x00}\x00\x00\x00}'},
-            // },
-            // {
-            //     'input': r'{"auth_token":"123zxy456!@#","id":"01","debug":true,"sql":{"database":"database","sql":"select id from do_data;"},"python":{"script":"py-test","params":{"a": 4, "b": 7}}}',
-            //     'output': {"auth_token": "123zxy456!@#", "id": "01", 'data': [], 'error': {'message': 'API Service - Unable to perform multiservice request'}, 'query': r'{"auth_token":"123zxy456!@#","id":"01","debug":true,"sql":{"database":"database","sql":"select id from do_data;"},"python":{"script":"py-test","params":{"a": 4, "b": 7}}}'},
-            // },
-            // {
-            //     'input': r'{"auth_token":"123zxy456!@#","id":"02","debug":true,"python":{"script":"py-test","params":{"a": 4, "b": 7}},"executable":{"name":"executable-test","params":{"a": 4, "b": 7}}}',
-            //     'output': {"auth_token": "123zxy456!@#", "id": "02", 'data': [], 'error': {'message': 'API Service - Unable to perform multiservice request'}, 'query': r'{"auth_token":"123zxy456!@#","id":"02","debug":true,"python":{"script":"py-test","params":{"a": 4, "b": 7}},"executable":{"name":"executable-test","params":{"a": 4, "b": 7}}}'},
-            // },
-            // {
-            //     'input': r'{"auth_token":"123zxy456!@#","id":"03","debug":true,"executable":{"name":"executable-test","params":{"a": 4, "b": 7}},"sql":{"database":"database","sql":"select id from do_data;"}}',
-            //     'output': {"auth_token": "123zxy456!@#", "id": "03", 'data': [], 'error': {'message': 'API Service - Unable to perform multiservice request'}, 'query': r'{"auth_token":"123zxy456!@#","id":"03","debug":true,"executable":{"name":"executable-test","params":{"a": 4, "b": 7}},"sql":{"database":"database","sql":"select id from do_data;"}}'},
-            // },
-            // {
-            //     'input': r'{"auth_token":"123zxy456!@#","id":"04","debug":true,"sql":{"database":"database","sql":"select id from do_data;"},"python":{"script":"py-test","params":{"a": 4, "b": 7}},"executable":{"name":"executable-test","params":{"a": 4, "b": 7}}}',
-            //     'output': {"auth_token": "123zxy456!@#", "id": "04", 'data': [], 'error': {'message': 'API Service - Unable to perform multiservice request'}, 'query': r'{"auth_token":"123zxy456!@#","id":"04","debug":true,"sql":{"database":"database","sql":"select id from do_data;"},"python":{"script":"py-test","params":{"a": 4, "b": 7}},"executable":{"name":"executable-test","params":{"a": 4, "b": 7}}}'},
-            // },
-            // {
-            //     'input': r'{"auth_token":"123zxy456!@#","id":"123","debug":true,"executable@@@":{"name":"executable-test","params":{"a":4,"b":7}}}',
-            //     'output': {"auth_token": "123zxy456!@#", "id": "123", 'data': [], 'error': {'message': 'Unknown type of API query'}, 'query': r'{"auth_token":"123zxy456!@#","id":"123","debug":true,"executable@@@":{"name":"executable-test","params":{"a":4,"b":7}}}'},
-            // },
-            // {
-            //     'input': r'{"auth_token":"123zxy456!@#","id@@@":"123","debug":true,"executable":{"name":"executable-test","params":{"a":4,"b":7}}}',
-            //     'output': {"auth_token": "123zxy456!@#", "id": "Unknown", 'data': [], 'error': {'message': '[ApiQuery.parseJsonString] field \'id\' of type String not found'}, 'query': r'{"auth_token":"123zxy456!@#","id@@@":"123","debug":true,"executable":{"name":"executable-test","params":{"a":4,"b":7}}}'},
-            // },
-            // {
-            //     'input': r'{"auth_token@@@":"123zxy456!@#","id":"123","debug":true,"executable":{"name":"executable-test","params":{"a":4,"b":7}}}',
-            //     'output': {"auth_token": "Unknown", "id": "123", 'data': [], 'error': {'message': '[ApiQuery.parseJsonString] field \'auth_token\' of type String not found'}, 'query': r'{"auth_token@@@":"123zxy456!@#","id":"123","debug":true,"executable":{"name":"executable-test","params":{"a":4,"b":7}}}'},
-            // },
-            // {
-            //     'input': r'{"auth_token":"123zxy456!@#","id":"123","debug":true,"python@@@":{"script":"py-test","params":{"a":4,"b":7}}}',
-            //     'output': {"auth_token": "123zxy456!@#", "id": "123", 'data': [], 'error': {'message': 'Unknown type of API query'}, 'query': r'{"auth_token":"123zxy456!@#","id":"123","debug":true,"python@@@":{"script":"py-test","params":{"a":4,"b":7}}}'},
-            // },
-            // {
-            //     'input': r'{"auth_token":"123zxy456!@#","id@@@":"123","debug":true,"python":{"script":"py-test","params":{"a":4,"b":7}}}',
-            //     'output': {"auth_token": "123zxy456!@#", "id": "Unknown", 'data': [], 'error': {'message': 'ApiQuery -  field \'id\' of type String not found'}, 'query': r'{"auth_token":"123zxy456!@#","id@@@":"123","debug":true,"python":{"script":"py-test","params":{"a":4,"b":7}}}'},
-            // },
-            // {
-            //     'input': r'{"auth_token@@@":"123zxy456!@#","id":"123","debug":true,"python":{"script":"py-test","params":{"a":4,"b":7}}}',
-            //     'output': {"auth_token": "Unknown", "id": "123", 'data': [], 'error': {'message': '[ApiQuery.parseJsonString] field \'auth_token\' of type String not found'}, 'query': r'{"auth_token@@@":"123zxy456!@#","id":"123","debug":true,"python":{"script":"py-test","params":{"a":4,"b":7}}}'},
-            // },
-            // {
-            //     'input': r'{"auth_token":"123zxy456!@#","id":"123","debug":true,"sql@@@":{"database":"db-postgres","sql":"select 1;"}}',
-            //     'output': {"auth_token": "123zxy456!@#", "id": "123", 'data': [], 'error': {'message': 'Unknown type of API query'}, 'query': r'{"auth_token":"123zxy456!@#","id":"123","debug":true,"sql@@@":{"database":"db-postgres","sql":"select 1;"}}'},
-            // },
-            // {
-            //     'input': r'{"auth_token":"123zxy456!@#","id@@@":"123","debug":true,"sql":{"database":"db-postgres","sql":"select 1;"}}',
-            //     'output': {"auth_token": "123zxy456!@#", "id": "Unknown", 'data': [], 'error': {'message': '[ApiQuery.parseJsonString] field \'id\' not found'}, 'query': r'{"auth_token":"123zxy456!@#","id@@@":"123","debug":true,"sql":{"database":"db-postgres","sql":"select 1;"}}'},
-            // },
-            // {
-            //     'input': r'{"auth_token@@@":"123zxy456!@#","id":"123","debug":true,"sql":{"database":"db-postgres","sql":"select 1;"}}',
-            //     'output': {"auth_token": "Unknown", "id": "123", 'data': [], 'error': {'message': '[ApiQuery.parseJsonString] field \'auth_token\' not found'}, 'query': r'{"auth_token@@@":"123zxy456!@#","id":"123","debug":true,"sql":{"database":"db-postgres","sql":"select 1;"}}'},
-            // },
+            TestEntry {
+                input: r#"{"auth_token":"123zxy456!@#","id":"03","debug":true,"executable":{"name":"executable-test","params":{"a": 4, "b": 7}},"sql":{"database":"database","sql":"select id from do_data;"}}"#,
+                out: ApiQuery::new(
+                    "123zxy456!@#".into(), "03".into(), 
+                    ApiQueryType::Error(ApiQueryError::new(ApiError::new("", ""))), 
+                    r#"{"auth_token":"123zxy456!@#","id":"03","debug":true,"executable":{"name":"executable-test","params":{"a": 4, "b": 7}},"sql":{"database":"database","sql":"select id from do_data;"}}"#,
+                    false, true
+                ),
+                queryVariant: ApiQueryTypeVariant::Error,
+            },
+            TestEntry {
+                input: r#"{"auth_token":"123zxy456!@#","id":"04","debug":true,"sql":{"database":"database","sql":"select id from do_data;"},"python":{"script":"py-test","params":{"a": 4, "b": 7}},"executable":{"name":"executable-test","params":{"a": 4, "b": 7}}}"#,
+                out: ApiQuery::new(
+                    "123zxy456!@#".into(), "04".into(), 
+                    ApiQueryType::Error(ApiQueryError::new(ApiError::new("", ""))), 
+                    r#"{"auth_token":"123zxy456!@#","id":"04","debug":true,"sql":{"database":"database","sql":"select id from do_data;"},"python":{"script":"py-test","params":{"a": 4, "b": 7}},"executable":{"name":"executable-test","params":{"a": 4, "b": 7}}}"#, 
+                    false, true
+                ),
+                queryVariant: ApiQueryTypeVariant::Error,
+            },
         ];
         for testEntry in testData {
             let bytes = testEntry.input.as_bytes();
@@ -159,7 +148,38 @@ mod tests {
                 apiQuery.keepAlive == testEntry.out.keepAlive, 
                 "\nparsed apiQuery keepAlive: {:?} \ntarget apiQuery keepAlive: {:?}", apiQuery.keepAlive, testEntry.out.keepAlive,
             );
-            assert!(matches!(apiQuery.query(), ApiQueryType::Error { .. }));
+            match apiQuery.query() {
+                ApiQueryType::Sql(_) => {
+                    assert!(
+                        apiQuery.keepAlive == testEntry.out.keepAlive, 
+                        "\nparsed apiQuery query: 'ApiQueryType::Sql' \ntarget apiQuery query: {:?}", testEntry.queryVariant,
+                    );        
+                },
+                ApiQueryType::Python(_) => {
+                    assert!(
+                        apiQuery.keepAlive == testEntry.out.keepAlive, 
+                        "\nparsed apiQuery query: 'ApiQueryType::Python' \ntarget apiQuery query: {:?}", testEntry.queryVariant,
+                    );
+                },
+                ApiQueryType::Executable(_) => {
+                    assert!(
+                        apiQuery.keepAlive == testEntry.out.keepAlive, 
+                        "\nparsed apiQuery query: 'ApiQueryType::Executable' \ntarget apiQuery query: {:?}", testEntry.queryVariant,
+                    );
+                },
+                ApiQueryType::Unknown => {
+                    assert!(
+                        apiQuery.keepAlive == testEntry.out.keepAlive, 
+                        "\nparsed apiQuery query: 'ApiQueryType::Unknown' \ntarget apiQuery query: {:?}", testEntry.queryVariant,
+                    );
+                },
+                ApiQueryType::Error(_) => {
+                    assert!(
+                        apiQuery.keepAlive == testEntry.out.keepAlive, 
+                        "\nparsed apiQuery query: 'ApiQueryType::Error' \ntarget apiQuery query: {:?}", testEntry.queryVariant,
+                    );                    
+                },
+            }
     
         }    
     }
