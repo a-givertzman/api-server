@@ -1,8 +1,7 @@
-name: Cargo Tests
+name: Create release
 
 on:
-  # push:
-  pull_request:
+  workflow_dispatch:
 
 env: 
   TERM: dumb
@@ -14,7 +13,7 @@ env:
 
 jobs:
   build_and_test:
-    name: Testing
+    name: "Creating new release (build: ${{ github.run_number }})"
     runs-on: ubuntu-latest
     # strategy:
     #   matrix:
@@ -70,6 +69,32 @@ jobs:
       - name: Update version number in the Cargo.toml
         run: |
           echo "old version: "
-          echo "new version: ${{ github.run_number }}"
-          sed -i -r "s/^(version[\t ]*=[\t ]*"[0-9]+\.[0-9]+\.)[0-9]+"\s*$/\1${{ github.run_number }}/g" ./Cargo.toml
+          echo "new build: ${{ github.run_number }}"
+          sed -i -r "s/^(version[\t ]*=[\t ]*\"[0-9]+\.[0-9]+\.)[0-9]+\"\s*$/\1${{ github.run_number }}/g" ./Cargo.toml
+          new_version_var=$(cat ./Cargo.toml | sed -rn 's/^version[\t ]*=[\t ]*\"([0-9]+\.[0-9]+\.[0-9])+\"\s*$/\1/gp')
+          echo "NEW_VERSION=$new_version_var" >> $GITHUB_ENV
+          echo "new version: ${{ env.NEW_VERSION }}"
+  
+
+      - name: "Commit new version: ${{ env.NEW_VERSION }}"
+        run: |
+          echo "on repositiry: ${{ github.repository }}"
+          git config --global user.name 'anton.lobanov'
+          git config --global user.email 'lobanov.anton@gmail.com'
+          git remote set-url origin https://a-givertzman:${{ secrets.RELEASES_TOKEN }}@github.com/${{ github.repository }}
+          git commit -am "Automated version update to: ${{ env.NEW_VERSION }}"
+
+      - name: Push to protected branch "master"
+        uses: CasperWA/push-protected@v2
+        with:
+          token: ${{ secrets.RELEASES_TOKEN }}
+          branch: master
+          unprotect_reviews: true
+
+      - name: Publish release
+        uses: ncipollo/release-action@v1
+        with:
+          # artifacts: "./build/linux/x64/release/bundle/release.zip"
+          tag: internal_v${{ env.NEW_VERSION }}
+          token: ${{ secrets.RELEASES_TOKEN }}
   
