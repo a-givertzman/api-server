@@ -121,6 +121,7 @@ impl TcpServer {
         }).unwrap();
         debug!("TcpServer.run | started\n");
         handle.join().unwrap();
+        debug!("TcpServer.run | exit\n");
         Ok(())
     }
     ///
