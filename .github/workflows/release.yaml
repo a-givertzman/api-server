@@ -76,8 +76,10 @@ jobs:
           echo "new version: $new_version_var"
           echo "NEW_VERSION=$new_version_var" >> $GITHUB_ENV
           echo "new version: ${{ env.NEW_VERSION }}"
-  
 
+      - name: Build release
+        run: cargo build --release
+  
       - name: Commit new version ${{ env.NEW_VERSION }}
         run: |
           echo "on repositiry: ${{ github.repository }}"
