@@ -1,8 +1,10 @@
 {
     "auth_token": "123zxy456!@#",
     "id": "123",
+    "keep-alive": true,
     "sql": {
         "database": "database name",
         "sql": "Some valid sql query"
-    }
+    },
+    "debug": false
 }

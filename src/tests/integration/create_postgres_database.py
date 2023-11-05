@@ -1,3 +1,4 @@
+import os
 import psycopg2
 
 
@@ -11,11 +12,12 @@ longString = longString + sufix + ' chars'
 
 
 def connectPsqlRoot(autocommit = False):
+    password = os.environ['POSTGRES_PASSWORD']
     conn = psycopg2.connect(
         host="localhost",
         database="postgres",
         user="postgres",
-        password="123qwe"
+        password=password
     )
     cur = conn.cursor()
     conn.autocommit = autocommit
@@ -59,15 +61,16 @@ def createDatabase():
         """)
 
 
-    result = psqlQuery(curSel, """
-    SELECT 1 FROM pg_database WHERE datname = 'db_postgres_test';
+    result = psqlQuery(curSel, f"""
+    SELECT 1 FROM pg_database WHERE datname = '{dbName}';
     """)
     if result:
         pass
     else: 
         conn, cursor = connectPsqlRoot(autocommit=True)
-        cursor.execute(f'CREATE DATABASE {dbName}')
-        cursor.execute(f'GRANT ALL PRIVILEGES ON DATABASE {dbName} TO {dbUser}')
+        cursor.execute(f'CREATE DATABASE {dbName};')
+        cursor.execute(f'GRANT ALL PRIVILEGES ON DATABASE {dbName} TO {dbUser};')
+        cursor.execute(f'ALTER DATABASE {dbName} OWNER TO {dbUser};')
         cursor.close()
         conn.close()
 

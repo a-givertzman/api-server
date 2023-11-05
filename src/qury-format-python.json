@@ -4,5 +4,6 @@
     "python": {
         "script": "python script name",
         "params": "input parameters to python script"
-    }
+    },
+    "debug": false
 }

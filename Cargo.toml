@@ -31,3 +31,9 @@ serde_with = "^3.0"
 
 yaml-rust = "^0.4"
 linked-hash-map = "^0.5"
+
+bytes = "^1.4"
+
+rust_decimal = { version = "^1.32", features = [ "tokio-pg" ] }
+
+rand = "^0.8"

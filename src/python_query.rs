@@ -6,6 +6,8 @@ use std::process::{Command, Stdio};
 
 use log::{debug, warn};
 
+use crate::core_::error::api_error::ApiError;
+
 type RowMap = HashMap<String, serde_json::Value>;
 ///
 /// 
@@ -23,7 +25,7 @@ impl PythonQuery {
         }
     }
     ///
-    pub fn execute(&self) -> Result<Vec<RowMap>, String> {
+    pub fn execute(&self) -> Result<Vec<RowMap>, ApiError> {
         let path = self.path.clone();
         debug!("PythonQuery.execute | script: {:?}\n\twith params: {:?}", self.path, self.params);
         let program = "python3";
@@ -31,7 +33,7 @@ impl PythonQuery {
         match serde_json::to_string(&(self.params)) {
             Ok(params) => {
                 match Command::new(program)
-                    .arg(path)
+                    .arg(&path)
                     .stdin(Stdio::piped())
                     .stderr(Stdio::piped())
                     .stdout(Stdio::piped())
@@ -55,29 +57,41 @@ impl PythonQuery {
                                     Ok(result)        
                                 },
                                 Err(err) => {
-                                    let message = format!("PythonQuery.execute | python script result json parsing error: {:?}", err);
-                                    warn!("{}", message);
-                                    Err(message)        
+                                    let details = format!("PythonQuery.execute | python script result json parsing error: {:?}", err);
+                                    warn!("{}", details);
+                                    Err(ApiError::new(
+                                        format!("Python script - script result json parsing error in \"{}\"", path),
+                                        details,
+                                    ))
                                 },
                             }
                         } else {
                             let err = String::from_utf8(output.stderr).unwrap();
-                            let message = format!("PythonQuery.execute | python script error: {:?}", err);
-                            warn!("{}", message);
-                            Err(message)
+                            let details = format!("PythonQuery.execute | python script error: {:?}", err);
+                            warn!("{}", details);
+                            Err(ApiError::new(
+                                format!("Python script - error in \"{}\"", path),
+                                details,
+                            ))
                         }
                     },
                     Err(err) => {
-                        let message = format!("PythonQuery.execute | python script error: {:?}", err);
-                        warn!("{}", message);
-                        Err(message)
+                        let details = format!("PythonQuery.execute | python script error: {:?}", err);
+                        warn!("{}", details);
+                        Err(ApiError::new(
+                            format!("Python script - error in \"{}\"", path),
+                            details,
+                        ))
                     },
                 }
             },
             Err(err) => {
-                let message = format!("PythonQuery.execute | python script params parsing error: {:?}", err);
-                warn!("{}", message);
-                Err(message)
+                let details = format!("PythonQuery.execute | python script params parsing error: {:?}", err);
+                warn!("{}", details);
+                Err(ApiError::new(
+                    format!("Python script - params parsing error in \"{}\"", path),
+                    details,
+                ))
             },
         }
     }    

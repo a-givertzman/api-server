@@ -6,6 +6,8 @@ use std::process::{Command, Stdio};
 
 use log::{debug, warn};
 
+use crate::core_::error::api_error::ApiError;
+
 type RowMap = HashMap<String, serde_json::Value>;
 ///
 /// 
@@ -23,13 +25,13 @@ impl ExecutableQuery {
         }
     }
     ///
-    pub fn execute(&self) -> Result<Vec<RowMap>, String> {
+    pub fn execute(&self) -> Result<Vec<RowMap>, ApiError> {
         let program = self.path.clone();
         debug!("ExecutableQuery.execute | executing: {:?}\n\twith params: {:?}", self.path, self.params);
         debug!("ExecutableQuery.execute | executing command: {:?}", program);
         match serde_json::to_string(&(self.params)) {
             Ok(params) => {
-                match Command::new(program)
+                match Command::new(program.clone())
                     // .arg(path)
                     .stdin(Stdio::piped())
                     .stderr(Stdio::piped())
@@ -54,29 +56,41 @@ impl ExecutableQuery {
                                     Ok(result)        
                                 },
                                 Err(err) => {
-                                    let message = format!("ExecutableQuery.execute | executable result json parsing error: {:?}", err);
-                                    warn!("{}", message);
-                                    Err(message)        
+                                    let details = format!("ExecutableQuery.execute | result json parsing error: {:?}", err);
+                                    warn!("{}", details);
+                                    Err(ApiError::new(
+                                        format!("Executable service - result json parsing error in \"{}\"", program), 
+                                        details,
+                                    ))
                                 },
                             }
                         } else {
                             let err = String::from_utf8(output.stderr).unwrap();
-                            let message = format!("ExecutableQuery.execute | executable error: {:?}", err);
-                            warn!("{}", message);
-                            Err(message)
+                            let details = format!("ExecutableQuery.execute | executable error: {:?}", err);
+                            warn!("{}", details);
+                            Err(ApiError::new(
+                                format!("Executable service - error in the executable \"{}\"", program), 
+                                details,
+                            ))
                         }
                     },
                     Err(err) => {
-                        let message = format!("ExecutableQuery.execute | executable error: {:?}", err);
-                        warn!("{}", message);
-                        Err(message)
+                        let details = format!("ExecutableQuery.execute | executable error: {:?}", err);
+                        warn!("{}", details);
+                        Err(ApiError::new(
+                            format!("Executable service - error in the executable \"{}\"", program), 
+                            details,
+                        ))
                     },
                 }
             },
             Err(err) => {
-                let message = format!("PythonQuery.execute | executable params parsing error: {:?}", err);
-                warn!("{}", message);
-                Err(message)
+                let details = format!("ExecutableQuery.execute | params parsing error: {:?}", err);
+                warn!("{}", details);
+                Err(ApiError::new(
+                    format!("Executable service - params parsing error in \"{}\"", program), 
+                    details,
+                ))
             },
         }
     }    

@@ -4,8 +4,9 @@ use std::collections::HashMap;
 
 use log::{debug, warn};
 use rusqlite::{Connection, Statement, OpenFlags};
+use serde_json::json;
 
-use crate::{sql_query::{SqlQuery, ErrorString}, config::ServiceConfig};
+use crate::{sql_query::SqlQuery, config::ServiceConfig, core_::error::api_error::ApiError};
 
 type RowMap = HashMap<String, serde_json::Value>;
 
@@ -33,9 +34,9 @@ impl SqlQueryMysql {
 }
 
 impl SqlQuery for SqlQueryMysql {
-    fn execute(&mut self) -> Result<Vec<RowMap>, ErrorString> {
+    fn execute(&mut self) -> Result<Vec<RowMap>, ApiError> {
         let newConn: Connection;
-        let connection: Result<&Connection, String> = match &self.connection {
+        let connection: Result<&Connection, ApiError> = match &self.connection {
             Some(connection) => {
                 Ok(connection)
             },
@@ -46,7 +47,14 @@ impl SqlQuery for SqlQueryMysql {
                         newConn = conn;
                         Ok(&newConn)
                     },
-                    Err(err) => Err(format!("SqlQueryMysql.execute | Database connection error: {}", err)),
+                    Err(err) => {
+                        let detailed = format!("SqlQueryMysql.execute | Database connection error: '{}'", err);
+                        warn!("{}", detailed);
+                        Err(ApiError::new(
+                            "MySQL database - connection error", 
+                            detailed, 
+                        ))
+                    },
                 }
             },
         };
@@ -60,51 +68,74 @@ impl SqlQuery for SqlQueryMysql {
                             cNames.push(item.to_string());
                         }
                         let mut stmt = SqlQueryMysql::fakeStmtClone(stmt);
-                        let sqlRows = stmt.query([]);
+                        let queryResult = stmt.query([]);
                         let mut result = vec![];
-                        match sqlRows {
+                        match queryResult {
                             Ok(mut rows) => {
+                                let mut parseErrors = vec![];
                                 while let Some(row) = rows.next().unwrap() {
-                                    // ...
                                     debug!("row: {:?}", row);
                                     let mut rowMap = HashMap::new();
                                     for cName in cNames.iter() {
-                                        let value: rusqlite::types::Value = row.get(cName.as_str()).expect(&format!("SqlQueryMysql.execute | Error getting value from \"{}\" field", cName));
-                                        let value: serde_json::Value = match value {
-                                            rusqlite::types::Value::Null => serde_json::Value::Null,
-                                            rusqlite::types::Value::Integer(v) => serde_json::Value::Number(serde_json::Number::from(v)),
-                                            rusqlite::types::Value::Real(v) => serde_json::Value::Number(serde_json::Number::from_f64(v).unwrap()),
-                                            rusqlite::types::Value::Text(v) => serde_json::Value::String(v),
-                                            rusqlite::types::Value::Blob(v) => {
-                                                let mut arr = vec![];
-                                                for i in v {
-                                                    arr.push(
-                                                        serde_json::Value::Number(
-                                                            serde_json::Number::from(i)
-                                                        )
-                                                    )
-                                                }
-                                                serde_json::Value::Array(arr)
-                                            }
+                                        match row.get(cName.as_str()) {
+                                            Ok(value) => {
+                                                let value: serde_json::Value = match value {
+                                                    rusqlite::types::Value::Null => serde_json::Value::Null,
+                                                    rusqlite::types::Value::Integer(v) => serde_json::Value::Number(serde_json::Number::from(v)),
+                                                    rusqlite::types::Value::Real(v) => serde_json::Value::Number(serde_json::Number::from_f64(v).unwrap()),
+                                                    rusqlite::types::Value::Text(v) => serde_json::Value::String(v),
+                                                    rusqlite::types::Value::Blob(v) => {
+                                                        let mut arr = vec![];
+                                                        for i in v {
+                                                            arr.push(
+                                                                serde_json::Value::Number(
+                                                                    serde_json::Number::from(i)
+                                                                )
+                                                            )
+                                                        }
+                                                        serde_json::Value::Array(arr)
+                                                    }
+                                                };
+                                                rowMap.insert(String::from(cName), value);        
+                                            },
+                                            Err(err) => {
+                                                parseErrors.push(format!("SqlQueryMysql.execute | Error getting value from \"{}\" field; Error: {:?}", cName, err));
+                                            },
                                         };
-                                        rowMap.insert(String::from(cName), value);
-                                    }
+                                    };
                                     result.push(rowMap);
+                                }
+                                if parseErrors.is_empty() {
+                                    Ok(result)
+                                } else {
+                                    warn!("SqlQueryMysql.execute | parseErrors: {:?}", parseErrors);
+                                    Err(ApiError::new(
+                                        "MySQL database - rows parsing errors", 
+                                        format!("SqlQueryMysql.execute | rows parsing errors: {:?}", parseErrors.join("\n")), 
+                                    ))
                                 }
                             },
                             Err(err) => {
-                                warn!("SqlQueryMysql.execute | getting rows error: {:?}", err);
+                                let detiled = format!("SqlQueryMysql.execute | sql query error: {:?}", err);
+                                warn!("{}", &detiled);
+                                Err(ApiError::new(
+                                    "MySQL database - sql query error", 
+                                    detiled, 
+                                ))
                             },
                         }
-                        Ok(result)
                     },
                     Err(err) => {
-                        warn!("SqlQueryMysql.execute | preparing sql error: {:?}", err);
-                        Err(err.to_string())
+                        let detiled = format!("SqlQueryMysql.execute | sql preparing error: {:?}", err);
+                        warn!("{}", &detiled);
+                        Err(ApiError::new(
+                            "MySQL database - sql preparing error", 
+                            detiled, 
+                        ))
                     },
                 }
             },
-            Err(err) => Err(format!("SqlQueryMysql.execute | Database connection error: '{}' can't be found", err)),
+            Err(err) => Err(err),
         }
     }
 }

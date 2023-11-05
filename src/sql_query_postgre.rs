@@ -1,15 +1,17 @@
 #![allow(non_snake_case)]
 
 use chrono::{DateTime, Utc, NaiveTime, NaiveDate, NaiveDateTime};
-use postgres::{Client, NoTls, types::Type};
+use rust_decimal::Decimal;
+use std::collections::HashMap;
+use bytes::BytesMut;
+use postgres::{Client, NoTls, types::{Type, to_sql_checked, FromSql, self, Kind}};
 use serde::Serialize;
 use serde_json::json;
 
-use std::collections::HashMap;
 
-use log::{debug, warn};
+use log::{debug, warn, trace, LevelFilter};
 
-use crate::{sql_query::{SqlQuery, ErrorString}, config::ServiceConfig};
+use crate::{sql_query::SqlQuery, config::ServiceConfig, core_::error::api_error::ApiError};
 
 type RowMap = HashMap<String, serde_json::Value>;
 
@@ -31,7 +33,7 @@ impl SqlQueryPostgre {
         }
     }
     ///
-    fn asJson(&self, t: &Type, row: &postgres::Row, idx: &str) -> (serde_json::Value, ErrorString) {
+    fn asJson(&self, t: &Type, row: &postgres::Row, idx: &str) -> (serde_json::Value, String) {
         match t.to_owned() {
             Type::BOOL => (self.asJson_::<bool>(t, row, idx), String::new()),
             Type::INT2 => (self.asJson_::<i16>(t, row, idx), String::new()),
@@ -39,6 +41,7 @@ impl SqlQueryPostgre {
             Type::INT8 => (self.asJson_::<i64>(t, row, idx), String::new()),
             Type::FLOAT4 => (self.asJson_::<f32>(t, row, idx), String::new()),
             Type::FLOAT8 => (self.asJson_::<f64>(t, row, idx), String::new()),
+            Type::NUMERIC => (self.asJson_::<Decimal>(t, row, idx), String::new()),
             Type::BPCHAR => (self.asJson_::<String>(t, row, idx), String::new()),
             Type::CHAR 
             | Type::TEXT | Type::VARCHAR => (self.asJson_::<String>(t, row, idx), String::new()),
@@ -60,9 +63,16 @@ impl SqlQueryPostgre {
             | Type::TEXT_ARRAY 
             | Type::VARCHAR_ARRAY => (self.asJson_::<Vec<String>>(t, row, idx), String::new()),
             _ => {
-                let msg = format!("SqlQueryPostgre.asJson | Error parsing value of unknown type '{}'", t);
-                warn!("{}", msg);
-                (serde_json::Value::default(), msg)
+                return match t.to_owned().kind() {
+                    Kind::Enum(_) => {
+                        (self.asJson_::<GenericEnum>(t, row, idx), String::new())
+                    },
+                    _ => {
+                        let msg = format!("SqlQueryPostgre.asJson | Error parsing value of unknown type '{:?}'", t.to_owned());
+                        warn!("{}", msg);
+                        (serde_json::Value::default(), msg)
+                    },
+                }
             }
         }
     }
@@ -92,7 +102,7 @@ impl SqlQueryPostgre {
         match t.to_owned() {
             Type::BOOL => json!(false),
             Type::INT2 | Type::INT4 | Type::INT8 => json!(0),
-            Type::FLOAT4 | Type::FLOAT8 => json!(0.0),
+            Type::FLOAT4 | Type::FLOAT8 | Type::NUMERIC => json!(0.0),
             Type::BPCHAR
             | Type::CHAR 
             | Type::TEXT 
@@ -134,7 +144,7 @@ impl SqlQueryPostgre {
 }
 ///
 impl SqlQuery for SqlQueryPostgre {
-    fn execute(&mut self) -> Result<Vec<RowMap>, ErrorString> {
+    fn execute(&mut self) -> Result<Vec<RowMap>, ApiError> {
         let mut newConn: Client;
         let connection = match &mut self.connection {
             Some(connection) => {
@@ -153,8 +163,12 @@ impl SqlQuery for SqlQueryPostgre {
                         Ok(&mut newConn)
                     },
                     Err(err) => {
-                        debug!("SqlQueryPostgre.execute | connection error: {:?}", &err);
-                        Err(err)
+                        let details = format!("SqlQueryPostgre.execute | connection error: {:?}", &err);
+                        warn!("{:?}", details);
+                        Err(ApiError::new(
+                            "Postgres database - connection error",
+                            details,
+                        ))
                     },
                 }
             },
@@ -164,21 +178,20 @@ impl SqlQuery for SqlQueryPostgre {
                 debug!("SqlQueryPostgre.execute | preparing sql: {:?}", self.sql);
                 match connection.prepare(self.sql.as_str()) {
                     Ok(stmt) => {
-                        let mut parseErrors = vec![];
                         let mut cNames = vec![];
                         for column in stmt.columns() {
                             cNames.push(column.name().to_string());
                         }
-                        let sqlRows = connection.query(&stmt, &[]);
                         let mut result = vec![];
-                        match sqlRows {
+                        match connection.query(&stmt, &[]) {
                             Ok(rows) => {
+                                let mut parseErrors = vec![];
                                 for row in rows {
-                                    debug!("row: {:?}", row);
+                                    trace!("SqlQueryPostgre.execute | row: {:?}", row);
                                     let mut rowMap = HashMap::new();
                                     for column in row.columns() {
                                         let idx = column.name();
-                                        let (value, err): (serde_json::Value, ErrorString) = self.asJson(column.type_(), &row, &idx);
+                                        let (value, err): (serde_json::Value, String) = self.asJson(column.type_(), &row, &idx);
                                         if !err.is_empty() {
                                             parseErrors.push(err);
                                         }
@@ -186,29 +199,160 @@ impl SqlQuery for SqlQueryPostgre {
                                     }
                                     result.push(rowMap);
                                 }
+                                if log::max_level() == LevelFilter::Trace {
+                                    trace!("SqlQueryPostgre.execute | result: {:?}", result);
+                                } else {
+                                    debug!("SqlQueryPostgre.execute | result: {:?} rows fetched", result.len());
+                                    debug!("SqlQueryPostgre.execute | result: {:?}", result);
+                                }
+                                if parseErrors.is_empty() {
+                                    Ok(result)
+                                } else {
+                                    let details = format!("SqlQueryPostgre.execute | rows parsing errors: {:?}", parseErrors.join("\n"));
+                                    warn!("{}", details);
+                                    Err(ApiError::new(
+                                        "Postgres database - rows parsing errors", 
+                                        details,
+                                    ))
+                                }
                             },
                             Err(err) => {
-                                let msg = format!("SqlQueryPostgre.execute | getting rows error: {:?}", err);
-                                warn!("{}", msg);
-                                parseErrors.push(msg)
+                                let details = format!("SqlQueryPostgre.execute | sql query error: {:?}", err);
+                                warn!("{}", details);
+                                Err(ApiError::new(
+                                    "Postgres database - sql query error", 
+                                    details, 
+                                ))
                             },
-                        }
-                        debug!("SqlQueryPostgre.execute | result: {:?}", result);
-                        debug!("SqlQueryPostgre.execute | parseErrors: {:?}", parseErrors);
-                        if parseErrors.is_empty() {
-                            Ok(result)
-                        } else {
-                            Err(parseErrors.join("\n"))
                         }
                     },
                     Err(err) => {
-                        let msg = format!("SqlQueryPostgre.execute | preparing sql error: {:?}", err);
-                        warn!("{}", msg);
-                        Err(msg)
+                        let details = format!("SqlQueryPostgre.execute | sql preparing error: {}", err);
+                        warn!("{}", details);
+                        Err(ApiError::new(
+                            "Postgres database - sql preparing error",
+                            details, 
+                        ))
                     },
                 }
             },
-            Err(err) => Err(format!("SqlQueryPostgre.execute | Database connection error: '{}'", err)),
+            Err(err) => Err(err),
         }
     }
 }
+
+
+
+#[derive(Debug, Serialize)]
+struct GenericEnum(String);
+
+impl postgres::types::ToSql for GenericEnum {
+    ///
+    fn to_sql(&self, _ty: &types::Type, out: &mut BytesMut) -> Result<types::IsNull, Box<dyn std::error::Error + Sync + Send>> {
+        if self.0.is_empty() {
+            Ok(types::IsNull::Yes)
+        } else {
+            out.extend_from_slice(self.0.as_bytes());
+            Ok(types::IsNull::No)
+        }
+    }
+    ///
+    fn accepts(_ty: &types::Type) -> bool { true }
+    //
+    to_sql_checked!();
+}
+
+impl FromSql<'_> for GenericEnum {
+    ///
+    fn from_sql(
+        _sql_type: &Type, 
+        value: &[u8]
+    ) -> Result<Self, Box<dyn std::error::Error + Sync + Send>> {
+        match value {
+            // b"variant_a" => Ok(MyEnum::VariantA),
+            // b"variant_b" => Ok(MyEnum::VariantB),
+            _ => {
+                let strValue = String::from_utf8(value.into()).unwrap();
+                Ok(GenericEnum {0: strValue})
+            },
+        }
+    }
+    ///
+    fn accepts(ty: &Type) -> bool {
+        ty.name().contains("enum")
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// #[derive(Debug)]
+// // #[derive(ToSql, FromSql, Debug, PartialEq, Serialize, Deserialize)]
+// // #[postgres(name = "process_status")]
+// pub enum tag_type_enum {
+//     Bool,
+//     Int,
+//     UInt,
+//     DInt,
+//     Word,
+//     LInt,
+//     Real,
+//     Time,
+//     Date_And_Time,
+// }
+
+// impl ToSql for tag_type_enum {
+//     fn to_sql(&self, _ty: &Type, out: &mut BytesMut) -> Result<IsNull, Box<dyn std::error::Error + Send + Sync>> {
+//         match *self {
+//             tag_type_enum::Bool => out.extend_from_slice(b"Bool"),
+//             tag_type_enum::Int => out.extend_from_slice(b"Int"),
+//             tag_type_enum::UInt => out.extend_from_slice(b"UInt"),
+//             tag_type_enum::DInt => out.extend_from_slice(b"DInt"),
+//             tag_type_enum::Word => out.extend_from_slice(b"Word"),
+//             tag_type_enum::LInt => out.extend_from_slice(b"LInt"),
+//             tag_type_enum::Real => out.extend_from_slice(b"Real"),
+//             tag_type_enum::Time => out.extend_from_slice(b"Time"),
+//             tag_type_enum::Date_And_Time => out.extend_from_slice(b"Date_And_Time"),
+//             // tag_type_enum::Hello => 
+//             //     out.extend_from_slice(b"HELLO"),
+//             // Website::World => 
+//             //     out.extend_from_slice(b"WORLD"),
+//         };
+//         Ok(IsNull::No)
+//     }
+
+//     fn accepts(ty: &Type) -> bool {
+//         ty.name() == "website"
+//     }
+
+//     to_sql_checked!();
+// }
+
+// impl FromSql for tag_type_enum {
+//     fn from_sql<R: Read>(ty: &Type, raw: &mut R, ctx: &SessionInfo) -> Result<Self> {
+//         let mut buf = vec!();
+//         try!(raw.read_to_end(&mut buf));
+//         buf.pop(); // drop the null terminator
+//         match &*buf {
+//             b"sad" => Ok(Mood::Sad),
+//             b"ok" => Ok(Mood::Ok),
+//             b"happy" => Ok(Mood::Happy),
+//             _ => Err(Error::Conversion("unknown `mood` variant".into()))
+//         }
+//     }
+
+//     fn accepts(ty: &Type) -> bool {
+//         ty.name() == "mood"
+//     }
+// }
