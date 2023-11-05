@@ -96,7 +96,7 @@ jobs:
           unprotect_reviews: true
 
       - name: Zip artifact for deployment
-        run: zip ./target/release/release.zip ./target/release/* ./config.yaml ./extensions/* -r
+        run: zip ./target/release/release.zip -r ./target/release/* ./config.yaml ./extensions/*
 
       - name: Publish release
         uses: ncipollo/release-action@v1
