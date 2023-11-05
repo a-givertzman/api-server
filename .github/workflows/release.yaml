@@ -73,10 +73,10 @@ jobs:
           sed -i -r "s/^(version[\t ]*=[\t ]*\"[0-9]+\.[0-9]+\.)[0-9]+\"\s*$/\1${{ github.run_number }}/g" ./Cargo.toml
           new_version_var=$(cat ./Cargo.toml | sed -rn 's/^version[\t ]*=[\t ]*\"([0-9]+\.[0-9]+\.[0-9])+\"\s*$/\1/gp')
           echo "NEW_VERSION=$new_version_var" >> $GITHUB_ENV
-          echo "new version: ${{ NEW_VERSION }}"
+          echo "new version: ${{ env.NEW_VERSION }}"
   
 
-      - name: Commit new version: ${{ NEW_VERSION }}
+      - name: Commit new version ${{ env.NEW_VERSION }}
         run: |
           echo "on repositiry: ${{ github.repository }}"
           git config --global user.name 'anton.lobanov'
