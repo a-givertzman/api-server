@@ -61,11 +61,12 @@ services:                                   # list of currently avalible API ser
     "auth_token": "123zxy456!@#",
     "id": "123",
     "sql": {
-        "database": "database service name",
+        "database": "database name",
         "sql": "Some valid sql query"
-    }
-}
-```
+    },
+    "keep-alive": true,
+    "debug": false
+}```
 
 - Request Python
 
@@ -76,7 +77,9 @@ services:                                   # list of currently avalible API ser
     "python": {
         "script": "python service name",
         "params": "Some valid params for python script (json)"
-    }
+    },
+    "keep-alive": true,
+    "debug": false
 }
 ```
 
@@ -89,7 +92,9 @@ services:                                   # list of currently avalible API ser
     "executable": {
         "name": "executable service name",
         "params": "Some valid params for executable (json)"
-    }
+    },
+    "keep-alive": true,
+    "debug": false
 }
 ```
 
@@ -99,11 +104,14 @@ services:                                   # list of currently avalible API ser
 {
     "auth_token": "123zxy456!@#",
     "id": "123",
-    "query": "{\"database\":\"database name\",\"sql\":\"Some valid sql query\"}",    
+    "query": "{\"database\":\"database name\",\"sql\":\"Some valid sql query\"}",       - if "debug" is true in the request
     "data": [
 
     ],
-    "error": "Some error info"
+    "error": {
+        "message": "Some error info",
+        "details": "Detailed information about errors"                                  - if "debug" is true in the request
+    }
 }
 ```
 
