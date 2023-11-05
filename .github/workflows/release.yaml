@@ -76,7 +76,7 @@ jobs:
           echo "new version: ${{ env.NEW_VERSION }}"
   
 
-      - name: "Commit new version: ${{ env.NEW_VERSION }}"
+      - name: Commit new version: ${{ env.NEW_VERSION }}
         run: |
           echo "on repositiry: ${{ github.repository }}"
           git config --global user.name 'anton.lobanov'
