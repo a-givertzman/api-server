@@ -93,10 +93,13 @@ jobs:
           branch: master
           unprotect_reviews: true
 
+      - name: Zip artifact for deployment
+        run: zip ./target/release/release.zip ./target/release/api-server ./config.yaml ./extensions/* -r
+
       - name: Publish release
         uses: ncipollo/release-action@v1
         with:
-          # artifacts: "./build/linux/x64/release/bundle/release.zip"
+          artifacts: "./build/linux/x64/release/bundle/release.zip"
           tag: internal_v${{ env.NEW_VERSION }}
           token: ${{ secrets.RELEASES_TOKEN }}
   
