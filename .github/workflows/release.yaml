@@ -99,7 +99,7 @@ jobs:
       - name: Publish release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "./build/linux/x64/release/bundle/release.zip"
+          artifacts: "./target/release/release.zip"
           tag: internal_v${{ env.NEW_VERSION }}
           token: ${{ secrets.RELEASES_TOKEN }}
   
