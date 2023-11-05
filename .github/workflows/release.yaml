@@ -13,7 +13,7 @@ env:
 
 jobs:
   build_and_test:
-    name: "Creating new release (build: ${{ github.run_number }})"
+    name: Creating new release
     runs-on: ubuntu-latest
     # strategy:
     #   matrix:
