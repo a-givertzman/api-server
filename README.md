@@ -107,8 +107,8 @@ services:                                   # list of currently avalible API ser
     "id": "123",
     "query": "{\"database\":\"database name\",\"sql\":\"Some valid sql query\"}",       - if "debug" is true in the request
     "data": [
-        {id: 1, name: Markus, email: customer0@gmail.com, role: customer, created: 2023-10-29T22:18:23.977900}, 
-        {id: 2, name: Daniel, email: customer1@gmail.com, role: customer, created: 2023-10-29T22:18:23.977900}
+        {"id": 1, "name": "Markus", "email": "markus@gmail.com", "role": "customer", "created": "2023-10-29T22:18:23.977900"}, 
+        {"id": 2, "name": "Daniel", "email": "daniel@gmail.com", "role": "customer", "created": "2023-10-29T22:18:23.977900"}
     ],
     "error": {
         "message": "Some error info",
