@@ -9,7 +9,7 @@ use crate::core_::error::api_error::ApiError;
 ///
 #[derive(Debug, Serialize, Deserialize)]
 pub struct SqlReply {
-    pub auth_token: String,
+    pub authToken: String,
     pub id: String,
     pub keepAlive: bool,
     pub query: String,
@@ -44,14 +44,14 @@ impl SqlReply {
     }
     ///
     pub fn error(
-        auth_token: String,
+        authToken: String,
         id: String,
         keepAlive: bool,
         query: String, 
         error: ApiError,
     ) -> Self {
         SqlReply {
-            auth_token,
+            authToken,
             id,
             keepAlive,
             query,
