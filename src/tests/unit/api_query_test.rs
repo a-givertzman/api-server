@@ -127,6 +127,16 @@ mod tests {
                 ),
                 queryVariant: ApiQueryTypeVariant::Error,
             },
+            TestEntry {
+                input: r#"{"authToken":"123zxy456!@#","id":"04","debug":true,"keepAlive":true,"sql":{"database":"database","sql":"select id from do_data;"},"python":{"script":"py-test","params":{"a": 4, "b": 7}},"executable":{"name":"executable-test","params":{"a": 4, "b": 7}}}"#,
+                out: ApiQuery::new(
+                    "123zxy456!@#".into(), "04".into(), 
+                    ApiQueryType::Error(ApiQueryError::new(ApiError::new("", ""))), 
+                    r#"{"authToken":"123zxy456!@#","id":"04","debug":true,"keepAlive":true,"sql":{"database":"database","sql":"select id from do_data;"},"python":{"script":"py-test","params":{"a": 4, "b": 7}},"executable":{"name":"executable-test","params":{"a": 4, "b": 7}}}"#, 
+                    true, true
+                ),
+                queryVariant: ApiQueryTypeVariant::Error,
+            },
         ];
         for testEntry in testData {
             let bytes = testEntry.input.as_bytes();
