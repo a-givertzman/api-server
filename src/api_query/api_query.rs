@@ -185,7 +185,7 @@ impl ApiQuery {
                         match &json.as_object() {
                             Some(queryMap) => {
                                 let mut errors = vec![];
-                                match queryMap.getValue("auth_token") {
+                                match queryMap.getValue("authToken") {
                                     Ok(value) => auth_token = value,
                                     Err(err) => errors.push(err),
                                 };
@@ -193,7 +193,7 @@ impl ApiQuery {
                                     Ok(value) => id = value,
                                     Err(err) => errors.push(err),
                                 };
-                                match queryMap.getValue("keep-alive") {
+                                match queryMap.getValue("keepAlive") {
                                     Ok(value) => {
                                         debug!("ApiQuery.fromBytes | keep-alive detected");
                                         keepAlive = value;

@@ -36,7 +36,7 @@ impl ApiServer {
         match sqlQuery.execute() {
             Ok(rows) => {                        
                 SqlReply {
-                    auth_token,
+                    authToken: auth_token,
                     id,
                     keepAlive,
                     query,
@@ -171,7 +171,7 @@ impl ApiServer {
                                         ApiServerResult {
                                             keepAlive: apiQuery.keepAlive,
                                             data: SqlReply {
-                                                auth_token: apiQuery.authToken(),
+                                                authToken: apiQuery.authToken(),
                                                 id: apiQuery.id(),
                                                 keepAlive: apiQuery.keepAlive,
                                                 query: apiQuery.srcQuery(apiQuery.debug),
@@ -248,7 +248,7 @@ impl ApiServer {
                                         ApiServerResult {
                                             keepAlive: apiQuery.keepAlive,
                                             data: SqlReply {
-                                                auth_token: apiQuery.authToken(),
+                                                authToken: apiQuery.authToken(),
                                                 id: apiQuery.id(),
                                                 keepAlive: apiQuery.keepAlive,
                                                 query: apiQuery.srcQuery(apiQuery.debug),
