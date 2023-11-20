@@ -37,9 +37,9 @@ copyAsset() {
 	assetOutPath=$(readlink -m "${fullOutPath}/${destinationFolder}")
 	mkdir -p $assetOutPath && cp -r "$assetPath" "$assetOutPath"
 	echo "Copying ${assetPath} to ${assetOutPath} ..."
-	if [[ -d $inPath ]]; then
+	if [[ -d $assetPath ]]; then
 		chmod -R "$permissions" "$assetOutPath"
-	elif [[ -f $inPath ]]; then
+	elif [[ -f $assetPath ]]; then
 		chmod "$permissions" "${assetOutPath}/$(basename ${assetPath})"
 	fi
 }
