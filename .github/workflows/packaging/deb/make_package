@@ -1,0 +1,124 @@
+#!/bin/bash
+# create a deb package from rust sources
+
+############ LIST OF MANAGED VARIABLES REQUIRED FOR DEB PACKAGE ############
+name=api-server
+version=0.1.14
+descriptionShort="Some short description"
+descriptionExtended="Some extended description of the package"
+changeDetails="Some changes here"
+copyrightNotice="Copyright 2023 a-givertzman"
+maintainer="a-givertzman <a-givertzman@gmail.com>"
+
+############ LIST OF MANAGED VARIABLES OPTIONAL FOR DEB PACKAGE ############
+# list of assets in the format:
+# 	<sourcePath> <installPath> <permissions>
+assets=(
+	"api-server /usr/bin/ 755"
+)
+outputDir=target/
+# 'any', 'all' or one of the supported architecture
+# leave blank for automatic detection
+arch=
+# package dependency list separated by whitespace
+depends="libc6 (>= 2.34)"
+
+# check required variables
+for arg in "$name" "$version" "$descriptionShort" "$descriptionExtended" "$copyrightNotice" "$maintainer"; do
+	if [[ -z $arg ]]; then
+		echo "Required argument is empty."
+		exit 1
+	fi
+done
+
+echo "Start packaging ..."
+
+############ INITIALIZE THE PACKAGE SOURCE STRUCTURE AND COPY RESOURCES ############
+
+arch=${arch:=$(dpkg --print-architecture)}
+debFileName="${name}_${version}_${arch}"
+packageRoot=$(readlink -m "${outputDir}/debian/${debFileName}")
+
+if [[ -d $packageRoot ]]; then
+	echo "Deleting previouses build files ..."
+	rm -r $packageRoot
+fi
+
+echo "Creating ${packageRoot} directory ..."
+mkdir -p "$packageRoot"
+echo "Creating ${packageRoot}/DEBIAN directory ..."
+mkdir -p "${packageRoot}/DEBIAN"
+
+copyAsset() {
+	sourcePath=$1; targetDir=$2; permissions=$3
+	assetPath=$(readlink -m "$sourcePath")
+	if [[ ! -d $assetPath && ! -f $assetPath ]]; then
+		echo "Asset ${assetPath} not found."
+		exit 1
+	fi
+	installPath=$(readlink -m "${packageRoot}/${targetDir}")
+	mkdir -p $installPath && cp -r "$assetPath" "$installPath"
+	echo "Copying ${assetPath} to ${installPath} ..."
+	if [[ -d $assetPath ]]; then
+		chmod -R "$permissions" "$installPath"
+	elif [[ -f $assetPath ]]; then
+		chmod "$permissions" "${installPath}/$(basename ${assetPath})"
+	fi
+}
+for asset in "${assets[@]}"; do
+	read -ra assetOptions <<< $asset
+	copyAsset ${assetOptions[0]} ${assetOptions[1]} ${assetOptions[2]}
+done
+
+############ CREATE A DEB CONTROL FILE ############
+
+echo "Creating ${packageRoot}/DEBIAN/control file ..."
+cat > "${packageRoot}/DEBIAN/control" <<- CONTROL
+	Section: rust
+	Priority: optional
+	Version: $version
+	Maintainer: $maintainer
+	Package: $name
+	Architecture: $arch
+	Depends: $depends
+	Description: $descriptionShort
+	$(echo "$descriptionExtended" | sed "s/^/ /")
+CONTROL
+
+############ CREATE CHANGELOG AND COPYRIGHT FILES ############
+
+docDir="${packageRoot}/usr/share/doc/${name}"
+mkdir -p "$docDir"
+
+echo "Generating changelog file ..."
+changelogFile="${docDir}/changelog"
+cat > "$changelogFile" <<- CHANGELOG
+	$name ($version) unstable; urgency=medium
+
+	$(echo "$changeDetails" | sed "s/^/  * /")
+
+	$(echo " -- $maintainer  $(date -R)")
+
+
+CHANGELOG
+gzip -n --best "$changelogFile"
+rm -f "$changelogFile"
+
+echo "Generating copyright file ..."
+copyrightFile="${docDir}/copyright"
+cat > "$copyrightFile" <<- COPYRIGHT
+	Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+	Upstream-Name: $name
+	Copyright: $copyrightNotice
+COPYRIGHT
+
+############ CREATE MD5 SUM FILES ############
+
+cd $packageRoot
+md5sum $(find . -type f -printf "%P\n" | grep -v "^DEBIAN/") > DEBIAN/md5sums
+cd - > /dev/null
+
+############ BUILD A DEB PACKAGE ############
+echo "Building deb package ..."
+dpkg-deb --build "${packageRoot}" "$outputDir" || exit 1 > /dev/null
+echo "Deb package created and saved as ${packageRoot}.deb"
