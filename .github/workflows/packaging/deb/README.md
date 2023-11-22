@@ -16,14 +16,16 @@ Bash script for building the deb package.
 	Copr. YYYY-YYYY Firstname Lastname <address@example.com>
 	© YYYY,YYYY Firstname Lastname <address@example.com>
 	```
+- `licenseName` - name of the used LICENSE;
+- `licenseFile` - path to the LICENSE file used.
 ### Optional:
 - `outputDir` - the directory where the .deb file of the package will be created;
 - `assets` - list of non-write (immutable) files to be included in the package in the following format: `"sourcePath installPath permissions"`. Where:
 	1. `sourcePath` - relative or absolute path of the assets in the project;
 	2. `installPath` - absolute path to the directory where assets will be copied on package installation;
 	3. `permissions` - permission assigned to copied files.
-- `arch` - single word identifying a Debian package architecture;
-- `depends` - the runtime dependencies of the Debian package separated by whitespaces.
+- `arch` - single word identifying a Debian package architecture, 'any', 'all' or one of the supported architecture (e.g., 'amd64', 'arm64', 'i386', 'armhf');
+- `depends` - the runtime dependencies of the Debian package. Comma separated list in the following format: `<package_name> [(<<|>>|<=|>=|= <version>)], ...`.
 
 ## Steps of the deb packaging script:
 1. Initialize package source structure and copy assets;
