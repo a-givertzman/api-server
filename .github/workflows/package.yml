@@ -22,7 +22,7 @@ jobs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
     - name: Build the Docker image
-      run: docker buildx build --platform ${{ matrix.platform }} . --file Dockerfile --tag ${{ env.IMAGE_NAME }}:latest
+      run: docker buildx build --load --platform ${{ matrix.platform }} . --file Dockerfile --tag ${{ env.IMAGE_NAME }}:latest
     - name: Create deb output folder
       run: mkdir -p ./target/
     - name: check
