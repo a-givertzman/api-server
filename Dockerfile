@@ -7,7 +7,6 @@ COPY Cargo.lock Cargo.toml ./
 RUN cargo build --release
 
 FROM debian:12.2 as packager
-RUN apt update && apt install -y --no-install-recommends
 WORKDIR /package
 COPY --from=builder /app/target/release/api-server ./
 COPY . .
