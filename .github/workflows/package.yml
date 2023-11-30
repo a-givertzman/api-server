@@ -29,6 +29,8 @@ jobs:
       run: docker images ls
     - name: Build the Debian package 
       run: docker run -v ./target:/package/target --platform ${{ matrix.platform }} ${{ env.IMAGE_NAME }}:latest
+    - name: check-2
+      run: ls ./target
     - name: Upload packages
       uses: actions/upload-artifact@v3
       with:
