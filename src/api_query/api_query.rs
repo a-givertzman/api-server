@@ -176,118 +176,94 @@ impl ApiQuery {
         let mut keepAlive = false;
         let mut debug = true;
         let refBytes = &bytes;
-        match String::from_utf8(refBytes.to_owned()) {
-            Ok(queryString) => {
-                let queryString = queryString.trim_matches(char::from(0));
-                trace!("ApiQuery.fromBytes | queryString: {:?}", queryString);
-                match serde_json::from_str::<serde_json::Value>(queryString) {
-                    Ok(json) => {
-                        match &json.as_object() {
-                            Some(queryMap) => {
-                                let mut errors = vec![];
-                                match queryMap.getValue("authToken") {
-                                    Ok(value) => auth_token = value,
-                                    Err(err) => errors.push(err),
-                                };
-                                match queryMap.getValue("id") {
-                                    Ok(value) => id = value,
-                                    Err(err) => errors.push(err),
-                                };
-                                match queryMap.getValue("keepAlive") {
-                                    Ok(value) => {
-                                        debug!("ApiQuery.fromBytes | keep-alive detected");
-                                        keepAlive = value;
-                                    },
-                                    Err(_) => {},
-                                };
-                                match queryMap.getValue("debug") {
-                                    Ok(value) => {
-                                        debug!("ApiQuery.fromBytes | debug detected");
-                                        debug = value;
-                                    },
-                                    Err(_) => debug = false,
-                                };
-                                match errors.get(0) {
-                                    Some(details) => {
-                                        ApiQuery {
-                                            authToken: auth_token,
-                                            id,
-                                            query: ApiQueryType::Error( ApiQueryError::new(
-                                                // json.clone(),
-                                                ApiError::new(
-                                                    format!("API Service - invalid query: {:?}", json), 
-                                                    format!("ApiQuery.fromBytes | errors: {:?}", details), 
-                                                ),
-                                            )),
-                                            srcQuery: queryString.into(),
-                                            keepAlive,
-                                            debug,
-                                        }
-                                    },
-                                    None => {
-                                        debug!("ApiQuery.fromBytes | obj: {:?}", queryMap);
-                                        match Self::parseQueryTypeName(&queryMap) {
-                                            Ok(queryType) => match queryType {
-                                                ApiQueryTypeName::Sql => Self::parseApiQuerySql(queryString, json, auth_token, id, keepAlive, debug),
-                                                ApiQueryTypeName::Python => Self::parseApiQueryPython(queryString, json, auth_token, id, keepAlive, debug),
-                                                ApiQueryTypeName::Executable => Self::parseApiQueryExecutable(queryString, json, auth_token, id, keepAlive, debug),
-                                                ApiQueryTypeName::Unknown => ApiQuery {
-                                                    authToken: auth_token,
-                                                    id,
-                                                    query: ApiQueryType::Unknown,
-                                                    srcQuery: queryString.into(), 
-                                                    keepAlive,
-                                                    debug,
-                                                },
-                                            },
-                                            Err(err) => {
-                                                ApiQuery {
-                                                    authToken: auth_token,
-                                                    id,
-                                                    query: ApiQueryType::Error( ApiQueryError::new(err)),
-                                                    srcQuery: queryString.into(),
-                                                    keepAlive,
-                                                    debug,
-                                                }
-                                            },
-                                        }
-                                    },
-                                }
+        match serde_json::from_slice::<serde_json::Value>(refBytes) {
+            Ok(json) => {
+                match &json.as_object() {
+                    Some(queryMap) => {
+                        let mut errors = vec![];
+                        match queryMap.getValue("authToken") {
+                            Ok(value) => auth_token = value,
+                            Err(err) => errors.push(err),
+                        };
+                        match queryMap.getValue("id") {
+                            Ok(value) => id = value,
+                            Err(err) => errors.push(err),
+                        };
+                        match queryMap.getValue("keepAlive") {
+                            Ok(value) => {
+                                debug!("ApiQuery.fromBytes | keep-alive detected");
+                                keepAlive = value;
                             },
-                            None => {
-                                let details = format!("ApiQuery.fromBytes | json parsing error: type Map not found in json: {:?}", queryString);
-                                warn!("{}", details);
+                            Err(_) => {},
+                        };
+                        match queryMap.getValue("debug") {
+                            Ok(value) => {
+                                debug!("ApiQuery.fromBytes | debug detected");
+                                debug = value;
+                            },
+                            Err(_) => debug = false,
+                        };
+                        match errors.get(0) {
+                            Some(details) => {
                                 ApiQuery {
                                     authToken: auth_token,
                                     id,
                                     query: ApiQueryType::Error( ApiQueryError::new(
-                                        // json.clone(), 
+                                        // json.clone(),
                                         ApiError::new(
                                             format!("API Service - invalid query: {:?}", json), 
-                                            details,
+                                            format!("ApiQuery.fromBytes | errors: {:?}", details), 
                                         ),
                                     )),
-                                    srcQuery: queryString.into(),
+                                    srcQuery: json.to_string(),
                                     keepAlive,
                                     debug,
                                 }
                             },
+                            None => {
+                                debug!("ApiQuery.fromBytes | obj: {:?}", queryMap);
+                                match Self::parseQueryTypeName(&queryMap) {
+                                    Ok(queryType) => match queryType {
+                                        ApiQueryTypeName::Sql => Self::parseApiQuerySql(&json.to_string(), json, auth_token, id, keepAlive, debug),
+                                        ApiQueryTypeName::Python => Self::parseApiQueryPython(&json.to_string(), json, auth_token, id, keepAlive, debug),
+                                        ApiQueryTypeName::Executable => Self::parseApiQueryExecutable(&json.to_string(), json, auth_token, id, keepAlive, debug),
+                                        ApiQueryTypeName::Unknown => ApiQuery {
+                                            authToken: auth_token,
+                                            id,
+                                            query: ApiQueryType::Unknown,
+                                            srcQuery: json.to_string(), 
+                                            keepAlive,
+                                            debug,
+                                        },
+                                    },
+                                    Err(err) => {
+                                        ApiQuery {
+                                            authToken: auth_token,
+                                            id,
+                                            query: ApiQueryType::Error( ApiQueryError::new(err)),
+                                            srcQuery: json.to_string(),
+                                            keepAlive,
+                                            debug,
+                                        }
+                                    },
+                                }
+                            },
                         }
                     },
-                    Err(err) => {
-                        let details = format!("ApiQuery.fromBytes | json parsing error: {:?}", err);
-                        warn!("{} \n\tin query: {}", details, queryString);
+                    None => {
+                        let details = format!("ApiQuery.fromBytes | json parsing error: type Map not found in json: {:?}", json.to_string());
+                        warn!("{}", details);
                         ApiQuery {
                             authToken: auth_token,
                             id,
                             query: ApiQueryType::Error( ApiQueryError::new(
-                                // json!(queryString), 
+                                // json.clone(), 
                                 ApiError::new(
-                                    format!("API Service - invalid query: {:?}", queryString), 
+                                    format!("API Service - invalid query: {:?}", json), 
                                     details,
-                                )
+                                ),
                             )),
-                            srcQuery: queryString.into(),
+                            srcQuery: json.to_string(),
                             keepAlive,
                             debug,
                         }
@@ -295,19 +271,21 @@ impl ApiQuery {
                 }
             },
             Err(err) => {
-                let details = format!("ApiQuery.fromBytes | bytes parsing error: {:?}", err);
-                warn!("{} \n\tin query: {:?}", details, refBytes);
-                // let collected: Vec<String> = refBytes.iter().map(|a| a.to_string()).collect();
+                let details = format!("ApiQuery.fromBytes | json parsing error: {:?}", err);
+                let default = refBytes.iter().map(|v| v.to_string()).reduce(|i, v| i + "," + &v).unwrap_or(String::new());
+                let queryString = String::from_utf8(refBytes.to_owned()).unwrap_or(default);
+                warn!("{} \n\tin query: {}", details, queryString);
                 ApiQuery {
                     authToken: auth_token,
                     id,
                     query: ApiQueryType::Error( ApiQueryError::new(
+                        // json!(queryString), 
                         ApiError::new(
-                            format!("API Service - invalid query: {:?}", refBytes), 
+                            format!("API Service - invalid query: {:?}", queryString), 
                             details,
                         )
                     )),
-                    srcQuery: format!("{:?}",refBytes),
+                    srcQuery: queryString,
                     keepAlive,
                     debug,
                 }

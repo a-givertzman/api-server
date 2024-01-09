@@ -1,7 +1,6 @@
 #![allow(non_snake_case)]
 
-use std::collections::HashMap;
-
+use indexmap::IndexMap;
 use serde::{Serialize, Deserialize};
 
 use crate::core_::error::api_error::ApiError;
@@ -13,7 +12,7 @@ pub struct SqlReply {
     pub id: String,
     pub keepAlive: bool,
     pub query: String,
-    pub data: Vec<HashMap<String, serde_json::Value>>, //Vec<(String, Option<String>)>,
+    pub data: Vec<IndexMap<String, serde_json::Value>>, //Vec<(String, Option<String>)>,
     pub error: ApiError,
 
 }
