@@ -21,5 +21,5 @@ create table if not exists app_user (
     deleted timestamp default null,
     PRIMARY KEY (id, login)
 );
-comment on table app_user is 'Потльзователи';
+comment on table app_user is 'Пользователи';
 comment on column app_user.role is 'Признак группировки';
