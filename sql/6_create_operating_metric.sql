@@ -1,7 +1,6 @@
 /*
     PROCESS OPERATING METRIC
 */
-drop table if exists operating_metric;
 do $$
 begin
 if not exists (SELECT 1 FROM pg_type WHERE typname = 'metric_data_type_enum') THEN

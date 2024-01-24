@@ -1,5 +1,3 @@
-drop table if exists "app_user";
-drop type if exists "user_role_enum" CASCADE;
 /*
     USER
 */

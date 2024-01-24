@@ -1,5 +1,3 @@
-drop table if exists "tags" CASCADE;
-drop type if exists "tag_type_enum" CASCADE;
 /*
     PROCESS TAG
 */

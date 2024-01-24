@@ -1,5 +1,3 @@
-drop table if exists "event" CASCADE;
-drop index if exists "idx_event_timestamp";
 /*
     PROCESS EVENT
 */
@@ -114,7 +112,7 @@ CREATE OR REPLACE FUNCTION event_counter_dec()
 RETURNS trigger 
 LANGUAGE plpgsql
 AS $$
-DECLAREz
+DECLARE
     del_count INT;
 BEGIN
     SELECT count(*) FROM old_tbl INTO del_count;

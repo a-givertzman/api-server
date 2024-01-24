@@ -1,7 +1,6 @@
 /*
     ERROR REPORTING
 */
-drop table if exists "report";
 create table if not exists report (
     timestamp   timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     code        smallint NOT NULL,

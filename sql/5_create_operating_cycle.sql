@@ -1,10 +1,6 @@
 /*
     PROCESS OPERATING CYCLE
 */
-drop table if exists operating_cycle;
-drop table if exists operating_cycle_metric CASCADE;
-drop table if exists operating_cycle_metric_value CASCADE;
-drop view if exists operating_cycle_metric_value_view;
 do $$
 begin
 if not exists (SELECT 1 FROM pg_type WHERE typname = 'metric_data_type_enum') THEN

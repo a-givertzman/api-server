@@ -1,3 +1,8 @@
+\c postgres
+DROP DATABASE IF EXISTS crane_data_server;
+CREATE DATABASE crane_data_server WITH ENCODING 'UTF8';
+\c crane_data_server
+
 /*
 	USER
 */
