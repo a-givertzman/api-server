@@ -35,3 +35,8 @@ CREATE DATABASE crane_data_server WITH ENCODING 'UTF8';
 	ERROR REPORTING
 */
 \i 7_create_report.sql
+
+/*
+	FAULTS
+*/
+\i 8_create_fault.sql
