@@ -1,6 +1,17 @@
 /*
     PROCESS EVENT
 */
+-- Cleanup
+DROP TRIGGER IF EXISTS event_insert_trigger ON event;
+DROP TRIGGER IF EXISTS event_delete_trigger ON event;
+DROP FUNCTION IF EXISTS event_purge_records();
+DROP FUNCTION IF EXISTS event_check_for_purge();
+DROP FUNCTION IF EXISTS event_counter_inc();
+DROP FUNCTION IF EXISTS event_counter_dec();
+DROP INDEX IF EXISTS idx_event_timestamp;
+DROP TABLE IF EXISTS event;
+DROP TABLE IF EXISTS event_utils;
+-- Creation
 CREATE TABLE IF NOT EXISTS event (
     uid         BIGSERIAL PRIMARY KEY, --'1.000000000000', --COMMENT 'Идентификатор записи',
     timestamp   TIMESTAMP NOT NULL,

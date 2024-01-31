@@ -1,6 +1,13 @@
 /*
     PROCESS OPERATING CYCLE
 */
+-- Cleanup
+DROP VIEW IF EXISTS operating_cycle_metric_value_view;
+DROP TABLE IF EXISTS operating_cycle;
+DROP TABLE IF EXISTS operating_cycle_metric;
+DROP TABLE IF EXISTS operating_cycle_metric_value;
+DROP TYPE IF EXISTS metric_data_type_enum CASCADE;
+-- Creation
 do $$
 begin
 if not exists (SELECT 1 FROM pg_type WHERE typname = 'metric_data_type_enum') THEN

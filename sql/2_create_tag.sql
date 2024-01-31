@@ -1,6 +1,10 @@
 /*
     PROCESS TAG
 */
+-- Cleanup
+DROP TABLE IF EXISTS tags;
+DROP TYPE IF EXISTS tag_type_enum CASCADE;
+-- Creation
 do $$
 begin
 if not exists (SELECT 1 FROM pg_type WHERE typname = 'tag_type_enum') THEN

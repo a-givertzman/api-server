@@ -1,6 +1,10 @@
 /*
     PROCESS OPERATING METRIC
 */
+-- Cleanup
+DROP TABLE IF EXISTS operating_metric;
+DROP TYPE IF EXISTS metric_data_type_enum CASCADE;
+-- Creation
 do $$
 begin
 if not exists (SELECT 1 FROM pg_type WHERE typname = 'metric_data_type_enum') THEN

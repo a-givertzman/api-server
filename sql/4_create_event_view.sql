@@ -1,3 +1,6 @@
+-- Cleanup
+DROP VIEW IF EXISTS event_view;
+-- Creation
 create or replace view event_view as
     select
         e.uid AS uid,

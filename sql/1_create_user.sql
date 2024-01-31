@@ -1,6 +1,10 @@
 /*
     USER
 */
+-- Cleanup
+DROP TABLE IF EXISTS app_user;
+DROP TYPE IF EXISTS user_role_enum CASCADE;
+-- Creation
 do $$
 begin
 if not exists (SELECT 1 FROM pg_type WHERE typname = 'user_role_enum') THEN
