@@ -20,7 +20,7 @@ Just a simple api server
 ## Config
 
 - for configure api server use file config.yaml
-- the cobfig file mast be located in the root folder with executable
+- the config file must be located in the root folder with executable
 
 ```yaml
 address: '127.0.0.1:8899'                   # self ip:port address where API service will be alvalible
@@ -122,7 +122,7 @@ services:                                   # list of currently avalible API ser
 - can be called by the API request
 - json data can be passed as input parameters to the python script
 - output of the script will be returned to the frontend in the json field "data"
-- if script will be crushed with error, that error wil be returned to the frontend in the json field "errors"
+- if the script crushed with an error, that error will be returned to the frontend in the json field "errors"
 
 ```python
 import sys
