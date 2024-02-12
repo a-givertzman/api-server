@@ -1,6 +1,6 @@
 #![allow(non_snake_case)]
 
-use api_tools::{error::api_error::ApiError, reply::api_reply::SqlReply, server::api_query::{api_query::ApiQuery, api_query_type::ApiQueryType}};
+use api_tools::{error::api_error::ApiError, server::{reply::api_reply::SqlReply, api_query::{api_query::ApiQuery, api_query_type::ApiQueryType}}};
 use log::debug;
 
 use crate::{

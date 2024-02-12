@@ -126,7 +126,7 @@ dependencies = [
  "bytes",
  "chrono",
  "env_logger",
- "indexmap 2.2.2",
+ "indexmap 2.2.3",
  "linked-hash-map",
  "log",
  "postgres",
@@ -142,12 +142,12 @@ dependencies = [
 
 [[package]]
 name = "api-tools"
-version = "0.0.2"
-source = "git+https://github.com/a-givertzman/rust-api-tools.git#c03eb1d1a7c73e221fac0c02e6d019733057f21d"
+version = "0.0.3"
+source = "git+https://github.com/a-givertzman/rust-api-tools.git#0dff595f1ad3a0dd24c4fcfa5bc3a2ff3076a33f"
 dependencies = [
  "debugging",
  "env_logger",
- "indexmap 2.2.2",
+ "indexmap 2.2.3",
  "log",
  "serde",
  "serde_json",
@@ -663,9 +663,9 @@ dependencies = [
 
 [[package]]
 name = "indexmap"
-version = "2.2.2"
+version = "2.2.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "824b2ae422412366ba479e8111fd301f7b5faece8149317bb81925979a53f520"
+checksum = "233cf39063f058ea2caae4091bf4a3ef70a653afbc026f5c4a4135d114e3c177"
 dependencies = [
  "equivalent",
  "hashbrown 0.14.3",
@@ -1194,7 +1194,7 @@ dependencies = [
  "chrono",
  "hex",
  "indexmap 1.9.3",
- "indexmap 2.2.2",
+ "indexmap 2.2.3",
  "serde",
  "serde_derive",
  "serde_json",
@@ -1220,7 +1220,7 @@ version = "0.9.31"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "adf8a49373e98a4c5f0ceb5d05aa7c648d75f63774981ed95b7c7443bbd50c6e"
 dependencies = [
- "indexmap 2.2.2",
+ "indexmap 2.2.3",
  "itoa",
  "ryu",
  "serde",
@@ -1461,7 +1461,7 @@ version = "0.21.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6a8534fd7f78b5405e860340ad6575217ce99f38d4d5c8f2442cb5ecb50090e1"
 dependencies = [
- "indexmap 2.2.2",
+ "indexmap 2.2.3",
  "toml_datetime",
  "winnow",
 ]
