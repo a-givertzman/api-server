@@ -143,7 +143,7 @@ dependencies = [
 [[package]]
 name = "api-tools"
 version = "0.0.3"
-source = "git+https://github.com/a-givertzman/rust-api-tools.git#0dff595f1ad3a0dd24c4fcfa5bc3a2ff3076a33f"
+source = "git+https://github.com/a-givertzman/rust-api-tools.git#53ae1d93ca5d0e9bbf7b493fe1fd6ba0fb7a1964"
 dependencies = [
  "debugging",
  "env_logger",
@@ -1765,9 +1765,9 @@ checksum = "dff9641d1cd4be8d1a070daf9e3773c5f67e78b4d9d42263020c057706765c04"
 
 [[package]]
 name = "winnow"
-version = "0.5.39"
+version = "0.5.40"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5389a154b01683d28c77f8f68f49dea75f0a4da32557a58f68ee51ebba472d29"
+checksum = "f593a95398737aeed53e489c785df13f3618e41dbcd6718c6addbf1395aa6876"
 dependencies = [
  "memchr",
 ]
