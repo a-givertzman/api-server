@@ -29,23 +29,16 @@ impl ApiServer {
     }
     ///
     /// 
-    fn execute(mut sqlQuery: Box<dyn SqlQuery>, auth_token: String, id: String, keepAlive: bool, query: String, debug: bool) -> ApiReply {
+    fn execute(mut sqlQuery: Box<dyn SqlQuery>, auth_token: String, id: String, keep_alive: bool, query: String, debug: bool) -> ApiReply {
         match sqlQuery.execute() {
-            Ok(rows) => {                        
-                ApiReply {
-                    authToken: auth_token,
-                    id,
-                    keepAlive,
-                    query,
-                    data: rows,
-                    error: ApiError::empty(),
-                }
+            Ok(rows) => {
+                ApiReply::new(auth_token, id, keep_alive, query, rows)
             },
             Err(err) => {
                 ApiReply::error(
                     auth_token,
                     id,
-                    keepAlive,
+                    keep_alive,
                     query,
                     err.debug(debug),
                 )
@@ -69,7 +62,7 @@ impl ApiServer {
                         apiQuery.keepAlive,
                         apiQuery.srcQuery(apiQuery.debug),
                         errQuery.err().debug(apiQuery.debug),
-                    ).asBytes(),
+                    ).as_bytes(),
                 }
             },
             ApiQueryType::Sql(sqlQuery) => {
@@ -87,7 +80,7 @@ impl ApiServer {
                                         apiQuery.keepAlive,
                                         apiQuery.srcQuery(apiQuery.debug),
                                         apiQuery.debug,
-                                    ).asBytes(),
+                                    ).as_bytes(),
                                 }
                             },
                             ApiServiceType::MySql => {
@@ -103,7 +96,7 @@ impl ApiServer {
                                         apiQuery.keepAlive,
                                         apiQuery.srcQuery(apiQuery.debug),
                                         apiQuery.debug,
-                                    ).asBytes(),
+                                    ).as_bytes(),
                                 }
                             },
                             ApiServiceType::PostgreSql => {
@@ -116,7 +109,7 @@ impl ApiServer {
                                         apiQuery.keepAlive,
                                         apiQuery.srcQuery(apiQuery.debug),
                                         apiQuery.debug,
-                                    ).asBytes(),
+                                    ).as_bytes(),
                                 }
                             },
                             _ => ApiServerResult {
@@ -130,7 +123,7 @@ impl ApiServer {
                                         format!("API Server - Database service with the name '{}' can't be found", sqlQuery.database),
                                         format!("ApiServer.build | Error: Database service with the name '{}' can't be found", sqlQuery.database),
                                     ).debug(apiQuery.debug),
-                                ).asBytes(),
+                                ).as_bytes(),
                             }
                         }
                     },
@@ -145,7 +138,7 @@ impl ApiServer {
                                 format!("API Server - Database service with the name '{}' can't be found", sqlQuery.database),
                                 format!("ApiServer.build | Error: Database service with the name '{}' can't be found", sqlQuery.database),
                             ).debug(apiQuery.debug),
-                        ).asBytes(),
+                        ).as_bytes(),
                     },
                 }                    
             },
@@ -167,14 +160,13 @@ impl ApiServer {
                                     Ok(rows) => {                        
                                         ApiServerResult {
                                             keepAlive: apiQuery.keepAlive,
-                                            data: ApiReply {
-                                                authToken: apiQuery.authToken(),
-                                                id: apiQuery.id(),
-                                                keepAlive: apiQuery.keepAlive,
-                                                query: apiQuery.srcQuery(apiQuery.debug),
-                                                data: rows,
-                                                error: ApiError::empty(),
-                                            }.asBytes(),
+                                            data: ApiReply::new(
+                                                apiQuery.authToken(),
+                                                apiQuery.id(),
+                                                apiQuery.keepAlive,
+                                                apiQuery.srcQuery(apiQuery.debug),
+                                                rows,
+                                            ).as_bytes(),
                                         }
                                     },
                                     Err(err) => {
@@ -186,7 +178,7 @@ impl ApiServer {
                                                 apiQuery.keepAlive,
                                                 apiQuery.srcQuery(apiQuery.debug),
                                                 err.debug(apiQuery.debug),
-                                            ).asBytes(),
+                                            ).as_bytes(),
                                         }
                                     },
                                 }
@@ -203,7 +195,7 @@ impl ApiServer {
                                             format!("API Server - pyton script does not exists: {}", path), 
                                             format!("ApiServer.build | pyton script does not exists: {}", path), 
                                         ).debug(apiQuery.debug),
-                                    ).asBytes(),
+                                    ).as_bytes(),
                                 }
                             },
                         }
@@ -220,7 +212,7 @@ impl ApiServer {
                                     format!("API Server - Script with the name '{}' can't be found", pyQuery.script),
                                     format!("ApiServer.build | Error: Script with the name '{}' can't be found", pyQuery.script),
                                 ).debug(apiQuery.debug),
-                            ).asBytes(),
+                            ).as_bytes(),
                         }
                     },
                 }
@@ -244,14 +236,13 @@ impl ApiServer {
                                     Ok(rows) => {                        
                                         ApiServerResult {
                                             keepAlive: apiQuery.keepAlive,
-                                            data: ApiReply {
-                                                authToken: apiQuery.authToken(),
-                                                id: apiQuery.id(),
-                                                keepAlive: apiQuery.keepAlive,
-                                                query: apiQuery.srcQuery(apiQuery.debug),
-                                                data: rows,
-                                                error: ApiError::empty(),
-                                            }.asBytes(),
+                                            data: ApiReply::new(
+                                                apiQuery.authToken(),
+                                                apiQuery.id(),
+                                                apiQuery.keepAlive,
+                                                apiQuery.srcQuery(apiQuery.debug),
+                                                rows,
+                                            ).as_bytes(),
                                         }
                                     },
                                     Err(err) => {
@@ -263,7 +254,7 @@ impl ApiServer {
                                                 apiQuery.keepAlive,
                                                 apiQuery.srcQuery(apiQuery.debug),
                                                 err.debug(apiQuery.debug),
-                                            ).asBytes()
+                                            ).as_bytes()
                                         }
                                     },
                                 }
@@ -280,7 +271,7 @@ impl ApiServer {
                                             format!("API Server - Executable does not exists: {}", path),
                                             format!("ApiServer.build | Error: Executable does not exists: {}", path),
                                         ).debug(apiQuery.debug),
-                                    ).asBytes(),
+                                    ).as_bytes(),
                                 }
                             },
                         }
@@ -297,7 +288,7 @@ impl ApiServer {
                                     format!("API Server - Executable service with name '{}' can't be found", exQuery.name),
                                     format!("ApiServer.build | Error: Executable service with name '{}' can't be found", exQuery.name),
                                 ).debug(apiQuery.debug),
-                            ).asBytes()
+                            ).as_bytes()
                         }
                     },
                 }
@@ -314,7 +305,7 @@ impl ApiServer {
                             "API Server - Unknown type of API query",
                             "ApiServer.build | Error: Unknown type of API query",
                         ).debug(apiQuery.debug),
-                    ).asBytes(),
+                    ).as_bytes(),
                 }
             },
         }
