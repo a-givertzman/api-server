@@ -9,11 +9,11 @@ edition = "2021"
 log = "^0.4"
 env_logger = "^0.11"
 
-api-tools = { git = "https://github.com/a-givertzman/rust-api-tools.git", version = "^0.0" }
+api-tools = { git = "https://github.com/a-givertzman/rust-api-tools.git", tag = "0.0.3" }
 
 chrono = { version = "^0.4", features = ["serde"] }
 
-rusqlite = { version = "^0.30", features = ["bundled"] }
+rusqlite = { version = "^0.31", features = ["bundled"] }
 
 postgres = { version = "^0.19", features = ["with-chrono-0_4", "with-serde_json-1"] }
 

@@ -9,6 +9,14 @@ services:                      # list of currently avalible API services
         pass: 00d0-25e4-*&s2-ccds
         # replaceNullWithDefault:
 
+    - database-test:
+        name: 'test_api_query'
+        type: postgres
+        path: 'localhost:5432' 
+        user: test_api_query
+        pass: test_api_query
+        # replaceNullWithDefault:
+
 
 
 

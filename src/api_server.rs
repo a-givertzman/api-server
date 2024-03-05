@@ -1,6 +1,6 @@
 #![allow(non_snake_case)]
 
-use api_tools::{error::api_error::ApiError, server::{reply::api_reply::SqlReply, api_query::{api_query::ApiQuery, api_query_type::ApiQueryType}}};
+use api_tools::{error::api_error::ApiError, api::reply::api_reply::ApiReply, server::api_query::{api_query::ApiQuery, api_query_type::ApiQueryType}};
 use log::debug;
 
 use crate::{
@@ -29,10 +29,10 @@ impl ApiServer {
     }
     ///
     /// 
-    fn execute(mut sqlQuery: Box<dyn SqlQuery>, auth_token: String, id: String, keepAlive: bool, query: String, debug: bool) -> SqlReply {
+    fn execute(mut sqlQuery: Box<dyn SqlQuery>, auth_token: String, id: String, keepAlive: bool, query: String, debug: bool) -> ApiReply {
         match sqlQuery.execute() {
             Ok(rows) => {                        
-                SqlReply {
+                ApiReply {
                     authToken: auth_token,
                     id,
                     keepAlive,
@@ -42,7 +42,7 @@ impl ApiServer {
                 }
             },
             Err(err) => {
-                SqlReply::error(
+                ApiReply::error(
                     auth_token,
                     id,
                     keepAlive,
@@ -63,7 +63,7 @@ impl ApiServer {
             ApiQueryType::Error(errQuery) => {
                 ApiServerResult {
                     keepAlive: apiQuery.keepAlive,
-                    data: SqlReply::error(
+                    data: ApiReply::error(
                         apiQuery.authToken(),
                         apiQuery.id(),
                         apiQuery.keepAlive,
@@ -121,7 +121,7 @@ impl ApiServer {
                             },
                             _ => ApiServerResult {
                                 keepAlive: apiQuery.keepAlive,
-                                data: SqlReply::error(
+                                data: ApiReply::error(
                                     apiQuery.authToken(),
                                     apiQuery.id(),
                                     apiQuery.keepAlive,
@@ -136,7 +136,7 @@ impl ApiServer {
                     },
                     None => ApiServerResult {
                         keepAlive: apiQuery.keepAlive,
-                        data: SqlReply::error(
+                        data: ApiReply::error(
                             apiQuery.authToken(),
                             apiQuery.id(),
                             apiQuery.keepAlive,
@@ -167,7 +167,7 @@ impl ApiServer {
                                     Ok(rows) => {                        
                                         ApiServerResult {
                                             keepAlive: apiQuery.keepAlive,
-                                            data: SqlReply {
+                                            data: ApiReply {
                                                 authToken: apiQuery.authToken(),
                                                 id: apiQuery.id(),
                                                 keepAlive: apiQuery.keepAlive,
@@ -180,7 +180,7 @@ impl ApiServer {
                                     Err(err) => {
                                         ApiServerResult {
                                             keepAlive: apiQuery.keepAlive,
-                                            data: SqlReply::error(
+                                            data: ApiReply::error(
                                                 apiQuery.authToken(),
                                                 apiQuery.id(),
                                                 apiQuery.keepAlive,
@@ -194,7 +194,7 @@ impl ApiServer {
                             false => {
                                 ApiServerResult {
                                     keepAlive: apiQuery.keepAlive,
-                                    data: SqlReply::error(
+                                    data: ApiReply::error(
                                         apiQuery.authToken(),
                                         apiQuery.id(),
                                         apiQuery.keepAlive,
@@ -211,7 +211,7 @@ impl ApiServer {
                     None => {
                         ApiServerResult {
                             keepAlive: apiQuery.keepAlive,
-                            data: SqlReply::error(
+                            data: ApiReply::error(
                                 apiQuery.authToken(),
                                 apiQuery.id(),
                                 apiQuery.keepAlive,
@@ -244,7 +244,7 @@ impl ApiServer {
                                     Ok(rows) => {                        
                                         ApiServerResult {
                                             keepAlive: apiQuery.keepAlive,
-                                            data: SqlReply {
+                                            data: ApiReply {
                                                 authToken: apiQuery.authToken(),
                                                 id: apiQuery.id(),
                                                 keepAlive: apiQuery.keepAlive,
@@ -257,7 +257,7 @@ impl ApiServer {
                                     Err(err) => {
                                         ApiServerResult {
                                             keepAlive: apiQuery.keepAlive,
-                                            data: SqlReply::error(
+                                            data: ApiReply::error(
                                                 apiQuery.authToken(),
                                                 apiQuery.id(),
                                                 apiQuery.keepAlive,
@@ -271,7 +271,7 @@ impl ApiServer {
                             false => {
                                 ApiServerResult {
                                     keepAlive: apiQuery.keepAlive,
-                                    data: SqlReply::error(
+                                    data: ApiReply::error(
                                         apiQuery.authToken(),
                                         apiQuery.id(),
                                         apiQuery.keepAlive,
@@ -288,7 +288,7 @@ impl ApiServer {
                     None => {
                         ApiServerResult {
                             keepAlive: apiQuery.keepAlive,
-                            data: SqlReply::error(
+                            data: ApiReply::error(
                                 apiQuery.authToken(),
                                 apiQuery.id(),
                                 apiQuery.keepAlive,
@@ -305,7 +305,7 @@ impl ApiServer {
             ApiQueryType::Unknown => {
                 ApiServerResult {
                     keepAlive: apiQuery.keepAlive,
-                    data: SqlReply::error(
+                    data: ApiReply::error(
                         apiQuery.authToken(),
                         apiQuery.id(),
                         apiQuery.keepAlive,
@@ -318,7 +318,7 @@ impl ApiServer {
                 }
             },
         }
-        // sqlReply.asBytes()
+        // ApiReply.asBytes()
     }
 }
 
