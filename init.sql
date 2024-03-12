@@ -5,7 +5,7 @@ CREATE TABLE if not exists ship (
   project_id INT,
   ship_id INT NOT NULL,
   key TEXT NOT NULL,
-  value REAL NOT NULL,
+  value DOUBLE PRECISION NOT NULL,
   name TEXT NOT NULL,
   unit TEXT,
   CONSTRAINT ship_pk PRIMARY KEY (id),
