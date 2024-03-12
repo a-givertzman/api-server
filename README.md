@@ -8,6 +8,13 @@ Execute following command from project root to configure database and start api-
 docker compose up
 ```
 
+If configuration has changed, run following commands from project root to recreate database and api-server with updated configuration.
+
+```bash
+sudo rm -rf ./postgres
+docker compose up --build --no-deps --force-recreate
+```
+
 # Connecting
 
 - host - `localhost`
