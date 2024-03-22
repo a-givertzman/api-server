@@ -46,20 +46,20 @@ INSERT INTO cargo_parameters
 SELECT 1, idx, 'name', 'CARGO-' || idx, 'string' FROM generate_series(1, cargo_fill_num) as idx;
 INSERT INTO cargo_parameters
   (ship_id, cargo_id, key, value, type)
-SELECT 1, idx, 'weight', 0.0, 'real' FROM generate_series(1, cargo_fill_num) as idx;
+SELECT 1, idx, 'weight', '0.0', 'real' FROM generate_series(1, cargo_fill_num) as idx;
 INSERT INTO cargo_parameters
   (ship_id, cargo_id, key, value, type)
-SELECT 1, idx, 'vcg', 0.0, 'real' FROM generate_series(1, cargo_fill_num) as idx;
+SELECT 1, idx, 'vcg', '0.0', 'real' FROM generate_series(1, cargo_fill_num) as idx;
 INSERT INTO cargo_parameters
   (ship_id, cargo_id, key, value, type)
-SELECT 1, idx, 'lcg', 0.0, 'real' FROM generate_series(1, cargo_fill_num) as idx;
+SELECT 1, idx, 'lcg', '0.0', 'real' FROM generate_series(1, cargo_fill_num) as idx;
 INSERT INTO cargo_parameters
   (ship_id, cargo_id, key, value, type)
-SELECT 1, idx, 'tcg', 0.0, 'real' FROM generate_series(1, cargo_fill_num) as idx;
+SELECT 1, idx, 'tcg', '0.0', 'real' FROM generate_series(1, cargo_fill_num) as idx;
 INSERT INTO cargo_parameters
   (ship_id, cargo_id, key, value, type)
-SELECT 1, idx, 'x_1', 0.0, 'real' FROM generate_series(1, cargo_fill_num) as idx;
+SELECT 1, idx, 'x_1', '0.0', 'real' FROM generate_series(1, cargo_fill_num) as idx;
 INSERT INTO cargo_parameters
   (ship_id, cargo_id, key, value, type)
-SELECT 1, idx, 'x_2', 0.0, 'real' FROM generate_series(1, cargo_fill_num) as idx;
+SELECT 1, idx, 'x_2', '0.0', 'real' FROM generate_series(1, cargo_fill_num) as idx;
 END $$;
