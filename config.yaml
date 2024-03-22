@@ -6,35 +6,3 @@ services:                      # list of currently avalible API services
         path: 'db:5432'
         user: test
         pass: test
-        # replaceNullWithDefault:
-    # - database-sqlite:                 # internal unique API service name
-    #     name: 'database'        # database instance name
-    #     type: postgres          # the type of the dattabase
-    #     path: 'db:5432'         # path / ip:port to the database file / host 
-    #     user: test              # database access user
-    #     pass: test              # database access password
-    # - database-sqlite1:                 # internal unique API service name
-    #     name: 'database1'       # database instance name
-    #     type: sqlite            # the type of the dattabase
-    #     path: 'database22.sqlite' # path / ip:pot to the database file / host 
-    #     user: root              # database access user
-    #     pass: root              # database access password
-    # - database-postgres-crane-data-server:
-    #     name: 'crane_data_server'
-    #     type: postgres
-    #     path: 'localhost:5432'
-    #     user: crane_data_server
-    #     pass: 00d0-25e4-*&s2-ccds
-    #     # replaceNullWithDefault:
-    # - py-test-script:                   # internal unique API service name
-    #     name: 'py-test'          # the name of the python script (must be specified in the API request, field 'path')
-    #     type: python             # the type of the service
-    #     path: 'extensions/scripts/script_tamplate.py'  # the path to the python script file
-    #     user: root               # can be used to restrict assecc to the python script
-    #     pass: root               # can be used to restrict assecc to the python script
-    # - executable-test-app:              # internal unique API service name
-    #     name: 'executable-test'  # the name of the exequtable (must be specified in the API request, field 'path')
-    #     type: bin                # the type of the service
-    #     path: 'extensions/bin/simple-executable'  # the path to the extension exequtable file
-    #     user: root               # can be used to restrict assecc to the python script
-    #     pass: root               # can be used to restrict assecc to the python script

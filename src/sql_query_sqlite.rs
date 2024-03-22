@@ -1,15 +1,13 @@
 #![allow(non_snake_case)]
 
-use std::collections::HashMap;
-
+use api_tools::{error::api_error::ApiError, server::api_query::row_map::RowMap};
+use indexmap::IndexMap;
 use log::{debug, warn};
 use rusqlite::{Connection, Statement, OpenFlags};
 
-use crate::{sql_query::SqlQuery, config::ServiceConfig, core_::error::api_error::ApiError};
+use crate::{sql_query::SqlQuery, config::ServiceConfig};
 
-type RowMap = HashMap<String, serde_json::Value>;
-
-
+///
 /// 
 pub struct SqlQuerySqlite {
     dbConfig: ServiceConfig,
@@ -99,7 +97,7 @@ impl SqlQuery for SqlQuerySqlite {
                                 let mut parseErrors = vec![];
                                 while let Some(row) = rows.next().unwrap() {
                                     debug!("row: {:?}", row);
-                                    let mut rowMap = HashMap::new();
+                                    let mut rowMap = IndexMap::new();
                                     for cName in cNames.iter() {
                                         match row.get(cName.as_str()) {
                                             Ok(value) => {
