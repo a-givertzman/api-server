@@ -1,6 +1,6 @@
-DROP TABLE IF EXISTS ship;
+DROP TABLE IF EXISTS ship_parameters;
 
-CREATE TABLE if not exists ship (
+CREATE TABLE if not exists ship_parameters (
   id INT GENERATED ALWAYS AS IDENTITY,
   project_id INT,
   ship_id INT NOT NULL,
@@ -8,14 +8,14 @@ CREATE TABLE if not exists ship (
   value DOUBLE PRECISION NOT NULL,
   name TEXT NOT NULL,
   unit TEXT,
-  CONSTRAINT ship_pk PRIMARY KEY (id),
-  CONSTRAINT ship_unique UNIQUE (ship_id, key),
-  CONSTRAINT ship_key_check CHECK(char_length(key) <= 50),
-  CONSTRAINT ship_name_check CHECK(char_length(name) <= 50),
-  CONSTRAINT ship_unit_check CHECK(char_length(unit) <= 10)
+  CONSTRAINT ship_parameters_pk PRIMARY KEY (id),
+  CONSTRAINT ship_parameters_unique UNIQUE (ship_id, key),
+  CONSTRAINT ship_parameters_key_check CHECK(char_length(key) <= 50),
+  CONSTRAINT ship_parameters_name_check CHECK(char_length(name) <= 50),
+  CONSTRAINT ship_parameters_unit_check CHECK(char_length(unit) <= 10)
 );
 
-INSERT INTO ship
+INSERT INTO ship_parameters
   (ship_id, key, value, name, unit)
 VALUES
   (1, 'ship_length', 200, 'Ship Length', 'm'),
@@ -23,14 +23,6 @@ VALUES
   (1, 'n_parts', 20, 'Number of Parts', NULL);
 
 DROP TABLE IF EXISTS cargo_parameters;
-
-CREATE TABLE if not exists cargo (
-  id INT GENERATED ALWAYS AS IDENTITY,
-  ship_id INT NOT NULL,
-  order INT NOT NULL,
-  CONSTRAINT cargo_pk PRIMARY KEY (id),
-)
-
 CREATE TABLE if not exists cargo_parameters (
   id INT GENERATED ALWAYS AS IDENTITY,
   project_id INT,
@@ -47,27 +39,27 @@ CREATE TABLE if not exists cargo_parameters (
 );
 
 DO $$
-  DECLARE cargo_num INTEGER = 10;
+  DECLARE cargo_fill_num INTEGER = 10;
 BEGIN
 INSERT INTO cargo_parameters
   (ship_id, cargo_id, key, value, type)
-SELECT 1, idx, 'name', 'CARGO-' || idx, 'string' FROM generate_series(1, cargo_num) as idx;
+SELECT 1, idx, 'name', 'CARGO-' || idx, 'string' FROM generate_series(1, cargo_fill_num) as idx;
 INSERT INTO cargo_parameters
   (ship_id, cargo_id, key, value, type)
-SELECT 1, idx, 'weight', 0.0, 'real' FROM generate_series(1, cargo_num) as idx;
+SELECT 1, idx, 'weight', 0.0, 'real' FROM generate_series(1, cargo_fill_num) as idx;
 INSERT INTO cargo_parameters
   (ship_id, cargo_id, key, value, type)
-SELECT 1, idx, 'vcg', 0.0, 'real' FROM generate_series(1, cargo_num) as idx;
+SELECT 1, idx, 'vcg', 0.0, 'real' FROM generate_series(1, cargo_fill_num) as idx;
 INSERT INTO cargo_parameters
   (ship_id, cargo_id, key, value, type)
-SELECT 1, idx, 'lcg', 0.0, 'real' FROM generate_series(1, cargo_num) as idx;
+SELECT 1, idx, 'lcg', 0.0, 'real' FROM generate_series(1, cargo_fill_num) as idx;
 INSERT INTO cargo_parameters
   (ship_id, cargo_id, key, value, type)
-SELECT 1, idx, 'tcg', 0.0, 'real' FROM generate_series(1, cargo_num) as idx;
+SELECT 1, idx, 'tcg', 0.0, 'real' FROM generate_series(1, cargo_fill_num) as idx;
 INSERT INTO cargo_parameters
   (ship_id, cargo_id, key, value, type)
-SELECT 1, idx, 'x_1', 0.0, 'real' FROM generate_series(1, cargo_num) as idx;
+SELECT 1, idx, 'x_1', 0.0, 'real' FROM generate_series(1, cargo_fill_num) as idx;
 INSERT INTO cargo_parameters
   (ship_id, cargo_id, key, value, type)
-SELECT 1, idx, 'x_2', 0.0, 'real' FROM generate_series(1, cargo_num) as idx;
+SELECT 1, idx, 'x_2', 0.0, 'real' FROM generate_series(1, cargo_fill_num) as idx;
 END $$;
