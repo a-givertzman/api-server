@@ -5,6 +5,7 @@
 Execute following command from project root to configure database and start api-server.
 
 ```bash
+mkdir ./postgres
 docker compose up
 ```
 
