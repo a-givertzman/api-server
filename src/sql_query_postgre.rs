@@ -1,8 +1,9 @@
 #![allow(non_snake_case)]
 
+use api_tools::{error::api_error::ApiError, server::api_query::row_map::RowMap};
 use chrono::{DateTime, Utc, NaiveTime, NaiveDate, NaiveDateTime};
+use indexmap::IndexMap;
 use rust_decimal::Decimal;
-use std::collections::HashMap;
 use bytes::BytesMut;
 use postgres::{Client, NoTls, types::{Type, to_sql_checked, FromSql, self, Kind}};
 use serde::Serialize;
@@ -11,9 +12,7 @@ use serde_json::json;
 
 use log::{debug, warn, trace, LevelFilter};
 
-use crate::{sql_query::SqlQuery, config::ServiceConfig, core_::error::api_error::ApiError};
-
-type RowMap = HashMap<String, serde_json::Value>;
+use crate::{sql_query::SqlQuery, config::ServiceConfig};
 
 
 /// 
@@ -188,7 +187,7 @@ impl SqlQuery for SqlQueryPostgre {
                                 let mut parseErrors = vec![];
                                 for row in rows {
                                     trace!("SqlQueryPostgre.execute | row: {:?}", row);
-                                    let mut rowMap = HashMap::new();
+                                    let mut rowMap = IndexMap::new();
                                     for column in row.columns() {
                                         let idx = column.name();
                                         let (value, err): (serde_json::Value, String) = self.asJson(column.type_(), &row, &idx);

@@ -7,8 +7,6 @@ mod tests;
 mod core_;
 mod config;
 mod api_server;
-mod api_query;
-mod api_reply;
 mod tcp_server;
 mod python_query;
 mod executable_query;
@@ -18,10 +16,7 @@ mod sql_query_sqlite;
 mod sql_query_postgre;
 mod sql_query_mysql;
 
-use std::{
-    sync::{Arc, Mutex}, 
-    env, 
-};
+use std::sync::{Arc, Mutex};
 
 use log::debug;
 

@@ -1,9 +1,7 @@
 #![allow(non_snake_case)]
 
-use std::collections::HashMap;
-use crate::core_::error::api_error::ApiError;
+use api_tools::{error::api_error::ApiError, server::api_query::row_map::RowMap};
 
-pub type RowMap = HashMap<String, serde_json::Value>;
 // pub type ErrorString = String;
 ///
 pub trait SqlQuery {

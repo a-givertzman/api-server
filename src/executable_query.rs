@@ -1,14 +1,14 @@
 #![allow(non_snake_case)]
 
-use std::collections::HashMap;
 use std::io::Write;
 use std::process::{Command, Stdio};
 
+use api_tools::{
+    error::api_error::ApiError,
+    server::api_query::row_map::RowMap,
+};
 use log::{debug, warn};
 
-use crate::core_::error::api_error::ApiError;
-
-type RowMap = HashMap<String, serde_json::Value>;
 ///
 /// 
 pub struct ExecutableQuery {

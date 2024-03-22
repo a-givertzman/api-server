@@ -1,14 +1,11 @@
 #![allow(non_snake_case)]
 
-use std::collections::HashMap;
-
+use indexmap::IndexMap;
 use log::{debug, warn};
 use rusqlite::{Connection, Statement, OpenFlags};
-use serde_json::json;
+use api_tools::{error::api_error::ApiError, server::api_query::row_map::RowMap};
 
-use crate::{sql_query::SqlQuery, config::ServiceConfig, core_::error::api_error::ApiError};
-
-type RowMap = HashMap<String, serde_json::Value>;
+use crate::{sql_query::SqlQuery, config::ServiceConfig};
 
 
 /// 
@@ -75,7 +72,7 @@ impl SqlQuery for SqlQueryMysql {
                                 let mut parseErrors = vec![];
                                 while let Some(row) = rows.next().unwrap() {
                                     debug!("row: {:?}", row);
-                                    let mut rowMap = HashMap::new();
+                                    let mut rowMap = IndexMap::new();
                                     for cName in cNames.iter() {
                                         match row.get(cName.as_str()) {
                                             Ok(value) => {
