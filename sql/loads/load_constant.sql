@@ -1,0 +1,57 @@
+-- Постоянная нагрузка на судно, распределенная по шпациям
+-- корпус и оборудование
+CREATE TABLE if not exists load_constant (
+  id INT GENERATED ALWAYS AS IDENTITY,
+  project_id INT,
+  ship_id INT NOT NULL,
+  frame_space_index INT NOT NULL,
+  key TEXT NOT NULL,
+  value FLOAT8 NOT NULL,
+  CONSTRAINT load_constant_pk PRIMARY KEY (id),
+  CONSTRAINT load_constant_key_unique UNIQUE (ship_id, frame_space_index, key),
+  CONSTRAINT load_constant_key_check CHECK(char_length(key) <= 50)
+);
+
+INSERT INTO load_constant
+  (project_id, ship_id, frame_space_index, key, value)
+VALUES
+  (NULL, 1, 0, 'hull', 90.95),
+  (NULL, 1, 0, 'equipment', 48.39),
+  (NULL, 1, 1, 'hull', 114.81),
+  (NULL, 1, 1, 'equipment', 129.48),
+  (NULL, 1, 2, 'hull', 110.33),
+  (NULL, 1, 2, 'equipment', 31.01),
+  (NULL, 1, 3, 'hull', 53.96),
+  (NULL, 1, 3, 'equipment', 16.50),
+  (NULL, 1, 4, 'hull', 53.96),
+  (NULL, 1, 4, 'equipment', 16.50),
+  (NULL, 1, 5, 'hull', 53.96),
+  (NULL, 1, 5, 'equipment', 16.50),
+  (NULL, 1, 6, 'hull', 53.96),
+  (NULL, 1, 6, 'equipment', 16.50),
+  (NULL, 1, 7, 'hull', 53.96),
+  (NULL, 1, 7, 'equipment', 16.50),
+  (NULL, 1, 8, 'hull', 53.96),
+  (NULL, 1, 8, 'equipment', 16.50),
+  (NULL, 1, 9, 'hull', 53.96),
+  (NULL, 1, 9, 'equipment', 16.50),
+  (NULL, 1, 10, 'hull', 53.96),
+  (NULL, 1, 10, 'equipment', 16.50),
+  (NULL, 1, 11, 'hull', 53.96),
+  (NULL, 1, 11, 'equipment', 16.50),
+  (NULL, 1, 12, 'hull', 53.96),
+  (NULL, 1, 12, 'equipment', 16.50),
+  (NULL, 1, 13, 'hull', 53.96),
+  (NULL, 1, 13, 'equipment', 16.50),
+  (NULL, 1, 14, 'hull', 53.96),
+  (NULL, 1, 14, 'equipment', 16.50),
+  (NULL, 1, 15, 'hull', 53.96),
+  (NULL, 1, 15, 'equipment', 29.70),
+  (NULL, 1, 16, 'hull', 114.81),
+  (NULL, 1, 16, 'equipment', 17.48),
+  (NULL, 1, 17, 'hull', 98.41),
+  (NULL, 1, 17, 'equipment', 40.85),
+  (NULL, 1, 18, 'hull', 128.23),
+  (NULL, 1, 18, 'equipment', 51.03),
+  (NULL, 1, 19, 'hull', 96.91),
+  (NULL, 1, 19, 'equipment', 42.23);
