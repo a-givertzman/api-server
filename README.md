@@ -12,6 +12,7 @@ docker compose up
 If configuration has changed, run following commands from project root to recreate database and api-server with updated configuration.
 
 ```bash
+docker compose down -v
 sudo rm -rf ./postgres
 docker compose up --build --no-deps --force-recreate
 ```
