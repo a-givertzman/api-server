@@ -9,6 +9,7 @@ DROP FUNCTION IF EXISTS event_check_for_purge();
 DROP FUNCTION IF EXISTS event_counter_inc();
 DROP FUNCTION IF EXISTS event_counter_dec();
 DROP INDEX IF EXISTS idx_event_timestamp;
+DROP VIEW IF EXISTS event_view;
 DROP TABLE IF EXISTS event;
 DROP TABLE IF EXISTS event_utils;
 -- Creation
@@ -113,12 +114,6 @@ BEGIN
 END;
 $$;
 
-CREATE OR REPLACE TRIGGER event_insert_trigger
-AFTER INSERT ON event
-REFERENCING NEW TABLE AS new_tbl
-FOR EACH STATEMENT
-EXECUTE PROCEDURE  event_counter_inc();
-
 CREATE OR REPLACE FUNCTION event_counter_dec()
 RETURNS trigger 
 LANGUAGE plpgsql
@@ -132,8 +127,14 @@ BEGIN
 END;
 $$;
 
-CREATE OR REPLACE TRIGGER event_delete_trigger
-AFTER DELETE ON event
-REFERENCING OLD TABLE AS old_tbl 
-FOR EACH STATEMENT
-EXECUTE PROCEDURE  event_counter_dec();
+create trigger event_insert_trigger
+	AFTER INSERT ON public."event"
+	REFERENCING NEW TABLE AS new_tbl
+	FOR EACH STATEMENT
+	EXECUTE PROCEDURE public.event_counter_inc();
+
+create trigger event_delete_trigger
+	AFTER DELETE ON event
+	REFERENCING OLD TABLE AS old_tbl 
+	FOR EACH STATEMENT
+	EXECUTE PROCEDURE  public.event_counter_dec();
