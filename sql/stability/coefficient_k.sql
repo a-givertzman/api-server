@@ -4,16 +4,16 @@
 -- Табл. 2.1.5.2
 CREATE TABLE if not exists coefficient_k (
   id INT GENERATED ALWAYS AS IDENTITY,
-  a_div_l FLOAT8 NOT NULL,
-  k FLOAT8 NOT NULL,
+  key FLOAT8 NOT NULL,
+  value FLOAT8 NOT NULL,
   CONSTRAINT coefficient_k_pk PRIMARY KEY (id),
-  CONSTRAINT coefficient_k_a_div_l_unique UNIQUE (a_div_l),
-  CONSTRAINT coefficient_k_a_div_l_non_negative CHECK (a_div_l >= 0),
-  CONSTRAINT coefficient_k_x2_negative CHECK (k >= 0)
+  CONSTRAINT coefficient_k_key_unique UNIQUE (key),
+  CONSTRAINT coefficient_k_key_non_negative CHECK (key >= 0),
+  CONSTRAINT coefficient_k_value_negative CHECK (value >= 0)
 );
 
 INSERT INTO coefficient_k
-  (a_div_l, k)
+  (key, value)
 VALUES
   (0.0, 1.0),
   (1.0, 0.98),

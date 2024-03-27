@@ -3,16 +3,16 @@
 -- Табл. 2.1.5.1-2
 CREATE TABLE if not exists multipler_x2 (
   id INT GENERATED ALWAYS AS IDENTITY,
-  c_b FLOAT8 NOT NULL,
-  x2 FLOAT8 NOT NULL,
+  key FLOAT8 NOT NULL,
+  value FLOAT8 NOT NULL,
   CONSTRAINT multipler_x2_pk PRIMARY KEY (id),
-  CONSTRAINT multipler_x2_c_b_unique UNIQUE (c_b),
-  CONSTRAINT multipler_x2_c_b_non_negative CHECK (c_b > 0),
-  CONSTRAINT multipler_x2_x2_negative CHECK (x2 >= 0)
+  CONSTRAINT multipler_x2_key_unique UNIQUE (key),
+  CONSTRAINT multipler_x2_key_non_negative CHECK (key > 0),
+  CONSTRAINT multipler_x2_value_negative CHECK (value >= 0)
 );
 
 INSERT INTO multipler_x2
-  (c_b, x2)
+  (key, value)
 VALUES
   (0.45, 0.75),
   (0.5, 0.82),
