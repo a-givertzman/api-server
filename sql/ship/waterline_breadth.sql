@@ -1,7 +1,8 @@
 -- Отстояние по вертикали центра площади проекции 
 -- одводной части корпуса на диаметральную плоскость 
 -- в прямом положении судна на спокойной воде
---  V, м3 | z, м
+-- в зависимости от осадки
+-- d, м | z, м
 CREATE TABLE if not exists waterline_breadth (
   id INT GENERATED ALWAYS AS IDENTITY,
   project_id INT,

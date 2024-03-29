@@ -1,6 +1,6 @@
 -- Длинна судна по ватерлинии
--- зависимости от объемного водоизмещения
---  V, м3 | L, м
+-- в зависимости от осадки
+-- d, м | z, м
 CREATE TABLE if not exists waterline_length (
   id INT GENERATED ALWAYS AS IDENTITY,
   project_id INT,
