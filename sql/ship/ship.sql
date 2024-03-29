@@ -31,9 +31,9 @@ VALUES
   (1, 'const_mass_shift_x', '1.05', 'real', 'Center of mass shift x', 'm'),
   (1, 'const_mass_shift_y', '0', 'real', 'Center of mass shift y', 'm'),
   (1, 'const_mass_shift_z', '5.32', 'real', 'Center of mass shift z', 'm'),
-  (1, 'windage', '1089.79', 'real', 'Total windage area', 'm^2'),
-  (1, 'windage_shift_x', '3.79', 'real', 'Center of mass shift x', 'm'),
-  (1, 'windage_shift_z', '6.51', 'real', 'Center of mass shift y', 'm'),
+  (1, 'windage', '1698.91', 'real', 'Total windage area', 'm^2'),
+  (1, 'windage_shift_x', '3.07', 'real', 'Center of windage area shift x', 'm'),
+  (1, 'windage_shift_z', '6.51', 'real', 'Center of windage area shift z', 'm'),
   (1, 'windage_icing', '1193.58', 'real', 'Total windage area with icing', 'm^2'),
-  (1, 'windage_icing_shift_x', '3.46', 'real', 'Center of mass shift x', 'm'),
-  (1, 'windage_icing_shift_z', '7.03', 'real', 'Center of mass shift y', 'm');
+  (1, 'windage_icing_shift_x', '3.46', 'real', 'Center of icing windage area shift x', 'm'),
+  (1, 'windage_icing_shift_z', '7.03', 'real', 'Center of icing windage area shift z', 'm');
