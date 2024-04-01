@@ -1,5 +1,4 @@
 -- Вариант загрузки 4 (запасы 10 %). Судно порожнем с балластом (в море). Приход
-TRUNCATE TABLE load_space;
 
 INSERT INTO load_space
   (ship_id, space_id, key, value, value_type, unit)

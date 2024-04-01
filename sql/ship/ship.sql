@@ -18,11 +18,14 @@ CREATE TABLE if not exists ship (
   CONSTRAINT ship_unit_check CHECK(char_length(unit) <= 10)
 );
 
+TRUNCATE TABLE SHIP;
+
 INSERT INTO ship
   (ship_id, key, value, value_type, name, unit)
 VALUES
   (1, 'name', 'M/V "YURIY ARSHENEVSKIY"', 'text', 'Name of ship', NULL),
   (1, 'navigation_area', 'R2', 'text', 'Type of navigation area', NULL),
+  (1, 'icing_stab', 'full', 'text', 'Type of icing', NULL),
   (1, 'water_density', '1.025', 'real', 'Water Density', 'g/ml'),
   (1, 'keel_area', '24.69', 'real', 'Keel area', 'm^2'),
   (1, 'length', '118.39', 'real', 'Ship hull length', 'm'),
