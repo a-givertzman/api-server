@@ -24,6 +24,8 @@ INSERT INTO ship
   (ship_id, key, value, value_type, name, unit)
 VALUES
   (1, 'name', 'M/V "YURIY ARSHENEVSKIY"', 'text', 'Name of ship', NULL),
+  (1, 'mass', '0', 'real', 'Whole ship mass', 't'),
+  (1, 'volume', '0', 'real', 'Volume of ship displacement', 'm^3'), 
   (1, 'navigation_area', 'R2', 'text', 'Type of navigation area', NULL),
   (1, 'icing_stab', 'full', 'text', 'Type of icing', NULL),
   (1, 'water_density', '1.025', 'real', 'Water Density', 'g/ml'),
