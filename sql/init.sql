@@ -10,8 +10,10 @@
 \i ./sql/ship/volume_shift.sql
 \i ./sql/ship/waterline_breadth.sql
 \i ./sql/ship/waterline_length.sql
-\i ./sql/loads/load_space.sql
-\i ./sql/loads/load_constant.sql
+\i ./sql/loads/constant/create.sql
+\i ./sql/loads/constant/hull.sql
+\i ./sql/loads/load_create.sql
+\i ./sql/loads/load_sea_100.sql
 \i ./sql/frames/theoretical_583.sql
 \i ./sql/frames/0.sql
 \i ./sql/frames/1.sql
