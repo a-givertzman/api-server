@@ -1,5 +1,6 @@
 #![allow(non_snake_case)]
 
+use api_tools::{error::api_error::ApiError, server::api_query::row_map::RowMap};
 use chrono::{DateTime, Utc, NaiveTime, NaiveDate, NaiveDateTime};
 use indexmap::IndexMap;
 use rust_decimal::Decimal;
@@ -11,7 +12,7 @@ use serde_json::json;
 
 use log::{debug, warn, trace, LevelFilter};
 
-use crate::{sql_query::SqlQuery, config::ServiceConfig, core_::error::api_error::ApiError, api_query::row_map::RowMap};
+use crate::{sql_query::SqlQuery, config::ServiceConfig};
 
 
 /// 
@@ -82,7 +83,7 @@ impl SqlQueryPostgre {
                 match value {
                     Some(v) => json!(v),
                     None => {
-                        match self.dbConfig.replaceNullWithDefault {
+                        match self.dbConfig.replace_null_with_default {
                             Some(_) => Self::asJsonDefaultValue(t),
                             None => json!(()),
                         }
