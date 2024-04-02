@@ -83,7 +83,7 @@ impl SqlQueryPostgre {
                 match value {
                     Some(v) => json!(v),
                     None => {
-                        match self.dbConfig.replaceNullWithDefault {
+                        match self.dbConfig.replace_null_with_default {
                             Some(_) => Self::asJsonDefaultValue(t),
                             None => json!(()),
                         }

@@ -69,7 +69,7 @@ impl ApiServer {
                 debug!("ApiServer.build | ApiQueryType: Sql");
                 match self.config.services.get(&sqlQuery.database) {
                     Some(dbConfig) => {
-                        match dbConfig.serviceType {
+                        match dbConfig.service_type {
                             ApiServiceType::Sqlite => {
                                 ApiServerResult {
                                     keepAlive: apiQuery.keepAlive,
