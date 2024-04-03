@@ -11,10 +11,10 @@ CREATE TABLE if not exists ship (
   unit TEXT,
   CONSTRAINT ship_pk PRIMARY KEY (id),
   CONSTRAINT ship_unique UNIQUE (ship_id, key),
-  CONSTRAINT ship_key_check CHECK(char_length(key) <= 50),
-  CONSTRAINT ship_value_check CHECK(char_length(value) <= 50),
-  CONSTRAINT ship_type_check CHECK(char_length(value_type) <= 10),
-  CONSTRAINT ship_name_check CHECK(char_length(name) <= 50),
+  CONSTRAINT ship_key_check CHECK(char_length(key) > 0 AND char_length(key) <= 50),
+  CONSTRAINT ship_value_check CHECK(char_length(value) > 0 AND char_length(value) <= 50),
+  CONSTRAINT ship_type_check CHECK(char_length(value_type) > 0 AND char_length(value_type) <= 10),
+  CONSTRAINT ship_name_check CHECK(char_length(name) > 0 AND char_length(name) <= 50),
   CONSTRAINT ship_unit_check CHECK(char_length(unit) <= 10)
 );
 
@@ -24,8 +24,8 @@ INSERT INTO ship
   (ship_id, key, value, value_type, name, unit)
 VALUES
   (1, 'name', 'M/V "YURIY ARSHENEVSKIY"', 'text', 'Name of ship', NULL),
-  (1, 'mass', '0', 'real', 'Whole ship mass', 't'),
-  (1, 'volume', '0', 'real', 'Volume of ship displacement', 'm^3'), 
+  (1, 'mass', '1', 'real', 'Whole ship mass', 't'),
+  (1, 'volume', '1', 'real', 'Volume of ship displacement', 'm^3'), 
   (1, 'navigation_area', 'R2', 'text', 'Type of navigation area', NULL),
   (1, 'icing_stab', 'full', 'text', 'Type of icing', NULL),
   (1, 'water_density', '1.025', 'real', 'Water Density', 'g/ml'),

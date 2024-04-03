@@ -15,6 +15,6 @@ CREATE TABLE if not exists load_space (
   CONSTRAINT load_space_key_unique UNIQUE (ship_id, space_id, key),
   CONSTRAINT ship_value_check CHECK(char_length(value) <= 50),
   CONSTRAINT ship_type_check CHECK(char_length(value_type) <= 10),
-  CONSTRAINT load_space_key_check CHECK(char_length(key) <= 50),
+  CONSTRAINT load_space_key_check CHECK(char_length(key) > 0 AND char_length(key) <= 50),
   CONSTRAINT ship_unit_check CHECK(char_length(unit) <= 10)
 );
