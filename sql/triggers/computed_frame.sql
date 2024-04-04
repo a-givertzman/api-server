@@ -16,7 +16,7 @@ BEGIN
     FROM 
         ship
     WHERE NOT ship_id IN (
-        SELECT DISTINCT
+        SELECT
             ship_id
         FROM 
             ship
