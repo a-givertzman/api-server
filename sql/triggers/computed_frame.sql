@@ -122,5 +122,5 @@ CREATE OR REPLACE TRIGGER check_delete_n_parts
 CREATE OR REPLACE TRIGGER check_update_n_parts
     AFTER INSERT OR UPDATE ON ship
     FOR EACH ROW 
-    WHEN (NEW.key = 'n_parts')
+    WHEN (NEW.key = 'n_parts' OR NEW.key = 'length')
     EXECUTE FUNCTION update_computed_frame();
