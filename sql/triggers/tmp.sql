@@ -69,7 +69,10 @@ CREATE TABLE if not exists load_space (
 
 
 truncate table ship;
+truncate table load_space;
 truncate table load_constant;
+
+truncate table computed_frame;
 
 INSERT INTO ship
   (ship_id, key, value, value_type, name, unit)

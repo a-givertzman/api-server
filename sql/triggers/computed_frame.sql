@@ -95,7 +95,10 @@ BEGIN
 
     RAISE NOTICE 'update_computed_frame calculate frames with n_parts:[%] for ship_id:[%]', n_parts, changed_ship_id;
 
-    DELETE FROM computed_frame WHERE ship_id=changed_ship_id;
+    DELETE FROM 
+        computed_frame 
+    WHERE 
+        ship_id = changed_ship_id;
 
     FOR index in 0..n_parts LOOP
         INSERT INTO

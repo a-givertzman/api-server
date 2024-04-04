@@ -33,11 +33,6 @@ BEGIN
     IF ( water_density IS NULL )
     THEN
         RAISE NOTICE 'update_volume no water_density for ship_id:[%]', changed_ship_id;
-        water_density = 1.025;  
-        INSERT INTO ship
-            (ship_id, key, value, value_type, name, unit)
-        VALUES
-            (changed_ship_id, 'water_density', water_density, 'real', 'Water Density', 'g/ml'); 
         RETURN NULL;
     END IF;
 
@@ -54,12 +49,6 @@ BEGIN
     IF ( mass IS NULL )
     THEN
         RAISE NOTICE 'update_volume no mass for ship_id:[%]', changed_ship_id;
-        mass = calculate_mass(changed_ship_id);
-
-        INSERT INTO ship
-            (ship_id, key, value, value_type, name, unit)
-        VALUES
-            (changed_ship_id, 'mass', mass, 'real', 'Whole ship mass', 't');
         RETURN NULL;
     END IF;  
 
@@ -67,13 +56,33 @@ BEGIN
 
     RAISE NOTICE 'update_volume ship_id:[%] water_density:[%] mass:[%] volume:[%]', changed_ship_id, water_density, mass, volume;
 
-    UPDATE
-        ship s
-    SET 
-        value = volume
-    WHERE
-        s.ship_id = changed_ship_id
-        AND key = 'volume';
+    IF (
+        EXISTS (
+            SELECT
+                ship_id
+            FROM
+                ship s
+            WHERE 
+                s.ship_id = changed_ship_id 
+                AND key = 'volume' 
+        ) )
+    THEN
+        RAISE NOTICE 'update_volume update volume:[%]', volume;
+        UPDATE
+            ship s
+        SET 
+            value = volume
+        WHERE
+            s.ship_id = changed_ship_id
+            AND key = 'volume';
+        RETURN NULL;
+    ELSE
+        RAISE NOTICE 'update_volume insert volume:[%]', volume;
+        INSERT INTO ship
+            (ship_id, key, value, value_type, name, unit)
+        VALUES
+            (changed_ship_id, 'volume', volume, 'real', 'Volume of ship displacement', 'm^3'); 
+    END IF; 
 
     RETURN NULL;
 END;
@@ -88,5 +97,5 @@ CREATE OR REPLACE TRIGGER check_update_ship
 CREATE OR REPLACE TRIGGER check_delete_ship
     AFTER DELETE ON ship
     FOR EACH ROW 
-    WHEN (OLD.key = 'mass' OR OLD.key = 'water_density')
+    WHEN (OLD.key = 'mass')
     EXECUTE FUNCTION update_volume();
