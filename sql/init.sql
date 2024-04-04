@@ -11,9 +11,7 @@
 \i ./sql/ship/waterline_breadth.sql
 \i ./sql/ship/waterline_length.sql
 \i ./sql/loads/constant/create.sql
-\i ./sql/loads/constant/hull.sql
 \i ./sql/loads/load_create.sql
-\i ./sql/loads/load_sea_100.sql
 \i ./sql/frames/theoretical_583.sql
 \i ./sql/frames/0.sql
 \i ./sql/frames/1.sql
@@ -41,3 +39,13 @@
 \i ./sql/stability/multipler_x1.sql
 \i ./sql/stability/multipler_x2.sql
 \i ./sql/stability/navigation_area.sql
+
+--triggers
+\i ./sql/triggers/mass_sum.sql
+\i ./sql/triggers/mass.sql
+\i ./sql/triggers/volume.sql
+\i ./sql/triggers/computed_frame.sql
+
+-- Data for ship
+\i ./sql/loads/constant/hull.sql
+\i ./sql/loads/load_sea_100.sql

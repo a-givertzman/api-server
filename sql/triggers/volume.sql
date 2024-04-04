@@ -20,29 +20,52 @@ BEGIN
         RETURN NULL;
     END IF;
 
-    SELECT
+    SELECT 
         value
-    INTO
-        water_density        
-    FROM
+    INTO 
+        water_density
+    FROM 
         ship s
     WHERE
         s.ship_id = changed_ship_id
         AND key = 'water_density';
 
-    SELECT
+    IF ( water_density IS NULL )
+    THEN
+        RAISE NOTICE 'update_volume no water_density for ship_id:[%]', changed_ship_id;
+        water_density = 1.025;  
+        INSERT INTO ship
+            (ship_id, key, value, value_type, name, unit)
+        VALUES
+            (changed_ship_id, 'water_density', water_density, 'real', 'Water Density', 'g/ml'); 
+        RETURN NULL;
+    END IF;
+
+    SELECT 
         value
-    INTO
-        mass        
-    FROM
+    INTO 
+        mass
+    FROM 
         ship s
     WHERE
         s.ship_id = changed_ship_id
-        AND key = 'mass';    
+        AND key = 'mass';
+
+    IF ( mass IS NULL )
+    THEN
+        RAISE NOTICE 'update_volume no mass for ship_id:[%]', changed_ship_id;
+        mass = calculate_mass(changed_ship_id);
+
+        INSERT INTO ship
+            (ship_id, key, value, value_type, name, unit)
+        VALUES
+            (changed_ship_id, 'mass', mass, 'real', 'Whole ship mass', 't');
+        RETURN NULL;
+    END IF;  
 
     volume = mass/water_density;
 
---  RAISE NOTICE 'water_density:[%] mass:[%] volume:[%]', water_density, mass, volume;
+    RAISE NOTICE 'update_volume ship_id:[%] water_density:[%] mass:[%] volume:[%]', changed_ship_id, water_density, mass, volume;
 
     UPDATE
         ship s
@@ -62,11 +85,8 @@ CREATE OR REPLACE TRIGGER check_update_ship
     WHEN (NEW.key = 'mass' OR NEW.key = 'water_density')
     EXECUTE FUNCTION update_volume();
 
-CREATE OR REPLACE TRIGGER check_delete_load_space
-    AFTER DELETE ON load_space
+CREATE OR REPLACE TRIGGER check_delete_ship
+    AFTER DELETE ON ship
     FOR EACH ROW 
     WHEN (OLD.key = 'mass' OR OLD.key = 'water_density')
     EXECUTE FUNCTION update_volume();
-
-
-
