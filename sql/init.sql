@@ -39,6 +39,7 @@
 \i ./sql/stability/multipler_x1.sql
 \i ./sql/stability/multipler_x2.sql
 \i ./sql/stability/navigation_area.sql
+\i ./sql/stability/delta_windage_area.sql
 
 --triggers
 \i ./sql/triggers/mass_sum.sql

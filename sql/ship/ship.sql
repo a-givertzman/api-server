@@ -37,8 +37,4 @@ VALUES
   (1, 'windage_area', '1037.90', 'real', 'Total windage area for Dmin', 'm^2'),
   (1, 'windage_shift_x', '3.98', 'real', 'Center of windage area shift x for Dmin', 'm'),
   (1, 'windage_shift_z', '6.22', 'real', 'Center of windage area shift z for Dmin', 'm'),
-  (1, 'draught_min', '1.40', 'real', 'Draught min', 'm'),
-  (1, 'delta_windage_area', '375.2', 'real', 'Delta windage area for Dslw and Dmin', 'm^2'),
-  (1, 'delta_windage_moment_x', '-172', 'real', 'Delta windage moment on x for Dslw and Dmin', 'm'),
-  (1, 'delta_windage_moment_z', '1132', 'real', 'Delta windage moment on z for Dslw and Dmin', 'm'),
-  (1, 'draught_slw', '4.60', 'real', 'Draught at the summer load waterline', 'm');
+  (1, 'draught_min', '1.40', 'real', 'Draught min', 'm');
