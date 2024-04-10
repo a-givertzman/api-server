@@ -28,7 +28,7 @@ VALUES
   (1, 'icing_stab', 'full', 'text', 'Type of icing', NULL),
   (1, 'water_density', '1.025', 'real', 'Water Density', 'g/ml'),
   (1, 'keel_area', '24.69', 'real', 'Keel area', 'm^2'),
-  (1, 'length', '118.39', 'real', 'Ship hull length', 'm'),
+  (1, 'length', '118.388', 'real', 'Ship hull length', 'm'),
   (1, 'breadth', '13.40', 'real', 'Ship hull width', 'm'),
   (1, 'n_parts', '20', 'int', 'Number of Parts', NULL),
   (1, 'const_mass_shift_x', '1.05', 'real', 'Center of mass shift x', 'm'),
