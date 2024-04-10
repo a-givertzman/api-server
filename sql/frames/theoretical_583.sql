@@ -1,30 +1,5 @@
--- Теоретические шпангоуты
-CREATE TABLE if not exists frame (
-  id INT GENERATED ALWAYS AS IDENTITY,
-  project_id INT,
-  ship_id INT NOT NULL,
-  index INT NOT NULL, 
-  key TEXT NOT NULL,
-  value FLOAT8 NOT NULL,
-  CONSTRAINT frame_pk PRIMARY KEY (id),
-  CONSTRAINT frame_index_unique UNIQUE (ship_id, index, key),
-  CONSTRAINT frame_key_check CHECK(char_length(key) <= 50)
-);
-
-CREATE TABLE if not exists frame_area (
-  id INT GENERATED ALWAYS AS IDENTITY,
-  project_id INT,
-  ship_id INT NOT NULL,
-  frame_index INT NOT NULL,
-  key FLOAT8 NOT NULL,
-  value FLOAT8 NOT NULL,
-  CONSTRAINT frame_area_pk PRIMARY KEY (id),
-  CONSTRAINT frame_area_key_unique UNIQUE (frame_index, key),
-  CONSTRAINT frame_area_key_non_negative CHECK (key >= 0),
-  CONSTRAINT frame_area_value_non_negative CHECK (value >= 0)
-);
-
-INSERT INTO frame
+-- Погруженные площади теоретических шпангоутов
+INSERT INTO theoretical_frame
     (project_id, ship_id, index, key, value)
 VALUES
     (NULL, 1, 0, 'x', 0),

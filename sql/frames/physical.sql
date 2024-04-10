@@ -1,16 +1,4 @@
--- Теоретические шпангоуты
-CREATE TABLE if not exists physical_frame (
-  id INT GENERATED ALWAYS AS IDENTITY,
-  project_id INT,
-  ship_id INT NOT NULL,
-  index INT NOT NULL, 
-  key TEXT NOT NULL,
-  value FLOAT8 NOT NULL,
-  CONSTRAINT physical_frame_pk PRIMARY KEY (id),
-  CONSTRAINT physical_frame_index_unique UNIQUE (ship_id, index, key),
-  CONSTRAINT physical_frame_key_check CHECK(char_length(key) <= 50)
-);
-
+-- Практические шпангоуты
 INSERT INTO physical_frame
     (ship_id, index, key, value)
 VALUES

@@ -1,249 +1,68 @@
 -- Запасы судна, 10% море приход
---^([-]*)(\d*)[.](\d*)\s+([-]*)(\d*)[.](\d*)\s+([-]*)(\d*)[.](\d*)\s+([-]*)(\d*)[.](\d*).*
---(NULL, 1, 24, 'mass', $1$2.$3),\n(NULL, 1, 24, 'bound_x1', ),\n(NULL, 1, 24, 'bound_x2', ),\n(NULL, 1, 24, 'bound_y1', -1),\n(NULL, 1, 24, 'bound_y2', 1),\n(NULL, 1, 24, 'mass_shift_x', $4$5.$6),\n(NULL, 1, 24, 'mass_shift_y', $7$8.$9),\n(NULL, 1, 24, 'mass_shift_z', $10$11.$12),\n
+UPDATE load_space SET value = '0.55' WHERE ship_id = 1 AND space_id = 24 AND key = 'mass';
+UPDATE load_space SET value = '0.34' WHERE ship_id = 1 AND space_id = 24 AND key = 'm_f_s_y';  
+UPDATE load_space SET value = '0.4' WHERE ship_id = 1 AND space_id = 24 AND key = 'm_f_s_x';
+UPDATE load_space SET value = '0.55' WHERE ship_id = 1 AND space_id = 25 AND key = 'mass';
+UPDATE load_space SET value = '0.34' WHERE ship_id = 1 AND space_id = 25 AND key = 'm_f_s_y';  
+UPDATE load_space SET value = '0.4' WHERE ship_id = 1 AND space_id = 25 AND key = 'm_f_s_x'; 
+UPDATE load_space SET value = '3.5' WHERE ship_id = 1 AND space_id = 26 AND key = 'mass';
+UPDATE load_space SET value = '11.70' WHERE ship_id = 1 AND space_id = 26 AND key = 'm_f_s_y';  
+UPDATE load_space SET value = '13.60' WHERE ship_id = 1 AND space_id = 26 AND key = 'm_f_s_x';
+UPDATE load_space SET value = '3.51' WHERE ship_id = 1 AND space_id = 27 AND key = 'mass';
+UPDATE load_space SET value = '11.70' WHERE ship_id = 1 AND space_id = 27 AND key = 'm_f_s_y';  
+UPDATE load_space SET value = '13.60' WHERE ship_id = 1 AND space_id = 27 AND key = 'm_f_s_x';
+UPDATE load_space SET value = '5.34' WHERE ship_id = 1 AND space_id = 28 AND key = 'mass';
+UPDATE load_space SET value = '87.81' WHERE ship_id = 1 AND space_id = 28 AND key = 'm_f_s_y';  
+UPDATE load_space SET value = '102.10' WHERE ship_id = 1 AND space_id = 28 AND key = 'm_f_s_x';
+UPDATE load_space SET value = '5.34' WHERE ship_id = 1 AND space_id = 29 AND key = 'mass';
+UPDATE load_space SET value = '87.81' WHERE ship_id = 1 AND space_id = 29 AND key = 'm_f_s_y';  
+UPDATE load_space SET value = '102.10' WHERE ship_id = 1 AND space_id = 29 AND key = 'm_f_s_x';
+UPDATE load_space SET value = '0.00' WHERE ship_id = 1 AND space_id = 30 AND key = 'mass';
+UPDATE load_space SET value = '15.48' WHERE ship_id = 1 AND space_id = 30 AND key = 'm_f_s_y';  
+UPDATE load_space SET value = '18.00' WHERE ship_id = 1 AND space_id = 30 AND key = 'm_f_s_x';
+UPDATE load_space SET value = '0.11' WHERE ship_id = 1 AND space_id = 31 AND key = 'mass';
+UPDATE load_space SET value = '0' WHERE ship_id = 1 AND space_id = 31 AND key = 'm_f_s_y';  
+UPDATE load_space SET value = '0' WHERE ship_id = 1 AND space_id = 31 AND key = 'm_f_s_x';
+UPDATE load_space SET value = '4.51' WHERE ship_id = 1 AND space_id = 32 AND key = 'mass';
+UPDATE load_space SET value = '53.30' WHERE ship_id = 1 AND space_id = 32 AND key = 'm_f_s_y';  
+UPDATE load_space SET value = '53.30' WHERE ship_id = 1 AND space_id = 32 AND key = 'm_f_s_x';
+UPDATE load_space SET value = '0.39' WHERE ship_id = 1 AND space_id = 33 AND key = 'mass';
+UPDATE load_space SET value = '1.30' WHERE ship_id = 1 AND space_id = 33 AND key = 'm_f_s_y';  
+UPDATE load_space SET value = '1.30' WHERE ship_id = 1 AND space_id = 33 AND key = 'm_f_s_x';
+UPDATE load_space SET value = '0.37' WHERE ship_id = 1 AND space_id = 34 AND key = 'mass';
+UPDATE load_space SET value = '0.10' WHERE ship_id = 1 AND space_id = 34 AND key = 'm_f_s_y';  
+UPDATE load_space SET value = '0.10' WHERE ship_id = 1 AND space_id = 34 AND key = 'm_f_s_x';
+UPDATE load_space SET value = '0.37' WHERE ship_id = 1 AND space_id = 35 AND key = 'mass';
+UPDATE load_space SET value = '11.70' WHERE ship_id = 1 AND space_id = 35 AND key = 'm_f_s_y';  
+UPDATE load_space SET value = '13.60' WHERE ship_id = 1 AND space_id = 35 AND key = 'm_f_s_x';
+UPDATE load_space SET value = '1.42' WHERE ship_id = 1 AND space_id = 36 AND key = 'mass';
+UPDATE load_space SET value = '0.09' WHERE ship_id = 1 AND space_id = 36 AND key = 'm_f_s_y';  
+UPDATE load_space SET value = '0.10' WHERE ship_id = 1 AND space_id = 36 AND key = 'm_f_s_x';
+UPDATE load_space SET value = '1.42' WHERE ship_id = 1 AND space_id = 37 AND key = 'mass';
+UPDATE load_space SET value = '0.09' WHERE ship_id = 1 AND space_id = 37 AND key = 'm_f_s_y';  
+UPDATE load_space SET value = '0.10' WHERE ship_id = 1 AND space_id = 37 AND key = 'm_f_s_x';
+UPDATE load_space SET value = '2.15' WHERE ship_id = 1 AND space_id = 38 AND key = 'mass';
+UPDATE load_space SET value = '0.54' WHERE ship_id = 1 AND space_id = 38 AND key = 'm_f_s_y';  
+UPDATE load_space SET value = '0.60' WHERE ship_id = 1 AND space_id = 38 AND key = 'm_f_s_x';
+UPDATE load_space SET value = '3.28' WHERE ship_id = 1 AND space_id = 39 AND key = 'mass';
+UPDATE load_space SET value = '17.22' WHERE ship_id = 1 AND space_id = 39 AND key = 'm_f_s_y';  
+UPDATE load_space SET value = '14.80' WHERE ship_id = 1 AND space_id = 39 AND key = 'm_f_s_x';
+UPDATE load_space SET value = '7.62' WHERE ship_id = 1 AND space_id = 40 AND key = 'mass';
+UPDATE load_space SET value = '4.50' WHERE ship_id = 1 AND space_id = 40 AND key = 'm_f_s_y';  
+UPDATE load_space SET value = '4.80' WHERE ship_id = 1 AND space_id = 40 AND key = 'm_f_s_x';
+UPDATE load_space SET value = '1.90' WHERE ship_id = 1 AND space_id = 41 AND key = 'mass';
+UPDATE load_space SET value = '0.10' WHERE ship_id = 1 AND space_id = 41 AND key = 'm_f_s_y';  
+UPDATE load_space SET value = '0.10' WHERE ship_id = 1 AND space_id = 41 AND key = 'm_f_s_x';
+UPDATE load_space SET value = '13.78' WHERE ship_id = 1 AND space_id = 42 AND key = 'mass';
+UPDATE load_space SET value = '6.40' WHERE ship_id = 1 AND space_id = 42 AND key = 'm_f_s_y';  
+UPDATE load_space SET value = '6.40' WHERE ship_id = 1 AND space_id = 42 AND key = 'm_f_s_x';
+UPDATE load_space SET value = '0.63' WHERE ship_id = 1 AND space_id = 43 AND key = 'mass';
+UPDATE load_space SET value = '0.10' WHERE ship_id = 1 AND space_id = 43 AND key = 'm_f_s_y';  
+UPDATE load_space SET value = '0.10' WHERE ship_id = 1 AND space_id = 43 AND key = 'm_f_s_x';
+
 INSERT INTO load_space
   (ship_id, space_id, key, value, value_type, unit)
-VALUES
-  (1, 24, 'name', 'Цистерна расходного топлива 1 ЛБ', 'text', NULL),
-  (1, 24, 'mass', '0.55', 'real', 't'),
-  (1, 24, 'bound_x1', '-55.4', 'real', 'm'),
-  (1, 24, 'bound_x2', '-53', 'real', 'm'),
-  (1, 24, 'mass_shift_x', '-54.39', 'real', 'm'),
-  (1, 24, 'mass_shift_y', '-1.73', 'real', 'm'),
-  (1, 24, 'mass_shift_z', '5.30', 'real', 'm'),
-  (1, 24, 'm_f_s_y', '0.34', 'real', 'm'),  
-  (1, 24, 'm_f_s_x', '0.4', 'real', 'm'),
-  (1, 24, 'windage_area', '0', 'real', 'm^2'),
-  (1, 24, 'windage_shift_x', '0', 'real', 'm'),
-  (1, 24, 'windage_shift_z', '0', 'real', 'm'),
-  (1, 25, 'name', 'Цистерна расходного топлива 2 ЛБ', 'text', NULL),
-  (1, 25, 'mass', '0.55', 'real', 't'),
-  (1, 25, 'bound_x1', '-55.4', 'real', 'm'),
-  (1, 25, 'bound_x2', '-53', 'real', 'm'),
-  (1, 25, 'mass_shift_x', '-54.39', 'real', 'm'),
-  (1, 25, 'mass_shift_y', '-2.98', 'real', 'm'),
-  (1, 25, 'mass_shift_z', '5.30', 'real', 'm'),
-  (1, 25, 'm_f_s_y', '0.34', 'real', 'm'),  
-  (1, 25, 'm_f_s_x', '0.4', 'real', 'm'), 
-  (1, 25, 'windage_area', '0', 'real', 'm^2'),
-  (1, 25, 'windage_shift_x', '0', 'real', 'm'),
-  (1, 25, 'windage_shift_z', '0', 'real', 'm'),
-  (1, 26, 'name', 'Цистерна запасного топлива 1 Пр.Б', 'text', NULL),
-  (1, 26, 'mass', '3.5', 'real', 't'),
-  (1, 26, 'bound_x1', '-45.8', 'real', 'm'),
-  (1, 26, 'bound_x2', '-44', 'real', 'm'),
-  (1, 26, 'mass_shift_x', '-45.15', 'real', 'm'),
-  (1, 26, 'mass_shift_y', '2.80', 'real', 'm'),
-  (1, 26, 'mass_shift_z', '3.84', 'real', 'm'),
-  (1, 26, 'm_f_s_y', '11.70', 'real', 'm'),  
-  (1, 26, 'm_f_s_x', '13.60', 'real', 'm'),
-  (1, 26, 'windage_area', '0', 'real', 'm^2'),
-  (1, 26, 'windage_shift_x', '0', 'real', 'm'),
-  (1, 26, 'windage_shift_z', '0', 'real', 'm'),
-  (1, 27, 'name', 'Цистерна запасного топлива 2 ЛБ', 'text', NULL),
-  (1, 27, 'mass', '3.51', 'real', 't'),
-  (1, 27, 'bound_x1', '-45.8', 'real', 'm'),
-  (1, 27, 'bound_x2', '-44', 'real', 'm'),
-  (1, 27, 'mass_shift_x', '-45.25', 'real', 'm'),
-  (1, 27, 'mass_shift_y', '-2.80', 'real', 'm'),
-  (1, 27, 'mass_shift_z', '3.84', 'real', 'm'),
-  (1, 27, 'm_f_s_y', '11.70', 'real', 'm'),  
-  (1, 27, 'm_f_s_x', '13.60', 'real', 'm'),
-  (1, 27, 'windage_area', '0', 'real', 'm^2'),
-  (1, 27, 'windage_shift_x', '0', 'real', 'm'),
-  (1, 27, 'windage_shift_z', '0', 'real', 'm'),
-  (1, 28, 'name', 'Цистерна запасного топлива 3 Пр.Б', 'text', NULL),
-  (1, 28, 'mass', '5.34', 'real', 't'),
-  (1, 28, 'bound_x1', '-57.2', 'real', 'm'),
-  (1, 28, 'bound_x2', '-53', 'real', 'm'),
-  (1, 28, 'mass_shift_x', '-55.01', 'real', 'm'), 
-  (1, 28, 'mass_shift_y', '3.27', 'real', 'm'),
-  (1, 28, 'mass_shift_z', '2.99', 'real', 'm'),
-  (1, 28, 'm_f_s_y', '87.81', 'real', 'm'),  
-  (1, 28, 'm_f_s_x', '102.10', 'real', 'm'),
-  (1, 28, 'windage_area', '0', 'real', 'm^2'),
-  (1, 28, 'windage_shift_x', '0', 'real', 'm'),
-  (1, 28, 'windage_shift_z', '0', 'real', 'm'),
-  (1, 29, 'name', 'Цистерна запасного топлива 3 ЛБ', 'text', NULL),
-  (1, 29, 'mass', '5.34', 'real', 't'),
-  (1, 29, 'bound_x1', '-57.2', 'real', 'm'),
-  (1, 29, 'bound_x2', '-53', 'real', 'm'),
-  (1, 29, 'mass_shift_x', '-55.01', 'real', 'm'),
-  (1, 29, 'mass_shift_y', '-3.27', 'real', 'm'),
-  (1, 29, 'mass_shift_z', '2.99', 'real', 'm'),
-  (1, 29, 'm_f_s_y', '87.81', 'real', 'm'),  
-  (1, 29, 'm_f_s_x', '102.10', 'real', 'm'),
-  (1, 29, 'windage_area', '0', 'real', 'm^2'),
-  (1, 29, 'windage_shift_x', '0', 'real', 'm'),
-  (1, 29, 'windage_shift_z', '0', 'real', 'm'),
-  (1, 30, 'name', 'Цистерна переливная ДП', 'text', NULL),
-  (1, 30, 'mass', '0.00', 'real', 't'),
-  (1, 30, 'bound_x1', '-48.8', 'real', 'm'),
-  (1, 30, 'bound_x2', '-45.8', 'real', 'm'),
-  (1, 30, 'mass_shift_x', '-47.46', 'real', 'm'),
-  (1, 30, 'mass_shift_y', '0.00', 'real', 'm'),
-  (1, 30, 'mass_shift_z', '0.73', 'real', 'm'),
-  (1, 30, 'm_f_s_y', '15.48', 'real', 'm'),  
-  (1, 30, 'm_f_s_x', '18.00', 'real', 'm'),
-  (1, 30, 'windage_area', '0', 'real', 'm^2'),
-  (1, 30, 'windage_shift_x', '0', 'real', 'm'),
-  (1, 30, 'windage_shift_z', '0', 'real', 'm'),
-  (1, 31, 'name', 'Цистерна расходного топлива АДГ Пр.Б', 'text', NULL),
-  (1, 31, 'mass', '0.11', 'real', 't'),
-  (1, 31, 'bound_x1', '39.75', 'real', 'm'),
-  (1, 31, 'bound_x2', '40.95', 'real', 'm'),
-  (1, 31, 'mass_shift_x', '39.97', 'real', 'm'),
-  (1, 31, 'mass_shift_y', '2.02', 'real', 'm'),
-  (1, 31, 'mass_shift_z', '11.55', 'real', 'm'),
-  (1, 31, 'm_f_s_y', '0', 'real', 'm'),  
-  (1, 31, 'm_f_s_x', '0', 'real', 'm'),
-  (1, 31, 'windage_area', '0', 'real', 'm^2'),
-  (1, 31, 'windage_shift_x', '0', 'real', 'm'),
-  (1, 31, 'windage_shift_z', '0', 'real', 'm'),
-  (1, 32, 'name', 'Цистерна пресной воды 1 ДП (носовая)', 'text', NULL),
-  (1, 32, 'mass', '4.51', 'real', 't'),
-  (1, 32, 'bound_x1', '41.55', 'real', 'm'),
-  (1, 32, 'bound_x2', '43.95', 'real', 'm'),
-  (1, 32, 'mass_shift_x', '42.56', 'real', 'm'),
-  (1, 32, 'mass_shift_y', '-1.25', 'real', 'm'),
-  (1, 32, 'mass_shift_z', '2.31', 'real', 'm'),
-  (1, 32, 'm_f_s_y', '53.30', 'real', 'm'),  
-  (1, 32, 'm_f_s_x', '53.30', 'real', 'm'),
-  (1, 32, 'windage_area', '0', 'real', 'm^2'),
-  (1, 32, 'windage_shift_x', '0', 'real', 'm'),
-  (1, 32, 'windage_shift_z', '0', 'real', 'm'),
-  (1, 33, 'name', 'Цистерна пресной воды 2 Пр.Б (кормовая)', 'text', NULL),
-  (1, 33, 'mass', '0.39', 'real', 't'),
-  (1, 33, 'bound_x1', '-53.0', 'real', 'm'),
-  (1, 33, 'bound_x2', '-51.8', 'real', 'm'),
-  (1, 33, 'mass_shift_x', '-52.59', 'real', 'm'),
-  (1, 33, 'mass_shift_y', '5.03', 'real', 'm'),
-  (1, 33, 'mass_shift_z', '5.14', 'real', 'm'),
-  (1, 33, 'm_f_s_y', '1.30', 'real', 'm'),  
-  (1, 33, 'm_f_s_x', '1.30', 'real', 'm'),
-  (1, 33, 'windage_area', '0', 'real', 'm^2'),
-  (1, 33, 'windage_shift_x', '0', 'real', 'm'),
-  (1, 33, 'windage_shift_z', '0', 'real', 'm'),
-  (1, 34, 'name', 'Цистерна питьевой воды 1 ЛБ', 'text', NULL),
-  (1, 34, 'mass', '0.37', 'real', 't'),
-  (1, 34, 'bound_x1', '40.35', 'real', 'm'),
-  (1, 34, 'bound_x2', '42.75', 'real', 'm'),
-  (1, 34, 'mass_shift_x', '41.44', 'real', 'm'),
-  (1, 34, 'mass_shift_y', '-0.58', 'real', 'm'),
-  (1, 34, 'mass_shift_z', '5.02', 'real', 'm'),
-  (1, 34, 'm_f_s_y', '0.10', 'real', 'm'),  
-  (1, 34, 'm_f_s_x', '0.10', 'real', 'm'),
-  (1, 34, 'windage_area', '0', 'real', 'm^2'),
-  (1, 34, 'windage_shift_x', '0', 'real', 'm'),
-  (1, 34, 'windage_shift_z', '0', 'real', 'm'),
-  (1, 35, 'name', 'Цистерна питьевой воды 2 ЛБ', 'text', NULL),
-  (1, 35, 'mass', '0.37', 'real', 't'),
-  (1, 35, 'bound_x1', '40.35', 'real', 'm'),
-  (1, 35, 'bound_x2', '42.75', 'real', 'm'),
-  (1, 35, 'mass_shift_x', '41.44', 'real', 'm'),
-  (1, 35, 'mass_shift_y', '-1.33', 'real', 'm'),
-  (1, 35, 'mass_shift_z', '5.02', 'real', 'm'),
-  (1, 35, 'm_f_s_y', '11.70', 'real', 'm'),  
-  (1, 35, 'm_f_s_x', '13.60', 'real', 'm'),
-  (1, 35, 'windage_area', '0', 'real', 'm^2'),
-  (1, 35, 'windage_shift_x', '0', 'real', 'm'),
-  (1, 35, 'windage_shift_z', '0', 'real', 'm'),
-  (1, 36, 'name', 'Цистерна запасного масла ГД', 'text', NULL),
-  (1, 36, 'mass', '1.42', 'real', 't'),
-  (1, 36, 'bound_x1', '-53.0', 'real', 'm'),
-  (1, 36, 'bound_x2', '-51.8', 'real', 'm'),
-  (1, 36, 'mass_shift_x', '-52.59', 'real', 'm'),
-  (1, 36, 'mass_shift_y', '0.53', 'real', 'm'),
-  (1, 36, 'mass_shift_z', '5.30', 'real', 'm'),
-  (1, 36, 'm_f_s_y', '0.09', 'real', 'm'),  
-  (1, 36, 'm_f_s_x', '0.10', 'real', 'm'),
-  (1, 36, 'windage_area', '0', 'real', 'm^2'),
-  (1, 36, 'windage_shift_x', '0', 'real', 'm'),
-  (1, 36, 'windage_shift_z', '0', 'real', 'm'),
-  (1, 37, 'name', 'Цистерна запасного масла ДГ', 'text', NULL),
-  (1, 37, 'mass', '1.42', 'real', 't'),
-  (1, 37, 'bound_x1', '-53.0', 'real', 'm'),
-  (1, 37, 'bound_x2', '-51.8', 'real', 'm'),
-  (1, 37, 'mass_shift_x', '-52.59', 'real', 'm'),
-  (1, 37, 'mass_shift_y', '1.58', 'real', 'm'),
-  (1, 37, 'mass_shift_z', '5.30', 'real', 'm'),
-  (1, 37, 'm_f_s_y', '0.09', 'real', 'm'),  
-  (1, 37, 'm_f_s_x', '0.10', 'real', 'm'),
-  (1, 37, 'windage_area', '0', 'real', 'm^2'),
-  (1, 37, 'windage_shift_x', '0', 'real', 'm'),
-  (1, 37, 'windage_shift_z', '0', 'real', 'm'),
-  (1, 38, 'name', 'Цистерна отработанного масла ЛБ', 'text', NULL),
-  (1, 38, 'mass', '2.15', 'real', 't'),
-  (1, 38, 'bound_x1', '-53.0', 'real', 'm'),
-  (1, 38, 'bound_x2', '-48.8', 'real', 'm'),
-  (1, 38, 'mass_shift_x', '-50.72', 'real', 'm'),
-  (1, 38, 'mass_shift_y', '-1.50', 'real', 'm'),
-  (1, 38, 'mass_shift_z', '0.94', 'real', 'm'),
-  (1, 38, 'm_f_s_y', '0.54', 'real', 'm'),  
-  (1, 38, 'm_f_s_x', '0.60', 'real', 'm'),
-  (1, 38, 'windage_area', '0', 'real', 'm^2'),
-  (1, 38, 'windage_shift_x', '0', 'real', 'm'),
-  (1, 38, 'windage_shift_z', '0', 'real', 'm'),
-  (1, 39, 'name', 'Цистерна мочевины ДП', 'text', NULL),
-  (1, 39, 'mass', '3.28', 'real', 't'),
-  (1, 39, 'bound_x1', '-53.0', 'real', 'm'),
-  (1, 39, 'bound_x2', '-50.6', 'real', 'm'),
-  (1, 39, 'mass_shift_x', '-51.99', 'real', 'm'),
-  (1, 39, 'mass_shift_y', '0.00', 'real', 'm'),
-  (1, 39, 'mass_shift_z', '2.80', 'real', 'm'),
-  (1, 39, 'm_f_s_y', '17.22', 'real', 'm'),  
-  (1, 39, 'm_f_s_x', '14.80', 'real', 'm'),
-  (1, 39, 'windage_area', '0', 'real', 'm^2'),
-  (1, 39, 'windage_shift_x', '0', 'real', 'm'),
-  (1, 39, 'windage_shift_z', '0', 'real', 'm'),
-  (1, 40, 'name', 'Цистерна нефтеостатков ДП', 'text', NULL),
-  (1, 40, 'mass', '7.62', 'real', 't'),
-  (1, 40, 'bound_x1', '-53.0', 'real', 'm'),
-  (1, 40, 'bound_x2', '-48.8', 'real', 'm'),
-  (1, 40, 'mass_shift_x', '-50.73', 'real', 'm'),
-  (1, 40, 'mass_shift_y', '0.30', 'real', 'm'),
-  (1, 40, 'mass_shift_z', '0.94', 'real', 'm'),
-  (1, 40, 'm_f_s_y', '4.50', 'real', 'm'),  
-  (1, 40, 'm_f_s_x', '4.80', 'real', 'm'),
-  (1, 40, 'windage_area', '0', 'real', 'm^2'),
-  (1, 40, 'windage_shift_x', '0', 'real', 'm'),
-  (1, 40, 'windage_shift_z', '0', 'real', 'm'),
-  (1, 41, 'name', 'Шламовая цистерна Пр.Б', 'text', NULL),
-  (1, 41, 'mass', '1.90', 'real', 't'),
-  (1, 41, 'bound_x1', '-53.0', 'real', 'm'),
-  (1, 41, 'bound_x2', '-48.8', 'real', 'm'),
-  (1, 41, 'mass_shift_x', '-50.73', 'real', 'm'),
-  (1, 41, 'mass_shift_y', '1.80', 'real', 'm'),
-  (1, 41, 'mass_shift_z', '0.94', 'real', 'm'),
-  (1, 41, 'm_f_s_y', '0.10', 'real', 'm'),  
-  (1, 41, 'm_f_s_x', '0.10', 'real', 'm'),
-  (1, 41, 'windage_area', '0', 'real', 'm^2'),
-  (1, 41, 'windage_shift_x', '0', 'real', 'm'),
-  (1, 41, 'windage_shift_z', '0', 'real', 'm'),
-  (1, 42, 'name', 'Сточная цистерна 1 ДП', 'text', NULL),
-  (1, 42, 'mass', '13.78', 'real', 't'),
-  (1, 42, 'bound_x1', '49.95', 'real', 'm'),
-  (1, 42, 'bound_x2', '51.75', 'real', 'm'),
-  (1, 42, 'mass_shift_x', '50.66', 'real', 'm'),
-  (1, 42, 'mass_shift_y', '0.24', 'real', 'm'),
-  (1, 42, 'mass_shift_z', '2.58', 'real', 'm'),
-  (1, 42, 'm_f_s_y', '6.40', 'real', 'm'),  
-  (1, 42, 'm_f_s_x', '6.40', 'real', 'm'),
-  (1, 42, 'windage_area', '0', 'real', 'm^2'),
-  (1, 42, 'windage_shift_x', '0', 'real', 'm'),
-  (1, 42, 'windage_shift_z', '0', 'real', 'm'),
-  (1, 43, 'name', 'Сточная цистерна 2 ЛБ', 'text', NULL),
-  (1, 43, 'mass', '0.63', 'real', 't'),
-  (1, 43, 'bound_x1', '-53.0', 'real', 'm'),
-  (1, 43, 'bound_x2', '-51.8', 'real', 'm'),
-  (1, 43, 'mass_shift_x', '-52.49', 'real', 'm'),
-  (1, 43, 'mass_shift_y', '-5.50', 'real', 'm'),
-  (1, 43, 'mass_shift_z', '2.85', 'real', 'm'),
-  (1, 43, 'm_f_s_y', '0.10', 'real', 'm'),  
-  (1, 43, 'm_f_s_x', '0.10', 'real', 'm'),
-  (1, 43, 'windage_area', '0', 'real', 'm^2'),
-  (1, 43, 'windage_shift_x', '0', 'real', 'm'),
-  (1, 43, 'windage_shift_z', '0', 'real', 'm'),
+VALUES  
   (1, 44, 'name', 'Экипаж и багаж', 'text', NULL),
   (1, 44, 'mass', '1.80', 'real', 't'),
   (1, 44, 'bound_x1', '44.31', 'real', 'm'),

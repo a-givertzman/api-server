@@ -12,7 +12,9 @@
 \i ./sql/ship/waterline_length.sql
 \i ./sql/loads/constant/create.sql
 \i ./sql/loads/load_create.sql
+\i ./sql/frames/create.sql
 \i ./sql/frames/theoretical_583.sql
+\i ./sql/frames/physical.sql
 \i ./sql/frames/0.sql
 \i ./sql/frames/1.sql
 \i ./sql/frames/2.sql
