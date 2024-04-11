@@ -2,6 +2,12 @@
 INSERT INTO physical_frame
     (ship_id, index, key, value)
 VALUES
+  (1, -3, 'x', -1.8),
+  (1, -3, 'delta_x', 0.60),
+  (1, -2, 'x', -1.2),
+  (1, -2, 'delta_x', 0.60),
+  (1, -1, 'x', -0.6),
+  (1, -1, 'delta_x', 0.60),
   (1, 0, 'x', 0),
   (1, 0, 'delta_x', 0.60),
   (1, 1, 'x', 0.6),
