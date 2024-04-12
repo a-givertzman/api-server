@@ -45,9 +45,10 @@
 \i ./sql/stability/delta_windage_moment.sql
 
 --triggers
-\i ./sql/triggers/mass_sum.sql
-\i ./sql/triggers/mass.sql
-\i ./sql/triggers/volume.sql
+--\i ./sql/triggers/mass_sum.sql
+--\i ./sql/triggers/mass.sql
+--\i ./sql/triggers/volume.sql
+\i ./sql/triggers/water_density.sql
 \i ./sql/triggers/computed_frame.sql
 
 -- Data for ship
