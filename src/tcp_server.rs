@@ -92,19 +92,21 @@ impl TcpServer {
                     for result in listener.incoming() {
                         let stream = result.unwrap();
                         info!("TcpServer.run | incoming connection: {:?}", stream.peer_addr());
-                        let thread_name = format!("TcpServer tread {:?}", tcp_threads.len());
+                        let peer_addr = stream.peer_addr().unwrap().to_string();
+                        let thread_name = format!("TcpServer {:?}", peer_addr);
                         let connection_config = config.clone();
                         let thread_join_handle = thread::Builder::new().name(thread_name.clone()).spawn(move || {
-                                debug!("TcpServer.run | started in {:?}", thread::current().name().unwrap());
-                                stream.set_nodelay(true).unwrap();
-                                let mut connection = TcpConnection::new(
-                                    &thread_name, 
-                                    connection_config.clone(), 
-                                    stream,
-                                );
-                                connection.run();
-                                // me.lock().unwrap().listen_stream(&mut stream, &thread_name);
-                            }).unwrap();
+                            debug!("TcpServer.run | started in {:?}", thread::current().name().unwrap());
+                            stream.set_nodelay(true).unwrap();
+                            let mut connection = TcpConnection::new(
+                                &thread_name, 
+                                connection_config.clone(), 
+                                stream,
+                            );
+                            connection.run();
+                            // me.lock().unwrap().listen_stream(&mut stream, &thread_name);
+                        }).unwrap();
+                        Self::clean_threads(&mut tcp_threads);                        
                         tcp_threads.push(TcpThread{
                             handle: thread_join_handle,
                             name: thread::current().name().unwrap().into(),
@@ -125,6 +127,25 @@ impl TcpServer {
         handle.join().unwrap();
         debug!("TcpServer.run | exit\n");
         Ok(())
+    }
+    ///
+    /// 
+    fn clean_threads(threads: &mut Vec<TcpThread>) {
+        let mut index = 0;
+        while index < threads.len() {
+            let thread = &threads[index];
+            info!("TcpServer.clean_threads | Checking connection '{}' - finished: {}", thread.name, thread.handle.is_finished());
+            if thread.handle.is_finished() {
+                let _ = threads.remove(index);
+            } else {
+                index += 1;
+            }
+
+        }
+        info!("TcpServer.clean_threads | Remaining threads ({}):", threads.len());
+        for th in threads {
+            info!("TcpServer.clean_threads | \tthread: '{}' - is finished: {}", th.name, th.handle.is_finished());
+        }
     }
     ///
     /// configuring TCP socket:
