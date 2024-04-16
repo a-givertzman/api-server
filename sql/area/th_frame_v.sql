@@ -8,7 +8,7 @@ CREATE TABLE if not exists vertical_area (
   ship_id INT NOT NULL,
   name TEXT NOT NULL,
   area_value REAL NOT NULL,
-  shift_x REAL,
+  shift_z REAL,
   bound_x1 REAL NOT NULL,
   bound_x2 REAL NOT NULL,  
   bound_type TEXT NOT NULL,
@@ -20,7 +20,7 @@ CREATE TABLE if not exists vertical_area (
 );
 
 INSERT INTO vertical_area
-  (ship_id, name, area_value, shift_x, bound_x1, bound_x2, bound_type)
+  (ship_id, name, shift_z, area_value, bound_x1, bound_x2, bound_type)
 VALUES
   (1, 'Надводный борт',         4.13,  637.5,   -3,   187,  'frame'),
   (1, 'Кормовая часть',         9.34,  38.39,   10,   19,   'frame'),
