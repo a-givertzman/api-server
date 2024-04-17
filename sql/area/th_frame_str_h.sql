@@ -7,19 +7,19 @@ CREATE TABLE if not exists horizontal_area_strength (
   project_id INT,
   ship_id INT NOT NULL,
   name TEXT NOT NULL,
-  area_value REAL NOT NULL,
+  value REAL NOT NULL,
   bound_x1 REAL NOT NULL,
   bound_x2 REAL NOT NULL,  
   bound_type TEXT NOT NULL,
   CONSTRAINT horizontal_area_strength_pk PRIMARY KEY (id),
   CONSTRAINT horizontal_area_strength_key_unique UNIQUE (ship_id, name),
   CONSTRAINT horizontal_area_strength_name_check CHECK(char_length(name) <= 50),
-  CONSTRAINT horizontal_area_strength_value_check CHECK(area_value > 0),
+  CONSTRAINT horizontal_area_strength_value_check CHECK(value > 0),
   CONSTRAINT horizontal_area_strength_bound_type_check CHECK(char_length(bound_type) <= 50)
 );
 
 INSERT INTO horizontal_area_strength
-  (ship_id, name, area_value, bound_x1, bound_x2, bound_type)
+  (ship_id, name, value, bound_x1, bound_x2, bound_type)
 VALUES
   (1, 'Палуба бака 17 шпация',   31.52,   94.7104,  100.6298, 'real'),
   (1, 'Палуба бака 18 шпация',   18.01,   100.6298, 106.5494, 'real'),

@@ -7,7 +7,7 @@ CREATE TABLE if not exists vertical_area (
   project_id INT,
   ship_id INT NOT NULL,
   name TEXT NOT NULL,
-  area_value REAL NOT NULL,
+  value REAL NOT NULL,
   shift_z REAL,
   bound_x1 REAL NOT NULL,
   bound_x2 REAL NOT NULL,  
@@ -15,12 +15,12 @@ CREATE TABLE if not exists vertical_area (
   CONSTRAINT vertical_area_pk PRIMARY KEY (id),
   CONSTRAINT vertical_area_key_unique UNIQUE (ship_id, name),
   CONSTRAINT vertical_area_name_check CHECK(char_length(name) <= 50),
-  CONSTRAINT vertical_area_value_check CHECK(area_value > 0),
+  CONSTRAINT vertical_area_value_check CHECK(value > 0),
   CONSTRAINT vertical_area_bound_type_check CHECK(char_length(bound_type) <= 50)
 );
 
 INSERT INTO vertical_area
-  (ship_id, name, shift_z, area_value, bound_x1, bound_x2, bound_type)
+  (ship_id, name, shift_z, value, bound_x1, bound_x2, bound_type)
 VALUES
   (1, 'Надводный борт',         4.13,  637.5,   -3,   187,  'frame'),
   (1, 'Кормовая часть',         9.34,  38.39,   10,   19,   'frame'),
