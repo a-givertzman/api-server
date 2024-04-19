@@ -43,6 +43,7 @@
 \i ./sql/stability/navigation_area.sql
 \i ./sql/stability/delta_windage_area.sql
 \i ./sql/stability/delta_windage_moment.sql
+\i ./sql/stability/coefficient_k_theta.sql
 
 --triggers
 --\i ./sql/triggers/mass_sum.sql
