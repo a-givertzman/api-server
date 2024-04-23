@@ -1,0 +1,14 @@
+[Unit]
+Description=Run api-server application as Service
+After=syslog.target network.target multi-user.target
+
+[Service]
+User=scada
+Type=simple
+Restart=always
+RestartSec=1
+WorkingDirectory=/home/scada/app/data_server/
+ExecStart=python3.10 /home/scada/app/data_server/api_server.py
+
+[Install]
+WantedBy=multi-user.target
