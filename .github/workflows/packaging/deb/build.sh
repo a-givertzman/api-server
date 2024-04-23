@@ -37,6 +37,7 @@ licenseFile="LICENSE"
 assets=(
 	"./target/release/api-server /usr/bin/ 755",
 	"./service/api-server.service /etc/systemd/system/"
+	"./config.yaml /home/scada/api-server/"
 )
 outputDir=target/
 # 'any', 'all' or one of the supported architecture (e.g., 'amd64', 'arm64', 'i386', 'armhf')
