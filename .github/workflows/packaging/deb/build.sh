@@ -35,7 +35,8 @@ licenseFile="LICENSE"
 # list of assets in the format:
 # 	<sourcePath> <installPath> <permissions>
 assets=(
-	"./target/release/api-server /usr/bin/ 755"
+	"./target/release/api-server /usr/bin/ 755",
+	"./service/api-server.service /etc/systemd/system/"
 )
 outputDir=target/
 # 'any', 'all' or one of the supported architecture (e.g., 'amd64', 'arm64', 'i386', 'armhf')
