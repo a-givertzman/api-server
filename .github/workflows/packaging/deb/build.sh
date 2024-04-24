@@ -104,10 +104,10 @@ for asset in "${assets[@]}"; do
 	read -ra assetOptions <<< $asset
 	copyAsset ${assetOptions[0]} ${assetOptions[1]} ${assetOptions[2]}
 done
-copyAsset ${preinst} "" "755"
-copyAsset ${postinst} "" "755"
-copyAsset ${prerm} "" "755"
-copyAsset ${postrm} "" "755"
+copyAsset ${preinst} "DEBIAN" "755"
+copyAsset ${postinst} "DEBIAN" "755"
+copyAsset ${prerm} "DEBIAN" "755"
+copyAsset ${postrm} "DEBIAN" "755"
 
 ############ CREATE A DEB CONTROL FILE ############
 
