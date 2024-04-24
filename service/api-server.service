@@ -9,14 +9,11 @@ Restart=always
 RestartSec=5
 # WorkingDirectory=/home/scada/api-server/
 ExecStart=
+ExecStart=api-server --version
 ExecStart=api-server --config /home/scada/api-server/config.yaml
 
-StandardOutput=syslog
-StandardError=syslog
-SyslogIdentifier=bird_watching
-
-# StandardOutput=file:/var/log/api-server.log
-# StandardError=file:/var/log/api-server.log
+StandardOutput=append:/var/log/api-server.log
+StandardError=append:/var/log/api-server.log
 
 [Install]
 WantedBy=multi-user.target
