@@ -1,6 +1,6 @@
 #!/bin/bash
 # 
-# Deb package prinst script for API Server
+# Deb package postinst script for API Server
 #
 echo ""
 echo "Enabling api-server service..."

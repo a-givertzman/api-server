@@ -32,16 +32,11 @@ licenseName="GNU GENERAL PUBLIC LICENSE v3.0"
 licenseFile="LICENSE"
 
 ############ LIST OF MANAGED VARIABLES OPTIONAL FOR DEB PACKAGE ############
-# list of preinst, postinst, prerm and postrm scripts:
-preinst=(
-)
-postinst=(
-	"./.github/workflows/packaging/deb/00_postinst.sh",
-)
-prerm=(
-)
-postrm=(
-)
+# preinst, postinst, prerm and postrm scripts:
+preinst="./.github/workflows/packaging/deb/preinst"
+postinst="./.github/workflows/packaging/deb/postinst"
+prerm="./.github/workflows/packaging/deb/prerm"
+postrm="./.github/workflows/packaging/deb/postrm"
 # list of assets in the format:
 # 	<sourcePath> <installPath> <permissions>
 assets=(
@@ -109,6 +104,10 @@ for asset in "${assets[@]}"; do
 	read -ra assetOptions <<< $asset
 	copyAsset ${assetOptions[0]} ${assetOptions[1]} ${assetOptions[2]}
 done
+copyAsset ${preinst} "" "755"
+copyAsset ${postinst} "" "755"
+copyAsset ${prerm} "" "755"
+copyAsset ${postrm} "" "755"
 
 ############ CREATE A DEB CONTROL FILE ############
 
@@ -164,5 +163,5 @@ cd - > /dev/null
 echo "Building deb package ..."
 dpkg-deb --build "${packageRoot}" "$outputDir" > /dev/null || exit 1 
 echo "Deleting temporary created ${packageRoot} directory"
-rm -rf "${packageRoot}"
+# rm -rf "${packageRoot}"
 echo "Debian package created and saved in $(readlink -m "${outputDir}/${debFileName}.deb")"
