@@ -11,6 +11,6 @@ if [[ $(systemctl list-units --all -t service --full --no-legend "$name.service"
     fi    
     if systemctl is-enabled --quiet "$name.service" ; then
         echo "Disabling $name service..."
-        systemctl stop api-server
-    fi    
+        systemctl disable api-server
+    fi
 fi

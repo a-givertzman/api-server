@@ -5,5 +5,13 @@
 echo ""
 echo "Enabling api-server service..."
 systemctl daemon-reload
-systemctl enable api-server
-systemctl start api-server
+if [[ $(systemctl list-units --all -t service --full --no-legend "$name.service" | sed 's/^\s*//g' | cut -f1 -d' ') == $name.service ]]; then
+    if ! systemctl is-enabled --quiet "$name.service" ; then
+        echo "Enabling $name service..."
+        systemctl enable api-server
+    fi
+    if ! systemctl is-active --quiet "$name.service" ; then
+        echo "Starting $name service..."
+        systemctl start api-server
+    fi
+fi
