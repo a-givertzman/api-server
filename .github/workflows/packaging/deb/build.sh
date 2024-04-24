@@ -1,9 +1,9 @@
 #!/bin/bash
 # create a deb package from rust sources
-
+#
 ############ LIST OF MANAGED VARIABLES REQUIRED FOR DEB PACKAGE ############
 name=api-server
-version=0.1.15
+# version=0.1.15 - reading late from first arg $1
 descriptionShort="API Server wrapping databases, executable and python scripts plugins"
 descriptionExtended="API Server - service running on the socket.
 Provides simple and universe access to the databases, executable and python plugins.
@@ -31,6 +31,15 @@ maintainer="anton lobanov <lobanov.anton@gmail.com>"
 licenseName="GNU GENERAL PUBLIC LICENSE v3.0"
 licenseFile="LICENSE"
 
+############ READING VERDION FROM ARGIMENT ############
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+version=$1
+if [[ "$version" =~ [0-9]+\.[0-9]+\.[0-9]+ ]]; then 
+	echo "Version: $version"
+else
+	echo -e "${RED}ERROR${NC}: Version not supplied.\nDebian package build script required proper version of your softvare in the format: x.y.z, passed as argument"
+fi
 ############ LIST OF MANAGED VARIABLES OPTIONAL FOR DEB PACKAGE ############
 # preinst, postinst, prerm and postrm scripts:
 preinst="./.github/workflows/packaging/deb/preinst"
