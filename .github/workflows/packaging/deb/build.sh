@@ -36,7 +36,7 @@ licenseFile="LICENSE"
 # 	<sourcePath> <installPath> <permissions>
 assets=(
 	"./target/release/api-server /usr/bin/ 755",
-	"./service/api-server.service /etc/systemd/system/"
+	"./service/api-server.service /etc/systemd/system/ 644"
 	"./config.yaml /home/scada/api-server/"
 )
 outputDir=target/

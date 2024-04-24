@@ -14,3 +14,7 @@ echo "building deb package..."
 echo ""
 echo "installing api server"
 sudo apt install -y /tmp/api-server/target/api-server_0.1.15_amd64.deb
+
+echo ""
+echo "cleaning temp files..."
+# rm -rf /tmp/api-server
