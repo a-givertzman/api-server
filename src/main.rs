@@ -16,7 +16,7 @@ mod sql_query_postgre;
 mod sql_query_mysql;
 mod tcp_connection;
 
-use std::sync::{Arc, Mutex};
+use std::{path::{Path, PathBuf}, sync::{Arc, Mutex}};
 use clap::Parser;
 use log::debug;
 use crate::{
@@ -27,8 +27,11 @@ fn main() {
     DebugSession::init(LogLevel::Debug, Backtrace::Short);
     let cli = Cli::parse();
     debug!("starting api server...");
-    let dir = std::env::current_dir().unwrap();
-    let path = dir.join(cli.config.unwrap_or("config.yaml".to_owned()));
+    let path = cli.config.map_or_else(
+        || PathBuf::from("config.yaml"),        // || std::env::current_dir().unwrap().join("config.yaml"),
+        |path| PathBuf::from(path)
+    );
+    let path = Path::new(&path);
     debug!("reading config file: {}", path.to_str().unwrap());
     let config = Config::new(path);
     let tcp_server = Arc::new(Mutex::new(
