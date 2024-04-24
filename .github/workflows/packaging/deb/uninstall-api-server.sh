@@ -1,3 +1,4 @@
+#!/bin/bash
 echo ""
 echo "disabling api-server service..."
 sudo systemctl stop api-server

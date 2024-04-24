@@ -32,6 +32,16 @@ licenseName="GNU GENERAL PUBLIC LICENSE v3.0"
 licenseFile="LICENSE"
 
 ############ LIST OF MANAGED VARIABLES OPTIONAL FOR DEB PACKAGE ############
+# list of preinst, postinst, prerm and postrm scripts:
+preinst=(
+)
+postinst=(
+	"./.github/workflows/packaging/deb/00_postinst.sh",
+)
+prerm=(
+)
+postrm=(
+)
 # list of assets in the format:
 # 	<sourcePath> <installPath> <permissions>
 assets=(

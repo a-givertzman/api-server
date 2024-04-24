@@ -1,3 +1,4 @@
+#!/bin/bash
 rm -rf /tmp/api-server
 git clone --progress -b packaging https://github.com/a-givertzman/api-server.git /tmp/api-server
 current=$PWD
