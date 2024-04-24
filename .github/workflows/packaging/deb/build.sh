@@ -113,7 +113,7 @@ copyAsset ${postrm} "DEBIAN" "755"
 
 echo "Creating ${packageRoot}/DEBIAN/control file ..."
 cat > "${packageRoot}/DEBIAN/control" <<- CONTROL
-	Section: rust
+	Section: misc
 	Priority: optional
 	Version: $version
 	Maintainer: $maintainer
