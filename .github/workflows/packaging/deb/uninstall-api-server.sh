@@ -5,7 +5,7 @@ sudo systemctl disable api-server
 
 echo ""
 echo "uninstalling api-server..."
-sudo apt purge api-server
+sudo apt purge -y api-server
 
 echo ""
 echo "removing api-server service unit file..."

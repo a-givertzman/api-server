@@ -7,11 +7,16 @@ User=scada
 Type=simple
 Restart=always
 RestartSec=5
-StandardOutput=file:/var/log/api-server.log
-StandardError=file:/var/log/api-server.log
 # WorkingDirectory=/home/scada/api-server/
 ExecStart=
 ExecStart=api-server --config /home/scada/api-server/config.yaml
+
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=bird_watching
+
+# StandardOutput=file:/var/log/api-server.log
+# StandardError=file:/var/log/api-server.log
 
 [Install]
 WantedBy=multi-user.target

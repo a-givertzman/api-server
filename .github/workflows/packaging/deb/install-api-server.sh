@@ -16,5 +16,10 @@ echo "installing api server"
 sudo apt install -y /tmp/api-server/target/api-server_0.1.15_amd64.deb
 
 echo ""
+echo "enabling api-server service..."
+sudo systemctl daemon-reload
+sudo systemctl --now enable api-server
+
+echo ""
 echo "cleaning temp files..."
 # rm -rf /tmp/api-server
