@@ -4,7 +4,7 @@ After=syslog.target network.target multi-user.target
 
 [Service]
 User=scada
-Type=simple
+Type=oneshot    # use 'simple' to have single ExecStart
 Restart=always
 RestartSec=5
 # WorkingDirectory=/home/scada/api-server/
