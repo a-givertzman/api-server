@@ -10,8 +10,8 @@ RestartSec=5
 # WorkingDirectory=/home/scada/api-server/
 ExecStart=api-server --config /home/scada/api-server/config.yaml
 
-StandardOutput=append:/var/log/api-server.log
-StandardError=append:/var/log/api-server.log
+StandardOutput=journal+console
+StandardError=journal+console
 
 [Install]
 WantedBy=multi-user.target
