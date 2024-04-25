@@ -34,6 +34,9 @@ jobs:
       - name: Build release
         run: cargo build --release
 
+      - name: Build deb package
+        run: ./.github/workflows/packaging/deb/build.sh ${{ env.NEW_VERSION }}
+
       - name: Commit new version ${{ env.NEW_VERSION }}
         run: |
           echo "on repositiry: ${{ github.repository }}"
