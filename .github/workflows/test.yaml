@@ -13,7 +13,7 @@ env:
   PYTHON_VERSION: 'python3.10'
 
 jobs:
-  build_and_test:
+  testing:
     name: Testing
     runs-on: ubuntu-latest
     # Service containers to run with `container-job`
