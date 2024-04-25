@@ -37,7 +37,7 @@ jobs:
       - name: Build deb package
         run: ./.github/workflows/packaging/deb/build.sh ${{ env.NEW_VERSION }}
 
-      - name: Commit new version ${{ env.NEW_VERSION }}
+      - name: Commit new version
         run: |
           echo "on repositiry: ${{ github.repository }}"
           git config --global user.name 'anton.lobanov'
