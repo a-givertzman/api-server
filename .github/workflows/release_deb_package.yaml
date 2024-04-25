@@ -24,8 +24,12 @@ jobs:
         run: |
           old_version_var=$(cat ./Cargo.toml | sed -rn 's/^version[\t ]*=[\t ]*\"([0-9]+\.[0-9]+\.[0-9]+)\"\s*$/\1/gp')
           echo "old version: $old_version_var"
-          echo "new build: ${{ github.run_number }}"
-          sed -i -r "s/^(version[\t ]*=[\t ]*\"[0-9]+\.[0-9]+\.)[0-9]+\"\s*$/\1${{ github.run_number }}\"/g" ./Cargo.toml
+          old_build_var=$(cat ./Cargo.toml | sed -rn 's/^version[\t ]*=[\t ]*\"[0-9]+\.[0-9]+\.([0-9]+)\"\s*$/\1/gp')
+          echo "old build number: $old_build_var"
+          new_build_var=$((old_build_var+1))
+          echo "new build number: $new_build_var"
+          # echo "new build: ${{ github.run_number }}"
+          sed -i -r "s/^(version[\t ]*=[\t ]*\"[0-9]+\.[0-9]+\.)[0-9]+\"\s*$/\1${new_build_var}\"/g" ./Cargo.toml
           new_version_var=$(cat ./Cargo.toml | sed -rn 's/^version[\t ]*=[\t ]*\"([0-9]+\.[0-9]+\.[0-9]+)\"\s*$/\1/gp')
           echo "new version: $new_version_var"
           echo "NEW_VERSION=$new_version_var" >> $GITHUB_ENV
