@@ -190,7 +190,7 @@ impl SqlQuery for SqlQueryPostgre {
                                     let mut rowMap = IndexMap::new();
                                     for column in row.columns() {
                                         let idx = column.name();
-                                        let (value, err): (serde_json::Value, String) = self.asJson(column.type_(), &row, &idx);
+                                        let (value, err): (serde_json::Value, String) = self.asJson(column.type_(), &row, idx);
                                         if !err.is_empty() {
                                             parseErrors.push(err);
                                         }
@@ -267,14 +267,14 @@ impl FromSql<'_> for GenericEnum {
         _sql_type: &Type, 
         value: &[u8]
     ) -> Result<Self, Box<dyn std::error::Error + Sync + Send>> {
-        match value {
-            // b"variant_a" => Ok(MyEnum::VariantA),
-            // b"variant_b" => Ok(MyEnum::VariantB),
-            _ => {
-                let strValue = String::from_utf8(value.into()).unwrap();
-                Ok(GenericEnum {0: strValue})
-            },
-        }
+        let strValue = String::from_utf8(value.into()).unwrap();
+        Ok(GenericEnum(strValue))
+        // match value {
+        //     // b"variant_a" => Ok(MyEnum::VariantA),
+        //     // b"variant_b" => Ok(MyEnum::VariantB),
+        //     _ => {
+        //     },
+        // }
     }
     ///
     fn accepts(ty: &Type) -> bool {

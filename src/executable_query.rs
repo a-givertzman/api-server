@@ -21,7 +21,7 @@ impl ExecutableQuery {
     pub fn new(path: &str, params: serde_json::Map<std::string::String, serde_json::Value>) -> ExecutableQuery {
         Self {
             path: path.into(),
-            params: params,
+            params,
         }
     }
     ///
