@@ -1,5 +1,5 @@
 use log::{trace, debug};
-use std::{fs, collections::HashMap};
+use std::{collections::HashMap, fs, path::Path};
 use linked_hash_map::LinkedHashMap;
 use yaml_rust::{YamlLoader, Yaml};
 
@@ -12,7 +12,7 @@ pub struct Config {
     pub services: HashMap<String, ServiceConfig>,
 }
 impl Config {
-    pub fn new(path: &str) -> Config {
+    pub fn new<P>(path: P) -> Config where P: AsRef<Path> {
         match fs::read_to_string(&path) {
             Ok(yaml_string) => {
                 let yaml_vec = YamlLoader::load_from_str(&yaml_string).unwrap();
@@ -21,7 +21,7 @@ impl Config {
                 let services_vec = yaml_doc["services"]
                     .as_vec()
                     .expect(
-                        format!("Config | error reading 'services' from config file {:?}", &path).as_str(),
+                        format!("Config | error reading 'services' from config file {:?}", path.as_ref()).as_str(),
                     );
                 for item in services_vec {
                     trace!("Config | service config item: {:?}", item);
@@ -33,7 +33,7 @@ impl Config {
                     // debug!("Config | dataBaseConfigMap: {:?}", dataBaseConfigMap);
                     let service_config = ServiceConfig::new(service_config_key, service_config_map);
                     if services.contains_key(&service_config.name) {
-                        panic!("Duplicated service name: \"{}\" in the config: \"{}\"", &service_config.name, path)
+                        panic!("Duplicated service name: '{}' in the config: '{}'", &service_config.name, path.as_ref().display())
                     } else {
                         // services.insert((&serviceConfig.name).clone(), serviceConfig);
                         services.insert(service_config.name.clone(), service_config);
@@ -44,7 +44,7 @@ impl Config {
                         yaml_doc["address"]
                             .as_str()
                             .expect(
-                                format!("Config | error reading 'address' from config file {:?}", &path).as_str(),
+                                format!("Config | error reading 'address' from config file {:?}", path.as_ref()).as_str(),
                             )
                     ),
                     services,
@@ -52,7 +52,7 @@ impl Config {
             },
             Err(err) => {
                 // warn!("File {} reading error: {:?}", path, err);
-                panic!("File {} reading error: {:?}", path, err)
+                panic!("File {} reading error: {:?}", path.as_ref().display(), err)
             },
         }
     }

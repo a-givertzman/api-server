@@ -40,4 +40,6 @@ rust_decimal = { version = "^1.32", features = [ "tokio-pg" ] }
 
 rand = "^0.8"
 
-indexmap = {version = "^2.1", features = ["serde"] }
+indexmap = { version = "^2.1", features = ["serde"] }
+
+clap = { version = "^4.5", features = ["derive"] }

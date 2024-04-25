@@ -1,0 +1,7 @@
+#!/bin/bash
+# 
+# Deb package postrm script for API Server
+#
+echo ""
+echo "Reload systemd manager configuration..."
+systemctl daemon-reload

@@ -1,0 +1,16 @@
+#!/bin/bash
+# 
+# Deb package prerem script for API Server
+#
+echo ""
+name="api-server"
+if [[ $(systemctl list-units --all -t service --full --no-legend "$name.service" | sed 's/^\s*//g' | cut -f1 -d' ') == $name.service ]]; then
+    if systemctl is-active --quiet "$name.service" ; then
+        echo "Stopping $name service..."
+        systemctl stop api-server
+    fi    
+    if systemctl is-enabled --quiet "$name.service" ; then
+        echo "Disabling $name service..."
+        systemctl disable api-server
+    fi    
+fi
