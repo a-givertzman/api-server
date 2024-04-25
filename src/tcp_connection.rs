@@ -27,7 +27,7 @@ impl TcpConnection {
     ///
     /// writing bytes to the TcpStream
     fn write(self_id: &str, stream: &mut TcpStream, bytes: &[u8]) -> Result<(), Box<dyn Error>> {
-        match stream.write(bytes) {
+        match stream.write_all(bytes) {
             Ok(_) => Ok(()),
             Err(err) => {
                 warn!("{}.write | Error, data: {:?},\n\tdetales: {:?}", self_id, bytes, err);

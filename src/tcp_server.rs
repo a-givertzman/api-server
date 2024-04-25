@@ -45,7 +45,7 @@ impl TcpServer {
     pub fn new(addr: &str, config: Config) -> TcpServer {
         let addr = addr.parse().unwrap();
         Self {
-            addr: addr,
+            addr,
             reconnect_delay: Duration::from_secs(3),
             is_connected: false,
             // api_server,

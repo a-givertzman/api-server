@@ -2,6 +2,8 @@ name: Create release with beb pacage
 
 on:
   pull_request:
+    branches:
+      - "packaging"
   # workflow_dispatch:
 
 env:
@@ -34,6 +36,9 @@ jobs:
       - name: Build release
         run: cargo build --release
 
+      - name: Build deb package
+        run: ./.github/workflows/packaging/deb/build.sh ${{ env.NEW_VERSION }}
+
       - name: Commit new version ${{ env.NEW_VERSION }}
         run: |
           echo "on repositiry: ${{ github.repository }}"
@@ -55,6 +60,6 @@ jobs:
       - name: Publish release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "./target/release/release.zip"
+          artifacts: "./target/release/release.zip,./target/api-server_${{ env.NEW_VERSION }}_amd64.deb"
           tag: internal_v${{ env.NEW_VERSION }}
           token: ${{ secrets.RELEASES_TOKEN }}

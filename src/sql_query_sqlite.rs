@@ -25,7 +25,7 @@ impl SqlQuerySqlite {
         }
     }
     ///
-    fn fakeStmtClone<'b>(stmt: Statement<'b>) -> Statement<'b> {
+    fn fakeStmtClone(stmt: Statement<'_>) -> Statement<'_> {
         stmt
     }
 }

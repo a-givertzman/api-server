@@ -13,7 +13,7 @@ env:
   PYTHON_VERSION: 'python3.10'
 
 jobs:
-  build_and_test:
+  testing:
     name: Testing
     runs-on: ubuntu-latest
     # Service containers to run with `container-job`
@@ -58,10 +58,9 @@ jobs:
       - name: Static analysis | cargo clippy
         run: |
           cargo clippy
-          # cargo fmt --check
       - name: Static analysis | cargo fmt
         run: |
-          echo "escaped for now because of to much of errors, will be turned on later"
+          echo -e "\033[0;31mEscaped for now because of to much of errors, will be turned on later\033[0m"
           # cargo fmt --check
 
       - name: Unit tests

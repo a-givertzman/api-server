@@ -20,13 +20,13 @@ impl Config {
                 let mut services = HashMap::new();
                 let services_vec = yaml_doc["services"]
                     .as_vec()
-                    .expect(
-                        format!("Config | error reading 'services' from config file {:?}", path.as_ref()).as_str(),
+                    .unwrap_or_else(
+                        || panic!("Config | error reading 'services' from config file {:?}", path.as_ref()),
                     );
                 for item in services_vec {
                     trace!("Config | service config item: {:?}", item);
-                    let service_config_map_enty = item.as_hash().expect(
-                        format!("Config | error reading database config {:?}", &item).as_str(),
+                    let service_config_map_enty = item.as_hash().unwrap_or_else(
+                        || panic!("Config | error reading database config {:?}", &item),
                     ).iter().next().unwrap();
                     let service_config_key = service_config_map_enty.0.as_str().unwrap();
                     let service_config_map = service_config_map_enty.1.as_hash().unwrap();
@@ -43,8 +43,8 @@ impl Config {
                     address: String::from(
                         yaml_doc["address"]
                             .as_str()
-                            .expect(
-                                format!("Config | error reading 'address' from config file {:?}", path.as_ref()).as_str(),
+                            .unwrap_or_else(
+                                || panic!("Config | error reading 'address' from config file {:?}", path.as_ref()),
                             )
                     ),
                     services,
@@ -73,34 +73,33 @@ impl ServiceConfig {
         trace!("ServiceConfig.new | configMap: {:?}", config_map);
         let name = &config_map[&Yaml::String("name".to_string())]
             .as_str()
-            .expect(
-                format!("ServiceConfig.new | error reading 'name' from config {:?}", &config_map).as_str(),
+            .unwrap_or_else(
+                || panic!("ServiceConfig.new | error reading 'name' from config {:?}", &config_map),
             );
         let api_service_type_config = config_map[&Yaml::String("type".to_string())]
             .as_str()
-            .expect(
-                format!("ServiceConfig.new | error reading 'type' from config {:?}", &config_map).as_str(),
+            .unwrap_or_else(
+                || panic!("ServiceConfig.new | error reading 'type' from config {:?}", &config_map),
             );
             debug!("ServiceConfig.new | apiServiceTypeConfig {:?}", &api_service_type_config);
-        let service_type = serde_yaml::from_str(
-            api_service_type_config,
-        ).expect(
-            format!("ServiceConfig.new | error reading 'type' from config {:?}", &config_map).as_str(),
-        );
+        let service_type = serde_yaml::from_str(api_service_type_config)
+            .unwrap_or_else(
+                |_| panic!("ServiceConfig.new | error reading 'type' from config {:?}", &config_map),
+            );
         let path = &config_map[&Yaml::String("path".to_string())]
             .as_str()
-            .expect(
-                format!("ServiceConfig.new | error reading 'path' from config {:?}", &config_map).as_str(),
+            .unwrap_or_else(
+                || panic!("ServiceConfig.new | error reading 'path' from config {:?}", &config_map),
             );
         let user = &config_map[&Yaml::String("user".to_string())]
             .as_str()
-            .expect(
-                format!("ServiceConfig.new | error reading 'user' from config {:?}", &config_map).as_str(),
+            .unwrap_or_else(
+                || panic!("ServiceConfig.new | error reading 'user' from config {:?}", &config_map),
             );
         let pass = &config_map[&Yaml::String("pass".to_string())]
             .as_str()
-            .expect(
-                format!("ServiceConfig.new | error reading 'pass' from config {:?}", &config_map).as_str(),
+            .unwrap_or_else(
+                || panic!("ServiceConfig.new | error reading 'pass' from config {:?}", &config_map),
             );
         let replace_null_with_default = match &config_map.get(&Yaml::String("replaceNullWithDefault".to_string())) {
             Some(_) => Some(()),

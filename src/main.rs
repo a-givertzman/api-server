@@ -29,7 +29,7 @@ fn main() {
     debug!("starting api server...");
     let path = cli.config.map_or_else(
         || PathBuf::from("config.yaml"),        // || std::env::current_dir().unwrap().join("config.yaml"),
-        |path| PathBuf::from(path)
+        PathBuf::from
     );
     let path = Path::new(&path);
     debug!("reading config file: {}", path.to_str().unwrap());
