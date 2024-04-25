@@ -49,8 +49,8 @@ postrm="./.github/workflows/packaging/deb/postrm"
 # list of assets in the format:
 # 	<sourcePath> <installPath> <permissions>
 assets=(
-	"./target/release/api-server /usr/bin/ 755",
-	"./service/api-server.service /etc/systemd/system/ 644"
+	"./target/release/api-server /usr/bin/ 755"
+	"./.github/workflows/packaging/deb/service/api-server.service /etc/systemd/system/ 644"
 	"./config.yaml /home/scada/api-server/"
 )
 outputDir=target/
@@ -101,12 +101,16 @@ copyAsset() {
 		exit 1
 	fi
 	installPath=$(readlink -m "${packageRoot}/${targetDir}")
-	mkdir -p $installPath && cp -r "$assetPath" "$installPath"
 	echo "Copying ${assetPath} to ${installPath} ..."
+	mkdir -p $installPath && cp -r "$assetPath" "$installPath"
 	if [[ -d $assetPath ]]; then
+		echo "Applying permissions ${permissions} to dir ${installPath} ..."
 		chmod -R "$permissions" "$installPath"
 	elif [[ -f $assetPath ]]; then
+		echo "Applying permissions ${permissions} to file ${installPath} ..."
 		chmod "$permissions" "${installPath}/$(basename ${assetPath})"
+	else
+		echo "${RED}Unknown asset type, can't apply permissions ${permissions} to file${NC} ${installPath} ..."
 	fi
 }
 for asset in "${assets[@]}"; do
@@ -172,5 +176,5 @@ cd - > /dev/null
 echo "Building deb package ..."
 dpkg-deb --build "${packageRoot}" "$outputDir" > /dev/null || exit 1 
 echo "Deleting temporary created ${packageRoot} directory"
-# rm -rf "${packageRoot}"
+rm -rf "${packageRoot}"
 echo "Debian package created and saved in $(readlink -m "${outputDir}/${debFileName}.deb")"
