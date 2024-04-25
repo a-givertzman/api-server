@@ -174,7 +174,8 @@ cd - > /dev/null
 
 ############ BUILD A DEB PACKAGE ############
 echo "Building deb package ..."
-dpkg-deb --build "${packageRoot}" "$outputDir" > /dev/null || exit 1 
+# -Zxz - to to change the compression method from zstd to xz (zstd - supported since debian 12)
+dpkg-deb -Zxz --build "${packageRoot}" "$outputDir" > /dev/null || exit 1 
 echo "Deleting temporary created ${packageRoot} directory"
 rm -rf "${packageRoot}"
 echo "Debian package created and saved in $(readlink -m "${outputDir}/${debFileName}.deb")"
