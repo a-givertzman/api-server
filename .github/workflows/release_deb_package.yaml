@@ -60,6 +60,6 @@ jobs:
       - name: Publish release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "./target/release/release.zip"
+          artifacts: "./target/release/release.zip,./target/api-server_${{ env.NEW_VERSION }}_amd64.deb"
           tag: internal_v${{ env.NEW_VERSION }}
           token: ${{ secrets.RELEASES_TOKEN }}
