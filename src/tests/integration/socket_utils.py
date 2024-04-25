@@ -1,4 +1,5 @@
 import socket
+from typing import Optional
 
 def recvAll(sock: socket.socket | None):
     data = bytearray()
