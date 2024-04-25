@@ -3,7 +3,7 @@
 #
 ############ LIST OF MANAGED VARIABLES REQUIRED FOR DEB PACKAGE ############
 name=api-server
-# version=x.y.z - reading late from first arg $1
+# version=x.y.z - reading from first arg $1
 descriptionShort="API Server wrapping databases, executable and python scripts plugins"
 descriptionExtended="API Server - service running on the socket.
 Provides simple and universe access to the databases, executable and python plugins.
