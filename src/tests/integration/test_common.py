@@ -111,7 +111,7 @@ class TestCommon(unittest.TestCase):
         ]
         for i, entry in enumerate(data_maps):
             data_map = entry['input']
-            expected_json = entry['output'] 
+            expected_json = entry['output']
             data_bytes = bytes(data_map, encoding='utf8')
             received = socketSendBytes(data_bytes)
             received_json = json.loads(received)
