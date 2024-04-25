@@ -50,7 +50,7 @@ jobs:
       - name: Static analysis | Markdown lint tool
         uses: docker://avtodev/markdown-lint:v1
         with:
-          config: '.github/workflows/markdownlint.yaml'
+          config: '.github/workflows/markdownlint/markdownlint.yaml'
           args: "**/*.md"
       - name: Static analysis | cargo check
         run: |
