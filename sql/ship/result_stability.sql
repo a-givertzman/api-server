@@ -6,7 +6,7 @@ CREATE TABLE if not exists result_stability (
   title TEXT NOT NULL,
   value1 FLOAT8,
   value2 FLOAT8,
-  relationship TEXT NOT NULL,
+  relationship TEXT,
   unit TEXT,
   comment TEXT,
   CONSTRAINT result_stability_pk PRIMARY KEY (id),
