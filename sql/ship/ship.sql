@@ -18,8 +18,6 @@ CREATE TABLE if not exists ship (
   CONSTRAINT ship_unit_check CHECK(char_length(unit) <= 10)
 );
 
-TRUNCATE TABLE SHIP;
-
 INSERT INTO ship
   (ship_id, key, value, value_type, name, unit)
 VALUES

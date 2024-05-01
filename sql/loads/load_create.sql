@@ -1,7 +1,5 @@
 DROP TABLE IF EXISTS load_space;
 
-TRUNCATE TABLE load_space;
-
 CREATE TABLE if not exists load_space (
   id INT GENERATED ALWAYS AS IDENTITY,
   project_id INT,
