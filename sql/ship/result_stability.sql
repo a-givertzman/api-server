@@ -16,6 +16,14 @@ CREATE TABLE IF NOT EXISTS result_stability (
   CONSTRAINT result_stability_check_description CHECK(char_length(description) <= 1000)
 );
 
+TRUNCATE TABLE result_stability;
+
+INSERT INTO result_stability
+  (title, value1, value2, relation)
+VALUES
+  ('Критерий погоды K', 3.6, 1, '>='),
+  ('Критерий ускорения 𝐾∗', 35.0, 30, '>=');
+
 INSERT INTO result_stability
   (title, value1, value2, relation, unit)
 VALUES
@@ -27,6 +35,5 @@ VALUES
   ('Макс. плечо DSO', 1.5, 0.25, '>=', 'm'),
   ('Угол соотв. макс. DSO', 35.0, 30, '>=', 'deg'),
   ('Исп. метацентрическая высота h', 0.5, 0.15, '>=', 'm'),
-  ('Критерий ускорения 𝐾∗', 35.0, 30, '>=', NULL),
   ('Крен на циркуляции', 35.0, 30, '>=', 'deg'),
   ('Смещение зерна, А', 0.1, 0.075, '>=', 'm*rad');
