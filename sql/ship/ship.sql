@@ -24,8 +24,10 @@ INSERT INTO ship
   (ship_id, key, value, value_type, name, unit)
 VALUES
   (1, 'name', 'M/V "YURIY ARSHENEVSKIY"', 'text', 'Name of ship', NULL),
-  (1, 'navigation_area', 'R2', 'text', 'Type of navigation area', NULL),
   (1, 'icing_stab', 'full', 'text', 'Type of icing', NULL),
+  (1, 'navigation_area', 'R2', 'text', 'Type of navigation area', NULL),
+  (1, 'ship_type', 'general dry cargo ship', 'text', 'Type of ship', NULL),
+  (1, 'velocity', '16', 'real', 'Ship operating speed', 'm/s'),
   (1, 'icing_m_timber', '0.032', 'real', 'Mass of icing for timber', 't/m^2'),
   (1, 'icing_m_v_full', '0.015', 'real', 'Mass of icing full vertical', 't/m^2'),
   (1, 'icing_m_v_half', '0.0075', 'real', 'Mass of icing half vertical', 't/m^2'),
