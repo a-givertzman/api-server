@@ -31,7 +31,6 @@ fn main() {
         || PathBuf::from("config.yaml"),        // || std::env::current_dir().unwrap().join("config.yaml"),
         PathBuf::from
     );
-    let path = Path::new(&path);
     debug!("reading config file: {}", path.to_str().unwrap());
     let config = Config::new(path);
     let tcp_server = Arc::new(Mutex::new(
