@@ -31,7 +31,7 @@ maintainer="anton lobanov <lobanov.anton@gmail.com>"
 licenseName="GNU GENERAL PUBLIC LICENSE v3.0"
 licenseFile="LICENSE"
 
-############ READING VERDION FROM ARGIMENT ############
+############ READING VERSION FROM ARGUMENT ############
 RED='\033[0;31m'
 NC='\033[0m' # No Color
 version=$1
