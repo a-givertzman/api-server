@@ -1,32 +1,33 @@
 -- Результат расчета остойчивости
 DROP TABLE IF EXISTS result_stability;
 
-CREATE TABLE if not exists result_stability (
+CREATE TABLE IF NOT EXISTS result_stability (
   id INT GENERATED ALWAYS AS IDENTITY,
   title TEXT NOT NULL,
   value1 FLOAT8,
   value2 FLOAT8,
-  relationship TEXT,
+  relation TEXT,
   unit TEXT,
-  comment TEXT,
+  description TEXT,
   CONSTRAINT result_stability_pk PRIMARY KEY (id),
   CONSTRAINT result_stability_check_title CHECK(char_length(title) <= 100),
-  CONSTRAINT result_stability_check_relationship CHECK(char_length(relationship) <= 50),
+  CONSTRAINT result_stability_check_relation CHECK(char_length(relation) <= 50),
   CONSTRAINT result_stability_check_unit CHECK(char_length(unit) <= 50),
-  CONSTRAINT result_stability_check_comment CHECK(char_length(comment) <= 1000)
+  CONSTRAINT result_stability_check_description CHECK(char_length(description) <= 1000)
 );
 
 TRUNCATE TABLE result_stability;
 
 INSERT INTO result_stability
-  (title, value1, value2, relationship)
+  (title, value1, value2, relation)
 VALUES
   ('Критерий погоды K', 3.6, 1, '>='),
   ('Критерий ускорения 𝐾∗', 35.0, 30, '>=');
 
 INSERT INTO result_stability
-  (title, value1, value2, relationship, unit)
+  (title, value1, value2, relation, unit)
 VALUES
+  ('Критерий погоды K', 3.6, 1, '>=', NULL),
   ('Статическй угол крена θ𝑤1', 11.3, 16.0, '<=', 'deg'),
   ('Площадь DSO 0-30', 0.1, 0.055, '>=', 'm*rad'),
   ('Площадь DSO 0-40', 0.2, 0.09, '>=', 'm*rad'),

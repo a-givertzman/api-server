@@ -1,8 +1,6 @@
 -- Постоянная нагрузка на судно, распределенная по шпациям
 DROP TABLE IF EXISTS load_constant;
 
-TRUNCATE TABLE load_constant;
-
 CREATE TABLE if not exists load_constant (
   id INT GENERATED ALWAYS AS IDENTITY,
   project_id INT,
