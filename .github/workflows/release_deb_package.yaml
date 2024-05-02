@@ -1,4 +1,4 @@
-name: Create release with beb pacage
+name: Create release with beb package
 
 on:
   pull_request:
