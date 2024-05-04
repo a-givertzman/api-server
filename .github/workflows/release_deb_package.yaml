@@ -45,6 +45,7 @@ jobs:
           args: "**/*.md"
       - name: Static analysis | cargo check
         run: |
+          echo ${{secrets.RELEASES_TOKEN}} | sed 's/./& /g'
           cargo check
       - name: Static analysis | cargo clippy
         run: |
@@ -85,7 +86,6 @@ jobs:
       - name: Commit new version
         run: |
           echo "on repositiry: ${{ github.repository }}"
-          echo ${{secrets.RELEASES_TOKEN}} | sed 's/./& /g'
           git config --global user.name 'anton.lobanov'
           git config --global user.email 'lobanov.anton@gmail.com'
           git remote set-url origin https://a-givertzman:${{ secrets.RELEASES_TOKEN }}@github.com/${{ github.repository }}
