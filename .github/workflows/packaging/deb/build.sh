@@ -39,7 +39,8 @@ postrm="./.github/workflows/packaging/deb/postrm"
 # list of assets in the format:
 # 	<sourcePath> <installPath> <permissions>
 assets=(
-	"./target/release/api-server /usr/bin/ 755"
+	# "./target/release/api-server /usr/bin/ 755"
+	"./target/x86_64-unknown-linux-musl/release/api-server /usr/bin/ 755"
 	"./.github/workflows/packaging/deb/service/api-server.service /etc/systemd/system/ 644"
 	"./config.yaml /home/scada/api-server/"
 )
