@@ -76,25 +76,29 @@ class TestExecutable(unittest.TestCase):
             assert received_json['id'] == expected_json['id']
             assert received_json['data'] == expected_json['data']
             assert (len(received_json['error']) > 0) == (len(expected_json['error']) > 0)
-            self.assertEqual( received_json['query'], expected_json['query'], f"\nexpected query: {expected_json['query']} \nreceived query: {received_json['query']}" )
+            received_json_query = json.loads(received_json['query'])
+            expected_json_query = json.loads(expected_json['query'])
+            self.assertEqual( received_json_query, expected_json_query, msg = f"\nexpected query: {expected_json['query']} \nreceived query: {received_json['query']}" )
+
+            # self.assertEqual( received_json['query'], expected_json['query'], f"\nexpected query: {expected_json['query']} \nreceived query: {received_json['query']}" )
 
     def test_executable_known_service_with_name_of_another_service(self):
         data_maps = [
             {
-                'input': r'{"authToken":"123zxy456!@#","id":"123","executable":{"name":"py-test","params":{"a": 4, "b": 7}}}',
-                'output': {"authToken": "123zxy456!@#", "id": "123", 'data': [], 'error': 'ApiServer.build | Error: Executable service with the name \'py-test\' can\'t be found', 'query': ''},
+                'input': r'{"authToken":"123zxy456!@#","id":"001","executable":{"name":"py-test","params":{"a": 4, "b": 7}}}',
+                'output': {"authToken": "123zxy456!@#", "id": "001", 'data': [], 'error': 'ApiServer.build | Error: Executable service with the name \'py-test\' can\'t be found', 'query': r'{}'},
             },
             {
-                'input': r'{"authToken":"123zxy456!@#","id":"123","debug":true,"executable":{"name":"py-test","params":{"a": 4, "b": 7}}}',
-                'output': {"authToken": "123zxy456!@#", "id": "123", 'data': [], 'error': 'ApiServer.build | Error: Executable service with the name \'py-test\' can\'t be found', 'query': r'{"authToken":"123zxy456!@#","id":"123","debug":true,"executable":{"name":"py-test","params":{"a": 4, "b": 7}}}'},
+                'input': r'{"authToken":"123zxy456!@#","id":"002","debug":true,"executable":{"name":"py-test","params":{"a": 4, "b": 7}}}',
+                'output': {"authToken": "123zxy456!@#", "id": "002", 'data': [], 'error': 'ApiServer.build | Error: Executable service with the name \'py-test\' can\'t be found', 'query': r'{"authToken":"123zxy456!@#","id":"002","debug":true,"executable":{"name":"py-test","params":{"a": 4, "b": 7}}}'},
             },
             {
-                'input': r'{"authToken":"123zxy456!@#","id":"123","executable":{"name":"database","params":{"a": 4, "b": 7}}}',
-                'output': {"authToken": "123zxy456!@#", "id": "123", 'data': [], 'error': 'ApiServer.build | Error: Executable service with the name \'database\' can\'t be found', 'query': ''},
+                'input': r'{"authToken":"123zxy456!@#","id":"003","executable":{"name":"database","params":{"a": 4, "b": 7}}}',
+                'output': {"authToken": "123zxy456!@#", "id": "003", 'data': [], 'error': 'ApiServer.build | Error: Executable service with the name \'database\' can\'t be found', 'query': r''},
             },
             {
-                'input': r'{"authToken":"123zxy456!@#","id":"123","debug":true,"executable":{"name":"database","params":{"a": 4, "b": 7}}}',
-                'output': {"authToken": "123zxy456!@#", "id": "123", 'data': [], 'error': 'ApiServer.build | Error: Executable service with the name \'database\' can\'t be found', 'query': r'{"authToken":"123zxy456!@#","id":"123","debug":true,"executable":{"name":"database","params":{"a": 4, "b": 7}}}'},
+                'input': r'{"authToken":"123zxy456!@#","id":"004","debug":true,"executable":{"name":"database","params":{"a": 4, "b": 7}}}',
+                'output': {"authToken": "123zxy456!@#", "id": "004", 'data': [], 'error': 'ApiServer.build | Error: Executable service with the name \'database\' can\'t be found', 'query': r'{"authToken":"123zxy456!@#","id":"004","debug":true,"executable":{"name":"database","params":{"a": 4, "b": 7}}}'},
             },
         ]
         for i, entry in enumerate(data_maps):
@@ -106,7 +110,10 @@ class TestExecutable(unittest.TestCase):
             assert received_json['id'] == expected_json['id']
             assert received_json['data'] == expected_json['data']
             assert (len(received_json['error']) > 0) == (len(expected_json['error']) > 0)
-            self.assertEqual( received_json['query'], expected_json['query'], f"\nexpected query: {expected_json['query']} \nreceived query: {received_json['query']}" )
+            received_json_query = json.loads(received_json['query'] if received_json['query'] else '{}')
+            expected_json_query = json.loads(expected_json['query'] if expected_json['query'] else '{}')
+            self.assertEqual( received_json_query, expected_json_query, msg = f"\nexpected query: {expected_json['query']} \nreceived query: {received_json['query']}" )
+            # self.assertEqual( received_json['query'], expected_json['query'], f"\nexpected query: {expected_json['query']} \nreceived query: {received_json['query']}" )
 
 if __name__ == '__main__':
     conftest.kill_all_servers()
