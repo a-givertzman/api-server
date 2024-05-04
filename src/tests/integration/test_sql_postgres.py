@@ -86,7 +86,10 @@ class TestSqlPostgres(unittest.TestCase):
             assert received_json['id'] == expected_json['id']
             assert received_json['data'] == expected_json['data']
             assert (len(received_json['error']) > 0) == (len(expected_json['error']) > 0)
-            assert received_json['query'] == expected_json['query'], f"\nexpected query: {expected_json['query']} \nreceived query: {received_json['query']}"
+            received_json_query = json.loads(received_json['query'] if received_json['query'] else '{}')
+            expected_json_query = json.loads(expected_json['query'] if expected_json['query'] else '{}')
+            self.assertEqual( received_json_query, expected_json_query, msg = f"\nexpected query: {expected_json['query']} \nreceived query: {received_json['query']}" )
+            # assert received_json['query'] == expected_json['query'], f"\nexpected query: {expected_json['query']} \nreceived query: {received_json['query']}"
 
     def test_invalid_service_name(self):
         data_maps = [
@@ -116,7 +119,10 @@ class TestSqlPostgres(unittest.TestCase):
             self.assertEqual( received_json['id'], expected_json['id'])
             self.assertEqual( received_json['data'], expected_json['data'])
             self.assertEqual( (len(received_json['error']) > 0), (len(expected_json['error']) > 0))
-            self.assertEqual( received_json['query'], expected_json['query'], msg = f"\nexpected query: {expected_json['query']} \nreceived query: {received_json['query']}" )
+            received_json_query = json.loads(received_json['query'] if received_json['query'] else '{}')
+            expected_json_query = json.loads(expected_json['query'] if expected_json['query'] else '{}')
+            self.assertEqual( received_json_query, expected_json_query, msg = f"\nexpected query: {expected_json['query']} \nreceived query: {received_json['query']}" )
+            # self.assertEqual( received_json['query'], expected_json['query'], msg = f"\nexpected query: {expected_json['query']} \nreceived query: {received_json['query']}" )
 
 
     def test_sql_basic_types(self):
@@ -221,7 +227,10 @@ class TestSqlPostgres(unittest.TestCase):
                     self.assertEqual( key in receivedDataFirstRow.keys(), True )
                     self.assertAlmostEqual( receivedDataFirstRow[key], value, delta=0.0001 )
                 self.assertEqual( received_json['error'], expected_json['error'], msg = f"\nexpected error: {expected_json['error']} \nreceived error: {received_json['error']}" )
-                self.assertEqual( received_json['query'], expected_json['query'], msg = f"\nexpected query: {expected_json['query']} \nreceived query: {received_json['query']}" )
+                received_json_query = json.loads(received_json['query'] if received_json['query'] else '{}')
+                expected_json_query = json.loads(expected_json['query'] if expected_json['query'] else '{}')
+                self.assertEqual( received_json_query, expected_json_query, msg = f"\nexpected query: {expected_json['query']} \nreceived query: {received_json['query']}" )
+                # self.assertEqual( received_json['query'], expected_json['query'], msg = f"\nexpected query: {expected_json['query']} \nreceived query: {received_json['query']}" )
 
 
     def test_sql_json_types(self):
@@ -265,7 +274,10 @@ class TestSqlPostgres(unittest.TestCase):
                     self.assertEqual( key in receivedDataFirstRow.keys(), True )
                     self.assertEqual( receivedDataFirstRow[key], value )
                 self.assertEqual( received_json['error'], expected_json['error'], f"\nexpected error: {expected_json['error']} \nreceived error: {received_json['error']}" )
-                self.assertEqual( received_json['query'], expected_json['query'], f"\nexpected query: {expected_json['query']} \nreceived query: {received_json['query']}" )
+                received_json_query = json.loads(received_json['query'] if received_json['query'] else '{}')
+                expected_json_query = json.loads(expected_json['query'] if expected_json['query'] else '{}')
+                self.assertEqual( received_json_query, expected_json_query, msg = f"\nexpected query: {expected_json['query']} \nreceived query: {received_json['query']}" )
+                # self.assertEqual( received_json['query'], expected_json['query'], f"\nexpected query: {expected_json['query']} \nreceived query: {received_json['query']}" )
 
 
     def test_sql_arrays(self):
@@ -338,7 +350,10 @@ class TestSqlPostgres(unittest.TestCase):
                         else:                        
                             self.assertAlmostEqual( receivedDataFirstRow[key][i], value[i], delta=0.0001, msg=f'expected: {value[i]}, received: {receivedDataFirstRow[key][i]}' )
                 self.assertEqual( received_json['error'], expected_json['error'], f"\nexpected error: {expected_json['error']} \nreceived error: {received_json['error']}" )
-                self.assertEqual( received_json['query'], expected_json['query'], f"\nexpected query: {expected_json['query']} \nreceived query: {received_json['query']}" )
+                received_json_query = json.loads(received_json['query'] if received_json['query'] else '{}')
+                expected_json_query = json.loads(expected_json['query'] if expected_json['query'] else '{}')
+                self.assertEqual( received_json_query, expected_json_query, msg = f"\nexpected query: {expected_json['query']} \nreceived query: {received_json['query']}" )
+                # self.assertEqual( received_json['query'], expected_json['query'], f"\nexpected query: {expected_json['query']} \nreceived query: {received_json['query']}" )
 
 
 
