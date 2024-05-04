@@ -79,6 +79,7 @@ jobs:
 
       - name: Build release
         run: |
+          sudo apt install musl-tools
           rustup component add rust-std-x86_64-unknown-linux-musl
           cargo build --release --target x86_64-unknown-linux-musl
 
