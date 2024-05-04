@@ -120,7 +120,7 @@ dependencies = [
 
 [[package]]
 name = "api-server"
-version = "0.1.18"
+version = "0.1.20"
 dependencies = [
  "api-tools",
  "bytes",
