@@ -45,7 +45,7 @@ jobs:
           args: "**/*.md"
       - name: Static analysis | cargo check
         run: |
-          echo ${{secrets.RELEASES_TOKEN}} | sed 's/./& /g'
+          # echo ${{secrets.RELEASES_TOKEN}} | sed 's/./& /g'   # trick for display hidden github env.VARIABLE
           cargo check
       - name: Static analysis | cargo clippy
         run: |
