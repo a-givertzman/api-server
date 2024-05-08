@@ -100,11 +100,12 @@ BEGIN
     WHERE 
         ship_id = changed_ship_id;
 
-    FOR index in 0..n_parts LOOP
+    FOR index in 0..(n_parts-1) LOOP
         INSERT INTO
             computed_frame (ship_id, index, key, value)
         VALUES
-            (changed_ship_id, index, 'shift_x', length*(index/n_parts));
+            (changed_ship_id, index, 'start_x', length*(index/n_parts)),
+            (changed_ship_id, index, 'end_x', length*(index/(n_parts+1)));
     END LOOP;
 
     RETURN NULL;
