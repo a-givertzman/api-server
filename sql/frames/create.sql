@@ -1,5 +1,5 @@
 -- Теоретические шпангоуты
-DROP TABLE theoretical_frame;
+DROP TABLE theoretical_frame CASCADE;
 
 CREATE TABLE if not exists theoretical_frame (
   id INT GENERATED ALWAYS AS IDENTITY,
@@ -14,7 +14,7 @@ CREATE TABLE if not exists theoretical_frame (
 );
 
 -- Погруженные площади теоретических шпангоутов
-DROP TABLE frame_area;
+DROP TABLE frame_area CASCADE;
 
 CREATE TABLE if not exists frame_area (
   id INT GENERATED ALWAYS AS IDENTITY,
@@ -30,7 +30,7 @@ CREATE TABLE if not exists frame_area (
 );
 
 -- Практические шпангоуты
-DROP TABLE physical_frame;
+DROP TABLE physical_frame CASCADE;
 
 CREATE TABLE if not exists physical_frame (
   id INT GENERATED ALWAYS AS IDENTITY,
@@ -46,7 +46,7 @@ CREATE TABLE if not exists physical_frame (
 
 
 -- Рассчитанные шпации для расчета прочности
-DROP TABLE computed_frame;
+DROP TABLE computed_frame CASCADE;
 
 CREATE TABLE
     IF NOT EXISTS computed_frame (
@@ -65,7 +65,7 @@ CREATE TABLE
     );
 
 -- Результаты расчета прочности
-DROP TABLE strength_result;
+DROP TABLE strength_result CASCADE;
 
 CREATE TABLE
     IF NOT EXISTS strength_result (

@@ -104,8 +104,8 @@ BEGIN
         INSERT INTO
             computed_frame (ship_id, index, key, value)
         VALUES
-            (changed_ship_id, index, 'start_x', length*(index/n_parts)),
-            (changed_ship_id, index, 'end_x', length*(index/(n_parts+1)));
+            (changed_ship_id, index, 'start_x', length*index/n_parts),
+            (changed_ship_id, index, 'end_x', length*(index+1)/n_parts);
     END LOOP;
 
     RETURN NULL;
