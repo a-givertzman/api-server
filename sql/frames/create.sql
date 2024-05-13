@@ -73,12 +73,8 @@ CREATE TABLE
         project_id INT,
         ship_id INT NOT NULL,
         index INT NOT NULL,
-        key TEXT NOT NULL,
-        value FLOAT8 NOT NULL,
+        value_shear_force FLOAT8 NOT NULL,
+        value_bending_moment FLOAT8 NOT NULL,
         CONSTRAINT strength_result_pk PRIMARY KEY (id),
-        CONSTRAINT strength_result_index_unique UNIQUE (ship_id, index, key),
-        CONSTRAINT strength_result_key_check CHECK (
-            char_length(key) > 0
-            AND char_length(key) <= 50
-        )
+        CONSTRAINT strength_result_index_unique UNIQUE (ship_id, index)
     );
