@@ -10,8 +10,6 @@
 \i ./sql/ship/volume_shift.sql
 \i ./sql/ship/waterline_breadth.sql
 \i ./sql/ship/waterline_length.sql
-\i ./sql/loads/constant/create.sql
-\i ./sql/loads/load_create.sql
 \i ./sql/frames/create.sql
 \i ./sql/frames/theoretical_583.sql
 \i ./sql/frames/physical.sql
@@ -36,6 +34,9 @@
 \i ./sql/frames/18.sql
 \i ./sql/frames/19.sql
 \i ./sql/frames/20.sql
+\i ./sql/loads/constant/create.sql
+\i ./sql/loads/load_create.sql
+\i ./sql/loads/tanks.sql
 \i ./sql/stability/coefficient_k.sql
 \i ./sql/stability/multipler_s.sql
 \i ./sql/stability/multipler_x1.sql
@@ -51,6 +52,7 @@
 --\i ./sql/triggers/volume.sql
 \i ./sql/triggers/water_density.sql
 \i ./sql/triggers/computed_frame.sql
+\i ./sql/triggers/loads.sql
 
 -- Data for ship
 \i ./sql/loads/constant/hull.sql
