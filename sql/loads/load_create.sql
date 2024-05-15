@@ -1,3 +1,5 @@
+-- Координаты и параметры отсеков и цистерн.
+-- ИД судна, 
 DROP TABLE IF EXISTS load_space CASCADE;
 
 CREATE TABLE if not exists load_space (
