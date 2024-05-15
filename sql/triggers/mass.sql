@@ -91,7 +91,7 @@ BEGIN
         delta_mass = NEW.value::DECIMAL;
     ELSE 
 -- RAISE NOTICE 'no TG_OP';
-        RETURN NULL;
+        RETURN NEW;
     END IF;
 
     SELECT

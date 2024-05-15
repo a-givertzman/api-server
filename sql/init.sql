@@ -36,6 +36,7 @@
 \i ./sql/frames/20.sql
 \i ./sql/loads/constant/create.sql
 \i ./sql/loads/load_create.sql
+\i ./sql/loads/load_base.sql
 \i ./sql/loads/tanks.sql
 \i ./sql/stability/coefficient_k.sql
 \i ./sql/stability/multipler_s.sql

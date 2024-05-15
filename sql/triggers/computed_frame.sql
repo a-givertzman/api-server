@@ -36,7 +36,7 @@ BEGIN
         RAISE NOTICE 'init_n_parts no ship_id without n_parts';
     END IF;
 
-    RETURN NULL;
+    RETURN NEW;
 END;
 $init_n_parts$ LANGUAGE plpgsql;
 
@@ -84,13 +84,13 @@ BEGIN
     IF ( length IS NULL ) 
     THEN
         RAISE NOTICE 'update_computed_frame no length for ship_id:[%]', changed_ship_id;
-        RETURN NULL;
+        RETURN NEW;
     END IF;
 
     IF ( n_parts IS NULL OR n_parts <= 0 ) 
     THEN
         RAISE NOTICE 'update_computed_frame no n_parts for ship_id:[%]', changed_ship_id;
-        RETURN NULL;
+        RETURN NEW;
     END IF;
 
     RAISE NOTICE 'update_computed_frame calculate frames with n_parts:[%] for ship_id:[%]', n_parts, changed_ship_id;
@@ -108,7 +108,7 @@ BEGIN
             (changed_ship_id, index, 'end_x', length*(index+1)/n_parts);
     END LOOP;
 
-    RETURN NULL;
+    RETURN NEW;
 END;
 $update_computed_frame$ LANGUAGE plpgsql;
 

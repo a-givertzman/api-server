@@ -86,3 +86,20 @@ VALUES
   (NULL, 1, 0, 'hull', 90.95),
   (NULL, 1, 0, 'equipment', 48.39);
 
+
+    UPDATE
+        load_space
+    SET 
+        density = 3
+    WHERE ship_id = 1 AND space_id = 1;
+
+    
+    UPDATE
+        load_space
+    SET 
+        volume = 101
+    WHERE ship_id = 1 AND space_id = 1;
+
+SELECT l.density
+            FROM load_space l
+            WHERE ship_id = 1 AND space_id = 1;
