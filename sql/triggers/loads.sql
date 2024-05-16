@@ -106,9 +106,15 @@ BEGIN
 
     RAISE NOTICE 'get_tank_curve_volume res r1 volume:[%]  r2 volume:[%]', r1.volume, r2.volume;
 
-    delta = r1.volume - r2.volume;
-    coeff1 = (r1.volume - src_volume) / delta;
-    coeff2 = (src_volume - r2.volume) / delta;
+    IF r1.volume = r2.volume THEN
+        coeff1 = 1;
+        coeff2 = 0;
+    ELSE 
+        delta = r1.volume - r2.volume;
+        coeff1 = (r1.volume - src_volume) / delta;
+        coeff2 = (src_volume - r2.volume) / delta;
+    END IF;
+
     res.level = r2.level*coeff1 + r1.level*coeff2;  
     res.volume = r2.volume*coeff1 + r1.volume*coeff2;
     res.mass_shift_x = r2.buoyancy_x*coeff1 + r1.buoyancy_x*coeff2;
@@ -157,9 +163,15 @@ BEGIN
 
     RAISE NOTICE 'get_tank_curve_level res r1 level:[%]  r2 level:[%]', r1.level, r2.level;
 
-    delta = r1.level - r2.level;
-    coeff1 = (r1.level - src_level) / delta;
-    coeff2 = (src_level - r2.level) / delta;
+    IF r1.volume = r2.volume THEN
+        coeff1 = 1;
+        coeff2 = 0;
+    ELSE 
+        delta = r1.volume - r2.volume;
+        coeff1 = (r1.volume - src_volume) / delta;
+        coeff2 = (src_volume - r2.volume) / delta;
+    END IF;
+
     res.level = r2.level*coeff1 + r1.level*coeff2;  
     res.volume = r2.volume*coeff1 + r1.volume*coeff2;
     res.mass_shift_x = r2.buoyancy_x*coeff1 + r1.buoyancy_x*coeff2;

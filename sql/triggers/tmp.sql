@@ -97,7 +97,7 @@ VALUES
     UPDATE
         load_space
     SET 
-        volume = 101
+        volume = 0
     WHERE ship_id = 1 AND space_id = 1;
 
 SELECT l.density
