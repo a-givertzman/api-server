@@ -106,3 +106,5 @@ SELECT l.density
 
 select * from get_tank_curve_volume(1, 1, 100000);
 select * from get_tank_curve_level(1, 1, 100000);
+
+truncate table load_space;

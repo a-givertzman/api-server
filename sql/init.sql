@@ -36,16 +36,17 @@
 \i ./sql/frames/20.sql
 \i ./sql/loads/constant/create.sql
 \i ./sql/loads/load_create.sql
-\i ./sql/loads/load_base.sql
 \i ./sql/loads/tanks.sql
 \i ./sql/stability/coefficient_k.sql
 \i ./sql/stability/multipler_s.sql
 \i ./sql/stability/multipler_x1.sql
 \i ./sql/stability/multipler_x2.sql
 \i ./sql/stability/navigation_area.sql
+\i ./sql/stability/coefficient_k_theta.sql
+\i ./sql/stability/icing.sql
 \i ./sql/ship/delta_windage_area.sql
 \i ./sql/ship/delta_windage_moment.sql
-\i ./sql/stability/coefficient_k_theta.sql
+
 
 --triggers
 --\i ./sql/triggers/mass_sum.sql
@@ -56,5 +57,6 @@
 \i ./sql/triggers/loads.sql
 
 -- Data for ship
-\i ./sql/loads/constant/hull.sql
+\i ./sql/loads/load_base.sql
 \i ./sql/loads/load_sea_100.sql
+\i ./sql/loads/constant/hull.sql
