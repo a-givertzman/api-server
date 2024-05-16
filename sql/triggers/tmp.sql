@@ -90,7 +90,7 @@ VALUES
     UPDATE
         load_space
     SET 
-        density = 3
+        density = 2
     WHERE ship_id = 1 AND space_id = 1;
 
     
@@ -103,3 +103,6 @@ VALUES
 SELECT l.density
             FROM load_space l
             WHERE ship_id = 1 AND space_id = 1;
+
+select * from get_tank_curve_volume(1, 1, 100000);
+select * from get_tank_curve_level(1, 1, 100000);
