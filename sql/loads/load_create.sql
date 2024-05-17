@@ -1,5 +1,4 @@
 -- Координаты и параметры отсеков и цистерн.
--- ИД судна, 
 DROP TABLE IF EXISTS load_space CASCADE;
 
 CREATE TABLE if not exists load_space (
@@ -27,7 +26,9 @@ CREATE TABLE if not exists load_space (
   CONSTRAINT load_space_name_check CHECK(char_length(name) <= 50),
   CONSTRAINT load_space_bound_type_check CHECK(char_length(bound_type) <= 50),
   CONSTRAINT load_space_density_check CHECK(density IS NULL OR density > 0),
-  CONSTRAINT load_space_volume_max_check CHECK(volume_max IS NULL OR volume_max > 0)
+  CONSTRAINT load_space_volume_max_check CHECK(volume_max IS NULL OR volume_max > 0),
+  CONSTRAINT load_space_mass_check CHECK(mass IS NULL OR mass >= 0),
+  CONSTRAINT load_space_volume_check CHECK(volume IS NULL OR volume >= 0)
 );
 
 
