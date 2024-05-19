@@ -32,20 +32,16 @@ BEGIN
         END IF;
     ELSIF TG_OP = 'UPDATE' THEN
         RAISE NOTICE 'update_load_space UPDATE begin';
-        if NEW.volume != OLD.volume OR
-                (NEW.volume IS NOT NULL AND OLD.volume IS NULL) THEN 
+        if (NEW.volume IS NOT NULL AND OLD.volume IS NULL) OR NEW.volume != OLD.volume THEN
             RAISE NOTICE 'update_load_space UPDATE NEW.volume != OLD.volume';
             result = get_tank_curve_volume(NEW.ship_id, NEW.space_id, NEW.volume);
-        ELSIF NEW.mass != OLD.mass OR
-                (NEW.mass IS NOT NULL AND OLD.mass IS NULL) THEN 
+        ELSIF (NEW.mass IS NOT NULL AND OLD.mass IS NULL) OR NEW.mass != OLD.mass THEN 
             RAISE NOTICE 'update_load_space UPDATE NEW.mass != OLD.mass';
             result = get_tank_curve_volume(NEW.ship_id, NEW.space_id, NEW.mass/NEW.density);
-        ELSIF NEW.level != OLD.level OR 
-                (NEW.level IS NOT NULL AND OLD.level IS NULL) THEN 
+        ELSIF (NEW.level IS NOT NULL AND OLD.level IS NULL) OR NEW.level != OLD.level THEN 
             RAISE NOTICE 'update_load_space UPDATE NEW.level != OLD.level';
             result = get_tank_curve_level(NEW.ship_id, NEW.space_id, NEW.level);
-        ELSIF NEW.density != OLD.density OR 
-                (NEW.density IS NOT NULL AND OLD.density IS NULL) THEN 
+        ELSIF (NEW.density IS NOT NULL AND OLD.density IS NULL) OR NEW.density != OLD.density THEN 
             RAISE NOTICE 'update_load_space UPDATE NEW.density != OLD.density';
             result = get_tank_curve_volume(NEW.ship_id, NEW.space_id, NEW.volume);
         ELSE 
