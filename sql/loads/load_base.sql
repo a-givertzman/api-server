@@ -4,7 +4,7 @@
 INSERT INTO load_space
   (ship_id, space_id, name, volume_max, density, bound_x1, bound_x2, bound_type)
 VALUES  
-  (1, 1, 'Грузовой трюм',   6215.9, 1.025, 25,   151, 'frame'),
+ -- (1, 1, 'Грузовой трюм',   6215.9, 1.025, 25,   151, 'frame'),
   (1, 2, 'Форпик Пр.Б',     58.8,   1.025, 179,  187, 'frame'),
   (1, 3, 'Форпик ЛБ',       58.8,   1.025, 179,  187, 'frame'),
   (1, 4, 'Балласт 1 Пр.Б',  48.7,   1.025, 153,  174, 'frame'),
@@ -49,8 +49,14 @@ VALUES
   (1, 43, 'Сточная цистерна 2 ЛБ',        0.7,  0.9, 10, 12, 'frame');
 
 INSERT INTO load_space
+  (ship_id, space_id, name, volume_max, bound_x1, bound_x2, bound_type)
+VALUES  
+  (1, 1, 'Грузовой трюм',  6215.9,  25,   151, 'frame');
+
+INSERT INTO load_space
   (ship_id, space_id, name, mass, bound_x1, bound_x2, bound_type, mass_shift_x, mass_shift_y, mass_shift_z)
 VALUES    
   (1, 47, 'Экипаж и багаж',     1.80, 44.31,  46.31,  'm',      45.31,  -4.46,  7.70),
   (1, 48, 'Провизия',           0,    40.21,  42.21,  'm',      41.21,  4.60,   8.15),
-  (1, 49, 'Зерновая переборка', 0,    25,     30,     'frame',  -42.64, 0,      4.53);
+  (1, 49, 'Зерновая переборка', 0,    25,     30,     'frame',  -42.64, 0,      4.53),
+  (1, 50, 'Палубный груз',      0,    25,     151,     'frame',  0,      0,      -10.3);
