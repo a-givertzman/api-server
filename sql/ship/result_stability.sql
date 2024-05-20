@@ -2,15 +2,18 @@
 DROP TABLE IF EXISTS result_stability;
 
 CREATE TABLE IF NOT EXISTS result_stability (
-  id INT GENERATED ALWAYS AS IDENTITY,
-  title TEXT NOT NULL,
+  id INT NOT NULL,
+  title_rus TEXT NOT NULL,
+  title_eng TEXT NOT NULL,
   value1 FLOAT8,
   value2 FLOAT8,
   relation TEXT,
   unit TEXT,
   description TEXT,
   CONSTRAINT result_stability_pk PRIMARY KEY (id),
-  CONSTRAINT result_stability_check_title CHECK(char_length(title) <= 100),
+  CONSTRAINT result_stability_id_unique UNIQUE (id),
+  CONSTRAINT result_stability_check_title_rus CHECK(char_length(title_rus) <= 100),
+  CONSTRAINT result_stability_check_ttitle_eng CHECK(char_length(title_eng) <= 100),
   CONSTRAINT result_stability_check_relation CHECK(char_length(relation) <= 50),
   CONSTRAINT result_stability_check_unit CHECK(char_length(unit) <= 50),
   CONSTRAINT result_stability_check_description CHECK(char_length(description) <= 1000)
@@ -19,21 +22,22 @@ CREATE TABLE IF NOT EXISTS result_stability (
 TRUNCATE TABLE result_stability;
 
 INSERT INTO result_stability
-  (title, value1, value2, relation)
+  (id, title_rus, title_eng, relation)
 VALUES
-  ('Критерий погоды K', 3.6, 1, '>='),
-  ('Критерий ускорения 𝐾∗', 35.0, 30, '>=');
+  (1, 'Критерий погоды', 'Weather criterion', '>='),
+  (10, 'Критерий ускорения', 'Acceleration criterion', '>=');
 
 INSERT INTO result_stability
-  (title, value1, value2, relation, unit)
+  (id, title_rus, title_eng, relation, unit)
 VALUES
-  ('Критерий погоды K', 3.6, 1, '>=', NULL),
-  ('Статическй угол крена θ𝑤1', 11.3, 16.0, '<=', 'deg'),
-  ('Площадь DSO 0-30', 0.1, 0.055, '>=', 'm*rad'),
-  ('Площадь DSO 0-40', 0.2, 0.09, '>=', 'm*rad'),
-  ('Площадь DSO 30-40', 0.05, 0.03, '>=', 'm*rad'),
-  ('Макс. плечо DSO', 1.5, 0.25, '>=', 'm'),
-  ('Угол соотв. макс. DSO', 35.0, 30, '>=', 'deg'),
-  ('Исп. метацентрическая высота h', 0.5, 0.15, '>=', 'm'),
-  ('Крен на циркуляции', 35.0, 30, '>=', 'deg'),
-  ('Смещение зерна, А', 0.1, 0.075, '>=', 'm*rad');
+  (2, 'Статический крен от ветра', 'Wind static heel', '<=', 'deg'),
+  (3, 'Площадь ДСО до 30°', 'Area of LC up to 30°', '>=', 'm*rad'),
+  (4, 'Площадь ДСО до 40°', 'Area of LC up to 40°', '>=', 'm*rad'),
+  (5, 'Площадь ДСО от 30° до 40°', 'Area of LC between 30° & 40°', '>=', 'm*rad'),
+  (6, 'Максимальное плечо ДСО', 'Maximum LC', '>=', 'm'),
+  (7, 'Максимальное плечо ДСО при перевозке леса', 'Maximum LC with timber', '>=', 'm'),
+  (8, 'Максимальное плечо ДСО при обледенении', 'Maximum LC with icing', '>=', 'm'),
+  (9, 'Исправленная метацентрическая высота', 'Correction metacentric hight', '>=', 'm'),
+  (11, 'Крен на циркуляции', 'Heel on turning', '>=', 'deg'),
+  (12, 'Крен от смещения зерна', 'Heel from grain displacement', '>=', 'deg'),
+  (13, 'Площадь ДСО при смещении зерна', 'Area of LC from grain displacement', '>=', 'm*rad');

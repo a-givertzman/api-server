@@ -1,6 +1,8 @@
 -- Координаты и параметры отсеков и цистерн.
 -- По умолчанию все пустые
 
+TRUNCATE TABLE load_space;
+
 INSERT INTO load_space
   (ship_id, space_id, name, volume_max, density, bound_x1, bound_x2, bound_type)
 VALUES  
