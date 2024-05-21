@@ -7,29 +7,6 @@
 -- ([-]*)(\d*)[,](\d*)\s*\n([-]*)(\d*)[,](\d*)\s*\n([-]*)(\d*)[,](\d*)\s*\n([-]*)(\d*)[,](\d*)\s*\n([-]*)(\d*)[,](\d*)\s*\n([-]*)(\d*)[,](\d*)\s*\n([-]*)(\d*)[,](\d*)\s*\n([-]*)(\d*)[,](\d*)\s*\n([-]*)(\d*)[,](\d*)\s*\n([-]*)(\d*)[,](\d*)\s*\n([-]*)(\d*)[,](\d*)\s*\n([-]*)(\d*)[,](\d*)\s*\n([-]*)(\d*)[,](\d*)
 -- (1, xxx, $1$2.$3, $4$5.$6, $7$8.$9, $10$11.$12, $13$14.$15, $16$17.$18, $19$20.$21, $22$23.$24, $25$26.$27, $28$29.$30, $31$32.$33, $34$35.$36, $37$38.$39),
 
-DROP TABLE IF EXISTS tank_curve CASCADE;
-
-CREATE TABLE if not exists tank_curve (
-  id INT GENERATED ALWAYS AS IDENTITY,
-  project_id INT,
-  ship_id INT NOT NULL,
-  space_id INT NOT NULL,
-  level FLOAT8 NOT NULL,
-  volume FLOAT8 NOT NULL,
-  buoyancy_x FLOAT8 NOT NULL,
-  buoyancy_y FLOAT8 NOT NULL,
-  buoyancy_z FLOAT8 NOT NULL,
-  static_moment_x FLOAT8 NOT NULL,
-  static_moment_y FLOAT8 NOT NULL,
-  static_moment_z FLOAT8 NOT NULL,
-  area_vl FLOAT8 NOT NULL,
-  trans_inertia_moment_self FLOAT8 NOT NULL,
-  trans_inertia_moment_mov FLOAT8 NOT NULL,
-  long_inertia_moment_self FLOAT8 NOT NULL,
-  long_inertia_moment_mov FLOAT8 NOT NULL,
-  CONSTRAINT tank_curve_pk PRIMARY KEY (id),
-  CONSTRAINT tank_curve_key_unique UNIQUE (ship_id, space_id, level)
-);
 
 INSERT INTO tank_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, static_moment_x, static_moment_y, static_moment_z, area_vl, trans_inertia_moment_self, trans_inertia_moment_mov, long_inertia_moment_self, long_inertia_moment_mov)

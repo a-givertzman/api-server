@@ -6,3 +6,9 @@ services:                      # list of currently avalible API services
         path: 'db:5432'
         user: test
         pass: test
+    - executable-test-app:              # internal unique API service name
+        name: 'executable-test'  # the name of the exequtable (must be specified in the API request, field 'path')
+        type: bin                # the type of the service
+        path: 'extensions/bin/simple-executable'  # the path to the extension exequtable file
+        user: root               # can be used to restrict assecc to the python script
+        pass: root               # can be used to restrict assecc to the python script

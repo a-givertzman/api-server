@@ -11,8 +11,23 @@
 \i ./sql/ship/waterline_breadth.sql
 \i ./sql/ship/waterline_length.sql
 \i ./sql/frames/create.sql
-\i ./sql/frames/theoretical_583.sql
-\i ./sql/frames/physical.sql
+\i ./sql/frames/computed_frame_trigger.sql
+\i ./sql/loads/create.sql
+\i ./sql/loads/loads_trigger.sql
+\i ./sql/stability/coefficient_k.sql
+\i ./sql/stability/multipler_s.sql
+\i ./sql/stability/multipler_x1.sql
+\i ./sql/stability/multipler_x2.sql
+\i ./sql/stability/navigation_area.sql
+\i ./sql/stability/coefficient_k_theta.sql
+\i ./sql/stability/icing.sql
+\i ./sql/ship/delta_windage_area.sql
+\i ./sql/ship/delta_windage_moment.sql
+
+\i ./sql/result/criterion_stability.sql
+\i ./sql/result/result_stability.sql
+\i ./sql/result/result_strength.sql
+
 \i ./sql/frames/0.sql
 \i ./sql/frames/1.sql
 \i ./sql/frames/2.sql
@@ -34,26 +49,12 @@
 \i ./sql/frames/18.sql
 \i ./sql/frames/19.sql
 \i ./sql/frames/20.sql
-\i ./sql/loads/constant/create.sql
-\i ./sql/loads/load_create.sql
-\i ./sql/loads/tanks.sql
-\i ./sql/stability/coefficient_k.sql
-\i ./sql/stability/multipler_s.sql
-\i ./sql/stability/multipler_x1.sql
-\i ./sql/stability/multipler_x2.sql
-\i ./sql/stability/navigation_area.sql
-\i ./sql/stability/coefficient_k_theta.sql
-\i ./sql/stability/icing.sql
-\i ./sql/ship/delta_windage_area.sql
-\i ./sql/ship/delta_windage_moment.sql
-
 
 --triggers
 --\i ./sql/triggers/mass_sum.sql
 --\i ./sql/triggers/mass.sql
 --\i ./sql/triggers/volume.sql
 \i ./sql/triggers/water_density.sql
-\i ./sql/triggers/computed_frame.sql
 \i ./sql/triggers/loads.sql
 
 -- Data for ship

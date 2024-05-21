@@ -1,4 +1,3 @@
-
 -- Инициализация n_parts
 CREATE OR REPLACE FUNCTION init_n_parts () RETURNS TRIGGER 
 AS $init_n_parts$
@@ -102,10 +101,9 @@ BEGIN
 
     FOR index in 0..(n_parts-1) LOOP
         INSERT INTO
-            computed_frame (ship_id, index, key, value)
+            computed_frame (ship_id, index, start_x, end_x)
         VALUES
-            (changed_ship_id, index, 'start_x', length*index/n_parts),
-            (changed_ship_id, index, 'end_x', length*(index+1)/n_parts);
+            (changed_ship_id, index, length*index/n_parts, length*(index+1)/n_parts);
     END LOOP;
 
     RETURN NEW;
@@ -125,3 +123,4 @@ CREATE OR REPLACE TRIGGER check_update_n_parts
     FOR EACH ROW 
     WHEN (NEW.key = 'n_parts' OR NEW.key = 'length')
     EXECUTE FUNCTION update_computed_frame();
+
