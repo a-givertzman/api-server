@@ -1,4 +1,4 @@
--- Погруженные площади теоретических шпангоутов
+-- Теоретические шпангоуты
 INSERT INTO theoretical_frame
     (ship_id, frame_index, pos_x)
 VALUES

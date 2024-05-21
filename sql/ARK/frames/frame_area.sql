@@ -1,3 +1,4 @@
+-- Погруженные площади теоретических шпангоутов
 INSERT INTO frame_area
     (ship_id, frame_index, displacement, area)
 VALUES

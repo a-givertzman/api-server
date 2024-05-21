@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS result_stability (
   id INT GENERATED ALWAYS AS IDENTITY,
   project_id INT,
   ship_id INT NOT NULL,
-  criterions_id INT NOT NULL,
+  criterion_id INT NOT NULL,
   value1 FLOAT8,
   value2 FLOAT8,
   error_message TEXT,
