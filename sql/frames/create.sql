@@ -41,20 +41,20 @@ CREATE TABLE if not exists frame_area (
 );
 
 -- Рассчитанные шпации для расчета прочности
-DROP TABLE IF EXISTS computed_frame CASCADE;
+DROP TABLE IF EXISTS computed_frame_space CASCADE;
 
 CREATE TABLE
-    IF NOT EXISTS computed_frame (
+    IF NOT EXISTS computed_frame_space (
         id INT GENERATED ALWAYS AS IDENTITY,
         project_id INT,
         ship_id INT NOT NULL,
         index INT NOT NULL,
         start_x FLOAT8 NOT NULL,
         end_x FLOAT8 NOT NULL,
-        CONSTRAINT computed_frame_pk PRIMARY KEY (id),
-        CONSTRAINT computed_frame_index_unique UNIQUE (project_id, ship_id, index),
-        CONSTRAINT computed_frame_start_unique UNIQUE (project_id, ship_id, start_x),
-        CONSTRAINT computed_frame_end_unique UNIQUE (project_id, ship_id, end_x)
+        CONSTRAINT computed_frame_space_pk PRIMARY KEY (id),
+        CONSTRAINT computed_frame_space_index_unique UNIQUE (project_id, ship_id, index),
+        CONSTRAINT computed_frame_space_start_unique UNIQUE (project_id, ship_id, start_x),
+        CONSTRAINT computed_frame_space_end_unique UNIQUE (project_id, ship_id, end_x)
     );
 
 

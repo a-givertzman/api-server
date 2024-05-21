@@ -40,9 +40,9 @@ END;
 $init_n_parts$ LANGUAGE plpgsql;
 
 
--- Инициализация данных computed_frame
-CREATE OR REPLACE FUNCTION update_computed_frame () RETURNS TRIGGER 
-AS $update_computed_frame$
+-- Инициализация данных computed_frame_space
+CREATE OR REPLACE FUNCTION update_computed_frame_space () RETURNS TRIGGER 
+AS $update_computed_frame_space$
 DECLARE 
     changed_ship_id int;
     length real;
@@ -82,33 +82,33 @@ BEGIN
 
     IF ( length IS NULL ) 
     THEN
-        RAISE NOTICE 'update_computed_frame no length for ship_id:[%]', changed_ship_id;
+        RAISE NOTICE 'update_computed_frame_space no length for ship_id:[%]', changed_ship_id;
         RETURN NEW;
     END IF;
 
     IF ( n_parts IS NULL OR n_parts <= 0 ) 
     THEN
-        RAISE NOTICE 'update_computed_frame no n_parts for ship_id:[%]', changed_ship_id;
+        RAISE NOTICE 'update_computed_frame_space no n_parts for ship_id:[%]', changed_ship_id;
         RETURN NEW;
     END IF;
 
-    RAISE NOTICE 'update_computed_frame calculate frames with n_parts:[%] for ship_id:[%]', n_parts, changed_ship_id;
+    RAISE NOTICE 'update_computed_frame_space calculate frames with n_parts:[%] for ship_id:[%]', n_parts, changed_ship_id;
 
     DELETE FROM 
-        computed_frame 
+        computed_frame_space 
     WHERE 
         ship_id = changed_ship_id;
 
     FOR index in 0..(n_parts-1) LOOP
         INSERT INTO
-            computed_frame (ship_id, index, start_x, end_x)
+            computed_frame_space (ship_id, index, start_x, end_x)
         VALUES
             (changed_ship_id, index, length*index/n_parts, length*(index+1)/n_parts);
     END LOOP;
 
     RETURN NEW;
 END;
-$update_computed_frame$ LANGUAGE plpgsql;
+$update_computed_frame_space$ LANGUAGE plpgsql;
 
 CREATE OR REPLACE TRIGGER check_init_n_parts
     AFTER INSERT ON ship
@@ -122,5 +122,5 @@ CREATE OR REPLACE TRIGGER check_update_n_parts
     AFTER INSERT OR UPDATE ON ship
     FOR EACH ROW 
     WHEN (NEW.key = 'n_parts' OR NEW.key = 'length')
-    EXECUTE FUNCTION update_computed_frame();
+    EXECUTE FUNCTION update_computed_frame_space();
 
