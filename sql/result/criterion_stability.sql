@@ -28,7 +28,7 @@ INSERT INTO criterion_stability
   (id, title_rus, title_eng, relation)
 VALUES
   (1, 'Критерий погоды', 'Weather criterion', '>='),
-  (11, 'Критерий ускорения', 'Acceleration criterion', '>=');
+  (13, 'Критерий ускорения', 'Acceleration criterion', '>=');
 
 INSERT INTO criterion_stability
   (id, title_rus, title_eng, relation, unit_rus, unit_eng)
@@ -36,12 +36,15 @@ VALUES
   (2, 'Статический крен от ветра', 'Wind static heel', '<=', 'град', 'deg'),
   (3, 'Площадь ДСО до 30°', 'Area of LC up to 30°', '>=', 'м∙рад', 'm*rad'),
   (4, 'Площадь ДСО до 40°', 'Area of LC up to 40°', '>=', 'м∙рад', 'm*rad'),
-  (5, 'Площадь ДСО от 30° до 40°', 'Area of LC between 30° & 40°', '>=', 'м∙рад', 'm*rad'),
-  (6, 'Максимальное плечо ДСО', 'Maximum LC', '>=', 'м', 'm'),
-  (7, 'Максимальное плечо ДСО при перевозке леса', 'Maximum LC with timber', '>=', 'м', 'm'),
-  (8, 'Максимальное плечо ДСО при обледенении', 'Maximum LC with icing', '>=', 'м', 'm'),
-  (9, 'Максимальный угол ДСО', 'Heel with maximum LC', '>=', 'м', 'm'),  
-  (10, 'Исправленная метацентрическая высота', 'Correction metacentric hight', '>=', 'м', 'm'),
-  (12, 'Крен на циркуляции', 'Heel on turning', '>=', 'град', 'deg'),
-  (13, 'Крен от смещения зерна', 'Heel from grain displacement', '>=', 'град', 'deg'),
-  (14, 'Площадь ДСО при смещении зерна', 'Area of LC from grain displacement', '>=', 'м∙рад', 'm*rad');
+  (5, 'Площадь ДСО до θ_lmax', 'Area of LC up to θ_lmax', '>=', 'м∙рад', 'm*rad'),
+  (6, 'Площадь ДСО от 30° до 40°', 'Area of LC between 30° & 40°', '>=', 'м∙рад', 'm*rad'),
+  (7, 'Максимальное плечо ДСО', 'Maximum LC', '>=', 'м', 'm'),
+  (8, 'Максимальное плечо ДСО при перевозке леса', 'Maximum LC with timber', '>=', 'м', 'm'),
+  (9, 'Максимальное плечо ДСО при обледенении', 'Maximum LC with icing', '>=', 'м', 'm'),
+  (10, 'Максимальный угол ДСО', 'Heel with maximum LC', '>=', 'м', 'm'),  
+  (11, 'Максимальный угол ДСО', 'Heel with maximum LC', '>=', 'м', 'm'),  
+  (12, 'Исправленная метацентрическая высота', 'Min. metacentric height', '>=', 'м', 'm'),
+  (14, 'Крен на циркуляции', 'Heel on turning', '>=', 'град', 'deg'),
+  (15, 'Крен от смещения зерна', 'Heel from grain displacement', '>=', 'град', 'deg'),
+  (16, 'Площадь ДСО при смещении зерна', 'Area of LC from grain displacement', '>=', 'м∙рад', 'm*rad'),
+  (17, 'Минимальная метацентрическая высота деления на отсеки', 'Min. metacentric height due to subdivision index', '>=', 'м', 'm');
