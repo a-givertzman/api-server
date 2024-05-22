@@ -1,9 +1,9 @@
 -- Результат расчета остойчивости
-DROP TABLE IF EXISTS criterion_stability;
+DROP TABLE IF EXISTS criterion_stability CASCADE;
 
-DROP TYPE IF EXISTS relation_stability;
-DROP TYPE IF EXISTS unit_eng_stability;
-DROP TYPE IF EXISTS unit_rus_stability;
+DROP TYPE IF EXISTS relation_stability CASCADE;
+DROP TYPE IF EXISTS unit_eng_stability CASCADE;
+DROP TYPE IF EXISTS unit_rus_stability CASCADE;
 
 CREATE TYPE relation_stability as enum ('<=', '>=');
 CREATE TYPE unit_eng_stability as enum ('deg', 'm*rad', 'm');

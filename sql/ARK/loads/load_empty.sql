@@ -41,6 +41,7 @@ UPDATE load_space SET mass = 0 WHERE ship_id = 1 AND space_id = 39; -- Цист�
 UPDATE load_space SET mass = 0 WHERE ship_id = 1 AND space_id = 40; -- Цистерна нефтеостатков ДП
 UPDATE load_space SET mass = 0 WHERE ship_id = 1 AND space_id = 41; -- Шламовая цистерна Пр.Б
 UPDATE load_space SET mass = 0 WHERE ship_id = 1 AND space_id = 41; -- Сточная цистерна 1 ДП
+UPDATE load_space SET mass = 0 WHERE ship_id = 1 AND space_id = 42; -- Сточная цистерна 1 ДП
 UPDATE load_space SET mass = 0 WHERE ship_id = 1 AND space_id = 43; -- Сточная цистерна 2 ЛБ
 
 UPDATE load_space SET mass = 0 WHERE ship_id = 1 AND space_id = 47;  -- Экипаж и багаж
