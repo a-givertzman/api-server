@@ -1,6 +1,6 @@
-DROP TABLE IF EXISTS ship CASCADE;
+DROP TABLE IF EXISTS ship_parameters CASCADE;
 
-CREATE TABLE if not exists ship (
+CREATE TABLE if not exists ship_parameters (
   id INT GENERATED ALWAYS AS IDENTITY,
   project_id INT,
   ship_id INT NOT NULL,
@@ -9,16 +9,16 @@ CREATE TABLE if not exists ship (
   value_type TEXT NOT NULL,
   name TEXT NOT NULL,
   unit TEXT,
-  CONSTRAINT ship_pk PRIMARY KEY (id),
-  CONSTRAINT ship_unique UNIQUE (ship_id, key),
-  CONSTRAINT ship_key_check CHECK(char_length(key) > 0 AND char_length(key) <= 50),
-  CONSTRAINT ship_value_check CHECK(char_length(value) > 0 AND char_length(value) <= 50),
-  CONSTRAINT ship_type_check CHECK(char_length(value_type) > 0 AND char_length(value_type) <= 10),
-  CONSTRAINT ship_name_check CHECK(char_length(name) > 0 AND char_length(name) <= 50),
-  CONSTRAINT ship_unit_check CHECK(char_length(unit) <= 10)
+  CONSTRAINT ship_parameters_pk PRIMARY KEY (id),
+  CONSTRAINT ship_parameters_unique UNIQUE (ship_id, key),
+  CONSTRAINT ship_parameters_key_check CHECK(char_length(key) > 0 AND char_length(key) <= 50),
+  CONSTRAINT ship_parameters_value_check CHECK(char_length(value) > 0 AND char_length(value) <= 50),
+  CONSTRAINT ship_parameters_type_check CHECK(char_length(value_type) > 0 AND char_length(value_type) <= 10),
+  CONSTRAINT ship_parameters_name_check CHECK(char_length(name) > 0 AND char_length(name) <= 50),
+  CONSTRAINT ship_parameters_unit_check CHECK(char_length(unit) <= 10)
 );
 
-INSERT INTO ship
+INSERT INTO ship_parameters
   (ship_id, key, value, value_type, name, unit)
 VALUES
   (1, 'name', 'M/V "YURIY ARSHENEVSKIY"', 'text', 'Name of ship', NULL),
