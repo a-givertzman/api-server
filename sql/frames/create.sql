@@ -26,7 +26,21 @@ CREATE TABLE if not exists physical_frame (
   CONSTRAINT physical_frame_pos_unique UNIQUE (project_id, ship_id, pos_x)
 );
 
--- Погруженные площади теоретических шпангоутов
+-- Шпангоуты для бонжан
+DROP TABLE IF EXISTS bonjean_frame CASCADE;
+
+CREATE TABLE if not exists bonjean_frame (
+  id INT GENERATED ALWAYS AS IDENTITY,
+  project_id INT,
+  ship_id INT NOT NULL,
+  frame_index INT NOT NULL, 
+  pos_x FLOAT8 NOT NULL,
+  CONSTRAINT bonjean_frame_pk PRIMARY KEY (id),
+  CONSTRAINT bonjean_frame_index_unique UNIQUE (project_id, ship_id, frame_index),
+  CONSTRAINT bonjean_frame_pos_unique UNIQUE (project_id, ship_id, pos_x)
+);
+
+-- Погруженные площади шпангоутов
 DROP TABLE IF EXISTS frame_area CASCADE;
 
 CREATE TABLE if not exists frame_area (
