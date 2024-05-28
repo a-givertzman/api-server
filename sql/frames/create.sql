@@ -8,8 +8,8 @@ CREATE TABLE if not exists theoretical_frame (
   frame_index INT NOT NULL, 
   pos_x FLOAT8 NOT NULL,
   CONSTRAINT theoretical_frame_pk PRIMARY KEY (id),
-  CONSTRAINT theoretical_frame_index_unique UNIQUE (project_id, ship_id, frame_index),
-  CONSTRAINT theoretical_frame_pos_unique UNIQUE (project_id, ship_id, pos_x)
+  CONSTRAINT theoretical_frame_index_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, frame_index),
+  CONSTRAINT theoretical_frame_pos_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, pos_x)
 );
 
 -- Практические шпангоуты
@@ -22,8 +22,8 @@ CREATE TABLE if not exists physical_frame (
   frame_index INT NOT NULL, 
   pos_x FLOAT8 NOT NULL,
   CONSTRAINT physical_frame_pk PRIMARY KEY (id),
-  CONSTRAINT physical_frame_index_unique UNIQUE (project_id, ship_id, frame_index),
-  CONSTRAINT physical_frame_pos_unique UNIQUE (project_id, ship_id, pos_x)
+  CONSTRAINT physical_frame_index_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, frame_index),
+  CONSTRAINT physical_frame_pos_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, pos_x)
 );
 
 -- Шпангоуты для бонжан
@@ -36,8 +36,8 @@ CREATE TABLE if not exists bonjean_frame (
   frame_index INT NOT NULL, 
   pos_x FLOAT8 NOT NULL,
   CONSTRAINT bonjean_frame_pk PRIMARY KEY (id),
-  CONSTRAINT bonjean_frame_index_unique UNIQUE (project_id, ship_id, frame_index),
-  CONSTRAINT bonjean_frame_pos_unique UNIQUE (project_id, ship_id, pos_x)
+  CONSTRAINT bonjean_frame_index_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, frame_index),
+  CONSTRAINT bonjean_frame_pos_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, pos_x)
 );
 
 -- Погруженные площади шпангоутов
@@ -51,7 +51,7 @@ CREATE TABLE if not exists frame_area (
   displacement FLOAT8 NOT NULL,
   area FLOAT8 NOT NULL,
   CONSTRAINT frame_area_pk PRIMARY KEY (id),
-  CONSTRAINT frame_area_key_unique UNIQUE (project_id, ship_id, frame_index, displacement)
+  CONSTRAINT frame_area_key_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, frame_index, displacement)
 );
 
 -- Рассчитанные шпации для расчета прочности
@@ -66,9 +66,9 @@ CREATE TABLE
         start_x FLOAT8 NOT NULL,
         end_x FLOAT8 NOT NULL,
         CONSTRAINT computed_frame_space_pk PRIMARY KEY (id),
-        CONSTRAINT computed_frame_space_index_unique UNIQUE (project_id, ship_id, index),
-        CONSTRAINT computed_frame_space_start_unique UNIQUE (project_id, ship_id, start_x),
-        CONSTRAINT computed_frame_space_end_unique UNIQUE (project_id, ship_id, end_x)
+        CONSTRAINT computed_frame_space_index_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, index),
+        CONSTRAINT computed_frame_space_start_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, start_x),
+        CONSTRAINT computed_frame_space_end_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, end_x)
     );
 
 
