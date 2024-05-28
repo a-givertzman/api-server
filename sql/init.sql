@@ -15,6 +15,7 @@
 \i ./sql/frames/computed_frame_trigger.sql
 \i ./sql/loads/create.sql
 \i ./sql/loads/loads_trigger.sql
+\i ./sql/loads/loads_general.sql
 \i ./sql/stability/coefficient_k.sql
 \i ./sql/stability/multipler_s.sql
 \i ./sql/stability/multipler_x1.sql
