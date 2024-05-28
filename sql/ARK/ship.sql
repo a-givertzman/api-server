@@ -1,8 +1,14 @@
-INSERT INTO ship
+INSERT INTO ship_name
+  (name)
+VALUES
+  ('M/V "YURIY ARSHENEVSKIY"');  
+
+
+INSERT INTO ship_parameters
   (ship_id, key, value, value_type, name, unit)
 VALUES
   (1, 'name', 'M/V "YURIY ARSHENEVSKIY"', 'text', 'Name of ship', NULL),
-  (1, 'icing_stab', 'full', 'text', 'Type of icing', NULL),
+  (1, 'icing_stab', 'none', 'text', 'Type of icing', NULL),
   (1, 'navigation_area', 'R2', 'text', 'Type of navigation area', NULL),
   (1, 'ship_type', 'general dry cargo ship', 'text', 'Type of ship', NULL),
   (1, 'velocity', '16', 'real', 'Ship operating speed', 'm/s'),
