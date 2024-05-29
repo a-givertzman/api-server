@@ -1,6 +1,6 @@
 -- Погруженные площади теоретических шпангоутов
 INSERT INTO frame_area
-    (ship_id, frame_index, displacement, area)
+    (ship_id, frame_index, draft, area)
 VALUES
     (1, 0, 0.000, 0.00),
     (1, 0, 1.900, 0.84),

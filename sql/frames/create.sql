@@ -48,10 +48,10 @@ CREATE TABLE if not exists frame_area (
   project_id INT,
   ship_id INT NOT NULL,
   frame_index INT NOT NULL,
-  displacement FLOAT8 NOT NULL,
+  draft FLOAT8 NOT NULL,
   area FLOAT8 NOT NULL,
   CONSTRAINT frame_area_pk PRIMARY KEY (id),
-  CONSTRAINT frame_area_key_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, frame_index, displacement)
+  CONSTRAINT frame_area_key_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, frame_index, draft)
 );
 
 -- Рассчитанные шпации для расчета прочности
