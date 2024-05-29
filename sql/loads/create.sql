@@ -1,3 +1,13 @@
+-- Типы элементов погрузки корабля
+DROP TYPE IF EXISTS loading_type;
+
+CREATE TYPE loading_type AS ENUM (
+  'lightship',
+  'ballast',
+  'store',
+  'cargo'
+);
+
 -- Постоянная нагрузка на судно, распределенная по шпациям
 DROP TABLE IF EXISTS load_constant;
 
@@ -35,6 +45,7 @@ CREATE TABLE if not exists load_space (
   mass_shift_z FLOAT8,
   m_f_s_y FLOAT8,
   m_f_s_x FLOAT8,
+  type loading_type,
   CONSTRAINT load_space_pk PRIMARY KEY (id),
   CONSTRAINT load_space_id_unique UNIQUE (ship_id, space_id),
   CONSTRAINT load_space_name_unique UNIQUE (name),
@@ -98,6 +109,7 @@ CREATE TABLE if not exists cargo (
   vertical_area_shift_x FLOAT8,
   vertical_area_shift_y FLOAT8,
   vertical_area_shift_z FLOAT8,
+  type loading_type,
   CONSTRAINT cargo_pk PRIMARY KEY (id),
   CONSTRAINT cargo_name_unique UNIQUE (name),
   CONSTRAINT cargo_name_check CHECK(char_length(name) <= 50),
