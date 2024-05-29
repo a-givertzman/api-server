@@ -4,9 +4,9 @@
 TRUNCATE TABLE load_space;
 
 INSERT INTO load_space
-  (ship_id, space_id, name, volume_max, density, bound_x1, bound_x2, bound_type, type)
+  (ship_id, space_id, name, volume_max, density, bound_x1, bound_x2, bound_type, loading_type)
 VALUES  
- -- (1, 1, 'Грузовой трюм',   6215.9, 1.025, 25,   151, 'frame'),
+  -- (1, 1, 'Грузовой трюм',   6215.9, 1.025, 25,   151, 'frame', 'cargo'),
   (1, 2, 'Форпик Пр.Б',     58.8,   1.025, 179,  187, 'frame', 'ballast'),
   (1, 3, 'Форпик ЛБ',       58.8,   1.025, 179,  187, 'frame', 'ballast'),
   (1, 4, 'Балласт 1 Пр.Б',  48.7,   1.025, 153,  174, 'frame', 'ballast'),
@@ -51,12 +51,12 @@ VALUES
   (1, 43, 'Сточная цистерна 2 ЛБ',        0.7,  0.86, 10, 12, 'frame', 'store');
 
 INSERT INTO load_space
-  (ship_id, space_id, name, volume_max, bound_x1, bound_x2, bound_type, type)
+  (ship_id, space_id, name, volume_max, bound_x1, bound_x2, bound_type, loading_type)
 VALUES  
   (1, 1, 'Грузовой трюм',  6215.9,  25,   151, 'frame', 'cargo');
 
 INSERT INTO load_space
-  (ship_id, space_id, name, mass, bound_x1, bound_x2, bound_type, mass_shift_x, mass_shift_y, mass_shift_z, type)
+  (ship_id, space_id, name, mass, bound_x1, bound_x2, bound_type, mass_shift_x, mass_shift_y, mass_shift_z, loading_type)
 VALUES    
   (1, 47, 'Экипаж и багаж',     1.80, 44.31,  46.31,  'm',      45.31,  -4.46,  7.70, 'store'),
   (1, 48, 'Провизия',           0,    40.21,  42.21,  'm',      41.21,  4.60,   8.15, 'store'),
