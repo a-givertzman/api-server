@@ -47,14 +47,16 @@ CREATE TABLE if not exists load_space (
   m_f_s_x FLOAT8,
   type loading_type,
   CONSTRAINT load_space_pk PRIMARY KEY (id),
-  CONSTRAINT load_space_id_unique UNIQUE (ship_id, space_id),
-  CONSTRAINT load_space_name_unique UNIQUE (name),
+  CONSTRAINT load_space_id_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, space_id),
+  CONSTRAINT load_space_name_unique UNIQUE (project_id, ship_id, name),
   CONSTRAINT load_space_name_check CHECK(char_length(name) <= 50),
   CONSTRAINT load_space_bound_type_check CHECK(char_length(bound_type) <= 50),
   CONSTRAINT load_space_density_check CHECK(density IS NULL OR density > 0),
   CONSTRAINT load_space_volume_max_check CHECK(volume_max IS NULL OR volume_max > 0),
   CONSTRAINT load_space_mass_check CHECK(mass IS NULL OR mass >= 0),
-  CONSTRAINT load_space_volume_check CHECK(volume IS NULL OR volume >= 0)
+  CONSTRAINT load_space_volume_check CHECK(volume IS NULL OR volume >= 0),
+  CONSTRAINT load_space_bound_x_check CHECK(bound_x1 < bound_x2), 
+  CONSTRAINT load_space_mass_shift_x_check CHECK(mass_shift_x IS NULL OR (mass_shift_x >= bound_x1 AND mass_shift_x <= bound_x2))
 );
 
 
@@ -94,10 +96,11 @@ CREATE TABLE if not exists cargo (
   mass FLOAT8,
   bound_x1 FLOAT8 NOT NULL,
   bound_x2 FLOAT8 NOT NULL,
-  bound_y1 FLOAT8 NOT NULL,
-  bound_y2 FLOAT8 NOT NULL,
-  bound_z1 FLOAT8 NOT NULL,
-  bound_z2 FLOAT8 NOT NULL,
+  bound_type TEXT NOT NULL,
+  bound_y1 FLOAT8,
+  bound_y2 FLOAT8,
+  bound_z1 FLOAT8,
+  bound_z2 FLOAT8,
   mass_shift_x FLOAT8,
   mass_shift_y FLOAT8,
   mass_shift_z FLOAT8,
@@ -111,11 +114,23 @@ CREATE TABLE if not exists cargo (
   vertical_area_shift_z FLOAT8,
   type loading_type,
   CONSTRAINT cargo_pk PRIMARY KEY (id),
-  CONSTRAINT cargo_name_unique UNIQUE (name),
+  --CONSTRAINT cargo_name_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, name),
   CONSTRAINT cargo_name_check CHECK(char_length(name) <= 50),
   CONSTRAINT cargo_mass_check CHECK(mass IS NULL OR mass >= 0),
   CONSTRAINT cargo_horizontal_area_check CHECK(horizontal_area IS NULL OR horizontal_area >= 0),
-  CONSTRAINT cargo_vertical_area_check CHECK(vertical_area IS NULL OR vertical_area >= 0)
+  CONSTRAINT cargo_vertical_area_check CHECK(vertical_area IS NULL OR vertical_area >= 0),
+  CONSTRAINT cargo_bound_x_check CHECK(bound_x1 < bound_x2), 
+  CONSTRAINT cargo_mass_shift_x_check CHECK(mass_shift_x IS NULL OR (mass_shift_x >= bound_x1 AND mass_shift_x <= bound_x2)),
+  CONSTRAINT cargo_horizontal_area_shift_x_check CHECK(horizontal_area_shift_x IS NULL OR (horizontal_area_shift_x >= bound_x1 AND horizontal_area_shift_x <= bound_x2)),
+  CONSTRAINT cargo_vertical_area_shift_x_check CHECK(vertical_area_shift_x IS NULL OR (vertical_area_shift_x >= bound_x1 AND vertical_area_shift_x <= bound_x2)),
+  CONSTRAINT cargo_bound_y_check CHECK(bound_y1 IS NULL OR (bound_y1 < bound_y2)), 
+  CONSTRAINT cargo_mass_shift_y_check CHECK(mass_shift_y IS NULL OR bound_y1 IS NULL OR (mass_shift_y >= bound_y1 AND mass_shift_y <= bound_y2)),
+  CONSTRAINT cargo_horizontal_area_shift_y_check CHECK(horizontal_area_shift_y IS NULL OR bound_y1 IS NULL OR (horizontal_area_shift_y >= bound_y1 AND horizontal_area_shift_y <= bound_y2)),
+  CONSTRAINT cargo_vertical_area_shift_y_check CHECK(vertical_area_shift_y IS NULL OR bound_y1 IS NULL OR (vertical_area_shift_y >= bound_y1 AND vertical_area_shift_y <= bound_y2)),
+  CONSTRAINT cargo_bound_z_check CHECK(bound_z1 IS NULL OR (bound_z1 < bound_z2)), 
+  CONSTRAINT cargo_mass_shift_z_check CHECK(mass_shift_z IS NULL OR bound_z1 IS NULL OR (mass_shift_z >= bound_z1 AND mass_shift_z <= bound_z2)),
+  CONSTRAINT cargo_horizontal_area_shift_z_check CHECK(horizontal_area_shift_z IS NULL OR bound_z1 IS NULL OR (horizontal_area_shift_z >= bound_z1 AND horizontal_area_shift_z <= bound_z2)),
+  CONSTRAINT cargo_vertical_area_shift_z_check CHECK(vertical_area_shift_z IS NULL OR bound_z1 IS NULL OR (vertical_area_shift_z >= bound_z1 AND vertical_area_shift_z <= bound_z2))
 );
 
 

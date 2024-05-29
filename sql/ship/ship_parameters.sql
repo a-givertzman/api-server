@@ -32,7 +32,4 @@ VALUES
   (1, 'Center of mass shift x', '1.05', 'real', 'm'),
   (1, 'Center of mass shift y', '0', 'real', 'm'),
   (1, 'Center of mass shift z', '5.32', 'real', 'm'),
-  (1, 'Total windage area for Dmin', '1037.90', 'real', 'm^2'),
-  (1, 'Center of windage area shift x for Dmin', '3.98', 'real', 'm'),
-  (1, 'Center of windage area shift z for Dmin', '6.22', 'real', 'm'),
   (1, 'Draught min', '1.40', 'real', 'm');
