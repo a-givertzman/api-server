@@ -61,5 +61,5 @@ CREATE OR REPLACE TRIGGER check_update_ship
     EXECUTE FUNCTION check_water_density();
 
 CREATE OR REPLACE TRIGGER check_delete_ship
-    AFTER DELETE ON ship
+    AFTER DELETE ON ship_parameters
     EXECUTE FUNCTION check_water_density();
