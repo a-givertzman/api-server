@@ -7,7 +7,7 @@ CREATE TABLE if not exists entry_angle (
   key FLOAT8 NOT NULL,
   value FLOAT8 NOT NULL,
   CONSTRAINT entry_angle_pk PRIMARY KEY (id),
-  CONSTRAINT entry_angle_unique UNIQUE (ship_id, key)
+  CONSTRAINT entry_angle_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, key)
 );
 
 INSERT INTO  entry_angle

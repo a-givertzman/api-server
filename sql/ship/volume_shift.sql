@@ -10,7 +10,7 @@ CREATE TABLE if not exists volume_shift (
   key FLOAT8 NOT NULL,
   value FLOAT8 NOT NULL,
   CONSTRAINT volume_shift_pk PRIMARY KEY (id),
-  CONSTRAINT volume_shift_unique UNIQUE (ship_id, key),
+  CONSTRAINT volume_shift_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, key),
   CONSTRAINT volume_shift_key_check CHECK(key >= 0)
 );
 

@@ -8,7 +8,7 @@ CREATE TABLE if not exists waterline_breadth (
   key FLOAT8 NOT NULL,
   value FLOAT8 NOT NULL,
   CONSTRAINT waterline_breadth_pk PRIMARY KEY (id),
-  CONSTRAINT waterline_breadth_unique UNIQUE (ship_id, key),
+  CONSTRAINT waterline_breadth_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, key),
   CONSTRAINT waterline_breadth_key_check CHECK(key >= 0)
 );
 

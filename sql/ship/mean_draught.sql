@@ -8,7 +8,7 @@ CREATE TABLE if not exists mean_draught (
   key FLOAT8 NOT NULL,
   value FLOAT8 NOT NULL,
   CONSTRAINT mean_draught_pk PRIMARY KEY (id), 
-  CONSTRAINT mean_draught_unique UNIQUE (ship_id, key)
+  CONSTRAINT mean_draught_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, key)
 );
 
 INSERT INTO mean_draught

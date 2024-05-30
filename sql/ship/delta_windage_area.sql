@@ -7,7 +7,7 @@ CREATE TABLE if not exists delta_windage_area (
   key FLOAT8 NOT NULL,
   value FLOAT8 NOT NULL,
   CONSTRAINT delta_windage_area_pk PRIMARY KEY (id),
-  CONSTRAINT delta_windage_area_unique UNIQUE (ship_id, key),
+  CONSTRAINT delta_windage_area_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, key),
   CONSTRAINT delta_windage_area_key_check CHECK(key >= 0)
 );
 

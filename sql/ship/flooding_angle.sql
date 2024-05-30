@@ -7,7 +7,7 @@ CREATE TABLE if not exists  flooding_angle (
   key FLOAT8 NOT NULL,
   value FLOAT8 NOT NULL,
   CONSTRAINT flooding_angle_pk PRIMARY KEY (id),
-  CONSTRAINT flooding_angle_unique UNIQUE (ship_id, key)
+  CONSTRAINT flooding_angle_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, key)
 );
 
 INSERT INTO  flooding_angle

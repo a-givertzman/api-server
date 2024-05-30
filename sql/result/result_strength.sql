@@ -11,5 +11,5 @@ CREATE TABLE
         value_shear_force FLOAT8 NOT NULL,
         value_bending_moment FLOAT8 NOT NULL,
         CONSTRAINT result_strength_pk PRIMARY KEY (id),
-        CONSTRAINT result_strength_index_unique UNIQUE (ship_id, index)
+        CONSTRAINT result_strength_index_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, index)
     );

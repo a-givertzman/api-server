@@ -10,7 +10,7 @@ CREATE TABLE if not exists center_draught (
   value_y FLOAT8 NOT NULL,
   value_z FLOAT8 NOT NULL,
   CONSTRAINT center_draught_pk PRIMARY KEY (id),
-  CONSTRAINT center_draught_unique UNIQUE (ship_id, key)
+  CONSTRAINT center_draught_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, key)
 );
 
 INSERT INTO center_draught

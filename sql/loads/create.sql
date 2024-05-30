@@ -80,7 +80,7 @@ CREATE TABLE if not exists compartment_curve (
   long_inertia_moment_self FLOAT8 NOT NULL,
   long_inertia_moment_mov FLOAT8 NOT NULL,
   CONSTRAINT compartment_curve_pk PRIMARY KEY (id),
-  CONSTRAINT compartment_curve_key_unique UNIQUE (ship_id, space_id, level)
+  CONSTRAINT compartment_curve_key_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, space_id, level)
 );
 
 -- Координаты и параметры грузов

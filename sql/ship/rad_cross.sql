@@ -8,7 +8,7 @@ CREATE TABLE if not exists rad_cross (
   key FLOAT8 NOT NULL,
   value FLOAT8 NOT NULL,
   CONSTRAINT rad_cross_pk PRIMARY KEY (id),
-  CONSTRAINT rad_cross_unique UNIQUE (ship_id, key)
+  CONSTRAINT rad_cross_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, key)
 );
 
 INSERT INTO rad_cross

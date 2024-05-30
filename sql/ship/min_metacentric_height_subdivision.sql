@@ -8,7 +8,7 @@ CREATE TABLE if not exists min_metacentric_height_subdivision (
   key FLOAT8 NOT NULL,
   value FLOAT8 NOT NULL,
   CONSTRAINT min_metacentric_height_subdivision_pk PRIMARY KEY (id),
-  CONSTRAINT min_metacentric_height_subdivision_unique UNIQUE (ship_id, key)
+  CONSTRAINT min_metacentric_height_subdivision_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, key)
 );
 
 INSERT INTO min_metacentric_height_subdivision
