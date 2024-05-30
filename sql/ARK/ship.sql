@@ -16,6 +16,7 @@ VALUES
   (1, 'Keel area', '24.69', 'real', 'm^2'),
   (1, 'Ship hull length', '118.388', 'real', 'm'),
   (1, 'Ship hull width', '13.40', 'real', 'm'),
+  (1, 'X midship from Fr0', '59.194', 'real', 'm'),
   (1, 'Number of Parts', '20', 'int', NULL),
   (1, 'Center of mass shift x', '1.05', 'real', 'm'),
   (1, 'Center of mass shift y', '0', 'real', 'm'),
@@ -24,3 +25,5 @@ VALUES
   (1, 'Center of windage area shift x for Dmin', '3.98', 'real', 'm'),
   (1, 'Center of windage area shift z for Dmin', '6.22', 'real', 'm'),
   (1, 'Draught min', '1.40', 'real', 'm');
+
+

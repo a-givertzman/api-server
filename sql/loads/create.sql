@@ -19,13 +19,13 @@ CREATE TABLE if not exists load_constant (
   frame_end_index INT NOT NULL,
   mass FLOAT8 NOT NULL,
   CONSTRAINT load_constant_pk PRIMARY KEY (id),
-  CONSTRAINT load_space_bound_x_check CHECK(frame_start_index < frame_end_index)
+  CONSTRAINT compartment_bound_x_check CHECK(frame_start_index < frame_end_index)
 );
 
 -- Координаты и параметры отсеков и цистерн.
-DROP TABLE IF EXISTS load_space CASCADE;
+DROP TABLE IF EXISTS compartment CASCADE;
 
-CREATE TABLE if not exists load_space (
+CREATE TABLE if not exists compartment (
   id INT GENERATED ALWAYS AS IDENTITY,
   project_id INT,
   ship_id INT NOT NULL,
@@ -45,23 +45,23 @@ CREATE TABLE if not exists load_space (
   m_f_s_y FLOAT8,
   m_f_s_x FLOAT8,
   loading_type loading_type,
-  CONSTRAINT load_space_pk PRIMARY KEY (id),
-  CONSTRAINT load_space_id_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, space_id),
-  CONSTRAINT load_space_name_unique UNIQUE (project_id, ship_id, name),
-  CONSTRAINT load_space_name_check CHECK(char_length(name) <= 50),
-  CONSTRAINT load_space_bound_type_check CHECK(char_length(bound_type) <= 50),
-  CONSTRAINT load_space_density_check CHECK(density IS NULL OR density > 0),
-  CONSTRAINT load_space_volume_max_check CHECK(volume_max IS NULL OR volume_max > 0),
-  CONSTRAINT load_space_mass_check CHECK(mass IS NULL OR mass >= 0),
-  CONSTRAINT load_space_volume_check CHECK(volume IS NULL OR volume >= 0),
-  CONSTRAINT load_space_bound_x_check CHECK(bound_x1 < bound_x2)
+  CONSTRAINT compartment_pk PRIMARY KEY (id),
+  CONSTRAINT compartment_id_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, space_id),
+  CONSTRAINT compartment_name_unique UNIQUE (project_id, ship_id, name),
+  CONSTRAINT compartment_name_check CHECK(char_length(name) <= 50),
+  CONSTRAINT compartment_bound_type_check CHECK(char_length(bound_type) <= 50),
+  CONSTRAINT compartment_density_check CHECK(density IS NULL OR density > 0),
+  CONSTRAINT compartment_volume_max_check CHECK(volume_max IS NULL OR volume_max > 0),
+  CONSTRAINT compartment_mass_check CHECK(mass IS NULL OR mass >= 0),
+  CONSTRAINT compartment_volume_check CHECK(volume IS NULL OR volume >= 0),
+  CONSTRAINT compartment_bound_x_check CHECK(bound_x1 < bound_x2)
 );
 
 
 -- Элементы ЦГБ
-DROP TABLE IF EXISTS tank_curve CASCADE;
+DROP TABLE IF EXISTS compartment_curve CASCADE;
 
-CREATE TABLE if not exists tank_curve (
+CREATE TABLE if not exists compartment_curve (
   id INT GENERATED ALWAYS AS IDENTITY,
   project_id INT,
   ship_id INT NOT NULL,
@@ -79,8 +79,8 @@ CREATE TABLE if not exists tank_curve (
   trans_inertia_moment_mov FLOAT8 NOT NULL,
   long_inertia_moment_self FLOAT8 NOT NULL,
   long_inertia_moment_mov FLOAT8 NOT NULL,
-  CONSTRAINT tank_curve_pk PRIMARY KEY (id),
-  CONSTRAINT tank_curve_key_unique UNIQUE (ship_id, space_id, level)
+  CONSTRAINT compartment_curve_pk PRIMARY KEY (id),
+  CONSTRAINT compartment_curve_key_unique UNIQUE (ship_id, space_id, level)
 );
 
 -- Координаты и параметры грузов

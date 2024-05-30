@@ -1,5 +1,7 @@
 -- Постоянная нагрузка на судно, распределенная по шпациям
 -- корпус и оборудование 
+TRUNCATE TABLE cargo;
+
 INSERT INTO cargo
   (ship_id, name, mass, bound_x1, bound_x2, bound_type, loading_type)
 VALUES

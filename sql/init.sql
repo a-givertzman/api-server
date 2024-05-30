@@ -1,4 +1,5 @@
-\i ./sql/ship/ship.sql
+\i ./sql/ship/ship_name.sql
+\i ./sql/ship/ship_parameters.sql
 \i ./sql/ship/center_draught.sql
 \i ./sql/ship/center_waterline.sql
 \i ./sql/ship/mean_draught.sql
@@ -11,6 +12,8 @@
 \i ./sql/ship/waterline_breadth.sql
 \i ./sql/ship/waterline_length.sql
 \i ./sql/ship/min_metacentric_height_subdivision.sql
+\i ./sql/ship/delta_windage_area.sql
+\i ./sql/ship/delta_windage_moment.sql
 \i ./sql/frames/create.sql
 \i ./sql/frames/computed_frame_trigger.sql
 \i ./sql/loads/create.sql
@@ -23,34 +26,10 @@
 \i ./sql/stability/navigation_area.sql
 \i ./sql/stability/coefficient_k_theta.sql
 \i ./sql/stability/icing.sql
-\i ./sql/ship/delta_windage_area.sql
-\i ./sql/ship/delta_windage_moment.sql
 
 \i ./sql/result/criterion_stability.sql
 \i ./sql/result/result_stability.sql
 \i ./sql/result/result_strength.sql
-
-\i ./sql/frames/0.sql
-\i ./sql/frames/1.sql
-\i ./sql/frames/2.sql
-\i ./sql/frames/3.sql
-\i ./sql/frames/4.sql
-\i ./sql/frames/5.sql
-\i ./sql/frames/6.sql
-\i ./sql/frames/7.sql
-\i ./sql/frames/8.sql
-\i ./sql/frames/9.sql
-\i ./sql/frames/10.sql
-\i ./sql/frames/11.sql
-\i ./sql/frames/12.sql
-\i ./sql/frames/13.sql
-\i ./sql/frames/14.sql
-\i ./sql/frames/15.sql
-\i ./sql/frames/16.sql
-\i ./sql/frames/17.sql
-\i ./sql/frames/18.sql
-\i ./sql/frames/19.sql
-\i ./sql/frames/20.sql
 
 --triggers
 --\i ./sql/triggers/mass_sum.sql
@@ -60,6 +39,14 @@
 \i ./sql/triggers/loads.sql
 
 -- Data for ship
-\i ./sql/loads/load_base.sql
-\i ./sql/loads/load_sea_100.sql
-\i ./sql/loads/constant/hull.sql
+\i ./sql/ARK/ship.sql
+\i ./sql/ARK/frames/bonjean_frame.sql
+\i ./sql/ARK/frames/physical_frame.sql
+\i ./sql/ARK/frames/theoretical_frame.sql
+\i ./sql/ARK/frames/frame_area.sql
+\i ./sql/ARK/loads/load_base.sql
+\i ./sql/ARK/loads/protocol_66.sql
+\i ./sql/ARK/loads/hull.sql
+\i ./sql/loads/compartment_curve.sql
+\i ./sql/loads/protocol_66.sql
+

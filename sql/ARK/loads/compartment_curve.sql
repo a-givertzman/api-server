@@ -8,7 +8,7 @@
 -- (1, xxx, $1$2.$3, $4$5.$6, $7$8.$9, $10$11.$12, $13$14.$15, $16$17.$18, $19$20.$21, $22$23.$24, $25$26.$27, $28$29.$30, $31$32.$33, $34$35.$36, $37$38.$39),
 
 
-INSERT INTO tank_curve
+INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, static_moment_x, static_moment_y, static_moment_z, area_vl, trans_inertia_moment_self, trans_inertia_moment_mov, long_inertia_moment_self, long_inertia_moment_mov)
 VALUES
 

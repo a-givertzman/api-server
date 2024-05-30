@@ -16,14 +16,3 @@ CREATE TABLE if not exists ship_name (
   CONSTRAINT ship_name_imo_check CHECK(IMO > 999999 AND IMO <= 99999999),
   CONSTRAINT ship_name_mmsi_check CHECK(MMSI > 99999999 AND MMSI <= 999999999)
 );
-
-INSERT INTO ship_name
-  (name)
-VALUES
-  ('M/V "YURIY ARSHENEVSKIY"');  
-
-  INSERT INTO ship_name
-  (name, year_of_built, place_of_built, IMO, MMSI)
-VALUES
-  ('NV BROTHER 02', '2010', 'VIET NAM', 9582776, 352003398);  
-
