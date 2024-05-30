@@ -13,24 +13,24 @@ BEGIN
     INTO 
         changed_ship_id
     FROM 
-        ship
+        ship_parameters
     WHERE NOT ship_id IN (
         SELECT
             ship_id
         FROM 
-            ship
+            ship_parameters
         WHERE
-            key='n_parts'
+            key='Number of Parts'
     ); 
 
     IF ( changed_ship_id IS NOT NULL )
     THEN
         RAISE NOTICE 'init_n_parts ship_id:[%], set n_parts = 20', changed_ship_id;
         n_parts = 20;
-        INSERT INTO ship
-            (ship_id, key, value, value_type, name, unit)
+        INSERT INTO ship_parameters
+            (ship_id, key, value, value_type, unit)
         VALUES
-            (changed_ship_id, 'n_parts', n_parts, 'int', 'Number of Parts', NULL);
+            (changed_ship_id, 'Number of Parts', n_parts, 'int', NULL);
     ELSE
         RAISE NOTICE 'init_n_parts no ship_id without n_parts';
     END IF;
@@ -68,7 +68,7 @@ BEGIN
         ship_parameters s
     WHERE
         s.ship_id = changed_ship_id
-        AND key = 'length';
+        AND key = 'LDP';
 
     SELECT 
         value
@@ -78,7 +78,7 @@ BEGIN
         ship_parameters s
     WHERE
         s.ship_id = changed_ship_id
-        AND key = 'n_parts';
+        AND key = 'Number of Parts';
 
     IF ( length IS NULL ) 
     THEN
@@ -121,6 +121,6 @@ CREATE OR REPLACE TRIGGER check_delete_n_parts
 CREATE OR REPLACE TRIGGER check_update_n_parts
     AFTER INSERT OR UPDATE ON ship_parameters
     FOR EACH ROW 
-    WHEN (NEW.key = 'n_parts' OR NEW.key = 'length')
+    WHEN (NEW.key = 'Number of Parts' OR NEW.key = 'LDP')
     EXECUTE FUNCTION update_computed_frame_space();
 
