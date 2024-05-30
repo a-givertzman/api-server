@@ -54,8 +54,7 @@ CREATE TABLE if not exists load_space (
   CONSTRAINT load_space_volume_max_check CHECK(volume_max IS NULL OR volume_max > 0),
   CONSTRAINT load_space_mass_check CHECK(mass IS NULL OR mass >= 0),
   CONSTRAINT load_space_volume_check CHECK(volume IS NULL OR volume >= 0),
-  CONSTRAINT load_space_bound_x_check CHECK(bound_x1 < bound_x2), 
-  CONSTRAINT load_space_mass_shift_x_check CHECK(mass_shift_x IS NULL OR (mass_shift_x >= bound_x1 AND mass_shift_x <= bound_x2))
+  CONSTRAINT load_space_bound_x_check CHECK(bound_x1 < bound_x2)
 );
 
 

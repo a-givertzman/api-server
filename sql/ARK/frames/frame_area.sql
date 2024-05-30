@@ -115,7 +115,7 @@ VALUES
     (1, 0, 9.400, 38.30);
     
 INSERT INTO frame_area
-    (ship_id, frame_index, displacement, area)
+    (ship_id, frame_index, draft, area)
 VALUES
     (1, 1, 0.000, 0.01),
     (1, 1, 1.900, 10.63),
@@ -230,7 +230,7 @@ VALUES
     (1, 1, 9.400, 76.03);
     
 INSERT INTO frame_area
-    (ship_id, frame_index, displacement, area)
+    (ship_id, frame_index, draft, area)
 VALUES
     (1, 2, 0.000, 0.04),
     (1, 2, 1.900, 24.17),
@@ -345,7 +345,7 @@ VALUES
     (1, 2, 9.400, 90.06);
 
  INSERT INTO frame_area
-    (ship_id, frame_index, displacement, area)
+    (ship_id, frame_index, draft, area)
 VALUES
     (1, 3, 0.000, 0.13),
     (1, 3, 1.900, 25.52),
@@ -460,7 +460,7 @@ VALUES
     (1, 3, 9.400, 103.65);
     
 INSERT INTO frame_area
-    (ship_id, frame_index, displacement, area)
+    (ship_id, frame_index, draft, area)
 VALUES
     (1, 4, 0.000, 0.13),
     (1, 4, 1.900, 25.52),
@@ -575,7 +575,7 @@ VALUES
     (1, 4, 9.400, 106.28);
     
 INSERT INTO frame_area
-    (ship_id, frame_index, displacement, area)
+    (ship_id, frame_index, draft, area)
 VALUES
     (1, 5, 0.000, 0.08),
     (1, 5, 1.900, 25.52),
@@ -690,7 +690,7 @@ VALUES
     (1, 5, 9.400, 106.28);
     
 INSERT INTO frame_area
-    (ship_id, frame_index, displacement, area)
+    (ship_id, frame_index, draft, area)
 VALUES
     (1, 6, 0.000, 0.15),
     (1, 6, 1.900, 25.52),
@@ -805,7 +805,7 @@ VALUES
     (1, 6, 9.400, 106.28);
     
 INSERT INTO frame_area
-    (ship_id, frame_index, displacement, area)
+    (ship_id, frame_index, draft, area)
 VALUES
     (1, 7, 0.000, 0.13),
     (1, 7, 1.900, 25.52),
@@ -920,7 +920,7 @@ VALUES
     (1, 7, 9.400, 106.28);
     
 INSERT INTO frame_area
-    (ship_id, frame_index, displacement, area)
+    (ship_id, frame_index, draft, area)
 VALUES
     (1, 8, 0.000, 0.13),
     (1, 8, 1.900, 25.53),
@@ -1035,7 +1035,7 @@ VALUES
     (1, 8, 9.400, 106.28);
     
 INSERT INTO frame_area
-    (ship_id, frame_index, displacement, area)
+    (ship_id, frame_index, draft, area)
 VALUES
     (1, 9, 0.000, 0.27),
     (1, 9, 1.900, 25.53),
@@ -1150,7 +1150,7 @@ VALUES
     (1, 9, 9.400, 106.28);
     
 INSERT INTO frame_area
-    (ship_id, frame_index, displacement, area)
+    (ship_id, frame_index, draft, area)
 VALUES
     (1, 10, 0.000, 0.19),
     (1, 10, 1.900, 25.52),
@@ -1265,7 +1265,7 @@ VALUES
     (1, 10, 9.400, 106.28);
     
 INSERT INTO frame_area
-    (ship_id, frame_index, displacement, area)
+    (ship_id, frame_index, draft, area)
 VALUES
     (1, 11, 0.000, 0.13),
     (1, 11, 1.900, 25.52),
@@ -1380,7 +1380,7 @@ VALUES
     (1, 11, 9.400, 106.28);
     
 INSERT INTO frame_area
-    (ship_id, frame_index, displacement, area)
+    (ship_id, frame_index, draft, area)
 VALUES
     (1, 12, 0.000, 0.00),
     (1, 12, 1.900, 25.52),
@@ -1495,7 +1495,7 @@ VALUES
     (1, 12, 9.400, 106.28);
     
 INSERT INTO frame_area
-    (ship_id, frame_index, displacement, area)
+    (ship_id, frame_index, draft, area)
 VALUES
     (1, 13, 0.000, 0.00),
     (1, 13, 1.900, 25.52),
@@ -1610,7 +1610,7 @@ VALUES
     (1, 13, 9.400, 106.22);
     
 INSERT INTO frame_area
-    (ship_id, frame_index, displacement, area)
+    (ship_id, frame_index, draft, area)
 VALUES
     (1, 14, 0.000, 0.11),
     (1, 14, 1.900, 25.53),
@@ -1725,7 +1725,7 @@ VALUES
     (1, 14, 9.400, 106.37);
     
 INSERT INTO frame_area
-    (ship_id, frame_index, displacement, area)
+    (ship_id, frame_index, draft, area)
 VALUES
     (1, 15, 0.000, 0.10),
     (1, 15, 1.900, 25.66),
@@ -1840,7 +1840,7 @@ VALUES
     (1, 15, 9.400, 106.38);
     
 INSERT INTO frame_area
-    (ship_id, frame_index, displacement, area)
+    (ship_id, frame_index, draft, area)
 VALUES
     (1, 16, 0.000, 0.37),
     (1, 16, 1.900, 25.63),
@@ -1955,7 +1955,7 @@ VALUES
     (1, 16, 9.400, 106.39);
     
 INSERT INTO frame_area
-    (ship_id, frame_index, displacement, area)
+    (ship_id, frame_index, draft, area)
 VALUES
     (1, 17, 0.000, 0.00),
     (1, 17, 1.900, 25.50),
@@ -2070,7 +2070,7 @@ VALUES
     (1, 17, 9.400, 115.56);
     
 INSERT INTO frame_area
-    (ship_id, frame_index, displacement, area)
+    (ship_id, frame_index, draft, area)
 VALUES
     (1, 18, 0.000, 0.08),
     (1, 18, 1.900, 23.29),
@@ -2185,7 +2185,7 @@ VALUES
     (1, 18, 9.400, 123.64);
     
 INSERT INTO frame_area
-    (ship_id, frame_index, displacement, area)
+    (ship_id, frame_index, draft, area)
 VALUES
     (1, 19, 0.000, 0.00),
     (1, 19, 1.900, 13.04),
@@ -2300,7 +2300,7 @@ VALUES
     (1, 19, 9.400, 101.54);
     
 INSERT INTO frame_area
-    (ship_id, frame_index, displacement, area)
+    (ship_id, frame_index, draft, area)
 VALUES
     (1, 20, 0.000, 0.00),
     (1, 20, 1.900, 1.40),
