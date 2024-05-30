@@ -37,7 +37,6 @@
 --\i ./sql/triggers/mass.sql
 --\i ./sql/triggers/volume.sql
 \i ./sql/triggers/water_density.sql
-\i ./sql/triggers/loads.sql
 
 -- Data for ship
 \i ./sql/ARK/ship.sql
@@ -49,6 +48,6 @@
 \i ./sql/ARK/loads/load_base.sql
 \i ./sql/ARK/loads/protocol_66.sql
 \i ./sql/ARK/loads/hull.sql
-\i ./sql/loads/compartment_curve.sql
-\i ./sql/loads/protocol_66.sql
+\i ./sql/ARK/loads/compartment_curve.sql
+\i ./sql/ARK/loads/protocol_66.sql
 

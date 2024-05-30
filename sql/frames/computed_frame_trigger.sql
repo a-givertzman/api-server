@@ -65,7 +65,7 @@ BEGIN
     INTO 
         length
     FROM 
-        ship s
+        ship_parameters s
     WHERE
         s.ship_id = changed_ship_id
         AND key = 'length';
@@ -75,7 +75,7 @@ BEGIN
     INTO 
         n_parts
     FROM 
-        ship s
+        ship_parameters s
     WHERE
         s.ship_id = changed_ship_id
         AND key = 'n_parts';
@@ -111,15 +111,15 @@ END;
 $update_computed_frame_space$ LANGUAGE plpgsql;
 
 CREATE OR REPLACE TRIGGER check_init_n_parts
-    AFTER INSERT ON ship
+    AFTER INSERT ON ship_parameters
     EXECUTE FUNCTION init_n_parts();
 
 CREATE OR REPLACE TRIGGER check_delete_n_parts
-    AFTER DELETE ON ship
+    AFTER DELETE ON ship_parameters
     EXECUTE FUNCTION init_n_parts();
 
 CREATE OR REPLACE TRIGGER check_update_n_parts
-    AFTER INSERT OR UPDATE ON ship
+    AFTER INSERT OR UPDATE ON ship_parameters
     FOR EACH ROW 
     WHEN (NEW.key = 'n_parts' OR NEW.key = 'length')
     EXECUTE FUNCTION update_computed_frame_space();
