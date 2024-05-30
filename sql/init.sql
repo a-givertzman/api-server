@@ -30,6 +30,7 @@
 \i ./sql/result/criterion_stability.sql
 \i ./sql/result/result_stability.sql
 \i ./sql/result/result_strength.sql
+\i ./sql/result/strength_force_limit.sql
 
 --triggers
 --\i ./sql/triggers/mass_sum.sql
@@ -40,6 +41,7 @@
 
 -- Data for ship
 \i ./sql/ARK/ship.sql
+\i ./sql/ARK/strength_force_limit.sql
 \i ./sql/ARK/frames/bonjean_frame.sql
 \i ./sql/ARK/frames/physical_frame.sql
 \i ./sql/ARK/frames/theoretical_frame.sql
