@@ -15,11 +15,12 @@ CREATE TABLE if not exists load_constant (
   id INT GENERATED ALWAYS AS IDENTITY,
   project_id INT,
   ship_id INT NOT NULL,
-  frame_start_index INT NOT NULL,
-  frame_end_index INT NOT NULL,
   mass FLOAT8 NOT NULL,
+  bound_x1 FLOAT8 NOT NULL,
+  bound_x2 FLOAT8 NOT NULL,
+  bound_type TEXT NOT NULL,
   CONSTRAINT load_constant_pk PRIMARY KEY (id),
-  CONSTRAINT compartment_bound_x_check CHECK(frame_start_index < frame_end_index)
+  CONSTRAINT compartment_bound_x_check CHECK(bound_x1 < bound_x2)
 );
 
 -- Координаты и параметры отсеков и цистерн.
