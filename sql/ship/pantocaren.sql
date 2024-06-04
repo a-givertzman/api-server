@@ -33,7 +33,7 @@ CREATE TABLE if not exists pantocaren (
   draught FLOAT8 NOT NULL, 
   roll FLOAT8 NOT NULL,
   moment FLOAT8 NOT NULL,
-  CONSTRAINT pantocaren_pk PRIMARY KEY (id)
+  CONSTRAINT pantocaren_pk PRIMARY KEY (id),
   CONSTRAINT pantocaren_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, draught, roll)
 );
 
