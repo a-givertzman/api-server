@@ -68,7 +68,7 @@ BEGIN
         ship_parameters s
     WHERE
         s.ship_id = changed_ship_id
-        AND key = 'LDP';
+        AND key = 'LBP';
 
     SELECT 
         value
@@ -121,6 +121,6 @@ CREATE OR REPLACE TRIGGER check_delete_n_parts
 CREATE OR REPLACE TRIGGER check_update_n_parts
     AFTER INSERT OR UPDATE ON ship_parameters
     FOR EACH ROW 
-    WHEN (NEW.key = 'Number of Parts' OR NEW.key = 'LDP')
+    WHEN (NEW.key = 'Number of Parts' OR NEW.key = 'LBP')
     EXECUTE FUNCTION update_computed_frame_space();
 
