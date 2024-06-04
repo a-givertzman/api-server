@@ -1,17 +1,3 @@
--- Теоретические шпангоуты
-DROP TABLE IF EXISTS theoretical_frame CASCADE;
-
-CREATE TABLE if not exists theoretical_frame (
-  id INT GENERATED ALWAYS AS IDENTITY,
-  project_id INT,
-  ship_id INT NOT NULL,
-  frame_index INT NOT NULL, 
-  pos_x FLOAT8 NOT NULL,
-  CONSTRAINT theoretical_frame_pk PRIMARY KEY (id),
-  CONSTRAINT theoretical_frame_index_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, frame_index),
-  CONSTRAINT theoretical_frame_pos_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, pos_x)
-);
-
 -- Практические шпангоуты
 DROP TABLE IF EXISTS physical_frame CASCADE;
 
