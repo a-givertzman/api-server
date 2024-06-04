@@ -4,7 +4,7 @@
 \i ./sql/ship/center_waterline.sql
 \i ./sql/ship/mean_draught.sql
 \i ./sql/ship/pantocaren.sql
-\i ./sql/ship/rad_cross.sql
+\i ./sql/ship/rad_trans.sql
 \i ./sql/ship/rad_long.sql
 \i ./sql/ship/flooding_angle.sql
 \i ./sql/ship/entry_angle.sql
