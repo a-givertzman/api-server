@@ -3,7 +3,8 @@
 
 ############ LIST OF MANAGED VARIABLES REQUIRED FOR DEB PACKAGE ############
 name=api-server
-version=0.1.14
+# get package version from env or set default
+version="${VERSION:-1.0.0}"
 descriptionShort="Some short description"
 descriptionExtended="Some extended description of the package"
 changeDetails="Some changes here"

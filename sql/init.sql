@@ -14,6 +14,7 @@
 \i ./sql/ship/min_metacentric_height_subdivision.sql
 \i ./sql/ship/delta_windage_area.sql
 \i ./sql/ship/delta_windage_moment.sql
+\i ./sql/ship/metacentic_height_limits.sql
 \i ./sql/frames/create.sql
 \i ./sql/frames/computed_frame_trigger.sql
 \i ./sql/area/horizontal_area_strength.sql
