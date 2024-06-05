@@ -35,6 +35,8 @@
 \i ./sql/result/result_stability.sql
 \i ./sql/result/result_strength.sql
 \i ./sql/result/strength_force_limit.sql
+\i ./sql/result/parameter_head.sql
+\i ./sql/result/parameter_data.sql
 
 --triggers
 --\i ./sql/triggers/mass_sum.sql

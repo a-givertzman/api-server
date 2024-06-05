@@ -6,8 +6,8 @@ DROP TYPE IF EXISTS unit_eng_stability CASCADE;
 DROP TYPE IF EXISTS unit_rus_stability CASCADE;
 
 CREATE TYPE relation_stability as enum ('<=', '>=');
-CREATE TYPE unit_eng_stability as enum ('deg', 'm*rad', 'm');
-CREATE TYPE unit_rus_stability as enum ('град', 'м∙рад', 'м');
+CREATE TYPE unit_eng_stability as enum ('deg', 'm*rad', 'm', 't', 't∙m', 't∙m/sm');
+CREATE TYPE unit_rus_stability as enum ('град', 'м∙рад', 'м', 'т', 'т∙м', 'т∙м/см');
 
 CREATE TABLE IF NOT EXISTS criterion_stability (
   id INT NOT NULL,
