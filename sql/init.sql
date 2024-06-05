@@ -47,7 +47,6 @@
 \i ./sql/ARK/strength_force_limit.sql
 \i ./sql/ARK/frames/bonjean_frame.sql
 \i ./sql/ARK/frames/physical_frame.sql
-\i ./sql/ARK/frames/theoretical_frame.sql
 \i ./sql/ARK/frames/frame_area.sql
 \i ./sql/ARK/loads/load_base.sql
 \i ./sql/ARK/loads/protocol_66.sql
