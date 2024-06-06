@@ -47,7 +47,7 @@ UPDATE compartment SET mass = 0.12 WHERE ship_id = 1 AND space_id = 48;
 
 UPDATE compartment SET mass = 24.0 WHERE ship_id = 1 AND space_id = 49;  -- Зерновая переборка
 
-UPDATE compartment SET   mass = 2304, 
+UPDATE compartment SET mass = 2304, 
                         bound_x1 = 34, 
                         bound_x2 = 147,
                         mass_shift_x = -1.5, 
@@ -55,18 +55,8 @@ UPDATE compartment SET   mass = 2304,
                         mass_shift_z = 3.4
 WHERE ship_id = 1 AND space_id = 1;   -- Грузовой трюм
 
-UPDATE compartment SET   mass = 2304, 
-                        bound_x1 = 34, 
-                        bound_x2 = 147,
-                        mass_shift_x = -1.5, 
-                        mass_shift_y = 0, 
-                        mass_shift_z = 3.4
-WHERE ship_id = 1 AND space_id = 50;   -- Грузовой трюм
-
-UPDATE compartment SET   mass = 864,
-                        bound_x1 = 31, 
-                        bound_x2 = 135,
-                        mass_shift_x = 0, 
-                        mass_shift_y = 0, 
-                        mass_shift_z = 10.3
-WHERE ship_id = 1 AND space_id = 50;  -- Палубный груз
+TRUNCATE TABLE cargo;
+INSERT INTO cargo
+  (ship_id, name, mass, bound_x1, bound_x2, bound_type, mass_shift_x, mass_shift_y, mass_shift_z, loading_type)
+VALUES    
+  (1, 'Палубный груз',   864,    25,     151,     'frame',  0,      0,      -10.3, 'cargo');
