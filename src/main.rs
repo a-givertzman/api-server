@@ -7,13 +7,8 @@ mod core_;
 mod config;
 mod api_server;
 mod tcp_server;
-mod python_query;
-mod executable_query;
 mod api_service_type;
-mod sql_query;
-mod sql_query_sqlite;
-mod sql_query_postgre;
-mod sql_query_mysql;
+mod query;
 mod tcp_connection;
 
 use std::{path::{Path, PathBuf}, sync::{Arc, Mutex}};
