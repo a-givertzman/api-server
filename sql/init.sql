@@ -22,7 +22,6 @@
 \i ./sql/area/vertical_area.sql
 \i ./sql/loads/create.sql
 \i ./sql/loads/loads_trigger.sql
-\i ./sql/loads/loads_general.sql
 \i ./sql/stability/coefficient_k.sql
 \i ./sql/stability/multipler_s.sql
 \i ./sql/stability/multipler_x1.sql
@@ -30,14 +29,15 @@
 \i ./sql/stability/navigation_area.sql
 \i ./sql/stability/coefficient_k_theta.sql
 \i ./sql/stability/icing.sql
-
+-- Tables with result of calculating
 \i ./sql/result/criterion_stability.sql
 \i ./sql/result/result_stability.sql
 \i ./sql/result/result_strength.sql
 \i ./sql/result/strength_force_limit.sql
 \i ./sql/result/parameter_head.sql
 \i ./sql/result/parameter_data.sql
-
+\i ./sql/result/loads_general.sql
+\i ./sql/result/heel_trim_general.sql
 --triggers
 --\i ./sql/triggers/mass_sum.sql
 --\i ./sql/triggers/mass.sql
