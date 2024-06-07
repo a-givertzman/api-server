@@ -1,5 +1,4 @@
 -- протокол 66
-UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 1;
 UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 2;
 UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 3;
 UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 4;
@@ -43,5 +42,15 @@ UPDATE compartment SET mass = 32.84 WHERE ship_id = 1 AND space_id = 39;
 UPDATE compartment SET mass = 1.80 WHERE ship_id = 1 AND space_id = 47;
 UPDATE compartment SET mass = 1.2 WHERE ship_id = 1 AND space_id = 48;
 
-UPDATE compartment SET mass = 24.0 WHERE ship_id = 1 AND space_id = 49;
+UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 1;
+UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 50;
+UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 51;
+UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 52;
+UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 53;
+UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 54;
+
+UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 55;
+UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 56;
+UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 57;
+UPDATE compartment SET mass = 24.0 WHERE ship_id = 1 AND space_id = 58;
 
