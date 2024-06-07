@@ -1,0 +1,107 @@
+name: Create release
+
+on:
+  workflow_dispatch:
+
+env: 
+  TERM: dumb
+  CARGO_TERM_COLOR: always
+  API_SERVER_ADDR: '0.0.0.0'
+  API_SERVER_PORT: 8080
+  POSTGRES_PASSWORD: postgres
+  PYTHON_VERSION: 'python3.10'
+
+jobs:
+  build_and_test:
+    name: Creating new release
+    runs-on: ubuntu-latest
+    # strategy:
+    #   matrix:
+    #     toolchain:
+    #       - stable
+    #       - beta
+    #       - nightly
+
+
+    # Service containers to run with `container-job`
+    # services:
+    #   # Label used to access the service container
+    #   postgres:
+    #     # Docker Hub image
+    #     image: postgres
+    #     # Provide the password for postgres
+    #     env:
+    #       POSTGRES_PASSWORD: postgres
+    #     # Set health checks to wait until postgres has started
+    #     options: >-
+    #       --health-cmd pg_isready
+    #       --health-interval 10s
+    #       --health-timeout 5s
+    #       --health-retries 5
+    #     ports:
+    #       # Maps tcp port 5432 on service container to the host
+    #       - 5432:5432
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v2      
+        # uses: actions/checkout@v3
+
+      # - name: Install stable toolchain
+      #   uses: actions-rs/toolchain@v1
+      #   with:
+      #     # profile: minimal
+      #     toolchain: stable
+      #     override: true
+
+      # - name: Static analisis
+      #   run: |
+      #     cargo check
+      # # - run: rustup update ${{ matrix.toolchain }} && rustup default ${{ matrix.toolchain }}
+      # # - run: cargo build --release
+
+      # - name: Unit tests
+      #   run: cargo test -- --show-output
+
+      # - name: Integration tests
+      #   run: |
+      #     src/tests/integration/run_tests.sh
+
+      - name: Update version number in the Cargo.toml
+        run: |
+          old_version_var=$(cat ./Cargo.toml | sed -rn 's/^version[\t ]*=[\t ]*\"([0-9]+\.[0-9]+\.[0-9]+)\"\s*$/\1/gp')
+          echo "old version: $old_version_var"
+          echo "new build: ${{ github.run_number }}"
+          sed -i -r "s/^(version[\t ]*=[\t ]*\"[0-9]+\.[0-9]+\.)[0-9]+\"\s*$/\1${{ github.run_number }}\"/g" ./Cargo.toml
+          new_version_var=$(cat ./Cargo.toml | sed -rn 's/^version[\t ]*=[\t ]*\"([0-9]+\.[0-9]+\.[0-9]+)\"\s*$/\1/gp')
+          echo "new version: $new_version_var"
+          echo "NEW_VERSION=$new_version_var" >> $GITHUB_ENV
+          echo "new version: ${{ env.NEW_VERSION }}"
+
+      - name: Build release
+        run: cargo build --release
+  
+      - name: Commit new version ${{ env.NEW_VERSION }}
+        run: |
+          echo "on repositiry: ${{ github.repository }}"
+          git config --global user.name 'anton.lobanov'
+          git config --global user.email 'lobanov.anton@gmail.com'
+          git remote set-url origin https://a-givertzman:${{ secrets.RELEASES_TOKEN }}@github.com/${{ github.repository }}
+          git commit -am "Automated version update to: ${{ env.NEW_VERSION }}"
+
+      - name: Push to protected branch "master"
+        uses: CasperWA/push-protected@v2
+        with:
+          token: ${{ secrets.RELEASES_TOKEN }}
+          branch: master
+          unprotect_reviews: true
+
+      - name: Zip artifact for deployment
+        run: zip ./target/release/release.zip -r ./target/release/* ./config.yaml ./extensions/*
+
+      - name: Publish release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "./target/release/release.zip"
+          tag: internal_v${{ env.NEW_VERSION }}
+          token: ${{ secrets.RELEASES_TOKEN }}
+  

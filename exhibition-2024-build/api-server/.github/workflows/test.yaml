@@ -1,0 +1,70 @@
+name: Cargo Tests
+
+on:
+  # push:
+  pull_request:
+
+env: 
+  TERM: dumb
+  CARGO_TERM_COLOR: always
+  API_SERVER_ADDR: '0.0.0.0'
+  API_SERVER_PORT: 8080
+  POSTGRES_PASSWORD: postgres
+  PYTHON_VERSION: 'python3.10'
+
+jobs:
+  build_and_test:
+    name: Testing
+    runs-on: ubuntu-latest
+    # strategy:
+    #   matrix:
+    #     toolchain:
+    #       - stable
+    #       - beta
+    #       - nightly
+
+
+    # Service containers to run with `container-job`
+    services:
+      # Label used to access the service container
+      postgres:
+        # Docker Hub image
+        image: postgres
+        # Provide the password for postgres
+        env:
+          POSTGRES_PASSWORD: postgres
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          # Maps tcp port 5432 on service container to the host
+          - 5432:5432
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v2      
+        # uses: actions/checkout@v3
+
+
+      - name: Install stable toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          # profile: minimal
+          toolchain: stable
+          override: true
+
+      # - name: Static analisis
+      #   run: |
+      #     cargo check
+      # # - run: rustup update ${{ matrix.toolchain }} && rustup default ${{ matrix.toolchain }}
+      # # - run: cargo build --release
+
+      - name: Unit tests
+        run: cargo test -- --show-output
+  
+
+      - name: Integration tests
+        run: |
+          src/tests/integration/run_tests.sh
