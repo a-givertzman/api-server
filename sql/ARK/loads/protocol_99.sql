@@ -1,4 +1,5 @@
--- протокол 99UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 2;      -- Форпик Пр.Б
+-- протокол 99
+UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 2;      -- Форпик Пр.Б
 UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 3;      -- Форпик ЛБ
 UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 4;      -- Балласт 1 Пр.Б
 UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 5;      -- Балласт 1 ЛБ
@@ -59,4 +60,4 @@ TRUNCATE TABLE cargo;
 INSERT INTO cargo
   (ship_id, name, mass, bound_x1, bound_x2, bound_type, mass_shift_x, mass_shift_y, mass_shift_z, loading_type)
 VALUES    
-  (1, 'Палубный груз',   864,    25,     151,     'frame',  0,      0,      -10.3, 'cargo');
+  (1, 'Палубный груз',   864,    25,     151,     'frame',  0,      0,      10.3, 'cargo');
