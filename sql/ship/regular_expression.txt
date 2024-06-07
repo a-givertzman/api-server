@@ -26,3 +26,6 @@
 
 select data.parameter_id, head.title_rus, data.result, head.unit_rus from parameter_head as head
 join parameter_data as data on data.parameter_id=head.id order by data.parameter_id;
+
+
+select * from result_strength;
