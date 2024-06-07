@@ -13,12 +13,12 @@ CREATE TABLE
     id INT GENERATED ALWAYS AS IDENTITY,
     project_id INT,
     ship_id INT NOT NULL,
-    frame_real_index INT NOT NULL,
+    frame_x REAL NOT NULL,
     value FLOAT8 NOT NULL,
     limit_type strength_limit NOT NULL,
     limit_area strength_limit_area NOT NULL,
     force_type strength_force NOT NULL,
     CONSTRAINT strength_limit_pk PRIMARY KEY (id),
-    CONSTRAINT strength_limit_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, frame_real_index, limit_type, force_type),
+    CONSTRAINT strength_limit_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, frame_x, limit_type, force_type),
     CONSTRAINT strength_limit_value_check CHECK ((value >= 0 AND limit_type = 'high') OR (value <= 0 AND limit_type = 'low'))
   );
