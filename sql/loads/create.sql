@@ -8,6 +8,18 @@ CREATE TYPE loading_type AS ENUM (
   'cargo'
 );
 
+-- Типы грузов корабля
+DROP TYPE IF EXISTS cargo_type CASCADE;
+
+CREATE TYPE cargo_type AS ENUM (
+  'BALLAST',
+  'OILS_AND_FUELS',
+  'FRESH_WATER',
+  'ACIDS_AND_ALKALIS',
+  'POLLUTED_LIQUIDS',
+  'GENERAL_CARGO'
+);
+
 -- Постоянная нагрузка на судно, распределенная по шпациям
 DROP TABLE IF EXISTS load_constant;
 
@@ -46,6 +58,8 @@ CREATE TABLE if not exists compartment (
   m_f_s_y FLOAT8,
   m_f_s_x FLOAT8,
   loading_type loading_type NOT NULL,
+  svg_paths TEXT,
+  cargo_type cargo_type NOT NULL,
   CONSTRAINT compartment_pk PRIMARY KEY (id),
   CONSTRAINT compartment_id_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, space_id),
   CONSTRAINT compartment_name_unique UNIQUE (project_id, ship_id, name),
