@@ -41,6 +41,7 @@ UPDATE compartment SET mass = 32.84 WHERE ship_id = 1 AND space_id = 39; -- Ци
 UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 40; -- Цистерна нефтеостатков ДП
 UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 41; -- Шламовая цистерна Пр.Б
 UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 41; -- Сточная цистерна 1 ДП
+UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 42; -- Сточная цистерна 1 ДП
 UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 43; -- Сточная цистерна 2 ЛБ
 
 UPDATE compartment SET mass = 1.80 WHERE ship_id = 1 AND space_id = 47;  -- Экипаж и багаж
