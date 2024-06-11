@@ -33,3 +33,5 @@ join result_stability as data on data.criterion_id=head.id order by data.criteri
 select * from result_strength;
 
 select space_id, name, mass from compartment order by space_id;
+
+update compartment set mass=111 where space_id=1;
