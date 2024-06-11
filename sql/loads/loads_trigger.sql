@@ -106,6 +106,10 @@ BEGIN
         src_volume = r1.volume;
     END IF;
 
+    IF r2.volume > src_volume THEN
+        src_volume = r2.volume;
+    END IF;
+
     IF r1.volume = r2.volume THEN
         coeff1 = 1;
         coeff2 = 0;
@@ -164,8 +168,8 @@ BEGIN
 --    RAISE NOTICE 'get_compartment_curve_level res r1 level:[%]  r2 level:[%]', r1.level, r2.level;
 
     IF r1.volume = r2.volume THEN
-        coeff1 = 1;
-        coeff2 = 0;
+        coeff1 = 0;
+        coeff2 = 1;
     ELSE 
         delta = r1.volume - r2.volume;
         coeff1 = (r1.volume - src_volume) / delta;
