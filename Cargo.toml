@@ -9,7 +9,7 @@ edition = "2021"
 log = "^0.4"
 env_logger = "^0.11"
 
-api-tools = { git = "https://github.com/a-givertzman/rust-api-tools.git", tag = "0.0.6" }
+api-tools = { git = "https://github.com/a-givertzman/rust-api-tools.git", tag = "0.1.0" }
 
 testing = { git = "https://github.com/a-givertzman/rust-testing.git" }
 debugging = { git = "https://github.com/a-givertzman/rust-debuging.git", tag = "0.0.1" }
