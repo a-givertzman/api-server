@@ -18,34 +18,34 @@ BEGIN
  --       RAISE NOTICE 'update_compartment INSERT begin';
 
         if NEW.volume IS NOT NULL THEN 
-            RAISE NOTICE 'update_compartment INSERT NEW.volume';     
+    --        RAISE NOTICE 'update_compartment INSERT NEW.volume';     
             result = get_compartment_curve_volume(NEW.ship_id, NEW.space_id, NEW.volume);
         ELSIF NEW.mass IS NOT NULL THEN  
-            RAISE NOTICE 'update_compartment INSERT NEW.mass';   
+    --        RAISE NOTICE 'update_compartment INSERT NEW.mass';   
             result = get_compartment_curve_volume(NEW.ship_id, NEW.space_id, NEW.mass/NEW.density);
         ELSIF NEW.level IS NOT NULL THEN 
-            RAISE NOTICE 'update_compartment INSERT NEW.mass';  
+    --        RAISE NOTICE 'update_compartment INSERT NEW.mass';  
             result = get_compartment_curve_level(NEW.ship_id, NEW.space_id, NEW.level);
         ELSE 
-            RAISE NOTICE 'update_compartment INSERT no data';  
+    --        RAISE NOTICE 'update_compartment INSERT no data';  
             result = get_compartment_curve_volume(NEW.ship_id, NEW.space_id, 0);
         END IF;
     ELSIF TG_OP = 'UPDATE' THEN
         RAISE NOTICE 'update_compartment UPDATE begin';
         if (NEW.volume IS NOT NULL AND OLD.volume IS NULL) OR NEW.volume != OLD.volume THEN
-            RAISE NOTICE 'update_compartment UPDATE NEW.volume != OLD.volume';
+    --        RAISE NOTICE 'update_compartment UPDATE NEW.volume != OLD.volume';
             result = get_compartment_curve_volume(NEW.ship_id, NEW.space_id, NEW.volume);
         ELSIF (NEW.mass IS NOT NULL AND OLD.mass IS NULL) OR NEW.mass != OLD.mass THEN 
-            RAISE NOTICE 'update_compartment UPDATE NEW.mass != OLD.mass';
+    --        RAISE NOTICE 'update_compartment UPDATE NEW.mass != OLD.mass';
             result = get_compartment_curve_volume(NEW.ship_id, NEW.space_id, NEW.mass/NEW.density);
         ELSIF (NEW.level IS NOT NULL AND OLD.level IS NULL) OR NEW.level != OLD.level THEN 
-            RAISE NOTICE 'update_compartment UPDATE NEW.level != OLD.level';
+    --        RAISE NOTICE 'update_compartment UPDATE NEW.level != OLD.level';
             result = get_compartment_curve_level(NEW.ship_id, NEW.space_id, NEW.level);
         ELSIF (NEW.density IS NOT NULL AND OLD.density IS NULL) OR NEW.density != OLD.density THEN 
-            RAISE NOTICE 'update_compartment UPDATE NEW.density != OLD.density';
+    --        RAISE NOTICE 'update_compartment UPDATE NEW.density != OLD.density';
             result = get_compartment_curve_volume(NEW.ship_id, NEW.space_id, NEW.volume);
         ELSE 
-            RAISE NOTICE 'update_compartment UPDATE no new data!';
+    --        RAISE NOTICE 'update_compartment UPDATE no new data!';
             result = get_compartment_curve_volume(NEW.ship_id, NEW.space_id, NEW.volume);
         END IF;
     ELSE 
@@ -81,8 +81,8 @@ DECLARE
     coeff1 FLOAT8;
     coeff2 FLOAT8;
 BEGIN 
-    RAISE NOTICE 'get_compartment_curve_volume ship_id:[%] space_id:[%] volume:[%]', 
-        src_ship_id, src_space_id, src_volume;
+ --   RAISE NOTICE 'get_compartment_curve_volume ship_id:[%] space_id:[%] volume:[%]', 
+ --       src_ship_id, src_space_id, src_volume;
 
     SELECT 
         *
@@ -100,7 +100,7 @@ BEGIN
     WHERE ship_id = src_ship_id AND space_id = src_space_id
     ORDER BY ABS(src_volume - t.volume) ASC LIMIT 2 OFFSET 1;
 
-    RAISE NOTICE 'get_compartment_curve_volume res r1 volume:[%] level:[%]  r2 volume:[%] level:[%] ', r1.volume, r1.level, r2.volume, r2.level;
+--    RAISE NOTICE 'get_compartment_curve_volume res r1 volume:[%] level:[%]  r2 volume:[%] level:[%] ', r1.volume, r1.level, r2.volume, r2.level;
 
     IF (r1.volume < src_volume AND r2.volume < r1.volume) THEN
         src_volume = r1.volume;
@@ -127,7 +127,7 @@ BEGIN
     res.m_f_s_y = r2.trans_inertia_moment_self*coeff1 + r1.trans_inertia_moment_self*coeff2;
     res.m_f_s_x = r2.long_inertia_moment_self*coeff1 + r1.long_inertia_moment_self*coeff2;
 
-    RAISE NOTICE 'get_compartment_curve_volume OK, res level:[%]  volume:[%]', res.level, res.volume;
+ --   RAISE NOTICE 'get_compartment_curve_volume OK, res level:[%]  volume:[%]', res.level, res.volume;
 
     RETURN NEXT res;
 END;
@@ -146,8 +146,8 @@ DECLARE
     coeff1 FLOAT8;
     coeff2 FLOAT8;
 BEGIN 
-    RAISE NOTICE 'get_compartment_curve_level ship_id:[%] space_id:[%] level:[%]', 
-        src_ship_id, src_space_id, src_level;
+--    RAISE NOTICE 'get_compartment_curve_level ship_id:[%] space_id:[%] level:[%]', 
+ --       src_ship_id, src_space_id, src_level;
 
     SELECT 
         *
@@ -165,7 +165,7 @@ BEGIN
     WHERE ship_id = src_ship_id AND space_id = src_space_id
     ORDER BY ABS(src_level - t.level) ASC LIMIT 2 OFFSET 1;
 
-    RAISE NOTICE 'get_compartment_curve_level res r1 volume:[%] level:[%]  r2 volume:[%] level:[%] ', r1.volume, r1.level, r2.volume, r2.level;
+ --   RAISE NOTICE 'get_compartment_curve_level res r1 volume:[%] level:[%]  r2 volume:[%] level:[%] ', r1.volume, r1.level, r2.volume, r2.level;
 
 
     IF (r1.level < src_level AND r2.level < r1.level) THEN
@@ -193,7 +193,7 @@ BEGIN
     res.m_f_s_y = r2.trans_inertia_moment_self*coeff1 + r1.trans_inertia_moment_self*coeff2;
     res.m_f_s_x = r2.long_inertia_moment_self*coeff1 + r1.long_inertia_moment_self*coeff2;
     
-    RAISE NOTICE 'get_compartment_curve_level res level:[%]  volume:[%] ', res.level, res.volume;
+--    RAISE NOTICE 'get_compartment_curve_level res level:[%]  volume:[%] ', res.level, res.volume;
 
     RETURN NEXT res;
 END;
