@@ -102,12 +102,12 @@ BEGIN
 
  --   RAISE NOTICE 'get_compartment_curve_volume res r1 volume:[%]  r2 volume:[%]', r1.volume, r2.volume;
 
-    IF r1.volume < src_volume THEN
+    IF (r1.volume < src_volume AND r2.volume < r1.volume) THEN
         src_volume = r1.volume;
     END IF;
 
-    IF r2.volume > src_volume THEN
-        src_volume = r2.volume;
+    IF (r1.volume > src_volume AND r2.volume > r1.volume)THEN
+        src_volume = r1.volume;
     END IF;
 
     IF r1.volume = r2.volume THEN
@@ -167,13 +167,22 @@ BEGIN
 
 --    RAISE NOTICE 'get_compartment_curve_level res r1 level:[%]  r2 level:[%]', r1.level, r2.level;
 
-    IF r1.volume = r2.volume THEN
+
+    IF (r1.level < src_level AND r2.level < r1.level) THEN
+        src_level = r1.level;
+    END IF;
+
+    IF (r1.level > src_level AND r2.level > r1.level)THEN
+        src_level = r1.level;
+    END IF;
+
+    IF r1.level = r2.level THEN
         coeff1 = 0;
         coeff2 = 1;
     ELSE 
-        delta = r1.volume - r2.volume;
-        coeff1 = (r1.volume - src_volume) / delta;
-        coeff2 = (src_volume - r2.volume) / delta;
+        delta = r1.level - r2.level;
+        coeff1 = (r1.level - src_level) / delta;
+        coeff2 = (src_level - r2.level) / delta;
     END IF;
 
     res.level = r2.level*coeff1 + r1.level*coeff2;  
