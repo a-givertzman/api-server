@@ -12,11 +12,6 @@ RUN cd ./sss-computing-strength && cargo build
 FROM debian:12.2 as packager
 WORKDIR /package
 COPY --from=builder /app/api-server/target/release/api-server ./
-COPY --from=builder /back/sss-computing-strength/target/debug/sss-computing-strength ./
-COPY .github/workflows/packaging/deb/make_package ./make_package
+COPY --from=builder /back/sss-computing-strength/target/release/sss-computing-strength ./
 COPY config.yaml ./config.yaml
-RUN mkdir ./target
-# make and run the Debian package
-RUN VERSION=0.1.21 ./make_package
-RUN ARCH="$(dpkg --print-architecture)"; apt install ./target/api-server_0.1.21_${ARCH}.deb
-CMD api-server
+CMD ./api-server
