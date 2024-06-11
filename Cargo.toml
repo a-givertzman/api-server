@@ -9,7 +9,10 @@ edition = "2021"
 log = "^0.4"
 env_logger = "^0.11"
 
-api-tools = { git = "https://github.com/a-givertzman/rust-api-tools.git", tag = "0.0.6" }
+api-tools = { git = "https://github.com/a-givertzman/rust-api-tools.git", tag = "0.1.0" }
+
+testing = { git = "https://github.com/a-givertzman/rust-testing.git" }
+debugging = { git = "https://github.com/a-givertzman/rust-debuging.git", tag = "0.0.1" }
 
 chrono = { version = "^0.4", features = ["serde"] }
 
@@ -43,3 +46,7 @@ rand = "^0.8"
 indexmap = { version = "^2.1", features = ["serde"] }
 
 clap = { version = "^4.5", features = ["derive"] }
+
+
+async-std = { version = "^1.12", features = ["attributes"] }
+futures = "^0.3"
