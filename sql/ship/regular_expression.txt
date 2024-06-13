@@ -35,3 +35,6 @@ select * from result_strength;
 select space_id, name, mass from compartment order by space_id;
 
 update compartment set mass=111 where space_id=1;
+
+
+select space_id, name, mass, mass_shift_x from compartment order by space_id;
