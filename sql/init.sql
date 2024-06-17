@@ -38,6 +38,7 @@
 \i ./sql/result/parameter_data.sql
 \i ./sql/result/loads_general.sql
 \i ./sql/result/heel_trim_general.sql
+\i ./sql/result/stability_diagram.sql
 --triggers
 --\i ./sql/triggers/mass_sum.sql
 --\i ./sql/triggers/mass.sql
