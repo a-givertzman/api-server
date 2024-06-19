@@ -218,19 +218,36 @@ VALUES
 "yz": " M -5,2.5 L -6,2.5 L -6,3.2 L -5,3.2 z "
 }');
 
+
+
 INSERT INTO compartment
   (ship_id, space_id, name, volume_max, density, bound_x1, bound_x2, bound_y1, bound_y2, bound_z1, bound_z2, bound_type, loading_type, cargo_type, svg_paths)
 VALUES  
-  (1, 1, 'Грузовой трюм',  6215.9,  3.0,  25,   151, 5.200000, -5.200000, .820000, 8.230000, 'frame', 'cargo', 'GENERAL_CARGO', '{
+  (1, 1, 'Грузовой трюм 1',  6215.9,  3.0,  25,   151, 5.200000, -5.200000, .820000, 8.230000, 'frame', 'cargo', 'GENERAL_CARGO', '{
 "xy": " M 37.656,4.7 L 36.356,4.7 L 36.356,3.59 L 37.656,3.59 L 37.656,-3.59 L 36.356,-3.59  L 36.356,-4.7 L 37.656,-4.7 L 37.656,-5.2 L -44.194,-5.2 L -44.194,-0.979996 L -45.394,-0.979996  L -45.394,-0 L -44.194,-0 L -44.194,5.2 L 37.656,5.2 z ",
 "xz": " M 36.356,6.84999 L 37.656,6.84999 L 37.656,0.819992 L -45.394,0.819992 L -45.394,6.84999 L -44.194,6.84999  L -44.194,8.23 L 36.356,8.23 z ",
 "yz": " M 5.2,0.819992 L -5.2,0.819992 L -5.2,8.23 L 5.2,8.23 z "
 }');
 
 INSERT INTO compartment
-  (ship_id, space_id, name, mass, bound_x1, bound_x2, bound_type, mass_shift_x, mass_shift_y, mass_shift_z, loading_type, cargo_type, svg_paths)
+  (ship_id, space_id, name, volume_max, density, bound_x1, bound_x2, bound_type, loading_type)
+VALUES  
+  (1, 51, 'Грузовой трюм 2',    3074.62,  3.0,  51,   113,   'frame', 'cargo'),
+  (1, 52, 'Грузовой трюм 3',    1292.00,   3.0,  25,   51,    'frame', 'cargo'),
+  (1, 53, 'Грузовой трюм 1+2',  4923.37,   3.0,  51,   151,   'frame', 'cargo'),
+  (1, 54, 'Грузовой трюм 2+3',  4367.19,   3.0,  25,   113,   'frame', 'cargo');
+  
+INSERT INTO compartment  
+  (ship_id, space_id, name, mass, bound_x1, bound_x2, bound_type, mass_shift_x, mass_shift_y, mass_shift_z, loading_type)
 VALUES    
-  (1, 47, 'Экипаж и багаж',     1.80, 44.31,  46.31,  'm',      -13.884,  -4.46,  7.70, 'store', 'GENERAL_CARGO', NULL),
-  (1, 48, 'Провизия',           0,    40.21,  42.21,  'm',      -17.984,  4.60,   8.15, 'store', 'GENERAL_CARGO', NULL),
-  (1, 49, 'Зерновая переборка', 0,    25,     30,     'frame',  -42.64, 0,      4.53, 'cargo', 'GENERAL_CARGO', NULL);
+  (1, 47, 'Экипаж и багаж',     1.80, 44.31,  46.31,  'm',      -13.884,  -4.46,  7.70, 'store'),
+  (1, 48, 'Провизия',           0,    40.21,  42.21,  'm',      -17.984,  4.60,   8.15, 'store');
+  
+INSERT INTO compartment
+  (ship_id, space_id, name, mass, bound_x1, bound_x2, bound_type, mass_shift_x, mass_shift_y, mass_shift_z, loading_type)
+VALUES    
+  (1, 55, 'Зерновая переборка 113 шп', 0,    25,     30,     'frame',  -42.64,   0,      4.53, 'cargo'),
+  (1, 56, 'Зерновая переборка 51 шп',  0,    25,     30,     'frame',  -42.64,   0,      4.53, 'cargo'),
+  (1, 57, 'Зерновая переборка 28 шп',  0,    25,     30,     'frame',  -42.64,   0,      4.53, 'cargo'),
+  (1, 58, 'Зерновая переборка 27 шп',  0,    25,     30,     'frame',  -42.64,   0,      4.53, 'cargo');
 

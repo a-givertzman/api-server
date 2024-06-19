@@ -1,11 +1,9 @@
--- Типы элементов погрузки корабля
-DROP TYPE IF EXISTS loading_type CASCADE;
+-- Типы элементов постоянной массы судна
+DROP TYPE IF EXISTS load_constant_type CASCADE;
 
-CREATE TYPE loading_type AS ENUM (
-  'lightship',
-  'ballast',
-  'store',
-  'cargo'
+CREATE TYPE load_constant_type AS ENUM (
+  'hull',
+  'equipment',
 );
 
 -- Типы грузов корабля
@@ -31,8 +29,18 @@ CREATE TABLE if not exists load_constant (
   bound_x1 FLOAT8 NOT NULL,
   bound_x2 FLOAT8 NOT NULL,
   bound_type TEXT NOT NULL,
+  loading_type load_constant_type NOT NULL,
   CONSTRAINT load_constant_pk PRIMARY KEY (id),
   CONSTRAINT compartment_bound_x_check CHECK(bound_x1 < bound_x2)
+);
+
+-- Типы элементов погрузки корабля
+DROP TYPE IF EXISTS loading_type CASCADE;
+
+CREATE TYPE loading_type AS ENUM (
+  'ballast',
+  'store',
+  'cargo'
 );
 
 -- Координаты и параметры отсеков и цистерн.
