@@ -230,24 +230,24 @@ VALUES
 }');
 
 INSERT INTO compartment
-  (ship_id, space_id, name, volume_max, density, bound_x1, bound_x2, bound_type, loading_type)
+  (ship_id, space_id, name, volume_max, density, bound_x1, bound_x2, bound_type, loading_type, cargo_type)
 VALUES  
-  (1, 51, 'Грузовой трюм 2',    3074.62,  3.0,  51,   113,   'frame', 'cargo'),
-  (1, 52, 'Грузовой трюм 3',    1292.00,   3.0,  25,   51,    'frame', 'cargo'),
-  (1, 53, 'Грузовой трюм 1+2',  4923.37,   3.0,  51,   151,   'frame', 'cargo'),
-  (1, 54, 'Грузовой трюм 2+3',  4367.19,   3.0,  25,   113,   'frame', 'cargo');
+  (1, 51, 'Грузовой трюм 2',    3074.62,  3.0,  51,   113,   'frame', 'cargo', 'GENERAL_CARGO'),
+  (1, 52, 'Грузовой трюм 3',    1292.00,   3.0,  25,   51,    'frame', 'cargo', 'GENERAL_CARGO'),
+  (1, 53, 'Грузовой трюм 1+2',  4923.37,   3.0,  51,   151,   'frame', 'cargo', 'GENERAL_CARGO'),
+  (1, 54, 'Грузовой трюм 2+3',  4367.19,   3.0,  25,   113,   'frame', 'cargo', 'GENERAL_CARGO');
   
 INSERT INTO compartment  
-  (ship_id, space_id, name, mass, bound_x1, bound_x2, bound_type, mass_shift_x, mass_shift_y, mass_shift_z, loading_type)
+  (ship_id, space_id, name, mass, bound_x1, bound_x2, bound_type, mass_shift_x, mass_shift_y, mass_shift_z, loading_type, cargo_type)
 VALUES    
-  (1, 47, 'Экипаж и багаж',     1.80, 44.31,  46.31,  'm',      -13.884,  -4.46,  7.70, 'store'),
-  (1, 48, 'Провизия',           0,    40.21,  42.21,  'm',      -17.984,  4.60,   8.15, 'store');
+  (1, 47, 'Экипаж и багаж',     1.80, 44.31,  46.31,  'm',      -13.884,  -4.46,  7.70, 'store', 'GENERAL_CARGO'),
+  (1, 48, 'Провизия',           0,    40.21,  42.21,  'm',      -17.984,  4.60,   8.15, 'store', 'GENERAL_CARGO');
   
 INSERT INTO compartment
-  (ship_id, space_id, name, mass, bound_x1, bound_x2, bound_type, mass_shift_x, mass_shift_y, mass_shift_z, loading_type)
+  (ship_id, space_id, name, mass, bound_x1, bound_x2, bound_type, mass_shift_x, mass_shift_y, mass_shift_z, loading_type, cargo_type)
 VALUES    
-  (1, 55, 'Зерновая переборка 113 шп', 0,    25,     30,     'frame',  -42.64,   0,      4.53, 'cargo'),
-  (1, 56, 'Зерновая переборка 51 шп',  0,    25,     30,     'frame',  -42.64,   0,      4.53, 'cargo'),
-  (1, 57, 'Зерновая переборка 28 шп',  0,    25,     30,     'frame',  -42.64,   0,      4.53, 'cargo'),
-  (1, 58, 'Зерновая переборка 27 шп',  0,    25,     30,     'frame',  -42.64,   0,      4.53, 'cargo');
+  (1, 55, 'Зерновая переборка 113 шп', 0,    25,     30,     'frame',  -42.64,   0,      4.53, 'cargo', 'GENERAL_CARGO'),
+  (1, 56, 'Зерновая переборка 51 шп',  0,    25,     30,     'frame',  -42.64,   0,      4.53, 'cargo', 'GENERAL_CARGO'),
+  (1, 57, 'Зерновая переборка 28 шп',  0,    25,     30,     'frame',  -42.64,   0,      4.53, 'cargo', 'GENERAL_CARGO'),
+  (1, 58, 'Зерновая переборка 27 шп',  0,    25,     30,     'frame',  -42.64,   0,      4.53, 'cargo', 'GENERAL_CARGO');
 
