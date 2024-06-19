@@ -1,2 +1,3 @@
 /target
-/postgres
+**/postgres
+Cargo.lock
