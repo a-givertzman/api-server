@@ -3,7 +3,7 @@ DROP TYPE IF EXISTS load_constant_type CASCADE;
 
 CREATE TYPE load_constant_type AS ENUM (
   'hull',
-  'equipment',
+  'equipment'
 );
 
 -- Типы грузов корабля

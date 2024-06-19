@@ -3,7 +3,7 @@
 TRUNCATE TABLE load_constant;
 
 INSERT INTO load_constant
-  (ship_id, mass, bound_x1, bound_x2, bound_type, load_constant_type)
+  (ship_id, mass, bound_x1, bound_x2, bound_type, loading_type)
 VALUES
   (1, 90.95,  0,    5.83, 'm', 'hull'),
   (1, 48.39,  0,    5.83, 'm', 'equipment'),
