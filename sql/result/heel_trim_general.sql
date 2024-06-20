@@ -12,16 +12,16 @@ CREATE VIEW heel_trim_general AS SELECT
     heel.value AS "heel",
     trim.value AS "trim"
 FROM (
-    SELECT ship_id, result AS "value" FROM parameter_data WHERE parameter_id = 5
+    SELECT ship_id, result AS "value" FROM parameter_data WHERE parameter_id = 4
 ) AS draft_fp
 FULL OUTER JOIN (
-    SELECT ship_id, result AS "value" FROM parameter_data WHERE parameter_id = 4
+    SELECT ship_id, result AS "value" FROM parameter_data WHERE parameter_id = 3
 ) AS draft_avg ON draft_fp.ship_id = draft_avg.ship_id
 FULL OUTER JOIN (
     SELECT ship_id, result AS "value" FROM parameter_data WHERE parameter_id = 32
 ) AS draft_avg_shift ON draft_fp.ship_id = draft_avg_shift.ship_id
 FULL OUTER JOIN (
-    SELECT ship_id, result AS "value" FROM parameter_data WHERE parameter_id = 3
+    SELECT ship_id, result AS "value" FROM parameter_data WHERE parameter_id = 5
 ) AS draft_ap ON draft_fp.ship_id = draft_ap.ship_id
 FULL OUTER JOIN (
     SELECT ship_id, value::REAL AS "value" FROM ship_parameters WHERE key = 'LBP'
