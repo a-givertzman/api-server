@@ -1,55 +1,55 @@
 -- Заполнение данных по грузам в трюмах и цистернах 
 
-CREATE OR REPLACE FUNCTION update_compartment () RETURNS TRIGGER 
-AS $update_compartment$
+CREATE OR REPLACE FUNCTION update_compartment_parameters () RETURNS TRIGGER 
+AS $update_compartment_parameters$
 DECLARE 
     result compartment%rowtype; 
 BEGIN 
 
---    RAISE NOTICE 'update_compartment begin begin OLD:[%] NEW:[%]', OLD, NEW;
+--    RAISE NOTICE 'update_compartment_parameters begin begin OLD:[%] NEW:[%]', OLD, NEW;
 
     if NEW.density IS NULL THEN 
-  --      RAISE NOTICE 'SKIP update_compartment, NEW.density IS NULL';
+  --      RAISE NOTICE 'SKIP update_compartment_parameters, NEW.density IS NULL';
         RETURN NEW;
     END IF;
 
 -- Ищем что изменилось и пересчитываем остальное
     IF (TG_OP = 'INSERT') THEN
- --       RAISE NOTICE 'update_compartment INSERT begin';
+ --       RAISE NOTICE 'update_compartment_parameters INSERT begin';
 
         if NEW.volume IS NOT NULL THEN 
-    --        RAISE NOTICE 'update_compartment INSERT NEW.volume';     
+    --        RAISE NOTICE 'update_compartment_parameters INSERT NEW.volume';     
             result = get_compartment_curve_volume(NEW.ship_id, NEW.space_id, NEW.volume);
         ELSIF NEW.mass IS NOT NULL THEN  
-    --        RAISE NOTICE 'update_compartment INSERT NEW.mass';   
+    --        RAISE NOTICE 'update_compartment_parameters INSERT NEW.mass';   
             result = get_compartment_curve_volume(NEW.ship_id, NEW.space_id, NEW.mass/NEW.density);
         ELSIF NEW.level IS NOT NULL THEN 
-    --        RAISE NOTICE 'update_compartment INSERT NEW.mass';  
+    --        RAISE NOTICE 'update_compartment_parameters INSERT NEW.mass';  
             result = get_compartment_curve_level(NEW.ship_id, NEW.space_id, NEW.level);
         ELSE 
-    --        RAISE NOTICE 'update_compartment INSERT no data';  
+    --        RAISE NOTICE 'update_compartment_parameters INSERT no data';  
             result = get_compartment_curve_volume(NEW.ship_id, NEW.space_id, 0);
         END IF;
     ELSIF TG_OP = 'UPDATE' THEN
-        RAISE NOTICE 'update_compartment UPDATE begin';
+        RAISE NOTICE 'update_compartment_parameters UPDATE begin';
         if (NEW.volume IS NOT NULL AND OLD.volume IS NULL) OR NEW.volume != OLD.volume THEN
-    --        RAISE NOTICE 'update_compartment UPDATE NEW.volume != OLD.volume';
+    --        RAISE NOTICE 'update_compartment_parameters UPDATE NEW.volume != OLD.volume';
             result = get_compartment_curve_volume(NEW.ship_id, NEW.space_id, NEW.volume);
         ELSIF (NEW.mass IS NOT NULL AND OLD.mass IS NULL) OR NEW.mass != OLD.mass THEN 
-    --        RAISE NOTICE 'update_compartment UPDATE NEW.mass != OLD.mass';
+    --        RAISE NOTICE 'update_compartment_parameters UPDATE NEW.mass != OLD.mass';
             result = get_compartment_curve_volume(NEW.ship_id, NEW.space_id, NEW.mass/NEW.density);
         ELSIF (NEW.level IS NOT NULL AND OLD.level IS NULL) OR NEW.level != OLD.level THEN 
-    --        RAISE NOTICE 'update_compartment UPDATE NEW.level != OLD.level';
+    --        RAISE NOTICE 'update_compartment_parameters UPDATE NEW.level != OLD.level';
             result = get_compartment_curve_level(NEW.ship_id, NEW.space_id, NEW.level);
         ELSIF (NEW.density IS NOT NULL AND OLD.density IS NULL) OR NEW.density != OLD.density THEN 
-    --        RAISE NOTICE 'update_compartment UPDATE NEW.density != OLD.density';
+    --        RAISE NOTICE 'update_compartment_parameters UPDATE NEW.density != OLD.density';
             result = get_compartment_curve_volume(NEW.ship_id, NEW.space_id, NEW.volume);
         ELSE 
-    --        RAISE NOTICE 'update_compartment UPDATE no new data!';
+    --        RAISE NOTICE 'update_compartment_parameters UPDATE no new data!';
             result = get_compartment_curve_volume(NEW.ship_id, NEW.space_id, NEW.volume);
         END IF;
     ELSE 
-        RAISE NOTICE 'update_compartment ERROR: no TG_OP';
+        RAISE NOTICE 'update_compartment_parameters ERROR: no TG_OP';
         RETURN NEW;
     END IF;
 
@@ -62,11 +62,11 @@ BEGIN
     NEW.m_f_s_y = result.m_f_s_y;
     NEW.m_f_s_x = result.m_f_s_x;
 
-    RAISE NOTICE 'update_compartment OK, NEW:[%]', NEW;
+    RAISE NOTICE 'update_compartment_parameters OK, NEW:[%]', NEW;
 
     RETURN NEW;
 END;
-$update_compartment$ LANGUAGE plpgsql;
+$update_compartment_parameters$ LANGUAGE plpgsql;
 
 
 DROP FUNCTION IF EXISTS get_compartment_curve_volume CASCADE;
@@ -199,7 +199,7 @@ BEGIN
 END;
 $get_compartment_curve_level$ LANGUAGE plpgsql;
 
-CREATE OR REPLACE TRIGGER check_update_compartment
+CREATE OR REPLACE TRIGGER check_update_compartment_parameters
     BEFORE INSERT OR UPDATE ON compartment
     FOR EACH ROW 
-    EXECUTE FUNCTION update_compartment();
+    EXECUTE FUNCTION update_compartment_parameters();
