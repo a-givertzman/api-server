@@ -1,14 +1,12 @@
--- Типы элементов погрузки корабля
-DROP TYPE IF EXISTS loading_type CASCADE;
+-- Типы элементов постоянной массы судна
+DROP TYPE IF EXISTS load_constant_type CASCADE;
 
-CREATE TYPE loading_type AS ENUM (
-  'lightship',
-  'ballast',
-  'store',
-  'cargo'
+CREATE TYPE load_constant_type AS ENUM (
+  'hull',
+  'equipment'
 );
 
--- Типы грузов корабля
+-- Типы грузов судна
 DROP TYPE IF EXISTS cargo_type CASCADE;
 
 CREATE TYPE cargo_type AS ENUM (
@@ -31,8 +29,27 @@ CREATE TABLE if not exists load_constant (
   bound_x1 FLOAT8 NOT NULL,
   bound_x2 FLOAT8 NOT NULL,
   bound_type TEXT NOT NULL,
+  loading_type load_constant_type NOT NULL,
   CONSTRAINT load_constant_pk PRIMARY KEY (id),
   CONSTRAINT compartment_bound_x_check CHECK(bound_x1 < bound_x2)
+);
+
+-- Типы элементов погрузки судна
+DROP TYPE IF EXISTS loading_type CASCADE;
+
+CREATE TYPE loading_type AS ENUM (
+  'ballast',
+  'store',
+  'cargo'
+);
+
+-- Физический тип груза судна
+DROP TYPE IF EXISTS physical_type CASCADE;
+
+CREATE TYPE physical_type AS ENUM (
+  'bulk',
+  'liquid',
+  'solid'
 );
 
 -- Координаты и параметры отсеков и цистерн.
@@ -44,6 +61,7 @@ CREATE TABLE if not exists compartment (
   ship_id INT NOT NULL,
   space_id INT NOT NULL,
   name TEXT NOT NULL,
+  active BOOLEAN NOT NULL DEFAULT TRUE, 
   volume FLOAT8,
   volume_max FLOAT8,
   level FLOAT8,
@@ -62,6 +80,7 @@ CREATE TABLE if not exists compartment (
   m_f_s_y FLOAT8,
   m_f_s_x FLOAT8,
   loading_type loading_type NOT NULL,
+  physical_type physical_type NOT NULL,
   svg_paths TEXT,
   cargo_type cargo_type NOT NULL,
   CONSTRAINT compartment_pk PRIMARY KEY (id),
@@ -101,6 +120,31 @@ CREATE TABLE if not exists compartment_curve (
   CONSTRAINT compartment_curve_pk PRIMARY KEY (id),
   CONSTRAINT compartment_curve_key_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, space_id, level)
 );
+
+
+-- Действие при наличии разделителя отсека
+DROP TYPE IF EXISTS separator_action CASCADE;
+
+CREATE TYPE separator_action AS ENUM (
+  'set_on',
+  'set_off'
+);
+
+-- Разделители и зависимые от них отсеки
+DROP TABLE IF EXISTS compartment_separators CASCADE;
+
+CREATE TABLE if not exists compartment_separators (
+  id INT GENERATED ALWAYS AS IDENTITY,
+  project_id INT,
+  ship_id INT NOT NULL,
+  compartment_space_id INT NOT NULL,  
+  separator1_space_id INT NOT NULL,
+  separator2_space_id INT,
+  separator_action separator_action NOT NULL,
+  CONSTRAINT compartment_separators_pk PRIMARY KEY (id),
+  CONSTRAINT compartment_separators_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, compartment_space_id, separator1_space_id)
+);
+
 
 -- Координаты и параметры грузов
 DROP TABLE IF EXISTS cargo CASCADE;
