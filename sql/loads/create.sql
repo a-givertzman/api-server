@@ -28,10 +28,9 @@ CREATE TABLE if not exists load_constant (
   mass FLOAT8 NOT NULL,
   bound_x1 FLOAT8 NOT NULL,
   bound_x2 FLOAT8 NOT NULL,
-  bound_type TEXT NOT NULL,
   loading_type load_constant_type NOT NULL,
   CONSTRAINT load_constant_pk PRIMARY KEY (id),
-  CONSTRAINT compartment_bound_x_check CHECK(bound_x1 < bound_x2)
+  CONSTRAINT load_constant_bound_x_check CHECK(bound_x1 < bound_x2)
 );
 
 -- Типы элементов погрузки судна
@@ -73,7 +72,6 @@ CREATE TABLE if not exists compartment (
   bound_y2 FLOAT8,
   bound_z1 FLOAT8,
   bound_z2 FLOAT8,
-  bound_type TEXT,
   mass_shift_x FLOAT8,
   mass_shift_y FLOAT8,
   mass_shift_z FLOAT8,
@@ -92,7 +90,8 @@ CREATE TABLE if not exists compartment (
   CONSTRAINT compartment_volume_max_check CHECK(volume_max IS NULL OR volume_max > 0),
   CONSTRAINT compartment_mass_check CHECK(mass IS NULL OR mass >= 0),
   CONSTRAINT compartment_volume_check CHECK(volume IS NULL OR volume >= 0),
-  CONSTRAINT compartment_bound_x_check CHECK(bound_x1 < bound_x2)
+  CONSTRAINT compartment_bound_x_check CHECK(bound_x1 < bound_x2),
+  CONSTRAINT compartment_shift_x_check CHECK(mass_shift_x IS NULL OR (mass_shift_x >= bound_x1 AND mass_shift_x <= bound_x2)),
 );
 
 
@@ -157,7 +156,6 @@ CREATE TABLE if not exists cargo (
   mass FLOAT8,
   bound_x1 FLOAT8 NOT NULL,
   bound_x2 FLOAT8 NOT NULL,
-  bound_type TEXT NOT NULL,
   bound_y1 FLOAT8,
   bound_y2 FLOAT8,
   bound_z1 FLOAT8,
