@@ -282,28 +282,3 @@ INSERT INTO compartment_separators
 VALUES  
 --Отсек 2
   (1, 52, 61, 62, 'set_on'); --Зерновые переборки 51 + 113 шп
-
-
-
--- Действие при наличии разделителя отсека
-DROP TYPE IF EXISTS separator_action CASCADE;
-
-CREATE TYPE separator_action AS ENUM (
-  'set_on',
-  'set_off'
-);
-
--- Разделители и зависимые от них отсеки
-DROP TABLE IF EXISTS compartment_separators CASCADE;
-
-CREATE TABLE if not exists compartment_separators (
-  id INT GENERATED ALWAYS AS IDENTITY,
-  project_id INT,
-  ship_id INT NOT NULL,
-  compartment_space_id INT NOT NULL,  
-  separator1_space_id INT NOT NULL,
-  separator2_space_id INT,
-  separator_action separator_action NOT NULL,
-  CONSTRAINT compartment_separators_pk PRIMARY KEY (id),
-  CONSTRAINT compartment_separators_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, compartment_space_id, separator1_space_id)
-);
