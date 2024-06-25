@@ -120,15 +120,6 @@ CREATE TABLE if not exists compartment_curve (
   CONSTRAINT compartment_curve_key_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, space_id, level)
 );
 
-
--- Действие при наличии разделителя отсека
-DROP TYPE IF EXISTS separator_action CASCADE;
-
-CREATE TYPE separator_action AS ENUM (
-  'set_on',
-  'set_off'
-);
-
 -- Разделители и зависимые от них отсеки
 DROP TABLE IF EXISTS compartment_separators CASCADE;
 
@@ -139,7 +130,7 @@ CREATE TABLE if not exists compartment_separators (
   compartment_space_id INT NOT NULL,  
   separator1_space_id INT NOT NULL,
   separator2_space_id INT,
-  separator_action separator_action NOT NULL,
+  compartment_active BOOLEAN NOT NULL, -- состояние при наличии разделителя отсека
   CONSTRAINT compartment_separators_pk PRIMARY KEY (id),
   CONSTRAINT compartment_separators_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, compartment_space_id, separator1_space_id)
 );

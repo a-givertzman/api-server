@@ -1,8 +1,11 @@
+TRUNCATE TABLE ship_name;
+
 INSERT INTO ship_name
   (name)
 VALUES
   ('M/V "YURIY ARSHENEVSKIY"');  
 
+TRUNCATE TABLE ship_parameters;
 
 INSERT INTO ship_parameters
   (ship_id, key, value, value_type, unit)

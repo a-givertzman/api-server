@@ -56,4 +56,7 @@
 \i ./sql/ARK/loads/hull.sql
 \i ./sql/ARK/loads/compartment_curve.sql
 \i ./sql/ARK/loads/protocol_66.sql
+\i ./sql/ARK/area/horizontal_area_strength.sql
+\i ./sql/ARK/area/horizontal_area_stability.sql
+\i ./sql/ARK/area/vertical_area.sql
 

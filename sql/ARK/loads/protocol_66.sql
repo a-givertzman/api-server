@@ -44,19 +44,17 @@ UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 43; -- Сточ
 
 UPDATE compartment SET mass = 1.80 WHERE ship_id = 1 AND space_id = 47;  -- Экипаж и багаж
 UPDATE compartment SET mass = 1.2 WHERE ship_id = 1 AND space_id = 48;   -- Провизия 
-UPDATE compartment SET mass = 24.0 WHERE ship_id = 1 AND space_id = 49;  -- Зерновая переборка
 
-UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 1;
-UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 50;
-UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 51;
-UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 52;
-UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 53;
-UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 54;
+UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 1;      -- Грузовой трюм
+UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 51;      -- Отсек 1
+UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 52;      -- Отсек 2
+UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 53;      -- Отсек 3
+UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 54;      -- Отсек 1 + 2
+UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 55;      -- Отсек 2 + 3
 
-UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 55;
-UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 56;
-UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 57;
-UPDATE compartment SET mass = 24.0 WHERE ship_id = 1 AND space_id = 58;
-
+UPDATE compartment SET active = FALSE WHERE ship_id = 1 AND space_id = 61;  -- Зерновая переборка 113 шп
+UPDATE compartment SET active = FALSE WHERE ship_id = 1 AND space_id = 62;  -- Зерновая переборка 51 шп
+UPDATE compartment SET active = TRUE WHERE ship_id = 1 AND space_id = 63;  -- Зерновая переборка 28 шп
+UPDATE compartment SET active = TRUE WHERE ship_id = 1 AND space_id = 64;  -- Зерновая переборка 27 шп
 
 TRUNCATE TABLE cargo;

@@ -1,5 +1,4 @@
 -- Без груза и балласта
-UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 1;      -- Грузовой трюм
 UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 2;      -- Форпик Пр.Б
 UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 3;      -- Форпик ЛБ
 UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 4;      -- Балласт 1 Пр.Б
@@ -45,6 +44,18 @@ UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 43; -- Сточ
 
 UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 47;  -- Экипаж и багаж
 UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 48;  -- Провизия
-UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 49;  -- Зерновая переборка
 UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 50;  -- Палубный груз
+
+UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 1;      -- Грузовой трюм
+UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 51;      -- Отсек 1
+UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 52;      -- Отсек 2
+UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 53;      -- Отсек 3
+UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 54;      -- Отсек 1 + 2
+UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 55;      -- Отсек 2 + 3
+
+UPDATE compartment SET active = FALSE WHERE ship_id = 1 AND space_id = 61;  -- Зерновая переборка 113 шп
+UPDATE compartment SET active = FALSE WHERE ship_id = 1 AND space_id = 62;  -- Зерновая переборка 51 шп
+UPDATE compartment SET active = FALSE WHERE ship_id = 1 AND space_id = 63;  -- Зерновая переборка 28 шп
+UPDATE compartment SET active = FALSE WHERE ship_id = 1 AND space_id = 64;  -- Зерновая переборка 27 шп
+
 
