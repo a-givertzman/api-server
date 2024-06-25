@@ -85,13 +85,12 @@ CREATE TABLE if not exists compartment (
   CONSTRAINT compartment_id_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, space_id),
   CONSTRAINT compartment_name_unique UNIQUE (project_id, ship_id, name),
   CONSTRAINT compartment_name_check CHECK(char_length(name) <= 50),
-  CONSTRAINT compartment_bound_type_check CHECK(char_length(bound_type) <= 50),
   CONSTRAINT compartment_density_check CHECK(density IS NULL OR density > 0),
   CONSTRAINT compartment_volume_max_check CHECK(volume_max IS NULL OR volume_max > 0),
   CONSTRAINT compartment_mass_check CHECK(mass IS NULL OR mass >= 0),
   CONSTRAINT compartment_volume_check CHECK(volume IS NULL OR volume >= 0),
   CONSTRAINT compartment_bound_x_check CHECK(bound_x1 < bound_x2),
-  CONSTRAINT compartment_shift_x_check CHECK(mass_shift_x IS NULL OR (mass_shift_x >= bound_x1 AND mass_shift_x <= bound_x2)),
+  CONSTRAINT compartment_shift_x_check CHECK(mass_shift_x IS NULL OR (mass_shift_x >= bound_x1 AND mass_shift_x <= bound_x2))
 );
 
 
