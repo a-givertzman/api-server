@@ -68,13 +68,11 @@ VALUES
   (43, 'Площадь a', 'Area a', 'м^2', 'm^2'),
   (44, 'Площадь b', 'Area b', 'м^2', 'm^2'),
   (45, 'Угол входа в воду кромки палубы', 'Open deck edge immersion angle', 'град', 'deg'),
-  (46, '0,8 угла входа в воду кромки палубы', '0,8 open deck edge immersion angle', 'град', 'deg'),
-  (47, '0,5 угла входа в воду кромки палубы', '0,5 open deck edge immersion angle', 'град', 'deg'),
-  (48, 'Угол заливания', 'Angle of down-flooding', 'град', 'deg'),
-  (49, 'Угол заката', 'Sunset angle', 'град', 'deg'),
-  (50, 'Кренящий момент от смещения зерна', 'Heeling moment due to the transverse shift of grain', 'кН∙м', 'kN∙m'),
-  (51, 'Угла крена при максимальной разности', 'Heeling angle with maximum difference', 'град', 'deg'),
-  (52, 'Скорость судна', 'Vessel speed', 'уз', 'knot');
+  (46, 'Угол заливания', 'Angle of down-flooding', 'град', 'deg'),
+  (47, 'Угол заката', 'Sunset angle', 'град', 'deg'),
+  (48, 'Кренящий момент от смещения зерна', 'Heeling moment due to the transverse shift of grain', 'кН∙м', 'kN∙m'),
+  (49, 'Угла крена при максимальной разности', 'Heeling angle with maximum difference', 'град', 'deg'),
+  (50, 'Скорость судна', 'Vessel speed', 'уз', 'knot');
 
 
 
