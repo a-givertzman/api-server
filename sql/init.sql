@@ -11,6 +11,7 @@
 \i ./sql/ship/volume_shift.sql
 \i ./sql/ship/waterline_breadth.sql
 \i ./sql/ship/waterline_length.sql
+\i ./sql/ship/waterline_area.sql
 \i ./sql/ship/min_metacentric_height_subdivision.sql
 \i ./sql/ship/delta_windage_area.sql
 \i ./sql/ship/delta_windage_moment.sql
