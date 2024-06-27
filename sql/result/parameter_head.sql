@@ -56,15 +56,15 @@ INSERT INTO parameter_head
   (id, title_rus, title_eng, unit_rus, unit_eng)
 VALUES
   (33, 'Давление ветра', 'Wind pressure', 'Па', 'Pa'),
-  (34, 'Площадь парусности', 'Windage area', 'м', 'm'),  
-  (35, 'Плечо парусности', 'Windage area lever', 'м^2', 'm^2'),
+  (34, 'Площадь парусности', 'Windage area', 'м^2', 'm^2'),  
+  (35, 'Плечо парусности', 'Windage area lever', 'м', 'm'),
   (36, 'Плечо статического ветрового кренящего момента', 'Static windage heeling lever', 'м', 'm'),
   (37, 'Плечо динамического ветрового кренящего момента', 'Dynamic windage heeling lever', 'м', 'm'),
   (38, 'Ветровой статический угол крена', 'Static windage heeling angle', 'град', 'deg'),
   (39, 'Ветровой динамический угол крена', 'Dynamic windage heeling angle', 'град', 'deg'),
   (40, 'Угол второго пересечения с кривой', 'Heeling angle of second point of intersection with', 'град', 'deg'),
   (41, 'Амплитуда качки', 'Roll amplitude', 'град', 'deg'),
-  (42, 'Период качки', 'Roll period', 'c', 's'),
+  (42, 'Период качки', 'Roll period', 'с', 's'),
   (43, 'Площадь a', 'Area a', 'м^2', 'm^2'),
   (44, 'Площадь b', 'Area b', 'м^2', 'm^2'),
   (45, 'Угол входа в воду кромки палубы', 'Open deck edge immersion angle', 'град', 'deg'),

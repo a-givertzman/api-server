@@ -232,8 +232,8 @@ VALUES
 INSERT INTO compartment  
   (ship_id, space_id, name, mass, bound_x1, bound_x2, mass_shift_x, mass_shift_y, mass_shift_z, loading_type, physical_type, cargo_type)
 VALUES    
-  (1, 47, 'Экипаж и багаж',     1.80, 44.31,  46.31, -13.884,  -4.46,  7.70, 'store', 'solid', 'GENERAL_CARGO'),
-  (1, 48, 'Провизия',           0,    40.21,  42.21, -17.984,  4.60,   8.15, 'store', 'solid', 'GENERAL_CARGO');
+  (1, 47, 'Экипаж и багаж',     1.80, 44.31,  46.31, 45.31,  -4.46,  7.70, 'store', 'solid', 'GENERAL_CARGO'),
+  (1, 48, 'Провизия',           0,    40.21,  42.21, 41.21,  4.60,   8.15, 'store', 'solid', 'GENERAL_CARGO');
 
 INSERT INTO compartment
   (ship_id, space_id, name, active, volume_max, density, bound_x1, bound_x2, loading_type, physical_type, cargo_type)
@@ -247,10 +247,10 @@ VALUES
 INSERT INTO compartment
   (ship_id, space_id, name, active, mass, bound_x1, bound_x2, mass_shift_x, mass_shift_y, mass_shift_z, loading_type, physical_type, cargo_type)
 VALUES    
-  (1, 61, 'Зерновая переборка 113 шп', FALSE,  12,    112.6,    113.2,       12.87,   0,      4.53, 'cargo', 'solid', 'GENERAL_CARGO'),
-  (1, 62, 'Зерновая переборка 51 шп',  FALSE,  12,    50.6,     51.2,       -27.43,   0,      4.53, 'cargo', 'solid', 'GENERAL_CARGO'),
-  (1, 63, 'Зерновая переборка 28 шп',  FALSE,  12,    27.3,     27.9,       -42.57,   0,      4.53, 'cargo', 'solid', 'GENERAL_CARGO'),
-  (1, 64, 'Зерновая переборка 27 шп',  FALSE,  12,    26.6,     27.2,       -42.96,   0,      4.53, 'cargo', 'solid', 'GENERAL_CARGO');
+  (1, 61, 'Зерновая переборка 113 шп', FALSE,  12,    112.6,    113.2,  112.9,  0,      4.53, 'cargo', 'solid', 'GENERAL_CARGO'),
+  (1, 62, 'Зерновая переборка 51 шп',  FALSE,  12,    50.6,     51.2,   50.9,   0,      4.53, 'cargo', 'solid', 'GENERAL_CARGO'),
+  (1, 63, 'Зерновая переборка 28 шп',  FALSE,  12,    27.3,     27.9,   27.6,   0,      4.53, 'cargo', 'solid', 'GENERAL_CARGO'),
+  (1, 64, 'Зерновая переборка 27 шп',  FALSE,  12,    26.6,     27.2,   26.9,   0,      4.53, 'cargo', 'solid', 'GENERAL_CARGO');
 
 
 INSERT INTO compartment_separators
