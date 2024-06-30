@@ -11,7 +11,12 @@ INSERT INTO ship_parameters
   (ship_id, key, value, value_type, unit)
 VALUES
   (1, 'Name of ship', 'M/V "YURIY ARSHENEVSKIY"', 'text', NULL),
+-- Возможные варианты обледенения судна: full, half, none
   (1, 'Type of icing', 'none', 'text', NULL),
+-- Возможные варианты обледенения палубного груза - леса: full, half, bow, none
+  (1, 'Type of icing timber', 'none', 'text', NULL),
+-- Cтепень намокания палубного лесного груза, %
+  (1, 'Wetting of deck timber', '10', 'real', NULL),
   (1, 'Navigation area', 'R2', 'text', NULL),
   (1, 'Type of ship', 'general dry cargo ship', 'text', NULL),
   (1, 'Ship operating speed', '16', 'real', 'm/s'),

@@ -119,6 +119,20 @@ CREATE TABLE if not exists compartment_curve (
   CONSTRAINT compartment_curve_key_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, space_id, level)
 );
 
+-- Кренящий момент от смещения сыпучего груза
+DROP TABLE IF EXISTS grain_moment CASCADE;
+
+CREATE TABLE if not exists grain_moment (
+  id INT GENERATED ALWAYS AS IDENTITY,
+  project_id INT,
+  ship_id INT NOT NULL,
+  space_id INT NOT NULL,
+  level FLOAT8 NOT NULL,
+  moment FLOAT8 NOT NULL,
+  CONSTRAINT grain_moment_pk PRIMARY KEY (id),
+  CONSTRAINT grain_moment_key_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, space_id, level)
+);
+
 -- Разделители и зависимые от них отсеки
 DROP TABLE IF EXISTS compartment_separators CASCADE;
 
@@ -144,6 +158,8 @@ CREATE TABLE if not exists cargo (
   ship_id INT NOT NULL,
   name TEXT NOT NULL,
   mass FLOAT8,
+  timber BOOLEAN NOT NULL DEFAULT FALSE,
+  loading_type loading_type NOT NULL DEFAULT 'cargo',
   bound_x1 FLOAT8 NOT NULL,
   bound_x2 FLOAT8 NOT NULL,
   bound_y1 FLOAT8,
@@ -161,7 +177,6 @@ CREATE TABLE if not exists cargo (
   vertical_area_shift_x FLOAT8,
   vertical_area_shift_y FLOAT8,
   vertical_area_shift_z FLOAT8,
-  loading_type loading_type NOT NULL,
   CONSTRAINT cargo_pk PRIMARY KEY (id),
   --CONSTRAINT cargo_name_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, name),
   CONSTRAINT cargo_name_check CHECK(char_length(name) <= 50),
