@@ -62,6 +62,10 @@ BEGIN
     NEW.m_f_s_y = result.m_f_s_y;
     NEW.m_f_s_x = result.m_f_s_x;
 
+    IF (NEW.physical_type == 'bulk') THEN
+        NEW.grain_moment = get_grain_moment_level(NEW.ship_id, NEW.space_id, NEW.level);
+    END IF;
+
     RAISE NOTICE 'update_compartment_parameters OK, NEW:[%]', NEW;
 
     RETURN NEW;
@@ -132,6 +136,67 @@ BEGIN
     RETURN NEXT res;
 END;
 $get_compartment_curve_volume$ LANGUAGE plpgsql;
+
+
+DROP FUNCTION IF EXISTS get_grain_moment_level CASCADE;
+CREATE OR REPLACE FUNCTION get_grain_moment_level(src_ship_id INT, src_space_id INT, src_level FLOAT8) 
+RETURNS FLOAT8 
+AS $get_grain_moment_level$
+DECLARE 
+    r1 grain_moment%rowtype;
+    r2 grain_moment%rowtype;
+    res_level FLOAT8;
+    res_moment FLOAT8;
+    delta FLOAT8;
+    coeff1 FLOAT8;
+    coeff2 FLOAT8;
+BEGIN 
+    RAISE NOTICE 'get_grain_moment_level ship_id:[%] space_id:[%] level:[%]', src_ship_id, src_space_id, src_level;
+
+    SELECT 
+        *
+    INTO 
+        r1
+    FROM compartment_curve t
+    WHERE ship_id = src_ship_id AND space_id = src_space_id
+    ORDER BY ABS(src_level - t.level) ASC LIMIT 1;
+
+    SELECT 
+        *
+    INTO 
+        r2
+    FROM compartment_curve t
+    WHERE ship_id = src_ship_id AND space_id = src_space_id
+    ORDER BY ABS(src_level - t.level) ASC LIMIT 2 OFFSET 1;
+
+    RAISE NOTICE 'get_grain_moment_level res r1 level:[%] moment:[%]  r2 level:[%] moment:[%] ', r1.level, r1.moment, r2.level, r2.moment;
+
+
+    IF (r1.level < src_level AND r2.level < r1.level) THEN
+        src_level = r1.level;
+    END IF;
+
+    IF (r1.level > src_level AND r2.level > r1.level)THEN
+        src_level = r1.level;
+    END IF;
+
+    IF r1.level = r2.level THEN
+        coeff1 = 0;
+        coeff2 = 1;
+    ELSE 
+        delta = r1.level - r2.level;
+        coeff1 = (r1.level - src_level) / delta;
+        coeff2 = (src_level - r2.level) / delta;
+    END IF;
+
+    res_level = r2.level*coeff1 + r1.level*coeff2;  
+    res_moment = r2.moment*coeff1 + r1.moment*coeff2;
+    
+    RAISE NOTICE 'get_grain_moment_level OK, src_level:[%] res_level:[%] moment:[%]', src_level, res.level, res_moment;
+
+    RETURN res;
+END;
+$get_grain_moment_level$ LANGUAGE plpgsql;
 
 
 DROP FUNCTION IF EXISTS get_compartment_curve_level CASCADE;

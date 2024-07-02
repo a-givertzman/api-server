@@ -20,7 +20,8 @@
 \i ./sql/frames/computed_frame_trigger.sql
 \i ./sql/area/horizontal_area_strength.sql
 \i ./sql/area/horizontal_area_stability.sql
-\i ./sql/area/vertical_area.sql
+\i ./sql/area/vertical_area_strength.sql
+\i ./sql/area/vertical_area_stability.sql
 \i ./sql/loads/create.sql
 \i ./sql/loads/loads_trigger.sql
 \i ./sql/stability/coefficient_k.sql
