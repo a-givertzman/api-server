@@ -71,7 +71,7 @@ VALUES
   (46, 'Угол заливания', 'Angle of down-flooding', 'град', 'deg'),
   (47, 'Угол заката', 'Sunset angle', 'град', 'deg'),
   (48, 'Кренящий момент от смещения зерна', 'Heeling moment due to the transverse shift of grain', 'кН∙м', 'kN∙m'),
-  (49, 'Угла крена при максимальной разности', 'Heeling angle with maximum difference', 'град', 'deg'),
+  (49, 'Угол крена при максимальной разности', 'Heeling angle with maximum difference', 'град', 'deg'),
   (50, 'Скорость судна', 'Vessel speed', 'уз', 'knot');
 
 
