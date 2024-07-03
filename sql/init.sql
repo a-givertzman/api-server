@@ -31,12 +31,13 @@
 \i ./sql/stability/coefficient_k_theta.sql
 \i ./sql/stability/icing.sql
 -- Tables with result of calculating
-\i ./sql/result/criterion_stability.sql
 \i ./sql/result/result_stability.sql
 \i ./sql/result/result_strength.sql
 \i ./sql/result/strength_force_limit.sql
+\i ./sql/result/criterion_stability.sql
 \i ./sql/result/parameter_head.sql
 \i ./sql/result/parameter_data.sql
+\i ./sql/result/criterions_parameters.sql
 \i ./sql/result/loads_general.sql
 \i ./sql/result/heel_trim_general.sql
 \i ./sql/result/stability_diagram.sql
