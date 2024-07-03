@@ -43,21 +43,24 @@ UPDATE compartment SET mass = 1.90 WHERE ship_id = 1 AND space_id = 41;
 UPDATE compartment SET mass = 13.78 WHERE ship_id = 1 AND space_id = 42;
 UPDATE compartment SET mass = 0.63 WHERE ship_id = 1 AND space_id = 43;
 
-UPDATE compartment SET mass = 1.80 WHERE ship_id = 1 AND space_id = 47;
-UPDATE compartment SET mass = 0.12 WHERE ship_id = 1 AND space_id = 48;
+UPDATE compartment SET mass = 1.80 WHERE ship_id = 1 AND space_id = 47;  -- Экипаж и багаж
+UPDATE compartment SET mass = 1.2 WHERE ship_id = 1 AND space_id = 48;   -- Провизия 
 
-UPDATE compartment SET mass = 24.0 WHERE ship_id = 1 AND space_id = 49;  -- Зерновая переборка
+UPDATE compartment SET mass = 2304 WHERE ship_id = 1 AND space_id = 1;      -- Грузовой трюм
+UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 51;      -- Отсек 1
+UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 52;      -- Отсек 2
+UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 53;      -- Отсек 3
+UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 54;      -- Отсек 1 + 2
+UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 55;      -- Отсек 2 + 3
 
-UPDATE compartment SET mass = 2304, 
-                        bound_x1 = 34, 
-                        bound_x2 = 147,
-                        mass_shift_x = -1.5, 
-                        mass_shift_y = 0, 
-                        mass_shift_z = 3.4
-WHERE ship_id = 1 AND space_id = 1;   -- Грузовой трюм
+UPDATE compartment SET active = FALSE WHERE ship_id = 1 AND space_id = 61;  -- Зерновая переборка 113 шп
+UPDATE compartment SET active = FALSE WHERE ship_id = 1 AND space_id = 62;  -- Зерновая переборка 51 шп
+UPDATE compartment SET active = TRUE WHERE ship_id = 1 AND space_id = 63;  -- Зерновая переборка 28 шп
+UPDATE compartment SET active = TRUE WHERE ship_id = 1 AND space_id = 64;  -- Зерновая переборка 27 шп
 
 TRUNCATE TABLE cargo;
+
 INSERT INTO cargo
-  (ship_id, name, mass, bound_x1, bound_x2, bound_type, mass_shift_x, mass_shift_y, mass_shift_z, loading_type)
+  (ship_id, name, mass, timber, bound_x1, bound_x2, mass_shift_x, mass_shift_y, mass_shift_z, loading_type)
 VALUES    
-  (1, 'Палубный груз',   864,    25,     151,     'frame',  0,      0,      10.3, 'cargo');
+  (1, 'Палубный груз',   864,    false, -44.194,     37.656,   0,      0,     10.3, 'cargo');
