@@ -61,5 +61,5 @@ UPDATE compartment SET active = TRUE WHERE ship_id = 1 AND space_id = 64;  -- З
 INSERT INTO compartment  
   (ship_id, space_id, name, active, mass, bound_x1, bound_x2, mass_shift_x, mass_shift_y, mass_shift_z, loading_type, physical_type, cargo_type)
 VALUES    
-  (1, 71, 'Палубный груз',  false, 864, -44.194, 37.656,  0,  0,  10.3, 'cargo', 'solid', 'GENERAL_CARGO');
+  (1, 71, 'Палубный груз',  TRUE, 864, -44.194, 37.656,  0,  0,  10.3, 'cargo', 'solid', 'GENERAL_CARGO');
 
