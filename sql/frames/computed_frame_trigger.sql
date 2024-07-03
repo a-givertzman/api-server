@@ -47,6 +47,8 @@ DECLARE
     changed_ship_id int;
     length real;
     n_parts real;
+    midship real;
+    start_x real;
 BEGIN 
 -- Ищем судно которое изменилось
     IF (TG_OP = 'DELETE') THEN
@@ -80,6 +82,16 @@ BEGIN
         s.ship_id = changed_ship_id
         AND key = 'Number of Parts';
 
+    SELECT 
+        value
+    INTO 
+        midship
+    FROM 
+        ship_parameters s
+    WHERE
+        s.ship_id = changed_ship_id
+        AND key = 'X midship from Fr0';
+
     IF ( length IS NULL ) 
     THEN
         RAISE NOTICE 'update_computed_frame_space no length for ship_id:[%]', changed_ship_id;
@@ -92,7 +104,15 @@ BEGIN
         RETURN NEW;
     END IF;
 
+    IF ( midship IS NULL OR midship <= 0 ) 
+    THEN
+        RAISE NOTICE 'update_computed_frame_space no midship for ship_id:[%]', changed_ship_id;
+        RETURN NEW;
+    END IF;
+
     RAISE NOTICE 'update_computed_frame_space calculate frames with n_parts:[%] for ship_id:[%]', n_parts, changed_ship_id;
+
+    start_x = midship - length;
 
     DELETE FROM 
         computed_frame_space 
@@ -103,7 +123,7 @@ BEGIN
         INSERT INTO
             computed_frame_space (ship_id, index, start_x, end_x)
         VALUES
-            (changed_ship_id, index, length*index/n_parts, length*(index+1)/n_parts);
+            (changed_ship_id, index, start_x + length*index/n_parts, start_x + length*(index+1)/n_parts);
     END LOOP;
 
     RETURN NEW;
