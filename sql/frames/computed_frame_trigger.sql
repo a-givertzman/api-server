@@ -103,9 +103,9 @@ BEGIN
         RETURN NEW;
     END IF;
 
-    IF ( midship IS NULL OR midship <= 0 ) 
+    IF ( middle_x IS NULL OR middle_x <= 0 ) 
     THEN
-        RAISE NOTICE 'update_computed_frame_space no midship for ship_id:[%]', changed_ship_id;
+        RAISE NOTICE 'update_computed_frame_space no middle_x for ship_id:[%]', changed_ship_id;
         RETURN NEW;
     END IF;
 
