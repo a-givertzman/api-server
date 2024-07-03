@@ -61,6 +61,8 @@ VALUES
     (9, 47),
     (10, 46),
     (10, 47),
+    (11, 46),
+    (11, 47),
     (14, 50),
     (15, 46),
     (15, 48),
@@ -104,14 +106,3 @@ VALUES
     (30, TRUE),
     (31, TRUE),
     (32, TRUE);
-
--- SELECT
---     ph.title_rus AS "parameter",
---     cs.title_rus AS "criterion"
--- FROM
---     parameter_head AS ph
---     LEFT JOIN criterions_parameters AS cp ON ph.id = cp.parameter_id
---     LEFT JOIN criterion_stability AS cs ON cp.criterion_id = cs.id
--- WHERE
---     cp.criterion_id IS NOT NULL
---     OR cp.always_visible = TRUE;
