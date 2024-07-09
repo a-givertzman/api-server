@@ -13,7 +13,7 @@ VALUES
   (1, 'Name of ship', 'M/V "YURIY ARSHENEVSKIY"', 'text', NULL),
 -- Возможные варианты обледенения судна: full, half, none
   (1, 'Type of icing', 'none', 'text', NULL),
--- Возможные варианты обледенения палубного груза - леса: full, half, bow, none
+-- Возможные варианты обледенения палубного груза - леса: full, half_left, half_right, bow, none
   (1, 'Type of icing timber', 'none', 'text', NULL),
 -- Cтепень намокания палубного лесного груза, %
   (1, 'Wetting of deck timber', '10', 'real', NULL),
