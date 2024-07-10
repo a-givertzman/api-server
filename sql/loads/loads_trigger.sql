@@ -62,7 +62,7 @@ BEGIN
     NEW.m_f_s_y = result.m_f_s_y;
     NEW.m_f_s_x = result.m_f_s_x;
 
-    IF (NEW.physical_type == 'bulk') THEN
+    IF (NEW.physical_type = 'bulk') THEN
         NEW.grain_moment = get_grain_moment_level(NEW.ship_id, NEW.space_id, NEW.level);
     END IF;
 

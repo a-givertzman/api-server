@@ -23,6 +23,7 @@
 \i ./sql/area/vertical_area_strength.sql
 \i ./sql/area/vertical_area_stability.sql
 \i ./sql/loads/create.sql
+\i ./sql/loads/create.sql
 \i ./sql/loads/loads_trigger.sql
 \i ./sql/stability/coefficient_k.sql
 \i ./sql/stability/multipler_s.sql
@@ -60,5 +61,6 @@
 \i ./sql/ARK/loads/protocol_66.sql
 \i ./sql/ARK/area/horizontal_area_strength.sql
 \i ./sql/ARK/area/horizontal_area_stability.sql
-\i ./sql/ARK/area/vertical_area.sql
+\i ./sql/ARK/area/vertical_area_strength.sql
+\i ./sql/ARK/area/vertical_area_stability.sql
 
