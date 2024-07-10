@@ -9,7 +9,7 @@ WORKDIR /back
 RUN git clone --branch 0.0.21 https://github.com/a-givertzman/sss-computing-strength.git sss-computing-strength
 RUN cd ./sss-computing-strength && cargo build --release
 
-FROM debian:12.2 as packager
+FROM debian:12.2 as runner
 WORKDIR /package
 COPY --from=builder /app/api-server/target/release/api-server ./
 COPY --from=builder /back/sss-computing-strength/target/release/sss-computing-strength ./
