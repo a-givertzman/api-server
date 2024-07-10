@@ -282,3 +282,9 @@ INSERT INTO compartment_separators
 VALUES  
 --Отсек 2
   (1, 52, 61, 62, TRUE); --Зерновые переборки 51 + 113 шп
+
+-- Палубный груз TODO: перенести куда-нибудь 
+INSERT INTO compartment  
+  (ship_id, space_id, name, active, mass, bound_x1, bound_x2, mass_shift_x, mass_shift_y, mass_shift_z, loading_type, physical_type, cargo_type)
+VALUES    
+  (1, 71, 'Палубный груз', TRUE, 0, -44.194, 37.656,  0,  0,  10.3, 'cargo', 'solid', 'GENERAL_CARGO');

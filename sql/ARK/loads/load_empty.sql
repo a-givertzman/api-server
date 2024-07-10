@@ -58,4 +58,6 @@ UPDATE compartment SET active = FALSE WHERE ship_id = 1 AND space_id = 62;  -- �
 UPDATE compartment SET active = FALSE WHERE ship_id = 1 AND space_id = 63;  -- Зерновая переборка 28 шп
 UPDATE compartment SET active = FALSE WHERE ship_id = 1 AND space_id = 64;  -- Зерновая переборка 27 шп
 
+UPDATE compartment SET mass = 0 WHERE ship_id = 1 AND space_id = 71;  -- Палубный груз
+
 
