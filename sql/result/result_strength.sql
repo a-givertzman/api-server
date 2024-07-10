@@ -14,7 +14,7 @@ CREATE TABLE
         value_mass_store FLOAT8 NOT NULL,
         value_mass_cargo FLOAT8 NOT NULL,
         value_mass_icing FLOAT8 NOT NULL,
-   --     value_mass_wetting FLOAT8 NOT NULL,
+        value_mass_wetting FLOAT8 NOT NULL,
         value_mass_sum FLOAT8 NOT NULL,
         value_displacement FLOAT8 NOT NULL,
         value_total_force FLOAT8 NOT NULL,
