@@ -9,7 +9,7 @@ mkdir ./postgres
 docker compose up --scale client=0
 ```
 
-If configuration has changed, run following commands from project root to recreate database and api-server with updated configuration:
+If configuration has changed, run following commands to recreate database and api-server with updated configuration:
 
 ```bash
 docker compose down -v
