@@ -77,6 +77,7 @@ CREATE TABLE if not exists compartment (
   mass_shift_z FLOAT8,
   m_f_s_y FLOAT8,
   m_f_s_x FLOAT8,
+  grain_moment FLOAT8, 
   loading_type loading_type NOT NULL,
   physical_type physical_type NOT NULL,
   svg_paths TEXT,

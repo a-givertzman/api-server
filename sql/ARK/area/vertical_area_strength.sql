@@ -1,6 +1,6 @@
 -- Площадь поверхности парусности, m^2
 
-INSERT INTO vertical_area
+INSERT INTO vertical_area_strength
   (ship_id, name, shift_z, value, bound_x1, bound_x2)
 VALUES
   (1, 'Надводный борт',         4.13,  637.5,   -60.994,   59.356),
