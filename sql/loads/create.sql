@@ -28,10 +28,9 @@ CREATE TABLE if not exists load_constant (
   mass FLOAT8 NOT NULL,
   bound_x1 FLOAT8 NOT NULL,
   bound_x2 FLOAT8 NOT NULL,
-  bound_type TEXT NOT NULL,
   loading_type load_constant_type NOT NULL,
   CONSTRAINT load_constant_pk PRIMARY KEY (id),
-  CONSTRAINT compartment_bound_x_check CHECK(bound_x1 < bound_x2)
+  CONSTRAINT load_constant_bound_x_check CHECK(bound_x1 < bound_x2)
 );
 
 -- Типы элементов погрузки судна
@@ -73,12 +72,12 @@ CREATE TABLE if not exists compartment (
   bound_y2 FLOAT8,
   bound_z1 FLOAT8,
   bound_z2 FLOAT8,
-  bound_type TEXT,
   mass_shift_x FLOAT8,
   mass_shift_y FLOAT8,
   mass_shift_z FLOAT8,
   m_f_s_y FLOAT8,
   m_f_s_x FLOAT8,
+  grain_moment FLOAT8, 
   loading_type loading_type NOT NULL,
   physical_type physical_type NOT NULL,
   svg_paths TEXT,
@@ -87,12 +86,12 @@ CREATE TABLE if not exists compartment (
   CONSTRAINT compartment_id_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, space_id),
   CONSTRAINT compartment_name_unique UNIQUE (project_id, ship_id, name),
   CONSTRAINT compartment_name_check CHECK(char_length(name) <= 50),
-  CONSTRAINT compartment_bound_type_check CHECK(char_length(bound_type) <= 50),
   CONSTRAINT compartment_density_check CHECK(density IS NULL OR density > 0),
   CONSTRAINT compartment_volume_max_check CHECK(volume_max IS NULL OR volume_max > 0),
   CONSTRAINT compartment_mass_check CHECK(mass IS NULL OR mass >= 0),
   CONSTRAINT compartment_volume_check CHECK(volume IS NULL OR volume >= 0),
-  CONSTRAINT compartment_bound_x_check CHECK(bound_x1 < bound_x2)
+  CONSTRAINT compartment_bound_x_check CHECK(bound_x1 < bound_x2),
+  CONSTRAINT compartment_shift_x_check CHECK(mass_shift_x IS NULL OR (mass_shift_x >= bound_x1 AND mass_shift_x <= bound_x2))
 );
 
 
@@ -121,13 +120,18 @@ CREATE TABLE if not exists compartment_curve (
   CONSTRAINT compartment_curve_key_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, space_id, level)
 );
 
+-- Кренящий момент от смещения сыпучего груза
+DROP TABLE IF EXISTS grain_moment CASCADE;
 
--- Действие при наличии разделителя отсека
-DROP TYPE IF EXISTS separator_action CASCADE;
-
-CREATE TYPE separator_action AS ENUM (
-  'set_on',
-  'set_off'
+CREATE TABLE if not exists grain_moment (
+  id INT GENERATED ALWAYS AS IDENTITY,
+  project_id INT,
+  ship_id INT NOT NULL,
+  space_id INT NOT NULL,
+  level FLOAT8 NOT NULL,
+  moment FLOAT8 NOT NULL,
+  CONSTRAINT grain_moment_pk PRIMARY KEY (id),
+  CONSTRAINT grain_moment_key_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, space_id, level)
 );
 
 -- Разделители и зависимые от них отсеки
@@ -140,7 +144,7 @@ CREATE TABLE if not exists compartment_separators (
   compartment_space_id INT NOT NULL,  
   separator1_space_id INT NOT NULL,
   separator2_space_id INT,
-  separator_action separator_action NOT NULL,
+  compartment_active BOOLEAN NOT NULL, -- состояние при наличии разделителя отсека
   CONSTRAINT compartment_separators_pk PRIMARY KEY (id),
   CONSTRAINT compartment_separators_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, compartment_space_id, separator1_space_id)
 );
@@ -155,9 +159,10 @@ CREATE TABLE if not exists cargo (
   ship_id INT NOT NULL,
   name TEXT NOT NULL,
   mass FLOAT8,
+  timber BOOLEAN NOT NULL DEFAULT FALSE,
+  loading_type loading_type NOT NULL DEFAULT 'cargo',
   bound_x1 FLOAT8 NOT NULL,
   bound_x2 FLOAT8 NOT NULL,
-  bound_type TEXT NOT NULL,
   bound_y1 FLOAT8,
   bound_y2 FLOAT8,
   bound_z1 FLOAT8,
@@ -173,7 +178,6 @@ CREATE TABLE if not exists cargo (
   vertical_area_shift_x FLOAT8,
   vertical_area_shift_y FLOAT8,
   vertical_area_shift_z FLOAT8,
-  loading_type loading_type NOT NULL,
   CONSTRAINT cargo_pk PRIMARY KEY (id),
   --CONSTRAINT cargo_name_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, name),
   CONSTRAINT cargo_name_check CHECK(char_length(name) <= 50),

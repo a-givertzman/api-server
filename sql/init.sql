@@ -11,15 +11,19 @@
 \i ./sql/ship/volume_shift.sql
 \i ./sql/ship/waterline_breadth.sql
 \i ./sql/ship/waterline_length.sql
+\i ./sql/ship/waterline_area.sql
 \i ./sql/ship/min_metacentric_height_subdivision.sql
 \i ./sql/ship/delta_windage_area.sql
 \i ./sql/ship/delta_windage_moment.sql
 \i ./sql/ship/metacentic_height_limits.sql
 \i ./sql/frames/create.sql
 \i ./sql/frames/computed_frame_trigger.sql
+\i ./sql/frames/draft_mark.sql
 \i ./sql/area/horizontal_area_strength.sql
 \i ./sql/area/horizontal_area_stability.sql
-\i ./sql/area/vertical_area.sql
+\i ./sql/area/vertical_area_strength.sql
+\i ./sql/area/vertical_area_stability.sql
+\i ./sql/loads/create.sql
 \i ./sql/loads/create.sql
 \i ./sql/loads/loads_trigger.sql
 \i ./sql/stability/coefficient_k.sql
@@ -30,12 +34,13 @@
 \i ./sql/stability/coefficient_k_theta.sql
 \i ./sql/stability/icing.sql
 -- Tables with result of calculating
-\i ./sql/result/criterion_stability.sql
 \i ./sql/result/result_stability.sql
 \i ./sql/result/result_strength.sql
 \i ./sql/result/strength_force_limit.sql
+\i ./sql/result/criterion_stability.sql
 \i ./sql/result/parameter_head.sql
 \i ./sql/result/parameter_data.sql
+\i ./sql/result/criterions_parameters.sql
 \i ./sql/result/loads_general.sql
 \i ./sql/result/heel_trim_general.sql
 \i ./sql/result/stability_diagram.sql
@@ -51,9 +56,14 @@
 \i ./sql/ARK/frames/bonjean_frame.sql
 \i ./sql/ARK/frames/physical_frame.sql
 \i ./sql/ARK/frames/frame_area.sql
+\i ./sql/ARK/frames/draft_mark.sql
 \i ./sql/ARK/loads/load_base.sql
 \i ./sql/ARK/loads/protocol_66.sql
 \i ./sql/ARK/loads/hull.sql
 \i ./sql/ARK/loads/compartment_curve.sql
 \i ./sql/ARK/loads/protocol_66.sql
+\i ./sql/ARK/area/horizontal_area_strength.sql
+\i ./sql/ARK/area/horizontal_area_stability.sql
+\i ./sql/ARK/area/vertical_area_strength.sql
+\i ./sql/ARK/area/vertical_area_stability.sql
 
