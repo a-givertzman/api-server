@@ -23,9 +23,14 @@
 \i ./sql/area/horizontal_area_stability.sql
 \i ./sql/area/vertical_area_strength.sql
 \i ./sql/area/vertical_area_stability.sql
+--
+-- Comparment and cargo relations
+\i ./sql/cargo_categories/cargo_categories.sql
 \i ./sql/loads/create.sql
 \i ./sql/loads/create.sql
 \i ./sql/loads/loads_trigger.sql
+--
+--
 \i ./sql/stability/coefficient_k.sql
 \i ./sql/stability/multipler_s.sql
 \i ./sql/stability/multipler_x1.sql
@@ -33,6 +38,7 @@
 \i ./sql/stability/navigation_area.sql
 \i ./sql/stability/coefficient_k_theta.sql
 \i ./sql/stability/icing.sql
+--
 -- Tables with result of calculating
 \i ./sql/result/result_stability.sql
 \i ./sql/result/result_strength.sql
@@ -44,12 +50,13 @@
 \i ./sql/result/loads_general.sql
 \i ./sql/result/heel_trim_general.sql
 \i ./sql/result/stability_diagram.sql
+--
 --triggers
 --\i ./sql/triggers/mass_sum.sql
 --\i ./sql/triggers/mass.sql
 --\i ./sql/triggers/volume.sql
 \i ./sql/triggers/water_density.sql
-
+--
 -- Data for ship
 \i ./sql/ARK/ship.sql
 \i ./sql/ARK/strength_force_limit.sql
@@ -66,4 +73,3 @@
 \i ./sql/ARK/area/horizontal_area_stability.sql
 \i ./sql/ARK/area/vertical_area_strength.sql
 \i ./sql/ARK/area/vertical_area_stability.sql
-
