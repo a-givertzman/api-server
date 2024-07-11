@@ -24,7 +24,7 @@
 \i ./sql/area/vertical_area_strength.sql
 \i ./sql/area/vertical_area_stability.sql
 --
--- Comparment and cargo relations
+-- Compartment and cargo relations
 \i ./sql/cargo_categories/cargo_categories.sql
 \i ./sql/loads/create.sql
 \i ./sql/loads/create.sql
