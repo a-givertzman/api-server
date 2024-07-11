@@ -27,7 +27,6 @@
 -- Compartment and cargo relations
 \i ./sql/cargo_categories/cargo_categories.sql
 \i ./sql/loads/create.sql
-\i ./sql/loads/create.sql
 \i ./sql/loads/loads_trigger.sql
 --
 --
