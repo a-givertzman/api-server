@@ -1,25 +1,3 @@
--- Типы элементов постоянной массы судна
-DROP TYPE IF EXISTS load_constant_type CASCADE;
-
-CREATE TYPE load_constant_type AS ENUM (
-  'hull',
-  'equipment'
-);
-
-
--- Типы грузов судна
-DROP TYPE IF EXISTS cargo_type CASCADE;
-
-CREATE TYPE cargo_type AS ENUM (
-  'BALLAST',
-  'OILS_AND_FUELS',
-  'FRESH_WATER',
-  'ACIDS_AND_ALKALIS',
-  'POLLUTED_LIQUIDS',
-  'GENERAL_CARGO'
-);
-
-
 -- Постоянная нагрузка на судно, распределенная по шпациям
 DROP TABLE IF EXISTS load_constant;
 
@@ -30,28 +8,10 @@ CREATE TABLE if not exists load_constant (
   mass FLOAT8 NOT NULL,
   bound_x1 FLOAT8 NOT NULL,
   bound_x2 FLOAT8 NOT NULL,
-  loading_type load_constant_type NOT NULL,
+  category_id INT NOT NULL, -- ID of the cargo_category entry;
   CONSTRAINT load_constant_pk PRIMARY KEY (id),
-  CONSTRAINT load_constant_bound_x_check CHECK(bound_x1 < bound_x2)
-);
-
-
--- Типы элементов погрузки судна
-DROP TYPE IF EXISTS loading_type CASCADE;
-
-CREATE TYPE loading_type AS ENUM (
-  'ballast',
-  'store',
-  'cargo'
-);
-
--- Физический тип груза судна
-DROP TYPE IF EXISTS physical_type CASCADE;
-
-CREATE TYPE physical_type AS ENUM (
-  'bulk',
-  'liquid',
-  'solid'
+  CONSTRAINT load_constant_bound_x_check CHECK(bound_x1 < bound_x2),
+  CONSTRAINT load_constant_category_fk FOREIGN KEY (category_id) REFERENCES cargo_category (id)
 );
 
 
@@ -82,10 +42,7 @@ CREATE TABLE if not exists compartment (
   m_f_s_y FLOAT8,
   m_f_s_x FLOAT8,
   grain_moment FLOAT8, 
-  loading_type loading_type NOT NULL,
-  physical_type physical_type NOT NULL,
   svg_paths TEXT,
-  cargo_type cargo_type NOT NULL,
   category_id INT NOT NULL, -- ID of the cargo_category entry;
   CONSTRAINT compartment_pk PRIMARY KEY (id),
   CONSTRAINT compartment_id_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, space_id),
@@ -168,7 +125,6 @@ CREATE TABLE if not exists cargo (
   name TEXT NOT NULL,
   mass FLOAT8,
   timber BOOLEAN NOT NULL DEFAULT FALSE,
-  loading_type loading_type NOT NULL DEFAULT 'cargo',
   bound_x1 FLOAT8 NOT NULL,
   bound_x2 FLOAT8 NOT NULL,
   bound_y1 FLOAT8,

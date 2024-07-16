@@ -64,8 +64,6 @@ CREATE TABLE IF NOT EXISTS cargo_category (
 INSERT INTO cargo_category
     (id, key, general_category_id, matter_type, title_rus, title_eng)
 VALUES
-    -- Порожнем 
-    (1, 'lightship',                    1, 'solid',     'Порожнем',                         'LightShip'),
     -- Балласт 
     (2, 'ballast_tank',                 2, 'liquid',    'Балластная цистерна',              'Ballast tank'),
     -- Запасы 
@@ -77,4 +75,7 @@ VALUES
     (8, 'sundry_tank',                  3, 'liquid',    'Цистерны грязных жидкостей',       'Sundry tank'),
     (9, 'other_stores',                 3, 'solid',     'Прочие запасы',                    'Other stores'),
     -- Груз 
-    (10, 'cargo',                       4, 'solid',     'Груз',                             'Cargo');
+    (10, 'cargo',                       4, 'solid',     'Груз',                             'Cargo'),
+    -- Порожнем 
+    (20, 'hull',                        1, 'solid',     'Корпус',                           'Hull'),
+    (21, 'equipment',                   1, 'solid',     'Оборудование',                     'Equipment');

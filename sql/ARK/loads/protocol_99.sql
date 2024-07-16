@@ -63,8 +63,8 @@ UPDATE compartment SET mass = 864, active = TRUE WHERE ship_id = 1 AND space_id 
 TRUNCATE TABLE cargo;
 
 -- INSERT INTO cargo
---  (ship_id, name, mass, timber, bound_x1, bound_x2, mass_shift_x, mass_shift_y, mass_shift_z, loading_type, category_id)
+--  (ship_id, name, mass, timber, bound_x1, bound_x2, mass_shift_x, mass_shift_y, mass_shift_z, category_id)
 -- VALUES    
---  (1, 'Палубный груз',   864,    false, -44.194,     37.656,   0,      0,     10.3, 'cargo', 10);
+--  (1, 'Палубный груз',   864,    false, -44.194,     37.656,   0,      0,     10.3, 10);
 
 
