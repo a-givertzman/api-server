@@ -3,7 +3,8 @@
 CREATE OR REPLACE FUNCTION update_compartment_parameters () RETURNS TRIGGER 
 AS $update_compartment_parameters$
 DECLARE 
-    result compartment%rowtype; 
+    result compartment%rowtype;
+    matter_type cargo_category.matter_type%TYPE;
 BEGIN 
 
 --    RAISE NOTICE 'update_compartment_parameters begin begin OLD:[%] NEW:[%]', OLD, NEW;
@@ -62,7 +63,9 @@ BEGIN
     NEW.m_f_s_y = result.m_f_s_y;
     NEW.m_f_s_x = result.m_f_s_x;
 
-    IF (NEW.physical_type = 'bulk') THEN
+    -- Check if new category is of bulk type and then update grain_moment for compartment entry;
+    SELECT cc.matter_type INTO matter_type FROM cargo_category AS cc WHERE id = NEW.category_id;
+    IF (matter_type = 'bulk') THEN
         NEW.grain_moment = get_grain_moment_level(NEW.ship_id, NEW.space_id, NEW.level);
     END IF;
 

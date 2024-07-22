@@ -1,23 +1,3 @@
--- Типы элементов постоянной массы судна
-DROP TYPE IF EXISTS load_constant_type CASCADE;
-
-CREATE TYPE load_constant_type AS ENUM (
-  'hull',
-  'equipment'
-);
-
--- Типы грузов судна
-DROP TYPE IF EXISTS cargo_type CASCADE;
-
-CREATE TYPE cargo_type AS ENUM (
-  'BALLAST',
-  'OILS_AND_FUELS',
-  'FRESH_WATER',
-  'ACIDS_AND_ALKALIS',
-  'POLLUTED_LIQUIDS',
-  'GENERAL_CARGO'
-);
-
 -- Постоянная нагрузка на судно, распределенная по шпациям
 DROP TABLE IF EXISTS load_constant;
 
@@ -28,28 +8,12 @@ CREATE TABLE if not exists load_constant (
   mass FLOAT8 NOT NULL,
   bound_x1 FLOAT8 NOT NULL,
   bound_x2 FLOAT8 NOT NULL,
-  loading_type load_constant_type NOT NULL,
+  category_id INT NOT NULL, -- ID of the cargo_category entry;
   CONSTRAINT load_constant_pk PRIMARY KEY (id),
-  CONSTRAINT load_constant_bound_x_check CHECK(bound_x1 < bound_x2)
+  CONSTRAINT load_constant_bound_x_check CHECK(bound_x1 < bound_x2),
+  CONSTRAINT load_constant_category_fk FOREIGN KEY (category_id) REFERENCES cargo_category (id)
 );
 
--- Типы элементов погрузки судна
-DROP TYPE IF EXISTS loading_type CASCADE;
-
-CREATE TYPE loading_type AS ENUM (
-  'ballast',
-  'store',
-  'cargo'
-);
-
--- Физический тип груза судна
-DROP TYPE IF EXISTS physical_type CASCADE;
-
-CREATE TYPE physical_type AS ENUM (
-  'bulk',
-  'liquid',
-  'solid'
-);
 
 -- Координаты и параметры отсеков и цистерн.
 DROP TABLE IF EXISTS compartment CASCADE;
@@ -78,10 +42,8 @@ CREATE TABLE if not exists compartment (
   m_f_s_y FLOAT8,
   m_f_s_x FLOAT8,
   grain_moment FLOAT8, 
-  loading_type loading_type NOT NULL,
-  physical_type physical_type NOT NULL,
   svg_paths TEXT,
-  cargo_type cargo_type NOT NULL,
+  category_id INT NOT NULL, -- ID of the cargo_category entry;
   CONSTRAINT compartment_pk PRIMARY KEY (id),
   CONSTRAINT compartment_id_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, space_id),
   CONSTRAINT compartment_name_unique UNIQUE (project_id, ship_id, name),
@@ -91,7 +53,8 @@ CREATE TABLE if not exists compartment (
   CONSTRAINT compartment_mass_check CHECK(mass IS NULL OR mass >= 0),
   CONSTRAINT compartment_volume_check CHECK(volume IS NULL OR volume >= 0),
   CONSTRAINT compartment_bound_x_check CHECK(bound_x1 < bound_x2),
-  CONSTRAINT compartment_shift_x_check CHECK(mass_shift_x IS NULL OR (mass_shift_x >= bound_x1 AND mass_shift_x <= bound_x2))
+  CONSTRAINT compartment_shift_x_check CHECK(mass_shift_x IS NULL OR (mass_shift_x >= bound_x1 AND mass_shift_x <= bound_x2)),
+  CONSTRAINT compartment_category_fk FOREIGN KEY (category_id) REFERENCES cargo_category (id)
 );
 
 
@@ -120,6 +83,7 @@ CREATE TABLE if not exists compartment_curve (
   CONSTRAINT compartment_curve_key_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, space_id, level)
 );
 
+
 -- Кренящий момент от смещения сыпучего груза
 DROP TABLE IF EXISTS grain_moment CASCADE;
 
@@ -133,6 +97,7 @@ CREATE TABLE if not exists grain_moment (
   CONSTRAINT grain_moment_pk PRIMARY KEY (id),
   CONSTRAINT grain_moment_key_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, space_id, level)
 );
+
 
 -- Разделители и зависимые от них отсеки
 DROP TABLE IF EXISTS compartment_separators CASCADE;
@@ -160,7 +125,6 @@ CREATE TABLE if not exists cargo (
   name TEXT NOT NULL,
   mass FLOAT8,
   timber BOOLEAN NOT NULL DEFAULT FALSE,
-  loading_type loading_type NOT NULL DEFAULT 'cargo',
   bound_x1 FLOAT8 NOT NULL,
   bound_x2 FLOAT8 NOT NULL,
   bound_y1 FLOAT8,
@@ -178,6 +142,7 @@ CREATE TABLE if not exists cargo (
   vertical_area_shift_x FLOAT8,
   vertical_area_shift_y FLOAT8,
   vertical_area_shift_z FLOAT8,
+  category_id INT NOT NULL, -- ID of the cargo_category entry;
   CONSTRAINT cargo_pk PRIMARY KEY (id),
   --CONSTRAINT cargo_name_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, name),
   CONSTRAINT cargo_name_check CHECK(char_length(name) <= 50),
@@ -194,13 +159,6 @@ CREATE TABLE if not exists cargo (
   CONSTRAINT cargo_bound_z_check CHECK(bound_z1 IS NULL OR (bound_z1 < bound_z2)), 
   CONSTRAINT cargo_mass_shift_z_check CHECK(mass_shift_z IS NULL OR bound_z1 IS NULL OR (mass_shift_z >= bound_z1 AND mass_shift_z <= bound_z2)),
   CONSTRAINT cargo_horizontal_area_shift_z_check CHECK(horizontal_area_shift_z IS NULL OR bound_z1 IS NULL OR (horizontal_area_shift_z >= bound_z1 AND horizontal_area_shift_z <= bound_z2)),
-  CONSTRAINT cargo_vertical_area_shift_z_check CHECK(vertical_area_shift_z IS NULL OR bound_z1 IS NULL OR (vertical_area_shift_z >= bound_z1 AND vertical_area_shift_z <= bound_z2))
+  CONSTRAINT cargo_vertical_area_shift_z_check CHECK(vertical_area_shift_z IS NULL OR bound_z1 IS NULL OR (vertical_area_shift_z >= bound_z1 AND vertical_area_shift_z <= bound_z2)),
+  CONSTRAINT cargo_category_fk FOREIGN KEY (category_id) REFERENCES cargo_category (id)
 );
-
-
-
-
-
-
-
-

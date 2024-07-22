@@ -1,20 +1,26 @@
 DROP TABLE IF EXISTS criterions_parameters CASCADE;
 
--- Связь параметров с критериями остойчивости
-CREATE TABLE
-    IF NOT EXISTS criterions_parameters (
-        id INT GENERATED ALWAYS AS IDENTITY,
-        criterion_id INT,
-        parameter_id INT NOT NULL,
-        always_visible BOOLEAN DEFAULT FALSE NOT NULL,
-        CONSTRAINT criterions_parameters_pk PRIMARY KEY (id),
-        CONSTRAINT criterions_parameters_criterion_fk FOREIGN KEY (criterion_id) REFERENCES criterion_stability (id),
-        CONSTRAINT criterions_parameters_parameter_fk FOREIGN KEY (parameter_id) REFERENCES parameter_head (id)
-    );
+-- Specifies relation between parameters and stability criteria (or lack of connection between them).
+CREATE TABLE IF NOT EXISTS criterions_parameters (
+    id INT GENERATED ALWAYS AS IDENTITY,
+    -- ID of the criterion_stability entry;
+    criterion_id INT,
+    -- ID of the parameter_head entry;
+    parameter_id INT NOT NULL,
+    -- Boolean flag to identify head_parameter entries
+    -- that should be visible regardless of presence of corresponding entry in criterion_stability
+    -- (TODO: remove, by splitting parameters relations into new ones)
+    always_visible BOOLEAN DEFAULT FALSE NOT NULL,
+    CONSTRAINT criterions_parameters_pk PRIMARY KEY (id),
+    CONSTRAINT criterions_parameters_criterion_fk FOREIGN KEY (criterion_id) REFERENCES criterion_stability (id),
+    CONSTRAINT criterions_parameters_parameter_fk FOREIGN KEY (parameter_id) REFERENCES parameter_head (id)
+);
 
+-- Inserting parameters that depend on criteria;
 INSERT INTO
     criterions_parameters (criterion_id, parameter_id)
 VALUES
+    -- Критерий погоды
     (1, 33),
     (1, 34),
     (1, 35),
@@ -30,6 +36,7 @@ VALUES
     (1, 44),
     (1, 45),
     (1, 45),
+    -- Статический крен от ветра
     (2, 33),
     (2, 34),
     (2, 35),
@@ -45,32 +52,45 @@ VALUES
     (2, 44),
     (2, 45),
     (2, 45),
+    -- Площадь ДСО до 30°
     (3, 46),
     (3, 47),
+    -- Площадь ДСО до 40°
     (4, 46),
     (4, 47),
+    -- Площадь ДСО до θₗₘₐₓ
     (5, 46),
     (5, 47),
+    -- Площадь ДСО от 30° до 40°
     (6, 46),
     (6, 47),
+    -- Максимальное плечо ДСО
     (7, 46),
     (7, 47),
+    -- Максимальное плечо ДСО при перевозке леса
     (8, 46),
     (8, 47),
+    -- Максимальное плечо ДСО при обледенении
     (9, 46),
     (9, 47),
+    -- Максимальный угол ДСО
     (10, 46),
     (10, 47),
+    -- Первый максимум ДСО
     (11, 46),
     (11, 47),
+    -- Крен на циркуляции
     (14, 50),
+    -- Крен от смещения зерна
     (15, 46),
     (15, 48),
     (15, 49),
+    -- Площадь ДСО при смещении зерна
     (16, 46),
     (16, 48),
     (16, 49);
 
+-- Inserting parameters that do not depend on criteria
 INSERT INTO
     criterions_parameters (parameter_id, always_visible)
 VALUES
