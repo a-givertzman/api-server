@@ -13,8 +13,8 @@ VALUES
   (1, 'Name of ship', 'Belogorodskaya ARK-20231', 'text', NULL),
 -- Возможные варианты обледенения судна: full, half, none
   (1, 'Type of icing', 'none', 'text', NULL),
--- Возможные варианты обледенения палубного груза - леса: full, half left, half right, bow, none
-  (1, 'Type of icing timber', 'none', 'text', NULL),
+-- Возможные варианты обледенения палубного груза - леса: full, half left, half right, bow
+  (1, 'Type of icing timber', 'full', 'text', NULL),
 -- Cтепень намокания палубного лесного груза, %
   (1, 'Wetting of deck timber', '10', 'real', NULL),
   (1, 'Navigation area', 'R2', 'text', NULL),
