@@ -1,6 +1,8 @@
 -- Длинна судна по ватерлинии
 -- в зависимости от осадки
 -- d, м | z, м
+DROP TABLE IF EXISTS waterline_length CASCADE;
+
 CREATE TABLE if not exists waterline_length (
   id INT GENERATED ALWAYS AS IDENTITY,
   project_id INT,

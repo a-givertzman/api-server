@@ -1,6 +1,8 @@
 -- Площадь ватерлинии
 -- зависимость от объемного водоизмещения
 -- V, м3 | S, м^2
+DROP TABLE IF EXISTS waterline_area CASCADE;
+
 CREATE TABLE if not exists waterline_area (
   id INT GENERATED ALWAYS AS IDENTITY,
   project_id INT,

@@ -3,6 +3,8 @@
 -- в прямом положении судна на спокойной воде 
 -- в зависимости от осадки
 -- d, м | z, м
+DROP TABLE IF EXISTS volume_shift CASCADE;
+
 CREATE TABLE if not exists volume_shift (
   id INT GENERATED ALWAYS AS IDENTITY,
   project_id INT,
