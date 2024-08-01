@@ -1,3 +1,8 @@
+--
+-- General data
+\i ./sql/general_data/unit.sql
+--
+--
 \i ./sql/ship/ship_name.sql
 \i ./sql/ship/ship_parameters.sql
 \i ./sql/ship/center_draught.sql
@@ -44,6 +49,7 @@
 -- Tables with result of calculating
 \i ./sql/result/result_strength.sql
 \i ./sql/result/strength_force_limit.sql
+\i ./sql/result/criterion_category.sql
 \i ./sql/result/criterion.sql
 \i ./sql/result/criterion_values.sql
 \i ./sql/result/parameter_head.sql
