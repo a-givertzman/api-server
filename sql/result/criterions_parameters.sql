@@ -3,16 +3,16 @@ DROP TABLE IF EXISTS criterions_parameters CASCADE;
 -- Specifies relation between parameters and stability criteria (or lack of connection between them).
 CREATE TABLE IF NOT EXISTS criterions_parameters (
     id INT GENERATED ALWAYS AS IDENTITY,
-    -- ID of the criterion_stability entry;
+    -- ID of the criterion entry;
     criterion_id INT,
     -- ID of the parameter_head entry;
     parameter_id INT NOT NULL,
     -- Boolean flag to identify head_parameter entries
-    -- that should be visible regardless of presence of corresponding entry in criterion_stability
+    -- that should be visible regardless of presence of corresponding entry in criterion
     -- (TODO: remove, by splitting parameters relations into new ones)
     always_visible BOOLEAN DEFAULT FALSE NOT NULL,
     CONSTRAINT criterions_parameters_pk PRIMARY KEY (id),
-    CONSTRAINT criterions_parameters_criterion_fk FOREIGN KEY (criterion_id) REFERENCES criterion_stability (id),
+    CONSTRAINT criterions_parameters_criterion_fk FOREIGN KEY (criterion_id) REFERENCES criterion (id),
     CONSTRAINT criterions_parameters_parameter_fk FOREIGN KEY (parameter_id) REFERENCES parameter_head (id)
 );
 

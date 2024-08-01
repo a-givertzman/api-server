@@ -42,10 +42,10 @@
 \i ./sql/stability/icing.sql
 --
 -- Tables with result of calculating
-\i ./sql/result/result_stability.sql
 \i ./sql/result/result_strength.sql
 \i ./sql/result/strength_force_limit.sql
-\i ./sql/result/criterion_stability.sql
+\i ./sql/result/criterion.sql
+\i ./sql/result/criterion_values.sql
 \i ./sql/result/parameter_head.sql
 \i ./sql/result/parameter_data.sql
 \i ./sql/result/criterions_parameters.sql
