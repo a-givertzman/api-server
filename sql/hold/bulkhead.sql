@@ -1,7 +1,7 @@
 --
 -- Bulkhead that can be used to divide holds;
 --
-DROP TABLE IF EXISTS bulkhead;
+DROP TABLE IF EXISTS bulkhead CASCADE;
 
 CREATE TABLE IF NOT EXISTS bulkhead (
     id INT,

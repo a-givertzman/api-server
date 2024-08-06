@@ -1,7 +1,7 @@
 --
 -- Compartments into which holds are divided when installing bulkheads;
 --
-DROP TABLE IF EXISTS hold_part;
+DROP TABLE IF EXISTS hold_part CASCADE;
 
 CREATE TABLE IF NOT EXISTS hold_part (
     id INT,
@@ -15,6 +15,8 @@ CREATE TABLE IF NOT EXISTS hold_part (
     bound_x2 FLOAT8 NOT NULL,
     -- Maximum possible volume of bulk cargo that can be loaded into this part of hold compartment;
     volume_max FLOAT8 NOT NULL,
+    -- JSON with svg path elements for projection of hold_part onto 3 main planes; 
+    svg_paths TEXT,
     CONSTRAINT hold_part_pk PRIMARY KEY (id),
     CONSTRAINT hold_part_group_fk FOREIGN KEY (group_id) REFERENCES hold_group (id),
     CONSTRAINT hold_part_group_index_check CHECK (group_index > 0),

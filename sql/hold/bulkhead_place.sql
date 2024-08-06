@@ -1,7 +1,7 @@
 --
 -- Place (aka compartment) in which a bulkhead can be installed
 --
-DROP TABLE IF EXISTS bulkhead_place;
+DROP TABLE IF EXISTS bulkhead_place CASCADE;
 
 CREATE TABLE IF NOT EXISTS bulkhead_place (
     id INT,

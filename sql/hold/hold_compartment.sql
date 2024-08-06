@@ -1,7 +1,7 @@
 --
 -- Hold compartment that is generated based on hold parts and installed bulkheads;
 --
-DROP TABLE IF EXISTS hold_compartment;
+DROP TABLE IF EXISTS hold_compartment CASCADE;
 
 CREATE TABLE IF NOT EXISTS hold_compartment (
     id INT,
