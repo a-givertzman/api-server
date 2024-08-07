@@ -8,7 +8,8 @@ CREATE TABLE IF NOT EXISTS bulkhead_place (
     -- Name of bulkhead_place;
     name TEXT NOT NULL,
     -- ID of bulkhead that is installed at this place;
-    bulkhead_id INT,
+    -- 1 to 1 relationship;
+    bulkhead_id INT UNIQUE,
     -- Coordinate of left border of bulkhead_place, measured in meters from midship;
     bound_x1 FLOAT8 NOT NULL,
     -- Coordinate of right border of bulkhead_place, measured in meters from midship;
