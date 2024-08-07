@@ -9,6 +9,10 @@ CREATE TABLE IF NOT EXISTS hold_part (
     group_id INT NOT NULL,
     -- Index of hold_part in corresponding hold_group;
     group_index INT NOT NULL,
+    -- 
+    left_bulkhead_place_id INT UNIQUE,
+    -- 
+    right_bulkhead_place_id INT UNIQUE,
     -- Coordinate of left border of hold_part, measured in meters from midship;
     bound_x1 FLOAT8 NOT NULL,
     -- Coordinate of right border of hold_part, measured in meters from midship;
@@ -19,6 +23,8 @@ CREATE TABLE IF NOT EXISTS hold_part (
     svg_paths TEXT,
     CONSTRAINT hold_part_pk PRIMARY KEY (id),
     CONSTRAINT hold_part_group_fk FOREIGN KEY (group_id) REFERENCES hold_group (id),
+    CONSTRAINT hold_part_left_bulkhead_place_fk FOREIGN KEY (left_bulkhead_place_id) REFERENCES bulkhead_place (id),
+    CONSTRAINT hold_part_right_bulkhead_place_fk FOREIGN KEY (right_bulkhead_place_id) REFERENCES bulkhead_place (id),
     CONSTRAINT hold_part_group_index_check CHECK (group_index > 0),
     CONSTRAINT hold_group_unique UNIQUE (group_id, group_index),
     CONSTRAINT hold_part_bound_x_check CHECK (bound_x1 <= bound_x2)
