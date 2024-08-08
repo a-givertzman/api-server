@@ -30,9 +30,9 @@
 \i ./sql/loads/loads_trigger.sql
 --
 -- Holds and bulkheads relations
+\i ./sql/hold/hold_group.sql
 \i ./sql/hold/bulkhead.sql
 \i ./sql/hold/bulkhead_place.sql
-\i ./sql/hold/hold_group.sql
 \i ./sql/hold/hold_part.sql
 \i ./sql/hold/hold_compartment.sql
 --
@@ -70,11 +70,11 @@
 \i ./sql/ARK/frames/physical_frame.sql
 \i ./sql/ARK/frames/frame_area.sql
 \i ./sql/ARK/frames/draft_mark.sql
-\i ./sql/ARK/loads/load_base.sql
-\i ./sql/ARK/loads/protocol_66.sql
-\i ./sql/ARK/loads/hull.sql
+-- \i ./sql/ARK/loads/load_base.sql
+-- \i ./sql/ARK/loads/protocol_66.sql
+-- \i ./sql/ARK/loads/hull.sql
 \i ./sql/ARK/loads/compartment_curve.sql
-\i ./sql/ARK/loads/protocol_66.sql
+-- \i ./sql/ARK/loads/protocol_66.sql
 \i ./sql/ARK/area/horizontal_area_strength.sql
 \i ./sql/ARK/area/horizontal_area_stability.sql
 \i ./sql/ARK/area/vertical_area_strength.sql

@@ -5,12 +5,12 @@ VALUES
     (1, 'Трюм');
 --
 INSERT INTO bulkhead_place
-    (id, name, bound_x1, bound_x2, mass_shif_x, mass_shif_y, mass_shif_z)
+    (id, name, hold_group_id, bound_x1, bound_x2, mass_shif_x, mass_shif_y, mass_shif_z)
 VALUES
-    (1, 'Зерновая переборка 113 шп.', 12.87, 12.87, 12.87, 0, 4.53),
-    (2, 'Зерновая переборка 51 шп.', -27.43, -27.43, -27.43, 0, 4.53),
-    (3, 'Зерновая переборка 28 шп.', -42.57, -42.57, -42.57, 0, 4.53),
-    (4, 'Зерновая переборка 27 шп.', -42.96, -42.96, -42.96, 0, 4.53);
+    (1, '113 шп.', 1, 12.87, 12.87, 12.87, 0, 4.53),
+    (2, '51 шп.', 1, -27.43, -27.43, -27.43, 0, 4.53),
+    (3, '28 шп.', 1, -42.57, -42.57, -42.57, 0, 4.53),
+    (4, '27 шп.', 1, -42.96, -42.96, -42.96, 0, 4.53);
 --
 INSERT INTO hold_part
     (id, group_id, group_index, left_bulkhead_place_id, right_bulkhead_place_id, bound_x1, bound_x2, volume_max, svg_paths)
@@ -40,5 +40,5 @@ VALUES
 INSERT INTO bulkhead
     (id, name, mass)
 VALUES
-    (1, 'Зерновая переборка 1', 12.0),
-    (2, 'Зерновая переборка 2', 12.0);
+    (1, 'Зерновая переборка №1', 12.0),
+    (2, 'Зерновая переборка №2', 12.0);
