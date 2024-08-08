@@ -9,9 +9,9 @@ CREATE TABLE IF NOT EXISTS hold_part (
     group_id INT NOT NULL,
     -- Index of hold_part in corresponding hold_group;
     group_index INT NOT NULL,
-    -- 
+    -- TODO: write
     left_bulkhead_place_id INT UNIQUE,
-    -- 
+    -- TODO: write
     right_bulkhead_place_id INT UNIQUE,
     -- Coordinate of left border of hold_part, measured in meters from midship;
     bound_x1 FLOAT8 NOT NULL,
