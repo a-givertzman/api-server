@@ -150,7 +150,7 @@ END $$ LANGUAGE plpgsql;
 DROP FUNCTION IF EXISTS extract_hold_compartments;
 
 CREATE OR REPLACE FUNCTION extract_hold_compartments(
-    group_id_param INT -- ID of hold_group to which all hold_part's of this hold_compartment belong;
+    group_id_param INT -- ID of hold_group to which all hold_part's of this hold_compartment's belong;
 )
 RETURNS TABLE (
     name TEXT,
@@ -184,6 +184,23 @@ BEGIN
         ) SELECT * FROM hold_compartment);
 END $$ LANGUAGE plpgsql;
 
+-- Removes all obsolete hold_compartment's and puts new ones;
+DROP FUNCTION IF EXISTS put_hold_compartments;
+
+CREATE OR REPLACE FUNCTION put_hold_compartments(
+    group_id_to_update INT  -- ID of hold_group to which all hold_part's of hold_compartment's that will be inserted belong;
+)
+RETURNS VOID AS $$
+BEGIN
+    DELETE FROM hold_compartment WHERE group_id = group_id_to_update;
+    INSERT INTO hold_compartment 
+        (name, group_id, group_start_index, group_end_index, volume_max, volume, mass, stowage_factor)
+    SELECT
+        name, group_id, group_start_index, group_end_index, volume_max, volume, mass, stowage_factor
+    FROM
+        extract_hold_compartments(group_id_to_update);
+END $$ LANGUAGE plpgsql;
+
 --
 -- Triggers that are used to generate hold_compartment based on hold_part data and positions of installed bulkheads;
 --
@@ -194,26 +211,18 @@ DROP FUNCTION IF EXISTS put_hold_compartment_on_part_changed;
 
 CREATE OR REPLACE FUNCTION put_hold_compartment_on_part_changed()
 RETURNS TRIGGER AS $$
-DECLARE
-    group_id_to_update INT; -- ID of hold_group to which all hold_part's of generated hold_compartment belong;
 BEGIN
     CASE TG_OP
         WHEN 'INSERT' THEN
-            SELECT NEW.group_id INTO group_id_to_update;
+            PERFORM put_hold_compartments(NEW.group_id);
         WHEN 'UPDATE' THEN
-            SELECT NEW.group_id INTO group_id_to_update;
+            IF NEW.group_id <> OLD.group_id THEN
+                PERFORM put_hold_compartments(OLD.group_id);
+            END IF;
+            PERFORM put_hold_compartments(NEW.group_id);
         WHEN 'DELETE' THEN
-            SELECT OLD.group_id INTO group_id_to_update;
+            PERFORM put_hold_compartments(NEW.group_id);
     END CASE;
-    --
-    DELETE FROM hold_compartment WHERE group_id = group_id_to_update;
-    INSERT INTO hold_compartment 
-        (name, group_id, group_start_index, group_end_index, volume_max, volume, mass, stowage_factor)
-    SELECT
-        name, group_id, group_start_index, group_end_index, volume_max, volume, mass, stowage_factor
-    FROM
-        extract_hold_compartments(group_id_to_update);
-    --
     RETURN NEW;
 END $$ LANGUAGE plpgsql;
 
@@ -228,26 +237,18 @@ DROP FUNCTION IF EXISTS put_hold_compartment_on_bulkhead_changed;
 
 CREATE OR REPLACE FUNCTION put_hold_compartment_on_bulkhead_changed()
 RETURNS TRIGGER AS $$
-DECLARE
-    group_id_to_update INT; -- ID of hold_group to which all hold_part's of generated hold_compartment belong;
 BEGIN
     CASE TG_OP
         WHEN 'INSERT' THEN
-            SELECT NEW.hold_group_id INTO group_id_to_update;
+            PERFORM put_hold_compartments(NEW.hold_group_id);
         WHEN 'UPDATE' THEN
-            SELECT NEW.hold_group_id INTO group_id_to_update;
+            IF NEW.hold_group_id <> OLD.hold_group_id THEN
+                PERFORM put_hold_compartments(OLD.hold_group_id);
+            END IF;
+            PERFORM put_hold_compartments(NEW.hold_group_id);
         WHEN 'DELETE' THEN
-            SELECT OLD.hold_group_id INTO group_id_to_update;
+            PERFORM put_hold_compartments(NEW.hold_group_id);
     END CASE;
-    --
-    DELETE FROM hold_compartment WHERE group_id = group_id_to_update;
-    INSERT INTO hold_compartment 
-        (name, group_id, group_start_index, group_end_index, volume_max, volume, mass, stowage_factor)
-    SELECT
-        name, group_id, group_start_index, group_end_index, volume_max, volume, mass, stowage_factor
-    FROM
-        extract_hold_compartments(group_id_to_update);
-    --
     RETURN NEW;
 END $$ LANGUAGE plpgsql;
 
