@@ -5,6 +5,8 @@ DROP TABLE IF EXISTS bulkhead_place CASCADE;
 
 CREATE TABLE IF NOT EXISTS bulkhead_place (
     id INT,
+    -- Global compartment identifier; 
+    space_id INT NOT NULL,
     -- Name of bulkhead_place;
     name TEXT NOT NULL,
     -- ID of bulkhead that is installed at this place;

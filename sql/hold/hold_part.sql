@@ -5,6 +5,8 @@ DROP TABLE IF EXISTS hold_part CASCADE;
 
 CREATE TABLE IF NOT EXISTS hold_part (
     id INT,
+    -- Global compartment identifier; 
+    space_id INT NOT NULL,
     -- hold_group ID to which this hold_part belongs;
     group_id INT NOT NULL,
     -- Index of hold_part in corresponding hold_group;
