@@ -139,9 +139,6 @@ BEGIN
             NULL::FLOAT8 AS stowage_factor
         FROM
             divided_part AS dp
-        JOIN
-            hold_group AS hg ON
-            dp.group_id = hg.id
         ORDER BY dp.group_index DESC
         LIMIT 1);
 END $$ LANGUAGE plpgsql;
