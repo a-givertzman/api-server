@@ -100,7 +100,7 @@ BEGIN
                     hold_part AS hp
                 LEFT JOIN
                     bulkhead_place AS bp ON
-                    hp.right_bulkhead_place_id = bp.id
+                    hp.left_bulkhead_place_id = bp.id
                 WHERE 
                     hp.group_id = group_id_param
                     AND hp.group_index = group_start_index_param
@@ -119,13 +119,13 @@ BEGIN
                     hold_part AS hp
                 JOIN
                     divided_part AS dp ON
-                    hp.left_bulkhead_place_id = dp.right_bulkhead_place_id
+                    hp.right_bulkhead_place_id = dp.left_bulkhead_place_id
                     AND hp.group_id = dp.group_id
                 LEFT JOIN
                     bulkhead_place AS bp ON
-                    hp.right_bulkhead_place_id = bp.id
+                    hp.left_bulkhead_place_id = bp.id
                 WHERE
-                    dp.right_bulkhead_place_id IS DISTINCT FROM NULL -- it is not ending part of group
+                    dp.left_bulkhead_place_id IS DISTINCT FROM NULL -- it is not ending part of group
                     AND dp.bulkhead_id IS NOT DISTINCT FROM NULL -- it is not divided from next group part by bulkhead
             )
         SELECT
