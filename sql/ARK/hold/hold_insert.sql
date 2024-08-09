@@ -5,7 +5,7 @@ VALUES
     (1, 1, 'Трюм');
 --
 INSERT INTO bulkhead_place
-    (id, space_id, name, hold_group_id, bound_x1, bound_x2, mass_shif_x, mass_shif_y, mass_shif_z)
+    (id, space_id, name, hold_group_id, bound_x1, bound_x2, mass_shift_x, mass_shift_y, mass_shift_z)
 VALUES
     (1, 61, '113 шп.',  1,  12.696,     13.086,     12.87,  0,  4.53),
     (2, 62, '51 шп.',   1,  -27.604,    -27.214,    -27.43, 0,  4.53),

@@ -19,17 +19,17 @@ CREATE TABLE IF NOT EXISTS bulkhead_place (
     -- Coordinate of right border of bulkhead_place, measured in meters from midship;
     bound_x2 FLOAT8 NOT NULL,
     -- Longitudinal center of gravity for bulkhead_place;
-    mass_shif_x FLOAT8 NOT NULL,
+    mass_shift_x FLOAT8 NOT NULL,
     -- Transverse center of gravity for bulkhead_place;
-    mass_shif_y FLOAT8 NOT NULL,
+    mass_shift_y FLOAT8 NOT NULL,
     -- Vertical center of gravity for bulkhead_place;
-    mass_shif_z FLOAT8 NOT NULL,
+    mass_shift_z FLOAT8 NOT NULL,
     CONSTRAINT bulkhead_place_pk PRIMARY KEY (id),
     CONSTRAINT bulkhead_place_bulkhead_fk FOREIGN KEY (bulkhead_id) REFERENCES bulkhead (id),
     CONSTRAINT bulkhead_place_hold_group_fk FOREIGN KEY (hold_group_id) REFERENCES hold_group (id),
     CONSTRAINT bulkhead_place_bound_x_check CHECK (bound_x1 <= bound_x2),
     CONSTRAINT bulkhead_place_mass_shift_x_check CHECK (
-        bound_x1 <= mass_shif_x
-        AND mass_shif_x <= bound_x2
+        bound_x1 <= mass_shift_x
+        AND mass_shift_x <= bound_x2
     )
 );
