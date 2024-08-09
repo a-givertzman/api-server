@@ -5,6 +5,10 @@ DROP TABLE IF EXISTS bulkhead_place CASCADE;
 
 CREATE TABLE IF NOT EXISTS bulkhead_place (
     id INT,
+    -- ID of project for this hold_part;
+    project_id INT,
+    -- ID of ship for this hold_part;
+    ship_id INT NOT NULL,
     -- Global compartment identifier; 
     space_id INT NOT NULL,
     -- Name of bulkhead_place;
