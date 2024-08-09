@@ -205,7 +205,7 @@ END $$ LANGUAGE plpgsql;
 -- Triggers that are used to generate hold_compartment based on hold_part data and positions of installed bulkheads;
 --
 
---
+-- Update hold_compartment entries on hold_part changed;
 DROP TRIGGER IF EXISTS put_hold_compartment_on_part_changed_trigger ON hold_part;
 DROP FUNCTION IF EXISTS put_hold_compartment_on_part_changed;
 
@@ -231,7 +231,7 @@ AFTER INSERT OR UPDATE OR DELETE ON hold_part
 FOR EACH ROW
 EXECUTE PROCEDURE put_hold_compartment_on_part_changed();
 
---
+-- Update hold_compartment entries on bulkhead_place changed;
 DROP TRIGGER IF EXISTS put_hold_compartment_on_bulkhead_changed_trigger ON hold_part;
 DROP FUNCTION IF EXISTS put_hold_compartment_on_bulkhead_changed;
 
