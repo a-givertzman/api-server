@@ -248,7 +248,7 @@ BEGIN
             PERFORM put_hold_compartments(OLD.project_id, OLD.ship_id, OLD.group_id);
             PERFORM put_hold_compartments(NEW.project_id, NEW.ship_id, NEW.group_id);
         WHEN 'DELETE' THEN
-            PERFORM put_hold_compartments(NEW.project_id, NEW.ship_id, NEW.group_id);
+            PERFORM put_hold_compartments(OLD.project_id, OLD.ship_id, OLD.group_id);
     END CASE;
     RETURN NEW;
 END $$ LANGUAGE plpgsql;
@@ -272,7 +272,7 @@ BEGIN
             PERFORM put_hold_compartments(OLD.project_id, OLD.ship_id, OLD.hold_group_id);
             PERFORM put_hold_compartments(NEW.project_id, NEW.ship_id, NEW.hold_group_id);
         WHEN 'DELETE' THEN
-            PERFORM put_hold_compartments(NEW.project_id, NEW.ship_id, NEW.hold_group_id);
+            PERFORM put_hold_compartments(OLD.project_id, OLD.ship_id, OLD.hold_group_id);
     END CASE;
     RETURN NEW;
 END $$ LANGUAGE plpgsql;
