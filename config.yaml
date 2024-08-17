@@ -54,3 +54,10 @@ services:                      # list of currently avalible API services
         user: flowers_app_server
         pass: 00d0-25e4-*&s2-ccds
         # replaceNullWithDefault:
+
+    - database-postgres-nested-value:
+        name: 'nested_value'
+        type: postgres
+        path: 'localhost:5432' 
+        user: postgres
+        pass: postgres
