@@ -18,7 +18,8 @@ CREATE TABLE IF NOT EXISTS hold_compartment (
     -- Index of last hold_part in corresponding hold_group;
     group_end_index INT NOT NULL,
     -- ID of cargo_category to which cargo loaded into this hold_compartment belongs;
-    category_id INT NOT NULL,
+    -- Reference to cargo_category with 'cargo' key value by default;
+    category_id INT NOT NULL DEFAULT 10,
     -- Maximum possible volume of bulk cargo that can be loaded into this hold_compartment;
     volume_max FLOAT8 NOT NULL,
     -- Mass of bulk cargo loaded into this hold_compartment, measured in tons;
@@ -111,9 +112,8 @@ RETURNS TABLE (
     group_start_index INT,
     group_end_index INT,
     volume_max FLOAT8,
-    volume FLOAT8,
-    mass FLOAT8,
-    stowage_factor FLOAT8
+    bound_x1 FLOAT8,
+    bound_x2 FLOAT8
 )
 AS $$
 BEGIN
@@ -129,6 +129,8 @@ BEGIN
                     hp.group_index AS group_index,
                     hp.left_bulkhead_place_id AS left_bulkhead_place_id,
                     hp.right_bulkhead_place_id AS right_bulkhead_place_id,
+                    hp.bound_x1 AS bound_x1,
+                    hp.bound_x2 AS bound_x2,
                     bp.bulkhead_id AS bulkhead_id
                 FROM 
                     hold_part AS hp
@@ -154,6 +156,8 @@ BEGIN
                     hp.group_index AS group_index,
                     hp.left_bulkhead_place_id AS left_bulkhead_place_id,
                     hp.right_bulkhead_place_id AS right_bulkhead_place_id,
+                    hp.bound_x1 AS bound_x1,
+                    dp.bound_x2 AS bound_x2,
                     bp.bulkhead_id AS bulkhead_id
                 FROM
                     hold_part AS hp
@@ -182,9 +186,8 @@ BEGIN
             group_start_index_param AS group_start_index,
             dp.group_index AS group_end_index,
             dp.volume_max AS volume_max,
-            NULL::FLOAT8 AS volume,
-            NULL::FLOAT8 AS mass,
-            NULL::FLOAT8 AS stowage_factor
+            dp.bound_x1 AS bound_x1,
+            dp.bound_x2 AS bound_x2
         FROM
             divided_part AS dp
         ORDER BY dp.group_index DESC
@@ -207,9 +210,8 @@ RETURNS TABLE (
     group_start_index INT,
     group_end_index INT,
     volume_max FLOAT8,
-    volume FLOAT8,
-    mass FLOAT8,
-    stowage_factor FLOAT8
+    bound_x1 FLOAT8,
+    bound_x2 FLOAT8
 )
 AS $$
 BEGIN
@@ -243,11 +245,36 @@ CREATE OR REPLACE FUNCTION put_hold_compartments(
 )
 RETURNS VOID AS $$
 BEGIN
-    DELETE FROM hold_compartment WHERE group_id = group_id_to_update AND ship_id = ship_id_param AND project_id IS NOT DISTINCT FROM project_id_param;
-    INSERT INTO hold_compartment 
-        (name, project_id, ship_id, group_id, group_start_index, group_end_index, volume_max, volume, mass, stowage_factor)
+    -- Delete all obsolete entries;
+    DELETE FROM
+        hold_compartment
+    WHERE
+        group_id = group_id_to_update
+        AND ship_id = ship_id_param
+        AND project_id IS NOT DISTINCT FROM project_id_param;
+    -- Insert new hold_compartment entries;
+    INSERT INTO
+        hold_compartment (
+            name,
+            project_id,
+            ship_id,
+            group_id,
+            group_start_index,
+            group_end_index,
+            volume_max,
+            bound_x1,
+            bound_x2
+        )
     SELECT
-        name, project_id, ship_id, group_id, group_start_index, group_end_index, volume_max, volume, mass, stowage_factor
+        name,
+        project_id,
+        ship_id,
+        group_id,
+        group_start_index,
+        group_end_index,
+        volume_max,
+        bound_x1,
+        bound_x2
     FROM
         extract_hold_compartments(project_id_param, ship_id_param, group_id_to_update);
 END $$ LANGUAGE plpgsql;
