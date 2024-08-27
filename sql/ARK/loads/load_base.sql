@@ -252,37 +252,6 @@ VALUES
   (1, 63, 'Зерновая переборка 28 шп',  FALSE,  12,    27.3,     27.9,   27.6,   0,      4.53, 10),
   (1, 64, 'Зерновая переборка 27 шп',  FALSE,  12,    26.6,     27.2,   26.9,   0,      4.53, 10);
 
-
-INSERT INTO compartment_separators
-  (ship_id, compartment_space_id, separator1_space_id, compartment_active)
-VALUES  
---Грузовой трюм 1
-  (1, 1, 61, FALSE), --Зерновая переборка 113 шп
-  (1, 1, 62, FALSE), --Зерновая переборка 51 шп  
---Отсек 1 + 2
-  (1, 54, 61, FALSE), --Зерновая переборка 113 шп
---Отсек 2 + 3
-  (1, 55, 62, FALSE); --Зерновая переборка 51 шп
-
-INSERT INTO compartment_separators
-  (ship_id, compartment_space_id, separator1_space_id, compartment_active)
-VALUES  
---Отсек 1
-  (1, 51, 61, TRUE), --Зерновая переборка 113 шп
---Отсек 3
-  (1, 53, 62, TRUE), --Зерновая переборка 51 шп
---Отсек 1 + 2
-  (1, 54, 62, TRUE), --Зерновая переборка 51 шп
---Отсек 2 + 3
-  (1, 55, 61, TRUE); --Зерновая переборка 113 шп
-
-
-INSERT INTO compartment_separators
-  (ship_id, compartment_space_id, separator1_space_id, separator2_space_id, compartment_active)
-VALUES  
---Отсек 2
-  (1, 52, 61, 62, TRUE); --Зерновые переборки 51 + 113 шп
-
 -- Палубный груз TODO: перенести куда-нибудь 
 INSERT INTO compartment  
   (ship_id, space_id, name, active, mass, bound_x1, bound_x2, mass_shift_x, mass_shift_y, mass_shift_z, category_id)
