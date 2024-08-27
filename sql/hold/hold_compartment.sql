@@ -11,15 +11,15 @@ CREATE TABLE IF NOT EXISTS hold_compartment (
     ship_id INT NOT NULL,
     -- Name of hold_compartment;
     name TEXT NOT NULL,
-    -- hold_group ID to which this hold_compartment belongs;
+    -- ID of hold_group to which this hold_compartment belongs;
     group_id INT NOT NULL,
     -- Index of first hold_part in corresponding hold_group;
     group_start_index INT NOT NULL,
     -- Index of last hold_part in corresponding hold_group;
     group_end_index INT NOT NULL,
-    -- ID of the cargo_category entry;
+    -- ID of cargo_category to which cargo loaded into this hold_compartment belongs;
     category_id INT NOT NULL,
-    -- Maximum possible volume of bulk cargo that can be loaded into this hold compartment;
+    -- Maximum possible volume of bulk cargo that can be loaded into this hold_compartment;
     volume_max FLOAT8 NOT NULL,
     -- Mass of bulk cargo loaded into this hold_compartment, measured in tons;
     mass FLOAT8,
@@ -28,22 +28,23 @@ CREATE TABLE IF NOT EXISTS hold_compartment (
     -- Stowage factor of bulk cargo loaded into this hold_compartment;
     -- TODO: add value unit to comment;
     stowage_factor FLOAT8,
-    -- Сargo density;    
+    -- Сargo density of solid cargo loaded into this hold_compartment;
     density FLOAT8,
-    -- Boundaries of compartment along the longitudinal axis relative to the midsection;
+    -- Boundaries of this hold_compartment along the longitudinal axis relative to the midsection of ship;
     bound_x1 FLOAT8 NOT NULL,
     bound_x2 FLOAT8 NOT NULL,
-    -- Coordinates of the center of mass, meters;   
+    -- Coordinates of the center of mass, measured in meters;
     mass_shift_x FLOAT8,
     mass_shift_y FLOAT8,
     mass_shift_z FLOAT8,
-    -- Moment from displacement of bulk cargo, ton*meter;
+    -- Moment from displacement of bulk cargo, measured in ton*meter;
     grain_moment FLOAT8,
     -- 
     CONSTRAINT hold_compartment_pk PRIMARY KEY (id),
     CONSTRAINT hold_compartment_group_fk FOREIGN KEY (group_id) REFERENCES hold_group (id),
     CONSTRAINT hold_compartment_group_start_fk FOREIGN KEY (group_id, group_start_index) REFERENCES hold_part (group_id, group_index),
     CONSTRAINT hold_compartment_group_end_fk FOREIGN KEY (group_id, group_end_index) REFERENCES hold_part (group_id, group_index),
+    CONSTRAINT hold_compartment_category_fk FOREIGN KEY (category_id) REFERENCES cargo_category (id),
     CONSTRAINT hold_compartment_group_index_check CHECK (
         group_start_index > 0
         AND group_end_index > 0
@@ -51,15 +52,13 @@ CREATE TABLE IF NOT EXISTS hold_compartment (
     ),
     CONSTRAINT hold_compartment_group_start_unique UNIQUE (group_id, group_start_index),
     CONSTRAINT hold_compartment_group_end_unique UNIQUE (group_id, group_end_index),
-    CONSTRAINT hold_compartment_name_unique UNIQUE (project_id, ship_id, name),  
     CONSTRAINT hold_compartment_name_check CHECK(char_length(name) <= 100),
     CONSTRAINT hold_compartment_density_check CHECK(density IS NULL OR density > 0),
     CONSTRAINT hold_compartment_volume_max_check CHECK(volume_max IS NULL OR volume_max > 0),
     CONSTRAINT hold_compartment_mass_check CHECK(mass IS NULL OR mass >= 0),
     CONSTRAINT hold_compartment_volume_check CHECK(volume IS NULL OR volume >= 0),
     CONSTRAINT hold_compartment_bound_x_check CHECK(bound_x1 < bound_x2),
-    CONSTRAINT hold_compartment_shift_x_check CHECK(mass_shift_x IS NULL OR (mass_shift_x >= bound_x1 AND mass_shift_x <= bound_x2)),
-    CONSTRAINT hold_compartment_category_fk FOREIGN KEY (category_id) REFERENCES cargo_category (id)
+    CONSTRAINT hold_compartment_shift_x_check CHECK(mass_shift_x IS NULL OR (mass_shift_x >= bound_x1 AND mass_shift_x <= bound_x2))
 );
 
 --
