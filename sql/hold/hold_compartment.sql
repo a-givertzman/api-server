@@ -11,13 +11,16 @@ CREATE TABLE IF NOT EXISTS hold_compartment (
     ship_id INT NOT NULL,
     -- Name of hold_compartment;
     name TEXT NOT NULL,
-    -- hold_group ID to which this hold_compartment belongs;
+    -- ID of hold_group to which this hold_compartment belongs;
     group_id INT NOT NULL,
     -- Index of first hold_part in corresponding hold_group;
     group_start_index INT NOT NULL,
     -- Index of last hold_part in corresponding hold_group;
     group_end_index INT NOT NULL,
-    -- Maximum possible volume of bulk cargo that can be loaded into this hold compartment;
+    -- ID of cargo_category to which cargo loaded into this hold_compartment belongs;
+    -- Reference to cargo_category with 'cargo' key value by default;
+    category_id INT NOT NULL DEFAULT 10,
+    -- Maximum possible volume of bulk cargo that can be loaded into this hold_compartment;
     volume_max FLOAT8 NOT NULL,
     -- Mass of bulk cargo loaded into this hold_compartment, measured in tons;
     mass FLOAT8,
@@ -26,17 +29,37 @@ CREATE TABLE IF NOT EXISTS hold_compartment (
     -- Stowage factor of bulk cargo loaded into this hold_compartment;
     -- TODO: add value unit to comment;
     stowage_factor FLOAT8,
+    -- Сargo density of solid cargo loaded into this hold_compartment;
+    density FLOAT8,
+    -- Boundaries of this hold_compartment along the longitudinal axis relative to the midsection of ship;
+    bound_x1 FLOAT8 NOT NULL,
+    bound_x2 FLOAT8 NOT NULL,
+    -- Coordinates of the center of mass, measured in meters;
+    mass_shift_x FLOAT8,
+    mass_shift_y FLOAT8,
+    mass_shift_z FLOAT8,
+    -- Moment from displacement of bulk cargo, measured in ton*meter;
+    grain_moment FLOAT8,
+    -- 
     CONSTRAINT hold_compartment_pk PRIMARY KEY (id),
     CONSTRAINT hold_compartment_group_fk FOREIGN KEY (group_id) REFERENCES hold_group (id),
     CONSTRAINT hold_compartment_group_start_fk FOREIGN KEY (group_id, group_start_index) REFERENCES hold_part (group_id, group_index),
     CONSTRAINT hold_compartment_group_end_fk FOREIGN KEY (group_id, group_end_index) REFERENCES hold_part (group_id, group_index),
+    CONSTRAINT hold_compartment_category_fk FOREIGN KEY (category_id) REFERENCES cargo_category (id),
     CONSTRAINT hold_compartment_group_index_check CHECK (
         group_start_index > 0
         AND group_end_index > 0
         AND group_start_index <= group_end_index
     ),
-    CONSTRAINT hold_group_start_unique UNIQUE (group_id, group_start_index),
-    CONSTRAINT hold_group_end_unique UNIQUE (group_id, group_end_index)
+    CONSTRAINT hold_compartment_group_start_unique UNIQUE (group_id, group_start_index),
+    CONSTRAINT hold_compartment_group_end_unique UNIQUE (group_id, group_end_index),
+    CONSTRAINT hold_compartment_name_check CHECK(char_length(name) <= 100),
+    CONSTRAINT hold_compartment_density_check CHECK(density IS NULL OR density > 0),
+    CONSTRAINT hold_compartment_volume_max_check CHECK(volume_max IS NULL OR volume_max > 0),
+    CONSTRAINT hold_compartment_mass_check CHECK(mass IS NULL OR mass >= 0),
+    CONSTRAINT hold_compartment_volume_check CHECK(volume IS NULL OR volume >= 0),
+    CONSTRAINT hold_compartment_bound_x_check CHECK(bound_x1 < bound_x2),
+    CONSTRAINT hold_compartment_shift_x_check CHECK(mass_shift_x IS NULL OR (mass_shift_x >= bound_x1 AND mass_shift_x <= bound_x2))
 );
 
 --
@@ -89,9 +112,8 @@ RETURNS TABLE (
     group_start_index INT,
     group_end_index INT,
     volume_max FLOAT8,
-    volume FLOAT8,
-    mass FLOAT8,
-    stowage_factor FLOAT8
+    bound_x1 FLOAT8,
+    bound_x2 FLOAT8
 )
 AS $$
 BEGIN
@@ -107,6 +129,8 @@ BEGIN
                     hp.group_index AS group_index,
                     hp.left_bulkhead_place_id AS left_bulkhead_place_id,
                     hp.right_bulkhead_place_id AS right_bulkhead_place_id,
+                    hp.bound_x1 AS bound_x1,
+                    hp.bound_x2 AS bound_x2,
                     bp.bulkhead_id AS bulkhead_id
                 FROM 
                     hold_part AS hp
@@ -132,6 +156,8 @@ BEGIN
                     hp.group_index AS group_index,
                     hp.left_bulkhead_place_id AS left_bulkhead_place_id,
                     hp.right_bulkhead_place_id AS right_bulkhead_place_id,
+                    hp.bound_x1 AS bound_x1,
+                    dp.bound_x2 AS bound_x2,
                     bp.bulkhead_id AS bulkhead_id
                 FROM
                     hold_part AS hp
@@ -160,9 +186,8 @@ BEGIN
             group_start_index_param AS group_start_index,
             dp.group_index AS group_end_index,
             dp.volume_max AS volume_max,
-            NULL::FLOAT8 AS volume,
-            NULL::FLOAT8 AS mass,
-            NULL::FLOAT8 AS stowage_factor
+            dp.bound_x1 AS bound_x1,
+            dp.bound_x2 AS bound_x2
         FROM
             divided_part AS dp
         ORDER BY dp.group_index DESC
@@ -185,9 +210,8 @@ RETURNS TABLE (
     group_start_index INT,
     group_end_index INT,
     volume_max FLOAT8,
-    volume FLOAT8,
-    mass FLOAT8,
-    stowage_factor FLOAT8
+    bound_x1 FLOAT8,
+    bound_x2 FLOAT8
 )
 AS $$
 BEGIN
@@ -221,11 +245,36 @@ CREATE OR REPLACE FUNCTION put_hold_compartments(
 )
 RETURNS VOID AS $$
 BEGIN
-    DELETE FROM hold_compartment WHERE group_id = group_id_to_update AND ship_id = ship_id_param AND project_id IS NOT DISTINCT FROM project_id_param;
-    INSERT INTO hold_compartment 
-        (name, project_id, ship_id, group_id, group_start_index, group_end_index, volume_max, volume, mass, stowage_factor)
+    -- Delete all obsolete entries;
+    DELETE FROM
+        hold_compartment
+    WHERE
+        group_id = group_id_to_update
+        AND ship_id = ship_id_param
+        AND project_id IS NOT DISTINCT FROM project_id_param;
+    -- Insert new hold_compartment entries;
+    INSERT INTO
+        hold_compartment (
+            name,
+            project_id,
+            ship_id,
+            group_id,
+            group_start_index,
+            group_end_index,
+            volume_max,
+            bound_x1,
+            bound_x2
+        )
     SELECT
-        name, project_id, ship_id, group_id, group_start_index, group_end_index, volume_max, volume, mass, stowage_factor
+        name,
+        project_id,
+        ship_id,
+        group_id,
+        group_start_index,
+        group_end_index,
+        volume_max,
+        bound_x1,
+        bound_x2
     FROM
         extract_hold_compartments(project_id_param, ship_id_param, group_id_to_update);
 END $$ LANGUAGE plpgsql;
