@@ -61,6 +61,9 @@
 \i ./sql/result/loads_general.sql
 \i ./sql/result/heel_trim_general.sql
 \i ./sql/result/stability_diagram.sql
+\i ./sql/result/draft_mark.sql
+\i ./sql/result/load_line.sql
+\i ./sql/result/screw.sql
 --
 --triggers
 --\i ./sql/triggers/mass_sum.sql
