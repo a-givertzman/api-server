@@ -24,7 +24,7 @@ VALUES
   (1, 'Keel area', '24.69', 'real', 'm^2'),
   (1, 'L.O.A', '119.95', 'real', 'm'),
   (1, 'LBP', '118.388', 'real', 'm'),
-  (1, 'MouldedBreadth', '13.6', 'real', 'm'),
+  (1, 'MouldedBreadth', '13.4', 'real', 'm'),
   (1, 'Moulded depth', '6.8', 'real', 'm'),
   (1, 'X midship from Fr0', '59.194', 'real', 'm'),
   (1, 'Number of Parts', '20', 'int', NULL),
