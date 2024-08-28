@@ -18,8 +18,8 @@ CREATE TABLE IF NOT EXISTS hold_compartment (
     -- Index of last hold_part in corresponding hold_group;
     group_end_index INT NOT NULL,
     -- ID of cargo_category to which cargo loaded into this hold_compartment belongs;
-    -- Reference to cargo_category with 'cargo' key value by default;
-    category_id INT NOT NULL DEFAULT 10,
+    -- Reference to cargo_category with 'bulk_cargo' key value by default;
+    category_id INT NOT NULL DEFAULT 11,
     -- Maximum possible volume of bulk cargo that can be loaded into this hold_compartment;
     volume_max FLOAT8 NOT NULL,
     -- Mass of bulk cargo loaded into this hold_compartment, measured in tons;
