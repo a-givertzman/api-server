@@ -1,5 +1,7 @@
 -- Разница в площадях парусности для текущей осадки и минимальной осадки
 -- d, м | delta_А, м
+DROP TABLE IF EXISTS delta_windage_area CASCADE;
+
 CREATE TABLE if not exists delta_windage_area (
   id INT GENERATED ALWAYS AS IDENTITY,
   project_id INT,

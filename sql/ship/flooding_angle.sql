@@ -1,5 +1,7 @@
 -- Угол заливания отверстий, зависимость 
 -- угла от осадки судна
+DROP TABLE IF EXISTS flooding_angle CASCADE;
+
 CREATE TABLE if not exists  flooding_angle (
   id INT GENERATED ALWAYS AS IDENTITY,
   project_id INT,

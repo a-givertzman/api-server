@@ -1,6 +1,8 @@
 -- Ширина судна по ватерлинии
 -- в зависимости от осадки
 -- d, м | z, м
+DROP TABLE IF EXISTS waterline_breadth CASCADE;
+
 CREATE TABLE if not exists waterline_breadth (
   id INT GENERATED ALWAYS AS IDENTITY,
   project_id INT,

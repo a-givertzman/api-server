@@ -1,6 +1,8 @@
 -- Поперечный метацентрический радиус в
 -- зависимости от объемного водоизмещения
 -- V, м3 | ro, м
+DROP TABLE IF EXISTS rad_trans CASCADE;
+
 CREATE TABLE if not exists rad_trans (
   id INT GENERATED ALWAYS AS IDENTITY,
   project_id INT,

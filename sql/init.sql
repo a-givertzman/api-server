@@ -16,13 +16,16 @@
 \i ./sql/ship/delta_windage_area.sql
 \i ./sql/ship/delta_windage_moment.sql
 \i ./sql/ship/metacentic_height_limits.sql
+\i ./sql/ship/draft_mark.sql
+\i ./sql/ship/load_line.sql
+\i ./sql/ship/screw.sql
 \i ./sql/frames/create.sql
 \i ./sql/frames/computed_frame_trigger.sql
-\i ./sql/frames/draft_mark.sql
 \i ./sql/area/horizontal_area_strength.sql
 \i ./sql/area/horizontal_area_stability.sql
 \i ./sql/area/vertical_area_strength.sql
 \i ./sql/area/vertical_area_stability.sql
+\i ./sql/area/bow_area.sql
 --
 -- Compartment and cargo relations
 \i ./sql/cargo_categories/cargo_categories.sql
@@ -67,11 +70,13 @@
 --
 -- Data for ship
 \i ./sql/ARK/ship.sql
+\i ./sql/ARK/draft_mark.sql
+\i ./sql/ARK/load_line.sql
+\i ./sql/ARK/screw.sql
 \i ./sql/ARK/strength_force_limit.sql
 \i ./sql/ARK/frames/bonjean_frame.sql
 \i ./sql/ARK/frames/physical_frame.sql
 \i ./sql/ARK/frames/frame_area.sql
-\i ./sql/ARK/frames/draft_mark.sql
 \i ./sql/ARK/loads/load_base.sql
 \i ./sql/ARK/loads/protocol_66.sql
 \i ./sql/ARK/loads/hull.sql
@@ -83,3 +88,4 @@
 \i ./sql/ARK/area/vertical_area_strength.sql
 \i ./sql/ARK/area/vertical_area_stability.sql
 \i ./sql/ARK/hold/hold_insert.sql
+\i ./sql/ARK/area/bow_area.sql

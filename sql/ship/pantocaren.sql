@@ -26,6 +26,8 @@
 --(NULL, 1, 6.25, $1$2.$3, $7$8.$9),\n(NULL, 1, 6.30, $1$2.$3, $10$11.$12),\n(NULL, 1, 6.35, $1$2.$3, $13$14.$15),\n(NULL, 1, 6.40, $1$2.$3, $16$17.$18),\n(NULL, 1, 6.45, $1$2.$3, $19$20.$21),\n(NULL, 1, 6.50, $1$2.$3, $4$5.$6),
 --(NULL, 1, 6.55, $1$2.$3, $7$8.$9),\n(NULL, 1, 6.60, $1$2.$3, $10$11.$12),\n(NULL, 1, 6.65, $1$2.$3, $13$14.$15),\n(NULL, 1, 6.70, $1$2.$3, $16$17.$18),\n(NULL, 1, 6.75, $1$2.$3, $19$20.$21),\n(NULL, 1, 6.80, $1$2.$3, $4$5.$6),
 
+DROP TABLE IF EXISTS pantocaren CASCADE;
+
 CREATE TABLE if not exists pantocaren (
   id INT GENERATED ALWAYS AS IDENTITY,
   project_id INT,
