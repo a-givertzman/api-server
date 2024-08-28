@@ -1,6 +1,8 @@
 -- Продольный метацентрический радиус в
 -- зависимости от объемного водоизмещения
 --  V, м3 | Ro, м
+DROP TABLE IF EXISTS rad_long CASCADE;
+
 CREATE TABLE if not exists rad_long (
   id INT GENERATED ALWAYS AS IDENTITY,
   project_id INT,

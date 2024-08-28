@@ -2,6 +2,8 @@
 -- (Абсцисса центра тяжести площади ватерлинии)
 -- в зависимости от объемного водоизмещения
 -- V, м3 | Xf, м
+DROP TABLE IF EXISTS center_waterline CASCADE;
+
 CREATE TABLE if not exists center_waterline (
   id INT GENERATED ALWAYS AS IDENTITY,
   project_id INT,

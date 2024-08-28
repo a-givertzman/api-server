@@ -1,6 +1,8 @@
 -- Средняя осадка
 -- зависимость от объемного водоизмещения
 -- V, м3 | T, м
+DROP TABLE IF EXISTS mean_draught CASCADE;
+
 CREATE TABLE if not exists mean_draught (
   id INT GENERATED ALWAYS AS IDENTITY,
   project_id INT,
