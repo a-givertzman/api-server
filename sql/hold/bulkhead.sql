@@ -13,6 +13,9 @@ CREATE TABLE IF NOT EXISTS bulkhead (
     name TEXT NOT NULL,
     -- Mass of bulkhead, measured in tons;
     mass FLOAT8 NOT NULL,
+    -- ID of the cargo_category entry;
+    category_id INT NOT NULL, 
     CONSTRAINT bulkhead_pk PRIMARY KEY (id),
-    CONSTRAINT bulkhead_mass_check CHECK (mass >= 0.0)
+    CONSTRAINT bulkhead_mass_check CHECK (mass >= 0.0),
+    CONSTRAINT bulkhead_category_fk FOREIGN KEY (category_id) REFERENCES cargo_category (id)
 );
