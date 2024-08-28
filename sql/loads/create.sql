@@ -98,23 +98,6 @@ CREATE TABLE if not exists grain_moment (
   CONSTRAINT grain_moment_key_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, space_id, level)
 );
 
-
--- Разделители и зависимые от них отсеки
-DROP TABLE IF EXISTS compartment_separators CASCADE;
-
-CREATE TABLE if not exists compartment_separators (
-  id INT GENERATED ALWAYS AS IDENTITY,
-  project_id INT,
-  ship_id INT NOT NULL,
-  compartment_space_id INT NOT NULL,  
-  separator1_space_id INT NOT NULL,
-  separator2_space_id INT,
-  compartment_active BOOLEAN NOT NULL, -- состояние при наличии разделителя отсека
-  CONSTRAINT compartment_separators_pk PRIMARY KEY (id),
-  CONSTRAINT compartment_separators_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, compartment_space_id, separator1_space_id)
-);
-
-
 -- Координаты и параметры грузов
 DROP TABLE IF EXISTS cargo CASCADE;
 

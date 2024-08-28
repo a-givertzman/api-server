@@ -32,6 +32,15 @@
 \i ./sql/loads/create.sql
 \i ./sql/loads/loads_trigger.sql
 --
+-- Holds and bulkheads relations
+\i ./sql/hold/hold_group.sql
+\i ./sql/hold/bulkhead.sql
+\i ./sql/hold/bulkhead_place.sql
+\i ./sql/hold/hold_part.sql
+\i ./sql/hold/hold_compartment.sql
+\i ./sql/hold/hold_compartment_curve.sql
+\i ./sql/hold/hold_grain_moment.sql
+--
 --
 \i ./sql/stability/coefficient_k.sql
 \i ./sql/stability/multipler_s.sql
@@ -72,9 +81,11 @@
 \i ./sql/ARK/loads/protocol_66.sql
 \i ./sql/ARK/loads/hull.sql
 \i ./sql/ARK/loads/compartment_curve.sql
+\i ./sql/ARK/loads/grain_moment.sql
 \i ./sql/ARK/loads/protocol_66.sql
 \i ./sql/ARK/area/horizontal_area_strength.sql
 \i ./sql/ARK/area/horizontal_area_stability.sql
 \i ./sql/ARK/area/vertical_area_strength.sql
 \i ./sql/ARK/area/vertical_area_stability.sql
+\i ./sql/ARK/hold/hold_insert.sql
 \i ./sql/ARK/area/bow_area.sql
