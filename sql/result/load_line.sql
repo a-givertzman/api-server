@@ -10,5 +10,5 @@ CREATE TABLE if not exists load_line_result (
   value FLOAT8 NOT NULL,
   CONSTRAINT load_line_mark_result_pk PRIMARY KEY (id),
   CONSTRAINT load_line_mark_result_name_check CHECK(char_length(name) > 0 AND char_length(name) <= 50),
-  CONSTRAINT load_line_mark_result_name_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, name, draft_value)
+  CONSTRAINT load_line_mark_result_name_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, name, value)
 );

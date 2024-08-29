@@ -10,5 +10,5 @@ CREATE TABLE if not exists screw_result (
   value FLOAT8 NOT NULL,
   CONSTRAINT screw_result_pk PRIMARY KEY (id),
   CONSTRAINT screw_result_name_check CHECK(char_length(name) > 0 AND char_length(name) <= 50),
-  CONSTRAINT screw_result_name_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, name, draft_value)
+  CONSTRAINT screw_result_name_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, name, value)
 );
