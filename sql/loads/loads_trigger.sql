@@ -7,7 +7,7 @@ DECLARE
     matter_type cargo_category.matter_type%TYPE;
 BEGIN 
 
---    RAISE NOTICE 'update_compartment_parameters begin begin OLD:[%] NEW:[%]', OLD, NEW;
+--    RAISE NOTICE 'update_compartment_parameters begin OLD:[%] NEW:[%]', OLD, NEW;
 
     if NEW.density IS NULL THEN 
   --      RAISE NOTICE 'SKIP update_compartment_parameters, NEW.density IS NULL';
@@ -160,7 +160,7 @@ BEGIN
         *
     INTO 
         r1
-    FROM compartment_curve t
+    FROM grain_moment t
     WHERE ship_id = src_ship_id AND space_id = src_space_id
     ORDER BY ABS(src_level - t.level) ASC LIMIT 1;
 
@@ -168,7 +168,7 @@ BEGIN
         *
     INTO 
         r2
-    FROM compartment_curve t
+    FROM grain_moment t
     WHERE ship_id = src_ship_id AND space_id = src_space_id
     ORDER BY ABS(src_level - t.level) ASC LIMIT 2 OFFSET 1;
 

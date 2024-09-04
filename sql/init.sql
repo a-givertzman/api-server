@@ -40,6 +40,7 @@
 \i ./sql/hold/hold_compartment.sql
 \i ./sql/hold/hold_compartment_curve.sql
 \i ./sql/hold/hold_grain_moment.sql
+\i ./sql/hold/hold_compartment_trigger.sql
 --
 --
 \i ./sql/stability/coefficient_k.sql

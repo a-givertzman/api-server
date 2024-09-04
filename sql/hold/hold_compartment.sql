@@ -22,6 +22,8 @@ CREATE TABLE IF NOT EXISTS hold_compartment (
     category_id INT NOT NULL DEFAULT 10,
     -- Maximum possible volume of bulk cargo that can be loaded into this hold_compartment;
     volume_max FLOAT8 NOT NULL,
+    -- Level of bulk cargo loaded into this hold_compartment, measured in meters;
+    level FLOAT8,
     -- Mass of bulk cargo loaded into this hold_compartment, measured in tons;
     mass FLOAT8,
     -- Volume of bulk cargo loaded into this hold_compartment, measured in cubic meters;
