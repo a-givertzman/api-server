@@ -23,6 +23,29 @@
 
     (1, xxx, $1$2.$3, $4$5.$6, $7$8.$9, $10$11.$12, $13$14.$15, $16$17.$18, $19$20.$21, $22$23.$24, $25$26.$27, $28$29.$30, $31$32.$33, $34$35.$36, $37$38.$39),
 
+        SELECT 
+            c.name AS name, 
+            c.mass AS mass, 
+            cc.matter_type::TEXT AS matter_type, 
+            cgc.key::TEXT AS general_category, 
+            c.density AS density, 
+            c.volume AS volume, 
+            c.bound_x1 AS bound_x1, 
+            c.bound_x2 AS bound_x2, 
+            c.mass_shift_x AS mass_shift_x, 
+            c.mass_shift_y AS mass_shift_y, 
+            c.mass_shift_z AS mass_shift_z, 
+            c.m_f_s_y AS m_f_s_y, 
+            c.m_f_s_x AS m_f_s_x, 
+            c.grain_moment AS grain_moment 
+        FROM 
+            compartment c
+        JOIN 
+            cargo_category AS cc ON c.category_id = cc.id
+        JOIN 
+            cargo_general_category AS cgc ON cc.general_category_id = cgc.id
+        WHERE 
+            c.ship_id=1 AND active=TRUE AND mass>0;
 
 select data.parameter_id, head.title_rus, data.result, head.unit_rus from parameter_head as head
 join parameter_data as data on data.parameter_id=head.id order by data.parameter_id;
