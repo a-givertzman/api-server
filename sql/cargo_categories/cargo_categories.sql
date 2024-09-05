@@ -76,6 +76,8 @@ VALUES
     (9, 'other_stores',                 3, 'solid',     'Прочие запасы',                    'Other stores'),
     -- Груз 
     (10, 'cargo',                       4, 'solid',     'Груз',                             'Cargo'),
+    (11, 'bulk_cargo',                  4, 'solid',     'Груз навалочный',                  'Bulk cargo'),
+    (12, 'bulk_cargo_shiftable',        4, 'bulk',      'Груз навалочный, смещаемый',       'Bulk cargo, shiftable'),
     -- Порожнем 
     (20, 'hull',                        1, 'solid',     'Корпус',                           'Hull'),
     (21, 'equipment',                   1, 'solid',     'Оборудование',                     'Equipment');

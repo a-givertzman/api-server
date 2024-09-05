@@ -56,7 +56,7 @@ join result_stability as data on data.criterion_id=head.id order by data.criteri
 select * from result_strength;
 
 select * from hold_compartment;
-update hold_compartment set mass=5100, density=1 where id=7;
+update hold_compartment set mass=5100, density=1 where id=3;
 
 select space_id, name, mass from compartment order by space_id;
 
