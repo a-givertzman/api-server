@@ -1,7 +1,7 @@
 -- Осадки
 
 INSERT INTO load_line
-  (ship_id, name, z, x, y)
+  (ship_id, name, x, y, z)
 VALUES
   (1, 'Summer PS', 0,  6.7, 4.6),
   (1, 'Summer SB', 0, -6.7, 4.708),
