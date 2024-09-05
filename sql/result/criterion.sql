@@ -46,4 +46,11 @@ VALUES
   (14, 'Крен на циркуляции', 'Heel on turning', '>=', 1, 1),
   (15, 'Крен от смещения зерна', 'Heel from grain displacement', '>=', 1, 1),
   (16, 'Площадь ДСО при смещении зерна', 'Area of LC from grain displacement', '>=', 5, 1),
-  (17, 'Минимальная метацентрическая высота деления на отсеки', 'Min. metacentric height due to subdivision index', '>=', 2, 1);
+  (17, 'Минимальная метацентрическая высота деления на отсеки', 'Min. metacentric height due to subdivision index', '>=', 2, 1),
+-- Критерии посадки
+  (101, 'Осадка по грузовой марке', 'Load line draft', '<=', 2, 2),
+  (102, 'Максимальный дифферент', 'Maximum trim', '<=', 2, 2),
+  (103, 'Высота на носовом перпендикуляре', 'Depth at forward perpendicular', '<=', 2, 2),
+  (104, 'Заглубление винта', 'Screw immersion', '>=', 13, 2),
+  (105, 'Запас плавучести в носу', 'Reserve buoyncy in bow', '>=', 3, 2),
+  (106, 'Минимальная осадка', 'Minimum draft', '>=', 2, 2);
