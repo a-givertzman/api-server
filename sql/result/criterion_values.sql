@@ -11,6 +11,8 @@ CREATE TABLE IF NOT EXISTS criterion_values (
   actual_value FLOAT8,
   -- Limit value for specific criterion (either constant or calculated);
   limit_value FLOAT8,
+  -- Zg value for specific criterion;
+  zg_value FLOAT8,
   -- TODO: add documentation comments for column below
   error_message TEXT,
   CONSTRAINT criterion_values_pk PRIMARY KEY (id),
