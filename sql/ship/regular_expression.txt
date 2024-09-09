@@ -88,3 +88,11 @@ truncate table bulkhead cascade;
     FROM hold_grain_moment t
     WHERE ship_id = 1 AND hold_compartment_id = 6
     ORDER BY ABS(1 - t.level) ASC LIMIT 1;
+
+
+    
+    SELECT 
+        *
+    FROM grain_moment t
+    WHERE ship_id = 1 AND space_id = 1
+    ORDER BY ABS(1 - t.level) ASC LIMIT 1;
