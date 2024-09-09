@@ -3,7 +3,7 @@
 CREATE OR REPLACE FUNCTION update_hold_compartment_parameters () RETURNS TRIGGER 
 AS $update_hold_compartment_parameters$
 DECLARE 
-    result hold_compartment%rowtype;
+    result hold_compartment_curve%rowtype;
     matter_type cargo_category.matter_type%TYPE;
 BEGIN 
     RAISE NOTICE 'update_hold_compartment_parameters begin OLD:[%] NEW:[%]', OLD, NEW;
@@ -61,14 +61,14 @@ BEGIN
         NEW.stowage_factor = NULL;
     END IF;
     NEW.mass = NEW.volume*NEW.density;
-    NEW.mass_shift_x = result.mass_shift_x;
-    NEW.mass_shift_y = result.mass_shift_y;
-    NEW.mass_shift_z = result.mass_shift_z;
+    NEW.mass_shift_x = result.buoyancy_x;
+    NEW.mass_shift_y = result.buoyancy_y;
+    NEW.mass_shift_z = result.buoyancy_z;
 
     -- Check if new category is of bulk type and then update grain_moment for hold_compartment entry;
     SELECT cc.matter_type INTO matter_type FROM cargo_category AS cc WHERE id = NEW.category_id;
     IF (matter_type = 'bulk') THEN
-        NEW.grain_moment = get_grain_moment_level(NEW.ship_id, NEW.id, NEW.level);
+        NEW.grain_moment = get_hold_grain_moment(NEW.ship_id, NEW.id, NEW.level);
     END IF;
 
     RAISE NOTICE 'update_hold_compartment_parameters OK, NEW:[%]', NEW;
@@ -80,12 +80,12 @@ $update_hold_compartment_parameters$ LANGUAGE plpgsql;
 
 DROP FUNCTION IF EXISTS get_hold_compartment_curve_volume CASCADE;
 CREATE OR REPLACE FUNCTION get_hold_compartment_curve_volume(src_ship_id INT, src_id INT, src_volume FLOAT8) 
-RETURNS SETOF hold_compartment 
+RETURNS SETOF hold_compartment_curve 
 AS $get_hold_compartment_curve_volume$
 DECLARE 
     r1 hold_compartment_curve%rowtype;
     r2 hold_compartment_curve%rowtype;
-    res hold_compartment%rowtype;
+    res hold_compartment_curve%rowtype;
     delta FLOAT8;
     coeff1 FLOAT8;
     coeff2 FLOAT8;
@@ -106,9 +106,9 @@ BEGIN
         r2
     FROM hold_compartment_curve t
     WHERE ship_id = src_ship_id AND hold_compartment_id = src_id
-    ORDER BY ABS(src_volume - t.volume) ASC LIMIT 2 OFFSET 1;
+    ORDER BY ABS(src_volume - t.volume) ASC LIMIT 1 OFFSET 1;
 
-    RAISE NOTICE 'get_hold_compartment_curve_volume res r1 volume:[%] level:[%]  r2 volume:[%] level:[%] ', r1.volume, r1.level, r2.volume, r2.level;
+    RAISE NOTICE 'get_hold_compartment_curve_volume r1 volume:[%] level:[%]  r2 volume:[%] level:[%] ', r1.volume, r1.level, r2.volume, r2.level;
 
     IF (r1.volume < src_volume AND r2.volume < r1.volume) THEN
         src_volume = r1.volume;
@@ -129,9 +129,9 @@ BEGIN
 
     res.level = r2.level*coeff1 + r1.level*coeff2;  
     res.volume = r2.volume*coeff1 + r1.volume*coeff2;
-    res.mass_shift_x = r2.buoyancy_x*coeff1 + r1.buoyancy_x*coeff2;
-    res.mass_shift_y = r2.buoyancy_y*coeff1 + r1.buoyancy_y*coeff2;
-    res.mass_shift_z = r2.buoyancy_z*coeff1 + r1.buoyancy_z*coeff2;
+    res.buoyancy_x = r2.buoyancy_x*coeff1 + r1.buoyancy_x*coeff2;
+    res.buoyancy_y = r2.buoyancy_y*coeff1 + r1.buoyancy_y*coeff2;
+    res.buoyancy_z = r2.buoyancy_z*coeff1 + r1.buoyancy_z*coeff2;
 
     RAISE NOTICE 'get_hold_compartment_curve_volume OK, res level:[%]  volume:[%]', res.level, res.volume;
 
@@ -140,20 +140,19 @@ END;
 $get_hold_compartment_curve_volume$ LANGUAGE plpgsql;
 
 
-DROP FUNCTION IF EXISTS get_grain_moment_level CASCADE;
-CREATE OR REPLACE FUNCTION get_grain_moment_level(src_ship_id INT, src_id INT, src_level FLOAT8) 
+DROP FUNCTION IF EXISTS get_hold_grain_moment CASCADE;
+CREATE OR REPLACE FUNCTION get_hold_grain_moment(src_ship_id INT, src_id INT, src_level FLOAT8) 
 RETURNS FLOAT8 
-AS $get_grain_moment_level$
+AS $get_hold_grain_moment$
 DECLARE 
-    r1 grain_moment%rowtype;
-    r2 grain_moment%rowtype;
-    res_level FLOAT8;
+    r1 hold_grain_moment%rowtype;
+    r2 hold_grain_moment%rowtype;
     res_moment FLOAT8;
     delta FLOAT8;
     coeff1 FLOAT8;
     coeff2 FLOAT8;
 BEGIN 
-    RAISE NOTICE 'get_grain_moment_level ship_id:[%] id:[%] level:[%]', src_ship_id, src_id, src_level;
+    RAISE NOTICE 'get_hold_grain_moment ship_id:[%] id:[%] level:[%]', src_ship_id, src_id, src_level;
 
     SELECT 
         *
@@ -169,9 +168,9 @@ BEGIN
         r2
     FROM hold_grain_moment t
     WHERE ship_id = src_ship_id AND hold_compartment_id = src_id
-    ORDER BY ABS(src_level - t.level) ASC LIMIT 2 OFFSET 1;
+    ORDER BY ABS(src_level - t.level) ASC LIMIT 1 OFFSET 1;
 
-    RAISE NOTICE 'get_grain_moment_level res r1 level:[%] moment:[%]  r2 level:[%] moment:[%] ', r1.level, r1.moment, r2.level, r2.moment;
+    RAISE NOTICE 'get_hold_grain_moment r1 level:[%] moment:[%]  r2 level:[%] moment:[%] ', r1.level, r1.moment, r2.level, r2.moment;
 
 
     IF (r1.level < src_level AND r2.level < r1.level) THEN
@@ -191,24 +190,24 @@ BEGIN
         coeff2 = (src_level - r2.level) / delta;
     END IF;
 
-    res_level = r2.level*coeff1 + r1.level*coeff2;  
+    --res.level = r2.level*coeff1 + r1.level*coeff2;  
     res_moment = r2.moment*coeff1 + r1.moment*coeff2;
     
-    RAISE NOTICE 'get_grain_moment_level OK, src_level:[%] res_level:[%] moment:[%]', src_level, res.level, res_moment;
+    RAISE NOTICE 'get_hold_grain_moment OK, src_level:[%] res_moment:[%]', src_level, res_moment;
 
-    RETURN res;
+    RETURN res_moment;
 END;
-$get_grain_moment_level$ LANGUAGE plpgsql;
+$get_hold_grain_moment$ LANGUAGE plpgsql;
 
 
 DROP FUNCTION IF EXISTS get_hold_compartment_curve_level CASCADE;
 CREATE OR REPLACE FUNCTION get_hold_compartment_curve_level(src_ship_id INT, src_id INT, src_level FLOAT8) 
-RETURNS SETOF hold_compartment 
+RETURNS SETOF hold_compartment_curve 
 AS $get_hold_compartment_curve_level$
 DECLARE 
     r1 hold_compartment_curve%rowtype;
     r2 hold_compartment_curve%rowtype;
-    res hold_compartment%rowtype;
+    res hold_compartment_curve%rowtype;
     delta FLOAT8;
     coeff1 FLOAT8;
     coeff2 FLOAT8;
@@ -229,7 +228,7 @@ BEGIN
         r2
     FROM hold_compartment_curve t
     WHERE ship_id = src_ship_id AND hold_compartment_id = src_id
-    ORDER BY ABS(src_level - t.level) ASC LIMIT 2 OFFSET 1;
+    ORDER BY ABS(src_level - t.level) ASC LIMIT 1 OFFSET 1;
 
     RAISE NOTICE 'get_hold_compartment_curve_level res r1 volume:[%] level:[%]  r2 volume:[%] level:[%] ', r1.volume, r1.level, r2.volume, r2.level;
 
@@ -253,9 +252,9 @@ BEGIN
 
     res.level = r2.level*coeff1 + r1.level*coeff2;  
     res.volume = r2.volume*coeff1 + r1.volume*coeff2;
-    res.mass_shift_x = r2.buoyancy_x*coeff1 + r1.buoyancy_x*coeff2;
-    res.mass_shift_y = r2.buoyancy_y*coeff1 + r1.buoyancy_y*coeff2;
-    res.mass_shift_z = r2.buoyancy_z*coeff1 + r1.buoyancy_z*coeff2;
+    res.buoyancy_x = r2.buoyancy_x*coeff1 + r1.buoyancy_x*coeff2;
+    res.buoyancy_y = r2.buoyancy_y*coeff1 + r1.buoyancy_y*coeff2;
+    res.buoyancy_z = r2.buoyancy_z*coeff1 + r1.buoyancy_z*coeff2;
     
     RAISE NOTICE 'get_hold_compartment_curve_level res level:[%]  volume:[%] ', res.level, res.volume;
 

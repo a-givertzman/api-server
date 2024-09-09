@@ -105,7 +105,7 @@ BEGIN
         r2
     FROM compartment_curve t
     WHERE ship_id = src_ship_id AND space_id = src_space_id
-    ORDER BY ABS(src_volume - t.volume) ASC LIMIT 2 OFFSET 1;
+    ORDER BY ABS(src_volume - t.volume) ASC LIMIT 1 OFFSET 1;
 
 --    RAISE NOTICE 'get_compartment_curve_volume res r1 volume:[%] level:[%]  r2 volume:[%] level:[%] ', r1.volume, r1.level, r2.volume, r2.level;
 
@@ -170,7 +170,7 @@ BEGIN
         r2
     FROM grain_moment t
     WHERE ship_id = src_ship_id AND space_id = src_space_id
-    ORDER BY ABS(src_level - t.level) ASC LIMIT 2 OFFSET 1;
+    ORDER BY ABS(src_level - t.level) ASC LIMIT 1 OFFSET 1;
 
     RAISE NOTICE 'get_grain_moment_level res r1 level:[%] moment:[%]  r2 level:[%] moment:[%] ', r1.level, r1.moment, r2.level, r2.moment;
 
@@ -231,7 +231,7 @@ BEGIN
         r2
     FROM compartment_curve t
     WHERE ship_id = src_ship_id AND space_id = src_space_id
-    ORDER BY ABS(src_level - t.level) ASC LIMIT 2 OFFSET 1;
+    ORDER BY ABS(src_level - t.level) ASC LIMIT 1 OFFSET 1;
 
  --   RAISE NOTICE 'get_compartment_curve_level res r1 volume:[%] level:[%]  r2 volume:[%] level:[%] ', r1.volume, r1.level, r2.volume, r2.level;
 

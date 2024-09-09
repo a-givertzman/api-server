@@ -56,11 +56,35 @@ join result_stability as data on data.criterion_id=head.id order by data.criteri
 select * from result_strength;
 
 select * from hold_compartment;
-update hold_compartment set mass=5100, density=1 where id=3;
+update hold_compartment set mass=5100, density=1 where id=6;
+update hold_compartment set category_id=12 where id=6;
 
-select space_id, name, mass from compartment order by space_id;
+select id, name, density, volume, mass from hold_compartment order by id;
+
+select space_id, name, density, volume, mass from compartment order by space_id;
 
 update compartment set mass=111 where space_id=1;
 
+update compartment set density=2 where space_id=5;
+update compartment set category_id=12 where space_id=5;
+select space_id, name, category_id, mass, mass_shift_x from compartment order by space_id;
 
-select space_id, name, mass, mass_shift_x from compartment order by space_id;
+
+select * from grain_moment;
+
+select * from hold_compartment;
+
+truncate table hold_group cascade;
+truncate table bulkhead_place cascade;
+truncate table hold_part cascade;
+truncate table bulkhead cascade;
+
+    SELECT *
+    FROM hold_grain_moment t
+    WHERE ship_id = 1 AND hold_compartment_id = 6
+    ORDER BY ABS(1 - t.level) ASC LIMIT 1 OFFSET 1;
+
+    SELECT *
+    FROM hold_grain_moment t
+    WHERE ship_id = 1 AND hold_compartment_id = 6
+    ORDER BY ABS(1 - t.level) ASC LIMIT 1;
