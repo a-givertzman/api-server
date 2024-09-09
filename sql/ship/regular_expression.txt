@@ -36,5 +36,18 @@ select space_id, name, mass from compartment order by space_id;
 
 update compartment set mass=111 where space_id=1;
 
-
 select space_id, name, mass, mass_shift_x from compartment order by space_id;
+
+
+select space_id, name, density, level, mass, volume from compartment where mass IS NOT NULL;
+update compartment set density=2, mass=100, volume=30 where space_id=5;
+
+select space_id, name, category_id from compartment where mass IS NOT NULL;
+update compartment set category_id=5 where space_id=5;
+
+
+select id, name, density, level, mass, volume from hold_compartment where mass IS NOT NULL;
+update hold_compartment set density=2, mass=100, volume=30 where id=7;
+
+select id, name, category_id from hold_compartment where mass IS NOT NULL;
+update hold_compartment set category_id=5 where id=7;
