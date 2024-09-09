@@ -21,9 +21,6 @@
 \i ./sql/ship/delta_windage_area.sql
 \i ./sql/ship/delta_windage_moment.sql
 \i ./sql/ship/metacentic_height_limits.sql
-\i ./sql/ship/draft_mark.sql
-\i ./sql/ship/load_line.sql
-\i ./sql/ship/screw.sql
 \i ./sql/frames/create.sql
 \i ./sql/frames/computed_frame_trigger.sql
 \i ./sql/area/horizontal_area_strength.sql
@@ -31,6 +28,11 @@
 \i ./sql/area/vertical_area_strength.sql
 \i ./sql/area/vertical_area_stability.sql
 \i ./sql/area/bow_area.sql
+
+\i ./sql/draft/draft_mark.sql
+\i ./sql/draft/load_line.sql
+\i ./sql/draft/screw.sql
+\i ./sql/draft/bow_board.sql
 --
 -- Compartment and cargo relations
 \i ./sql/cargo_categories/cargo_categories.sql
@@ -84,3 +86,7 @@
 \i ./sql/ARK/area/vertical_area_strength.sql
 \i ./sql/ARK/area/vertical_area_stability.sql
 \i ./sql/ARK/area/bow_area.sql
+\i ./sql/ARK/draft/draft_mark.sql
+\i ./sql/ARK/draft/load_line.sql
+\i ./sql/ARK/draft/screw.sql
+\i ./sql/ARK/draft/bow_board.sql

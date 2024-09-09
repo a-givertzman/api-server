@@ -11,5 +11,6 @@ CREATE TABLE if not exists bow_area (
   value REAL NOT NULL,
   CONSTRAINT bow_area_pk PRIMARY KEY (id),
   CONSTRAINT bow_area_key_check CHECK(key >= 0),
-  CONSTRAINT bow_area_value_check CHECK(value >= 0)
+  CONSTRAINT bow_area_value_check CHECK(value >= 0),
+  CONSTRAINT bow_area_key_unique UNIQUE (ship_id, key)
 );

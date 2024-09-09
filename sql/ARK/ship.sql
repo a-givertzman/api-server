@@ -18,6 +18,8 @@ VALUES
 -- Cтепень намокания палубного лесного груза, %
   (1, 'Wetting of deck timber', '10', 'real', NULL),
   (1, 'Navigation area', 'R2', 'text', NULL),
+-- Тип судна: "bulk carrier", "container ship", "general dry cargo ship", 
+-- "timber carrying ship", "ro-ro ship", "crude oil tanker", "chemical/oil products tanker", "other"
   (1, 'Type of ship', 'general dry cargo ship', 'text', NULL),
   (1, 'Ship operating speed', '16', 'real', 'm/s'),
   (1, 'Water Density', '1.025', 'real', 'g/ml'),
