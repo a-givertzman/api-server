@@ -69,6 +69,6 @@ VALUES
   (45, 'Угол входа в воду кромки палубы', 'Open deck edge immersion angle', 1),
   (46, 'Угол заливания', 'Angle of down-flooding', 1),
   (47, 'Угол заката', 'Sunset angle', 1),
-  (48, 'Кренящий момент от смещения зерна', 'Heeling moment due to the transverse shift of grain', 11),
+  (48, 'Кренящий момент от смещения зерна', 'Heeling moment due to the transverse shift of grain', 7),
   (49, 'Угол крена при максимальной разности', 'Heeling angle with maximum difference', 1),
   (50, 'Скорость судна', 'Vessel speed', 12);
