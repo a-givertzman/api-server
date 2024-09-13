@@ -4,6 +4,7 @@ CREATE OR REPLACE FUNCTION update_compartment_parameters () RETURNS TRIGGER
 AS $update_compartment_parameters$
 DECLARE 
     result compartment%rowtype;
+    result_max_moment compartment%rowtype;
     matter_type cargo_category.matter_type%TYPE;
 BEGIN 
 
@@ -61,12 +62,16 @@ BEGIN
     NEW.mass_shift_y = result.mass_shift_y;
     NEW.mass_shift_z = result.mass_shift_z; 
 
+    IF NEW.max_m_f_s_y IS NULL THEN
+        result_max_moment = get_compartment_curve_max_moment(NEW.ship_id, NEW.space_id);
+        NEW.max_m_f_s_y = result_max_moment.max_m_f_s_y;
+        NEW.max_m_f_s_y = result_max_moment.max_m_f_s_y;
+    END IF;
 
-    3
-
-
-    
-    IF (NEW.volume_max IS NOT NULL AND NEW.volume >= NEW.volume_max*0.98) THEN 
+    IF (NEW.use_max_m_f_s = TRUE) THEN         
+        NEW.m_f_s_y = NEW.max_m_f_s_y;
+        NEW.m_f_s_x = NEW.max_m_f_s_x;  
+    ELSIF (NEW.volume_max IS NOT NULL AND NEW.volume >= NEW.volume_max*0.98) THEN 
         NEW.m_f_s_y = 0;
         NEW.m_f_s_x = 0;  
     ELSE
@@ -102,18 +107,14 @@ BEGIN
  --   RAISE NOTICE 'get_compartment_curve_volume ship_id:[%] space_id:[%] volume:[%]', 
  --       src_ship_id, src_space_id, src_volume;
 
-    SELECT 
-        *
-    INTO 
-        r1
+    SELECT *
+    INTO r1
     FROM compartment_curve t
     WHERE ship_id = src_ship_id AND space_id = src_space_id
     ORDER BY ABS(src_volume - t.volume) ASC LIMIT 1;
 
-    SELECT 
-        *
-    INTO 
-        r2
+    SELECT *
+    INTO r2
     FROM compartment_curve t
     WHERE ship_id = src_ship_id AND space_id = src_space_id
     ORDER BY ABS(src_volume - t.volume) ASC LIMIT 1 OFFSET 1;
@@ -151,6 +152,39 @@ BEGIN
 END;
 $get_compartment_curve_volume$ LANGUAGE plpgsql;
 
+DROP FUNCTION IF EXISTS get_compartment_curve_max_moment CASCADE;
+CREATE OR REPLACE FUNCTION get_compartment_curve_max_moment(src_ship_id INT, src_space_id INT) 
+RETURNS SETOF compartment 
+AS $get_compartment_curve_max_moment$
+DECLARE 
+    r1 compartment_curve%rowtype;
+    r2 compartment_curve%rowtype;
+    res compartment%rowtype;
+BEGIN 
+ --   RAISE NOTICE 'get_compartment_curve_max_moment ship_id:[%] space_id:[%]', src_ship_id, src_space_id;
+
+    SELECT *
+    INTO r1
+    FROM compartment_curve t
+    WHERE ship_id = src_ship_id AND space_id = src_space_id
+    ORDER BY t.trans_inertia_moment_self ASC LIMIT 1;
+
+    SELECT *
+    INTO r2
+    FROM compartment_curve t
+    WHERE ship_id = src_ship_id AND space_id = src_space_id
+    ORDER BY t.long_inertia_moment_self ASC LIMIT 1 OFFSET 1;
+
+--  RAISE NOTICE 'get_compartment_curve_max_moment res r1:[%] r2:[%] ', r1.trans_inertia_moment_self, r2.trans_inertia_moment_self;
+
+    res.max_m_f_s_y = r1.trans_inertia_moment_self;
+    res.max_m_f_s_x = r2.long_inertia_moment_self;
+
+ --   RAISE NOTICE 'get_compartment_curve_max_moment OK, res max_m_f_s_y:[%]  max_m_f_s_x:[%]', res.trans_inertia_moment_self, res.long_inertia_moment_self;
+
+    RETURN NEXT res;
+END;
+$get_compartment_curve_max_moment$ LANGUAGE plpgsql;
 
 DROP FUNCTION IF EXISTS get_grain_moment CASCADE;
 CREATE OR REPLACE FUNCTION get_grain_moment(src_ship_id INT, src_space_id INT, src_level FLOAT8) 
@@ -166,24 +200,19 @@ DECLARE
 BEGIN 
     RAISE NOTICE 'get_grain_moment ship_id:[%] space_id:[%] level:[%]', src_ship_id, src_space_id, src_level;
 
-    SELECT 
-        *
-    INTO 
-        r1
+    SELECT *
+    INTO r1
     FROM grain_moment t
     WHERE ship_id = src_ship_id AND space_id = src_space_id
     ORDER BY ABS(src_level - t.level) ASC LIMIT 1;
 
-    SELECT 
-        *
-    INTO 
-        r2
+    SELECT *
+    INTO r2
     FROM grain_moment t
     WHERE ship_id = src_ship_id AND space_id = src_space_id
     ORDER BY ABS(src_level - t.level) ASC LIMIT 1 OFFSET 1;
 
-    RAISE NOTICE 'get_grain_moment res r1 level:[%] moment:[%]  r2 level:[%] moment:[%] ', r1.level, r1.moment, r2.level, r2.moment;
-
+   -- RAISE NOTICE 'get_grain_moment res r1 level:[%] moment:[%]  r2 level:[%] moment:[%] ', r1.level, r1.moment, r2.level, r2.moment;
 
     IF (r1.level < src_level AND r2.level < r1.level) THEN
         src_level = r1.level;
@@ -224,26 +253,21 @@ DECLARE
     coeff2 FLOAT8;
 BEGIN 
 --    RAISE NOTICE 'get_compartment_curve_level ship_id:[%] space_id:[%] level:[%]', 
- --       src_ship_id, src_space_id, src_level;
+--       src_ship_id, src_space_id, src_level;
 
-    SELECT 
-        *
-    INTO 
-        r1
+    SELECT *
+    INTO r1
     FROM compartment_curve t
     WHERE ship_id = src_ship_id AND space_id = src_space_id
     ORDER BY ABS(src_level - t.level) ASC LIMIT 1;
 
-    SELECT 
-        *
-    INTO 
-        r2
+    SELECT *
+    INTO r2
     FROM compartment_curve t
     WHERE ship_id = src_ship_id AND space_id = src_space_id
     ORDER BY ABS(src_level - t.level) ASC LIMIT 1 OFFSET 1;
 
  --   RAISE NOTICE 'get_compartment_curve_level res r1 volume:[%] level:[%]  r2 volume:[%] level:[%] ', r1.volume, r1.level, r2.volume, r2.level;
-
 
     IF (r1.level < src_level AND r2.level < r1.level) THEN
         src_level = r1.level;
