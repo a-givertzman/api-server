@@ -59,9 +59,20 @@ BEGIN
     NEW.mass = NEW.volume*NEW.density;
     NEW.mass_shift_x = result.mass_shift_x;
     NEW.mass_shift_y = result.mass_shift_y;
-    NEW.mass_shift_z = result.mass_shift_z;
-    NEW.m_f_s_y = result.m_f_s_y;
-    NEW.m_f_s_x = result.m_f_s_x;
+    NEW.mass_shift_z = result.mass_shift_z; 
+
+
+    3
+
+
+    
+    IF (NEW.volume_max IS NOT NULL AND NEW.volume >= NEW.volume_max*0.98) THEN 
+        NEW.m_f_s_y = 0;
+        NEW.m_f_s_x = 0;  
+    ELSE
+        NEW.m_f_s_y = result.m_f_s_y;
+        NEW.m_f_s_x = result.m_f_s_x;  
+    END IF;
 
     -- Check if new category is of bulk type and then update grain_moment for compartment entry;
     SELECT cc.matter_type INTO matter_type FROM cargo_category AS cc WHERE id = NEW.category_id;
@@ -255,7 +266,7 @@ BEGIN
     res.volume = r2.volume*coeff1 + r1.volume*coeff2;
     res.mass_shift_x = r2.buoyancy_x*coeff1 + r1.buoyancy_x*coeff2;
     res.mass_shift_y = r2.buoyancy_y*coeff1 + r1.buoyancy_y*coeff2;
-    res.mass_shift_z = r2.buoyancy_z*coeff1 + r1.buoyancy_z*coeff2;
+    res.mass_shift_z = r2.buoyancy_z*coeff1 + r1.buoyancy_z*coeff2;    
     res.m_f_s_y = r2.trans_inertia_moment_self*coeff1 + r1.trans_inertia_moment_self*coeff2;
     res.m_f_s_x = r2.long_inertia_moment_self*coeff1 + r1.long_inertia_moment_self*coeff2;
     

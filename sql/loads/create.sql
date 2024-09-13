@@ -25,6 +25,7 @@ CREATE TABLE if not exists compartment (
   space_id INT NOT NULL,
   name TEXT NOT NULL,
   active BOOLEAN NOT NULL DEFAULT TRUE, 
+  use_max_m_f_s BOOLEAN NOT NULL DEFAULT FALSE, 
   volume FLOAT8,
   volume_max FLOAT8,
   level FLOAT8,
@@ -41,6 +42,8 @@ CREATE TABLE if not exists compartment (
   mass_shift_z FLOAT8,
   m_f_s_y FLOAT8,
   m_f_s_x FLOAT8,
+  max_m_f_s_y FLOAT8,
+  max_m_f_s_x FLOAT8,
   grain_moment FLOAT8, 
   svg_paths TEXT,
   category_id INT NOT NULL, -- ID of the cargo_category entry;
