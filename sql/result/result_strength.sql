@@ -11,6 +11,7 @@ CREATE TABLE
         value_mass_hull FLOAT8 NOT NULL,
         value_mass_equipment FLOAT8 NOT NULL,
         value_mass_ballast FLOAT8 NOT NULL,
+        value_mass_bulkhead FLOAT8 NOT NULL,        
         value_mass_store FLOAT8 NOT NULL,
         value_mass_cargo FLOAT8 NOT NULL,
         value_mass_icing FLOAT8 NOT NULL,
