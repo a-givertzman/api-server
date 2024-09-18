@@ -6,7 +6,7 @@ RUN git clone --branch internal_v0.1.21 https://github.com/a-givertzman/api-serv
 RUN cd ./api-server && cargo build --release
 # compile the sss-computing-strength binary executable
 WORKDIR /back
-RUN git clone --branch 0.0.28 https://github.com/a-givertzman/sss-computing-strength.git sss-computing-strength
+RUN git clone --branch 0.0.29 https://github.com/a-givertzman/sss-computing-strength.git sss-computing-strength
 RUN cd ./sss-computing-strength && cargo build --release
 
 FROM debian:12.2 as runner
