@@ -130,3 +130,7 @@ truncate table bulkhead cascade;
 
 update bulkhead_place set bulkhead_id=1 where id=3;
 update bulkhead_place set bulkhead_id=2 where id=4;
+
+select name, space_id, mass, use_max_m_f_s, m_f_s_y, m_f_s_x, max_m_f_s_y, max_m_f_s_x from compartment;
+update compartment set use_max_m_f_s=false where space_id=22;
+update compartment set use_max_m_f_s=true where space_id=39;
