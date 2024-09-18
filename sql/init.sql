@@ -82,9 +82,6 @@
 --
 -- Data for ship
 \i ./sql/ARK/ship.sql
-\i ./sql/ARK/draft_mark.sql
-\i ./sql/ARK/load_line.sql
-\i ./sql/ARK/screw.sql
 \i ./sql/ARK/strength_force_limit.sql
 \i ./sql/ARK/frames/bonjean_frame.sql
 \i ./sql/ARK/frames/physical_frame.sql
