@@ -24,7 +24,8 @@ VALUES
     (1, 'lightship',    'Порожнем', 'LightShip'),
     (2, 'ballast',      'Балласт',  'Ballast'),
     (3, 'stores',       'Запасы',   'Stores'),
-    (4, 'cargo',        'Груз',     'Cargo');
+    (4, 'cargo',        'Груз',     'Cargo'),
+    (5, 'bulkhead', 'Зерновая переборка', 'Bulkhead');
 
 -- Enum with state of matters for cargos; 
 DROP TYPE IF EXISTS cargo_matter_type CASCADE;
@@ -80,4 +81,5 @@ VALUES
     (12, 'bulk_cargo_shiftable',        4, 'bulk',      'Груз навалочный, смещаемый',       'Bulk cargo, shiftable'),
     -- Порожнем 
     (20, 'hull',                        1, 'solid',     'Корпус',                           'Hull'),
-    (21, 'equipment',                   1, 'solid',     'Оборудование',                     'Equipment');
+    (21, 'equipment',                   1, 'solid',     'Оборудование',                     'Equipment'),
+    (22, 'bulkhead',                    5, 'solid',     'Зерновая переборка',               'Bulkhead');

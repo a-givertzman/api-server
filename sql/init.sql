@@ -1,3 +1,8 @@
+--
+-- General data
+\i ./sql/general_data/unit.sql
+--
+--
 \i ./sql/ship/ship_name.sql
 \i ./sql/ship/ship_parameters.sql
 \i ./sql/ship/center_draught.sql
@@ -16,9 +21,6 @@
 \i ./sql/ship/delta_windage_area.sql
 \i ./sql/ship/delta_windage_moment.sql
 \i ./sql/ship/metacentic_height_limits.sql
-\i ./sql/ship/draft_mark.sql
-\i ./sql/ship/load_line.sql
-\i ./sql/ship/screw.sql
 \i ./sql/frames/create.sql
 \i ./sql/frames/computed_frame_trigger.sql
 \i ./sql/area/horizontal_area_strength.sql
@@ -26,6 +28,11 @@
 \i ./sql/area/vertical_area_strength.sql
 \i ./sql/area/vertical_area_stability.sql
 \i ./sql/area/bow_area.sql
+
+\i ./sql/draft/draft_mark.sql
+\i ./sql/draft/load_line.sql
+\i ./sql/draft/screw.sql
+\i ./sql/draft/bow_board.sql
 --
 -- Compartment and cargo relations
 \i ./sql/cargo_categories/cargo_categories.sql
@@ -52,10 +59,11 @@
 \i ./sql/stability/icing.sql
 --
 -- Tables with result of calculating
-\i ./sql/result/result_stability.sql
 \i ./sql/result/result_strength.sql
 \i ./sql/result/strength_force_limit.sql
-\i ./sql/result/criterion_stability.sql
+\i ./sql/result/criterion_category.sql
+\i ./sql/result/criterion.sql
+\i ./sql/result/criterion_values.sql
 \i ./sql/result/parameter_head.sql
 \i ./sql/result/parameter_data.sql
 \i ./sql/result/criterions_parameters.sql
@@ -93,3 +101,7 @@
 \i ./sql/ARK/area/vertical_area_stability.sql
 \i ./sql/ARK/hold/hold_insert.sql
 \i ./sql/ARK/area/bow_area.sql
+\i ./sql/ARK/draft/draft_mark.sql
+\i ./sql/ARK/draft/load_line.sql
+\i ./sql/ARK/draft/screw.sql
+\i ./sql/ARK/draft/bow_board.sql
