@@ -3,7 +3,8 @@
 \i ./sql/general_data/unit.sql
 --
 --
-\i ./sql/ship/ship_name.sql
+\i ./sql/ship/ship_type.sql
+\i ./sql/ship/ship.sql
 \i ./sql/ship/ship_parameters.sql
 \i ./sql/ship/center_draught.sql
 \i ./sql/ship/center_waterline.sql
