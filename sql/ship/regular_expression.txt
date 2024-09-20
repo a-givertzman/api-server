@@ -85,9 +85,13 @@ update hold_compartment set density=2, mass=100, volume=30 where id=7;
 select id, name, category_id from hold_compartment where mass IS NOT NULL;
 update hold_compartment set category_id=5 where id=7;
 
-update hold_compartment set density=0.8, mass=1479.0 where name='Трюм 113-151 шп.';
-update hold_compartment set density=0.8, mass=2459.7 where name='Трюм 51-113 шп.';
-update hold_compartment set density=0.8, mass=472.8 where name='Трюм 25-51 шп.';
+update hold_compartment set density=0.8, mass=1479.0, category_id=12 where name='Трюм 113-151 шп.';
+update hold_compartment set density=0.8, mass=2459.7, category_id=12 where name='Трюм 51-113 шп.';
+update hold_compartment set density=0.8, mass=472.8, category_id=12 where name='Трюм 25-51 шп.';
+
+update hold_compartment set density=0.8, mass=3938.7, category_id=12 where name='Трюм 51-151 шп.';
+
+
 
 
 select * from grain_moment;
@@ -147,6 +151,9 @@ truncate table bulkhead cascade;
                 bulkhead AS h
             JOIN 
                 bulkhead_place AS p ON h.id = p.bulkhead_id;
+
+update bulkhead_place set bulkhead_id=1 where id=1;
+update bulkhead_place set bulkhead_id=2 where id=3;
 
 update bulkhead_place set bulkhead_id=1 where id=3;
 update bulkhead_place set bulkhead_id=2 where id=4;
