@@ -40,5 +40,5 @@ VALUES
 INSERT INTO bulkhead
     (id, project_id, ship_id, name, mass, category_id)
 VALUES
-    (1, NULL, 1, 'Зерновая переборка №1', 12.0, 21),
-    (2, NULL, 1, 'Зерновая переборка №2', 12.0, 21);
+    (1, NULL, 1, 'Зерновая переборка №1', 12.0, 22),
+    (2, NULL, 1, 'Зерновая переборка №2', 12.0, 22);

@@ -96,9 +96,9 @@
 \i ./sql/ARK/area/horizontal_area_stability.sql
 \i ./sql/ARK/area/vertical_area_strength.sql
 \i ./sql/ARK/area/vertical_area_stability.sql
-\i ./sql/ARK/hold/hold_insert.sql
 \i ./sql/ARK/area/bow_area.sql
 \i ./sql/ARK/draft/draft_mark.sql
 \i ./sql/ARK/draft/load_line.sql
 \i ./sql/ARK/draft/screw.sql
 \i ./sql/ARK/draft/bow_board.sql
+\i ./sql/ARK/hold/hold_insert_empty.sql
