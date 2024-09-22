@@ -1,14 +1,19 @@
 DROP TABLE IF EXISTS ship CASCADE;
 
 CREATE TABLE if not exists ship (
-  id INT GENERATED ALWAYS AS IDENTITY,
+  id INT NOT NULL,
   name TEXT NOT NULL,
   project TEXT,
   year_of_built INT,
   place_of_built TEXT,
   IMO INT,
   MMSI INT,
-  ship_type INT,
+  ship_type_id INT NOT NULL,
+  icing_type_id INT NOT NULL DEFAULT 1,
+  icing_timber_type_id INT NOT NULL DEFAULT 1,
+  navigation_area_id INT NOT NULL DEFAULT 1,
+  freeboard_type TEXT NOT NULL DEFAULT 'B',
+  geometry_id INT NOT NULL,
   CONSTRAINT ship_pk PRIMARY KEY (id),
   CONSTRAINT ship_unique UNIQUE NULLS NOT DISTINCT (name, project, year_of_built, place_of_built, IMO, MMSI),
   CONSTRAINT ship_name_check CHECK(char_length(name) > 0 AND char_length(name) <= 50),
@@ -17,5 +22,10 @@ CREATE TABLE if not exists ship (
   CONSTRAINT ship_place_check CHECK(char_length(place_of_built) > 0 AND char_length(place_of_built) <= 50),
   CONSTRAINT ship_imo_check CHECK(IMO > 999999 AND IMO <= 99999999),
   CONSTRAINT ship_mmsi_check CHECK(MMSI > 99999999 AND MMSI <= 999999999),
-  CONSTRAINT ship_type_general_fk FOREIGN KEY (ship_type) REFERENCES ship_type (id)
+  CONSTRAINT ship_type_general_fk FOREIGN KEY (ship_type_id) REFERENCES ship_type (id),
+  CONSTRAINT ship_type_icing_type_fk FOREIGN KEY (icing_type_id) REFERENCES ship_icing (id),
+  CONSTRAINT ship_type_icing_timber_type_fk FOREIGN KEY (icing_timber_type_id) REFERENCES ship_icing_timber (id),
+  CONSTRAINT ship_type_navigation_area_type_fk FOREIGN KEY (navigation_area_id) REFERENCES navigation_area (id),
+  CONSTRAINT ship_type_freeboard_type_check CHECK (char_length(freeboard_type) > 0 AND char_length(freeboard_type) < 10 ),
+  CONSTRAINT ship_parameters_geometry_fk FOREIGN KEY (geometry_id) REFERENCES ship_geometry (id)
 );

@@ -50,8 +50,11 @@
 select data.parameter_id, head.title_rus, data.result, head.unit_rus from parameter_head as head
 join parameter_data as data on data.parameter_id=head.id order by data.parameter_id;
 
-select data.criterion_id, head.title_rus, data.result, head.relation, data.target from criterion as head
-join criterion_values as data on data.criterion_id=head.id order by data.criterion_id;
+select head.id, head.title_rus, unit.symbol_rus from criterion as head
+join unit as unit on head.unit_id=unit.id order by head.id;
+
+select head.id, head.title_rus, unit.symbol_rus from parameter_head as head
+join unit as unit on head.unit_id=unit.id order by head.id;
 
 select * from result_strength;
 
