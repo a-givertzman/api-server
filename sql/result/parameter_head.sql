@@ -47,9 +47,10 @@ VALUES
   (27, 'Масса груза', 6),
   (28, 'Дедвейт', 6),
   (29, 'Масса порожнем', 6),
-  (30, 'Масса наледи', 6),
-  (31, 'Масса намокания', 6),
-  (32, 'Абсцисса центра тяжести', 2);
+  (30, 'Масса обледенения', 6),
+  (31, 'Масса намокания палубного лесного груза', 6),
+  (32, 'Абсцисса центра тяжести', 2),
+  (52, 'Масса зерновых переборок', 6);
 
 INSERT INTO parameter_head
   (id, title_rus, title_eng, unit_id)
@@ -61,14 +62,16 @@ VALUES
   (37, 'Плечо динамического ветрового кренящего момента', 'Dynamic windage heeling lever', 2),
   (38, 'Ветровой статический угол крена', 'Static windage heeling angle', 1),
   (39, 'Ветровой динамический угол крена', 'Dynamic windage heeling angle', 1),
-  (40, 'Угол второго пересечения с кривой', 'Heeling angle of second point of intersection with', 1),
+  (40, 'Угол второго пересечения $l_{w2}$ с ДСО', 'Heeling angle of second point of intersection with', 1),
   (41, 'Амплитуда качки', 'Roll amplitude', 1),
   (42, 'Период качки', 'Roll period', 9),
   (43, 'Площадь a', 'Area a', 3),
   (44, 'Площадь b', 'Area b', 3),
   (45, 'Угол входа в воду кромки палубы', 'Open deck edge immersion angle', 1),
   (46, 'Угол заливания', 'Angle of down-flooding', 1),
-  (47, 'Угол заката', 'Sunset angle', 1),
+  (47, 'Угол заката ДСО', 'Sunset angle', 1),
   (48, 'Кренящий момент от смещения зерна', 'Heeling moment due to the transverse shift of grain', 7),
-  (49, 'Угол крена при максимальной разности', 'Heeling angle with maximum difference', 1),
-  (50, 'Скорость судна', 'Vessel speed', 12);
+  (49, 'Крен при макс. разности кривой кренящих моментов и ДСО', 'Heeling angle with maximum difference', 1),
+  (50, 'Скорость судна', 'Vessel speed', 12),
+  (51, 'Дифферент', 'Trim', 2);
+
