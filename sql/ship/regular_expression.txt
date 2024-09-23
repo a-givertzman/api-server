@@ -47,11 +47,17 @@
         WHERE 
             c.ship_id=1 AND active=TRUE AND mass>0;
 
-select data.parameter_id, head.title_rus, data.result, head.unit_rus from parameter_head as head
-join parameter_data as data on data.parameter_id=head.id order by data.parameter_id;
+select data.parameter_id, head.title_rus, data.result, unit.symbol_rus 
+from parameter_head as head
+join parameter_data as data on data.parameter_id=head.id 
+join unit as unit on head.unit_id=unit.id 
+order by data.parameter_id;
 
-select data.criterion_id, head.title_rus, data.result, head.relation, data.target from criterion as head
-join criterion_values as data on data.criterion_id=head.id order by data.criterion_id;
+select data.criterion_id, head.title_rus, data.actual_value, head.math_relation, data.limit_value, unit.symbol_rus  
+from criterion as head
+join criterion_values as data on data.criterion_id=head.id 
+join unit as unit on head.unit_id=unit.id 
+order by data.criterion_id;
 
 select * from result_strength;
 
