@@ -12,12 +12,13 @@
 \i ./sql/stability/icing.sql
 --
 -- Ship data
+DROP TABLE IF EXISTS ship_geometry, ship_parameters, ship CASCADE;
 \i ./sql/ship/geometry.sql
 \i ./sql/ship/icing_timber.sql
 \i ./sql/ship/icing.sql
 \i ./sql/ship/type.sql
-\i ./sql/ship/parameters.sql
 \i ./sql/ship/ship.sql
+\i ./sql/ship/parameters.sql
 --
 -- Hidrostatic curves for ship
 \i ./sql/hidrostatic/center_draught.sql
