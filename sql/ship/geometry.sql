@@ -1,5 +1,3 @@
-DROP TABLE IF EXISTS ship_geometry CASCADE;
-
 CREATE TABLE if not exists ship_geometry (
   id INT NOT NULL,
   hull_svg TEXT NOT NULL,
