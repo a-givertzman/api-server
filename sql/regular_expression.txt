@@ -152,3 +152,27 @@ update bulkhead_place set bulkhead_id=2 where id=4;
 select name, space_id, mass, use_max_m_f_s, m_f_s_y, m_f_s_x, max_m_f_s_y, max_m_f_s_x from compartment;
 update compartment set use_max_m_f_s=false where space_id=22;
 update compartment set use_max_m_f_s=true where space_id=39;
+
+
+            SELECT 
+                s.name AS name,
+                tr.title_eng AS ship_type,
+                i.icing_type AS icing_type,
+                it.icing_type AS icing_timber_type,
+                n AS navigation_area,
+                s.freeboard_type AS freeboard_type
+            FROM 
+                ship AS s
+            JOIN 
+                ship_type AS t ON s.ship_type_id = t.id
+            JOIN 
+                ship_type_rmrs AS tr ON t.type_rmrs = tr.id
+            JOIN 
+                ship_icing AS i ON s.icing_type_id = i.id
+            JOIN 
+                ship_icing_timber AS it ON s.icing_timber_type_id = it.id
+            JOIN 
+                navigation_area AS n ON s.navigation_area_id = n.id
+            WHERE 
+                s.id=1;
+
