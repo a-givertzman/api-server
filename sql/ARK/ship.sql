@@ -21,6 +21,7 @@ VALUES
 INSERT INTO ship_parameters
   (ship_id, key, value, unit_id)
 VALUES
+  (1, 'Wetting of deck timber', 10, NULL),
   (1, 'Ship operating speed', 16, 14),
   (1, 'Water Density', 1.025, 15),
   (1, 'Keel area', 24.69, 3),
