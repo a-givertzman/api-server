@@ -64,7 +64,7 @@ impl SqlQueryPostgre {
                     },
                     _ => {
                         let msg = format!("SqlQueryPostgre.asJson | Error parsing value of unknown type '{:?}'", t.to_owned());
-                        warn!("{}", msg);
+                        log::warn!("{}", msg);
                         (serde_json::Value::default(), msg)
                     },
                 }
@@ -87,7 +87,7 @@ impl SqlQueryPostgre {
                 }
             },
             Err(err) => {
-                warn!("SqlQueryPostgre.asJson_ | Error parsing value of type '{:?}': {:?}\t db-err-code: {:?}", t, err, err.code());
+                log::warn!("SqlQueryPostgre.asJson_ | Error parsing value of type '{:?}': {:?}\t db-err-code: {:?}", t, err, err.code());
                 Self::as_json_default_value(t)
             },
         }
@@ -131,7 +131,7 @@ impl SqlQueryPostgre {
                 json!(value)
             },
             _ => {
-                warn!("SqlQueryPostgre.asJsonDefaultValue | Error parsing value of unknown type '{}'", t);
+                log::warn!("SqlQueryPostgre.asJsonDefaultValue | Error parsing value of unknown type '{}'", t);
                 serde_json::Value::Null
             }
         }
@@ -151,7 +151,7 @@ impl SqlQuery for SqlQueryPostgre {
                 } else {
                     format!("postgresql://{}/{}", self.db_config.path, self.db_config.name)                                                  // postgresql://localhost
                 };
-                debug!("SqlQueryPostgre.execute | connecting with params: {:?}", &path);
+                log::debug!("SqlQueryPostgre.execute | connecting with params: {:?}", &path);
                 match Client::connect(&path, NoTls) {
                     Ok(conn) => {
                         new_conn = conn;
@@ -159,7 +159,7 @@ impl SqlQuery for SqlQueryPostgre {
                     },
                     Err(err) => {
                         let details = format!("SqlQueryPostgre.execute | connection error: {:?}", &err);
-                        warn!("{:?}", details);
+                        log::warn!("{:?}", details);
                         Err(ApiError::new(
                             "Postgres database - connection error",
                             details,
@@ -170,7 +170,7 @@ impl SqlQuery for SqlQueryPostgre {
         };
         match connection {
             Ok(connection) => {
-                debug!("SqlQueryPostgre.execute | preparing sql: {:?}", self.sql);
+                log::debug!("SqlQueryPostgre.execute | preparing sql: {:?}", self.sql);
                 match connection.prepare(self.sql.as_str()) {
                     Ok(stmt) => {
                         let mut c_names = vec![];
@@ -182,7 +182,7 @@ impl SqlQuery for SqlQueryPostgre {
                             Ok(rows) => {
                                 let mut parse_errors = vec![];
                                 for row in rows {
-                                    trace!("SqlQueryPostgre.execute | row: {:?}", row);
+                                    log::trace!("SqlQueryPostgre.execute | row: {:?}", row);
                                     let mut row_map = IndexMap::new();
                                     for column in row.columns() {
                                         let idx = column.name();
@@ -195,16 +195,16 @@ impl SqlQuery for SqlQueryPostgre {
                                     result.push(row_map);
                                 }
                                 if log::max_level() == LevelFilter::Trace {
-                                    trace!("SqlQueryPostgre.execute | result: {:?}", result);
+                                    log::trace!("SqlQueryPostgre.execute | result: {:?}", result);
                                 } else {
-                                    debug!("SqlQueryPostgre.execute | result: {:?} rows fetched", result.len());
-                                    debug!("SqlQueryPostgre.execute | result: {:?}", result);
+                                    log::debug!("SqlQueryPostgre.execute | result: {:?} rows fetched", result.len());
+                                    log::debug!("SqlQueryPostgre.execute | result: {:?}", result);
                                 }
                                 if parse_errors.is_empty() {
                                     Ok(result)
                                 } else {
                                     let details = format!("SqlQueryPostgre.execute | rows parsing errors: {:?}", parse_errors.join("\n"));
-                                    warn!("{}", details);
+                                    log::warn!("{}", details);
                                     Err(ApiError::new(
                                         "Postgres database - rows parsing errors", 
                                         details,
@@ -213,7 +213,7 @@ impl SqlQuery for SqlQueryPostgre {
                             },
                             Err(err) => {
                                 let details = format!("SqlQueryPostgre.execute | sql query error: {:?}", err);
-                                warn!("{}", details);
+                                log::warn!("{}", details);
                                 Err(ApiError::new(
                                     "Postgres database - sql query error", 
                                     details, 
@@ -223,7 +223,7 @@ impl SqlQuery for SqlQueryPostgre {
                     },
                     Err(err) => {
                         let details = format!("SqlQueryPostgre.execute | sql preparing error: {}", err);
-                        warn!("{}", details);
+                        log::warn!("{}", details);
                         Err(ApiError::new(
                             "Postgres database - sql preparing error",
                             details, 
