@@ -55,6 +55,12 @@ pub enum Message {
     Timestamp,
     Duration,
 }
+//
+//
+impl Message {
+    /// Each Message starts with
+    pub const SYN: u8 = 22;
+}
 ///
 /// String Message
 pub struct MessageString {
