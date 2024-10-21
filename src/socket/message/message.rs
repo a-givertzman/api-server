@@ -32,3 +32,53 @@
 //!     - 49, Duration
 //!     - .., ...
 //! 
+
+use core::str;
+
+use super::from_bytes::FromBytes;
+///
+/// Kind of Message
+pub enum Message {
+    Any,
+    Empty,
+    Bytes,
+    Bool,
+    UInt16,
+    UInt32,
+    UInt64,
+    Int16,
+    Int32,
+    Int64,
+    F32,
+    F64,
+    String(MessageString),
+    Timestamp,
+    Duration,
+}
+///
+/// String Message
+pub struct MessageString {
+    value: String,
+}
+//
+//
+impl MessageString {
+    ///
+    /// Returns `MessageString` new instance
+    pub fn new(val: impl Into<String>) -> Self {
+        
+        Self {
+            value: val.into(),
+        }
+    }
+}
+//
+//
+impl FromBytes for MessageString {
+    fn from_bytes(bytes: &[u8]) -> Result<Self, String> {
+        match str::from_utf8(bytes) {
+            Ok(val) => Ok(MessageString::new(val)),
+            Err(err) => Err(format!("MessageString.from_bytes | Error {:#?}", err)),
+        }
+    }
+}
