@@ -1,6 +1,8 @@
 //!
-//! Messages transmitted over socket.
+//! # Messages transmitted over socket.
+//! 
 //! - Data can be encoded using varius data `Kind`, `Size` and payload Data
+//! 
 //! - Message format
 //!     Field name | Start | Kind |  Size  | Data |
 //!     ---       |  ---  | ---  |  ---   | ---  |
