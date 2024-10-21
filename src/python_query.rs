@@ -18,7 +18,7 @@ impl PythonQuery {
     pub fn new(path: &str, params: serde_json::Map<String, serde_json::Value>) -> PythonQuery {
         Self {
             path: path.into(),
-            params: params,
+            params,
         }
     }
     ///

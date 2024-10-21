@@ -72,7 +72,10 @@ class TestPython(unittest.TestCase):
             assert received_json['id'] == expected_json['id']
             assert received_json['data'] == expected_json['data']
             assert (len(received_json['error']) > 0) == (len(expected_json['error']) > 0)
-            self.assertEqual( received_json['query'], expected_json['query'], f"\nexpected query: {expected_json['query']} \nreceived query: {received_json['query']}" )
+            received_json_query = json.loads(received_json['query'] if received_json['query'] else '{}')
+            expected_json_query = json.loads(expected_json['query'] if expected_json['query'] else '{}')
+            self.assertEqual( received_json_query, expected_json_query, msg = f"\nexpected query: {expected_json['query']} \nreceived query: {received_json['query']}" )
+            # self.assertEqual( received_json['query'], expected_json['query'], f"\nexpected query: {expected_json['query']} \nreceived query: {received_json['query']}" )
 
     def test_python_known_service_with_name_of_another_service(self):
         data_maps = [
@@ -94,7 +97,10 @@ class TestPython(unittest.TestCase):
             assert received_json['id'] == expected_json['id']
             assert received_json['data'] == expected_json['data']
             assert (len(received_json['error']) > 0) == (len(expected_json['error']) > 0)
-            self.assertEqual( received_json['query'], expected_json['query'], f"\nexpected query: {expected_json['query']} \nreceived query: {received_json['query']}" )
+            received_json_query = json.loads(received_json['query'] if received_json['query'] else '{}')
+            expected_json_query = json.loads(expected_json['query'] if expected_json['query'] else '{}')
+            self.assertEqual( received_json_query, expected_json_query, msg = f"\nexpected query: {expected_json['query']} \nreceived query: {received_json['query']}" )
+            # self.assertEqual( received_json['query'], expected_json['query'], f"\nexpected query: {expected_json['query']} \nreceived query: {received_json['query']}" )
 
 if __name__ == '__main__':
     conftest.kill_all_servers()

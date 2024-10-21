@@ -283,7 +283,7 @@ impl ApiServer {
                                 apiQuery.authToken(),
                                 apiQuery.id(),
                                 apiQuery.keepAlive,
-                                (&apiQuery).srcQuery(apiQuery.debug),
+                                (apiQuery).srcQuery(apiQuery.debug),
                                 ApiError::new(
                                     format!("API Server - Executable service with name '{}' can't be found", exQuery.name),
                                     format!("ApiServer.build | Error: Executable service with name '{}' can't be found", exQuery.name),
