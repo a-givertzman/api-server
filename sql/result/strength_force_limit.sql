@@ -19,6 +19,6 @@ CREATE TABLE
     limit_area strength_limit_area NOT NULL,
     force_type strength_force NOT NULL,
     CONSTRAINT strength_limit_pk PRIMARY KEY (id),
-    CONSTRAINT strength_limit_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, frame_x, limit_type, force_type),
+    CONSTRAINT strength_limit_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, frame_x, limit_type, limit_area, force_type),
     CONSTRAINT strength_limit_value_check CHECK ((value >= 0 AND limit_type = 'high') OR (value <= 0 AND limit_type = 'low'))
   );
