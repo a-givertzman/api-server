@@ -2,7 +2,7 @@
 -- зависимости от объемного водоизмещения
 -- V, м3 | Xc, м | Yc, м, | Zc, м
 INSERT INTO center_draught
-    (ship_id, key, value_x, value_y, value_z)
+    (ship_id, volume, value_x, value_y, value_z)
 VALUES
     (1, 11.50, -0.272,  0, -0.005),
     (1, 23.20, -0.224,  0, 0.000),

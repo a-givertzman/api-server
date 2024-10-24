@@ -2,7 +2,7 @@
 -- зависимости от объемного водоизмещения
 -- V, м3 | ro, м
 INSERT INTO rad_trans
-    (ship_id, key, value)
+    (ship_id, volume, value)
 VALUES
     (1, 11.50, 1281.903),
     (1, 23.20, 655.416),

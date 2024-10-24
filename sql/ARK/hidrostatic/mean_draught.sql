@@ -2,7 +2,7 @@
 -- зависимость от объемного водоизмещения
 -- V, м3 | T, м
 INSERT INTO mean_draught
-    (ship_id, key, value)
+    (ship_id, volume, value)
 VALUES
     (1, 11.50, 0.00),
     (1, 23.20, 0.01),

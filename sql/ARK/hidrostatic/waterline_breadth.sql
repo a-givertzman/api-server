@@ -2,7 +2,7 @@
 -- в зависимости от осадки
 -- d, м | z, м
 INSERT INTO waterline_breadth
-  (ship_id, key, value)
+  (ship_id, draught, value)
 VALUES
     (1, 0.5, 13.4),
     (1, 1, 13.4),

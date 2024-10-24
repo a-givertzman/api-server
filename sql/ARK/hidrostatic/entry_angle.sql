@@ -1,7 +1,7 @@
 -- Угол входа верхней палубы в воду, зависимость 
 -- угла от осадки судна
 INSERT INTO  entry_angle
-    (ship_id, key, value)
+    (ship_id, draught, value)
 VALUES
     (1, 2.3, 36.3),
     (1, 2.5, 34.2),

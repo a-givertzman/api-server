@@ -3,7 +3,7 @@
 -- в зависимости от объемного водоизмещения
 -- V, м3 | Xf, м
 INSERT INTO center_waterline
-    (ship_id, key, value)
+    (ship_id, volume, value)
 VALUES
     (1, 11.50, -0.193),
     (1, 23.20, -0.099),

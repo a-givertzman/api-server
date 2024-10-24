@@ -1,7 +1,7 @@
 -- Угол заливания отверстий, зависимость 
 -- угла от осадки судна
 INSERT INTO  flooding_angle
-    (ship_id, key, value)
+    (ship_id, draught, value)
 VALUES
     (1, 2.3, 88.9),
     (1, 2.5, 84.2),

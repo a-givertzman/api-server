@@ -2,7 +2,7 @@
 -- зависимость от объемного водоизмещения
 -- V, м3 | S, м^2
 INSERT INTO waterline_area
-    (ship_id, key, value)
+    (ship_id, volume, value)
 VALUES
     (1, 11.5, 1162.1),
     (1, 23.2, 1180.4),
