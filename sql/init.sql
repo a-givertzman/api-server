@@ -34,8 +34,6 @@ DROP TABLE IF EXISTS ship_geometry, ship_parameters, ship CASCADE;
 \i ./sql/hidrostatic/waterline_length.sql
 \i ./sql/hidrostatic/waterline_area.sql
 \i ./sql/hidrostatic/min_metacentric_height_subdivision.sql
-\i ./sql/hidrostatic/delta_windage_area.sql
-\i ./sql/hidrostatic/delta_windage_moment.sql
 \i ./sql/hidrostatic/metacentic_height_limits.sql
 --
 \i ./sql/frames/create.sql
