@@ -23,7 +23,10 @@ CREATE TABLE if not exists compartment (
   project_id INT,
   ship_id INT NOT NULL,
   space_id INT NOT NULL,
-  name TEXT NOT NULL,
+  name_rus TEXT NOT NULL,
+  ab_rus TEXT,
+  name_engl TEXT,
+  ab_engl TEXT,
   active BOOLEAN NOT NULL DEFAULT TRUE, 
   use_max_m_f_s BOOLEAN NOT NULL DEFAULT FALSE, 
   volume FLOAT8,
@@ -79,9 +82,9 @@ CREATE TABLE if not exists compartment_curve (
   static_moment_z FLOAT8,
   area_vl FLOAT8,
   trans_inertia_moment_self FLOAT8 NOT NULL,
-  trans_inertia_moment_mov FLOAT8 NOT NULL,
+  trans_inertia_moment_mov FLOAT8,
   long_inertia_moment_self FLOAT8 NOT NULL,
-  long_inertia_moment_mov FLOAT8 NOT NULL,
+  long_inertia_moment_mov FLOAT8,
   CONSTRAINT compartment_curve_pk PRIMARY KEY (id),
   CONSTRAINT compartment_curve_key_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, space_id, level)
 );

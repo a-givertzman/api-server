@@ -54,6 +54,7 @@ DROP TABLE IF EXISTS ship_geometry, ship_parameters, ship CASCADE;
 \i ./sql/cargo_categories/cargo_categories.sql
 \i ./sql/loads/create.sql
 \i ./sql/loads/loads_trigger.sql
+\i ./sql/loads/compartment_curve_trigger.sql
 --
 -- Holds and bulkheads relations
 \i ./sql/hold/hold_group.sql

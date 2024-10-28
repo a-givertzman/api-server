@@ -4,7 +4,7 @@
 TRUNCATE TABLE compartment;
 
 INSERT INTO compartment
-  (ship_id, space_id, name, volume_max, density, bound_x1, bound_x2, bound_y1, bound_y2, bound_z1, bound_z2, category_id, svg_paths)
+  (ship_id, space_id, name_rus, volume_max, density, bound_x1, bound_x2, bound_y1, bound_y2, bound_z1, bound_z2, category_id, svg_paths)
 VALUES  
   -- (1, 1, 'Грузовой трюм',   6215.9, 1.025, -44.194,   37.656),
   (1, 2, 'Форпик Пр.Б',     58.79,   1.025, 54.556,  59.356, 5.346370, 0, .316583, 6.800000, 2, '{
@@ -219,13 +219,13 @@ VALUES
 }');
 
 INSERT INTO compartment  
-  (ship_id, space_id, name, mass, bound_x1, bound_x2, mass_shift_x, mass_shift_y, mass_shift_z, category_id)
+  (ship_id, space_id, name_rus, mass, bound_x1, bound_x2, mass_shift_x, mass_shift_y, mass_shift_z, category_id)
 VALUES    
   (1, 47, 'Экипаж и багаж',     1.80, 44.31,  46.31, 45.31,  -4.46,  7.70, 9),
   (1, 48, 'Провизия',           0,    40.21,  42.21, 41.21,  4.60,   8.15, 9);
 
 -- Палубный груз TODO: перенести куда-нибудь 
 INSERT INTO compartment  
-  (ship_id, space_id, name, active, mass, bound_x1, bound_x2, mass_shift_x, mass_shift_y, mass_shift_z, category_id)
+  (ship_id, space_id, name_rus, active, mass, bound_x1, bound_x2, mass_shift_x, mass_shift_y, mass_shift_z, category_id)
 VALUES    
   (1, 71, 'Палубный груз', TRUE, 0, -44.194, 37.656,  0,  0,  10.3, 10);
