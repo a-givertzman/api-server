@@ -215,8 +215,8 @@ SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Трюм 2' AND shi
 SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Трюм 2' AND ship_id=2), 9.50, 6560.74, 45.02, 0.00, 5.87, 10091, 159877 UNION ALL
 SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Трюм 2' AND ship_id=2), 9.60, 6630.24, 45.02, 0.00, 5.92, 10091, 159877 UNION ALL
 SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Трюм 2' AND ship_id=2), 9.70, 6699.74, 45.02, 0.00, 5.97, 10091, 159877 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Трюм 2' AND ship_id=2), 9.80, 6769.24^, 45.02, 0.00, 6.02, 10091, 159877 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Трюм 2' AND ship_id=2), 9.90, 6838.74^, 45.02, 0.00, 6.07, 10091, 159877 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Трюм 2' AND ship_id=2), 9.80, 6769.24, 45.02, 0.00, 6.02, 10091, 159877 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Трюм 2' AND ship_id=2), 9.90, 6838.74, 45.02, 0.00, 6.07, 10091, 159877 UNION ALL
 SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Трюм 2' AND ship_id=2), 10.00, 6908.25, 45.02, 0.00, 6.12, 10091, 159877 UNION ALL
 SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Трюм 2' AND ship_id=2), 10.10, 6977.75, 45.01, 0.00, 6.17, 10091, 159877 UNION ALL
 SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Трюм 2' AND ship_id=2), 10.20, 7047.25, 45.01, 0.00, 6.22, 10091, 159877 UNION ALL
@@ -343,7 +343,7 @@ SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND
 SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 0.40, 6.08, 122.24, 0.00, 0.23, 27, 43 UNION ALL
 SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 0.50, 8.13, 122.25, 0.00, 0.28, 32, 46 UNION ALL
 SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 0.60, 10.30, 122.26, 0.00, 0.34, 37, 48 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 0.70, 12.49, 122.25, 0.00, 0 394, 41, 41 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 0.70, 12.49, 122.25, 0.00, 0.394, 41, 41 UNION ALL
 SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 0.80, 14.70, 122.24, 0.00, 0.45, 45, 39 UNION ALL
 SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 0.90, 16.94, 122.22, 0.00, 0.50, 49, 38 UNION ALL
 SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 1.00, 19.21, 122.20, 0.00, 0.55, 52, 38 UNION ALL
@@ -382,7 +382,7 @@ SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND
 SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 4.30, 86.41, 121.94, -0.02, 2.20, 84, 22 UNION ALL
 SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 4.40, 88.52, 121.94, -0.03, 2.25, 85, 22 UNION ALL
 SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 4.50, 90.65, 121.94, -0.03, 2.30, 87, 22 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 4.60, 92.79, 121.93, -0 027, 2.35, 89, 22 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 4.60, 92.79, 121.93, -0.027, 2.35, 89, 22 UNION ALL
 SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 4.70, 94.943, 121.93, -0.03, 2.40, 91, 22 UNION ALL
 SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 4.80, 97.12, 121.93, -0.03, 2.46, 93, 23 UNION ALL
 SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 4.90, 99.31, 121.93, -0.03, 2.51, 96, 23 UNION ALL
@@ -403,1332 +403,1332 @@ SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND
 SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 6.31, 133.41, 121.91, -0.04, 3.31, 0, 0;
 
 
-DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №1 ДП' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 1 ДП' AND ship_id=2);
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №1 ДП' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №1 ДП' AND ship_id=2), 0.10, 20.15, 92.23, 0.00, 0 050, 1038, 11266 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №1 ДП' AND ship_id=2), 0.20, 40.31, 92.23, 0.00, 0.10, 1038, 11266 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №1 ДП' AND ship_id=2), 0.30, 60.46, 92.23, 0.00, 0.15, 1038, 11266 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №1 ДП' AND ship_id=2), 0.40, 80.62, 92.23, 0.00, 0.20, 1038, 11266 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №1 ДП' AND ship_id=2), 0.50, 100.77, 92.23, 0.00, 0.25, 1038, 11266 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №1 ДП' AND ship_id=2), 0.60, 120.92, 92.23, 0.00, 0.30, 1038, 11266 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №1 ДП' AND ship_id=2), 0.70, 141.08, 92.23, 0.00, 0.35, 1038, 11266 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №1 ДП' AND ship_id=2), 0.80, 161.23, 92.23, 0.00, 0.40, 1038, 11266 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №1 ДП' AND ship_id=2), 0.90, 181.38, 92.23, 0.00, 0.45, 1038, 11266 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №1 ДП' AND ship_id=2), 1.00, 201.54, 92.23, 0.00, 0.50, 1038, 11266 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №1 ДП' AND ship_id=2), 1.10, 221.69, 92.23, 0.00, 0.55, 0, 0;
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 1 ДП' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 1 ДП' AND ship_id=2), 0.10, 20.15, 92.23, 0.00, 0.050, 1038, 11266 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 1 ДП' AND ship_id=2), 0.20, 40.31, 92.23, 0.00, 0.10, 1038, 11266 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 1 ДП' AND ship_id=2), 0.30, 60.46, 92.23, 0.00, 0.15, 1038, 11266 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 1 ДП' AND ship_id=2), 0.40, 80.62, 92.23, 0.00, 0.20, 1038, 11266 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 1 ДП' AND ship_id=2), 0.50, 100.77, 92.23, 0.00, 0.25, 1038, 11266 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 1 ДП' AND ship_id=2), 0.60, 120.92, 92.23, 0.00, 0.30, 1038, 11266 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 1 ДП' AND ship_id=2), 0.70, 141.08, 92.23, 0.00, 0.35, 1038, 11266 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 1 ДП' AND ship_id=2), 0.80, 161.23, 92.23, 0.00, 0.40, 1038, 11266 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 1 ДП' AND ship_id=2), 0.90, 181.38, 92.23, 0.00, 0.45, 1038, 11266 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 1 ДП' AND ship_id=2), 1.00, 201.54, 92.23, 0.00, 0.50, 1038, 11266 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 1 ДП' AND ship_id=2), 1.10, 221.69, 92.23, 0.00, 0.55, 0, 0;
 
 
-DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 2 ДП' AND ship_id=2);
-
-INSERT INTO compartment_curve
-  (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 2 ДП' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 2 ДП' AND ship_id=2), 0.10, 6.33, 75.21, 0.00, 0.05, 326, 350 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 2 ДП' AND ship_id=2), 0.20, 12.67, 75.21, 0.00, 0.10, 326, 350 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 2 ДП' AND ship_id=2), 0.30, 19.00, 75.21, 0.00, 0.15, 326, 350 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 2 ДП' AND ship_id=2), 0.40, 25.34, 75.21, 0.00, 0.20, 326, 350 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 2 ДП' AND ship_id=2), 0.50, 31.67, 75.21, 0.00, 0.25, 326, 350 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 2 ДП' AND ship_id=2), 0.60, 38.01, 75.21, 0.00, 0.30, 326, 350 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 2 ДП' AND ship_id=2), 0.70, 44.34, 75.21, 0.00, 0.35, 326, 350 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 2 ДП' AND ship_id=2), 0.80, 50.68, 75.21, 0.00, 0.40, 326, 350 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 2 ДП' AND ship_id=2), 0.90, 57.01, 75.21, 0.00, 0.45, 326, 350 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 2 ДП' AND ship_id=2), 1.00, 63.34, 75.21, 0.00, 0.50, 326, 350 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 2 ДП' AND ship_id=2), 1.10, 69.68, 75.21, 0.00, 0.55, 0, 0;
-
-
-DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 3 ДП' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  2 ДП' AND ship_id=2);
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 3 ДП' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 3 ДП' AND ship_id=2), 0.10, 21.31, 57.45, 0.00, 0.05, 1097, 13310 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 3 ДП' AND ship_id=2), 0.20, 42.61, 57.45, 0.00, 0.10, 1097, 13310 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 3 ДП' AND ship_id=2), 0.30, 63.92, 57.45, 0.00, 0.15, 1097, 13310 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 3 ДП' AND ship_id=2), 0.40, 85.22, 57.45, 0.00, 0.20, 1097, 13310 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 3 ДП' AND ship_id=2), 0.50, 106.53, 57.45, 0.00, 0.25, 1097, 13310 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 3 ДП' AND ship_id=2), 0.60, 127.83, 57.45, 0.00, 0.30, 1097, 13310 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 3 ДП' AND ship_id=2), 0.70, 149.14, 57.45, 0.00, 0.35, 1097, 13310 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 3 ДП' AND ship_id=2), 0.80, 170.44, 57.45, 0.00, 0.40, 1097, 13310 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 3 ДП' AND ship_id=2), 0.90, 191.75, 57.45, 0.00, 0.45, 1097, 13310 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 3 ДП' AND ship_id=2), 1.00, 213.05, 57.45, 0.00, 0.50, 1097, 13310 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 3 ДП' AND ship_id=2), 1.10, 234.36, 57.45, 0.00, 0.55, 0, 0;
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  2 ДП' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  2 ДП' AND ship_id=2), 0.10, 6.33, 75.21, 0.00, 0.05, 326, 350 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  2 ДП' AND ship_id=2), 0.20, 12.67, 75.21, 0.00, 0.10, 326, 350 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  2 ДП' AND ship_id=2), 0.30, 19.00, 75.21, 0.00, 0.15, 326, 350 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  2 ДП' AND ship_id=2), 0.40, 25.34, 75.21, 0.00, 0.20, 326, 350 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  2 ДП' AND ship_id=2), 0.50, 31.67, 75.21, 0.00, 0.25, 326, 350 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  2 ДП' AND ship_id=2), 0.60, 38.01, 75.21, 0.00, 0.30, 326, 350 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  2 ДП' AND ship_id=2), 0.70, 44.34, 75.21, 0.00, 0.35, 326, 350 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  2 ДП' AND ship_id=2), 0.80, 50.68, 75.21, 0.00, 0.40, 326, 350 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  2 ДП' AND ship_id=2), 0.90, 57.01, 75.21, 0.00, 0.45, 326, 350 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  2 ДП' AND ship_id=2), 1.00, 63.34, 75.21, 0.00, 0.50, 326, 350 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  2 ДП' AND ship_id=2), 1.10, 69.68, 75.21, 0.00, 0.55, 0, 0;
 
 
-DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 4 ДП' AND ship_id=2);
-
-INSERT INTO compartment_curve
-  (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 4 ДП' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 4 ДП' AND ship_id=2), 0.10, 11.52, 36.36, 0.00, 0.05, 593, 2102 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 4 ДП' AND ship_id=2), 0.20, 23.03, 36.36, 0.00, 0.10, 593, 2102 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 4 ДП' AND ship_id=2), 0.30, 34.55, 36.36, 0.00, 0.15, 593, 2102 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 4 ДП' AND ship_id=2), 0.40, 46.07, 36.36, 0.00, 0.20, 593, 2102 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 4 ДП' AND ship_id=2), 0.50, 57.58, 36.36, 0.00, 0.25, 593, 2102 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 4 ДП' AND ship_id=2), 0.60, 69.10, 36.36, 0.00, 0.30, 593, 2102 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 4 ДП' AND ship_id=2), 0.70, 80.62, 36.36, 0.00, 0.35, 593, 2102 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 4 ДП' AND ship_id=2), 0.80, 92.13, 36.36, 0.00, 0.40, 593, 2102 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 4 ДП' AND ship_id=2), 0.90, 103.65, 36.36, 0.00, 0.45, 593, 2102 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 4 ДП' AND ship_id=2), 1.00, 115.17, 36.36, 0.00, 0.50, 593, 2102 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 4 ДП' AND ship_id=2), 1.10, 126.68, 36.36, 0.00, 0.55, 0, 0;
-
-
-DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №1 ЛБ' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  3 ДП' AND ship_id=2);
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №1 ЛБ' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №1 ЛБ' AND ship_id=2), 0.10, 5.36, 110.38, -2.18, 53.00, 147, 1221 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №1 ЛБ' AND ship_id=2), 0.20, 11.68, 110.45, -2.32, 0.11, 177, 1381 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №1 ЛБ' AND ship_id=2), 0.30, 18.50, 110.49, -2.41, 0.16, 199, 1485 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №1 ЛБ' AND ship_id=2), 0.40, 25.69, 110.53, -2.49, 0.21, 218, 1568 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №1 ЛБ' AND ship_id=2), 0.50, 33.18, 110.56, -2.55, 0.27, 235, 1638 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №1 ЛБ' AND ship_id=2), 0.60, 40.92, 110.58, -2.61, 0 320, 251, 1697 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №1 ЛБ' AND ship_id=2), 0.70, 48.89, 110.59, -2.65, 0.37, 266, 1747 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №1 ЛБ' AND ship_id=2), 0.80, 57.05, 110.61, -2.70, 0 428, 279, 1790 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №1 ЛБ' AND ship_id=2), 0.90, 65.38, 110.62, -2.74, 0.48, 290, 1827 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №1 ЛБ' AND ship_id=2), 1.00, 73.85, 110.63, -2.77, 0.54, 301, 1859 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №1 ЛБ' AND ship_id=2), 1.10, 82.46, 110.64, -2.81, 0.59, 0, 0;
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  3 ДП' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  3 ДП' AND ship_id=2), 0.10, 21.31, 57.45, 0.00, 0.05, 1097, 13310 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  3 ДП' AND ship_id=2), 0.20, 42.61, 57.45, 0.00, 0.10, 1097, 13310 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  3 ДП' AND ship_id=2), 0.30, 63.92, 57.45, 0.00, 0.15, 1097, 13310 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  3 ДП' AND ship_id=2), 0.40, 85.22, 57.45, 0.00, 0.20, 1097, 13310 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  3 ДП' AND ship_id=2), 0.50, 106.53, 57.45, 0.00, 0.25, 1097, 13310 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  3 ДП' AND ship_id=2), 0.60, 127.83, 57.45, 0.00, 0.30, 1097, 13310 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  3 ДП' AND ship_id=2), 0.70, 149.14, 57.45, 0.00, 0.35, 1097, 13310 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  3 ДП' AND ship_id=2), 0.80, 170.44, 57.45, 0.00, 0.40, 1097, 13310 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  3 ДП' AND ship_id=2), 0.90, 191.75, 57.45, 0.00, 0.45, 1097, 13310 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  3 ДП' AND ship_id=2), 1.00, 213.05, 57.45, 0.00, 0.50, 1097, 13310 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  3 ДП' AND ship_id=2), 1.10, 234.36, 57.45, 0.00, 0.55, 0, 0;
 
 
-DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №1 Пр.Б' AND ship_id=2);
-
-INSERT INTO compartment_curve
-  (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №1 Пр.Б' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №1 Пр.Б' AND ship_id=2), 0.10, 5.37, 110.39, 2.16, 0.05, 148, 1224 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №1 Пр.Б' AND ship_id=2), 0.20, 11.70, 110.46, 2.30, 0.11, 178, 1382 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №1 Пр.Б' AND ship_id=2), 0.30, 18.52, 110.51, 2.40, 0.16, 200, 1487 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №1 Пр.Б' AND ship_id=2), 0.40, 25.71, 110.54, 2.47, 0.21, 219, 1569 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №1 Пр.Б' AND ship_id=2), 0.50, 33.20, 110.57, 2.54, 0.27, 237, 1638 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №1 Пр.Б' AND ship_id=2), 0.60, 40.95, 110.59, 2.59, 0.32, 253, 1696 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №1 Пр.Б' AND ship_id=2), 0.70, 48.91, 110.60, 2.64, 0.37, 268, 1746 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №1 Пр.Б' AND ship_id=2), 0.80, 57.07, 110.62, 2.68, 0.43, 281, 1789 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №1 Пр.Б' AND ship_id=2), 0.90, 65.39, 110.63, 2.72, 0.48, 293, 1825 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №1 Пр.Б' AND ship_id=2), 1.00, 73.86, 110.64, 2.76, 0.54, 303, 1858 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №1 Пр.Б' AND ship_id=2), 1.10, 82.46, 110.65, 2.79, 0.59, 0, 0;
-
-
-DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №2 ЛБ' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  4 ДП' AND ship_id=2);
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №2 ЛБ' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №2 ЛБ' AND ship_id=2), 0.10, 9.64, 86.11, -5.52, 0 051, 95, 7808 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №2 ЛБ' AND ship_id=2), 0.20, 20.05, 86.18, -5.59, 0.10, 111, 8287 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №2 ЛБ' AND ship_id=2), 0.30, 30.93, 86.23, -5.63, 0.16, 123, 8629 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №2 ЛБ' AND ship_id=2), 0.40, 42.14, 86.26, -5.67, 0.21, 132, 8892 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №2 ЛБ' AND ship_id=2), 0.50, 53.60, 86.29, -5.70, 0.26, 140, 9097 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №2 ЛБ' AND ship_id=2), 0.60, 65.27, 86.31, -5.72, 0 311, 146, 9255 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №2 ЛБ' AND ship_id=2), 0.70, 77.09, 86.33, -5.75, 0.36, 151, 9379 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №2 ЛБ' AND ship_id=2), 0.80, 89.02, 86.35, -5.77, 0.42, 154, 9477 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №2 ЛБ' AND ship_id=2), 0.90, 101.04, 86.37, -5.78, 0.47, 157, 9550 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №2 ЛБ' AND ship_id=2), 1.00, 113.11, 86.38, -5.79, 0.52, 159, 9602 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №2 ЛБ' AND ship_id=2), 1.10, 125.22, 86.40, -5.81, 0.57, 0, 0;
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  4 ДП' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  4 ДП' AND ship_id=2), 0.10, 11.52, 36.36, 0.00, 0.05, 593, 2102 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  4 ДП' AND ship_id=2), 0.20, 23.03, 36.36, 0.00, 0.10, 593, 2102 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  4 ДП' AND ship_id=2), 0.30, 34.55, 36.36, 0.00, 0.15, 593, 2102 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  4 ДП' AND ship_id=2), 0.40, 46.07, 36.36, 0.00, 0.20, 593, 2102 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  4 ДП' AND ship_id=2), 0.50, 57.58, 36.36, 0.00, 0.25, 593, 2102 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  4 ДП' AND ship_id=2), 0.60, 69.10, 36.36, 0.00, 0.30, 593, 2102 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  4 ДП' AND ship_id=2), 0.70, 80.62, 36.36, 0.00, 0.35, 593, 2102 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  4 ДП' AND ship_id=2), 0.80, 92.13, 36.36, 0.00, 0.40, 593, 2102 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  4 ДП' AND ship_id=2), 0.90, 103.65, 36.36, 0.00, 0.45, 593, 2102 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  4 ДП' AND ship_id=2), 1.00, 115.17, 36.36, 0.00, 0.50, 593, 2102 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  4 ДП' AND ship_id=2), 1.10, 126.68, 36.36, 0.00, 0.55, 0, 0;
 
 
-DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №2 Пр.Б' AND ship_id=2);
-
-INSERT INTO compartment_curve
-  (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №2 Пр.Б' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №2 Пр.Б' AND ship_id=2), 0.10, 9.64, 86.11, 5.52, 0.05, 95, 7808 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №2 Пр.Б' AND ship_id=2), 0.20, 20.05, 86.18, 5.59, 0.10, 111, 8287 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №2 Пр.Б' AND ship_id=2), 0.30, 30.93, 86.23, 5.63, 0.16, 123, 8629 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №2 Пр.Б' AND ship_id=2), 0.40, 42.14, 86.26, 5.67, 0.21, 132, 8892 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №2 Пр.Б' AND ship_id=2), 0.50, 53.60, 86.29, 5.70, 0.26, 140, 9097 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №2 Пр.Б' AND ship_id=2), 0.60, 65.27, 86.31, 5.72, 0.31, 146, 9255 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №2 Пр.Б' AND ship_id=2), 0.70, 77.09, 86.33, 5.75, 0.36, 151, 9379 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №2 Пр.Б' AND ship_id=2), 0.80, 89.02, 86.35, 5.77, 0.42, 154, 9477 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №2 Пр.Б' AND ship_id=2), 0.90, 101.04, 86.37, 5.78, 0.47, 157, 9550 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №2 Пр.Б' AND ship_id=2), 1.00, 113.11, 86.38, 5.79, 0.52, 159, 9602 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №2 Пр.Б' AND ship_id=2), 1.10, 125.22, 86.40, 5.81, 0.57, 0, 0;
-
-
-DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №3 ЛБ' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 1 ЛБ' AND ship_id=2);
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №3 ЛБ' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №3 ЛБ' AND ship_id=2), 0.10, 8.38, 58.19, -5.58, 0.05, 86, 4891 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №3 ЛБ' AND ship_id=2), 0.20, 17.35, 58.19, -5.64, 0.10, 99, 5124 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №3 ЛБ' AND ship_id=2), 0.30, 26.67, 58.19, -5.68, 0.15, 109, 5286 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №3 ЛБ' AND ship_id=2), 0.40, 36.24, 58.19, -5.72, 0.21, 117, 5409 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №3 ЛБ' AND ship_id=2), 0.50, 46.00, 58.19, -5.74, 0.26, 123, 5503 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №3 ЛБ' AND ship_id=2), 0.60, 55.91, 58.19, -5.77, 0.31, 128, 5573 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №3 ЛБ' AND ship_id=2), 0.70, 65.93, 58.19, -5.79, 0.36, 131, 5627 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №3 ЛБ' AND ship_id=2), 0.80, 76.03, 58.19, -5.81, 0.41, 134, 5665 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №3 ЛБ' AND ship_id=2), 0.90, 86.18, 58.19, -5.82, 0.46, 135, 5686 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №3 ЛБ' AND ship_id=2), 1.00, 96.36, 58.19, -5.83, 0.52, 136, 5694 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №3 ЛБ' AND ship_id=2), 1.10, 106.55, 58.19, -5.84, 0.57, 0, 0;
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 1 ЛБ' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 1 ЛБ' AND ship_id=2), 0.10, 5.36, 110.38, -2.18, 53.00, 147, 1221 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 1 ЛБ' AND ship_id=2), 0.20, 11.68, 110.45, -2.32, 0.11, 177, 1381 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 1 ЛБ' AND ship_id=2), 0.30, 18.50, 110.49, -2.41, 0.16, 199, 1485 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 1 ЛБ' AND ship_id=2), 0.40, 25.69, 110.53, -2.49, 0.21, 218, 1568 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 1 ЛБ' AND ship_id=2), 0.50, 33.18, 110.56, -2.55, 0.27, 235, 1638 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 1 ЛБ' AND ship_id=2), 0.60, 40.92, 110.58, -2.61, 0 320, 251, 1697 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 1 ЛБ' AND ship_id=2), 0.70, 48.89, 110.59, -2.65, 0.37, 266, 1747 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 1 ЛБ' AND ship_id=2), 0.80, 57.05, 110.61, -2.70, 0 428, 279, 1790 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 1 ЛБ' AND ship_id=2), 0.90, 65.38, 110.62, -2.74, 0.48, 290, 1827 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 1 ЛБ' AND ship_id=2), 1.00, 73.85, 110.63, -2.77, 0.54, 301, 1859 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 1 ЛБ' AND ship_id=2), 1.10, 82.46, 110.64, -2.81, 0.59, 0, 0;
 
 
-DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №3 Пр.Б' AND ship_id=2);
-
-INSERT INTO compartment_curve
-  (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №3 Пр.Б' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №3 Пр.Б' AND ship_id=2), 0.10, 8.38, 58.19, 5.58, 0.05, 86, 4891 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №3 Пр.Б' AND ship_id=2), 0.20, 17.35, 58.19, 5.64, 0.10, 99, 5124 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №3 Пр.Б' AND ship_id=2), 0.30, 26.67, 58.19, 5.68, 0.15, 109, 5286 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №3 Пр.Б' AND ship_id=2), 0.40, 36.24, 58.19, 5.72, 0.21, 117, 5409 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №3 Пр.Б' AND ship_id=2), 0.50, 46.00, 58.19, 5.74, 0.26, 123, 5503 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №3 Пр.Б' AND ship_id=2), 0.60, 55.91, 58.19, 5.77, 0.31, 128, 5573 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №3 Пр.Б' AND ship_id=2), 0.70, 65.93, 58.19, 5.79, 0.36, 131, 5627 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №3 Пр.Б' AND ship_id=2), 0.80, 76.03, 58.19, 5.81, 0.41, 134, 5665 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №3 Пр.Б' AND ship_id=2), 0.90, 86.18, 58.19, 5.82, 0.46, 135, 5686 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №3 Пр.Б' AND ship_id=2), 1.00, 96.36, 58.19, 5.83, 0.52, 136, 5694 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №3 Пр.Б' AND ship_id=2), 1.10, 106.55, 58.19, 5.84, 0.57, 0, 0;
-
-
-DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №4 ЛБ' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 1 Пр.Б' AND ship_id=2);
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №4 ЛБ' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №4 ЛБ' AND ship_id=2), 0.10, 9.37, 31.32, -4.00, 0.05, 401, 5713 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №4 ЛБ' AND ship_id=2), 0.20, 19.67, 31.23, -4.09, 0.10, 434, 6066 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №4 ЛБ' AND ship_id=2), 0.30, 30.49, 31.18, -4.15, 0.16, 459, 6316 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №4 ЛБ' AND ship_id=2), 0.40, 41.70, 31.14, -4.20, 0.21, 479, 6511 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №4 ЛБ' AND ship_id=2), 0.50, 53.23, 31.11, -4.24, 0.26, 495, 6677 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №4 ЛБ' AND ship_id=2), 0.60, 65.01, 31.07, -4.27, 0.31, 509, 6814 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №4 ЛБ' AND ship_id=2), 0.70, 77.02, 31.04, -4.30, 0.37, 520, 6931 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №4 ЛБ' AND ship_id=2), 0.80, 89.21, 31.01, -4.33, 0.42, 529, 7032 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №4 ЛБ' AND ship_id=2), 0.90, 101.57, 30.99, -4.35, 0.47, 536, 7116 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №4 ЛБ' AND ship_id=2), 1.00, 114.07, 30.96, -4.37, 0.52, 542, 7186 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД №4 ЛБ' AND ship_id=2), 1.10, 126.68, 30.93, -4.39, 0.58, 0, 0;
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 1 Пр.Б' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 1 Пр.Б' AND ship_id=2), 0.10, 5.37, 110.39, 2.16, 0.05, 148, 1224 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 1 Пр.Б' AND ship_id=2), 0.20, 11.70, 110.46, 2.30, 0.11, 178, 1382 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 1 Пр.Б' AND ship_id=2), 0.30, 18.52, 110.51, 2.40, 0.16, 200, 1487 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 1 Пр.Б' AND ship_id=2), 0.40, 25.71, 110.54, 2.47, 0.21, 219, 1569 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 1 Пр.Б' AND ship_id=2), 0.50, 33.20, 110.57, 2.54, 0.27, 237, 1638 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 1 Пр.Б' AND ship_id=2), 0.60, 40.95, 110.59, 2.59, 0.32, 253, 1696 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 1 Пр.Б' AND ship_id=2), 0.70, 48.91, 110.60, 2.64, 0.37, 268, 1746 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 1 Пр.Б' AND ship_id=2), 0.80, 57.07, 110.62, 2.68, 0.43, 281, 1789 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 1 Пр.Б' AND ship_id=2), 0.90, 65.39, 110.63, 2.72, 0.48, 293, 1825 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 1 Пр.Б' AND ship_id=2), 1.00, 73.86, 110.64, 2.76, 0.54, 303, 1858 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 1 Пр.Б' AND ship_id=2), 1.10, 82.46, 110.65, 2.79, 0.59, 0, 0;
 
 
-DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 4 Пр.Б' AND ship_id=2);
-
-INSERT INTO compartment_curve
-  (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 4 Пр.Б' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 4 Пр.Б' AND ship_id=2), 0.10, 9.37, 31.29, 3.99, 0.05, 405, 5718 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 4 Пр.Б' AND ship_id=2), 0.20, 19.68, 31.21, 4.08, 0.10, 439, 6071 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 4 Пр.Б' AND ship_id=2), 0.30, 30.51, 31.16, 4.14, 0.16, 463, 6318 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 4 Пр.Б' AND ship_id=2), 0.40, 41.72, 31.12, 4.18, 0.21, 483, 6514 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 4 Пр.Б' AND ship_id=2), 0.50, 53.24, 31.09, 4.22, 0.26, 500, 6678 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 4 Пр.Б' AND ship_id=2), 0.60, 65.03, 31.05, 4.26, 0.31, 513, 6814 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 4 Пр.Б' AND ship_id=2), 0.70, 77.03, 31.03, 4.29, 0.37, 525, 6931 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 4 Пр.Б' AND ship_id=2), 0.80, 89.23, 31.00, 4.32, 0.42, 534, 7032 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 4 Пр.Б' AND ship_id=2), 0.90, 101.59, 30.97, 4.34, 0.47, 541, 7115 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 4 Пр.Б' AND ship_id=2), 1.00, 114.08, 30.94, 4.36, 0.52, 547, 7184 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД № 4 Пр.Б' AND ship_id=2), 1.10, 126.69, 30.91, 4.38, 0.58, 0, 0;
-
-
-DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 2 ЛБ' AND ship_id=2);
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 0.10, 0.84, 112.45, -5.07, 1.15, 11, 144 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 0.20, 1.78, 112.45, -5.09, 1.20, 12, 160 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 0.30, 2.80, 112.45, -5.10, 1.26, 13, 174 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 0.40, 3.91, 112.46, -5.12, 1.31, 14, 186 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 0.50, 5.08, 112.47, -5.13, 1.37, 15, 198 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 0.60, 6.33, 112.47, -5.14, 1.42, 16, 209 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 0.70, 7.64, 112.48, -5.16, 1.48, 17, 219 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 0.80, 9.01, 112.49, -5.17, 1.54, 18, 228 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 0.90, 10.43, 112.50, -5.18, 1.59, 18, 236 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 1.00, 11.91, 112.50, -5.19, 1.65, 19, 244 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 1.10, 13.43, 112.51, -5.20, 1.71, 20, 251 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 1.20, 14.99, 112.52, -5.21, 1.76, 20, 258 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 1.30, 16.60, 112.52, -5.22, 1.82, 21, 264 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 1.40, 18.24, 112.53, -5.23, 1.88, 21, 270 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 1.50, 19.93, 112.54, -5.23, 1.93, 22, 276 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 1.60, 21.64, 112.54, -5.24, 1.99, 22, 281 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 1.70, 23.39, 112.55, -5.25, 2.05, 23, 286 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 1.80, 25.18, 112.55, -5.26, 2.10, 23, 291 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 1.90, 26.99, 112.55, -5.26, 2.16, 24, 296 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 2.00, 28.84, 112.56, -5.27, 2.22, 24, 300 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 2.10, 30.71, 112.56, -5.28, 2.28, 25, 305 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 2.20, 32.62, 112.56, -5.29, 2.33, 25, 309 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 2.30, 34.55, 112.57, -5.29, 2.39, 26, 314 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 2.40, 36.51, 112.57, -5.30, 2.45, 26, 318 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 2.50, 38.50, 112.57, -5.30, 2.50, 26, 322 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 2.60, 40.52, 112.58, -5.31, 2.56, 27, 327 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 2.70, 42.56, 112.58, -5.32, 2.62, 27, 331 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 2.80, 44.64, 112.58, -5.32, 2.67, 28, 336 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 2.90, 46.74, 112.59, -5.33, 2.73, 28, 340 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 3.00, 48.88, 112.59, -5.33, 2.79, 28, 345 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 3.10, 51.04, 112.60, -5.34, 2.85, 29, 350 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 3.20, 53.23, 112.60, -5.34, 2.91, 29, 355 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 3.30, 55.45, 112.61, -5.35, 2.96, 30, 360 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 3.40, 57.70, 112.61, -5.36, 3.02, 30, 365 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 3.50, 59.98, 112.62, -5.36, 3.08, 31, 371 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 3.60, 62.30, 112.62, -5.37, 3.14, 31, 376 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 3.70, 64.65, 112.63, -5.37, 3.20, 31, 382 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 3.80, 67.03, 112.63, -5.38, 3.25, 32, 388 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 3.90, 69.44, 112.64, -5.38, 3.31, 32, 393 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 4.00, 71.88, 112.65, -5.39, 3.37, 33, 399 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 4.10, 74.36, 112.66, -5.39, 3.43, 33, 406 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 4.20, 76.88, 112.66, -5.39, 3.49, 34, 412 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 4.30, 79.43, 112.67, -5.40, 3.55, 34, 418 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 4.40, 82.02, 112.68, -5.40, 3.61, 35, 425 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 4.50, 84.65, 112.69, -5.41, 3.67, 35, 432 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 4.60, 87.31, 112.70, -5.41, 3.73, 36, 438 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 4.70, 90.01, 112.71, -5.42, 3.79, 36, 445 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 4.80, 92.75, 112.71, -5.42, 3.85, 37, 452 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 4.90, 95.54, 112.72, -5.43, 3.91, 37, 459 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 5.00, 98.36, 112.73, -5.43, 3.98, 37, 466 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 5.10, 101.22, 112.74, -5.44, 4.04, 38, 473 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 5.20, 104.13, 112.76, -5.44, 4.10, 38, 480 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 5.30, 105.31, 112.74, -5.45, 4.12, 4, 152 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 5.40, 106.28, 112.72, -5.47, 4.15, 5, 166 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 5.50, 107.29, 112.70, -5.48, 4.17, 5, 179 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 5.60, 108.34, 112.68, -5.49, 4.19, 5, 192 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 5.70, 109.43, 112.66, -5.50, 4.22, 6, 205 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 5.80, 110.57, 112.65, -5.51, 4.24, 6, 217 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 5.90, 111.75, 112.64, -5.53, 4.27, 6, 229 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 6.00, 112.98, 112.62, -5.54, 4.30, 6, 241 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 6.10, 114.25, 112.61, -5.55, 4.34, 7, 252 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 6.20, 115.56, 112.60, -5.56, 4.37, 7, 262 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 6.30, 116.92, 112.59, -5.58, 4.40, 7, 273 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 6.40, 118.33, 112.59, -5.59, 4.44, 7, 284 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 6.50, 119.78, 112.58, -5.60, 4.48, 8, 294 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 6.60, 121.28, 112.57, -5.62, 4.52, 8, 304 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 6.70, 122.82, 112.57, -5.63, 4.56, 8, 314 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 6.80, 124.42, 112.57, -5.64, 4.60, 8, 324 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 6.90, 126.06, 112.57, -5.66, 4.64, 8, 334 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 7.00, 127.75, 112.57, -5.67, 4.69, 8, 344 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 7.10, 129.49, 112.57, -5.68, 4.73, 9, 353 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 7.20, 131.28, 112.57, -5.70, 4.78, 9, 362 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 7.30, 133.12, 112.57, -5.71, 4.83, 9, 371 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 7.40, 135.01, 112.58, -5.73, 4.88, 9, 380 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 7.50, 136.95, 112.58, -5.74, 4.93, 9, 389 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 7.60, 138.94, 112.59, -5.75, 4.99, 9, 397 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 7.70, 140.99, 112.59, -5.77, 5.04, 10, 406 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 7.80, 143.08, 112.60, -5.78, 5.10, 10, 414 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 7.90, 145.23, 112.61, -5.80, 5.15, 10, 422 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 8.00, 147.43, 112.62, -5.81, 5.21, 10, 430 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 8.10, 149.67, 112.63, -5.83, 5.27, 10, 437 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 8.20, 151.97, 112.64, -5.84, 5.33, 11, 445 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 8.30, 154.32, 112.66, -5.86, 5.39, 11, 452 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 8.40, 156.72, 112.67, -5.87, 5.46, 11, 460 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 8.50, 159.18, 112.68, -5.89, 5.52, 12, 467 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 ЛБ' AND ship_id=2), 8.55, 160.42, 112.69, -5.89, 5.55, 0, 0;
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 2 ЛБ' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 2 ЛБ' AND ship_id=2), 0.10, 9.64, 86.11, -5.52, 0.051, 95, 7808 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 2 ЛБ' AND ship_id=2), 0.20, 20.05, 86.18, -5.59, 0.10, 111, 8287 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 2 ЛБ' AND ship_id=2), 0.30, 30.93, 86.23, -5.63, 0.16, 123, 8629 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 2 ЛБ' AND ship_id=2), 0.40, 42.14, 86.26, -5.67, 0.21, 132, 8892 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 2 ЛБ' AND ship_id=2), 0.50, 53.60, 86.29, -5.70, 0.26, 140, 9097 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 2 ЛБ' AND ship_id=2), 0.60, 65.27, 86.31, -5.72, 0 311, 146, 9255 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 2 ЛБ' AND ship_id=2), 0.70, 77.09, 86.33, -5.75, 0.36, 151, 9379 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 2 ЛБ' AND ship_id=2), 0.80, 89.02, 86.35, -5.77, 0.42, 154, 9477 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 2 ЛБ' AND ship_id=2), 0.90, 101.04, 86.37, -5.78, 0.47, 157, 9550 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 2 ЛБ' AND ship_id=2), 1.00, 113.11, 86.38, -5.79, 0.52, 159, 9602 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 2 ЛБ' AND ship_id=2), 1.10, 125.22, 86.40, -5.81, 0.57, 0, 0;
 
 
-DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 2 Пр.Б' AND ship_id=2);
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 0.10, 0.84, 112.45, 5.07, 1.15, 11, 144 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 0.20, 1.78, 112.45, 5.09, 1.20, 12, 160 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 0.30, 2.80, 112.45, 5.10, 1.26, 13, 174 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 0.40, 3.91, 112.46, 5.12, 1.31, 14, 186 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 0.50, 5.08, 112.47, 5.13, 1.37, 15, 198 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 0.60, 6.33, 112.47, 5.14, 1.42, 16, 209 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 0.70, 7.64, 112.48, 5.16, 1.48, 17, 219 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 0.80, 9.01, 112.49, 5.17, 1.54, 18, 228 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 0.90, 10.43, 112.50, 5.18, 1.59, 18, 236 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 1.00, 11.91, 112.50, 5.19, 1.65, 19, 244 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 1.10, 13.43, 112.51, 5.20, 1.71, 20, 251 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 1.20, 14.99, 112.52, 5.21, 1.76, 20, 258 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 1.30, 16.60, 112.52, 5.22, 1.82, 21, 264 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 1.40, 18.24, 112.53, 5.23, 1.88, 21, 270 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 1.50, 19.93, 112.54, 5.23, 1.93, 22, 276 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 1.60, 21.64, 112.54, 5.24, 1.99, 22, 281 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 1.70, 23.39, 112.55, 5.25, 2.05, 23, 286 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 1.80, 25.18, 112.55, 5.26, 2.10, 23, 291 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 1.90, 26.99, 112.55, 5.26, 2.16, 24, 296 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 2.00, 28.84, 112.56, 5.27, 2.22, 24, 300 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 2.10, 30.71, 112.56, 5.28, 2.28, 25, 305 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 2.20, 32.62, 112.56, 5.29, 2.33, 25, 309 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 2.30, 34.55, 112.57, 5.29, 2.39, 26, 314 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 2.40, 36.51, 112.57, 5.30, 2.45, 26, 318 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 2.50, 38.50, 112.57, 5.30, 2.50, 26, 322 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 2.60, 40.52, 112.58, 5.31, 2.56, 27, 327 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 2.70, 42.56, 112.58, 5.32, 2.62, 27, 331 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 2.80, 44.64, 112.58, 5.32, 2.67, 28, 336 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 2.90, 46.74, 112.59, 5.33, 2.73, 28, 340 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 3.00, 48.88, 112.59, 5.33, 2.79, 28, 345 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 3.10, 51.04, 112.60, 5.34, 2.85, 29, 350 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 3.20, 53.23, 112.60, 5.34, 2.91, 29, 355 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 3.30, 55.45, 112.61, 5.35, 2.96, 30, 360 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 3.40, 57.70, 112.61, 5.36, 3.02, 30, 365 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 3.50, 59.98, 112.62, 5.36, 3.08, 31, 371 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 3.60, 62.30, 112.62, 5.37, 3.14, 31, 376 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 3.70, 64.65, 112.63, 5.37, 3.20, 31, 382 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 3.80, 67.03, 112.63, 5.38, 3.25, 32, 388 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 3.90, 69.44, 112.64, 5.38, 3.31, 32, 393 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 4.00, 71.88, 112.65, 5.39, 3.37, 33, 399 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 4.10, 74.36, 112.66, 5.39, 3.43, 33, 406 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 4.20, 76.88, 112.66, 5.39, 3.49, 34, 412 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 4.30, 79.43, 112.67, 5.40, 3.55, 34, 418 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 4.40, 82.02, 112.68, 5.40, 3.61, 35, 425 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 4.50, 84.65, 112.69, 5.41, 3.67, 35, 432 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 4.60, 87.31, 112.70, 5.41, 3.73, 36, 438 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 4.70, 90.01, 112.71, 5.42, 3.79, 36, 445 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 4.80, 92.75, 112.71, 5.42, 3.85, 37, 452 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 4.90, 95.54, 112.72, 5.43, 3.91, 37, 459 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 5.00, 98.36, 112.73, 5.43, 3.98, 37, 466 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 5.10, 101.22, 112.74, 5.44, 4.04, 38, 473 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 5.20, 104.13, 112.76, 5.44, 4.10, 38, 480 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 5.30, 105.31, 112.74, 5.45, 4.12, 4, 152 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 5.40, 106.28, 112.72, 5.47, 4.15, 5, 166 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 5.50, 107.29, 112.70, 5.48, 4.17, 5, 179 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 5.60, 108.34, 112.68, 5.49, 4.19, 5, 192 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 5.70, 109.43, 112.66, 5.50, 4.22, 6, 205 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 5.80, 110.57, 112.65, 5.51, 4.24, 6, 217 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 5.90, 111.75, 112.64, 5.53, 4.27, 6, 229 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 6.00, 112.98, 112.62, 5.54, 4.30, 6, 241 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 6.10, 114.25, 112.61, 5.55, 4.34, 7, 252 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 6.20, 115.56, 112.60, 5.56, 4.37, 7, 262 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 6.30, 116.92, 112.59, 5.58, 4.40, 7, 273 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 6.40, 118.33, 112.59, 5.59, 4.44, 7, 284 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 6.50, 119.78, 112.58, 5.60, 4.48, 8, 294 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 6.60, 121.28, 112.57, 5.62, 4.52, 8, 304 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 6.70, 122.82, 112.57, 5.63, 4.56, 8, 314 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 6.80, 124.42, 112.57, 5.64, 4.60, 8, 324 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 6.90, 126.06, 112.57, 5.66, 4.64, 8, 334 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 7.00, 127.75, 112.57, 5.67, 4.69, 8, 344 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 7.10, 129.49, 112.57, 5.68, 4.73, 9, 353 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 7.20, 131.28, 112.57, 5.70, 4.78, 9, 362 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 7.30, 133.12, 112.57, 5.71, 4.83, 9, 371 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 7.40, 135.01, 112.58, 5.73, 4.88, 9, 380 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 7.50, 136.95, 112.58, 5.74, 4.93, 9, 389 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 7.60, 138.94, 112.59, 5.75, 4.99, 9, 397 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 7.70, 140.99, 112.59, 5.77, 5.04, 10, 406 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 7.80, 143.08, 112.60, 5.78, 5.10, 10, 414 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 7.90, 145.23, 112.61, 5.80, 5.15, 10, 422 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 8.00, 147.43, 112.62, 5.81, 5.21, 10, 430 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 8.10, 149.67, 112.63, 5.83, 5.27, 10, 437 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 8.20, 151.97, 112.64, 5.84, 5.33, 11, 445 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 8.30, 154.32, 112.66, 5.86, 5.39, 11, 452 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 8.40, 156.72, 112.67, 5.87, 5.46, 11, 460 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 8.50, 159.18, 112.68, 5.89, 5.52, 12, 467 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №1 Пр.Б' AND ship_id=2), 8.55, 160.42, 112.69, 5.89, 5.55, 0, 0;
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 2 Пр.Б' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 2 Пр.Б' AND ship_id=2), 0.10, 9.64, 86.11, 5.52, 0.05, 95, 7808 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 2 Пр.Б' AND ship_id=2), 0.20, 20.05, 86.18, 5.59, 0.10, 111, 8287 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 2 Пр.Б' AND ship_id=2), 0.30, 30.93, 86.23, 5.63, 0.16, 123, 8629 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 2 Пр.Б' AND ship_id=2), 0.40, 42.14, 86.26, 5.67, 0.21, 132, 8892 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 2 Пр.Б' AND ship_id=2), 0.50, 53.60, 86.29, 5.70, 0.26, 140, 9097 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 2 Пр.Б' AND ship_id=2), 0.60, 65.27, 86.31, 5.72, 0.31, 146, 9255 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 2 Пр.Б' AND ship_id=2), 0.70, 77.09, 86.33, 5.75, 0.36, 151, 9379 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 2 Пр.Б' AND ship_id=2), 0.80, 89.02, 86.35, 5.77, 0.42, 154, 9477 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 2 Пр.Б' AND ship_id=2), 0.90, 101.04, 86.37, 5.78, 0.47, 157, 9550 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 2 Пр.Б' AND ship_id=2), 1.00, 113.11, 86.38, 5.79, 0.52, 159, 9602 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 2 Пр.Б' AND ship_id=2), 1.10, 125.22, 86.40, 5.81, 0.57, 0, 0;
 
 
-DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 3 ЛБ' AND ship_id=2);
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 0.10, 4.23, 87.28, -7.24, 1.15, 6, 3793 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 0.20, 8.48, 87.33, -7.24, 1.20, 6, 3849 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 0.30, 12.76, 87.38, -7.24, 1.25, 6, 3897 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 0.40, 17.07, 87.42, -7.24, 1.30, 6, 3939 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 0.50, 21.39, 87.45, -7.24, 1.35, 6, 3974 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 0.60, 25.73, 87.49, -7.25, 1.40, 6, 4004 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 0.70, 30.08, 87.52, -7.25, 1.45, 6, 4030 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 0.80, 34.45, 87.54, -7.25, 1.50, 6, 4053 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 0.90, 38.82, 87.57, -7.25, 1.55, 6, 4074 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 1.00, 43.20, 87.59, -7.25, 1.60, 6, 4092 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 1.10, 47.59, 87.61, -7.25, 1.65, 6, 4108 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 1.20, 51.99, 87.63, -7.25, 1.70, 6, 4122 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 1.30, 56.39, 87.65, -7.25, 1.76, 6, 4135 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 1.40, 60.80, 87.67, -7.25, 1.81, 6, 4146 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 1.50, 65.22, 87.68, -7.25, 1.86, 6, 4157 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 1.60, 69.63, 87.70, -7.25, 1.91, 6, 4166 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 1.70, 74.06, 87.71, -7.25, 1.96, 6, 4175 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 1.80, 78.48, 87.73, -7.25, 2.01, 6, 4184 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 1.90, 82.91, 87.74, -7.25, 2.06, 6, 4192 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 2.00, 87.34, 87.75, -7.25, 2.11, 6, 4199 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 2.10, 91.78, 87.76, -7.25, 2.16, 6, 4206 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 2.20, 96.22, 87.77, -7.25, 2.21, 6, 4213 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 2.30, 100.66, 87.78, -7.25, 2.26, 7, 4220 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 2.40, 105.10, 87.79, -7.26, 2.31, 7, 4227 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 2.50, 109.55, 87.80, -7.26, 2.36, 7, 4233 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 2.60, 114.00, 87.81, -7.26, 2.41, 7, 4239 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 2.70, 118.45, 87.82, -7.26, 2.46, 7, 4245 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 2.80, 122.90, 87.82, -7.26, 2.51, 7, 4250 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 2.90, 127.36, 87.83, -7.26, 2.56, 7, 4256 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 3.00, 131.82, 87.84, -7.26, 2.61, 7, 4261 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 3.10, 136.28, 87.85, -7.26, 2.66, 7, 4266 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 3.20, 140.74, 87.85, -7.26, 2.71, 7, 4271 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 3.30, 145.21, 87.86, -7.26, 2.76, 7, 4276 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 3.40, 149.68, 87.87, -7.26, 2.81, 7, 4281 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 3.50, 154.14, 87.87, -7.26, 2.86, 7, 4285 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 3.60, 158.61, 87.88, -7.26, 2.91, 7, 4290 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 3.70, 163.09, 87.89, -7.26, 2.96, 7, 4294 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 3.80, 167.56, 87.89, -7.26, 3.01, 7, 4297 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 3.90, 172.03, 87.90, -7.26, 3.06, 7, 4301 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 4.00, 176.51, 87.90, -7.26, 3.12, 7, 4304 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 4.10, 180.99, 87.91, -7.26, 3.17, 7, 4307 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 4.20, 185.47, 87.91, -7.26, 3.22, 7, 4310 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 4.30, 189.95, 87.92, -7.26, 3.27, 7, 4312 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 4.40, 194.43, 87.92, -7.26, 3.32, 7, 4315 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 4.50, 198.91, 87.93, -7.26, 3.37, 7, 4317 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 4.60, 203.39, 87.93, -7.26, 3.42, 7, 4319 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 4.70, 207.87, 87.94, -7.26, 3.47, 7, 4321 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 4.80, 212.36, 87.94, -7.26, 3.52, 7, 4323 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 4.90, 216.84, 87.95, -7.26, 3.57, 7, 4324 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 5.00, 221.33, 87.95, -7.26, 3.62, 7, 4326 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 5.10, 225.81, 87.95, -7.26, 3.67, 7, 4327 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 5.20, 230.30, 87.96, -7.26, 3.72, 7, 4328 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 5.30, 234.78, 87.96, -7.26, 3.77, 7, 4329 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 5.40, 239.27, 87.97, -7.26, 3.82, 7, 4330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 5.50, 243.76, 87.97, -7.26, 3.87, 7, 4331 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 5.60, 248.24, 87.97, -7.26, 3.92, 7, 4331 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 5.70, 252.73, 87.98, -7.26, 3.97, 7, 4332 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 5.80, 257.22, 87.98, -7.26, 4.02, 7, 4332 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 5.90, 261.70, 87.98, -7.26, 4.07, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 6.00, 266.19, 87.99, -7.26, 4.12, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 6.10, 270.68, 87.99, -7.26, 4.17, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 6.20, 275.17, 87.99, -7.26, 4.22, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 6.30, 279.66, 87.99, -7.26, 4.27, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 6.40, 284.14, 88.00, -7.26, 4.32, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 6.50, 288.63, 88.00, -7.26, 4.37, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 6.60, 293.12, 88.00, -7.26, 4.42, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 6.70, 297.61, 88.00, -7.26, 4.47, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 6.80, 302.09, 88.01, -7.26, 4.52, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 6.90, 306.58, 88.01, -7.26, 4.57, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 7.00, 311.07, 88.01, -7.26, 4.62, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 7.10, 315.56, 88.01, -7.26, 4.67, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 7.20, 320.05, 88.01, -7.26, 4.72, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 7.30, 324.53, 88.02, -7.26, 4.77, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 7.40, 329.02, 88.02, -7.26, 4.82, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 7.50, 333.51, 88.02, -7.26, 4.87, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 7.60, 338.00, 88.02, -7.26, 4.92, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 7.70, 342.48, 88.02, -7.26, 4.97, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 7.80, 346.97, 88.03, -7.26, 5.02, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 7.90, 351.46, 88.03, -7.26, 5.07, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 8.00, 355.95, 88.03, -7.26, 5.12, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 8.10, 360.44, 88.03, -7.26, 5.17, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 8.20, 364.92, 88.03, -7.26, 5.22, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 8.30, 369.41, 88.03, -7.26, 5.27, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 8.40, 373.90, 88.04, -7.26, 5.33, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 8.50, 378.39, 88.04, -7.26, 5.38, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 ЛБ' AND ship_id=2), 8.55, 380.63, 88.04, -7.26, 5.400, 0, 0;
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 3 ЛБ' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 3 ЛБ' AND ship_id=2), 0.10, 8.38, 58.19, -5.58, 0.05, 86, 4891 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 3 ЛБ' AND ship_id=2), 0.20, 17.35, 58.19, -5.64, 0.10, 99, 5124 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 3 ЛБ' AND ship_id=2), 0.30, 26.67, 58.19, -5.68, 0.15, 109, 5286 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 3 ЛБ' AND ship_id=2), 0.40, 36.24, 58.19, -5.72, 0.21, 117, 5409 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 3 ЛБ' AND ship_id=2), 0.50, 46.00, 58.19, -5.74, 0.26, 123, 5503 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 3 ЛБ' AND ship_id=2), 0.60, 55.91, 58.19, -5.77, 0.31, 128, 5573 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 3 ЛБ' AND ship_id=2), 0.70, 65.93, 58.19, -5.79, 0.36, 131, 5627 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 3 ЛБ' AND ship_id=2), 0.80, 76.03, 58.19, -5.81, 0.41, 134, 5665 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 3 ЛБ' AND ship_id=2), 0.90, 86.18, 58.19, -5.82, 0.46, 135, 5686 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 3 ЛБ' AND ship_id=2), 1.00, 96.36, 58.19, -5.83, 0.52, 136, 5694 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 3 ЛБ' AND ship_id=2), 1.10, 106.55, 58.19, -5.84, 0.57, 0, 0;
 
 
-DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 3 Пр.Б' AND ship_id=2);
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 0.10, 4.23, 87.28, 7.24, 1.15, 6, 3793 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 0.20, 8.48, 87.33, 7.24, 1.20, 6, 3849 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 0.30, 12.76, 87.38, 7.24, 1.25, 6, 3897 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 0.40, 17.07, 87.42, 7.24, 1.30, 6, 3939 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 0.50, 21.39, 87.45, 7.24, 1.35, 6, 3974 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 0.60, 25.73, 87.49, 7.25, 1.40, 6, 4004 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 0.70, 30.08, 87.52, 7.25, 1.45, 6, 4030 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 0.80, 34.45, 87.54, 7.25, 1.50, 6, 4053 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 0.90, 38.82, 87.57, 7.25, 1.55, 6, 4074 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 1.00, 43.20, 87.59, 7.25, 1.60, 6, 4092 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 1.10, 47.59, 87.61, 7.25, 1.65, 6, 4108 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 1.20, 51.99, 87.63, 7.25, 1.70, 6, 4122 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 1.30, _ 56.393, 87.65, 7.25, 1.76, 6, 4135 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 1.40, 60.80, 87.67, 7.25, 1.81, 6, 4146 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 1.50, 65.22, 87.68, 7.25, 1.86, 6, 4157 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 1.60, 69.63, 87.70, 7.25, 1.91, 6, 4166 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 1.70, 74.055, 87.71, 7.25, 1.96, 6, 4175 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 1.80, 78.48, 87.73, 7.25, 2.01, 6, 4184 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 1.90, 82.91, 87.74, 7.25, 2.06, 6, 4192 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 2.00, 87.34, 87.75, 7.25, 2.11, 6, 4199 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 2.10, 91.78, 87.76, 7.25, 2.16, 6, 4206 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 2.20, 96.22, 87.77, 7.25, 2.21, 6, 4213 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 2.30, 100.66, 87.78, 7.25, 2.26, 7, 4220 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 2.40, 105.10, 87.79, 7.26, 2.31, 7, 4227 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 2.50, 109.55, 87.80, 7.26, 2.36, 7, 4233 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 2.60, 114.00, 87.81, 7.26, 2.41, 7, 4239 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 2.70, 118.45, 87.82, 7.26, 2.46, 7, 4245 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 2.80, 122.90, 87.82, 7.26, 2.51, 7, 4250 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 2.90, 127.36, 87.83, 7.26, 2.56, 7, 4256 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 3.00, 131.82, 87.84, 7.26, 2.61, 7, 4261 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 3.10, 136.28, 87.85, 7.26, 2.66, 7, 4266 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 3.20, 140.74, 87.85, 7.26, 2.71, 7, 4271 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 3.30, 145.21, 87.86, 7.26, 2.76, 7, 4276 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 3.40, 149.68, 87.87, 7.26, 2.81, 7, 4281 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 3.50, 154.14, 87.87, 7.26, 2.86, 7, 4285 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 3.60, 158.61, 87.88, 7.26, 2.91, 7, 4290 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 3.70, 163.09, 87.89, 7.26, 2.96, 7, 4294 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 3.80, 167.56, 87.89, 7.26, 3.01, 7, 4297 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 3.90, 172.03, 87.90, 7.26, 3.06, 7, 4301 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 4.00, 176.51, 87.90, 7.26, 3.12, 7, 4304 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 4.10, 180.99, 87.91, 7.26, 3.17, 7, 4307 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 4.20, 185.47, 87.91, 7.26, 3.22, 7, 4310 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 4.30, 189.95, 87.92, 7.26, 3.27, 7, 4312 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 4.40, 194.43, 87.92, 7.26, 3.32, 7, 4315 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 4.50, 198.91, 87.93, 7.26, 3.37, 7, 4317 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 4.60, 203.39, 87.93, 7.26, 3.42, 7, 4319 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 4.70, 207.87, 87.94, 7.26, 3.47, 7, 4321 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 4.80, 212.36, 87.94, 7.26, 3.52, 7, 4323 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 4.90, 216.84, 87.95, 7.26, 3.57, 7, 4324 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 5.00, 221.33, 87.95, 7.26, 3.62, 7, 4326 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 5.10, 225.81, 87.95, 7.26, 3.67, 7, 4327 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 5.20, 230.30, 87.96, 7.26, 3.72, 7, 4328 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 5.30, 234.78, 87.96, 7.26, 3.77, 7, 4329 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 5.40, 239.27, 87.97, 7.26, 3.82, 7, 4330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 5.50, 243.76, 87.97, 7.26, 3.87, 7, 4331 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 5.60, 248.24, 87.97, 7.26, 3.92, 7, 4331 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 5.70, 252.73, 87.98, 7.26, 3.97, 7, 4332 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 5.80, 257.22, 87.98, 7.26, 4.02, 7, 4332 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 5.90, 261.70, 87.98, 7.26, 4.07, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 6.00, 266.19, 87.99, 7.26, 4.12, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 6.10, 270.68, 87.99, 7.26, 4.17, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 6.20, 275.17, 87.99, 7.26, 4.22, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 6.30, 279.66, 87.99, 7.26, 4.27, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 6.40, 284.14, 88.00, 7.26, 4.32, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 6.50, 288.63, 88.00, 7.26, 4.37, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 6.60, 293.12, 88.00, 7.26, 4.42, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 6.70, 297.61, 88.00, 7.26, 4.47, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 6.80, 302.09, 88.01, 7.26, 4.52, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 6.90, 306.58, 88.01, 7.26, 4.57, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 7.00, 311.07, 88.01, 7.26, 4.62, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 7.10, 315.56, 88.01, 7.26, 4.67, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 7.20, 320.05, 88.01, 7.26, 4.72, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 7.30, 324.53, 88.02, 7.26, 4.77, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 7.40, 329.02, 88.02, 7.26, 4.82, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 7.50, 333.51, 88.02, 7.26, 4.87, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 7.60, 338.00, 88.02, 7.26, 4.92, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 7.70, 342.48, 88.02, 7.26, 4.97, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 7.80, 346.97, 88.03, 7.26, 5.02, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 7.90, 351.46, 88.03, 7.26, 5.07, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 8.00, 355.95, 88.03, 7.26, 5.12, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 8.10, 360.44, 88.03, 7.26, 5.17, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 8.20, 364.92, 88.03, 7.26, 5.22, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 8.30, 369.41, 88.03, 7.26, 5.27, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 8.40, 373.90, 88.04, 7.26, 5.33, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 8.50, 378.39, 88.04, 7.26, 5.38, 7, 4333 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №2 Пр.Б' AND ship_id=2), 8.55, 380.63, 88.04, 7.26, 5.40, 0, 0;
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 3 Пр.Б' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 3 Пр.Б' AND ship_id=2), 0.10, 8.38, 58.19, 5.58, 0.05, 86, 4891 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 3 Пр.Б' AND ship_id=2), 0.20, 17.35, 58.19, 5.64, 0.10, 99, 5124 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 3 Пр.Б' AND ship_id=2), 0.30, 26.67, 58.19, 5.68, 0.15, 109, 5286 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 3 Пр.Б' AND ship_id=2), 0.40, 36.24, 58.19, 5.72, 0.21, 117, 5409 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 3 Пр.Б' AND ship_id=2), 0.50, 46.00, 58.19, 5.74, 0.26, 123, 5503 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 3 Пр.Б' AND ship_id=2), 0.60, 55.91, 58.19, 5.77, 0.31, 128, 5573 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 3 Пр.Б' AND ship_id=2), 0.70, 65.93, 58.19, 5.79, 0.36, 131, 5627 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 3 Пр.Б' AND ship_id=2), 0.80, 76.03, 58.19, 5.81, 0.41, 134, 5665 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 3 Пр.Б' AND ship_id=2), 0.90, 86.18, 58.19, 5.82, 0.46, 135, 5686 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 3 Пр.Б' AND ship_id=2), 1.00, 96.36, 58.19, 5.83, 0.52, 136, 5694 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 3 Пр.Б' AND ship_id=2), 1.10, 106.55, 58.19, 5.84, 0.57, 0, 0;
 
 
-DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 4 ЛБ' AND ship_id=2);
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 0.10, 3.03, 59.67, -7.27, 1.16, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 0.20, 6.06, 59.67, -7.27, 1.20, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 0.30, 9.10, 59.67, -7.27, 1.25, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 0.40, 12.13, 59.67, -7.27, 1.30, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 0.50, 15.16, 59.67, -7.27, 1.35, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 0.60, 18.19, 59.67, -7.27, 1.40, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 0.70, 21.22, 59.67, -7.27, 1.45, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 0.80, 24.26, 59.67, -7.27, 1.50, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 0.90, 27.29, 59.67, -7.27, 1.55, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 1.00, 30.32, 59.67, -7.27, 1.60, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 1.10, 33.35, 59.67, -7.27, 1.65, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 1.20, 36.38, 59.67, -7.27, 1.70, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 1.30, 39.41, 59.67, -7.27, 1.75, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 1.40, 42.45, 59.67, -7.27, 1.80, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 1.50, 45.48, 59.67, -7.27, 1.85, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 1.60, 48.51, 59.67, -7.27, 1.90, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 1.70, 51.54, 59.67, -7.27, 1.95, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 1.80, 54.57, 59.67, -7.27, 2.00, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 1.90, 57.61, 59.67, -7.27, 2.05, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 2.00, 60.64, 59.67, -7.27, 2.10, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 2.10, 63.67, 59.67, -7.27, 2.15, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 2.20, 66.70, 59.67, -7.27, 2.20, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 2.30, 69.73, 59.67, -7.27, 2.25, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 2.40, 72.76, 59.67, -7.27, 2.30, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 2.50, 75.80, 59.67, -7.27, 2.35, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 2.60, 78.83, 59.67, -7.27, 2.40, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 2.70, 81.86, 59.67, -7.27, 2.45, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 2.80, 84.89, 59.67, -7.27, 2.50, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 2.90, 87.92, 59.67, -7.27, 2.55, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 3.00, 90.96, 59.67, -7.27, 2.60, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 3.10, 93.99, 59.67, -7.27, 2.65, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 3.20, 97.02, 59.67, -7.27, 2.70, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 3.30, 100.05, 59.67, -7.27, 2.75, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 3.40, 103.08, 59.67, -7.27, 2.80, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 3.50, 106.11, 59.67, -7.27, 2.85, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 3.60, 109.15, 59.67, -7.27, 2.90, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 3.70, 112.18, 59.67, -7.27, 2.95, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 3.80, 115.21, 59.67, -7.27, 3.00, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 3.90, 118.24, 59.67, -7.27, 3.05, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 4.00, 121.27, 59.67, -7.27, 3.10, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 4.10, 124.31, 59.67, -7.27, 3.15, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 4.20, 127.34, 59.67, -7.27, 3.20, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 4.30, 130.37, 59.67, -7.27, 3.25, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 4.40, 133.40, 59.67, -7.27, 3.30, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 4.50, 136.43, 59.67, -7.27, 3.35, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 4.60, 139.46, 59.67, -7.27, 3.40, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 4.70, 142.50, 59.67, -7.27, 3.45, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 4.80, 145.53, 59.67, -7.27, 3.50, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 4.90, 148.56, 59.67, -7.27, 3.55, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 5.00, 151.59, 59.67, -7.27, 3.60, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 5.10, 154.62, 59.67, -7.27, 3.65, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 5.20, 157.66, 59.67, -7.27, 3.70, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 5.30, 160.69, 59.67, -7.27, 3.75, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 5.40, 163.72, 59.67, -7.27, 3.80, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 5.50, 166.75, 59.67, -7.27, 3.85, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 5.60, 169.78, 59.67, -7.27, 3.90, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 5.70, 172.82, 59.67, -7.27, 3.95, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 5.80, 175.85, 59.67, -7.27, 4.00, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 5.90, 178.88, 59.67, -7.27, 4.05, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 6.00, 181.91, 59.67, -7.27, 4.10, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 6.10, 184.94, 59.67, -7.27, 4.15, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 6.20, 187.97, 59.67, -7.27, 4.20, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 6.30, 191.01, 59.67, -7.27, 4.25, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 6.40, 194.04, 59.67, -7.27, 4.30, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 6.50, 197.07, 59.67, -7.27, 4.35, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 6.60, 200.10, 59.67, -7.27, 4.40, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 6.70, 203.13, 59.67, -7.27, 4.45, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 6.80, 206.17, 59.67, -7.27, 4.50, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 6.90, 209.20, 59.67, -7.27, 4.55, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 7.00, 212.23, 59.67, -7.27, 4.60, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 7.10, 215.26, 59.67, -7.27, 4.65, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 7.20, 218.29, 59.67, -7.27, 4.70, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 7.30, 221.32, 59.67, -7.27, 4.75, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 7.40, 224.36, 59.67, -7.27, 4.80, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 7.50, 227.39, 59.67, -7.27, 4.85, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 7.60, 230.42, 59.67, -7.27, 4.90, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 7.70, 233.45, 59.67, -7.27, 4.95, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 7.80, 236.48, 59.67, -7.27, 5.00, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 7.90, 239.52, 59.67, -7.27, 5.05, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 8.00, 242.55, 59.67, -7.27, 5.10, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 8.10, 245.58, 59.67, -7.27, 5.15, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 8.20, 248.61, 59.67, -7.27, 5.20, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 8.30, 251.64, 59.67, -7.27, 5.25, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 8.40, 254.67, 59.67, -7.27, 5.30, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 8.50, 257.71, 59.67, -7.27, 5.35, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 ЛБ' AND ship_id=2), 8.55, 259.22, 59.67, -7.27, 5.38, 0, 0;
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 4 ЛБ' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 4 ЛБ' AND ship_id=2), 0.10, 9.37, 31.32, -4.00, 0.05, 401, 5713 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 4 ЛБ' AND ship_id=2), 0.20, 19.67, 31.23, -4.09, 0.10, 434, 6066 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 4 ЛБ' AND ship_id=2), 0.30, 30.49, 31.18, -4.15, 0.16, 459, 6316 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 4 ЛБ' AND ship_id=2), 0.40, 41.70, 31.14, -4.20, 0.21, 479, 6511 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 4 ЛБ' AND ship_id=2), 0.50, 53.23, 31.11, -4.24, 0.26, 495, 6677 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 4 ЛБ' AND ship_id=2), 0.60, 65.01, 31.07, -4.27, 0.31, 509, 6814 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 4 ЛБ' AND ship_id=2), 0.70, 77.02, 31.04, -4.30, 0.37, 520, 6931 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 4 ЛБ' AND ship_id=2), 0.80, 89.21, 31.01, -4.33, 0.42, 529, 7032 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 4 ЛБ' AND ship_id=2), 0.90, 101.57, 30.99, -4.35, 0.47, 536, 7116 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 4 ЛБ' AND ship_id=2), 1.00, 114.07, 30.96, -4.37, 0.52, 542, 7186 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 4 ЛБ' AND ship_id=2), 1.10, 126.68, 30.93, -4.39, 0.58, 0, 0;
 
 
-DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  4 Пр.Б' AND ship_id=2);
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 0.10, 3.03, 59.67, 7.27, 1.15, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 0.20, 6.06, 59.67, 7.27, 1.20, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 0.30, 9.10, 59.67, 7.27, 1.25, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 0.40, 12.13, 59.67, 7.27, 1.30, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 0.50, 15.16, 59.67, 7.27, 1.35, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 0.60, 18.19, 59.67, 7.27, 1.40, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 0.70, 21.22, 59.67, 7.27, 1.45, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 0.80, 24.26, 59.67, 7.27, 1.50, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 0.90, 27.29, 59.67, 7.27, 1.55, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 1.00, 30.32, 59.67, 7.27, 1.60, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 1.10, 33.35, 59.67, 7.27, 1.65, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 1.20, 36.38, 59.67, 7.27, 1.70, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 1.30, 39.41, 59.67, 7.27, 1.75, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 1.40, 42.45, 59.67, 7.27, 1.80, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 1.50, 45.48, 59.67, 7.27, 1.85, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 1.60, 48.51, 59.67, 7.27, 1.90, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 1.70, 51.54, 59.67, 7.27, 1.95, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 1.80, 54.57, 59.67, 7.27, 2.00, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 1.90, 57.61, 59.67, 7.27, 2.05, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 2.00, 60.64, 59.67, 7.27, 2.10, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 2.10, 63.67, 59.67, 7.27, 2.15, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 2.20, 66.70, 59.67, 7.27, 2.20, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 2.30, 69.73, 59.67, 7.27, 2.25, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 2.40, 72.76, 59.67, 7.27, 2.30, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 2.50, 75.80, 59.67, 7.27, 2.35, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 2.60, 78.83, 59.67, 7.27, 2.40, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 2.70, 81.86, 59.67, 7.27, 2.45, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 2.80, 84.89, 59.67, 7.27, 2.50, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 2.90, 87.92, 59.67, 7.27, 2.55, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 3.00, 90.96, 59.67, 7.27, 2.60, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 3.10, 93.99, 59.67, 7.27, 2.65, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 3.20, 97.02, 59.67, 7.27, 2.70, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 3.30, 100.05, 59.67, 7.27, 2.75, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 3.40, 103.08, 59.67, 7.27, 2.80, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 3.50, 106.11, 59.67, 7.27, 2.85, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 3.60, 109.15, 59.67, 7.27, 2.90, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 3.70, 112.18, 59.67, 7.27, 2.95, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 3.80, 115.21, 59.67, 7.27, 3.00, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 3.90, 118.24, 59.67, 7.27, 3.05, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 4.00, 121.27, 59.67, 7.27, 3.10, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 4.10, 124.31, 59.67, 7.27, 3.15, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 4.20, 127.34, 59.67, 7.27, 3.20, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 4.30, 130.37, 59.67, 7.27, 3.25, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 4.40, 133.40, 59.67, 7.27, 3.30, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 4.50, 136.43, 59.67, 7.27, 3.35, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 4.60, 139.46, 59.67, 7.27, 3.40, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 4.70, 142.50, 59.67, 7.27, 3.45, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 4.80, 145.53, 59.67, 7.27, 3.50, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 4.90, 148.56, 59.67, 7.27, 3.55, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 5.00, 151.59, 59.67, 7.27, 3.60, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 5.10, 154.62, 59.67, 7.27, 3.65, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 5.20, 157.66, 59.67, 7.27, 3.70, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 5.30, 160.69, 59.67, 7.27, 3.75, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 5.40, 163.72, 59.67, 7.27, 3.80, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 5.50, 166.75, 59.67, 7.27, 3.85, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 5.60, 169.78, 59.67, 7.27, 3.90, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 5.70, 172.82, 59.67, 7.27, 3.95, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 5.80, 175.85, 59.67, 7.27, 4.00, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 5.90, 178.88, 59.67, 7.27, 4.05, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 6.00, 181.91, 59.67, 7.27, 4.10, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 6.10, 184.94, 59.67, 7.27, 4.15, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 6.20, 187.97, 59.67, 7.27, 4.20, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 6.30, 191.01, 59.67, 7.27, 4.25, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 6.40, 194.04, 59.67, 7.27, 4.30, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 6.50, 197.07, 59.67, 7.27, 4.35, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 6.60, 200.10, 59.67, 7.27, 4.40, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 6.70, 203.13, 59.67, 7.27, 4.45, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 6.80, 206.17, 59.67, 7.27, 4.50, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 6.90, 209.20, 59.67, 7.27, 4.55, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 7.00, 212.23, 59.67, 7.27, 4.60, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 7.10, 215.26, 59.67, 7.27, 4.65, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 7.20, 218.29, 59.67, 7.27, 4.70, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 7.30, 221.32, 59.67, 7.27, 4.75, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 7.40, 224.36, 59.67, 7.27, 4.80, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 7.50, 227.39, 59.67, 7.27, 4.85, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 7.60, 230.42, 59.67, 7.27, 4.90, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 7.70, 233.45, 59.67, 7.27, 4.95, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 7.80, 236.48, 59.67, 7.27, 5.00, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 7.90, 239.52, 59.67, 7.27, 5.05, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 8.00, 242.55, 59.67, 7.27, 5.10, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 8.10, 245.58, 59.67, 7.27, 5.15, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 8.20, 248.61, 59.67, 7.27, 5.20, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 8.30, 251.64, 59.67, 7.27, 5.25, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 8.40, 254.67, 59.67, 7.27, 5.30, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 8.50, 257.71, 59.67, 7.27, 5.35, 5, 1330 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №3 Пр.Б' AND ship_id=2), 8.55, 259.22, 59.67, 7.27, 5.38, 0, 0;
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  4 Пр.Б' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  4 Пр.Б' AND ship_id=2), 0.10, 9.37, 31.29, 3.99, 0.05, 405, 5718 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  4 Пр.Б' AND ship_id=2), 0.20, 19.68, 31.21, 4.08, 0.10, 439, 6071 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  4 Пр.Б' AND ship_id=2), 0.30, 30.51, 31.16, 4.14, 0.16, 463, 6318 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  4 Пр.Б' AND ship_id=2), 0.40, 41.72, 31.12, 4.18, 0.21, 483, 6514 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  4 Пр.Б' AND ship_id=2), 0.50, 53.24, 31.09, 4.22, 0.26, 500, 6678 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  4 Пр.Б' AND ship_id=2), 0.60, 65.03, 31.05, 4.26, 0.31, 513, 6814 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  4 Пр.Б' AND ship_id=2), 0.70, 77.03, 31.03, 4.29, 0.37, 525, 6931 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  4 Пр.Б' AND ship_id=2), 0.80, 89.23, 31.00, 4.32, 0.42, 534, 7032 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  4 Пр.Б' AND ship_id=2), 0.90, 101.59, 30.97, 4.34, 0.47, 541, 7115 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  4 Пр.Б' AND ship_id=2), 1.00, 114.08, 30.94, 4.36, 0.52, 547, 7184 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД  4 Пр.Б' AND ship_id=2), 1.10, 126.69, 30.91, 4.38, 0.58, 0, 0;
 
 
-DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2);
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 0.10, 1.57, 42.28, -7.27, 1.15, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 0.20, 3.13, 42.28, -7.27, 1.20, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 0.30, 4.70, 42.28, -7.27, 1.25, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 0.40, 6.26, 42.28, -7.27, 1.30, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 0.50, 7.83, 42.28, -7.27, 1.35, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 0.60, 9.39, 42.28, -7.27, 1.40, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 0.70, 10.96, 42.28, -7.27, 1.45, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 0.80, 12.52, 42.28, -7.27, 1.50, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 0.90, 14.09, 42.28, -7.27, 1.55, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 1.00, 15.65, 42.28, -7.27, 1.60, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 1.10, 17.22, 42.28, -7.27, 1.65, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 1.20, 18.78, 42.28, -7.27, 1.70, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 1.30, 20.35, 42.28, -7.27, 1.75, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 1.40, 21.91, 42.28, -7.27, 1.80, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 1.50, 23.48, 42.28, -7.27, 1.85, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 1.60, 25.04, 42.28, -7.27, 1.90, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 1.70, 26.61, 42.28, -7.27, 1.95, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 1.80, 28.17, 42.28, -7.27, 2.00, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 1.90, 29.74, 42.28, -7.27, 2.05, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 2.00, 31.30, 42.28, -7.27, 2.10, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 2.10, 32.87, 42.28, -7.27, 2.15, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 2.20, 34.44, 42.28, -7.27, 2.20, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 2.30, 36.00, 42.28, -7.27, 2.25, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 2.40, 37.57, 42.28, -7.27, 2.30, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 2.50, 39.13, 42.28, -7.27, 2.35, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 2.60, 40.70, 42.28, -7.27, 2.40, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 2.70, 42.26, 42.28, -7.27, 2.45, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 2.80, 43.83, 42.28, -7.27, 2.50, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 2.90, 45.39, 42.28, -7.27, 2.55, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 3.00, 46.96, 42.28, -7.27, 2.60, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 3.10, 48.52, 42.28, -7.27, 2.65, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 3.20, 50.09, 42.28, -7.27, 2.70, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 3.30, 51.65, 42.28, -7.27, 2.75, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 3.40, 53.22, 42.28, -7.27, 2.80, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 3.50, 54.78, 42.28, -7.27, 2.85, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 3.60, 56.35, 42.28, -7.27, 2.90, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 3.70, 57.91, 42.28, -7.27, 2.95, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 3.80, 59.48, 42.28, -7.27, 3.00, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 3.90, 61.04, 42.28, -7.27, 3.05, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 4.00, 62.61, 42.28, -7.27, 3.10, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 4.10, 64.17, 42.28, -7.27, 3.15, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 4.20, 65.74, 42.28, -7.27, 3.20, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 4.30, 67.30, 42.28, -7.27, 3.25, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 4.40, 68.87, 42.28, -7.27, 3.30, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 4.50, 70.44, 42.28, -7.27, 3.35, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 4.60, 72.00, 42.28, -7.27, 3.40, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 4.70, 73.57, 42.28, -7.27, 3.45, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 4.80, 75.13, 42.28, -7.27, 3.50, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 4.90, 76.70, 42.28, -7.27, 3.55, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 5.00, 78.26, 42.28, -7.27, 3.60, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 5.10, 79.83, 42.28, -7.27, 3.65, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 5.20, 81.39, 42.28, -7.27, 3.70, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 5.30, 84.97, 41.93, -7.27, 3.81, 6, 2801 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 5.40, 88.86, 41.56, -7.27, 3.93, 6, 2807 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 5.50, 92.74, 41.23, -7.27, 4.04, 6, 2813 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 5.60, 96.63, 40.91, -7.27, 4.14, 6, 2818 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 5.70, 100.53, 40.62, -7.27, 4.24, 6, 2823 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 5.80, 104.42, 40.36, -7.27, 4.34, 6, 2827 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 5.90, 108.32, 40.11, -7.27, 4.43, 6, 2831 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 6.00, 112.22, 39.88, -7.27, 4.53, 6, 2834 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 6.10, 116.12, 39.66, -7.27, 4.61, 6, 2837 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 6.20, 120.03, 39.46, -7.27, 4.70, 6, 2840 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 6.30, 123.93, 39.27, -7.27, 4.78, 6, 2843 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 6.40, 127.84, 39.09, -7.27, 4.86, 6, 2845 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 6.50, 131.74, 38.92, -7.27, 4.94, 6, 2847 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 6.60, 135.65, 38.76, -7.27, 5.02, 6, 2849 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 6.70, 139.56, 38.61, -7.27, 5.10, 6, 2850 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 6.80, 143.47, 38.47, -7.27, 5.17, 6, 2851 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 6.90, 147.38, 38.34, -7.27, 5.25, 6, 2852 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 7.00, 151.29, 38.21, -7.27, 5.32, 6, 2853 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 7.10, 155.20, 38.09, -7.27, 5.39, 6, 2854 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 7.20, 159.11, 37.97, -7.27, 5.46, 6, 2855 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 7.30, 163.03, 37.86, -7.27, 5.53, 6, 2855 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 7.40, 166.94, 37.76, -7.27, 5.60, 6, 2856 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 7.50, 170.85, 37.66, -7.27, 5.67, 6, 2856 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 7.60, 174.76, 37.56, -7.27, 5.73, 6, 2856 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 7.70, 178.68, 37.47, -7.27, 5.80, 6, 2856 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 7.80, 182.59, 37.39, -7.27, 5.87, 6, 2857 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 7.90, 186.50, 37.30, -7.27, 5.93, 6, 2857 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 8.00, 190.41, 37.22, -7.27, 5.99, 6, 2857 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 8.10, 194.33, 37.15, -7.27, 6.06, 6, 2857 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 8.20, 198.24, 37.07, -7.27, 6.12, 6, 2857 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 8.30, 202.15, 37.00, -7.27, 6.18, 6, 2857 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 8.40, 206.07, 36.93, -7.27, 6.25, 6, 2857 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 8.50, 209.98, 36.87, -7.27, 6.31, 6, 2857 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 ЛБ' AND ship_id=2), 8.55, 211.94, 36.83, -7.27, 6.34, 0, 0;
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 0.10, 0.84, 112.45, -5.07, 1.15, 11, 144 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 0.20, 1.78, 112.45, -5.09, 1.20, 12, 160 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 0.30, 2.80, 112.45, -5.10, 1.26, 13, 174 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 0.40, 3.91, 112.46, -5.12, 1.31, 14, 186 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 0.50, 5.08, 112.47, -5.13, 1.37, 15, 198 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 0.60, 6.33, 112.47, -5.14, 1.42, 16, 209 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 0.70, 7.64, 112.48, -5.16, 1.48, 17, 219 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 0.80, 9.01, 112.49, -5.17, 1.54, 18, 228 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 0.90, 10.43, 112.50, -5.18, 1.59, 18, 236 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 1.00, 11.91, 112.50, -5.19, 1.65, 19, 244 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 1.10, 13.43, 112.51, -5.20, 1.71, 20, 251 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 1.20, 14.99, 112.52, -5.21, 1.76, 20, 258 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 1.30, 16.60, 112.52, -5.22, 1.82, 21, 264 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 1.40, 18.24, 112.53, -5.23, 1.88, 21, 270 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 1.50, 19.93, 112.54, -5.23, 1.93, 22, 276 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 1.60, 21.64, 112.54, -5.24, 1.99, 22, 281 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 1.70, 23.39, 112.55, -5.25, 2.05, 23, 286 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 1.80, 25.18, 112.55, -5.26, 2.10, 23, 291 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 1.90, 26.99, 112.55, -5.26, 2.16, 24, 296 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 2.00, 28.84, 112.56, -5.27, 2.22, 24, 300 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 2.10, 30.71, 112.56, -5.28, 2.28, 25, 305 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 2.20, 32.62, 112.56, -5.29, 2.33, 25, 309 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 2.30, 34.55, 112.57, -5.29, 2.39, 26, 314 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 2.40, 36.51, 112.57, -5.30, 2.45, 26, 318 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 2.50, 38.50, 112.57, -5.30, 2.50, 26, 322 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 2.60, 40.52, 112.58, -5.31, 2.56, 27, 327 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 2.70, 42.56, 112.58, -5.32, 2.62, 27, 331 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 2.80, 44.64, 112.58, -5.32, 2.67, 28, 336 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 2.90, 46.74, 112.59, -5.33, 2.73, 28, 340 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 3.00, 48.88, 112.59, -5.33, 2.79, 28, 345 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 3.10, 51.04, 112.60, -5.34, 2.85, 29, 350 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 3.20, 53.23, 112.60, -5.34, 2.91, 29, 355 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 3.30, 55.45, 112.61, -5.35, 2.96, 30, 360 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 3.40, 57.70, 112.61, -5.36, 3.02, 30, 365 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 3.50, 59.98, 112.62, -5.36, 3.08, 31, 371 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 3.60, 62.30, 112.62, -5.37, 3.14, 31, 376 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 3.70, 64.65, 112.63, -5.37, 3.20, 31, 382 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 3.80, 67.03, 112.63, -5.38, 3.25, 32, 388 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 3.90, 69.44, 112.64, -5.38, 3.31, 32, 393 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 4.00, 71.88, 112.65, -5.39, 3.37, 33, 399 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 4.10, 74.36, 112.66, -5.39, 3.43, 33, 406 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 4.20, 76.88, 112.66, -5.39, 3.49, 34, 412 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 4.30, 79.43, 112.67, -5.40, 3.55, 34, 418 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 4.40, 82.02, 112.68, -5.40, 3.61, 35, 425 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 4.50, 84.65, 112.69, -5.41, 3.67, 35, 432 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 4.60, 87.31, 112.70, -5.41, 3.73, 36, 438 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 4.70, 90.01, 112.71, -5.42, 3.79, 36, 445 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 4.80, 92.75, 112.71, -5.42, 3.85, 37, 452 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 4.90, 95.54, 112.72, -5.43, 3.91, 37, 459 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 5.00, 98.36, 112.73, -5.43, 3.98, 37, 466 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 5.10, 101.22, 112.74, -5.44, 4.04, 38, 473 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 5.20, 104.13, 112.76, -5.44, 4.10, 38, 480 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 5.30, 105.31, 112.74, -5.45, 4.12, 4, 152 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 5.40, 106.28, 112.72, -5.47, 4.15, 5, 166 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 5.50, 107.29, 112.70, -5.48, 4.17, 5, 179 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 5.60, 108.34, 112.68, -5.49, 4.19, 5, 192 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 5.70, 109.43, 112.66, -5.50, 4.22, 6, 205 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 5.80, 110.57, 112.65, -5.51, 4.24, 6, 217 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 5.90, 111.75, 112.64, -5.53, 4.27, 6, 229 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 6.00, 112.98, 112.62, -5.54, 4.30, 6, 241 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 6.10, 114.25, 112.61, -5.55, 4.34, 7, 252 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 6.20, 115.56, 112.60, -5.56, 4.37, 7, 262 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 6.30, 116.92, 112.59, -5.58, 4.40, 7, 273 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 6.40, 118.33, 112.59, -5.59, 4.44, 7, 284 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 6.50, 119.78, 112.58, -5.60, 4.48, 8, 294 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 6.60, 121.28, 112.57, -5.62, 4.52, 8, 304 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 6.70, 122.82, 112.57, -5.63, 4.56, 8, 314 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 6.80, 124.42, 112.57, -5.64, 4.60, 8, 324 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 6.90, 126.06, 112.57, -5.66, 4.64, 8, 334 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 7.00, 127.75, 112.57, -5.67, 4.69, 8, 344 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 7.10, 129.49, 112.57, -5.68, 4.73, 9, 353 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 7.20, 131.28, 112.57, -5.70, 4.78, 9, 362 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 7.30, 133.12, 112.57, -5.71, 4.83, 9, 371 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 7.40, 135.01, 112.58, -5.73, 4.88, 9, 380 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 7.50, 136.95, 112.58, -5.74, 4.93, 9, 389 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 7.60, 138.94, 112.59, -5.75, 4.99, 9, 397 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 7.70, 140.99, 112.59, -5.77, 5.04, 10, 406 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 7.80, 143.08, 112.60, -5.78, 5.10, 10, 414 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 7.90, 145.23, 112.61, -5.80, 5.15, 10, 422 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 8.00, 147.43, 112.62, -5.81, 5.21, 10, 430 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 8.10, 149.67, 112.63, -5.83, 5.27, 10, 437 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 8.20, 151.97, 112.64, -5.84, 5.33, 11, 445 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 8.30, 154.32, 112.66, -5.86, 5.39, 11, 452 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 8.40, 156.72, 112.67, -5.87, 5.46, 11, 460 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 8.50, 159.18, 112.68, -5.89, 5.52, 12, 467 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 ЛБ' AND ship_id=2), 8.55, 160.42, 112.69, -5.89, 5.55, 0, 0;
 
 
-DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2);
-
-INSERT INTO compartment_curve
-  (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 0.10, 1.57, 42.28, 7.27, 1.15, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 0.20, 3.13, 42.28, 7.27, 1.20, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 0.30, 4.70, 42.28, 7.27, 1.25, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 0.40, 6.26, 42.28, 7.27, 1.30, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 0.50, 7.83, 42.28, 7.27, 1.35, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 0.60, 9.39, 42.28, 7.27, 1.40, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 0.70, 10.96, 42.28, 7.27, 1.45, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 0.80, 12.52, 42.28, 7.27, 1.50, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 0.90, 14.09, 42.28, 7.27, 1.55, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 1.00, 15.65, 42.28, 7.27, 1.60, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 1.10, 17.22, 42.28, 7.27, 1.65, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 1.20, 18.78, 42.28, 7.27, 1.70, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 1.30, 20.35, 42.28, 7.27, 1.75, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 1.40, 21.91, 42.28, 7.27, 1.80, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 1.50, 23.48, 42.28, 7.27, 1.85, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 1.60, 25.34, 42.28, 7.27, 1.90, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 1.70, 26.61, 42.28, 7.27, 1.95, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 1.80, 28.17, 42.28, 7.27, 2.00, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 1.90, 29.74, 42.28, 7.27, 2.05, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 2.00, 31.30, 42.28, 7.27, 2.10, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 2.10, 32.87, 42.28, 7.27, 2.15, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 2.20, 34.44, 42.28, 7.27, 2.20, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 2.30, 36.00, 42.28, 7.27, 2.25, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 2.40, 37.57, 42.28, 7.27, 2.30, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 2.50, 39.13, 42.28, 7.27, 2.35, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 2.60, 40.70, 42.28, 7.27, 2.40, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 2.70, 42.26, 42.28, 7.27, 2.45, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 2.80, 43.83, 42.28, 7.27, 2.50, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 2.90, 45.39, 42.28, 7.27, 2.55, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 3.00, 46.96, 42.28, 7.27, 2.60, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 3.10, 48.52, 42.28, 7.27, 2.65, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 3.20, 50.09, 42.28, 7.27, 2.70, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 3.30, 51.65, 42.28, 7.27, 2.75, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 3.40, 53.22, 42.28, 7.27, 2.80, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 3.50, 54.78, 42.28, 7.27, 2.85, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 3.60, 56.35, 42.28, 7.27, 2.90, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 3.70, 57.91, 42.28, 7.27, 2.95, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 3.80, 59.48, 42.28, 7.27, 3.00, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 3.90, 61.04, 42.28, 7.27, 3.05, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 4.00, 62.61, 42.28, 7.27, 3.10, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 4.10, 64.17, 42.28, 7.27, 3.15, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 4.20, 65.74, 42.28, 7.27, 3.20, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 4.30, 67.30, 42.28, 7.27, 3.25, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 4.40, 68.87, 42.28, 7.27, 3.30, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 4.50, 70.44, 42.28, 7.27, 3.35, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 4.600, 72.00, 42.28, 7.27, 3.40, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 4.70, 73.57, 42.28, 7.27, 3.45, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 4.80, 75.13, 42.28, 7.27, 3.50, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 4.90, 76.70, 42.28, 7.27, 3.55, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 5.00, 78.26, 42.28, 7.27, 3.60, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 5.10, 79.83, 42.28, 7.27, 3.65, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 5.20, 81.39, 42.28, 7.27, 3.70, 2, 183 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 5.30, 84.97, 41.93, 7.27, 3.81, 6, 2801 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 5.40, 88.86, 41.56, 7.27, 3.93, 6, 2807 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 5.50, 92.74, 41.23, 7.27, 4.04, 6, 2813 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 5.60, 96.63, 40.91, 7.27, 4.14, 6, 2818 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 5.70, 100.53, 40.62, 7.27, 4.24, 6, 2823 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 5.80, 104.42, 40.36, 7.27, 4.34, 6, 2827 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 5.90, 108.32, 40.11, 7.27, 4.43, 6, 2831 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 6.00, 112.22, 39.88, 7.27, 4.53, 6, 2834 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 6.10, 116.12, 39.66, 7.27, 4.61, 6, 2837 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 6.20, 120.03, 39.46, 7.27, 4.70, 6, 2840 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 6.30, 123.93, 39.27, 7.27, 4.78, 6, 2843 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 6.40, 127.84, 39.09, 7.27, 4.86, 6, 2845 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 6.50, 131.74, 38.92, 7.27, 4.94, 6, 2847 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 6.60, 135.65, 38.76, 7.27, 5.02, 6, 2849 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 6.70, 139.56, 38.61, 7.27, 5.10, 6, 2850 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 6.80, 143.47, 38.47, 7.27, 5.17, 6, 2851 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 6.90, 147.38, 38.34, 7.27, 5.25, 6, 2852 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 7.00, 151.29, 38.21, 7.27, 5.32, 6, 2853 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 7.10, 155.20, 38.09, 7.27, 5.39, 6, 2854 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 7.20, 159.11, 37.97, 7.27, 5.46, 6, 2855 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 7.30, 163.03, 37.86, 7.27, 5.53, 6, 2855 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 7.40, 166.94, 37.76, 7.27, 5.60, 6, 2856 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 7.50, 170.85, 37.66, 7.27, 5.67, 6, 2856 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 7.60, 174.76, 37.56, 7.27, 5.73, 6, 2856 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 7.70, 178.68, 37.47, 7.27, 5.80, 6, 2856 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 7.80, 182.59, 37.39, 7.27, 5.87, 6, 2857 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 7.90, 186.50, 37.30, 7.27, 5.93, 6, 2857 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 8.00, 190.41, 37.22, 7.27, 5.99, 6, 2857 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 8.10, 194.33, 37.15, 7.27, 6.06, 6, 2857 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 8.20, 198.24, 37.07, 7.27, 6.12, 6, 2857 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 8.30, 202.15, 37.00, 7.27, 6.18, 6, 2857 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 8.40, 206.07, 36.93, 7.27, 6.25, 6, 2857 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 8.50, 209.98, 36.87, 7.27, 6.31, 6, 2857 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №4 Пр.Б' AND ship_id=2), 8.55, 211.94, 36.83, 7.27, 6.34, 0, 0;
-
-
-DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2);
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 0.10, 1.46, 29.64, -6.86, 1.15, 9, 358 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 0.20, 3.01, 29.46, -6.84, 1.20, 10, 395 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 0.30, 4.64, 29.30, -6.83, 1.25, 11, 427 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 0.40, 6.35, 29.16, -6.82, 1.31, 12, 456 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 0.50, 8.14, 29.03, -6.82, 1.36, 12, 481 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 0.60, 9.99, 28.90, -6.81, 1.41, 13, 505 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 0.70, 11.91, 28.79, -6.80, 1.47, 13, 526 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 0.80, 13.89, 28.68, -6.80, 1.52, 13, 546 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 0.90, 15.92, 28.58, -6.79, 1.58, 14, 565 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 1.00, 18.01, 28.48, -6.79, 1.63, 14, 582 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 1.10, 20.16, 28.40, -6.79, 1.69, 14, 598 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 1.20, 22.35, 28.31, -6.79, 1.74, 15, 614 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 1.30, 24.59, 28.23, -6.78, 1.80, 15, 628 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 1.40, 26.87, 28.15, -6.78, 1.85, 15, 642 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 1.50, 29.20, 28.08, -6.78, 1.91, 15, 656 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 1.60, 31.57, 28.01, -6.78, 1.97, 15, 668 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 1.70, 33.98, 27.94, -6.78, 2.02, 15, 680 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 1.80, 36.43, 27.88, -6.78, 2.08, 15, 691 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 1.90, 38.92, 27.82, -6.78, 2.13, 16, 702 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 2.00, 41.44, 27.76, -6.78, 2.19, 16, 712 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 2.10, 43.99, 27.70, -6.78, 2.24, 16, 722 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 2.20, 46.57, 27.64, -6.78, 2.30, 16, 732 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 2.30, 49.19, 27.59, -6.78, 2.36, 16, 741 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 2.40, 51.83, 27.54, -6.78, 2.41, 16, 749 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 2.50, 54.50, 27.49, -6.78, 2.47, 16, 758 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 2.60, 57.20, 27.45, -6.79, 2.52, 16, 766 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 2.70, 59.23, 27.48, -6.80, 2.57, 3, 414 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 2.80, 61.20, 27.51, -6.81, 2.61, 3, 428 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 2.90, 63.20, 27.55, -6.83, 2.65, 3, 441 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 3.00, 65.21, 27.57, -6.84, 2.69, 3, 453 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 3.10, 67.25, 27.60, -6.85, 2.74, 3, 464 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 3.20, 69.31, 27.62, -6.86, 2.78, 3, 474 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 3.30, 71.38, 27.63, -6.87, 2.83, 3, 484 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 3.40, 73.48, 27.65, -6.88, 2.87, 3, 494 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 3.50, 75.59, 27.66, -6.89, 2.92, 3, 502 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 3.60, 77.71, 27.67, -6.90, 2.97, 3, 511 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 3.70, 79.85, 27.68, -6.91, 3.02, 3, 518 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 3.80, 82.00, 27.69, -6.92, 3.06, 3, 525 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 3.90, 84.16, 27.70, -6.93, 3.11, 3, 532 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 4.00, 86.34, 27.70, -6.93, 3.16, 3, 538 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 4.10, 88.52, 27.70, -6.94, 3.21, 3, 544 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 4.20, 90.72, 27.71, -6.95, 3.26, 3, 549 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 4.30, 92.93, 27.71, -6.96, 3.31, 3, 554 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 4.40, 95.14, 27.71, -6.96, 3.36, 3, 559 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 4.50, 97.36, 27.71, -6.97, 3.41, 3, 563 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 4.60, 99.59, 27.71, -6.98, 3.46, 3, 567 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 4.70, 101.83, 27.71, -6.98, 3.51, 3, 570 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 4.80, 104.07, 27.71, -6.99, 3.56, 3, 574 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 4.90, 106.32, 27.71, -6.99, 3.61, 3, 577 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 ЛБ' AND ship_id=2), 5.00, 108.57, 27.71, -7.00, 3.66, 3, 580;
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 0.10, 0.84, 112.45, 5.07, 1.15, 11, 144 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 0.20, 1.78, 112.45, 5.09, 1.20, 12, 160 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 0.30, 2.80, 112.45, 5.10, 1.26, 13, 174 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 0.40, 3.91, 112.46, 5.12, 1.31, 14, 186 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 0.50, 5.08, 112.47, 5.13, 1.37, 15, 198 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 0.60, 6.33, 112.47, 5.14, 1.42, 16, 209 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 0.70, 7.64, 112.48, 5.16, 1.48, 17, 219 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 0.80, 9.01, 112.49, 5.17, 1.54, 18, 228 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 0.90, 10.43, 112.50, 5.18, 1.59, 18, 236 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 1.00, 11.91, 112.50, 5.19, 1.65, 19, 244 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 1.10, 13.43, 112.51, 5.20, 1.71, 20, 251 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 1.20, 14.99, 112.52, 5.21, 1.76, 20, 258 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 1.30, 16.60, 112.52, 5.22, 1.82, 21, 264 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 1.40, 18.24, 112.53, 5.23, 1.88, 21, 270 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 1.50, 19.93, 112.54, 5.23, 1.93, 22, 276 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 1.60, 21.64, 112.54, 5.24, 1.99, 22, 281 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 1.70, 23.39, 112.55, 5.25, 2.05, 23, 286 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 1.80, 25.18, 112.55, 5.26, 2.10, 23, 291 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 1.90, 26.99, 112.55, 5.26, 2.16, 24, 296 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 2.00, 28.84, 112.56, 5.27, 2.22, 24, 300 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 2.10, 30.71, 112.56, 5.28, 2.28, 25, 305 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 2.20, 32.62, 112.56, 5.29, 2.33, 25, 309 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 2.30, 34.55, 112.57, 5.29, 2.39, 26, 314 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 2.40, 36.51, 112.57, 5.30, 2.45, 26, 318 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 2.50, 38.50, 112.57, 5.30, 2.50, 26, 322 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 2.60, 40.52, 112.58, 5.31, 2.56, 27, 327 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 2.70, 42.56, 112.58, 5.32, 2.62, 27, 331 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 2.80, 44.64, 112.58, 5.32, 2.67, 28, 336 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 2.90, 46.74, 112.59, 5.33, 2.73, 28, 340 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 3.00, 48.88, 112.59, 5.33, 2.79, 28, 345 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 3.10, 51.04, 112.60, 5.34, 2.85, 29, 350 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 3.20, 53.23, 112.60, 5.34, 2.91, 29, 355 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 3.30, 55.45, 112.61, 5.35, 2.96, 30, 360 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 3.40, 57.70, 112.61, 5.36, 3.02, 30, 365 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 3.50, 59.98, 112.62, 5.36, 3.08, 31, 371 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 3.60, 62.30, 112.62, 5.37, 3.14, 31, 376 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 3.70, 64.65, 112.63, 5.37, 3.20, 31, 382 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 3.80, 67.03, 112.63, 5.38, 3.25, 32, 388 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 3.90, 69.44, 112.64, 5.38, 3.31, 32, 393 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 4.00, 71.88, 112.65, 5.39, 3.37, 33, 399 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 4.10, 74.36, 112.66, 5.39, 3.43, 33, 406 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 4.20, 76.88, 112.66, 5.39, 3.49, 34, 412 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 4.30, 79.43, 112.67, 5.40, 3.55, 34, 418 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 4.40, 82.02, 112.68, 5.40, 3.61, 35, 425 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 4.50, 84.65, 112.69, 5.41, 3.67, 35, 432 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 4.60, 87.31, 112.70, 5.41, 3.73, 36, 438 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 4.70, 90.01, 112.71, 5.42, 3.79, 36, 445 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 4.80, 92.75, 112.71, 5.42, 3.85, 37, 452 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 4.90, 95.54, 112.72, 5.43, 3.91, 37, 459 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 5.00, 98.36, 112.73, 5.43, 3.98, 37, 466 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 5.10, 101.22, 112.74, 5.44, 4.04, 38, 473 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 5.20, 104.13, 112.76, 5.44, 4.10, 38, 480 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 5.30, 105.31, 112.74, 5.45, 4.12, 4, 152 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 5.40, 106.28, 112.72, 5.47, 4.15, 5, 166 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 5.50, 107.29, 112.70, 5.48, 4.17, 5, 179 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 5.60, 108.34, 112.68, 5.49, 4.19, 5, 192 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 5.70, 109.43, 112.66, 5.50, 4.22, 6, 205 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 5.80, 110.57, 112.65, 5.51, 4.24, 6, 217 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 5.90, 111.75, 112.64, 5.53, 4.27, 6, 229 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 6.00, 112.98, 112.62, 5.54, 4.30, 6, 241 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 6.10, 114.25, 112.61, 5.55, 4.34, 7, 252 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 6.20, 115.56, 112.60, 5.56, 4.37, 7, 262 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 6.30, 116.92, 112.59, 5.58, 4.40, 7, 273 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 6.40, 118.33, 112.59, 5.59, 4.44, 7, 284 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 6.50, 119.78, 112.58, 5.60, 4.48, 8, 294 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 6.60, 121.28, 112.57, 5.62, 4.52, 8, 304 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 6.70, 122.82, 112.57, 5.63, 4.56, 8, 314 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 6.80, 124.42, 112.57, 5.64, 4.60, 8, 324 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 6.90, 126.06, 112.57, 5.66, 4.64, 8, 334 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 7.00, 127.75, 112.57, 5.67, 4.69, 8, 344 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 7.10, 129.49, 112.57, 5.68, 4.73, 9, 353 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 7.20, 131.28, 112.57, 5.70, 4.78, 9, 362 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 7.30, 133.12, 112.57, 5.71, 4.83, 9, 371 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 7.40, 135.01, 112.58, 5.73, 4.88, 9, 380 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 7.50, 136.95, 112.58, 5.74, 4.93, 9, 389 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 7.60, 138.94, 112.59, 5.75, 4.99, 9, 397 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 7.70, 140.99, 112.59, 5.77, 5.04, 10, 406 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 7.80, 143.08, 112.60, 5.78, 5.10, 10, 414 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 7.90, 145.23, 112.61, 5.80, 5.15, 10, 422 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 8.00, 147.43, 112.62, 5.81, 5.21, 10, 430 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 8.10, 149.67, 112.63, 5.83, 5.27, 10, 437 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 8.20, 151.97, 112.64, 5.84, 5.33, 11, 445 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 8.30, 154.32, 112.66, 5.86, 5.39, 11, 452 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 8.40, 156.72, 112.67, 5.87, 5.46, 11, 460 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 8.50, 159.18, 112.68, 5.89, 5.52, 12, 467 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 1 Пр.Б' AND ship_id=2), 8.55, 160.42, 112.69, 5.89, 5.55, 0, 0;
 
 
-DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2);
-
-INSERT INTO compartment_curve
-  (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 0.10, 1.46, 29.64, 6.86, 1.15, 9, 358 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 0.20, 3.01, 29.46, 6.84, 1.20, 10, 395 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 0.30, 4.64, 29.30, 6.83, 1.25, 11, 427 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 0.40, 6.35, 29.16, 6.82, 1.31, 12, 456 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 0.50, 8.14, 29.03, 6.82, 1.36, 12, 481 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 0.60, 9.99, 28.90, 6.81, 1.41, 13, 505 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 0.70, 11.91, 28.79, 6.80, 1.47, 13, 526 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 0.80, 13.89, 28.68, 6.80, 1.52, 13, 546 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 0.90, 15.92, 28.58, 6.79, 1.58, 14, 565 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 1.00, 18.01, 28.48, 6.79, 1.63, 14, 582 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 1.10, 20.16, 28.40, 6.79, 1.69, 14, 598 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 1.20, 22.35, 28.31, 6.79, 1.74, 15, 614 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 1.30, 24.59, 28.23, 6.78, 1.80, 15, 628 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 1.40, 26.87, 28.15, 6.78, 1.85, 15, 642 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 1.50, 29.20, 28.08, 6.78, 1.91, 15, 656 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 1.60, 31.57, 28.01, 6.78, 1.97, 15, 668 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 1.70, 33.98, 27.94, 6.78, 2.02, 15, 680 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 1.90, 38.92, 27.82, 6.78, 2.13, 16, 702 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 2.00, 41.44, 27.76, 6.78, 2.19, 16, 712 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 2.10, 43.99, 27.70, 6.78, 2.24, 16, 722 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 2.20, 46.57, 27.64, 6.78, 2.30, 16, 732 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 2.30, 49.19, 27.59, 6.78, 2.36, 16, 741 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 2.40, 51.83, 27.54, 6.78, 2.41, 16, 749 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 2.50, 54.50, 27.49, 6.78, 2.47, 16, 758 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 2.60, 57.20, 27.45, 6.79, 2.52, 16, 766 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 2.70, 59.23, 27.48, 6.80, 2.57, 3, 414 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 2.80, 61.20, 27.51, 6.81, 2.61, 3, 428 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 2.90, 63.20, 27.55, 6.83, 2.65, 3, 441 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 3.00, 65.21, 27.57, 6.84, 2.69, 3, 453 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 3.10, 67.25, 27.60, 6.85, 2.74, 3, 464 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 3.20, 69.31, 27.62, 6.86, 2.78, 3, 474 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 3.30, 71.38, 27.63, 6.87, 2.83, 3, 484 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 3.40, 73.48, 27.65, 6.88, 2.87, 3, 494 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 3.50, 75.59, 27.66, 6.89, 2.92, 3, 502 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 3.60, 77.71, 27.67, 6.90, 2.97, 3, 511 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 3.70, 79.85, 27.68, 6.91, 3.02, 3, 518 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 3.80, 82.00, 27.69, 6.92, 3.06, 3, 525 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 3.90, 84.16, 27.70, 6.93, 3.11, 3, 532 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 4.00, 86.34, 27.70, 6.93, 3.16, 3, 538 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 4.10, 88.52, 27.70, 6.94, 3.21, 3, 544 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 4.20, 90.72, 27.71, 6.95, 3.26, 3, 549 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 4.30, 92.93, 27.71, 6.96, 3.31, 3, 554 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 4.40, 95.14, 27.71, 6.96, 3.36, 3, 559 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 4.50, 97.36, 27.71, 6.97, 3.41, 3, 563 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 4.60, 99.59, 27.71, 6.98, 3.46, 3, 567 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 4.70, 101.83, 27.71, 6.98, 3.51, 3, 570 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 4.80, 104.07, 27.71, 6.99, 3.56, 3, 574 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 4.90, 106.32, 27.71, 6.99, 3.61, 3, 577 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 5.00, 108.57, 27.71, 7.00, 3.66, 3, 580 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 5.10, 110.83, 27.70, 7.00, 3.71, 3, 582 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 5.20, 113.10, 27.70, 7.01, 3.76, 3, 585 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №5 Пр.Б' AND ship_id=2), 5.21, 113.39, 27.70, 7.01, 3.77, 0, 0;
-
-
-DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2);
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 0.00, 0 000, 0.00, 0.00, 0.00, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 0.10, 0.00, 15.73, -3.96, 1.66, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 0.20, 0.00, 15.69, -3.98, 1.73, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 0.30, 0.01, 15.66, -3.99, 1.81, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 0.40, 17.00, 15.62, -4.01, 1.88, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 0.50, 31.00, 15.58, -4.02, 1.96, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 0.60, 0.05, 15.55, -4.04, 2.03, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 0.70, 0.08, 15.51, -4.06, 2.11, 0, 21 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 0.80, 0.11, 15.48, -4.08, 2.18, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 0.90, 0.15, 15.44, -4.10, 2.26, 1, 4 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 1.00, 0.57, 16.68, -4.45, 2.47, 1, 5 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 1.10, 1.02, 16.86, -4.52, 2.55, 1, 5 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 1.20, 1.50, 16.91, -4.55, 2.62, 1, 6 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 1.30, 2.02, 16.92, -4.58, 2.68, 1, 7 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 1.40, 2.59, 16.92, -4.60, 2.74, 2, 8 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 1.50, 3.19, 16.90, -4.62, 2.80, 2, 10 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 1.60, 3.83, 16.88, -4.64, 2.86, 2, 11 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 1.70, 4.52, 16.85, -4.66, 2.92, 2, 13 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 1.80, 5.26, 16.82, -4.68, 2.98, 3, 14 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 1.90, 6.04, 16.79, -4.69, 3.04, 3, 16 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 2.00, 6.87, 16.76, -4.71, 3.10, 3, 18 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 2.10, 7.75, 16.72, -4.73, 3.16, 4, 19 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 2.20, 8.68, 16.69, -4.75, 3.23, 4, 21 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 2.30, 9.65, 16.66, -4.77, 3.29, 4, 22 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 2.40, 10.67, 16.63, -4.78, 3.35, 5, 24 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 2.50, 11.74, 16.60, -4.80, 3.42, 5, 25 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 2.60, 12.85, 16.57, -4.82, 3.48, 6, 27 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 2.70, 14.01, 16.54, -4.84, 3.54, 6, 28 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 2.80, 15.21, 16.51, -4.86, 3.61, 7, 30 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 2.90, 16.46, 16.49, -4.88, 3.67, 7, 31 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 3.00, 17.75, 16.46, -4.90, 3.73, 8, 32 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 3.10, 19.09, 16.44, -4.92, 3.80, 8, 34 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 3.20, 20.46, 16.42, -4.95, 3.86, 9, 35 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 3.30, 21.88, 16.40, -4.97, 3.93, 10, 36 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 3.40, 23.34, 16.37, -4.99, 3.99, 10, 37 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 3.50, 24.84, 16.36, -5.01, 4.05, 11, 38 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 3.60, 26.37, 16.34, -5.03, 4.12, 12, 39 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 3.70, 27.94, 16.32, -5.05, 4.18, 12, 40 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 3.80, 29.55, 16.30, -5.07, 4.25, 13, 41 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 3.90, 31.19, 16.29, -5.09, 4.31, 14, 42 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 4.00, 32.86, 16.27, -5.11, 4.37, 14, 43 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 4.10, 34.56, 16.25, -5.13, 4.44, 15, 44 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 4.20, 36.30, 16.24, -5.15, 4.50, 16, 45 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 4.30, 38.06, 16.23, -5.17, 4.56, 16, 46 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 4.40, 39.85, 16.21, -5.18, 4.62, 17, 47 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 4.50, 41.66, 16.20, -5.20, 4.69, 18, 47 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 4.60, 43.50, 16.19, -5.22, 4.75, 18, 48 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 4.70, 45.36, 16.18, -5.24, 4.81, 19, 49 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 4.80, 46.24, 16.18, -5.26, 4.84, 3, 20 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 4.90, 47.00, 16.19, -5.28, 4.86, 3, 23 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 5.00, 47.79, 16.19, -5.30, 4.89, 3, 27 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 5.10, 48.62, 16.19, -5.33, 4.92, 3, 30 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 5.20, 49.47, 16.19, -5.35, 4.95, 3, 33 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 5.30, 50.36, 16.19, -5.37, 4.99, 3, 36 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 5.40, 51.27, 16.19, -5.40, 5.02, 4, 39 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 5.50, 52.22, 16.19, -5.42, 5.06, 4, 41 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 5.60, 53.19, 16.18, -5.45, 5.10, 4, 43 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 5.70, 54.18, 16.18, -5.47, 5.14, 4, 45 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 5.80, 55.20, 16.17, -5.50, 5.18, 4, 47 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 5.90, 56.24, 16.16, -5.52, 5.22, 4, 49 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 6.00, 57.30, 16.16, -5.54, 5.26, 4, 51 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 6.10, 58.38, 16.15, -5.57, 5.31, 4, 52 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 6.20, 59.48, 16.14, -5.59, 5.35, 4, 54 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 6.30, 60.60, 16.13, -5.62, 5.40, 5, 55 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 6.40, 61.73, 16.12, -5.64, 5.44, 5, 56 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 6.50, 62.87, 16.11, -5.66, 5.49, 5, 57 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 6.60, 64.03, 16.10, -5.68, 5.54, 5, 58 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 6.70, 65.21, 16.09, -5.71, 5.59, 5, 59 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 6.80, 66.39, 16.08, -5.73, 5.64, 5, 60 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 6.90, 67.59, 16.07, -5.75, 5.69, 5, 61 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 7.00, 68.79, 16.06, -5.77, 5.74, 5, 62 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 7.10, 70.00, 16.05, -5.79, 5.79, 5, 62 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 7.20, 71.22, 16.04, -5.81, 5.84, 5, 63 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 7.30, 72.45, 16.03, -5.83, 5.89, 5, 63 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 7.40, 73.69, 16.02, -5.85, 5.94, 5, 64 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 7.50, 74.93, 16.01, -5.87, 5.99, 5, 64 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 7.60, 76.17, 16.00, -5.88, 6.04, 5, 65 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 7.70, 77.42, 15.99, -5.90, 6.10, 6, 65 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 7.80, 78.68, 15.98, -5.92, 6.15, 6, 65 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 7.90, 79.93, 15.97, -5.93, 6.20, 6, 66 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 8.00, 81.19, 15.96, -5.95, 6.25, 6, 66 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 ЛБ' AND ship_id=2), 8.05, 81.82, 15.96, -5.96, 6.28, 0, 0;
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 0.10, 4.23, 87.28, -7.24, 1.15, 6, 3793 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 0.20, 8.48, 87.33, -7.24, 1.20, 6, 3849 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 0.30, 12.76, 87.38, -7.24, 1.25, 6, 3897 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 0.40, 17.07, 87.42, -7.24, 1.30, 6, 3939 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 0.50, 21.39, 87.45, -7.24, 1.35, 6, 3974 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 0.60, 25.73, 87.49, -7.25, 1.40, 6, 4004 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 0.70, 30.08, 87.52, -7.25, 1.45, 6, 4030 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 0.80, 34.45, 87.54, -7.25, 1.50, 6, 4053 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 0.90, 38.82, 87.57, -7.25, 1.55, 6, 4074 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 1.00, 43.20, 87.59, -7.25, 1.60, 6, 4092 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 1.10, 47.59, 87.61, -7.25, 1.65, 6, 4108 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 1.20, 51.99, 87.63, -7.25, 1.70, 6, 4122 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 1.30, 56.39, 87.65, -7.25, 1.76, 6, 4135 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 1.40, 60.80, 87.67, -7.25, 1.81, 6, 4146 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 1.50, 65.22, 87.68, -7.25, 1.86, 6, 4157 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 1.60, 69.63, 87.70, -7.25, 1.91, 6, 4166 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 1.70, 74.06, 87.71, -7.25, 1.96, 6, 4175 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 1.80, 78.48, 87.73, -7.25, 2.01, 6, 4184 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 1.90, 82.91, 87.74, -7.25, 2.06, 6, 4192 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 2.00, 87.34, 87.75, -7.25, 2.11, 6, 4199 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 2.10, 91.78, 87.76, -7.25, 2.16, 6, 4206 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 2.20, 96.22, 87.77, -7.25, 2.21, 6, 4213 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 2.30, 100.66, 87.78, -7.25, 2.26, 7, 4220 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 2.40, 105.10, 87.79, -7.26, 2.31, 7, 4227 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 2.50, 109.55, 87.80, -7.26, 2.36, 7, 4233 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 2.60, 114.00, 87.81, -7.26, 2.41, 7, 4239 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 2.70, 118.45, 87.82, -7.26, 2.46, 7, 4245 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 2.80, 122.90, 87.82, -7.26, 2.51, 7, 4250 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 2.90, 127.36, 87.83, -7.26, 2.56, 7, 4256 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 3.00, 131.82, 87.84, -7.26, 2.61, 7, 4261 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 3.10, 136.28, 87.85, -7.26, 2.66, 7, 4266 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 3.20, 140.74, 87.85, -7.26, 2.71, 7, 4271 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 3.30, 145.21, 87.86, -7.26, 2.76, 7, 4276 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 3.40, 149.68, 87.87, -7.26, 2.81, 7, 4281 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 3.50, 154.14, 87.87, -7.26, 2.86, 7, 4285 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 3.60, 158.61, 87.88, -7.26, 2.91, 7, 4290 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 3.70, 163.09, 87.89, -7.26, 2.96, 7, 4294 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 3.80, 167.56, 87.89, -7.26, 3.01, 7, 4297 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 3.90, 172.03, 87.90, -7.26, 3.06, 7, 4301 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 4.00, 176.51, 87.90, -7.26, 3.12, 7, 4304 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 4.10, 180.99, 87.91, -7.26, 3.17, 7, 4307 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 4.20, 185.47, 87.91, -7.26, 3.22, 7, 4310 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 4.30, 189.95, 87.92, -7.26, 3.27, 7, 4312 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 4.40, 194.43, 87.92, -7.26, 3.32, 7, 4315 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 4.50, 198.91, 87.93, -7.26, 3.37, 7, 4317 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 4.60, 203.39, 87.93, -7.26, 3.42, 7, 4319 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 4.70, 207.87, 87.94, -7.26, 3.47, 7, 4321 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 4.80, 212.36, 87.94, -7.26, 3.52, 7, 4323 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 4.90, 216.84, 87.95, -7.26, 3.57, 7, 4324 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 5.00, 221.33, 87.95, -7.26, 3.62, 7, 4326 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 5.10, 225.81, 87.95, -7.26, 3.67, 7, 4327 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 5.20, 230.30, 87.96, -7.26, 3.72, 7, 4328 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 5.30, 234.78, 87.96, -7.26, 3.77, 7, 4329 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 5.40, 239.27, 87.97, -7.26, 3.82, 7, 4330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 5.50, 243.76, 87.97, -7.26, 3.87, 7, 4331 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 5.60, 248.24, 87.97, -7.26, 3.92, 7, 4331 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 5.70, 252.73, 87.98, -7.26, 3.97, 7, 4332 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 5.80, 257.22, 87.98, -7.26, 4.02, 7, 4332 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 5.90, 261.70, 87.98, -7.26, 4.07, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 6.00, 266.19, 87.99, -7.26, 4.12, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 6.10, 270.68, 87.99, -7.26, 4.17, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 6.20, 275.17, 87.99, -7.26, 4.22, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 6.30, 279.66, 87.99, -7.26, 4.27, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 6.40, 284.14, 88.00, -7.26, 4.32, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 6.50, 288.63, 88.00, -7.26, 4.37, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 6.60, 293.12, 88.00, -7.26, 4.42, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 6.70, 297.61, 88.00, -7.26, 4.47, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 6.80, 302.09, 88.01, -7.26, 4.52, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 6.90, 306.58, 88.01, -7.26, 4.57, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 7.00, 311.07, 88.01, -7.26, 4.62, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 7.10, 315.56, 88.01, -7.26, 4.67, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 7.20, 320.05, 88.01, -7.26, 4.72, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 7.30, 324.53, 88.02, -7.26, 4.77, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 7.40, 329.02, 88.02, -7.26, 4.82, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 7.50, 333.51, 88.02, -7.26, 4.87, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 7.60, 338.00, 88.02, -7.26, 4.92, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 7.70, 342.48, 88.02, -7.26, 4.97, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 7.80, 346.97, 88.03, -7.26, 5.02, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 7.90, 351.46, 88.03, -7.26, 5.07, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 8.00, 355.95, 88.03, -7.26, 5.12, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 8.10, 360.44, 88.03, -7.26, 5.17, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 8.20, 364.92, 88.03, -7.26, 5.22, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 8.30, 369.41, 88.03, -7.26, 5.27, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 8.40, 373.90, 88.04, -7.26, 5.33, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 8.50, 378.39, 88.04, -7.26, 5.38, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 ЛБ' AND ship_id=2), 8.55, 380.63, 88.04, -7.26, 5.400, 0, 0;
 
 
-DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2);
-
-INSERT INTO compartment_curve
-  (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 0.10, 0.00, 15.73, 3.96, 1.66, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 0.20, 0.00, 15.69, 3.98, 1.73, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 0.30, 0.01, 15.66, 3.99, 1.81, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 0.40, 0.02, 15.62, 4.01, 1.88, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 0.50, 0.03, 15.58, 4.02, 1.96, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 0.60, 0.05, 15.55, 4.04, 2.03, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 0.70, 0.08, 15.51, 4.06, 2.11, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 0.80, 0.11, 15.48, 4.08, 2.18, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 0.90, 0.15, 15.44, 4.10, 2.26, 1, 4 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 1.00, 0.57, 16.68, 4.45, 2.47, 1, 5 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 1.10, 1.02, 16.86, 4.52, 2.55, 1, 5 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 1.20, 1.51, 16.91, 4.55, 2.62, 1, 6 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 1.30, 2.03, 16.92, 4.58, 2.68, 1, 7 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 1.40, 2.59, 16.92, 4.60, 2.74, 2, 8 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 1.50, 3.20, 16.90, 4.62, 2.80, 2, 10 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 1.60, 3.84, 16.88, 4.64, 2.86, 2, 11 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 1.70, 4.53, 16.85, 4.66, 2.92, 2, 13 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 1.80, 5.27, 16.82, 4.68, 2.98, 3, 14 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 1.90, 6.06, 16.79, 4.69, 3.04, 3, 17 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 2.00, 6.90, 16.75, 4.71, 3.10, 3, 19 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 2.10, 7.79, 16.71, 4.73, 3.16, 4, 21 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 2.20, 8.74, 16.67, 4.74, 3.23, 4, 24 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 2.30, 9.75, 16.63, 4.76, 3.29, 5, 27 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 2.40, 10.81, 16.59, 4.78, 3.36, 5, 31 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 2.50, 11.94, 16.54, 4.79, 3.42, 6, 35 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 2.60, 13.13, 16.49, 4.81, 3.49, 6, 39 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 2.70, 14.39, 16.44, 4.83, 3.56, 7, 44 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 2.80, 15.73, 16.39, 4.84, 3.62, 8, 49 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 2.90, 17.13, 16.34, 4.86, 3.69, 8, 54 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 3.00, 18.60, 16.29, 4.88, 3.76, 9, 59 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 3.10, 20.14, 16.23, 4.90, 3.83, 10, 64 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 3.20, 21.75, 16.18, 4.91, 3.90, 10, 69 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 3.30, 23.43, 16.13, 4.93, 3.96, 11, 73 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 3.40, 25.17, 16.08, 4.95, 4.03, 12, 77 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 3.50, 26.97, 16.04, 4.97, 4.10, 13, 81 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 3.60, 28.84, 15.99, 4.99, 4.17, 14, 85 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 3.70, 30.77, 15.95, 5.00, 4.236, 14, 89 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 3.80, 32.76, 15.90, 5.02, 4.30, 15, 93 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 3.90, 34.80, 15.86, 5.04, 4.37, 16, 96 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 4.00, 36.90, 15.82, 5.06, 4.44, 17, 99 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 4.10, 39.06, 15.79, 5.08, 4.51, 18, 102 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 4.20, 41.26, 15.75, 5.10, 4.57, 19, 105 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 4.30, 43.51, 15.72, 5.12, 4.64, 20, 108 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 4.40, 45.81, 15.69, 5.14, 4.70, 20, 111 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 4.50, 48.15, 15.65, 5.15, 4.77, 21, 113 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 4.60, 50.53, 15.63, 5.17, 4.83, 22, 116 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 4.70, 52.96, 15.60, 5.19, 4.90, 23, 118 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 4.80, 54.31, 15.62, 5.20, 4.94, 24, 23 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 4.90, 55.52, 15.65, 5.21, 4.97, 24, 27 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 5.00, 56.77, 15.67, 5.22, 5.00, 25, 32 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 5.10, 58.05, 15.69, 5.23, 5.04, 26, 36 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 5.20, 59.36, 15.71, 5.25, 5.08, 26, 39 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 5.30, 60.71, 15.73, 5.26, 5.12, 27, 43 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 5.40, 62.08, 15.75, 5.27, 5.16, 28, 46 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 5.50, 63.48, 15.77, 5.28, 5.20, 28, 49 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 5.60, 64.91, 15.78, 5.30, 5.24, 29, 52 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 5.70, 66.36, 15.79, 5.31, 5.29, 30, 54 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 5.80, 67.83, 15.80, 5.33, 5.33, 30, 57 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 5.90, 69.33, 15.81, 5.34, 5.38, 31, 59 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 6.00, 70.85, 15.82, 5.35, 5.42, 31, 61 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 6.10, 72.39, 15.83, 5.37, 5.47, 32, 63 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 6.20, 73.95, 15.84, 5.38, 5.52, 32, 65 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 6.30, 75.52, 15.85, 5.40, 5.57, 33, 67 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 6.40, 77.11, 15.85, 5.41, 5.62, 33, 68 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 6.50, 78.71, 15.86, 5.42, 5.67, 33, 70 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 6.60, 80.33, 15.86, 5.44, 5.72, 34, 71 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 6.70, 81.96, 15.87, 5.45, 5.77, 34, 72 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 6.80, 83.61, 15.87, 5.47, 5.82, 34, 74 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 6.90, 85.26, 15.87, 5.48, 5.87, 35, 75 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 7.00, 86.92, 15.88, 5.49, 5.92, 35, 76 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 7.10, 88.59, 15.88, 5.50, 5.97, 35, 76 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 7.20, 90.27, 15.88, 5.52, 6.02, 35, 77 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 7.30, 91.96, 15.88, 5.53, 6.07, 35, 78 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 7.40, 93.65, 15.88, 5.54, 6.13, 36, 79 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 7.50, 95.35, 15.88, 5.55, 6.18, 36, 79 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 7.60, 97.05, 15.89, 5.56, 6.23, 36, 80 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 7.70, 98.76, 15.89, 5.57, 6.28, 36, 80 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 7.80, 100.47, 15.89, 5.58, 6.34, 36, 81 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 7.90, 102.19, 15.89, 5.59, 6.39, 36, 81 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 8.00, 103.91, 15.89, 5.60, 6.44, 36, 81 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №6 Пр.Б' AND ship_id=2), 8.05, 104.77, 15.89, 5.61, 6.47, 0, 0;
-
-
-DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 ЛБ' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2);
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 ЛБ' AND ship_id=2), 0.10, 0.00, 0.00, 0.00, 0.00, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 ЛБ' AND ship_id=2), 0.20, 0.00, 9.47, -2.21, 3.33, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 ЛБ' AND ship_id=2), 0.30, 0 001, 9.45, -2.23, 3.40, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 ЛБ' AND ship_id=2), 0.40, 3.00, 9.42, -2.24, 3.48, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 ЛБ' AND ship_id=2), 0.50, 7.00, 9.38, -2.26, 3.56, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 ЛБ' AND ship_id=2), 0.60, 14.00, 9.35, -2.28, 3.63, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 ЛБ' AND ship_id=2), 0.70, 26.00, 9.32, -2.30, 3.71, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 ЛБ' AND ship_id=2), 0.80, 0.05, 9.28, -2.32, 3.79, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 ЛБ' AND ship_id=2), 0.90, 0.07, 9.24, -2.34, 3.87, 6, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 ЛБ' AND ship_id=2), 1.00, 0.11, 9.20, -2.37, 3.95, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 ЛБ' AND ship_id=2), 1.10, 0.16, 9.16, -2.40, 4.03, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 ЛБ' AND ship_id=2), 1.20, 0.23, 9.11, -2.43, 4.11, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 ЛБ' AND ship_id=2), 1.30, 0.31, 9.06, -2.46, 4.19, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 ЛБ' AND ship_id=2), 1.30, 0.42, 9.01, -2.49, 4.27, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 ЛБ' AND ship_id=2), 1.40, 0.57, 8.96, -2.53, 4.36, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 ЛБ' AND ship_id=2), 1.50, 0.74, 8.90, -2.57, 4.44, 0, 1 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 ЛБ' AND ship_id=2), 1.60, 0.96, 8.84, -2.61, 4.52, 0, 1 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 ЛБ' AND ship_id=2), 1.70, 1.22, 8.77, -2.65, 4.60, 1, 1 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 ЛБ' AND ship_id=2), 1.80, 1.54, 8.70, -2.69, 4.68, 1, 2 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 ЛБ' AND ship_id=2), 1.90, 1.92, 8.63, -2.73, 4.77, 1, 3 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 ЛБ' AND ship_id=2), 2.00, 2.36, 8.55, -2.78, 4.85, 1, 4 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 ЛБ' AND ship_id=2), 2.10, 2.87, 8.48, -2.82, 4.93, 2, 5 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 ЛБ' AND ship_id=2), 2.20, 3.45, 8.41, -2.87, 5.01, 2, 6 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 ЛБ' AND ship_id=2), 2.30, 4.09, 8.36, -2.92, 5.09, 3, 6 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 ЛБ' AND ship_id=2), 2.40, 4.79, 8.31, -2.97, 5.16, 4, 7 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 ЛБ' AND ship_id=2), 2.50, 5.56, 8.26, -3.02, 5.24, 4, 8 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 ЛБ' AND ship_id=2), 2.60, 6.39, 8.22, -3.07, 5.31, 5, 8 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 ЛБ' AND ship_id=2), 2.70, 7.28, 8.19, -3.12, 5.38, 6, 9 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 ЛБ' AND ship_id=2), 2.80, 8.22, 8.16, -3.17, 5.45, 7, 10 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 ЛБ' AND ship_id=2), 2.90, 9.21, 8.13, -3.22, 5.52, 8, 10 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 ЛБ' AND ship_id=2), 3.00, 10.26, 8.10, -3.27, 5.59, 9, 11 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 ЛБ' AND ship_id=2), 3.06, 10.95, 8.09, -3.30, 5.64, 0, 0;
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 0.10, 4.23, 87.28, 7.24, 1.15, 6, 3793 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 0.20, 8.48, 87.33, 7.24, 1.20, 6, 3849 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 0.30, 12.76, 87.38, 7.24, 1.25, 6, 3897 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 0.40, 17.07, 87.42, 7.24, 1.30, 6, 3939 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 0.50, 21.39, 87.45, 7.24, 1.35, 6, 3974 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 0.60, 25.73, 87.49, 7.25, 1.40, 6, 4004 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 0.70, 30.08, 87.52, 7.25, 1.45, 6, 4030 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 0.80, 34.45, 87.54, 7.25, 1.50, 6, 4053 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 0.90, 38.82, 87.57, 7.25, 1.55, 6, 4074 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 1.00, 43.20, 87.59, 7.25, 1.60, 6, 4092 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 1.10, 47.59, 87.61, 7.25, 1.65, 6, 4108 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 1.20, 51.99, 87.63, 7.25, 1.70, 6, 4122 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 1.30, 56.393, 87.65, 7.25, 1.76, 6, 4135 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 1.40, 60.80, 87.67, 7.25, 1.81, 6, 4146 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 1.50, 65.22, 87.68, 7.25, 1.86, 6, 4157 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 1.60, 69.63, 87.70, 7.25, 1.91, 6, 4166 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 1.70, 74.055, 87.71, 7.25, 1.96, 6, 4175 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 1.80, 78.48, 87.73, 7.25, 2.01, 6, 4184 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 1.90, 82.91, 87.74, 7.25, 2.06, 6, 4192 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 2.00, 87.34, 87.75, 7.25, 2.11, 6, 4199 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 2.10, 91.78, 87.76, 7.25, 2.16, 6, 4206 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 2.20, 96.22, 87.77, 7.25, 2.21, 6, 4213 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 2.30, 100.66, 87.78, 7.25, 2.26, 7, 4220 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 2.40, 105.10, 87.79, 7.26, 2.31, 7, 4227 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 2.50, 109.55, 87.80, 7.26, 2.36, 7, 4233 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 2.60, 114.00, 87.81, 7.26, 2.41, 7, 4239 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 2.70, 118.45, 87.82, 7.26, 2.46, 7, 4245 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 2.80, 122.90, 87.82, 7.26, 2.51, 7, 4250 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 2.90, 127.36, 87.83, 7.26, 2.56, 7, 4256 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 3.00, 131.82, 87.84, 7.26, 2.61, 7, 4261 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 3.10, 136.28, 87.85, 7.26, 2.66, 7, 4266 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 3.20, 140.74, 87.85, 7.26, 2.71, 7, 4271 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 3.30, 145.21, 87.86, 7.26, 2.76, 7, 4276 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 3.40, 149.68, 87.87, 7.26, 2.81, 7, 4281 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 3.50, 154.14, 87.87, 7.26, 2.86, 7, 4285 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 3.60, 158.61, 87.88, 7.26, 2.91, 7, 4290 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 3.70, 163.09, 87.89, 7.26, 2.96, 7, 4294 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 3.80, 167.56, 87.89, 7.26, 3.01, 7, 4297 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 3.90, 172.03, 87.90, 7.26, 3.06, 7, 4301 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 4.00, 176.51, 87.90, 7.26, 3.12, 7, 4304 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 4.10, 180.99, 87.91, 7.26, 3.17, 7, 4307 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 4.20, 185.47, 87.91, 7.26, 3.22, 7, 4310 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 4.30, 189.95, 87.92, 7.26, 3.27, 7, 4312 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 4.40, 194.43, 87.92, 7.26, 3.32, 7, 4315 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 4.50, 198.91, 87.93, 7.26, 3.37, 7, 4317 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 4.60, 203.39, 87.93, 7.26, 3.42, 7, 4319 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 4.70, 207.87, 87.94, 7.26, 3.47, 7, 4321 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 4.80, 212.36, 87.94, 7.26, 3.52, 7, 4323 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 4.90, 216.84, 87.95, 7.26, 3.57, 7, 4324 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 5.00, 221.33, 87.95, 7.26, 3.62, 7, 4326 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 5.10, 225.81, 87.95, 7.26, 3.67, 7, 4327 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 5.20, 230.30, 87.96, 7.26, 3.72, 7, 4328 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 5.30, 234.78, 87.96, 7.26, 3.77, 7, 4329 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 5.40, 239.27, 87.97, 7.26, 3.82, 7, 4330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 5.50, 243.76, 87.97, 7.26, 3.87, 7, 4331 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 5.60, 248.24, 87.97, 7.26, 3.92, 7, 4331 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 5.70, 252.73, 87.98, 7.26, 3.97, 7, 4332 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 5.80, 257.22, 87.98, 7.26, 4.02, 7, 4332 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 5.90, 261.70, 87.98, 7.26, 4.07, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 6.00, 266.19, 87.99, 7.26, 4.12, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 6.10, 270.68, 87.99, 7.26, 4.17, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 6.20, 275.17, 87.99, 7.26, 4.22, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 6.30, 279.66, 87.99, 7.26, 4.27, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 6.40, 284.14, 88.00, 7.26, 4.32, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 6.50, 288.63, 88.00, 7.26, 4.37, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 6.60, 293.12, 88.00, 7.26, 4.42, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 6.70, 297.61, 88.00, 7.26, 4.47, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 6.80, 302.09, 88.01, 7.26, 4.52, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 6.90, 306.58, 88.01, 7.26, 4.57, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 7.00, 311.07, 88.01, 7.26, 4.62, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 7.10, 315.56, 88.01, 7.26, 4.67, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 7.20, 320.05, 88.01, 7.26, 4.72, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 7.30, 324.53, 88.02, 7.26, 4.77, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 7.40, 329.02, 88.02, 7.26, 4.82, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 7.50, 333.51, 88.02, 7.26, 4.87, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 7.60, 338.00, 88.02, 7.26, 4.92, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 7.70, 342.48, 88.02, 7.26, 4.97, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 7.80, 346.97, 88.03, 7.26, 5.02, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 7.90, 351.46, 88.03, 7.26, 5.07, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 8.00, 355.95, 88.03, 7.26, 5.12, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 8.10, 360.44, 88.03, 7.26, 5.17, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 8.20, 364.92, 88.03, 7.26, 5.22, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 8.30, 369.41, 88.03, 7.26, 5.27, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 8.40, 373.90, 88.04, 7.26, 5.33, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 8.50, 378.39, 88.04, 7.26, 5.38, 7, 4333 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 2 Пр.Б' AND ship_id=2), 8.55, 380.63, 88.04, 7.26, 5.40, 0, 0;
 
 
-DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 Пр.Б' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2);
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 Пр.Б' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 Пр.Б' AND ship_id=2), 0.10, 0.00, 9.47, 2.21, 3.33, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 Пр.Б' AND ship_id=2), 0.20, 0.00, 9.45, 2.23, 3.40, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 Пр.Б' AND ship_id=2), 0.30, 0.00, 9.42, 2.24, 3.48, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 Пр.Б' AND ship_id=2), 0.40, 0.01, 9.38, 2.26, 3.56, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 Пр.Б' AND ship_id=2), 0.50, 0.01, 9.35, 2.28, 3.63, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 Пр.Б' AND ship_id=2), 0.60, 0.03, 9.32, 2.30, 3.71, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 Пр.Б' AND ship_id=2), 0.70, 0.05, 9.28, 2.32, 3.79, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 Пр.Б' AND ship_id=2), 0.80, 0.07, 9.24, 2.34, 3.87, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 Пр.Б' AND ship_id=2), 0.90, 0.11, 9.20, 2.37, 3.95, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 Пр.Б' AND ship_id=2), 1.00, 0.16, 9.16, 2.40, 4.03, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 Пр.Б' AND ship_id=2), 1.10, 0.23, 9.11, 2.43, 4.11, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 Пр.Б' AND ship_id=2), 1.20, 0.31, 9.06, 2.46, 4.19, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 Пр.Б' AND ship_id=2), 1.30, 0.42, 9.01, 2.49, 4.27, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 Пр.Б' AND ship_id=2), 1.40, 0.57, 8.96, 2.53, 4.36, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 Пр.Б' AND ship_id=2), 1.50, 0.74, 8.90, 2.57, 4.44, 0, 1 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 Пр.Б' AND ship_id=2), 1.60, 0.96, 8.84, 2.61, 4.52, 0, 1 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 Пр.Б' AND ship_id=2), 1.70, 1.22, 8.77, 2.65, 4.60, 1, 1 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 Пр.Б' AND ship_id=2), 1.80, 1.54, 8.70, 2.69, 4.68, 1, 2 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 Пр.Б' AND ship_id=2), 1.90, 1.92, 8.63, 2.73, 4.77, 1, 3 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 Пр.Б' AND ship_id=2), 2.00, 2.36, 8.55, 2.78, 4.85, 1, 4 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 Пр.Б' AND ship_id=2), 2.10, 2.87, 8.48, 2.82, 4.93, 2, 5 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 Пр.Б' AND ship_id=2), 2.20, 3.45, 8.41, 2.87, 5.01, 2, 6 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 Пр.Б' AND ship_id=2), 2.30, 4.09, 8.36, 2.92, 5.09, 3, 6 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 Пр.Б' AND ship_id=2), 2.40, 4.79, 8.31, 2.97, 5.16, 4, 7 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 Пр.Б' AND ship_id=2), 2.50, 5.56, 8.26, 3.02, 5.24, 4, 8 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 Пр.Б' AND ship_id=2), 2.60, 6.39, 8.22, 3.07, 5.31, 5, 8 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 Пр.Б' AND ship_id=2), 2.70, 7.28, 8.19, 3.12, 5.38, 6, 9 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 Пр.Б' AND ship_id=2), 2.80, 8.22, 8.16, 3.17, 5.45, 7, 10 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 Пр.Б' AND ship_id=2), 2.90, 9.21, 8.13, 3.22, 5.52, 8, 10 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 Пр.Б' AND ship_id=2), 3.00, 10.26, 8.10, 3.27, 5.59, 9, 11 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк №7 Пр.Б' AND ship_id=2), 3.06, 10.95, 8.09, 3.30, 5.64, 0, 0;
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 0.10, 3.03, 59.67, -7.27, 1.16, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 0.20, 6.06, 59.67, -7.27, 1.20, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 0.30, 9.10, 59.67, -7.27, 1.25, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 0.40, 12.13, 59.67, -7.27, 1.30, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 0.50, 15.16, 59.67, -7.27, 1.35, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 0.60, 18.19, 59.67, -7.27, 1.40, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 0.70, 21.22, 59.67, -7.27, 1.45, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 0.80, 24.26, 59.67, -7.27, 1.50, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 0.90, 27.29, 59.67, -7.27, 1.55, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 1.00, 30.32, 59.67, -7.27, 1.60, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 1.10, 33.35, 59.67, -7.27, 1.65, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 1.20, 36.38, 59.67, -7.27, 1.70, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 1.30, 39.41, 59.67, -7.27, 1.75, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 1.40, 42.45, 59.67, -7.27, 1.80, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 1.50, 45.48, 59.67, -7.27, 1.85, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 1.60, 48.51, 59.67, -7.27, 1.90, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 1.70, 51.54, 59.67, -7.27, 1.95, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 1.80, 54.57, 59.67, -7.27, 2.00, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 1.90, 57.61, 59.67, -7.27, 2.05, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 2.00, 60.64, 59.67, -7.27, 2.10, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 2.10, 63.67, 59.67, -7.27, 2.15, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 2.20, 66.70, 59.67, -7.27, 2.20, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 2.30, 69.73, 59.67, -7.27, 2.25, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 2.40, 72.76, 59.67, -7.27, 2.30, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 2.50, 75.80, 59.67, -7.27, 2.35, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 2.60, 78.83, 59.67, -7.27, 2.40, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 2.70, 81.86, 59.67, -7.27, 2.45, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 2.80, 84.89, 59.67, -7.27, 2.50, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 2.90, 87.92, 59.67, -7.27, 2.55, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 3.00, 90.96, 59.67, -7.27, 2.60, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 3.10, 93.99, 59.67, -7.27, 2.65, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 3.20, 97.02, 59.67, -7.27, 2.70, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 3.30, 100.05, 59.67, -7.27, 2.75, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 3.40, 103.08, 59.67, -7.27, 2.80, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 3.50, 106.11, 59.67, -7.27, 2.85, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 3.60, 109.15, 59.67, -7.27, 2.90, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 3.70, 112.18, 59.67, -7.27, 2.95, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 3.80, 115.21, 59.67, -7.27, 3.00, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 3.90, 118.24, 59.67, -7.27, 3.05, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 4.00, 121.27, 59.67, -7.27, 3.10, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 4.10, 124.31, 59.67, -7.27, 3.15, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 4.20, 127.34, 59.67, -7.27, 3.20, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 4.30, 130.37, 59.67, -7.27, 3.25, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 4.40, 133.40, 59.67, -7.27, 3.30, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 4.50, 136.43, 59.67, -7.27, 3.35, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 4.60, 139.46, 59.67, -7.27, 3.40, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 4.70, 142.50, 59.67, -7.27, 3.45, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 4.80, 145.53, 59.67, -7.27, 3.50, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 4.90, 148.56, 59.67, -7.27, 3.55, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 5.00, 151.59, 59.67, -7.27, 3.60, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 5.10, 154.62, 59.67, -7.27, 3.65, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 5.20, 157.66, 59.67, -7.27, 3.70, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 5.30, 160.69, 59.67, -7.27, 3.75, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 5.40, 163.72, 59.67, -7.27, 3.80, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 5.50, 166.75, 59.67, -7.27, 3.85, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 5.60, 169.78, 59.67, -7.27, 3.90, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 5.70, 172.82, 59.67, -7.27, 3.95, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 5.80, 175.85, 59.67, -7.27, 4.00, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 5.90, 178.88, 59.67, -7.27, 4.05, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 6.00, 181.91, 59.67, -7.27, 4.10, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 6.10, 184.94, 59.67, -7.27, 4.15, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 6.20, 187.97, 59.67, -7.27, 4.20, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 6.30, 191.01, 59.67, -7.27, 4.25, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 6.40, 194.04, 59.67, -7.27, 4.30, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 6.50, 197.07, 59.67, -7.27, 4.35, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 6.60, 200.10, 59.67, -7.27, 4.40, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 6.70, 203.13, 59.67, -7.27, 4.45, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 6.80, 206.17, 59.67, -7.27, 4.50, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 6.90, 209.20, 59.67, -7.27, 4.55, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 7.00, 212.23, 59.67, -7.27, 4.60, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 7.10, 215.26, 59.67, -7.27, 4.65, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 7.20, 218.29, 59.67, -7.27, 4.70, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 7.30, 221.32, 59.67, -7.27, 4.75, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 7.40, 224.36, 59.67, -7.27, 4.80, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 7.50, 227.39, 59.67, -7.27, 4.85, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 7.60, 230.42, 59.67, -7.27, 4.90, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 7.70, 233.45, 59.67, -7.27, 4.95, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 7.80, 236.48, 59.67, -7.27, 5.00, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 7.90, 239.52, 59.67, -7.27, 5.05, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 8.00, 242.55, 59.67, -7.27, 5.10, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 8.10, 245.58, 59.67, -7.27, 5.15, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 8.20, 248.61, 59.67, -7.27, 5.20, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 8.30, 251.64, 59.67, -7.27, 5.25, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 8.40, 254.67, 59.67, -7.27, 5.30, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 8.50, 257.71, 59.67, -7.27, 5.35, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 ЛБ' AND ship_id=2), 8.55, 259.22, 59.67, -7.27, 5.38, 0, 0;
+
+
+DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2);
+
+INSERT INTO compartment_curve
+  (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 0.10, 3.03, 59.67, 7.27, 1.15, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 0.20, 6.06, 59.67, 7.27, 1.20, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 0.30, 9.10, 59.67, 7.27, 1.25, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 0.40, 12.13, 59.67, 7.27, 1.30, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 0.50, 15.16, 59.67, 7.27, 1.35, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 0.60, 18.19, 59.67, 7.27, 1.40, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 0.70, 21.22, 59.67, 7.27, 1.45, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 0.80, 24.26, 59.67, 7.27, 1.50, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 0.90, 27.29, 59.67, 7.27, 1.55, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 1.00, 30.32, 59.67, 7.27, 1.60, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 1.10, 33.35, 59.67, 7.27, 1.65, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 1.20, 36.38, 59.67, 7.27, 1.70, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 1.30, 39.41, 59.67, 7.27, 1.75, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 1.40, 42.45, 59.67, 7.27, 1.80, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 1.50, 45.48, 59.67, 7.27, 1.85, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 1.60, 48.51, 59.67, 7.27, 1.90, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 1.70, 51.54, 59.67, 7.27, 1.95, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 1.80, 54.57, 59.67, 7.27, 2.00, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 1.90, 57.61, 59.67, 7.27, 2.05, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 2.00, 60.64, 59.67, 7.27, 2.10, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 2.10, 63.67, 59.67, 7.27, 2.15, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 2.20, 66.70, 59.67, 7.27, 2.20, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 2.30, 69.73, 59.67, 7.27, 2.25, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 2.40, 72.76, 59.67, 7.27, 2.30, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 2.50, 75.80, 59.67, 7.27, 2.35, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 2.60, 78.83, 59.67, 7.27, 2.40, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 2.70, 81.86, 59.67, 7.27, 2.45, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 2.80, 84.89, 59.67, 7.27, 2.50, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 2.90, 87.92, 59.67, 7.27, 2.55, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 3.00, 90.96, 59.67, 7.27, 2.60, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 3.10, 93.99, 59.67, 7.27, 2.65, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 3.20, 97.02, 59.67, 7.27, 2.70, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 3.30, 100.05, 59.67, 7.27, 2.75, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 3.40, 103.08, 59.67, 7.27, 2.80, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 3.50, 106.11, 59.67, 7.27, 2.85, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 3.60, 109.15, 59.67, 7.27, 2.90, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 3.70, 112.18, 59.67, 7.27, 2.95, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 3.80, 115.21, 59.67, 7.27, 3.00, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 3.90, 118.24, 59.67, 7.27, 3.05, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 4.00, 121.27, 59.67, 7.27, 3.10, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 4.10, 124.31, 59.67, 7.27, 3.15, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 4.20, 127.34, 59.67, 7.27, 3.20, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 4.30, 130.37, 59.67, 7.27, 3.25, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 4.40, 133.40, 59.67, 7.27, 3.30, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 4.50, 136.43, 59.67, 7.27, 3.35, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 4.60, 139.46, 59.67, 7.27, 3.40, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 4.70, 142.50, 59.67, 7.27, 3.45, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 4.80, 145.53, 59.67, 7.27, 3.50, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 4.90, 148.56, 59.67, 7.27, 3.55, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 5.00, 151.59, 59.67, 7.27, 3.60, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 5.10, 154.62, 59.67, 7.27, 3.65, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 5.20, 157.66, 59.67, 7.27, 3.70, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 5.30, 160.69, 59.67, 7.27, 3.75, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 5.40, 163.72, 59.67, 7.27, 3.80, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 5.50, 166.75, 59.67, 7.27, 3.85, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 5.60, 169.78, 59.67, 7.27, 3.90, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 5.70, 172.82, 59.67, 7.27, 3.95, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 5.80, 175.85, 59.67, 7.27, 4.00, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 5.90, 178.88, 59.67, 7.27, 4.05, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 6.00, 181.91, 59.67, 7.27, 4.10, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 6.10, 184.94, 59.67, 7.27, 4.15, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 6.20, 187.97, 59.67, 7.27, 4.20, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 6.30, 191.01, 59.67, 7.27, 4.25, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 6.40, 194.04, 59.67, 7.27, 4.30, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 6.50, 197.07, 59.67, 7.27, 4.35, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 6.60, 200.10, 59.67, 7.27, 4.40, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 6.70, 203.13, 59.67, 7.27, 4.45, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 6.80, 206.17, 59.67, 7.27, 4.50, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 6.90, 209.20, 59.67, 7.27, 4.55, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 7.00, 212.23, 59.67, 7.27, 4.60, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 7.10, 215.26, 59.67, 7.27, 4.65, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 7.20, 218.29, 59.67, 7.27, 4.70, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 7.30, 221.32, 59.67, 7.27, 4.75, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 7.40, 224.36, 59.67, 7.27, 4.80, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 7.50, 227.39, 59.67, 7.27, 4.85, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 7.60, 230.42, 59.67, 7.27, 4.90, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 7.70, 233.45, 59.67, 7.27, 4.95, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 7.80, 236.48, 59.67, 7.27, 5.00, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 7.90, 239.52, 59.67, 7.27, 5.05, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 8.00, 242.55, 59.67, 7.27, 5.10, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 8.10, 245.58, 59.67, 7.27, 5.15, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 8.20, 248.61, 59.67, 7.27, 5.20, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 8.30, 251.64, 59.67, 7.27, 5.25, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 8.40, 254.67, 59.67, 7.27, 5.30, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 8.50, 257.71, 59.67, 7.27, 5.35, 5, 1330 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 3 Пр.Б' AND ship_id=2), 8.55, 259.22, 59.67, 7.27, 5.38, 0, 0;
+
+
+DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2);
+
+INSERT INTO compartment_curve
+  (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 0.10, 1.57, 42.28, -7.27, 1.15, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 0.20, 3.13, 42.28, -7.27, 1.20, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 0.30, 4.70, 42.28, -7.27, 1.25, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 0.40, 6.26, 42.28, -7.27, 1.30, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 0.50, 7.83, 42.28, -7.27, 1.35, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 0.60, 9.39, 42.28, -7.27, 1.40, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 0.70, 10.96, 42.28, -7.27, 1.45, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 0.80, 12.52, 42.28, -7.27, 1.50, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 0.90, 14.09, 42.28, -7.27, 1.55, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 1.00, 15.65, 42.28, -7.27, 1.60, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 1.10, 17.22, 42.28, -7.27, 1.65, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 1.20, 18.78, 42.28, -7.27, 1.70, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 1.30, 20.35, 42.28, -7.27, 1.75, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 1.40, 21.91, 42.28, -7.27, 1.80, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 1.50, 23.48, 42.28, -7.27, 1.85, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 1.60, 25.04, 42.28, -7.27, 1.90, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 1.70, 26.61, 42.28, -7.27, 1.95, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 1.80, 28.17, 42.28, -7.27, 2.00, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 1.90, 29.74, 42.28, -7.27, 2.05, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 2.00, 31.30, 42.28, -7.27, 2.10, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 2.10, 32.87, 42.28, -7.27, 2.15, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 2.20, 34.44, 42.28, -7.27, 2.20, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 2.30, 36.00, 42.28, -7.27, 2.25, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 2.40, 37.57, 42.28, -7.27, 2.30, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 2.50, 39.13, 42.28, -7.27, 2.35, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 2.60, 40.70, 42.28, -7.27, 2.40, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 2.70, 42.26, 42.28, -7.27, 2.45, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 2.80, 43.83, 42.28, -7.27, 2.50, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 2.90, 45.39, 42.28, -7.27, 2.55, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 3.00, 46.96, 42.28, -7.27, 2.60, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 3.10, 48.52, 42.28, -7.27, 2.65, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 3.20, 50.09, 42.28, -7.27, 2.70, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 3.30, 51.65, 42.28, -7.27, 2.75, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 3.40, 53.22, 42.28, -7.27, 2.80, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 3.50, 54.78, 42.28, -7.27, 2.85, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 3.60, 56.35, 42.28, -7.27, 2.90, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 3.70, 57.91, 42.28, -7.27, 2.95, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 3.80, 59.48, 42.28, -7.27, 3.00, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 3.90, 61.04, 42.28, -7.27, 3.05, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 4.00, 62.61, 42.28, -7.27, 3.10, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 4.10, 64.17, 42.28, -7.27, 3.15, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 4.20, 65.74, 42.28, -7.27, 3.20, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 4.30, 67.30, 42.28, -7.27, 3.25, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 4.40, 68.87, 42.28, -7.27, 3.30, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 4.50, 70.44, 42.28, -7.27, 3.35, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 4.60, 72.00, 42.28, -7.27, 3.40, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 4.70, 73.57, 42.28, -7.27, 3.45, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 4.80, 75.13, 42.28, -7.27, 3.50, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 4.90, 76.70, 42.28, -7.27, 3.55, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 5.00, 78.26, 42.28, -7.27, 3.60, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 5.10, 79.83, 42.28, -7.27, 3.65, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 5.20, 81.39, 42.28, -7.27, 3.70, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 5.30, 84.97, 41.93, -7.27, 3.81, 6, 2801 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 5.40, 88.86, 41.56, -7.27, 3.93, 6, 2807 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 5.50, 92.74, 41.23, -7.27, 4.04, 6, 2813 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 5.60, 96.63, 40.91, -7.27, 4.14, 6, 2818 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 5.70, 100.53, 40.62, -7.27, 4.24, 6, 2823 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 5.80, 104.42, 40.36, -7.27, 4.34, 6, 2827 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 5.90, 108.32, 40.11, -7.27, 4.43, 6, 2831 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 6.00, 112.22, 39.88, -7.27, 4.53, 6, 2834 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 6.10, 116.12, 39.66, -7.27, 4.61, 6, 2837 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 6.20, 120.03, 39.46, -7.27, 4.70, 6, 2840 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 6.30, 123.93, 39.27, -7.27, 4.78, 6, 2843 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 6.40, 127.84, 39.09, -7.27, 4.86, 6, 2845 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 6.50, 131.74, 38.92, -7.27, 4.94, 6, 2847 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 6.60, 135.65, 38.76, -7.27, 5.02, 6, 2849 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 6.70, 139.56, 38.61, -7.27, 5.10, 6, 2850 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 6.80, 143.47, 38.47, -7.27, 5.17, 6, 2851 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 6.90, 147.38, 38.34, -7.27, 5.25, 6, 2852 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 7.00, 151.29, 38.21, -7.27, 5.32, 6, 2853 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 7.10, 155.20, 38.09, -7.27, 5.39, 6, 2854 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 7.20, 159.11, 37.97, -7.27, 5.46, 6, 2855 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 7.30, 163.03, 37.86, -7.27, 5.53, 6, 2855 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 7.40, 166.94, 37.76, -7.27, 5.60, 6, 2856 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 7.50, 170.85, 37.66, -7.27, 5.67, 6, 2856 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 7.60, 174.76, 37.56, -7.27, 5.73, 6, 2856 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 7.70, 178.68, 37.47, -7.27, 5.80, 6, 2856 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 7.80, 182.59, 37.39, -7.27, 5.87, 6, 2857 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 7.90, 186.50, 37.30, -7.27, 5.93, 6, 2857 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 8.00, 190.41, 37.22, -7.27, 5.99, 6, 2857 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 8.10, 194.33, 37.15, -7.27, 6.06, 6, 2857 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 8.20, 198.24, 37.07, -7.27, 6.12, 6, 2857 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 8.30, 202.15, 37.00, -7.27, 6.18, 6, 2857 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 8.40, 206.07, 36.93, -7.27, 6.25, 6, 2857 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 8.50, 209.98, 36.87, -7.27, 6.31, 6, 2857 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 ЛБ' AND ship_id=2), 8.55, 211.94, 36.83, -7.27, 6.34, 0, 0;
+
+
+DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2);
+
+INSERT INTO compartment_curve
+  (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 0.10, 1.57, 42.28, 7.27, 1.15, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 0.20, 3.13, 42.28, 7.27, 1.20, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 0.30, 4.70, 42.28, 7.27, 1.25, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 0.40, 6.26, 42.28, 7.27, 1.30, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 0.50, 7.83, 42.28, 7.27, 1.35, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 0.60, 9.39, 42.28, 7.27, 1.40, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 0.70, 10.96, 42.28, 7.27, 1.45, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 0.80, 12.52, 42.28, 7.27, 1.50, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 0.90, 14.09, 42.28, 7.27, 1.55, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 1.00, 15.65, 42.28, 7.27, 1.60, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 1.10, 17.22, 42.28, 7.27, 1.65, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 1.20, 18.78, 42.28, 7.27, 1.70, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 1.30, 20.35, 42.28, 7.27, 1.75, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 1.40, 21.91, 42.28, 7.27, 1.80, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 1.50, 23.48, 42.28, 7.27, 1.85, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 1.60, 25.34, 42.28, 7.27, 1.90, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 1.70, 26.61, 42.28, 7.27, 1.95, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 1.80, 28.17, 42.28, 7.27, 2.00, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 1.90, 29.74, 42.28, 7.27, 2.05, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 2.00, 31.30, 42.28, 7.27, 2.10, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 2.10, 32.87, 42.28, 7.27, 2.15, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 2.20, 34.44, 42.28, 7.27, 2.20, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 2.30, 36.00, 42.28, 7.27, 2.25, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 2.40, 37.57, 42.28, 7.27, 2.30, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 2.50, 39.13, 42.28, 7.27, 2.35, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 2.60, 40.70, 42.28, 7.27, 2.40, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 2.70, 42.26, 42.28, 7.27, 2.45, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 2.80, 43.83, 42.28, 7.27, 2.50, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 2.90, 45.39, 42.28, 7.27, 2.55, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 3.00, 46.96, 42.28, 7.27, 2.60, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 3.10, 48.52, 42.28, 7.27, 2.65, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 3.20, 50.09, 42.28, 7.27, 2.70, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 3.30, 51.65, 42.28, 7.27, 2.75, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 3.40, 53.22, 42.28, 7.27, 2.80, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 3.50, 54.78, 42.28, 7.27, 2.85, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 3.60, 56.35, 42.28, 7.27, 2.90, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 3.70, 57.91, 42.28, 7.27, 2.95, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 3.80, 59.48, 42.28, 7.27, 3.00, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 3.90, 61.04, 42.28, 7.27, 3.05, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 4.00, 62.61, 42.28, 7.27, 3.10, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 4.10, 64.17, 42.28, 7.27, 3.15, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 4.20, 65.74, 42.28, 7.27, 3.20, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 4.30, 67.30, 42.28, 7.27, 3.25, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 4.40, 68.87, 42.28, 7.27, 3.30, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 4.50, 70.44, 42.28, 7.27, 3.35, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 4.600, 72.00, 42.28, 7.27, 3.40, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 4.70, 73.57, 42.28, 7.27, 3.45, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 4.80, 75.13, 42.28, 7.27, 3.50, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 4.90, 76.70, 42.28, 7.27, 3.55, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 5.00, 78.26, 42.28, 7.27, 3.60, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 5.10, 79.83, 42.28, 7.27, 3.65, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 5.20, 81.39, 42.28, 7.27, 3.70, 2, 183 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 5.30, 84.97, 41.93, 7.27, 3.81, 6, 2801 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 5.40, 88.86, 41.56, 7.27, 3.93, 6, 2807 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 5.50, 92.74, 41.23, 7.27, 4.04, 6, 2813 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 5.60, 96.63, 40.91, 7.27, 4.14, 6, 2818 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 5.70, 100.53, 40.62, 7.27, 4.24, 6, 2823 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 5.80, 104.42, 40.36, 7.27, 4.34, 6, 2827 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 5.90, 108.32, 40.11, 7.27, 4.43, 6, 2831 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 6.00, 112.22, 39.88, 7.27, 4.53, 6, 2834 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 6.10, 116.12, 39.66, 7.27, 4.61, 6, 2837 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 6.20, 120.03, 39.46, 7.27, 4.70, 6, 2840 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 6.30, 123.93, 39.27, 7.27, 4.78, 6, 2843 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 6.40, 127.84, 39.09, 7.27, 4.86, 6, 2845 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 6.50, 131.74, 38.92, 7.27, 4.94, 6, 2847 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 6.60, 135.65, 38.76, 7.27, 5.02, 6, 2849 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 6.70, 139.56, 38.61, 7.27, 5.10, 6, 2850 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 6.80, 143.47, 38.47, 7.27, 5.17, 6, 2851 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 6.90, 147.38, 38.34, 7.27, 5.25, 6, 2852 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 7.00, 151.29, 38.21, 7.27, 5.32, 6, 2853 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 7.10, 155.20, 38.09, 7.27, 5.39, 6, 2854 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 7.20, 159.11, 37.97, 7.27, 5.46, 6, 2855 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 7.30, 163.03, 37.86, 7.27, 5.53, 6, 2855 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 7.40, 166.94, 37.76, 7.27, 5.60, 6, 2856 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 7.50, 170.85, 37.66, 7.27, 5.67, 6, 2856 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 7.60, 174.76, 37.56, 7.27, 5.73, 6, 2856 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 7.70, 178.68, 37.47, 7.27, 5.80, 6, 2856 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 7.80, 182.59, 37.39, 7.27, 5.87, 6, 2857 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 7.90, 186.50, 37.30, 7.27, 5.93, 6, 2857 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 8.00, 190.41, 37.22, 7.27, 5.99, 6, 2857 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 8.10, 194.33, 37.15, 7.27, 6.06, 6, 2857 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 8.20, 198.24, 37.07, 7.27, 6.12, 6, 2857 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 8.30, 202.15, 37.00, 7.27, 6.18, 6, 2857 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 8.40, 206.07, 36.93, 7.27, 6.25, 6, 2857 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 8.50, 209.98, 36.87, 7.27, 6.31, 6, 2857 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 4 Пр.Б' AND ship_id=2), 8.55, 211.94, 36.83, 7.27, 6.34, 0, 0;
+
+
+DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2);
+
+INSERT INTO compartment_curve
+  (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 0.10, 1.46, 29.64, -6.86, 1.15, 9, 358 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 0.20, 3.01, 29.46, -6.84, 1.20, 10, 395 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 0.30, 4.64, 29.30, -6.83, 1.25, 11, 427 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 0.40, 6.35, 29.16, -6.82, 1.31, 12, 456 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 0.50, 8.14, 29.03, -6.82, 1.36, 12, 481 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 0.60, 9.99, 28.90, -6.81, 1.41, 13, 505 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 0.70, 11.91, 28.79, -6.80, 1.47, 13, 526 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 0.80, 13.89, 28.68, -6.80, 1.52, 13, 546 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 0.90, 15.92, 28.58, -6.79, 1.58, 14, 565 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 1.00, 18.01, 28.48, -6.79, 1.63, 14, 582 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 1.10, 20.16, 28.40, -6.79, 1.69, 14, 598 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 1.20, 22.35, 28.31, -6.79, 1.74, 15, 614 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 1.30, 24.59, 28.23, -6.78, 1.80, 15, 628 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 1.40, 26.87, 28.15, -6.78, 1.85, 15, 642 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 1.50, 29.20, 28.08, -6.78, 1.91, 15, 656 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 1.60, 31.57, 28.01, -6.78, 1.97, 15, 668 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 1.70, 33.98, 27.94, -6.78, 2.02, 15, 680 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 1.80, 36.43, 27.88, -6.78, 2.08, 15, 691 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 1.90, 38.92, 27.82, -6.78, 2.13, 16, 702 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 2.00, 41.44, 27.76, -6.78, 2.19, 16, 712 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 2.10, 43.99, 27.70, -6.78, 2.24, 16, 722 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 2.20, 46.57, 27.64, -6.78, 2.30, 16, 732 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 2.30, 49.19, 27.59, -6.78, 2.36, 16, 741 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 2.40, 51.83, 27.54, -6.78, 2.41, 16, 749 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 2.50, 54.50, 27.49, -6.78, 2.47, 16, 758 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 2.60, 57.20, 27.45, -6.79, 2.52, 16, 766 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 2.70, 59.23, 27.48, -6.80, 2.57, 3, 414 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 2.80, 61.20, 27.51, -6.81, 2.61, 3, 428 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 2.90, 63.20, 27.55, -6.83, 2.65, 3, 441 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 3.00, 65.21, 27.57, -6.84, 2.69, 3, 453 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 3.10, 67.25, 27.60, -6.85, 2.74, 3, 464 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 3.20, 69.31, 27.62, -6.86, 2.78, 3, 474 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 3.30, 71.38, 27.63, -6.87, 2.83, 3, 484 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 3.40, 73.48, 27.65, -6.88, 2.87, 3, 494 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 3.50, 75.59, 27.66, -6.89, 2.92, 3, 502 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 3.60, 77.71, 27.67, -6.90, 2.97, 3, 511 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 3.70, 79.85, 27.68, -6.91, 3.02, 3, 518 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 3.80, 82.00, 27.69, -6.92, 3.06, 3, 525 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 3.90, 84.16, 27.70, -6.93, 3.11, 3, 532 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 4.00, 86.34, 27.70, -6.93, 3.16, 3, 538 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 4.10, 88.52, 27.70, -6.94, 3.21, 3, 544 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 4.20, 90.72, 27.71, -6.95, 3.26, 3, 549 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 4.30, 92.93, 27.71, -6.96, 3.31, 3, 554 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 4.40, 95.14, 27.71, -6.96, 3.36, 3, 559 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 4.50, 97.36, 27.71, -6.97, 3.41, 3, 563 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 4.60, 99.59, 27.71, -6.98, 3.46, 3, 567 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 4.70, 101.83, 27.71, -6.98, 3.51, 3, 570 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 4.80, 104.07, 27.71, -6.99, 3.56, 3, 574 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 4.90, 106.32, 27.71, -6.99, 3.61, 3, 577 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 ЛБ' AND ship_id=2), 5.00, 108.57, 27.71, -7.00, 3.66, 3, 580;
+
+
+DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2);
+
+INSERT INTO compartment_curve
+  (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 0.10, 1.46, 29.64, 6.86, 1.15, 9, 358 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 0.20, 3.01, 29.46, 6.84, 1.20, 10, 395 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 0.30, 4.64, 29.30, 6.83, 1.25, 11, 427 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 0.40, 6.35, 29.16, 6.82, 1.31, 12, 456 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 0.50, 8.14, 29.03, 6.82, 1.36, 12, 481 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 0.60, 9.99, 28.90, 6.81, 1.41, 13, 505 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 0.70, 11.91, 28.79, 6.80, 1.47, 13, 526 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 0.80, 13.89, 28.68, 6.80, 1.52, 13, 546 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 0.90, 15.92, 28.58, 6.79, 1.58, 14, 565 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 1.00, 18.01, 28.48, 6.79, 1.63, 14, 582 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 1.10, 20.16, 28.40, 6.79, 1.69, 14, 598 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 1.20, 22.35, 28.31, 6.79, 1.74, 15, 614 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 1.30, 24.59, 28.23, 6.78, 1.80, 15, 628 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 1.40, 26.87, 28.15, 6.78, 1.85, 15, 642 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 1.50, 29.20, 28.08, 6.78, 1.91, 15, 656 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 1.60, 31.57, 28.01, 6.78, 1.97, 15, 668 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 1.70, 33.98, 27.94, 6.78, 2.02, 15, 680 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 1.90, 38.92, 27.82, 6.78, 2.13, 16, 702 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 2.00, 41.44, 27.76, 6.78, 2.19, 16, 712 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 2.10, 43.99, 27.70, 6.78, 2.24, 16, 722 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 2.20, 46.57, 27.64, 6.78, 2.30, 16, 732 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 2.30, 49.19, 27.59, 6.78, 2.36, 16, 741 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 2.40, 51.83, 27.54, 6.78, 2.41, 16, 749 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 2.50, 54.50, 27.49, 6.78, 2.47, 16, 758 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 2.60, 57.20, 27.45, 6.79, 2.52, 16, 766 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 2.70, 59.23, 27.48, 6.80, 2.57, 3, 414 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 2.80, 61.20, 27.51, 6.81, 2.61, 3, 428 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 2.90, 63.20, 27.55, 6.83, 2.65, 3, 441 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 3.00, 65.21, 27.57, 6.84, 2.69, 3, 453 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 3.10, 67.25, 27.60, 6.85, 2.74, 3, 464 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 3.20, 69.31, 27.62, 6.86, 2.78, 3, 474 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 3.30, 71.38, 27.63, 6.87, 2.83, 3, 484 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 3.40, 73.48, 27.65, 6.88, 2.87, 3, 494 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 3.50, 75.59, 27.66, 6.89, 2.92, 3, 502 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 3.60, 77.71, 27.67, 6.90, 2.97, 3, 511 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 3.70, 79.85, 27.68, 6.91, 3.02, 3, 518 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 3.80, 82.00, 27.69, 6.92, 3.06, 3, 525 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 3.90, 84.16, 27.70, 6.93, 3.11, 3, 532 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 4.00, 86.34, 27.70, 6.93, 3.16, 3, 538 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 4.10, 88.52, 27.70, 6.94, 3.21, 3, 544 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 4.20, 90.72, 27.71, 6.95, 3.26, 3, 549 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 4.30, 92.93, 27.71, 6.96, 3.31, 3, 554 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 4.40, 95.14, 27.71, 6.96, 3.36, 3, 559 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 4.50, 97.36, 27.71, 6.97, 3.41, 3, 563 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 4.60, 99.59, 27.71, 6.98, 3.46, 3, 567 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 4.70, 101.83, 27.71, 6.98, 3.51, 3, 570 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 4.80, 104.07, 27.71, 6.99, 3.56, 3, 574 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 4.90, 106.32, 27.71, 6.99, 3.61, 3, 577 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 5.00, 108.57, 27.71, 7.00, 3.66, 3, 580 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 5.10, 110.83, 27.70, 7.00, 3.71, 3, 582 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 5.20, 113.10, 27.70, 7.01, 3.76, 3, 585 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 5 Пр.Б' AND ship_id=2), 5.21, 113.39, 27.70, 7.01, 3.77, 0, 0;
+
+
+DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2);
+
+INSERT INTO compartment_curve
+  (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 0.10, 0.00, 15.73, -3.96, 1.66, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 0.20, 0.00, 15.69, -3.98, 1.73, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 0.30, 0.01, 15.66, -3.99, 1.81, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 0.40, 17.00, 15.62, -4.01, 1.88, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 0.50, 31.00, 15.58, -4.02, 1.96, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 0.60, 0.05, 15.55, -4.04, 2.03, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 0.70, 0.08, 15.51, -4.06, 2.11, 0, 21 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 0.80, 0.11, 15.48, -4.08, 2.18, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 0.90, 0.15, 15.44, -4.10, 2.26, 1, 4 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 1.00, 0.57, 16.68, -4.45, 2.47, 1, 5 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 1.10, 1.02, 16.86, -4.52, 2.55, 1, 5 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 1.20, 1.50, 16.91, -4.55, 2.62, 1, 6 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 1.30, 2.02, 16.92, -4.58, 2.68, 1, 7 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 1.40, 2.59, 16.92, -4.60, 2.74, 2, 8 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 1.50, 3.19, 16.90, -4.62, 2.80, 2, 10 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 1.60, 3.83, 16.88, -4.64, 2.86, 2, 11 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 1.70, 4.52, 16.85, -4.66, 2.92, 2, 13 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 1.80, 5.26, 16.82, -4.68, 2.98, 3, 14 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 1.90, 6.04, 16.79, -4.69, 3.04, 3, 16 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 2.00, 6.87, 16.76, -4.71, 3.10, 3, 18 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 2.10, 7.75, 16.72, -4.73, 3.16, 4, 19 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 2.20, 8.68, 16.69, -4.75, 3.23, 4, 21 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 2.30, 9.65, 16.66, -4.77, 3.29, 4, 22 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 2.40, 10.67, 16.63, -4.78, 3.35, 5, 24 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 2.50, 11.74, 16.60, -4.80, 3.42, 5, 25 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 2.60, 12.85, 16.57, -4.82, 3.48, 6, 27 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 2.70, 14.01, 16.54, -4.84, 3.54, 6, 28 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 2.80, 15.21, 16.51, -4.86, 3.61, 7, 30 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 2.90, 16.46, 16.49, -4.88, 3.67, 7, 31 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 3.00, 17.75, 16.46, -4.90, 3.73, 8, 32 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 3.10, 19.09, 16.44, -4.92, 3.80, 8, 34 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 3.20, 20.46, 16.42, -4.95, 3.86, 9, 35 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 3.30, 21.88, 16.40, -4.97, 3.93, 10, 36 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 3.40, 23.34, 16.37, -4.99, 3.99, 10, 37 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 3.50, 24.84, 16.36, -5.01, 4.05, 11, 38 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 3.60, 26.37, 16.34, -5.03, 4.12, 12, 39 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 3.70, 27.94, 16.32, -5.05, 4.18, 12, 40 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 3.80, 29.55, 16.30, -5.07, 4.25, 13, 41 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 3.90, 31.19, 16.29, -5.09, 4.31, 14, 42 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 4.00, 32.86, 16.27, -5.11, 4.37, 14, 43 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 4.10, 34.56, 16.25, -5.13, 4.44, 15, 44 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 4.20, 36.30, 16.24, -5.15, 4.50, 16, 45 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 4.30, 38.06, 16.23, -5.17, 4.56, 16, 46 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 4.40, 39.85, 16.21, -5.18, 4.62, 17, 47 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 4.50, 41.66, 16.20, -5.20, 4.69, 18, 47 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 4.60, 43.50, 16.19, -5.22, 4.75, 18, 48 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 4.70, 45.36, 16.18, -5.24, 4.81, 19, 49 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 4.80, 46.24, 16.18, -5.26, 4.84, 3, 20 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 4.90, 47.00, 16.19, -5.28, 4.86, 3, 23 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 5.00, 47.79, 16.19, -5.30, 4.89, 3, 27 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 5.10, 48.62, 16.19, -5.33, 4.92, 3, 30 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 5.20, 49.47, 16.19, -5.35, 4.95, 3, 33 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 5.30, 50.36, 16.19, -5.37, 4.99, 3, 36 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 5.40, 51.27, 16.19, -5.40, 5.02, 4, 39 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 5.50, 52.22, 16.19, -5.42, 5.06, 4, 41 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 5.60, 53.19, 16.18, -5.45, 5.10, 4, 43 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 5.70, 54.18, 16.18, -5.47, 5.14, 4, 45 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 5.80, 55.20, 16.17, -5.50, 5.18, 4, 47 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 5.90, 56.24, 16.16, -5.52, 5.22, 4, 49 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 6.00, 57.30, 16.16, -5.54, 5.26, 4, 51 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 6.10, 58.38, 16.15, -5.57, 5.31, 4, 52 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 6.20, 59.48, 16.14, -5.59, 5.35, 4, 54 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 6.30, 60.60, 16.13, -5.62, 5.40, 5, 55 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 6.40, 61.73, 16.12, -5.64, 5.44, 5, 56 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 6.50, 62.87, 16.11, -5.66, 5.49, 5, 57 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 6.60, 64.03, 16.10, -5.68, 5.54, 5, 58 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 6.70, 65.21, 16.09, -5.71, 5.59, 5, 59 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 6.80, 66.39, 16.08, -5.73, 5.64, 5, 60 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 6.90, 67.59, 16.07, -5.75, 5.69, 5, 61 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 7.00, 68.79, 16.06, -5.77, 5.74, 5, 62 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 7.10, 70.00, 16.05, -5.79, 5.79, 5, 62 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 7.20, 71.22, 16.04, -5.81, 5.84, 5, 63 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 7.30, 72.45, 16.03, -5.83, 5.89, 5, 63 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 7.40, 73.69, 16.02, -5.85, 5.94, 5, 64 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 7.50, 74.93, 16.01, -5.87, 5.99, 5, 64 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 7.60, 76.17, 16.00, -5.88, 6.04, 5, 65 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 7.70, 77.42, 15.99, -5.90, 6.10, 6, 65 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 7.80, 78.68, 15.98, -5.92, 6.15, 6, 65 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 7.90, 79.93, 15.97, -5.93, 6.20, 6, 66 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 8.00, 81.19, 15.96, -5.95, 6.25, 6, 66 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 ЛБ' AND ship_id=2), 8.05, 81.82, 15.96, -5.96, 6.28, 0, 0;
+
+
+DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2);
+
+INSERT INTO compartment_curve
+  (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 0.10, 0.00, 15.73, 3.96, 1.66, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 0.20, 0.00, 15.69, 3.98, 1.73, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 0.30, 0.01, 15.66, 3.99, 1.81, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 0.40, 0.02, 15.62, 4.01, 1.88, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 0.50, 0.03, 15.58, 4.02, 1.96, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 0.60, 0.05, 15.55, 4.04, 2.03, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 0.70, 0.08, 15.51, 4.06, 2.11, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 0.80, 0.11, 15.48, 4.08, 2.18, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 0.90, 0.15, 15.44, 4.10, 2.26, 1, 4 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 1.00, 0.57, 16.68, 4.45, 2.47, 1, 5 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 1.10, 1.02, 16.86, 4.52, 2.55, 1, 5 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 1.20, 1.51, 16.91, 4.55, 2.62, 1, 6 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 1.30, 2.03, 16.92, 4.58, 2.68, 1, 7 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 1.40, 2.59, 16.92, 4.60, 2.74, 2, 8 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 1.50, 3.20, 16.90, 4.62, 2.80, 2, 10 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 1.60, 3.84, 16.88, 4.64, 2.86, 2, 11 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 1.70, 4.53, 16.85, 4.66, 2.92, 2, 13 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 1.80, 5.27, 16.82, 4.68, 2.98, 3, 14 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 1.90, 6.06, 16.79, 4.69, 3.04, 3, 17 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 2.00, 6.90, 16.75, 4.71, 3.10, 3, 19 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 2.10, 7.79, 16.71, 4.73, 3.16, 4, 21 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 2.20, 8.74, 16.67, 4.74, 3.23, 4, 24 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 2.30, 9.75, 16.63, 4.76, 3.29, 5, 27 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 2.40, 10.81, 16.59, 4.78, 3.36, 5, 31 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 2.50, 11.94, 16.54, 4.79, 3.42, 6, 35 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 2.60, 13.13, 16.49, 4.81, 3.49, 6, 39 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 2.70, 14.39, 16.44, 4.83, 3.56, 7, 44 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 2.80, 15.73, 16.39, 4.84, 3.62, 8, 49 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 2.90, 17.13, 16.34, 4.86, 3.69, 8, 54 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 3.00, 18.60, 16.29, 4.88, 3.76, 9, 59 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 3.10, 20.14, 16.23, 4.90, 3.83, 10, 64 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 3.20, 21.75, 16.18, 4.91, 3.90, 10, 69 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 3.30, 23.43, 16.13, 4.93, 3.96, 11, 73 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 3.40, 25.17, 16.08, 4.95, 4.03, 12, 77 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 3.50, 26.97, 16.04, 4.97, 4.10, 13, 81 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 3.60, 28.84, 15.99, 4.99, 4.17, 14, 85 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 3.70, 30.77, 15.95, 5.00, 4.236, 14, 89 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 3.80, 32.76, 15.90, 5.02, 4.30, 15, 93 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 3.90, 34.80, 15.86, 5.04, 4.37, 16, 96 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 4.00, 36.90, 15.82, 5.06, 4.44, 17, 99 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 4.10, 39.06, 15.79, 5.08, 4.51, 18, 102 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 4.20, 41.26, 15.75, 5.10, 4.57, 19, 105 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 4.30, 43.51, 15.72, 5.12, 4.64, 20, 108 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 4.40, 45.81, 15.69, 5.14, 4.70, 20, 111 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 4.50, 48.15, 15.65, 5.15, 4.77, 21, 113 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 4.60, 50.53, 15.63, 5.17, 4.83, 22, 116 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 4.70, 52.96, 15.60, 5.19, 4.90, 23, 118 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 4.80, 54.31, 15.62, 5.20, 4.94, 24, 23 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 4.90, 55.52, 15.65, 5.21, 4.97, 24, 27 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 5.00, 56.77, 15.67, 5.22, 5.00, 25, 32 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 5.10, 58.05, 15.69, 5.23, 5.04, 26, 36 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 5.20, 59.36, 15.71, 5.25, 5.08, 26, 39 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 5.30, 60.71, 15.73, 5.26, 5.12, 27, 43 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 5.40, 62.08, 15.75, 5.27, 5.16, 28, 46 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 5.50, 63.48, 15.77, 5.28, 5.20, 28, 49 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 5.60, 64.91, 15.78, 5.30, 5.24, 29, 52 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 5.70, 66.36, 15.79, 5.31, 5.29, 30, 54 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 5.80, 67.83, 15.80, 5.33, 5.33, 30, 57 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 5.90, 69.33, 15.81, 5.34, 5.38, 31, 59 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 6.00, 70.85, 15.82, 5.35, 5.42, 31, 61 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 6.10, 72.39, 15.83, 5.37, 5.47, 32, 63 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 6.20, 73.95, 15.84, 5.38, 5.52, 32, 65 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 6.30, 75.52, 15.85, 5.40, 5.57, 33, 67 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 6.40, 77.11, 15.85, 5.41, 5.62, 33, 68 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 6.50, 78.71, 15.86, 5.42, 5.67, 33, 70 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 6.60, 80.33, 15.86, 5.44, 5.72, 34, 71 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 6.70, 81.96, 15.87, 5.45, 5.77, 34, 72 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 6.80, 83.61, 15.87, 5.47, 5.82, 34, 74 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 6.90, 85.26, 15.87, 5.48, 5.87, 35, 75 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 7.00, 86.92, 15.88, 5.49, 5.92, 35, 76 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 7.10, 88.59, 15.88, 5.50, 5.97, 35, 76 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 7.20, 90.27, 15.88, 5.52, 6.02, 35, 77 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 7.30, 91.96, 15.88, 5.53, 6.07, 35, 78 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 7.40, 93.65, 15.88, 5.54, 6.13, 36, 79 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 7.50, 95.35, 15.88, 5.55, 6.18, 36, 79 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 7.60, 97.05, 15.89, 5.56, 6.23, 36, 80 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 7.70, 98.76, 15.89, 5.57, 6.28, 36, 80 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 7.80, 100.47, 15.89, 5.58, 6.34, 36, 81 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 7.90, 102.19, 15.89, 5.59, 6.39, 36, 81 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 8.00, 103.91, 15.89, 5.60, 6.44, 36, 81 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 6 Пр.Б' AND ship_id=2), 8.05, 104.77, 15.89, 5.61, 6.47, 0, 0;
+
+
+DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 ЛБ' AND ship_id=2);
+
+INSERT INTO compartment_curve
+  (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 ЛБ' AND ship_id=2), 0.10, 0.00, 0.00, 0.00, 0.00, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 ЛБ' AND ship_id=2), 0.20, 0.00, 9.47, -2.21, 3.33, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 ЛБ' AND ship_id=2), 0.30, 0.001, 9.45, -2.23, 3.40, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 ЛБ' AND ship_id=2), 0.40, 3.00, 9.42, -2.24, 3.48, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 ЛБ' AND ship_id=2), 0.50, 7.00, 9.38, -2.26, 3.56, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 ЛБ' AND ship_id=2), 0.60, 14.00, 9.35, -2.28, 3.63, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 ЛБ' AND ship_id=2), 0.70, 26.00, 9.32, -2.30, 3.71, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 ЛБ' AND ship_id=2), 0.80, 0.05, 9.28, -2.32, 3.79, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 ЛБ' AND ship_id=2), 0.90, 0.07, 9.24, -2.34, 3.87, 6, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 ЛБ' AND ship_id=2), 1.00, 0.11, 9.20, -2.37, 3.95, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 ЛБ' AND ship_id=2), 1.10, 0.16, 9.16, -2.40, 4.03, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 ЛБ' AND ship_id=2), 1.20, 0.23, 9.11, -2.43, 4.11, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 ЛБ' AND ship_id=2), 1.30, 0.31, 9.06, -2.46, 4.19, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 ЛБ' AND ship_id=2), 1.30, 0.42, 9.01, -2.49, 4.27, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 ЛБ' AND ship_id=2), 1.40, 0.57, 8.96, -2.53, 4.36, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 ЛБ' AND ship_id=2), 1.50, 0.74, 8.90, -2.57, 4.44, 0, 1 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 ЛБ' AND ship_id=2), 1.60, 0.96, 8.84, -2.61, 4.52, 0, 1 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 ЛБ' AND ship_id=2), 1.70, 1.22, 8.77, -2.65, 4.60, 1, 1 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 ЛБ' AND ship_id=2), 1.80, 1.54, 8.70, -2.69, 4.68, 1, 2 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 ЛБ' AND ship_id=2), 1.90, 1.92, 8.63, -2.73, 4.77, 1, 3 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 ЛБ' AND ship_id=2), 2.00, 2.36, 8.55, -2.78, 4.85, 1, 4 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 ЛБ' AND ship_id=2), 2.10, 2.87, 8.48, -2.82, 4.93, 2, 5 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 ЛБ' AND ship_id=2), 2.20, 3.45, 8.41, -2.87, 5.01, 2, 6 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 ЛБ' AND ship_id=2), 2.30, 4.09, 8.36, -2.92, 5.09, 3, 6 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 ЛБ' AND ship_id=2), 2.40, 4.79, 8.31, -2.97, 5.16, 4, 7 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 ЛБ' AND ship_id=2), 2.50, 5.56, 8.26, -3.02, 5.24, 4, 8 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 ЛБ' AND ship_id=2), 2.60, 6.39, 8.22, -3.07, 5.31, 5, 8 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 ЛБ' AND ship_id=2), 2.70, 7.28, 8.19, -3.12, 5.38, 6, 9 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 ЛБ' AND ship_id=2), 2.80, 8.22, 8.16, -3.17, 5.45, 7, 10 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 ЛБ' AND ship_id=2), 2.90, 9.21, 8.13, -3.22, 5.52, 8, 10 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 ЛБ' AND ship_id=2), 3.00, 10.26, 8.10, -3.27, 5.59, 9, 11 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 ЛБ' AND ship_id=2), 3.06, 10.95, 8.09, -3.30, 5.64, 0, 0;
+
+
+DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 Пр.Б' AND ship_id=2);
+
+INSERT INTO compartment_curve
+  (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 Пр.Б' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 Пр.Б' AND ship_id=2), 0.10, 0.00, 9.47, 2.21, 3.33, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 Пр.Б' AND ship_id=2), 0.20, 0.00, 9.45, 2.23, 3.40, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 Пр.Б' AND ship_id=2), 0.30, 0.00, 9.42, 2.24, 3.48, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 Пр.Б' AND ship_id=2), 0.40, 0.01, 9.38, 2.26, 3.56, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 Пр.Б' AND ship_id=2), 0.50, 0.01, 9.35, 2.28, 3.63, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 Пр.Б' AND ship_id=2), 0.60, 0.03, 9.32, 2.30, 3.71, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 Пр.Б' AND ship_id=2), 0.70, 0.05, 9.28, 2.32, 3.79, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 Пр.Б' AND ship_id=2), 0.80, 0.07, 9.24, 2.34, 3.87, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 Пр.Б' AND ship_id=2), 0.90, 0.11, 9.20, 2.37, 3.95, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 Пр.Б' AND ship_id=2), 1.00, 0.16, 9.16, 2.40, 4.03, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 Пр.Б' AND ship_id=2), 1.10, 0.23, 9.11, 2.43, 4.11, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 Пр.Б' AND ship_id=2), 1.20, 0.31, 9.06, 2.46, 4.19, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 Пр.Б' AND ship_id=2), 1.30, 0.42, 9.01, 2.49, 4.27, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 Пр.Б' AND ship_id=2), 1.40, 0.57, 8.96, 2.53, 4.36, 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 Пр.Б' AND ship_id=2), 1.50, 0.74, 8.90, 2.57, 4.44, 0, 1 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 Пр.Б' AND ship_id=2), 1.60, 0.96, 8.84, 2.61, 4.52, 0, 1 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 Пр.Б' AND ship_id=2), 1.70, 1.22, 8.77, 2.65, 4.60, 1, 1 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 Пр.Б' AND ship_id=2), 1.80, 1.54, 8.70, 2.69, 4.68, 1, 2 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 Пр.Б' AND ship_id=2), 1.90, 1.92, 8.63, 2.73, 4.77, 1, 3 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 Пр.Б' AND ship_id=2), 2.00, 2.36, 8.55, 2.78, 4.85, 1, 4 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 Пр.Б' AND ship_id=2), 2.10, 2.87, 8.48, 2.82, 4.93, 2, 5 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 Пр.Б' AND ship_id=2), 2.20, 3.45, 8.41, 2.87, 5.01, 2, 6 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 Пр.Б' AND ship_id=2), 2.30, 4.09, 8.36, 2.92, 5.09, 3, 6 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 Пр.Б' AND ship_id=2), 2.40, 4.79, 8.31, 2.97, 5.16, 4, 7 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 Пр.Б' AND ship_id=2), 2.50, 5.56, 8.26, 3.02, 5.24, 4, 8 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 Пр.Б' AND ship_id=2), 2.60, 6.39, 8.22, 3.07, 5.31, 5, 8 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 Пр.Б' AND ship_id=2), 2.70, 7.28, 8.19, 3.12, 5.38, 6, 9 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 Пр.Б' AND ship_id=2), 2.80, 8.22, 8.16, 3.17, 5.45, 7, 10 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 Пр.Б' AND ship_id=2), 2.90, 9.21, 8.13, 3.22, 5.52, 8, 10 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 Пр.Б' AND ship_id=2), 3.00, 10.26, 8.10, 3.27, 5.59, 9, 11 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 Пр.Б' AND ship_id=2), 3.06, 10.95, 8.09, 3.30, 5.64, 0, 0;
 
 
 DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Ахтерпик ЛБ' AND ship_id=2);
@@ -1736,7 +1736,7 @@ DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartmen
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
 SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Ахтерпик ЛБ' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Ахтерпик ЛБ' AND ship_id=2), 0.10, 1.37, 2.15, -3.3G8, 7.30, 9, 50 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Ахтерпик ЛБ' AND ship_id=2), 0.10, 1.37, 2.15, -3.38, 7.30, 9, 50 UNION ALL
 SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Ахтерпик ЛБ' AND ship_id=2), 0.20, 2.84, 2.09, -3.39, 7.35, 10, 57 UNION ALL
 SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Ахтерпик ЛБ' AND ship_id=2), 0.30, 4.41, 2.04, -3.41, 7.41, 11, 65 UNION ALL
 SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Ахтерпик ЛБ' AND ship_id=2), 0.40, 6.08, 1.99, -3.43, 7.46, 12, 71 UNION ALL
@@ -1880,16 +1880,16 @@ DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartmen
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
 SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Переливная цистерна' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Переливная цистерна' AND ship_id=2), 0.10, 1.08, 17.20, 0 000, 0.05, 14, 7 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Переливная цистерна' AND ship_id=2), 0.20, 2.16, 17.20, 0 000, 0.10, 14, 7 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Переливная цистерна' AND ship_id=2), 0.10, 1.08, 17.20, 0.00, 0.05, 14, 7 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Переливная цистерна' AND ship_id=2), 0.20, 2.16, 17.20, 0.00, 0.10, 14, 7 UNION ALL
 SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Переливная цистерна' AND ship_id=2), 0.30, 3.24, 17.20, 0.00, 0.15, 14, 7 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Переливная цистерна' AND ship_id=2), 0.40, 4.32, 17.20, 0 000, 0.20, 14, 7 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Переливная цистерна' AND ship_id=2), 0.50, 5.40, 17.20, 0 000, 0.25, 14, 7 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Переливная цистерна' AND ship_id=2), 0.60, 6.48, 17.20, 0 000, 0.30, 14, 7 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Переливная цистерна' AND ship_id=2), 0.70, 7.57, 17.20, 0 000, 0.35, 14, 7 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Переливная цистерна' AND ship_id=2), 0.80, 8.65, 17.20, 0 000, 0.40, 14, 7 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Переливная цистерна' AND ship_id=2), 0.90, 9.73, 17.20, 0 000, 0.45, 14, 7 UNION ALL
-SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Переливная цистерна' AND ship_id=2), 1.00, 10.81, 17.20, 0 000, 0.50, 14, 7 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Переливная цистерна' AND ship_id=2), 0.40, 4.32, 17.20, 0.00, 0.20, 14, 7 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Переливная цистерна' AND ship_id=2), 0.50, 5.40, 17.20, 0.00, 0.25, 14, 7 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Переливная цистерна' AND ship_id=2), 0.60, 6.48, 17.20, 0.00, 0.30, 14, 7 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Переливная цистерна' AND ship_id=2), 0.70, 7.57, 17.20, 0.00, 0.35, 14, 7 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Переливная цистерна' AND ship_id=2), 0.80, 8.65, 17.20, 0.00, 0.40, 14, 7 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Переливная цистерна' AND ship_id=2), 0.90, 9.73, 17.20, 0.00, 0.45, 14, 7 UNION ALL
+SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Переливная цистерна' AND ship_id=2), 1.00, 10.81, 17.20, 0.00, 0.50, 14, 7 UNION ALL
 SELECT  2, (SELECT space_id FROM compartment WHERE name_rus='Переливная цистерна' AND ship_id=2), 1.10, 11.89, 17.20, 0.00, 0.55, 0, 0;
 
 

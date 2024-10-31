@@ -59,8 +59,8 @@ DROP TABLE IF EXISTS ship_geometry, ship_parameters, ship CASCADE;
 -- Holds and bulkheads relations
 \i ./sql/hold/hold_group.sql
 \i ./sql/hold/bulkhead.sql
-\i ./sql/hold/hold_part.sql
 \i ./sql/hold/bulkhead_place.sql
+\i ./sql/hold/hold_part.sql
 \i ./sql/hold/hold_compartment.sql
 \i ./sql/hold/hold_compartment_curve.sql
 \i ./sql/hold/hold_grain_moment.sql
@@ -90,10 +90,9 @@ DROP TABLE IF EXISTS ship_geometry, ship_parameters, ship CASCADE;
 --\i ./sql/triggers/volume.sql
 \i ./sql/triggers/water_density.sql
 --
--- Data for ship
+-- Data for ARK
 \i ./sql/ARK/ship.sql
 \i ./sql/ARK/strength_force_limit.sql
--- Hidrostatic curves for ship
 \i ./sql/ARK/hidrostatic/center_draught.sql
 \i ./sql/ARK/hidrostatic/center_waterline.sql
 \i ./sql/ARK/hidrostatic/mean_draught.sql
@@ -107,14 +106,11 @@ DROP TABLE IF EXISTS ship_geometry, ship_parameters, ship CASCADE;
 \i ./sql/ARK/hidrostatic/waterline_length.sql
 \i ./sql/ARK/hidrostatic/waterline_area.sql
 \i ./sql/ARK/hidrostatic/min_metacentric_height_subdivision.sql
-\i ./sql/ARK/hidrostatic/delta_windage_area.sql
-\i ./sql/ARK/hidrostatic/delta_windage_moment.sql
 \i ./sql/ARK/hidrostatic/metacentic_height_limits.sql
 \i ./sql/ARK/frames/bonjean_frame.sql
 \i ./sql/ARK/frames/physical_frame.sql
 \i ./sql/ARK/frames/frame_area.sql
 \i ./sql/ARK/loads/load_base.sql
-\i ./sql/ARK/loads/protocol_66.sql
 \i ./sql/ARK/loads/hull.sql
 \i ./sql/ARK/loads/compartment_curve.sql
 \i ./sql/ARK/loads/grain_moment.sql
@@ -129,3 +125,42 @@ DROP TABLE IF EXISTS ship_geometry, ship_parameters, ship CASCADE;
 \i ./sql/ARK/draft/screw.sql
 \i ./sql/ARK/draft/bow_board.sql
 \i ./sql/ARK/hold/hold_insert_empty.sql
+--
+-- Data for Sofia
+\i ./sql/Sofia/ship.sql
+\i ./sql/Sofia/strength_force_limit.sql
+\i ./sql/Sofia/hidrostatic/center_draught.sql
+\i ./sql/Sofia/hidrostatic/center_waterline.sql
+\i ./sql/Sofia/hidrostatic/mean_draught.sql
+\i ./sql/Sofia/hidrostatic/pantocaren.sql
+\i ./sql/Sofia/hidrostatic/rad_trans.sql
+\i ./sql/Sofia/hidrostatic/rad_long.sql
+\i ./sql/Sofia/hidrostatic/flooding_angle.sql
+\i ./sql/Sofia/hidrostatic/entry_angle.sql
+\i ./sql/Sofia/hidrostatic/volume_shift.sql
+\i ./sql/Sofia/hidrostatic/waterline_breadth.sql
+\i ./sql/Sofia/hidrostatic/waterline_length.sql
+\i ./sql/Sofia/hidrostatic/waterline_area.sql
+\i ./sql/Sofia/hidrostatic/min_metacentric_height_subdivision.sql
+--\i ./sql/Sofia/hidrostatic/metacentic_height_limits.sql
+\i ./sql/Sofia/frames/bonjean_frame.sql
+\i ./sql/Sofia/frames/physical_frame.sql
+\i ./sql/Sofia/frames/frame_area.sql
+\i ./sql/Sofia/loads/load_base.sql
+\i ./sql/Sofia/loads/hull.sql
+\i ./sql/Sofia/loads/compartment_curve.sql
+\i ./sql/Sofia/loads/grain_moment.sql
+\i ./sql/Sofia/loads/hull_curve.sql
+\i ./sql/Sofia/area/horizontal_area_strength.sql
+\i ./sql/Sofia/area/horizontal_area_stability.sql
+\i ./sql/Sofia/area/vertical_area_strength.sql
+\i ./sql/Sofia/area/vertical_area_stability.sql
+\i ./sql/Sofia/area/bow_area.sql
+\i ./sql/Sofia/draft/draft_mark.sql
+\i ./sql/Sofia/draft/load_line.sql
+\i ./sql/Sofia/draft/screw.sql
+\i ./sql/Sofia/draft/bow_board.sql
+\i ./sql/Sofia/hold/bulkhead.sql
+\i ./sql/Sofia/hold/hold_group.sql
+\i ./sql/Sofia/hold/hold_part.sql
+\i ./sql/Sofia/hold/bulkhead_place.sql
