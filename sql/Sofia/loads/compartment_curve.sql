@@ -1663,7 +1663,6 @@ INSERT INTO compartment_curve
 SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 ЛБ' AND ship_id=2), 0.10, 0.00, 9.474, -2.212, 3.325, 0, 0 UNION ALL
 SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 ЛБ' AND ship_id=2), 0.20, 0.00, 9.47, -2.21, 3.33, 0, 0 UNION ALL
 SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 ЛБ' AND ship_id=2), 0.30, 0 001, 9.45, -2.23, 3.40, 0, 0 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 ЛБ' AND ship_id=2), 0.30, 0.00, 9.42, -2.24, 3.48, 0, 0 UNION ALL
 SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 ЛБ' AND ship_id=2), 0.40, 0.01, 9.38, -2.26, 3.56, 0, 0 UNION ALL
 SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 ЛБ' AND ship_id=2), 0.50, 0.01, 9.35, -2.28, 3.63, 0, 0 UNION ALL
 SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Борт. танк 7 ЛБ' AND ship_id=2), 0.60, 0.03, 9.32, -2.30, 3.71, 0, 0 UNION ALL
