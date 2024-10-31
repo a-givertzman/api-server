@@ -87,9 +87,9 @@ CREATE TABLE if not exists compartment_curve (
   static_moment_y FLOAT8,
   static_moment_z FLOAT8,
   area_vl FLOAT8,
-  trans_inertia_moment_self FLOAT8 NOT NULL,
+  trans_inertia_moment_self FLOAT8 NOT NULL DEFAULT 0,
   trans_inertia_moment_mov FLOAT8,
-  long_inertia_moment_self FLOAT8 NOT NULL,
+  long_inertia_moment_self FLOAT8 NOT NULL DEFAULT 0,
   long_inertia_moment_mov FLOAT8,
   CONSTRAINT compartment_curve_pk PRIMARY KEY (id),
   CONSTRAINT compartment_curve_key_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, space_id, level)

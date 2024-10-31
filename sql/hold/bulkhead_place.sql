@@ -10,12 +10,15 @@ CREATE TABLE IF NOT EXISTS bulkhead_place (
     -- ID of ship for this hold_part;
     ship_id INT NOT NULL,
     -- Global compartment identifier; 
-    space_id INT NOT NULL,
+    space_id INT,
+    -- Global compartment code from documentation; 
+    code TEXT,
     -- Name of bulkhead_place;
-    name TEXT NOT NULL,
+    name_rus TEXT NOT NULL,
+    name_engl TEXT,
     -- ID of bulkhead that is installed at this place;
     -- 1 to 1 relationship;
-    bulkhead_id INT UNIQUE,
+    bulkhead_id INT,
     -- hold_group ID to which this bulkhead_place belongs;
     hold_group_id INT NOT NULL,
     -- Coordinate of left border of bulkhead_place, measured in meters from midship;
@@ -35,5 +38,13 @@ CREATE TABLE IF NOT EXISTS bulkhead_place (
     CONSTRAINT bulkhead_place_mass_shift_x_check CHECK (
         bound_x1 <= mass_shift_x
         AND mass_shift_x <= bound_x2
-    )
+    ),
+    CONSTRAINT bulkhead_place_space_id_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, space_id),
+    CONSTRAINT bulkhead_place_bulkhead_id_unique UNIQUE (project_id, ship_id, bulkhead_id),
+    CONSTRAINT bulkhead_place_code_unique UNIQUE (project_id, ship_id, code),
+    CONSTRAINT bulkhead_place_code_check CHECK(char_length(code) <= 50),
+    CONSTRAINT bulkhead_place_name_rus_unique UNIQUE (project_id, ship_id, name_rus),
+    CONSTRAINT bulkhead_place_name_rus_check CHECK(char_length(name_rus) <= 100),
+    CONSTRAINT bulkhead_place_name_engl_unique UNIQUE (project_id, ship_id, name_engl),
+    CONSTRAINT bulkhead_place_name_engl_check CHECK(char_length(name_engl) <= 100)
 );

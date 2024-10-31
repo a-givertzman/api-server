@@ -59,12 +59,14 @@ DROP TABLE IF EXISTS ship_geometry, ship_parameters, ship CASCADE;
 -- Holds and bulkheads relations
 \i ./sql/hold/hold_group.sql
 \i ./sql/hold/bulkhead.sql
-\i ./sql/hold/bulkhead_place.sql
 \i ./sql/hold/hold_part.sql
+\i ./sql/hold/bulkhead_place.sql
 \i ./sql/hold/hold_compartment.sql
 \i ./sql/hold/hold_compartment_curve.sql
 \i ./sql/hold/hold_grain_moment.sql
 \i ./sql/hold/hold_compartment_trigger.sql
+\i ./sql/hold/hold_part_trigger.sql
+\i ./sql/hold/bulkhead_place_trigger.sql
 --
 -- Tables with result of calculating
 \i ./sql/result/result_strength.sql

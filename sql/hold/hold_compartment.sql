@@ -10,7 +10,8 @@ CREATE TABLE IF NOT EXISTS hold_compartment (
     -- ID of ship for this hold_part;
     ship_id INT NOT NULL,
     -- Name of hold_compartment;
-    name TEXT NOT NULL,
+    name_rus TEXT NOT NULL UNIQUE,
+    name_engl TEXT UNIQUE,
     -- ID of hold_group to which this hold_compartment belongs;
     group_id INT NOT NULL,
     -- Index of first hold_part in corresponding hold_group;
@@ -45,8 +46,8 @@ CREATE TABLE IF NOT EXISTS hold_compartment (
     -- 
     CONSTRAINT hold_compartment_pk PRIMARY KEY (id),
     CONSTRAINT hold_compartment_group_fk FOREIGN KEY (group_id) REFERENCES hold_group (id),
-    CONSTRAINT hold_compartment_group_start_fk FOREIGN KEY (group_id, group_start_index) REFERENCES hold_part (group_id, group_index),
-    CONSTRAINT hold_compartment_group_end_fk FOREIGN KEY (group_id, group_end_index) REFERENCES hold_part (group_id, group_index),
+    CONSTRAINT hold_compartment_group_start_fk FOREIGN KEY (project_id, ship_id, group_id, group_start_index) REFERENCES hold_part (project_id, ship_id, group_id, group_index),
+    CONSTRAINT hold_compartment_group_end_fk FOREIGN KEY (project_id, ship_id, group_id, group_end_index) REFERENCES hold_part (project_id, ship_id, group_id, group_index),
     CONSTRAINT hold_compartment_category_fk FOREIGN KEY (category_id) REFERENCES cargo_category (id),
     CONSTRAINT hold_compartment_group_index_check CHECK (
         group_start_index > 0
@@ -55,7 +56,10 @@ CREATE TABLE IF NOT EXISTS hold_compartment (
     ),
     CONSTRAINT hold_compartment_group_start_unique UNIQUE (group_id, group_start_index),
     CONSTRAINT hold_compartment_group_end_unique UNIQUE (group_id, group_end_index),
-    CONSTRAINT hold_compartment_name_check CHECK(char_length(name) <= 100),
+    CONSTRAINT hold_compartment_name_rus_unique UNIQUE (project_id, ship_id, name_rus),
+    CONSTRAINT hold_compartment_name_rus_check CHECK(char_length(name_rus) <= 100),
+    CONSTRAINT hold_compartment_name_engl_unique UNIQUE (project_id, ship_id, name_engl),
+    CONSTRAINT hold_compartment_name_engl_check CHECK(char_length(name_engl) <= 100),
     CONSTRAINT hold_compartment_density_check CHECK(density IS NULL OR density > 0),
     CONSTRAINT hold_compartment_volume_max_check CHECK(volume_max IS NULL OR volume_max > 0),
     CONSTRAINT hold_compartment_mass_check CHECK(mass IS NULL OR mass >= 0),
@@ -88,7 +92,7 @@ BEGIN
     SELECT bound_x2 INTO right_bound_x FROM hold_part WHERE group_id = group_id_param AND group_index = group_start_index_param AND ship_id = ship_id_param AND project_id IS NOT DISTINCT FROM project_id_param;
     SELECT bound_x1 INTO left_bound_x FROM hold_part WHERE group_id = group_id_param AND group_index = group_end_index_param AND ship_id = ship_id_param AND project_id IS NOT DISTINCT FROM project_id_param;
     RETURN CONCAT(
-        (SELECT name FROM hold_group WHERE id = group_id_param AND ship_id = ship_id_param AND project_id IS NOT DISTINCT FROM project_id_param ),
+        (SELECT name_rus FROM hold_group WHERE id = group_id_param AND ship_id = ship_id_param AND project_id IS NOT DISTINCT FROM project_id_param ),
         ' ',
         (SELECT frame_index FROM physical_frame WHERE ship_id = ship_id_param AND project_id IS NOT DISTINCT FROM project_id_param ORDER BY ABS(pos_x - left_bound_x) LIMIT 1), -- Frame index for most left part of compartment;
         '-',
@@ -107,7 +111,7 @@ CREATE OR REPLACE FUNCTION extract_hold_compartment(
     group_start_index_param INT -- Index in group of the rightmost hold_part of this hold_compartment;
 )
 RETURNS TABLE (
-    name TEXT,
+    name_rus TEXT,
     project_id INT,
     ship_id INT,
     group_id INT,
@@ -181,7 +185,7 @@ BEGIN
                     AND hp.project_id IS NOT DISTINCT FROM project_id_param
             )
         SELECT
-            generate_hold_compartment_name(project_id_param, ship_id_param, group_id_param, group_start_index_param, dp.group_index) AS name,
+            generate_hold_compartment_name(project_id_param, ship_id_param, group_id_param, group_start_index_param, dp.group_index) AS name_rus,
             project_id_param AS project_id,
             ship_id_param AS ship_id,
             group_id_param AS group_id,
@@ -205,7 +209,7 @@ CREATE OR REPLACE FUNCTION extract_hold_compartments(
     group_id_param INT -- ID of hold_group to which all hold_part's of this hold_compartment's belong;
 )
 RETURNS TABLE (
-    name TEXT,
+    name_rus TEXT,
     project_id INT,
     ship_id INT,
     group_id INT,
@@ -257,7 +261,7 @@ BEGIN
     -- Insert new hold_compartment entries;
     INSERT INTO
         hold_compartment (
-            name,
+            name_rus,
             project_id,
             ship_id,
             group_id,
@@ -268,7 +272,7 @@ BEGIN
             bound_x2
         )
     SELECT
-        name,
+        name_rus,
         project_id,
         ship_id,
         group_id,
@@ -311,7 +315,7 @@ EXECUTE PROCEDURE put_hold_compartment_on_part_changed();
 
 -- Update hold_compartment entries on bulkhead_place changed;
 DROP TRIGGER IF EXISTS put_hold_compartment_on_bulkhead_changed_trigger ON hold_part;
-DROP FUNCTION IF EXISTS put_hold_compartment_on_bulkhead_changed;
+DROP FUNCTION IF EXISTS put_hold_compartment_on_bulkhead_changed CASCADE;
 
 CREATE OR REPLACE FUNCTION put_hold_compartment_on_bulkhead_changed()
 RETURNS TRIGGER AS $$

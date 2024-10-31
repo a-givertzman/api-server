@@ -1,11 +1,11 @@
 --
 INSERT INTO hold_group
-    (id, project_id, ship_id, space_id, name)
+    (id, project_id, ship_id, space_id, name_rus)
 VALUES
     (1, NULL, 1, 1, 'Трюм');
 --
 INSERT INTO bulkhead_place
-    (id, project_id, ship_id, space_id, name, hold_group_id, bound_x1, bound_x2, mass_shift_x, mass_shift_y, mass_shift_z)
+    (id, project_id, ship_id, space_id, name_rus, hold_group_id, bound_x1, bound_x2, mass_shift_x, mass_shift_y, mass_shift_z)
 VALUES
     (1, NULL, 1, 61, '113 шп.',  1,  12.696,     13.086,     12.87,  0,  4.53),
     (2, NULL, 1, 62, '51 шп.',   1,  -27.604,    -27.214,    -27.43, 0,  4.53),
@@ -38,7 +38,7 @@ VALUES
     );
 --
 INSERT INTO bulkhead
-    (id, project_id, ship_id, name, mass, category_id)
+    (id, project_id, ship_id, name_rus, mass, category_id)
 VALUES
     (1, NULL, 1, 'Зерновая переборка №1', 12.0, 22),
     (2, NULL, 1, 'Зерновая переборка №2', 12.0, 22);

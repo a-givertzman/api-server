@@ -12,6 +12,11 @@ CREATE TABLE IF NOT EXISTS hold_group (
     -- Global compartment identifier; 
     space_id INT NOT NULL,
     -- Name of hold_group;
-    name TEXT NOT NULL UNIQUE,
-    CONSTRAINT hold_group_pk PRIMARY KEY (id)
+    name_rus TEXT NOT NULL,
+    name_engl TEXT,
+    CONSTRAINT hold_group_pk PRIMARY KEY (id),
+    CONSTRAINT hold_group_name_rus_unique UNIQUE (project_id, ship_id, name_rus),
+    CONSTRAINT hold_group_name_rus_check CHECK(char_length(name_rus) <= 100),
+    CONSTRAINT hold_group_name_engl_unique UNIQUE (project_id, ship_id, name_engl),
+    CONSTRAINT hold_group_name_engl_check CHECK(char_length(name_engl) <= 100)
 );

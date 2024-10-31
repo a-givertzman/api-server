@@ -12,7 +12,6 @@ TRUNCATE TABLE compartment_curve;
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, static_moment_x, static_moment_y, static_moment_z, area_vl, trans_inertia_moment_self, trans_inertia_moment_mov, long_inertia_moment_self, long_inertia_moment_mov)
 VALUES
-
 --====================================== Грузовой трюм =======================================
   (1, 1, 0.820, 0.00, -3.463, -0.001, 0.812, 0.0, 0.0, 0.0, 0.00, 0.0, 0.0, 0.0, 0.0),
   (1, 1, 0.830, 8.41, -3.463, -0.001, 0.812, -29.1, 0.0, 6.8, 0.0, 0.0, 0.0, 0.0, 0.0),
