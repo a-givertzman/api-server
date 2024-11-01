@@ -1,29 +1,29 @@
-DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='Н101' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='H101' AND ship_id=2);
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z)
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н101' AND ship_id=2), 0.50, 66.20, 111.92, 0.00, 1.35 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н101' AND ship_id=2), 1.00, 132.40, 111.92, 0.00, 1.60 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н101' AND ship_id=2), 1.50, 198.60, 111.92, 0.00, 1.85 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н101' AND ship_id=2), 2.00, 264.80, 111.92, 0.00, 2.10 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н101' AND ship_id=2), 2.50, 331.00, 111.92, 0.00, 2.35 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н101' AND ship_id=2), 3.00, 397.20, 111.92, 0.00, 2.60 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н101' AND ship_id=2), 3.50, 463.40, 111.92, 0.00, 2.85 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н101' AND ship_id=2), 4.00, 529.60, 111.92, 0.00, 3.10 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н101' AND ship_id=2), 4.50, 595.80, 111.92, 0.00, 3.35 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н101' AND ship_id=2), 5.00, 662.00, 111.92, 0.00, 3.60 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н101' AND ship_id=2), 5.50, 739.91, 111.96, 0.00, 3.89 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н101' AND ship_id=2), 6.00, 826.49, 112.01, 0.00, 4.20 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н101' AND ship_id=2), 6.50, 913.08, 112.06, 0.00, 4.50 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н101' AND ship_id=2), 7.00, 999.66, 112.10, 0.00, 4.79 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н101' AND ship_id=2), 7.50, 1086.25, 112.13, 0.00, 5.07 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н101' AND ship_id=2), 8.00, 1172.84, 112.16, 0.00, 5.35 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н101' AND ship_id=2), 8.50, 1259.42, 112.19, 0.00, 5.63 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н101' AND ship_id=2), 9.00, 1346.01, 112.21, 0.00, 5.90 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н101' AND ship_id=2), 9.50, 1432.60, 112.22, 0.00, 6.17 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н101' AND ship_id=2), 10.00, 1519.18, 112.24, 0.00, 6.43 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н101' AND ship_id=2), 10.50, 1604.82, 112.25, 0.00, 6.70 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н101' AND ship_id=2), 10.80, 1657.00, 112.26, 0.00, 6.86;
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H101' AND ship_id=2), 0.50, 66.20, 111.92, 0.00, 1.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H101' AND ship_id=2), 1.00, 132.40, 111.92, 0.00, 1.60 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H101' AND ship_id=2), 1.50, 198.60, 111.92, 0.00, 1.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H101' AND ship_id=2), 2.00, 264.80, 111.92, 0.00, 2.10 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H101' AND ship_id=2), 2.50, 331.00, 111.92, 0.00, 2.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H101' AND ship_id=2), 3.00, 397.20, 111.92, 0.00, 2.60 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H101' AND ship_id=2), 3.50, 463.40, 111.92, 0.00, 2.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H101' AND ship_id=2), 4.00, 529.60, 111.92, 0.00, 3.10 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H101' AND ship_id=2), 4.50, 595.80, 111.92, 0.00, 3.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H101' AND ship_id=2), 5.00, 662.00, 111.92, 0.00, 3.60 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H101' AND ship_id=2), 5.50, 739.91, 111.96, 0.00, 3.89 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H101' AND ship_id=2), 6.00, 826.49, 112.01, 0.00, 4.20 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H101' AND ship_id=2), 6.50, 913.08, 112.06, 0.00, 4.50 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H101' AND ship_id=2), 7.00, 999.66, 112.10, 0.00, 4.79 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H101' AND ship_id=2), 7.50, 1086.25, 112.13, 0.00, 5.07 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H101' AND ship_id=2), 8.00, 1172.84, 112.16, 0.00, 5.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H101' AND ship_id=2), 8.50, 1259.42, 112.19, 0.00, 5.63 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H101' AND ship_id=2), 9.00, 1346.01, 112.21, 0.00, 5.90 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H101' AND ship_id=2), 9.50, 1432.60, 112.22, 0.00, 6.17 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H101' AND ship_id=2), 10.00, 1519.18, 112.24, 0.00, 6.43 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H101' AND ship_id=2), 10.50, 1604.82, 112.25, 0.00, 6.70 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H101' AND ship_id=2), 10.80, 1657.00, 112.26, 0.00, 6.86;
 
 
 DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='P101' AND ship_id=2);
@@ -54,31 +54,31 @@ SELECT  2, (SELECT space_id FROM hold_part WHERE code='P101' AND ship_id=2), 10.
 SELECT  2, (SELECT space_id FROM hold_part WHERE code='P101' AND ship_id=2), 10.80, 94.35, 105.50, 0.00, 6.50;
 
 
-DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='Н102' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='H102' AND ship_id=2);
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z)
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н102' AND ship_id=2), 0.50, 52.61, 101.19, 0.00, 1.35 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н102' AND ship_id=2), 1.00, 105.23, 101.19, 0.00, 1.60 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н102' AND ship_id=2), 1.50, 157.84, 101.19, 0.00, 1.85 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н102' AND ship_id=2), 2.00, 210.46, 101.19, 0.00, 2.10 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н102' AND ship_id=2), 2.50, 263.07, 101.19, 0.00, 2.35 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н102' AND ship_id=2), 3.00, 315.69, 101.19, 0.00, 2.60 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н102' AND ship_id=2), 3.50, 368.30, 101.19, 0.00, 2.85 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н102' AND ship_id=2), 4.00, 420.92, 101.19, 0.00, 3.10 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н102' AND ship_id=2), 4.50, 473.53, 101.19, 0.00, 3.35 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н102' AND ship_id=2), 5.00, 526.15, 101.19, 0.00, 3.60 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н102' AND ship_id=2), 5.50, 578.76, 101.19, 0.00, 3.85 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н102' AND ship_id=2), 6.00, 631.37, 101.19, 0.00, 4.10 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н102' AND ship_id=2), 6.50, 683.99, 101.19, 0.00, 4.35 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н102' AND ship_id=2), 7.00, 736.60, 101.19, 0.00, 4.60 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н102' AND ship_id=2), 7.50, 789.22, 101.19, 0.00, 4.85 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н102' AND ship_id=2), 8.00, 841.83, 101.19, 0.00, 5.10 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н102' AND ship_id=2), 8.50, 894.45, 101.19, 0.00, 5.35 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н102' AND ship_id=2), 9.00, 947.06, 101.19, 0.00, 5.60 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н102' AND ship_id=2), 9.50, 999.68, 101.19, 0.00, 5.85 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н102' AND ship_id=2), 10.00, 1052.29, 101.19, 0.00, 6.10 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н102' AND ship_id=2), 10.80, 1137.00, 101.19, 0.00, 6.50;
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H102' AND ship_id=2), 0.50, 52.61, 101.19, 0.00, 1.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H102' AND ship_id=2), 1.00, 105.23, 101.19, 0.00, 1.60 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H102' AND ship_id=2), 1.50, 157.84, 101.19, 0.00, 1.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H102' AND ship_id=2), 2.00, 210.46, 101.19, 0.00, 2.10 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H102' AND ship_id=2), 2.50, 263.07, 101.19, 0.00, 2.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H102' AND ship_id=2), 3.00, 315.69, 101.19, 0.00, 2.60 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H102' AND ship_id=2), 3.50, 368.30, 101.19, 0.00, 2.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H102' AND ship_id=2), 4.00, 420.92, 101.19, 0.00, 3.10 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H102' AND ship_id=2), 4.50, 473.53, 101.19, 0.00, 3.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H102' AND ship_id=2), 5.00, 526.15, 101.19, 0.00, 3.60 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H102' AND ship_id=2), 5.50, 578.76, 101.19, 0.00, 3.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H102' AND ship_id=2), 6.00, 631.37, 101.19, 0.00, 4.10 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H102' AND ship_id=2), 6.50, 683.99, 101.19, 0.00, 4.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H102' AND ship_id=2), 7.00, 736.60, 101.19, 0.00, 4.60 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H102' AND ship_id=2), 7.50, 789.22, 101.19, 0.00, 4.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H102' AND ship_id=2), 8.00, 841.83, 101.19, 0.00, 5.10 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H102' AND ship_id=2), 8.50, 894.45, 101.19, 0.00, 5.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H102' AND ship_id=2), 9.00, 947.06, 101.19, 0.00, 5.60 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H102' AND ship_id=2), 9.50, 999.68, 101.19, 0.00, 5.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H102' AND ship_id=2), 10.00, 1052.29, 101.19, 0.00, 6.10 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H102' AND ship_id=2), 10.80, 1137.00, 101.19, 0.00, 6.50;
 
 
 DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='P102' AND ship_id=2);
@@ -109,32 +109,32 @@ SELECT  2, (SELECT space_id FROM hold_part WHERE code='P102' AND ship_id=2), 10.
 SELECT  2, (SELECT space_id FROM hold_part WHERE code='P102' AND ship_id=2), 10.80, 94.35, 96.88, 0.00, 6.50;
 
 
-DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='Н103' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='H103' AND ship_id=2);
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z)
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н103' AND ship_id=2), 0.50, 21.84, 94.90, 0.00, 1.35 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н103' AND ship_id=2), 1.00, 43.68, 94.90, 0.00, 1.60 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н103' AND ship_id=2), 1.50, 65.53, 94.90, 0.00, 1.85 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н103' AND ship_id=2), 2.00, 87.37, 94.90, 0.00, 2.10 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н103' AND ship_id=2), 2.50, 109.21, 94.90, 0.00, 2.35 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н103' AND ship_id=2), 3.00, 131.05, 94.90, 0.00, 2.60 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н103' AND ship_id=2), 3.50, 152.89, 94.90, 0.00, 2.85 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н103' AND ship_id=2), 4.00, 174.73, 94.90, 0.00, 3.10 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н103' AND ship_id=2), 4.50, 196.58, 94.90, 0.00, 3.35 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н103' AND ship_id=2), 5.00, 218.42, 94.90, 0.00, 3.60 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н103' AND ship_id=2), 5.50, 240.26, 94.90, 0.00, 3.85 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н103' AND ship_id=2), 6.00, 262.10, 94.90, 0.00, 4.10 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н103' AND ship_id=2), 6.50, 283.94, 94.90, 0.00, 4.35 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н103' AND ship_id=2), 7.00, 305.78, 94.90, 0.00, 4.60 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н103' AND ship_id=2), 7.50, 327.63, 94.90, 0.00, 4.85 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н103' AND ship_id=2), 8.00, 349.47, 94.90, 0.00, 5.10 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н103' AND ship_id=2), 8.50, 371.31, 94.90, 0.00, 5.35 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н103' AND ship_id=2), 9.00, 393.15, 94.90, 0.00, 5.60 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н103' AND ship_id=2), 9.50, 414.99, 94.90, 0.00, 5.85 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н103' AND ship_id=2), 10.00, 436.83, 94.90, 0.00, 6.10 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н103' AND ship_id=2), 10.50, 458.68, 94.90, 0.00, 6.35 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н103' AND ship_id=2), 10.80, 472.00, 94.90, 0.00, 6.50;
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H103' AND ship_id=2), 0.50, 21.84, 94.90, 0.00, 1.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H103' AND ship_id=2), 1.00, 43.68, 94.90, 0.00, 1.60 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H103' AND ship_id=2), 1.50, 65.53, 94.90, 0.00, 1.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H103' AND ship_id=2), 2.00, 87.37, 94.90, 0.00, 2.10 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H103' AND ship_id=2), 2.50, 109.21, 94.90, 0.00, 2.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H103' AND ship_id=2), 3.00, 131.05, 94.90, 0.00, 2.60 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H103' AND ship_id=2), 3.50, 152.89, 94.90, 0.00, 2.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H103' AND ship_id=2), 4.00, 174.73, 94.90, 0.00, 3.10 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H103' AND ship_id=2), 4.50, 196.58, 94.90, 0.00, 3.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H103' AND ship_id=2), 5.00, 218.42, 94.90, 0.00, 3.60 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H103' AND ship_id=2), 5.50, 240.26, 94.90, 0.00, 3.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H103' AND ship_id=2), 6.00, 262.10, 94.90, 0.00, 4.10 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H103' AND ship_id=2), 6.50, 283.94, 94.90, 0.00, 4.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H103' AND ship_id=2), 7.00, 305.78, 94.90, 0.00, 4.60 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H103' AND ship_id=2), 7.50, 327.63, 94.90, 0.00, 4.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H103' AND ship_id=2), 8.00, 349.47, 94.90, 0.00, 5.10 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H103' AND ship_id=2), 8.50, 371.31, 94.90, 0.00, 5.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H103' AND ship_id=2), 9.00, 393.15, 94.90, 0.00, 5.60 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H103' AND ship_id=2), 9.50, 414.99, 94.90, 0.00, 5.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H103' AND ship_id=2), 10.00, 436.83, 94.90, 0.00, 6.10 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H103' AND ship_id=2), 10.50, 458.68, 94.90, 0.00, 6.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H103' AND ship_id=2), 10.80, 472.00, 94.90, 0.00, 6.50;
 
 
 DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='P103' AND ship_id=2);
@@ -165,32 +165,32 @@ SELECT  2, (SELECT space_id FROM hold_part WHERE code='P103' AND ship_id=2), 10.
 SELECT  2, (SELECT space_id FROM hold_part WHERE code='P103' AND ship_id=2), 10.80, 94.35, 96.88, 0.00, 6.50;
 
 
-DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='Н104' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='H104' AND ship_id=2);
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z)
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н104' AND ship_id=2), 0.50, 127.21, 82.99, 0.00, 1.35 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н104' AND ship_id=2), 1.00, 254.42, 82.99, 0.00, 1.60 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н104' AND ship_id=2), 1.50, 381.63, 82.99, 0.00, 1.85 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н104' AND ship_id=2), 2.00, 508.84, 82.99, 0.00, 2.10 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н104' AND ship_id=2), 2.50, 636.05, 82.99, 0.00, 2.35 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н104' AND ship_id=2), 3.00, 763.26, 82.99, 0.00, 2.60 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н104' AND ship_id=2), 3.50, 890.47, 82.99, 0.00, 2.85 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н104' AND ship_id=2), 4.00, 1017.68, 82.99, 0.00, 3.10 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н104' AND ship_id=2), 4.50, 1144.89, 82.99, 0.00, 3.35 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н104' AND ship_id=2), 5.00, 1272.10, 82.99, 0.00, 3.60 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н104' AND ship_id=2), 5.50, 1399.31, 82.99, 0.00, 3.85 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н104' AND ship_id=2), 6.00, 1526.52, 82.99, 0.00, 4.10 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н104' AND ship_id=2), 6.50, 1653.73, 82.99, 0.00, 4.35 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н104' AND ship_id=2), 7.00, 1780.93, 82.99, 0.00, 4.60 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н104' AND ship_id=2), 7.50, 1908.14, 82.99, 0.00, 4.85 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н104' AND ship_id=2), 8.00, 2035.35, 82.99, 0.00, 5.10 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н104' AND ship_id=2), 8.50, 2162.56, 82.99, 0.00, 5.35 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н104' AND ship_id=2), 9.00, 2289.77, 82.99, 0.00, 5.60 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н104' AND ship_id=2), 9.50, 2416.98, 82.99, 0.00, 5.85 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н104' AND ship_id=2), 10.00, 2544.19, 82.99, 0.00, 6.10 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н104' AND ship_id=2), 10.50, 2671.40, 82.99, 0.00, 6.35 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н104' AND ship_id=2), 10.80, 2749.00, 82.99, 0.00, 6.50;
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H104' AND ship_id=2), 0.50, 127.21, 82.99, 0.00, 1.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H104' AND ship_id=2), 1.00, 254.42, 82.99, 0.00, 1.60 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H104' AND ship_id=2), 1.50, 381.63, 82.99, 0.00, 1.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H104' AND ship_id=2), 2.00, 508.84, 82.99, 0.00, 2.10 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H104' AND ship_id=2), 2.50, 636.05, 82.99, 0.00, 2.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H104' AND ship_id=2), 3.00, 763.26, 82.99, 0.00, 2.60 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H104' AND ship_id=2), 3.50, 890.47, 82.99, 0.00, 2.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H104' AND ship_id=2), 4.00, 1017.68, 82.99, 0.00, 3.10 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H104' AND ship_id=2), 4.50, 1144.89, 82.99, 0.00, 3.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H104' AND ship_id=2), 5.00, 1272.10, 82.99, 0.00, 3.60 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H104' AND ship_id=2), 5.50, 1399.31, 82.99, 0.00, 3.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H104' AND ship_id=2), 6.00, 1526.52, 82.99, 0.00, 4.10 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H104' AND ship_id=2), 6.50, 1653.73, 82.99, 0.00, 4.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H104' AND ship_id=2), 7.00, 1780.93, 82.99, 0.00, 4.60 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H104' AND ship_id=2), 7.50, 1908.14, 82.99, 0.00, 4.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H104' AND ship_id=2), 8.00, 2035.35, 82.99, 0.00, 5.10 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H104' AND ship_id=2), 8.50, 2162.56, 82.99, 0.00, 5.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H104' AND ship_id=2), 9.00, 2289.77, 82.99, 0.00, 5.60 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H104' AND ship_id=2), 9.50, 2416.98, 82.99, 0.00, 5.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H104' AND ship_id=2), 10.00, 2544.19, 82.99, 0.00, 6.10 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H104' AND ship_id=2), 10.50, 2671.40, 82.99, 0.00, 6.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H104' AND ship_id=2), 10.80, 2749.00, 82.99, 0.00, 6.50;
 
 
 DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='H201' AND ship_id=2);
@@ -420,7 +420,7 @@ SELECT  2, (SELECT space_id FROM hold_part WHERE code='P203' AND ship_id=2), 7.0
 SELECT  2, (SELECT space_id FROM hold_part WHERE code='P203' AND ship_id=2), 7.50, 65.49, 41.86, 0.00, 4.85 UNION ALL
 SELECT  2, (SELECT space_id FROM hold_part WHERE code='P203' AND ship_id=2), 8.00, 69.86, 41.86, 0.00, 5.10 UNION ALL
 SELECT  2, (SELECT space_id FROM hold_part WHERE code='P203' AND ship_id=2), 8.50, 74.22, 41.86, 0.00, 5.35 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='P203' AND ship_id=2), 9.00, 78.59, 41.86, 0 00, 5.60 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='P203' AND ship_id=2), 9.00, 78.59, 41.86, 0.00, 5.60 UNION ALL
 SELECT  2, (SELECT space_id FROM hold_part WHERE code='P203' AND ship_id=2), 9.50, 82.96, 41.86, 0.00, 5.85 UNION ALL
 SELECT  2, (SELECT space_id FROM hold_part WHERE code='P203' AND ship_id=2), 10.00, 87.32, 41.86, 0.00, 6.10 UNION ALL
 SELECT  2, (SELECT space_id FROM hold_part WHERE code='P203' AND ship_id=2), 10.50, 91.69, 41.86, 0.00, 6 35 UNION ALL
@@ -476,7 +476,7 @@ SELECT  2, (SELECT space_id FROM hold_part WHERE code='P204' AND ship_id=2), 7.0
 SELECT  2, (SELECT space_id FROM hold_part WHERE code='P204' AND ship_id=2), 7.50, 61.13, 31.50, 0.00, 4.60 UNION ALL
 SELECT  2, (SELECT space_id FROM hold_part WHERE code='P204' AND ship_id=2), 8.00, 65.49, 31.50, 0.00, 4.85 UNION ALL
 SELECT  2, (SELECT space_id FROM hold_part WHERE code='P204' AND ship_id=2), 8.50, 69.86, 31.50, 5.10, 0.84 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='P204' AND ship_id=2), 9.00, 78.59, 41.86, 0 00, 5.60 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='P204' AND ship_id=2), 9.00, 78.59, 41.86, 0.00, 5.60 UNION ALL
 SELECT  2, (SELECT space_id FROM hold_part WHERE code='P204' AND ship_id=2), 9.50, 82.96, 41.86, 0.00, 5.85 UNION ALL
 SELECT  2, (SELECT space_id FROM hold_part WHERE code='P204' AND ship_id=2), 10.00, 87.32, 41.86, 0.00, 6.10 UNION ALL
 SELECT  2, (SELECT space_id FROM hold_part WHERE code='P204' AND ship_id=2), 10.50, 91.69, 41.86, 0.00, 6 35 UNION ALL
