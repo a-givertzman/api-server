@@ -44,26 +44,26 @@ impl TcpConnection {
         // self.configureSocket(stream, threadName, Duration::from_secs(10), false);
         let mut stream_read = BufReader::new(self.stream.try_clone().unwrap());
         while keep_alive {
-            match Self::read_all(&self.id, &mut stream_read) {
-                ConnectionStatus::Active(bytes) => {
-                    // debug!("{}.run | received bytes: {:?}", threadName, &bytes);
-                    debug!("{}.run | Received string: {:?}", self.id, String::from_utf8(bytes.clone()));                
-                    let result = api_server.build(bytes);
-                    keep_alive = result.keepAlive;
-                    let reply = result.data;
-                    match Self::write(&self.id, &mut self.stream, &reply) {
-                        Ok(_) => {},
-                        Err(err) => {
-                            warn!("{}.run | Error sending reply: {:?}", self.id, err);
-                            // cancel = true;
-                        },
-                    };
-                },
-                ConnectionStatus::Closed => {
-                    debug!("{}.run | Connection closed", self.id);
-                    return
-                },
-            }
+            // match Self::read_all(&self.id, &mut stream_read) {
+            //     ConnectionStatus::Active(bytes) => {
+            //         // debug!("{}.run | received bytes: {:?}", threadName, &bytes);
+            //         debug!("{}.run | Received string: {:?}", self.id, String::from_utf8(bytes.clone()));                
+            //         let result = api_server.build(bytes);
+            //         keep_alive = result.keepAlive;
+            //         let reply = result.data;
+            //         match Self::write(&self.id, &mut self.stream, &reply) {
+            //             Ok(_) => {},
+            //             Err(err) => {
+            //                 warn!("{}.run | Error sending reply: {:?}", self.id, err);
+            //                 // cancel = true;
+            //             },
+            //         };
+            //     },
+            //     ConnectionStatus::Closed => {
+            //         debug!("{}.run | Connection closed", self.id);
+            //         return
+            //     },
+            // }
             thread::sleep(Duration::from_millis(100))
         }
         info!("{}.run | Exit", self.id);
@@ -72,23 +72,24 @@ impl TcpConnection {
     /// bytes to be read from socket at once
     const BUF_LEN: usize = 1024 * 4;
     fn read_header(self_id: &str, stream: impl Read) -> ConnectionStatus {
-        stream.bytes().find(|b| {
-            match b {
-                Ok(b) => match b {
-                    Message::SYN => {
-                        let mut buf = [0; 1];
-                        match Self::read_buf(self_id, stream, buf) {
-                            ConnectionStatus::Active(vec) => {
-                                ConnectionStatus::Active(vec)
-                            },
-                            ConnectionStatus::Closed => ConnectionStatus::Closed,
-                        }
-                    }
-                    _ => todo!(),
-                }
-                Err(err) => parse_socket_error(self_id, err),
-            }
-        })
+        // stream.bytes().find(|b| {
+        //     match b {
+        //         Ok(b) => match b {
+        //             Message::SYN => {
+        //                 let mut buf = [0; 1];
+        //                 match Self::read_buf(self_id, stream, buf) {
+        //                     ConnectionStatus::Active(vec) => {
+        //                         ConnectionStatus::Active(vec)
+        //                     },
+        //                     ConnectionStatus::Closed => ConnectionStatus::Closed,
+        //                 }
+        //             }
+        //             _ => todo!(),
+        //         }
+        //         Err(err) => parse_socket_error(self_id, err),
+        //     }
+        // })
+        ConnectionStatus::Closed
     }
     ///
     /// reads all avalible data from the TspStream

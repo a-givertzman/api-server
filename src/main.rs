@@ -3,7 +3,7 @@
 extern crate postgres;
 
 mod tests;
-mod core_;
+mod domain;
 mod config;
 mod api_server;
 mod tcp_server;
@@ -21,7 +21,7 @@ use std::{path::{Path, PathBuf}, sync::{Arc, Mutex}};
 use clap::Parser;
 use log::debug;
 use crate::{
-    config::Config, core_::{cli::cli::Cli, debug::debug_session::{Backtrace, DebugSession, LogLevel}}, tcp_server::TcpServer
+    config::Config, domain::{cli::cli::Cli, debug::debug_session::{Backtrace, DebugSession, LogLevel}}, tcp_server::TcpServer
 };
 
 fn main() {
