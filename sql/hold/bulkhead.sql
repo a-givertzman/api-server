@@ -4,7 +4,7 @@
 DROP TABLE IF EXISTS bulkhead CASCADE;
 
 CREATE TABLE IF NOT EXISTS bulkhead (
-    id INT,
+    id INT GENERATED ALWAYS AS IDENTITY,
     -- ID of project for this hold_part;
     project_id INT,
     -- ID of ship for this hold_part;

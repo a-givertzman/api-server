@@ -53,6 +53,7 @@ DROP TABLE IF EXISTS ship_geometry, ship_parameters, ship CASCADE;
 -- Compartment and cargo relations
 \i ./sql/cargo_categories/cargo_categories.sql
 \i ./sql/loads/create.sql
+\i ./sql/loads/grain_moment.sql
 \i ./sql/loads/loads_trigger.sql
 \i ./sql/loads/volume_max_trigger.sql
 --
@@ -147,11 +148,6 @@ DROP TABLE IF EXISTS ship_geometry, ship_parameters, ship CASCADE;
 \i ./sql/Sofia/frames/bonjean_frame.sql
 \i ./sql/Sofia/frames/physical_frame.sql
 \i ./sql/Sofia/frames/frame_area.sql
-\i ./sql/Sofia/loads/load_base.sql
-\i ./sql/Sofia/loads/hull.sql
-\i ./sql/Sofia/loads/compartment_curve.sql
-\i ./sql/Sofia/loads/grain_moment.sql
-\i ./sql/Sofia/loads/hull_curve.sql
 \i ./sql/Sofia/area/horizontal_area_strength.sql
 \i ./sql/Sofia/area/horizontal_area_stability.sql
 \i ./sql/Sofia/area/vertical_area_strength.sql
@@ -165,3 +161,8 @@ DROP TABLE IF EXISTS ship_geometry, ship_parameters, ship CASCADE;
 \i ./sql/Sofia/hold/hold_group.sql
 \i ./sql/Sofia/hold/hold_part.sql
 \i ./sql/Sofia/hold/bulkhead_place.sql
+\i ./sql/Sofia/loads/load_base.sql
+\i ./sql/Sofia/loads/hull.sql
+\i ./sql/Sofia/loads/compartment_curve.sql
+\i ./sql/Sofia/loads/grain_moment.sql
+\i ./sql/Sofia/loads/hull_curve.sql
