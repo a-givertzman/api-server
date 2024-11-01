@@ -8,7 +8,7 @@ BEGIN
     RAISE NOTICE 'update_hold_part_place_id begin';
 
     IF NEW.left_bulkhead_code IS NOT NULL AND NEW.left_bulkhead_place_id IS NULL THEN
-        RAISE NOTICE 'update_hold_compartment_parameters get left_bulkhead_place_id';
+        RAISE NOTICE 'update_hold_part_place_id get left_bulkhead_place_id';
         SELECT space_id
         INTO NEW.left_bulkhead_place_id
         FROM hold_part 
@@ -16,7 +16,7 @@ BEGIN
     END IF;
 
     IF NEW.right_bulkhead_code IS NOT NULL AND NEW.right_bulkhead_place_id IS NULL THEN
-        RAISE NOTICE 'update_hold_compartment_parameters get right_bulkhead_place_id';
+        RAISE NOTICE 'update_hold_part_place_id get right_bulkhead_place_id';
         SELECT space_id
         INTO NEW.right_bulkhead_place_id
         FROM hold_part
@@ -24,7 +24,7 @@ BEGIN
     END IF;
 
     IF NEW.group_space_id IS NOT NULL AND NEW.group_id IS NULL THEN
-        RAISE NOTICE 'update_hold_compartment_parameters get group_id';
+        RAISE NOTICE 'update_hold_part_place_id get group_id';
         SELECT id
         INTO NEW.group_id
         FROM hold_group
