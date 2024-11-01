@@ -8,7 +8,6 @@ CREATE TABLE if not exists vertical_area_strength (
   ship_id INT NOT NULL,
   name TEXT NOT NULL,
   value REAL NOT NULL,
-  shift_z REAL,
   bound_x1 REAL NOT NULL,
   bound_x2 REAL NOT NULL,  
   CONSTRAINT vertical_area_strength_pk PRIMARY KEY (id),
