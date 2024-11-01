@@ -1736,7 +1736,7 @@ DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartmen
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
 SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Ахтерпик ЛБ' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Ахтерпик ЛБ' AND ship_id=2), 0.10, 1.37, 2.15, -3.3G8, 7.30, 9, 50 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Ахтерпик ЛБ' AND ship_id=2), 0.10, 1.37, 2.15, -3.38, 7.30, 9, 50 UNION ALL
 SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Ахтерпик ЛБ' AND ship_id=2), 0.20, 2.84, 2.09, -3.39, 7.35, 10, 57 UNION ALL
 SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Ахтерпик ЛБ' AND ship_id=2), 0.30, 4.41, 2.04, -3.41, 7.41, 11, 65 UNION ALL
 SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Ахтерпик ЛБ' AND ship_id=2), 0.40, 6.08, 1.99, -3.43, 7.46, 12, 71 UNION ALL
@@ -1934,27 +1934,27 @@ SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Расходная �
 SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Расходная цистерна газойля 1' AND ship_id=2), 3.34, 6.11, 10.20, -4.60, 7.98, 0, 0;
 
 
-DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Цистерна протечек газойля 1' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Цистерна протечек газойля' AND ship_id=2);
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Цистерна протечек газойля 1' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Цистерна протечек газойля 1' AND ship_id=2), 0.10, 0.19, 15.13, 1.34, 0.05, 1, 0 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Цистерна протечек газойля 1' AND ship_id=2), 0.20, 0.44, 15.13, 1.43, 0.11, 1, 0 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Цистерна протечек газойля 1' AND ship_id=2), 0.30, 0.71, 15.12, 1.50, 0.16, 1, 0 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Цистерна протечек газойля 1' AND ship_id=2), 0.40, 1.00, 15.12, 1.55, 0.22, 1, 0 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Цистерна протечек газойля 1' AND ship_id=2), 0.50, 1.31, 15.12, 1.60, 0.27, 1, 1 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Цистерна протечек газойля 1' AND ship_id=2), 0.60, 1.63, 15.12, 1.64, 0.33, 2, 1 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Цистерна протечек газойля 1' AND ship_id=2), 0.70, 1.97, 15.12, 1.68, 0.38, 2, 1 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Цистерна протечек газойля 1' AND ship_id=2), 0.80, 2.33, 15.12, 1.71, 0.44, 2, 1 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Цистерна протечек газойля 1' AND ship_id=2), 0.90, 2.69, 15.12, 1.74, 0.49, 2, 1 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Цистерна протечек газойля 1' AND ship_id=2), 1.00, 3.06, 15.12, 1.77, 0.55, 2, 1 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Цистерна протечек газойля 1' AND ship_id=2), 1.10, 3.44, 15.12, 1.80, 0.61, 3, 1 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Цистерна протечек газойля 1' AND ship_id=2), 1.20, 3.82, 15.12, 1.82, 0.66, 3, 1 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Цистерна протечек газойля 1' AND ship_id=2), 1.30, 4.22, 15.12, 1.85, 0.72, 3, 1 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Цистерна протечек газойля 1' AND ship_id=2), 1.40, 4.62, 15.12, 1.87, 0.77, 3, 1 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Цистерна протечек газойля 1' AND ship_id=2), 1.50, 5.03, 15.12, 1.89, 0.83, 3, 1 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Цистерна протечек газойля 1' AND ship_id=2), 1.60, 5.45, 15.12, 1.91, 0.88, 0, 0;
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Цистерна протечек газойля' AND ship_id=2), 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Цистерна протечек газойля' AND ship_id=2), 0.10, 0.19, 15.13, 1.34, 0.05, 1, 0 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Цистерна протечек газойля' AND ship_id=2), 0.20, 0.44, 15.13, 1.43, 0.11, 1, 0 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Цистерна протечек газойля' AND ship_id=2), 0.30, 0.71, 15.12, 1.50, 0.16, 1, 0 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Цистерна протечек газойля' AND ship_id=2), 0.40, 1.00, 15.12, 1.55, 0.22, 1, 0 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Цистерна протечек газойля' AND ship_id=2), 0.50, 1.31, 15.12, 1.60, 0.27, 1, 1 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Цистерна протечек газойля' AND ship_id=2), 0.60, 1.63, 15.12, 1.64, 0.33, 2, 1 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Цистерна протечек газойля' AND ship_id=2), 0.70, 1.97, 15.12, 1.68, 0.38, 2, 1 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Цистерна протечек газойля' AND ship_id=2), 0.80, 2.33, 15.12, 1.71, 0.44, 2, 1 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Цистерна протечек газойля' AND ship_id=2), 0.90, 2.69, 15.12, 1.74, 0.49, 2, 1 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Цистерна протечек газойля' AND ship_id=2), 1.00, 3.06, 15.12, 1.77, 0.55, 2, 1 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Цистерна протечек газойля' AND ship_id=2), 1.10, 3.44, 15.12, 1.80, 0.61, 3, 1 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Цистерна протечек газойля' AND ship_id=2), 1.20, 3.82, 15.12, 1.82, 0.66, 3, 1 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Цистерна протечек газойля' AND ship_id=2), 1.30, 4.22, 15.12, 1.85, 0.72, 3, 1 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Цистерна протечек газойля' AND ship_id=2), 1.40, 4.62, 15.12, 1.87, 0.77, 3, 1 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Цистерна протечек газойля' AND ship_id=2), 1.50, 5.03, 15.12, 1.89, 0.83, 3, 1 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Цистерна протечек газойля' AND ship_id=2), 1.60, 5.45, 15.12, 1.91, 0.88, 0, 0;
 
 
 DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartment WHERE name_rus='Цистерна газойля 1' AND ship_id=2);
