@@ -1,29 +1,29 @@
-DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='Н101' AND ship_id=2);
+DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='H101' AND ship_id=2);
 
 INSERT INTO grain_moment
   (ship_id, space_id, level, moment)
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н101' AND ship_id=2), 0.50, 265 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н101' AND ship_id=2), 1.00, 422 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н101' AND ship_id=2), 1.50, 516 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н101' AND ship_id=2), 2.00, 564 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н101' AND ship_id=2), 2.50, 590 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н101' AND ship_id=2), 3.00, 621 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н101' AND ship_id=2), 3.50, 664 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н101' AND ship_id=2), 4.00, 713 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н101' AND ship_id=2), 4.50, 763 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н101' AND ship_id=2), 5.00, 814 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н101' AND ship_id=2), 5.50, 873 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н101' AND ship_id=2), 6.00, 939 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н101' AND ship_id=2), 6.50, 1005 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н101' AND ship_id=2), 7.00, 1070 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н101' AND ship_id=2), 7.50, 1124 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н101' AND ship_id=2), 8.00, 1146 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н101' AND ship_id=2), 8.50, 1110 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н101' AND ship_id=2), 9.00, 1017 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н101' AND ship_id=2), 9.50, 858 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н101' AND ship_id=2), 10.00, 621 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н101' AND ship_id=2), 10.50, 286 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н101' AND ship_id=2), 10.80, 146;
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H101' AND ship_id=2), 0.50, 265 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H101' AND ship_id=2), 1.00, 422 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H101' AND ship_id=2), 1.50, 516 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H101' AND ship_id=2), 2.00, 564 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H101' AND ship_id=2), 2.50, 590 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H101' AND ship_id=2), 3.00, 621 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H101' AND ship_id=2), 3.50, 664 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H101' AND ship_id=2), 4.00, 713 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H101' AND ship_id=2), 4.50, 763 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H101' AND ship_id=2), 5.00, 814 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H101' AND ship_id=2), 5.50, 873 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H101' AND ship_id=2), 6.00, 939 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H101' AND ship_id=2), 6.50, 1005 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H101' AND ship_id=2), 7.00, 1070 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H101' AND ship_id=2), 7.50, 1124 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H101' AND ship_id=2), 8.00, 1146 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H101' AND ship_id=2), 8.50, 1110 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H101' AND ship_id=2), 9.00, 1017 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H101' AND ship_id=2), 9.50, 858 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H101' AND ship_id=2), 10.00, 621 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H101' AND ship_id=2), 10.50, 286 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H101' AND ship_id=2), 10.80, 146;
 
 
 DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='P101' AND ship_id=2);
@@ -54,31 +54,31 @@ SELECT  2, (SELECT space_id FROM hold_part WHERE code='P101' AND ship_id=2), 10.
 SELECT  2, (SELECT space_id FROM hold_part WHERE code='P101' AND ship_id=2), 10.80, 6;
 
 
-DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='Н102' AND ship_id=2);
+DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='H102' AND ship_id=2);
 
 INSERT INTO grain_moment
   (ship_id, space_id, level, moment)
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н102' AND ship_id=2), 0.50, 284 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н102' AND ship_id=2), 1.00, 482 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н102' AND ship_id=2), 1.50, 624 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н102' AND ship_id=2), 2.00, 720 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н102' AND ship_id=2), 2.50, 776 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н102' AND ship_id=2), 3.00, 798 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н102' AND ship_id=2), 3.50, 798 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н102' AND ship_id=2), 4.00, 798 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н102' AND ship_id=2), 4.50, 798 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н102' AND ship_id=2), 5.00, 798 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н102' AND ship_id=2), 5.50, 798 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н102' AND ship_id=2), 6.00, 798 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н102' AND ship_id=2), 6.50, 798 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н102' AND ship_id=2), 7.00, 798 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н102' AND ship_id=2), 7.50, 798 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н102' AND ship_id=2), 8.00, 793 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н102' AND ship_id=2), 8.50, 759 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н102' AND ship_id=2), 9.00, 687 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н102' AND ship_id=2), 9.50, 574 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н102' AND ship_id=2), 10.00, 413 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н102' AND ship_id=2), 10.80, 84;
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H102' AND ship_id=2), 0.50, 284 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H102' AND ship_id=2), 1.00, 482 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H102' AND ship_id=2), 1.50, 624 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H102' AND ship_id=2), 2.00, 720 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H102' AND ship_id=2), 2.50, 776 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H102' AND ship_id=2), 3.00, 798 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H102' AND ship_id=2), 3.50, 798 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H102' AND ship_id=2), 4.00, 798 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H102' AND ship_id=2), 4.50, 798 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H102' AND ship_id=2), 5.00, 798 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H102' AND ship_id=2), 5.50, 798 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H102' AND ship_id=2), 6.00, 798 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H102' AND ship_id=2), 6.50, 798 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H102' AND ship_id=2), 7.00, 798 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H102' AND ship_id=2), 7.50, 798 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H102' AND ship_id=2), 8.00, 793 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H102' AND ship_id=2), 8.50, 759 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H102' AND ship_id=2), 9.00, 687 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H102' AND ship_id=2), 9.50, 574 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H102' AND ship_id=2), 10.00, 413 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H102' AND ship_id=2), 10.80, 84;
 
 
 DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='P102' AND ship_id=2);
@@ -109,32 +109,32 @@ SELECT  2, (SELECT space_id FROM hold_part WHERE code='P102' AND ship_id=2), 10.
 SELECT  2, (SELECT space_id FROM hold_part WHERE code='P102' AND ship_id=2), 10.80, 6;
 
 
-DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='Н103' AND ship_id=2);
+DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='H103' AND ship_id=2);
 
 INSERT INTO grain_moment
   (ship_id, space_id, level, moment)
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н103' AND ship_id=2), 0.50, 118 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н103' AND ship_id=2), 1.00, 200 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н103' AND ship_id=2), 1.50, 259 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н103' AND ship_id=2), 2.00, 299 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н103' AND ship_id=2), 2.50, 322 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н103' AND ship_id=2), 3.00, 331 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н103' AND ship_id=2), 3.50, 331 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н103' AND ship_id=2), 4.00, 331 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н103' AND ship_id=2), 4.50, 331 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н103' AND ship_id=2), 5.00, 331 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н103' AND ship_id=2), 5.50, 331 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н103' AND ship_id=2), 6.00, 331 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н103' AND ship_id=2), 6.50, 331 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н103' AND ship_id=2), 7.00, 331 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н103' AND ship_id=2), 7.50, 331 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н103' AND ship_id=2), 8.00, 329 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н103' AND ship_id=2), 8.50, 315 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н103' AND ship_id=2), 9.00, 285 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н103' AND ship_id=2), 9.50, 238 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н103' AND ship_id=2), 10.00, 171 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н103' AND ship_id=2), 10.50, 78 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н103' AND ship_id=2), 10.80, 35;
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H103' AND ship_id=2), 0.50, 118 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H103' AND ship_id=2), 1.00, 200 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H103' AND ship_id=2), 1.50, 259 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H103' AND ship_id=2), 2.00, 299 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H103' AND ship_id=2), 2.50, 322 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H103' AND ship_id=2), 3.00, 331 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H103' AND ship_id=2), 3.50, 331 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H103' AND ship_id=2), 4.00, 331 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H103' AND ship_id=2), 4.50, 331 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H103' AND ship_id=2), 5.00, 331 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H103' AND ship_id=2), 5.50, 331 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H103' AND ship_id=2), 6.00, 331 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H103' AND ship_id=2), 6.50, 331 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H103' AND ship_id=2), 7.00, 331 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H103' AND ship_id=2), 7.50, 331 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H103' AND ship_id=2), 8.00, 329 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H103' AND ship_id=2), 8.50, 315 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H103' AND ship_id=2), 9.00, 285 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H103' AND ship_id=2), 9.50, 238 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H103' AND ship_id=2), 10.00, 171 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H103' AND ship_id=2), 10.50, 78 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H103' AND ship_id=2), 10.80, 35;
 
 
 DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='P103' AND ship_id=2);
@@ -165,32 +165,32 @@ SELECT  2, (SELECT space_id FROM hold_part WHERE code='P103' AND ship_id=2), 10.
 SELECT  2, (SELECT space_id FROM hold_part WHERE code='P103' AND ship_id=2), 10.80, 6;
 
 
-DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='Н104' AND ship_id=2);
+DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='H104' AND ship_id=2);
 
 INSERT INTO grain_moment
   (ship_id, space_id, level, moment)
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н104' AND ship_id=2), 0.50, 688 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н104' AND ship_id=2), 1.00, 1166 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н104' AND ship_id=2), 1.50, 1508 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н104' AND ship_id=2), 2.00, 1740 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н104' AND ship_id=2), 2.50, 1877 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н104' AND ship_id=2), 3.00, 1928 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н104' AND ship_id=2), 3.50, 1929 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н104' AND ship_id=2), 4.00, 1929 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н104' AND ship_id=2), 4.50, 1929 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н104' AND ship_id=2), 5.00, 1929 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н104' AND ship_id=2), 5.50, 1929 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н104' AND ship_id=2), 6.00, 1929 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н104' AND ship_id=2), 6.50, 1929 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н104' AND ship_id=2), 7.00, 1929 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н104' AND ship_id=2), 7.50, 1929 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н104' AND ship_id=2), 8.00, 1918 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н104' AND ship_id=2), 8.50, 1834 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н104' AND ship_id=2), 9.00, 1661 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н104' AND ship_id=2), 9.50, 1389 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н104' AND ship_id=2), 10.00, 998 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н104' AND ship_id=2), 10.50, 453 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part WHERE code='Н104' AND ship_id=2), 10.80, 203;
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H104' AND ship_id=2), 0.50, 688 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H104' AND ship_id=2), 1.00, 1166 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H104' AND ship_id=2), 1.50, 1508 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H104' AND ship_id=2), 2.00, 1740 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H104' AND ship_id=2), 2.50, 1877 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H104' AND ship_id=2), 3.00, 1928 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H104' AND ship_id=2), 3.50, 1929 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H104' AND ship_id=2), 4.00, 1929 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H104' AND ship_id=2), 4.50, 1929 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H104' AND ship_id=2), 5.00, 1929 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H104' AND ship_id=2), 5.50, 1929 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H104' AND ship_id=2), 6.00, 1929 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H104' AND ship_id=2), 6.50, 1929 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H104' AND ship_id=2), 7.00, 1929 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H104' AND ship_id=2), 7.50, 1929 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H104' AND ship_id=2), 8.00, 1918 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H104' AND ship_id=2), 8.50, 1834 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H104' AND ship_id=2), 9.00, 1661 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H104' AND ship_id=2), 9.50, 1389 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H104' AND ship_id=2), 10.00, 998 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H104' AND ship_id=2), 10.50, 453 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part WHERE code='H104' AND ship_id=2), 10.80, 203;
 
 
 DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='H201' AND ship_id=2);
