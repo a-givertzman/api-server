@@ -67,6 +67,7 @@ DROP TABLE IF EXISTS ship_geometry, ship_parameters, ship CASCADE;
 \i ./sql/hold/hold_compartment_trigger.sql
 \i ./sql/hold/hold_part_trigger.sql
 \i ./sql/hold/bulkhead_place_trigger.sql
+\i ./sql/hold/volume_max_trigger.sql
 --
 -- Tables with result of calculating
 \i ./sql/result/result_strength.sql
