@@ -1,4 +1,4 @@
-DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part_id WHERE code='H101' AND ship_id=2);
+DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='H101' AND ship_id=2);
 
 INSERT INTO grain_moment
   (ship_id, space_id, level, moment)
@@ -26,7 +26,7 @@ SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H101' AND ship_id=2), 
 SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H101' AND ship_id=2), 10.80, 146;
 
 
-DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2);
+DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='P101' AND ship_id=2);
 
 INSERT INTO grain_moment
   (ship_id, space_id, level, moment)
@@ -54,7 +54,7 @@ SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2), 
 SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2), 10.80, 6;
 
 
-DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part_id WHERE code='H102' AND ship_id=2);
+DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='H102' AND ship_id=2);
 
 INSERT INTO grain_moment
   (ship_id, space_id, level, moment)
@@ -81,7 +81,7 @@ SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H102' AND ship_id=2), 
 SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H102' AND ship_id=2), 10.80, 84;
 
 
-DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2);
+DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='P102' AND ship_id=2);
 
 INSERT INTO grain_moment
   (ship_id, space_id, level, moment)
@@ -109,7 +109,7 @@ SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2), 
 SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2), 10.80, 6;
 
 
-DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part_id WHERE code='H103' AND ship_id=2);
+DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='H103' AND ship_id=2);
 
 INSERT INTO grain_moment
   (ship_id, space_id, level, moment)
@@ -137,7 +137,7 @@ SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H103' AND ship_id=2), 
 SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H103' AND ship_id=2), 10.80, 35;
 
 
-DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2);
+DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='P103' AND ship_id=2);
 
 INSERT INTO grain_moment
   (ship_id, space_id, level, moment)
@@ -165,7 +165,7 @@ SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2), 
 SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2), 10.80, 6;
 
 
-DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part_id WHERE code='H104' AND ship_id=2);
+DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='H104' AND ship_id=2);
 
 INSERT INTO grain_moment
   (ship_id, space_id, level, moment)
@@ -193,32 +193,10 @@ SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H104' AND ship_id=2), 
 SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H104' AND ship_id=2), 10.80, 203;
 
 
-DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part_id WHERE code='H201' AND ship_id=2);
+DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='H201' AND ship_id=2);
 
 INSERT INTO grain_moment
   (ship_id, space_id, level, moment)
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H201' AND ship_id=2), 0.50, 688 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H201' AND ship_id=2), 1.00, 1166 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H201' AND ship_id=2), 1.50, 1508 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H201' AND ship_id=2), 2.00, 1740 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H201' AND ship_id=2), 2.50, 1877 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H201' AND ship_id=2), 3.00, 1928 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H201' AND ship_id=2), 3.50, 1929 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H201' AND ship_id=2), 4.00, 1929 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H201' AND ship_id=2), 4.50, 1929 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H201' AND ship_id=2), 5.00, 1929 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H201' AND ship_id=2), 5.50, 1929 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H201' AND ship_id=2), 6.00, 1929 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H201' AND ship_id=2), 6.50, 1929 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H201' AND ship_id=2), 7.00, 1929 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H201' AND ship_id=2), 7.50, 1929 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H201' AND ship_id=2), 8.00, 1918 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H201' AND ship_id=2), 8.50, 1834 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H201' AND ship_id=2), 9.00, 1661 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H201' AND ship_id=2), 9.50, 1389 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H201' AND ship_id=2), 10.00, 998 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H201' AND ship_id=2), 10.50, 453 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H201' AND ship_id=2), 10.80, 203 UNION ALL
 SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H201' AND ship_id=2), 0.50, 455 UNION ALL
 SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H201' AND ship_id=2), 1.00, 772 UNION ALL
 SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H201' AND ship_id=2), 1.50, 998 UNION ALL
@@ -243,7 +221,7 @@ SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H201' AND ship_id=2), 
 SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H201' AND ship_id=2), 10.80, 134;
 
 
-DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2);
+DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='P201' AND ship_id=2);
 
 INSERT INTO grain_moment
   (ship_id, space_id, level, moment)
@@ -271,54 +249,10 @@ SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2), 
 SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2), 10.80, 6;
 
 
-DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2);
+DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='H202' AND ship_id=2);
 
 INSERT INTO grain_moment
   (ship_id, space_id, level, moment)
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 0.50, 688 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 1.00, 1166 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 1.50, 1508 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 2.00, 1740 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 2.50, 1877 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 3.00, 1928 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 3.50, 1929 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 4.00, 1929 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 4.50, 1929 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 5.00, 1929 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 5.50, 1929 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 6.00, 1929 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 6.50, 1929 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 7.00, 1929 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 7.50, 1929 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 8.00, 1918 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 8.50, 1834 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 9.00, 1661 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 9.50, 1389 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 10.00, 998 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 10.50, 453 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 10.80, 203 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 0.50, 455 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 1.00, 772 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 1.50, 998 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 2.00, 1151 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 2.50, 1242 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 3.00, 1276 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 3.50, 1277 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 4.00, 1277 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 4.50, 1277 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 5.00, 1277 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 5.50, 1277 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 6.00, 1277 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 6.50, 1277 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 7.00, 1277 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 7.50, 1277 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 8.00, 1269 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 8.50, 1213 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 9.00, 1099 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 9.50, 919 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 10.00, 660 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 10.50, 300 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 10.80, 134 UNION ALL
 SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 0.50, 113 UNION ALL
 SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 1.00, 191 UNION ALL
 SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 1.50, 247 UNION ALL
@@ -343,7 +277,7 @@ SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 
 SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H202' AND ship_id=2), 10.80, 34;
 
 
-DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2);
+DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='P202' AND ship_id=2);
 
 INSERT INTO grain_moment
   (ship_id, space_id, level, moment)
@@ -371,7 +305,7 @@ SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2), 
 SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2), 10.80, 6;
 
 
-DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part_id WHERE code='H203' AND ship_id=2);
+DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='H203' AND ship_id=2);
 
 INSERT INTO grain_moment
   (ship_id, space_id, level, moment)
@@ -399,7 +333,7 @@ SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H203' AND ship_id=2), 
 SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H203' AND ship_id=2), 10.80, 124;
 
 
-DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2);
+DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='P203' AND ship_id=2);
 
 INSERT INTO grain_moment
   (ship_id, space_id, level, moment)
@@ -427,7 +361,7 @@ SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 
 SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 10.80, 6;
 
 
-DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part_id WHERE code='H204' AND ship_id=2);
+DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='H204' AND ship_id=2);
 
 INSERT INTO grain_moment
   (ship_id, space_id, level, moment)
@@ -455,7 +389,7 @@ SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H204' AND ship_id=2), 
 SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H204' AND ship_id=2), 10.80, 103;
 
 
-DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2);
+DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='P204' AND ship_id=2);
 
 INSERT INTO grain_moment
   (ship_id, space_id, level, moment)
@@ -483,7 +417,7 @@ SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 
 SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 10.80, 6;
 
 
-DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part_id WHERE code='H205' AND ship_id=2);
+DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='H205' AND ship_id=2);
 
 INSERT INTO grain_moment
   (ship_id, space_id, level, moment)
@@ -511,7 +445,7 @@ SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H205' AND ship_id=2), 
 SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H205' AND ship_id=2), 10.80, 56;
 
 
-DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2);
+DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='P205' AND ship_id=2);
 
 INSERT INTO grain_moment
   (ship_id, space_id, level, moment)
@@ -539,7 +473,7 @@ SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2), 
 SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2), 10.80, 6;
 
 
-DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part_id WHERE code='H206' AND ship_id=2);
+DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='H206' AND ship_id=2);
 
 INSERT INTO grain_moment
   (ship_id, space_id, level, moment)
