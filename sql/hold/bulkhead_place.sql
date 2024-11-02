@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS bulkhead_place (
         bound_x1 <= mass_shift_x
         AND mass_shift_x <= bound_x2
     ),
-    CONSTRAINT bulkhead_place_space_id_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, space_id),
+    CONSTRAINT bulkhead_place_space_id_unique UNIQUE (project_id, ship_id, space_id),
     CONSTRAINT bulkhead_place_bulkhead_id_unique UNIQUE (project_id, ship_id, bulkhead_id),
     CONSTRAINT bulkhead_place_code_unique UNIQUE (project_id, ship_id, code),
     CONSTRAINT bulkhead_place_code_check CHECK(char_length(code) <= 50),

@@ -142,7 +142,7 @@ BEGIN
                     hold_part AS hp
                 LEFT JOIN
                     bulkhead_place AS bp ON
-                    hp.left_bulkhead_place_id = bp.id
+                    hp.left_bulkhead_place_id = bp.space_id
                     AND hp.ship_id = bp.ship_id
                     AND hp.project_id IS NOT DISTINCT FROM bp.project_id
                 WHERE 
@@ -175,7 +175,7 @@ BEGIN
                     AND hp.project_id IS NOT DISTINCT FROM dp.project_id
                 LEFT JOIN
                     bulkhead_place AS bp ON
-                    hp.left_bulkhead_place_id = bp.id
+                    hp.left_bulkhead_place_id = bp.space_id
                     AND hp.ship_id = bp.ship_id
                     AND hp.project_id IS NOT DISTINCT FROM bp.project_id
                 WHERE
