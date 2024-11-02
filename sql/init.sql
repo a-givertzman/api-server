@@ -58,6 +58,7 @@ DROP TABLE IF EXISTS ship_geometry, ship_parameters, ship CASCADE;
 \i ./sql/loads/volume_max_trigger.sql
 --
 -- Holds and bulkheads relations
+\i ./sql/hold/hold_part_id.sql
 \i ./sql/hold/hold_group.sql
 \i ./sql/hold/bulkhead.sql
 \i ./sql/hold/bulkhead_place.sql
@@ -157,12 +158,14 @@ DROP TABLE IF EXISTS ship_geometry, ship_parameters, ship CASCADE;
 \i ./sql/Sofia/draft/load_line.sql
 \i ./sql/Sofia/draft/screw.sql
 \i ./sql/Sofia/draft/bow_board.sql
+\i ./sql/Sofia/hold/hold_part_id.sql
+\i ./sql/Sofia/hold/grain_moment.sql
+\i ./sql/Sofia/hold/hold_curve.sql
 \i ./sql/Sofia/hold/bulkhead.sql
+\i ./sql/Sofia/hold/bulkhead_place.sql
 \i ./sql/Sofia/hold/hold_group.sql
 \i ./sql/Sofia/hold/hold_part.sql
-\i ./sql/Sofia/hold/bulkhead_place.sql
 \i ./sql/Sofia/loads/load_base.sql
 \i ./sql/Sofia/loads/hull.sql
 \i ./sql/Sofia/loads/compartment_curve.sql
-\i ./sql/Sofia/loads/grain_moment.sql
-\i ./sql/Sofia/loads/hold_curve.sql
+

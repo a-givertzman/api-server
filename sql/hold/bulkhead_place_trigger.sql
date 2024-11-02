@@ -11,7 +11,7 @@ BEGIN
         RAISE NOTICE 'update_hold_compartment_parameters get space_id';
         SELECT space_id
         INTO NEW.space_id
-        FROM hold_part
+        FROM hold_part_id
         WHERE code = NEW.code AND ship_id = NEW.ship_id;
     END IF;
 

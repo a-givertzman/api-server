@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS hold_part (
     -- ID of ship for this hold_part;
     ship_id INT NOT NULL,
     -- Global compartment identifier;     
-    space_id INT NOT NULL,
+    space_id INT,
     -- Global compartment code from documentation; 
     code TEXT,
     -- hold_group ID to which this hold_part belongs;
