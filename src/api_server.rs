@@ -50,17 +50,17 @@ impl ApiServer {
     /// - Dippending on ApiQueryType call private execute method
     /// - Returns ApiReply with data or error
     // pub fn build(&self, bytes: Vec<u8>) -> Vec<u8> {
-    pub fn build(&self, bytes: Vec<u8>) -> ApiServerResult {
-        let apiQuery = ApiQuery::fromBytes(bytes);
+    pub fn build(&self, bytes: &[u8]) -> ApiServerResult {
+        let apiQuery = ApiQuery::from_bytes(bytes);
         match apiQuery.query() {            
             ApiQueryType::Error(errQuery) => {
                 ApiServerResult {
-                    keepAlive: apiQuery.keepAlive,
+                    keepAlive: apiQuery.keep_alive,
                     data: ApiReply::error(
-                        apiQuery.authToken(),
+                        apiQuery.auth_token(),
                         apiQuery.id(),
-                        apiQuery.keepAlive,
-                        apiQuery.srcQuery(apiQuery.debug),
+                        apiQuery.keep_alive,
+                        apiQuery.src_query(apiQuery.debug),
                         errQuery.err().debug(apiQuery.debug),
                     ).as_bytes(),
                 }
@@ -72,13 +72,13 @@ impl ApiServer {
                         match dbConfig.service_type {
                             ApiServiceType::Sqlite => {
                                 ApiServerResult {
-                                    keepAlive: apiQuery.keepAlive,
+                                    keepAlive: apiQuery.keep_alive,
                                     data: Self::execute(
                                         Box::new(SqlQuerySqlite::new(dbConfig.clone(), sqlQuery.sql, None)),
-                                        apiQuery.authToken(),
+                                        apiQuery.auth_token(),
                                         apiQuery.id(),
-                                        apiQuery.keepAlive,
-                                        apiQuery.srcQuery(apiQuery.debug),
+                                        apiQuery.keep_alive,
+                                        apiQuery.src_query(apiQuery.debug),
                                         apiQuery.debug,
                                     ).as_bytes(),
                                 }
@@ -88,37 +88,37 @@ impl ApiServer {
                                 let path: &str = &format!("{}/{}", dir.to_str().unwrap(), dbConfig.path);
                                 debug!("ApiServer.build | database address: {:?}", path);
                                 ApiServerResult {
-                                    keepAlive: apiQuery.keepAlive,
+                                    keepAlive: apiQuery.keep_alive,
                                     data: Self::execute(
                                         Box::new(SqlQueryMysql::new(dbConfig.clone(), sqlQuery.sql, None)),
-                                        apiQuery.authToken(),
+                                        apiQuery.auth_token(),
                                         apiQuery.id(),
-                                        apiQuery.keepAlive,
-                                        apiQuery.srcQuery(apiQuery.debug),
+                                        apiQuery.keep_alive,
+                                        apiQuery.src_query(apiQuery.debug),
                                         apiQuery.debug,
                                     ).as_bytes(),
                                 }
                             },
                             ApiServiceType::PostgreSql => {
                                 ApiServerResult {
-                                    keepAlive: apiQuery.keepAlive,
+                                    keepAlive: apiQuery.keep_alive,
                                     data: Self::execute(
                                         Box::new(SqlQueryPostgre::new(dbConfig.clone(), sqlQuery.sql, None)),
-                                        apiQuery.authToken(),
+                                        apiQuery.auth_token(),
                                         apiQuery.id(),
-                                        apiQuery.keepAlive,
-                                        apiQuery.srcQuery(apiQuery.debug),
+                                        apiQuery.keep_alive,
+                                        apiQuery.src_query(apiQuery.debug),
                                         apiQuery.debug,
                                     ).as_bytes(),
                                 }
                             },
                             _ => ApiServerResult {
-                                keepAlive: apiQuery.keepAlive,
+                                keepAlive: apiQuery.keep_alive,
                                 data: ApiReply::error(
-                                    apiQuery.authToken(),
+                                    apiQuery.auth_token(),
                                     apiQuery.id(),
-                                    apiQuery.keepAlive,
-                                    apiQuery.srcQuery(apiQuery.debug),
+                                    apiQuery.keep_alive,
+                                    apiQuery.src_query(apiQuery.debug),
                                     ApiError::new(
                                         format!("API Server - Database service with the name '{}' can't be found", sqlQuery.database),
                                         format!("ApiServer.build | Error: Database service with the name '{}' can't be found", sqlQuery.database),
@@ -128,12 +128,12 @@ impl ApiServer {
                         }
                     },
                     None => ApiServerResult {
-                        keepAlive: apiQuery.keepAlive,
+                        keepAlive: apiQuery.keep_alive,
                         data: ApiReply::error(
-                            apiQuery.authToken(),
+                            apiQuery.auth_token(),
                             apiQuery.id(),
-                            apiQuery.keepAlive,
-                            apiQuery.srcQuery(apiQuery.debug),
+                            apiQuery.keep_alive,
+                            apiQuery.src_query(apiQuery.debug),
                             ApiError::new(
                                 format!("API Server - Database service with the name '{}' can't be found", sqlQuery.database),
                                 format!("ApiServer.build | Error: Database service with the name '{}' can't be found", sqlQuery.database),
@@ -159,24 +159,24 @@ impl ApiServer {
                                 match PythonQuery::new(path, pyQuery.params.clone()).execute() {
                                     Ok(rows) => {                        
                                         ApiServerResult {
-                                            keepAlive: apiQuery.keepAlive,
+                                            keepAlive: apiQuery.keep_alive,
                                             data: ApiReply::new(
-                                                apiQuery.authToken(),
+                                                apiQuery.auth_token(),
                                                 apiQuery.id(),
-                                                apiQuery.keepAlive,
-                                                apiQuery.srcQuery(apiQuery.debug),
+                                                apiQuery.keep_alive,
+                                                apiQuery.src_query(apiQuery.debug),
                                                 rows,
                                             ).as_bytes(),
                                         }
                                     },
                                     Err(err) => {
                                         ApiServerResult {
-                                            keepAlive: apiQuery.keepAlive,
+                                            keepAlive: apiQuery.keep_alive,
                                             data: ApiReply::error(
-                                                apiQuery.authToken(),
+                                                apiQuery.auth_token(),
                                                 apiQuery.id(),
-                                                apiQuery.keepAlive,
-                                                apiQuery.srcQuery(apiQuery.debug),
+                                                apiQuery.keep_alive,
+                                                apiQuery.src_query(apiQuery.debug),
                                                 err.debug(apiQuery.debug),
                                             ).as_bytes(),
                                         }
@@ -185,12 +185,12 @@ impl ApiServer {
                             },
                             false => {
                                 ApiServerResult {
-                                    keepAlive: apiQuery.keepAlive,
+                                    keepAlive: apiQuery.keep_alive,
                                     data: ApiReply::error(
-                                        apiQuery.authToken(),
+                                        apiQuery.auth_token(),
                                         apiQuery.id(),
-                                        apiQuery.keepAlive,
-                                        apiQuery.srcQuery(apiQuery.debug),
+                                        apiQuery.keep_alive,
+                                        apiQuery.src_query(apiQuery.debug),
                                         ApiError::new(
                                             format!("API Server - pyton script does not exists: {}", path), 
                                             format!("ApiServer.build | pyton script does not exists: {}", path), 
@@ -202,12 +202,12 @@ impl ApiServer {
                     },
                     None => {
                         ApiServerResult {
-                            keepAlive: apiQuery.keepAlive,
+                            keepAlive: apiQuery.keep_alive,
                             data: ApiReply::error(
-                                apiQuery.authToken(),
+                                apiQuery.auth_token(),
                                 apiQuery.id(),
-                                apiQuery.keepAlive,
-                                apiQuery.srcQuery(apiQuery.debug),
+                                apiQuery.keep_alive,
+                                apiQuery.src_query(apiQuery.debug),
                                 ApiError::new(
                                     format!("API Server - Script with the name '{}' can't be found", pyQuery.script),
                                     format!("ApiServer.build | Error: Script with the name '{}' can't be found", pyQuery.script),
@@ -235,24 +235,24 @@ impl ApiServer {
                                 match ExecutableQuery::new(path, exQuery.params.clone()).execute() {
                                     Ok(rows) => {                        
                                         ApiServerResult {
-                                            keepAlive: apiQuery.keepAlive,
+                                            keepAlive: apiQuery.keep_alive,
                                             data: ApiReply::new(
-                                                apiQuery.authToken(),
+                                                apiQuery.auth_token(),
                                                 apiQuery.id(),
-                                                apiQuery.keepAlive,
-                                                apiQuery.srcQuery(apiQuery.debug),
+                                                apiQuery.keep_alive,
+                                                apiQuery.src_query(apiQuery.debug),
                                                 rows,
                                             ).as_bytes(),
                                         }
                                     },
                                     Err(err) => {
                                         ApiServerResult {
-                                            keepAlive: apiQuery.keepAlive,
+                                            keepAlive: apiQuery.keep_alive,
                                             data: ApiReply::error(
-                                                apiQuery.authToken(),
+                                                apiQuery.auth_token(),
                                                 apiQuery.id(),
-                                                apiQuery.keepAlive,
-                                                apiQuery.srcQuery(apiQuery.debug),
+                                                apiQuery.keep_alive,
+                                                apiQuery.src_query(apiQuery.debug),
                                                 err.debug(apiQuery.debug),
                                             ).as_bytes()
                                         }
@@ -261,12 +261,12 @@ impl ApiServer {
                             },
                             false => {
                                 ApiServerResult {
-                                    keepAlive: apiQuery.keepAlive,
+                                    keepAlive: apiQuery.keep_alive,
                                     data: ApiReply::error(
-                                        apiQuery.authToken(),
+                                        apiQuery.auth_token(),
                                         apiQuery.id(),
-                                        apiQuery.keepAlive,
-                                        apiQuery.srcQuery(apiQuery.debug),
+                                        apiQuery.keep_alive,
+                                        apiQuery.src_query(apiQuery.debug),
                                         ApiError::new(
                                             format!("API Server - Executable does not exists: {}", path),
                                             format!("ApiServer.build | Error: Executable does not exists: {}", path),
@@ -278,12 +278,12 @@ impl ApiServer {
                     },
                     None => {
                         ApiServerResult {
-                            keepAlive: apiQuery.keepAlive,
+                            keepAlive: apiQuery.keep_alive,
                             data: ApiReply::error(
-                                apiQuery.authToken(),
+                                apiQuery.auth_token(),
                                 apiQuery.id(),
-                                apiQuery.keepAlive,
-                                (apiQuery).srcQuery(apiQuery.debug),
+                                apiQuery.keep_alive,
+                                (apiQuery).src_query(apiQuery.debug),
                                 ApiError::new(
                                     format!("API Server - Executable service with name '{}' can't be found", exQuery.name),
                                     format!("ApiServer.build | Error: Executable service with name '{}' can't be found", exQuery.name),
@@ -295,12 +295,12 @@ impl ApiServer {
             },
             ApiQueryType::Unknown => {
                 ApiServerResult {
-                    keepAlive: apiQuery.keepAlive,
+                    keepAlive: apiQuery.keep_alive,
                     data: ApiReply::error(
-                        apiQuery.authToken(),
+                        apiQuery.auth_token(),
                         apiQuery.id(),
-                        apiQuery.keepAlive,
-                        apiQuery.srcQuery(apiQuery.debug),
+                        apiQuery.keep_alive,
+                        apiQuery.src_query(apiQuery.debug),
                         ApiError::new(
                             "API Server - Unknown type of API query",
                             "ApiServer.build | Error: Unknown type of API query",

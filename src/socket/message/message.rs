@@ -33,8 +33,8 @@
 //!     - .., ...
 //! 
 use core::str;
+use std::{cell::RefCell, iter::Peekable};
 use crate::domain::error::error::StrErr;
-
 use super::{fields::{FieldData, FieldKind, FieldSize, FieldSyn}, from_bytes::FromBytes, message_kind::MessageKind};
 /// 
 /// 
@@ -48,7 +48,13 @@ pub enum MessageFild {
 ///
 /// Socket Message
 pub struct Message {
-    fields: Vec<MessageFild>,
+    fields: Vec<MessageFild>, 
+    state: Peekable<Box<dyn Iterator<Item = MessageFild>>>,
+    result: Vec<MessageFild>, 
+    start: usize,
+    end: usize,
+    size: Option<u32>,
+    buffer: Vec<u8>,
 }
 //
 //
@@ -60,60 +66,142 @@ impl Message {
     pub fn new(
         fields: &[MessageFild]
     ) -> Self {
+        // let state = ;
         Self {
             fields: fields.to_owned(),
+            state: (Box::new(fields.to_owned().into_iter().cycle()) as Box<dyn Iterator<Item = MessageFild>>).peekable(),
+            result: vec![],
+            start: 0,
+            end: 0,
+            size: None,
+            buffer: vec![],
         }
     }
     ///
     /// 
-    pub fn parse(&self, bytes: &[u8]) -> Result<Vec<MessageFild>, StrErr> {
-        let mut result = vec![];
-        // let mut bytes = bytes.into_iter();
-        let mut pos = 0;
-        for field in &self.fields {
-            match field {
-                MessageFild::Syn(field_syn) => {
-                    pos = match bytes.iter().position(|b| *b != field_syn.0) {
-                        Some(pos) => pos,
-                        None => return Err(StrErr(format!("Message.parse | Syn not found in the message: {:?}...", &bytes[..24]))),
-                    }
-                },
-                MessageFild::Kind(field_kind) => {
-                    let kind_pos = pos;
-                    pos = kind_pos + field_kind.len();
-                    match bytes[kind_pos..pos].try_into() {
-                        Ok(bytes) => match MessageKind::from_bytes(bytes) {
-                            Ok(kind) => {
-                                result.push(MessageFild::Kind(FieldKind(kind)));
-                            },
-                            Err(_) => todo!(),
+    pub fn restart(&mut self) {
+        self.state = (Box::new(self.fields.to_owned().into_iter().cycle()) as Box<dyn Iterator<Item = MessageFild>>).peekable();
+    }
+    ///
+    /// Searchs fields specified in the constructor in the `bytes`, 
+    /// - If found, returns parsed Some(specified fields, except Syn) 
+    /// - If not found or message is not full, stores the state and waiting next `bytes` to compleet the message
+    pub fn parse(&mut self, bytes: &[u8]) -> Result<Vec<MessageFild>, StrErr> {
+        let bytes = [&std::mem::take(&mut self.buffer), bytes].concat();
+        log::debug!("Message.parse | Input bytes: {:?}", bytes);
+        loop {
+            match self.state.peek() {
+                Some(state) => {
+                    match state {
+                        MessageFild::Syn(field) => {
+                            log::debug!("Message.parse | Fild::Syn");
+                            self.start = match bytes.iter().position(|b| *b == field.0) {
+                                Some(pos) => pos,
+                                None => {
+                                    return Err(format!("Message.parse | Syn not found in the message: {:?}...", if bytes.len() > 16 { &bytes[..16] } else { &bytes } ).into());
+                                }
+                            };
+                            self.end = self.start + field.len();
+                            self.state.next().unwrap();
+                            self.start = self.end;
+                            log::debug!("Message.parse | Fild::Syn pos: {}..{}", self.start, self.end);
+                            // log::debug!("Message.parse | Fild::Syn bytes: {:?}", &bytes[self.start..self.end]);
                         }
-                        Err(_) => todo!(),
-                    }                    
-                },
-                MessageFild::Size(field_size) => {
-                    let size_pos = pos;
-                    pos = size_pos + field_size.len();
-                    match bytes[size_pos..pos].try_into() {
-                        Ok(size) => {
-                            result.push(MessageFild::Size(FieldSize(u32::from_be_bytes(size))));
-                        },
-                        Err(_) => todo!(),
+                        MessageFild::Kind(field) => {
+                            self.end = self.start + field.len();
+                            log::debug!("Message.parse | Fild::Kind pos: {}..{}", self.start, self.end);
+                            // log::debug!("Message.parse | Fild::Kind bytes: {:?}", &bytes[self.start..self.end]);
+                            match bytes.get(self.start..self.end) {
+                                Some(bytes) => match bytes.try_into() {
+                                    Ok(bytes) => match MessageKind::from_bytes(bytes) {
+                                        Ok(kind) => {
+                                            self.result.push(MessageFild::Kind(FieldKind(kind)));
+                                            self.state.next().unwrap();
+                                            self.start = self.end;
+                                        },
+                                        Err(err) => {
+                                            self.restart();
+                                            return Err(format!("Message.parse | Filed 'Kind' parse error: {:#?}", err).into())
+                                        }
+                                    }
+                                    Err(err) => {
+                                        self.buffer = bytes.into();
+                                        return Err(format!("Message.parse | Filed 'Kind' take error: {:#?}", err).into())
+                                    }
+                                }
+                                None => {
+                                    self.buffer = bytes.into();
+                                    return Err(format!("Message.parse | Filed 'Kind' take error").into())
+                                }
+                            }
+                        }
+                        MessageFild::Size(field) => {
+                            self.end = self.start + field.len();
+                            log::debug!("Message.parse | Fild::Size pos: {}..{}", self.start, self.end);
+                            // log::debug!("Message.parse | Fild::Size bytes: {:?}", &bytes[self.start..self.end]);
+                            match bytes.get(self.start..self.end) {
+                                Some(bytes) => {
+                                    log::debug!("Message.parse | Fild::Size bytes: {:?}", bytes);
+                                    match bytes.try_into() {
+                                        Ok(size_bytes) => {
+                                            log::debug!("Message.parse | Fild::Size bytes: {:?}", bytes);
+                                            let s= u32::from_be_bytes(size_bytes);
+                                            self.size = Some(s);
+                                            self.result.push(MessageFild::Size(FieldSize(s)));
+                                            self.state.next().unwrap();
+                                            self.start = self.end;
+                                        },
+                                        Err(err) => {
+                                            self.buffer = bytes.into();
+                                            return Err(format!("Message.parse | Filed 'Size' take error: {:#?}", err).into());
+                                        }
+                                    }
+                                }
+                                None => {
+                                    self.buffer = bytes.into();
+                                    return Err(format!("Message.parse | Filed 'Size' take error").into());
+                                }
+                            }
+                        }
+                        MessageFild::Data(_) => {
+                            // log::debug!("Message.parse | Fild::Data");
+                            match self.size {
+                                Some(size) => {
+                                    self.end = self.start + (size as usize);
+                                    log::debug!("Message.parse | Fild::Data pos: {}..{}", self.start, self.end);
+                                    // log::debug!("Message.parse | Fild::Data bytes: {:?}", &bytes[self.start..self.end]);
+                                    match bytes.get(self.start..self.end) {
+                                        Some(bytes) => match bytes.try_into() {
+                                            Ok(data) => {
+                                                self.result.push(MessageFild::Data(FieldData(data)));
+                                                self.state.next().unwrap();
+                                                return Ok(std::mem::take(&mut self.result));
+                                            },
+                                            Err(err) => {
+                                                self.buffer = bytes.into();
+                                                return Err(format!("Message.parse | Filed 'Data' take error: {:#?}", err).into());
+                                            }
+                                        }
+                                        None => {
+                                            self.buffer = bytes.into();
+                                            return Err(format!("Message.parse | Filed 'Data' take error").into());
+                                        }
+                                    }
+                                }
+                                None => {
+                                    self.restart();
+                                    return Err(format!("Message.parse | Field 'Data' can't be read because Filed 'Size' is not ready").into());
+                                }
+                            }
+                        }
                     }
                 }
-                MessageFild::Data(field_data) => {
-                    let data_pos = pos;
-                    pos = data_pos + field_data.len();
-                    match bytes[data_pos..pos].try_into() {
-                        Ok(data) => {
-                            result.push(MessageFild::Data(FieldData(data)));
-                        },
-                        Err(_) => todo!(),
-                    }
+                None => {
+                    self.restart();
+                    return Err(format!("Message.parse | State error").into());
                 }
             }
         }
-        Ok(result)
     }
 }
 ///
