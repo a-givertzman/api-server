@@ -357,7 +357,7 @@ SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 
 SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 9.00, 78.59, 41.86, 0.00, 5.60 UNION ALL
 SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 9.50, 82.96, 41.86, 0.00, 5.85 UNION ALL
 SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 10.00, 87.32, 41.86, 0.00, 6.10 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 10.50, 91.69, 41.86, 0.00, 6 35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 10.50, 91.69, 41.86, 0.00, 6.35 UNION ALL
 SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 10.80, 94.35, 41.86, 0.00, 6.50;
 
 
@@ -413,7 +413,7 @@ SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 
 SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 9.00, 78.59, 41.86, 0.00, 5.60 UNION ALL
 SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 9.50, 82.96, 41.86, 0.00, 5.85 UNION ALL
 SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 10.00, 87.32, 41.86, 0.00, 6.10 UNION ALL
-SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 10.50, 91.69, 41.86, 0.00, 6 35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 10.50, 91.69, 41.86, 0.00, 6.35 UNION ALL
 SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 10.80, 94.35, 41.86, 0.00, 6.50;
 
 

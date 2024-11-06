@@ -1,7 +1,7 @@
 DELETE FROM hold_part WHERE ship_id=2;
 
 INSERT INTO hold_part
-  (ship_id, space_id, code, group_space_id, group_index, left_bulkhead_code, right_bulkhead_code, bound_x1, bound_x2)
+  (ship_id, code, group_space_id, group_index, left_bulkhead_code, right_bulkhead_code, bound_x1, bound_x2)
 VALUES  
   (2, 'H101', 1001, 1,  'P101', NULL, 105.92, 119.98),
   (2, 'P101', 1001, 2,  'H102', 'H101', 105.18, 105.92),

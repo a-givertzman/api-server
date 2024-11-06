@@ -38,8 +38,6 @@ CREATE TABLE IF NOT EXISTS hold_part (
     CONSTRAINT hold_part_pk PRIMARY KEY (id),
     CONSTRAINT hold_part_group_fk FOREIGN KEY (group_id) REFERENCES hold_group (id),
     CONSTRAINT hold_part_group_index_unique UNIQUE (project_id, ship_id, group_id, group_index),
-    CONSTRAINT hold_part_left_bulkhead_place_fk FOREIGN KEY (left_bulkhead_place_id) REFERENCES bulkhead_place (id),
-    CONSTRAINT hold_part_right_bulkhead_place_fk FOREIGN KEY (right_bulkhead_place_id) REFERENCES bulkhead_place (id),
     CONSTRAINT hold_part_left_bulkhead_place_id_unique UNIQUE (project_id, ship_id, left_bulkhead_place_id),
     CONSTRAINT hold_part_right_bulkhead_place_id_unique UNIQUE (project_id, ship_id, right_bulkhead_place_id),
     CONSTRAINT hold_part_group_index_check CHECK (group_index > 0),

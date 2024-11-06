@@ -162,8 +162,8 @@ DROP TABLE IF EXISTS ship_geometry, ship_parameters, ship CASCADE;
 \i ./sql/Sofia/hold/grain_moment.sql
 \i ./sql/Sofia/hold/hold_curve.sql
 \i ./sql/Sofia/hold/bulkhead.sql
-\i ./sql/Sofia/hold/bulkhead_place.sql
 \i ./sql/Sofia/hold/hold_group.sql
+\i ./sql/Sofia/hold/bulkhead_place.sql
 \i ./sql/Sofia/hold/hold_part.sql
 \i ./sql/Sofia/loads/load_base.sql
 \i ./sql/Sofia/loads/hull.sql
