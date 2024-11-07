@@ -6,20 +6,20 @@ use std::{
 use api_tools::api::message::{fields::{FieldData, FieldKind, FieldSize, FieldSyn}, message::{Message, MessageFild}, message_kind::MessageKind};
 use crate::{api_server::ApiServer, config::Config};
 ///
-/// 
+/// Opens a connection via TCP Socket
 pub struct TcpConnection {
     id: String,
     stream: TcpStream,
     config: Config,
 }
-///
-/// 
+//
+// 
 impl TcpConnection {
     ///
-    /// 
-    pub fn new(parent_id: impl Into<String>, config: Config, stream: TcpStream) -> Self {
+    /// Returns TcpConnection new instance
+    pub fn new(dbgid: impl Into<String>, config: Config, stream: TcpStream) -> Self {
         Self {
-            id: format!("{}/TcpConnection",parent_id.into()),
+            id: format!("{}/TcpConnection",dbgid.into()),
             stream,
             config,
         }
