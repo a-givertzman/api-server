@@ -32,8 +32,7 @@
 //!     - 49, Duration
 //!     - .., ...
 //! 
-use core::str;
-use std::{cell::RefCell, iter::Peekable};
+use std::iter::Peekable;
 use crate::domain::error::error::StrErr;
 use super::{fields::{FieldData, FieldKind, FieldSize, FieldSyn}, from_bytes::FromBytes, message_kind::MessageKind};
 /// 
@@ -209,7 +208,7 @@ impl Message {
         for field in &mut self.fields {
             match field {
                 MessageFild::Syn(field_syn) => message.push(field_syn.0),
-                MessageFild::Kind(field_kind) => message.extend(field_kind.0.to_bytes()),
+                MessageFild::Kind(field_kind) => message.extend(field_kind.to_bytes()),
                 MessageFild::Size(field_size) => message.extend(field_size.to_be_bytes(bytes.len() as u32)),
                 MessageFild::Data(_) => {
                     message = [&message, bytes].concat();
@@ -219,31 +218,4 @@ impl Message {
         message
     }
 
-}
-///
-/// String Message
-pub struct MessageString {
-    value: String,
-}
-//
-//
-impl MessageString {
-    ///
-    /// Returns `MessageString` new instance
-    pub fn new(val: impl Into<String>) -> Self {
-        
-        Self {
-            value: val.into(),
-        }
-    }
-}
-//
-//
-impl FromBytes for MessageString {
-    fn from_bytes(bytes: &[u8]) -> Result<Self, StrErr> {
-        match str::from_utf8(bytes) {
-            Ok(val) => Ok(MessageString::new(val)),
-            Err(err) => Err(StrErr(format!("MessageString.from_bytes | Error {:#?}", err))),
-        }
-    }
 }

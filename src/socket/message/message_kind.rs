@@ -32,7 +32,6 @@
 //!     - 49, Duration
 //!     - .., ...
 //! 
-use core::str;
 use crate::domain::error::error::StrErr;
 
 use super::from_bytes::FromBytes;
@@ -115,33 +114,6 @@ impl FromBytes for MessageKind {
             [Self::TIMESTAMP] => Ok(MessageKind::Timestamp),
             [Self::DURATION] => Ok(MessageKind::Duration),
             [..] => Err(StrErr(format!("MessageKind.from_bytes | Wrong or Empty input: {:?}", &bytes[..16]))),
-        }
-    }
-}
-///
-/// String Message
-pub struct MessageString {
-    value: String,
-}
-//
-//
-impl MessageString {
-    ///
-    /// Returns `MessageString` new instance
-    pub fn new(val: impl Into<String>) -> Self {
-        
-        Self {
-            value: val.into(),
-        }
-    }
-}
-//
-//
-impl FromBytes for MessageString {
-    fn from_bytes(bytes: &[u8]) -> Result<Self, StrErr> {
-        match str::from_utf8(bytes) {
-            Ok(val) => Ok(MessageString::new(val)),
-            Err(err) => Err(StrErr(format!("MessageString.from_bytes | Error {:#?}", err))),
         }
     }
 }
