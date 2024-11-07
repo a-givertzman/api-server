@@ -3,7 +3,8 @@ use std::{
         BufReader, Read, Write
     }, net::TcpStream, thread, time::Duration 
 };
-use crate::{api_server::ApiServer, config::Config, socket::message::{fields::{FieldData, FieldKind, FieldSize, FieldSyn}, message::{Message, MessageFild}, message_kind::MessageKind}};
+use api_tools::api::message::{fields::{FieldData, FieldKind, FieldSize, FieldSyn}, message::{Message, MessageFild}, message_kind::MessageKind};
+use crate::{api_server::ApiServer, config::Config};
 ///
 /// 
 pub struct TcpConnection {

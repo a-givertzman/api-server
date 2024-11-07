@@ -15,7 +15,6 @@ mod sql_query_sqlite;
 mod sql_query_postgre;
 mod sql_query_mysql;
 mod tcp_connection;
-mod socket;
 
 use std::{path::{Path, PathBuf}, sync::{Arc, Mutex}};
 use clap::Parser;
