@@ -83,9 +83,8 @@ impl Message {
         self.state = (Box::new(self.fields.to_owned().into_iter().cycle()) as Box<dyn Iterator<Item = MessageFild>>).peekable();
     }
     ///
-    /// Searchs fields specified in the constructor in the `bytes`, 
-    /// - If found, returns parsed Some(specified fields, except Syn) 
-    /// - If not found or message is not full, stores the state and waiting next `bytes` to compleet the message
+    /// Returns message (by fields) read and parsed from socket 
+    /// - Parse done by fields specified in the constructor, 
     pub fn parse(&mut self, bytes: &[u8]) -> Result<Vec<MessageFild>, StrErr> {
         let bytes = [&std::mem::take(&mut self.buffer), bytes].concat();
         log::debug!("Message.parse | Input bytes: {:?}", bytes);
@@ -203,6 +202,23 @@ impl Message {
             }
         }
     }
+    ///
+    /// Returns message built according to specified fields and passed `bytes`
+    pub fn build(&mut self, bytes: &[u8]) -> Vec<u8> {
+        let mut message = vec![];
+        for field in &mut self.fields {
+            match field {
+                MessageFild::Syn(field_syn) => message.push(field_syn.0),
+                MessageFild::Kind(field_kind) => message.extend(field_kind.0.to_bytes()),
+                MessageFild::Size(field_size) => message.extend(field_size.to_be_bytes(bytes.len() as u32)),
+                MessageFild::Data(_) => {
+                    message = [&message, bytes].concat();
+                }
+            }
+        }
+        message
+    }
+
 }
 ///
 /// String Message

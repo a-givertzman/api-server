@@ -73,7 +73,7 @@ impl TcpConnection {
                                     MessageKind::String => {
                                         let result = api_server.build(bytes);
                                         keep_alive = result.keepAlive;
-                                        let reply = result.data;
+                                        let reply = message.build(&result.data);
                                         match Self::write(&self.id, &mut self.stream, &reply) {
                                             Ok(_) => {},
                                             Err(err) => {
