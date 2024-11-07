@@ -20,7 +20,7 @@ mod message {
     ///  - ...
     fn init_each() -> () {}
     ///
-    /// Testing such functionality / behavior
+    /// Testing such `Message.parse`
     #[test]
     fn parse() {
         DebugSession::init(LogLevel::Debug, Backtrace::Short);
