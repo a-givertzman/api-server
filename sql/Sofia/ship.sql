@@ -1,4 +1,6 @@
-TRUNCATE TABLE ship_geometry, ship_parameters, ship CASCADE;
+DELETE FROM ship WHERE ship_id=2;
+DELETE FROM ship_geometry WHERE ship_id=2;
+DELETE FROM ship_parameters WHERE ship_id=2;
 
 INSERT INTO ship_geometry
   (id, hull_svg, hull_beauty_svg)

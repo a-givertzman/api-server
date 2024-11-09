@@ -1,4 +1,4 @@
-TRUNCATE TABLE strength_force_limit;
+DELETE FROM strength_force_limit WHERE ship_id=2;
 
 INSERT INTO strength_force_limit
     (ship_id, frame_x, value, limit_type, limit_area, force_type)
