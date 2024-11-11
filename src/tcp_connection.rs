@@ -3,7 +3,7 @@ use std::{
         BufReader, Read, Write
     }, net::TcpStream, thread, time::Duration 
 };
-use api_tools::api::message::{fields::{FieldData, FieldKind, FieldSize, FieldSyn}, message::{Message, MessageFild}, message_kind::MessageKind};
+use api_tools::api::message::{fields::{FieldData, FieldKind, FieldSize, FieldSyn}, message::{Message, MessageField}, message_kind::MessageKind};
 use crate::{api_server::ApiServer, config::Config};
 ///
 /// Opens a connection via TCP Socket
@@ -43,11 +43,12 @@ impl TcpConnection {
         let mut keep_alive = true;
         // self.configureSocket(stream, threadName, Duration::from_secs(10), false);
         let mut stream_read = BufReader::new(self.stream.try_clone().unwrap());
+        let mut message_id = 0u32;
         let mut message = Message::new(&[
-            MessageFild::Syn(FieldSyn(Message::SYN)),
-            MessageFild::Kind(FieldKind(MessageKind::String)),
-            MessageFild::Size(FieldSize(3)),
-            MessageFild::Data(FieldData(vec![]))
+            MessageField::Syn(FieldSyn(Message::SYN)),
+            MessageField::Kind(FieldKind(MessageKind::String)),
+            MessageField::Size(FieldSize(3)),
+            MessageField::Data(FieldData(vec![]))
         ]);
         while keep_alive {
             match self.read_message(&mut stream_read, &mut message) {
@@ -57,7 +58,8 @@ impl TcpConnection {
                     log::debug!("{}.run | Received bytes: {:?}", self.id, dbg_bytes);
                     let result = api_server.build(&bytes);
                     keep_alive = result.keepAlive;
-                    let reply = message.build(&result.data);
+                    message_id = (message_id % u32::MAX) + 1;
+                    let reply = message.build(&result.data, message_id);
                     match Self::write(&self.id, &mut self.stream, &reply) {
                         Ok(_) => {},
                         Err(err) => {
@@ -93,7 +95,7 @@ impl TcpConnection {
                     log::trace!("{}.read_all |     read len: {:?}", self.id, len);
                     match message.parse(&buf[..len]) {
                         Ok(parsed) => match parsed.as_slice() {
-                            [ MessageFild::Kind(kind), MessageFild::Size(FieldSize(size)), MessageFild::Data(FieldData(data)) ] => {
+                            [ MessageField::Kind(kind), MessageField::Size(FieldSize(size)), MessageField::Data(FieldData(data)) ] => {
                                 log::debug!("{}.read_message | kind: {:?},  size: {},  data: {:?}", self.id, kind, size, data);
                                 match kind.0 {
                                     MessageKind::Any => log::warn!("{} | Message of kind '{:?}' - is not implemented yet", self.id, kind),
