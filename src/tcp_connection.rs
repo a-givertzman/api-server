@@ -3,7 +3,7 @@ use std::{
         BufReader, Read, Write
     }, net::TcpStream, thread, time::Duration 
 };
-use api_tools::api::message::{fields::{FieldData, FieldKind, FieldSize, FieldSyn}, message::{Message, MessageField}, message_kind::MessageKind};
+use api_tools::api::message::{fields::{FieldData, FieldId, FieldKind, FieldSize, FieldSyn}, message::{Message, MessageField}, message_kind::MessageKind};
 use crate::{api_server::ApiServer, config::Config};
 ///
 /// Opens a connection via TCP Socket
@@ -46,8 +46,9 @@ impl TcpConnection {
         let mut message_id = 0u32;
         let mut message = Message::new(&[
             MessageField::Syn(FieldSyn(Message::SYN)),
+            MessageField::Id(FieldId(4)),
             MessageField::Kind(FieldKind(MessageKind::String)),
-            MessageField::Size(FieldSize(3)),
+            MessageField::Size(FieldSize(4)),
             MessageField::Data(FieldData(vec![]))
         ]);
         while keep_alive {
@@ -95,7 +96,7 @@ impl TcpConnection {
                     log::trace!("{}.read_all |     read len: {:?}", self.id, len);
                     match message.parse(&buf[..len]) {
                         Ok(parsed) => match parsed.as_slice() {
-                            [ MessageField::Kind(kind), MessageField::Size(FieldSize(size)), MessageField::Data(FieldData(data)) ] => {
+                            [ MessageField::Id(_id), MessageField::Kind(kind), MessageField::Size(FieldSize(size)), MessageField::Data(FieldData(data)) ] => {
                                 log::debug!("{}.read_message | kind: {:?},  size: {},  data: {:?}", self.id, kind, size, data);
                                 match kind.0 {
                                     MessageKind::Any => log::warn!("{} | Message of kind '{:?}' - is not implemented yet", self.id, kind),
