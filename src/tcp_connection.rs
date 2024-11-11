@@ -53,14 +53,14 @@ impl TcpConnection {
         ]);
         while keep_alive {
             match self.read_message(&mut stream_read, &mut message) {
-                ConnectionStatus::Active(bytes) => {
+                ConnectionStatus::Active((id, bytes)) => {
                     // debug!("{}.run | received bytes: {:?}", threadName, &bytes);
                     let dbg_bytes = if bytes.len() > 16 {format!("{:?} ...", &bytes[..16])} else {format!("{:?}", bytes)};
                     log::debug!("{}.run | Received bytes: {:?}", self.id, dbg_bytes);
                     let result = api_server.build(&bytes);
                     keep_alive = result.keepAlive;
                     message_id = (message_id % u32::MAX) + 1;
-                    let reply = message.build(&result.data, message_id);
+                    let reply = message.build(&result.data, id.0);
                     match Self::write(&self.id, &mut self.stream, &reply) {
                         Ok(_) => {},
                         Err(err) => {
@@ -88,7 +88,7 @@ impl TcpConnection {
     /// - Returns `ConnectionStatus::Closed`:
     ///    - if read 0 bytes
     ///    - if on error
-    fn read_message(&mut self, mut stream: impl Read, message: &mut Message) -> ConnectionStatus {
+    fn read_message(&mut self, mut stream: impl Read, message: &mut Message) -> ConnectionStatus<(FieldId, Vec<u8>)> {
         let mut buf = [0; Self::BUF_LEN];
         loop {
             match stream.read(&mut buf) {
@@ -96,7 +96,7 @@ impl TcpConnection {
                     log::trace!("{}.read_all |     read len: {:?}", self.id, len);
                     match message.parse(&buf[..len]) {
                         Ok(parsed) => match parsed.as_slice() {
-                            [ MessageField::Id(_id), MessageField::Kind(kind), MessageField::Size(FieldSize(size)), MessageField::Data(FieldData(data)) ] => {
+                            [ MessageField::Id(id), MessageField::Kind(kind), MessageField::Size(FieldSize(size)), MessageField::Data(FieldData(data)) ] => {
                                 log::debug!("{}.read_message | kind: {:?},  size: {},  data: {:?}", self.id, kind, size, data);
                                 match kind.0 {
                                     MessageKind::Any => log::warn!("{} | Message of kind '{:?}' - is not implemented yet", self.id, kind),
@@ -111,7 +111,7 @@ impl TcpConnection {
                                     MessageKind::I64 => log::warn!("{} | Message of kind '{:?}' - is not implemented yet", self.id, kind),
                                     MessageKind::F32 => log::warn!("{} | Message of kind '{:?}' - is not implemented yet", self.id, kind),
                                     MessageKind::F64 => log::warn!("{} | Message of kind '{:?}' - is not implemented yet", self.id, kind),
-                                    MessageKind::String => return ConnectionStatus::Active(data.to_owned()),
+                                    MessageKind::String => return ConnectionStatus::Active((id.clone(), data.to_owned())),
                                     MessageKind::Timestamp => log::warn!("{} | Message of kind '{:?}' - is not implemented yet", self.id, kind),
                                     MessageKind::Duration => log::warn!("{} | Message of kind '{:?}' - is not implemented yet", self.id, kind),
                                 }
@@ -168,7 +168,7 @@ impl TcpConnection {
     // }
     ///
     /// Returns Connection status dipending on IO Error
-    fn parse_err(&self, err: std::io::Error) -> ConnectionStatus {
+    fn parse_err(&self, err: std::io::Error) -> ConnectionStatus<()> {
         log::warn!("{}.read_all | error reading from socket: {:?}", self.id, err);
         log::warn!("{}.read_all | error kind: {:?}", self.id, err.kind());
         match err.kind() {
@@ -219,7 +219,7 @@ impl TcpConnection {
 
 ///
 /// Connection status
-enum ConnectionStatus {
-    Active(Vec<u8>),
+enum ConnectionStatus<T> {
+    Active(T),
     Closed,
 }
