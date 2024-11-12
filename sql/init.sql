@@ -1,6 +1,7 @@
 --
 -- General data
 \i ./sql/general_data/unit.sql
+\i ./sql/general_data/strength_force_limit.sql
 --
 -- Constant data for calculation
 \i ./sql/stability/coefficient_k.sql
@@ -73,7 +74,6 @@ DROP TABLE IF EXISTS ship_geometry, ship_parameters, ship CASCADE;
 --
 -- Tables with result of calculating
 \i ./sql/result/result_strength.sql
-\i ./sql/result/strength_force_limit.sql
 \i ./sql/result/criterion_category.sql
 \i ./sql/result/criterion.sql
 \i ./sql/result/criterion_values.sql

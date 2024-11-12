@@ -1,3 +1,6 @@
+
+
+
 TRUNCATE TABLE strength_force_limit;
 
 INSERT INTO strength_force_limit

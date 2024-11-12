@@ -12,6 +12,7 @@ CREATE TABLE if not exists ship (
   navigation_area_id INT NOT NULL DEFAULT 1,
   freeboard_type TEXT NOT NULL DEFAULT 'B',
   geometry_id INT NOT NULL,
+  limit_area strength_limit_area NOT NULL DEFAULT 'sea',
   CONSTRAINT ship_pk PRIMARY KEY (id),
   CONSTRAINT ship_unique UNIQUE NULLS NOT DISTINCT (name, project, year_of_built, place_of_built, IMO, MMSI),
   CONSTRAINT ship_name_check CHECK(char_length(name) > 0 AND char_length(name) <= 50),
