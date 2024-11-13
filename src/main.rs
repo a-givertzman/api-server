@@ -18,9 +18,10 @@ mod tcp_connection;
 
 use std::{path::{Path, PathBuf}, sync::{Arc, Mutex}};
 use clap::Parser;
+use debugging::session::debug_session::{Backtrace, DebugSession, LogLevel};
 use log::debug;
 use crate::{
-    config::Config, domain::{cli::cli::Cli, debug::debug_session::{Backtrace, DebugSession, LogLevel}}, tcp_server::TcpServer
+    config::Config, domain::cli::cli::Cli, tcp_server::TcpServer
 };
 
 fn main() {
