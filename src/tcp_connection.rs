@@ -50,7 +50,7 @@ impl TcpConnection {
         // self.configureSocket(stream, threadName, Duration::from_secs(10), false);
         // let mut stream_read = BufReader::new(self.stream.try_clone().unwrap());
         // let mut message_id = 0u32;
-        let message = Message::new(&[
+        let message = Message::new(&DbgId(self.id.clone()), &[
             MessageField::Syn(FieldSyn(Message::SYN)),
             MessageField::Id(FieldId(4)),
             MessageField::Kind(FieldKind(MessageKind::String)),
