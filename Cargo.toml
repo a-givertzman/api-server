@@ -16,8 +16,8 @@ chrono = { version = "^0.4", features = ["serde"] }
 testing = { git = "https://github.com/a-givertzman/rust-testing.git" }
 # testing = { git = "https://github.com/a-givertzman/rust-testing.git", tag = "0.1.2" }
 debugging = { git = "https://github.com/a-givertzman/rust-debuging.git", tag = "0.0.1" }
-# api-tools = { git = "https://github.com/a-givertzman/rust-api-tools.git", branch = "Socket-Message" }
-api-tools = { path = "../api-tools/" }
+api-tools = { git = "https://github.com/a-givertzman/rust-api-tools.git", branch = "Socket-Message" }
+# api-tools = { path = "../api-tools/" }
 
 
 rusqlite = { version = "^0.32", features = ["bundled"] }
