@@ -1,15 +1,21 @@
 use std::{
     error::Error, io::{
         BufReader, Read, Write
-    }, net::TcpStream, thread, time::Duration 
+    }, net::TcpStream, sync::Arc, thread, time::Duration 
 };
-use api_tools::api::message::{fields::{FieldData, FieldId, FieldKind, FieldSize, FieldSyn}, message::{Message, MessageField}, message_kind::MessageKind};
+use api_tools::{
+    api::{
+        message::{fields::{FieldData, FieldId, FieldKind, FieldSize, FieldSyn}, message::{Message, MessageField}, message_kind::MessageKind},
+        socket::{connection_status::IsConnected, tcp_socket::TcpSocket},
+    },
+    debug::dbg_id::DbgId,
+};
 use crate::{api_server::ApiServer, config::Config};
 ///
 /// Opens a connection via TCP Socket
 pub struct TcpConnection {
     id: String,
-    stream: TcpStream,
+    stream: Arc<TcpStream>,
     config: Config,
 }
 //
@@ -19,8 +25,8 @@ impl TcpConnection {
     /// Returns TcpConnection new instance
     pub fn new(dbgid: impl Into<String>, config: Config, stream: TcpStream) -> Self {
         Self {
-            id: format!("{}/TcpConnection",dbgid.into()),
-            stream,
+            id: format!("{}/TcpConnection", dbgid.into()),
+            stream: Arc::new(stream),
             config,
         }
     }
@@ -42,40 +48,66 @@ impl TcpConnection {
         let api_server = ApiServer::new(self.config.clone());
         let mut keep_alive = true;
         // self.configureSocket(stream, threadName, Duration::from_secs(10), false);
-        let mut stream_read = BufReader::new(self.stream.try_clone().unwrap());
-        let mut message_id = 0u32;
-        let mut message = Message::new(&[
+        // let mut stream_read = BufReader::new(self.stream.try_clone().unwrap());
+        // let mut message_id = 0u32;
+        let message = Message::new(&[
             MessageField::Syn(FieldSyn(Message::SYN)),
             MessageField::Id(FieldId(4)),
             MessageField::Kind(FieldKind(MessageKind::String)),
             MessageField::Size(FieldSize(4)),
             MessageField::Data(FieldData(vec![]))
         ]);
+        let mut socket = TcpSocket::new(
+            &DbgId(self.id.clone()),
+            self.config.address.clone(),
+            message,
+            Some(Arc::clone(&self.stream)),
+        );
         while keep_alive {
-            match self.read_message(&mut stream_read, &mut message) {
-                ConnectionStatus::Active((id, bytes)) => {
-                    // debug!("{}.run | received bytes: {:?}", threadName, &bytes);
+            match socket.read_message() {
+                IsConnected::Active((id, bytes)) => {
                     let dbg_bytes = if bytes.len() > 16 {format!("{:?} ...", &bytes[..16])} else {format!("{:?}", bytes)};
-                    log::debug!("{}.run | Received bytes: {:?}", self.id, dbg_bytes);
+                    log::debug!("{}.run | Received id: {:?},  bytes: {:?}", self.id, id, dbg_bytes);
                     let result = api_server.build(&bytes);
                     keep_alive = result.keepAlive;
-                    message_id = (message_id % u32::MAX) + 1;
-                    let reply = message.build(&result.data, id.0);
-                    match Self::write(&self.id, &mut self.stream, &reply) {
-                        Ok(_) => {},
-                        Err(err) => {
+                    match socket.send_message(&result.data) {
+                        IsConnected::Active(_) => {}
+                        IsConnected::Closed(err) => {
                             log::warn!("{}.run | Error sending reply: {:?}", self.id, err);
-                            // cancel = true;
-                        },
-                    };
-                },
-                ConnectionStatus::Closed => {
+                        }
+                    }
+                }
+                IsConnected::Closed(_) => {
                     log::debug!("{}.run | Connection closed", self.id);
                     return
-                },
+                }
             }
-            thread::sleep(Duration::from_millis(100))
         }
+        // while keep_alive {
+        //     match self.read_message(&mut stream_read, &mut message) {
+        //         ConnectionStatus::Active((id, bytes)) => {
+        //             // debug!("{}.run | received bytes: {:?}", threadName, &bytes);
+        //             let dbg_bytes = if bytes.len() > 16 {format!("{:?} ...", &bytes[..16])} else {format!("{:?}", bytes)};
+        //             log::debug!("{}.run | Received bytes: {:?}", self.id, dbg_bytes);
+        //             let result = api_server.build(&bytes);
+        //             keep_alive = result.keepAlive;
+        //             message_id = (message_id % u32::MAX) + 1;
+        //             let reply = message.build(&result.data, id.0);
+        //             match Self::write(&self.id, &mut self.stream, &reply) {
+        //                 Ok(_) => {},
+        //                 Err(err) => {
+        //                     log::warn!("{}.run | Error sending reply: {:?}", self.id, err);
+        //                     // cancel = true;
+        //                 },
+        //             };
+        //         },
+        //         ConnectionStatus::Closed => {
+        //             log::debug!("{}.run | Connection closed", self.id);
+        //             return
+        //         },
+        //     }
+        //     thread::sleep(Duration::from_millis(100))
+        // }
         log::info!("{}.run | Exit", self.id);
     }
     ///
