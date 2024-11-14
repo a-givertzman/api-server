@@ -78,6 +78,7 @@ SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H102' AND ship_id=2), 
 SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H102' AND ship_id=2), 9.00, 947.06, 101.19, 0.00, 5.60 UNION ALL
 SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H102' AND ship_id=2), 9.50, 999.68, 101.19, 0.00, 5.85 UNION ALL
 SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H102' AND ship_id=2), 10.00, 1052.29, 101.19, 0.00, 6.10 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H102' AND ship_id=2), 10.50, 1104.91, 101.19, 0.00, 6.35 UNION ALL
 SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H102' AND ship_id=2), 10.80, 1137.00, 101.19, 0.00, 6.50;
 
 
