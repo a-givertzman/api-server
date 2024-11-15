@@ -1,3 +1,4 @@
+use api_tools::debug::dbg_id::DbgId;
 use log::{
     info,
     // trace,
@@ -99,7 +100,7 @@ impl TcpServer {
                             debug!("TcpServer.run | started in {:?}", thread::current().name().unwrap());
                             stream.set_nodelay(true).unwrap();
                             let mut connection = TcpConnection::new(
-                                &thread_name, 
+                                &DbgId(thread_name), 
                                 connection_config.clone(), 
                                 stream,
                             );
