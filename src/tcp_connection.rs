@@ -69,9 +69,6 @@ impl TcpConnection {
         log::debug!("{}.run | Start reading...", self.dbgid);
         let api_server = ApiServer::new(self.config.clone());
         let mut keep_alive = true;
-        // self.configureSocket(stream, threadName, Duration::from_secs(10), false);
-        // let mut stream_read = BufReader::new(self.stream.try_clone().unwrap());
-        // let mut message_id = 0u32;
         while keep_alive {
             match self.socket.read() {
                 Ok((id, bytes)) => {
