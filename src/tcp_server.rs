@@ -8,9 +8,7 @@ use log::{
 use std::{
     net::{
         SocketAddr, 
-        TcpStream, 
         TcpListener, 
-        // Shutdown,
     }, 
     sync::{
         Arc, 
@@ -20,17 +18,7 @@ use std::{
     time::Duration,
     error::Error, 
 };
-// use std::time::SystemTime;
-// use chrono::{
-//     DateTime,
-//     Utc,
-//     SecondsFormat,
-// };
-
 use crate::{config::Config, tcp_connection::TcpConnection};
-
-
-
 ///
 /// 
 pub struct TcpServer {
@@ -148,33 +136,10 @@ impl TcpServer {
             info!("TcpServer.clean_threads | \tthread: '{}' - is finished: {}", th.name, th.handle.is_finished());
         }
     }
-    ///
-    /// configuring TCP socket:
-    ///  - read timeout (if exceeded reading fails)
-    ///  - nonblocking mode (must be false in current case)
-    fn configure_socket(&self, stream: &mut TcpStream, thread_name: &str, read_timeout: Duration, nonblocking: bool) {
-        match stream.set_read_timeout(Some(read_timeout)) {
-            Ok(_) => {
-                debug!("TcpServer.configureSocket ({}) | set read timeout - ok", thread_name);
-            },
-            Err(err) => {
-                warn!("TcpServer.configureSocket ({}) | setting read timeout error: {:?}", thread_name, err);
-            },
-        };
-        match stream.set_nonblocking(nonblocking) {
-            Ok(_) => {
-                debug!("TcpServer.configureSocket ({}) | switching to bloking mode - ok", thread_name);
-            },
-            Err(err) => {
-                warn!("TcpServer.configureSocket ({}) | switching to bloking mode error: {:?}", thread_name, err);
-            },
-        };
-    }    
 }
-
-
-
+///
+/// Just contains Tread JoinHandle
 struct TcpThread {
-    handle: JoinHandle<()>,
     name: String,
+    handle: JoinHandle<()>,
 }
