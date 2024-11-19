@@ -73,13 +73,13 @@ impl TcpConnection {
         // let mut stream_read = BufReader::new(self.stream.try_clone().unwrap());
         // let mut message_id = 0u32;
         while keep_alive {
-            match self.socket.read_message() {
+            match self.socket.read() {
                 Ok((id, bytes)) => {
                     let dbg_bytes = if bytes.len() > 16 {format!("{:?} ...", &bytes[..16])} else {format!("{:?}", bytes)};
                     log::debug!("{}.run | Received id: {:?},  bytes: {:?}", self.dbgid, id, dbg_bytes);
                     let result = api_server.build(&bytes);
                     keep_alive = result.keepAlive;
-                    match self.socket.send_message(&result.data) {
+                    match self.socket.send(&result.data) {
                         Ok(_) => {}
                         Err(err) => {
                             log::warn!("{}.run | Error sending reply: {:?}", self.dbgid, err);
