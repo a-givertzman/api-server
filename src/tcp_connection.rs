@@ -8,7 +8,7 @@ use api_tools::{
             message::MessageField, message_kind::MessageKind, parse_data::ParseData,
             parse_id::ParseId, parse_kind::ParseKind, parse_size::ParseSize, parse_syn::ParseSyn,
         },
-        socket::{connection_status::IsConnected, tcp_socket::{TcpMessage, TcpSocket}},
+        socket::tcp_socket::{TcpMessage, TcpSocket},
     },
     debug::dbg_id::DbgId,
 };
@@ -74,20 +74,20 @@ impl TcpConnection {
         // let mut message_id = 0u32;
         while keep_alive {
             match self.socket.read_message() {
-                IsConnected::Active((id, bytes)) => {
+                Ok((id, bytes)) => {
                     let dbg_bytes = if bytes.len() > 16 {format!("{:?} ...", &bytes[..16])} else {format!("{:?}", bytes)};
                     log::debug!("{}.run | Received id: {:?},  bytes: {:?}", self.dbgid, id, dbg_bytes);
                     let result = api_server.build(&bytes);
                     keep_alive = result.keepAlive;
                     match self.socket.send_message(&result.data) {
-                        IsConnected::Active(_) => {}
-                        IsConnected::Closed(err) => {
+                        Ok(_) => {}
+                        Err(err) => {
                             log::warn!("{}.run | Error sending reply: {:?}", self.dbgid, err);
                         }
                     }
                 }
-                IsConnected::Closed(_) => {
-                    log::debug!("{}.run | Connection closed", self.dbgid);
+                Err(_) => {
+                    log::warn!("{}.run | Connection closed", self.dbgid);
                     return
                 }
             }
