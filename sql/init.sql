@@ -53,7 +53,6 @@ DROP TABLE IF EXISTS ship_geometry, ship_parameters, ship CASCADE;
 --
 -- Ship voyage relations
 \i ./sql/voyage/voyage_waypoint_create.sql
-\i ./sql/voyage/voyage_waypoint_insert.sql
 --
 -- Compartment and cargo relations
 \i ./sql/cargo_categories/cargo_categories.sql
@@ -134,7 +133,8 @@ DROP TABLE IF EXISTS ship_geometry, ship_parameters, ship CASCADE;
 \i ./sql/ARK/draft/screw.sql
 \i ./sql/ARK/draft/bow_board.sql
 \i ./sql/ARK/hold/hold_insert_empty.sql
-\i ./sql/ARK/container/container_insert.sql
+\i ./sql/voyage/voyage_waypoint_insert_test.sql -- for test, TODO: remove
+\i ./sql/ARK/container/container_insert.sql -- same as above
 \i ./sql/ARK/container/container_slot_insert.sql
 --
 -- Data for Sofia
