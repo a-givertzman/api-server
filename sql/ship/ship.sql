@@ -1,15 +1,29 @@
-CREATE TABLE if not exists ship (
+-- TODO: doc
+CREATE TABLE IF NOT EXISTS ship (
   id INT NOT NULL,
   name TEXT NOT NULL,
   project TEXT,
-  year_of_built INT,
-  place_of_built TEXT,
+  year_of_built INT, -- TODO: fix (incorrect translation, better 'year_of_build' or 'year_of_construction')
+  place_of_built TEXT, -- TODO: fix (same as above)
+  yard_of_build TEXT, -- Yard of build of the ship
+  ship_builder_name TEXT, -- Builder of the ship
+  ship_builder_hull_number TEXT, -- Ship builder hull number
   IMO INT,
   MMSI INT,
+  call_sign TEXT, -- Call sign of the ship
+  port_of_registry TEXT, -- Port of registration of the ship
+  classification_society TEXT, -- Classification society of the ship
+  registration_number TEXT, -- Registration number of the ship
+  flag_state TEXT, -- State of flag of the ship
+  ship_owner TEXT, -- Owner of the ship
+  ship_owner_code TEXT, -- Code of owner of the ship
+  ship_master TEXT, -- Captain of the ship
+  ship_chief_mate TEXT, -- Assistant of captain of the ship
   ship_type_id INT NOT NULL,
   icing_type_id INT NOT NULL DEFAULT 1,
   icing_timber_type_id INT NOT NULL DEFAULT 1,
   navigation_area_id INT NOT NULL DEFAULT 1,
+  water_area_id INT NOT NULL DEFAULT 1,
   freeboard_type TEXT NOT NULL DEFAULT 'B',
   geometry_id INT NOT NULL,
   limit_area strength_limit_area NOT NULL DEFAULT 'sea',
@@ -25,6 +39,7 @@ CREATE TABLE if not exists ship (
   CONSTRAINT ship_type_icing_type_fk FOREIGN KEY (icing_type_id) REFERENCES ship_icing (id),
   CONSTRAINT ship_type_icing_timber_type_fk FOREIGN KEY (icing_timber_type_id) REFERENCES ship_icing_timber (id),
   CONSTRAINT ship_type_navigation_area_type_fk FOREIGN KEY (navigation_area_id) REFERENCES navigation_area (id),
+  CONSTRAINT ship_type_water_area_type_fk FOREIGN KEY (water_area_id) REFERENCES ship_water_area (id),
   CONSTRAINT ship_type_freeboard_type_check CHECK (char_length(freeboard_type) > 0 AND char_length(freeboard_type) < 10 ),
   CONSTRAINT ship_parameters_geometry_fk FOREIGN KEY (geometry_id) REFERENCES ship_geometry (id)
 );
