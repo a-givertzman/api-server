@@ -134,6 +134,8 @@ DROP TABLE IF EXISTS ship_geometry, ship_parameters, ship CASCADE;
 \i ./sql/ARK/draft/screw.sql
 \i ./sql/ARK/draft/bow_board.sql
 \i ./sql/ARK/hold/hold_insert_empty.sql
+\i ./sql/ARK/container/container_insert.sql
+\i ./sql/ARK/container/container_slot_insert.sql
 --
 -- Data for Sofia
 \i ./sql/Sofia/ship.sql
