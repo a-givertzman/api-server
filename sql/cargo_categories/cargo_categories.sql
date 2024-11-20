@@ -79,6 +79,8 @@ VALUES
     (10, 'cargo',                       4, 'solid',     'Груз',                             'Cargo'),
     (11, 'bulk_cargo',                  4, 'solid',     'Груз навалочный',                  'Bulk cargo'),
     (12, 'bulk_cargo_shiftable',        4, 'bulk',      'Груз навалочный, смещаемый',       'Bulk cargo, shiftable'),
+    -- 'Unit_cargo' with 'cargo_type' – 'container', in accordance with ISO 10303-215:2004 [4.2.168.2.4]
+    (13, 'container_cargo',             4, 'solid',     'Груз контейнерный',                'Container cargo'),
     -- Порожнем 
     (20, 'hull',                        1, 'solid',     'Корпус',                           'Hull'),
     (21, 'equipment',                   1, 'solid',     'Оборудование',                     'Equipment'),
