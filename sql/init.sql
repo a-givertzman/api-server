@@ -51,6 +51,10 @@ DROP TABLE IF EXISTS ship_geometry, ship_parameters, ship CASCADE;
 \i ./sql/draft/screw.sql
 \i ./sql/draft/bow_board.sql
 --
+-- Ship voyage relations
+\i ./sql/voyage/voyage_waypoint_create.sql
+\i ./sql/voyage/voyage_waypoint_insert.sql
+--
 -- Compartment and cargo relations
 \i ./sql/cargo_categories/cargo_categories.sql
 \i ./sql/loads/create.sql
