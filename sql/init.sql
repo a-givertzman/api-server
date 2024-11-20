@@ -18,6 +18,7 @@ DROP TABLE IF EXISTS ship_geometry, ship_parameters, ship CASCADE;
 \i ./sql/ship/icing_timber.sql
 \i ./sql/ship/icing.sql
 \i ./sql/ship/type.sql
+\i ./sql/ship/ship_water_area.sql
 \i ./sql/ship/ship.sql
 \i ./sql/ship/parameters.sql
 --
@@ -52,6 +53,7 @@ DROP TABLE IF EXISTS ship_geometry, ship_parameters, ship CASCADE;
 \i ./sql/draft/bow_board.sql
 --
 -- Ship voyage relations
+\i ./sql/voyage/voyage_create.sql
 \i ./sql/voyage/voyage_waypoint_create.sql
 --
 -- Compartment and cargo relations
@@ -176,4 +178,9 @@ DROP TABLE IF EXISTS ship_geometry, ship_parameters, ship CASCADE;
 \i ./sql/Sofia/loads/load_base.sql
 \i ./sql/Sofia/loads/hull.sql
 \i ./sql/Sofia/loads/compartment_curve.sql
+\i ./sql/Sofia/voyage/voyage_insert.sql
 
+
+-- For tests
+-- TODO: remove
+\i ./sql/ship/ship_draft_mark.sql
