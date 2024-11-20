@@ -61,6 +61,8 @@ DROP TABLE IF EXISTS ship_geometry, ship_parameters, ship CASCADE;
 \i ./sql/loads/grain_moment.sql
 \i ./sql/loads/loads_trigger.sql
 \i ./sql/loads/volume_max_trigger.sql
+\i ./sql/container/container_base_create.sql
+\i ./sql/container/container_cargo_create.sql
 --
 -- Holds and bulkheads relations
 \i ./sql/hold/hold_part_id.sql
