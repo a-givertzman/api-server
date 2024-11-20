@@ -19,13 +19,13 @@ CREATE TABLE IF NOT EXISTS hold_part (
     group_space_id INT,
     -- Index of hold_part in corresponding hold_group;
     group_index INT NOT NULL,
-    -- TODO: write
+    -- TODO: doc and rename
     left_bulkhead_place_id INT,
-    -- Global compartment code from documentation; 
+    -- Global compartment code from documentation; TODO: update doc and rename
     left_bulkhead_code TEXT,
-    -- TODO: write
+    -- TODO: doc and rename
     right_bulkhead_place_id INT,
-    -- Global compartment code from documentation; 
+    -- Global compartment code from documentation; TODO: update doc and rename
     right_bulkhead_code TEXT,
     -- Coordinate of left border of hold_part, measured in meters from midship;
     bound_x1 FLOAT8 NOT NULL,
