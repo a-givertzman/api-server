@@ -15,7 +15,7 @@ SELECT
     cc.level AS level,
     -- Volume value for corresponding level, measured in cubic meters;
     SUM(cc.volume) AS volume,
-    -- Values of bouyanancy in three axes for corresponding level, measured in meters;
+    -- Values of buoyancy in three axes for corresponding level, measured in meters;
     SUM(cc.volume * cc.buoyancy_x) / NULLIF(SUM(cc.volume), 0) AS buoyancy_x,
     SUM(cc.volume * cc.buoyancy_y) / NULLIF(SUM(cc.volume), 0) AS buoyancy_y,
     SUM(cc.volume * cc.buoyancy_z) / NULLIF(SUM(cc.volume), 0) AS buoyancy_z
@@ -24,6 +24,7 @@ FROM
 JOIN hold_part AS hp ON
     hp.group_index >= hc.group_start_index
     AND hp.group_index <= hc.group_end_index
+    AND hc.group_id = hp.group_id
     AND hc.ship_id = hp.ship_id
     AND hc.project_id IS NOT DISTINCT FROM hp.project_id
 JOIN compartment_curve AS cc ON

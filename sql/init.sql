@@ -18,6 +18,7 @@ DROP TABLE IF EXISTS ship_geometry, ship_parameters, ship CASCADE;
 \i ./sql/ship/icing_timber.sql
 \i ./sql/ship/icing.sql
 \i ./sql/ship/type.sql
+\i ./sql/ship/ship_water_area.sql
 \i ./sql/ship/ship.sql
 \i ./sql/ship/parameters.sql
 --
@@ -51,12 +52,18 @@ DROP TABLE IF EXISTS ship_geometry, ship_parameters, ship CASCADE;
 \i ./sql/draft/screw.sql
 \i ./sql/draft/bow_board.sql
 --
+-- Ship voyage relations
+\i ./sql/voyage/voyage_create.sql
+\i ./sql/voyage/voyage_waypoint_create.sql
+--
 -- Compartment and cargo relations
 \i ./sql/cargo_categories/cargo_categories.sql
 \i ./sql/loads/create.sql
 \i ./sql/loads/grain_moment.sql
 \i ./sql/loads/loads_trigger.sql
 \i ./sql/loads/volume_max_trigger.sql
+\i ./sql/container/container_base_create.sql
+\i ./sql/container/container_cargo_create.sql
 --
 -- Holds and bulkheads relations
 \i ./sql/hold/hold_part_id.sql
@@ -128,6 +135,9 @@ DROP TABLE IF EXISTS ship_geometry, ship_parameters, ship CASCADE;
 \i ./sql/ARK/draft/screw.sql
 \i ./sql/ARK/draft/bow_board.sql
 \i ./sql/ARK/hold/hold_insert_empty.sql
+\i ./sql/voyage/voyage_waypoint_insert_test.sql -- for test, TODO: remove
+\i ./sql/ARK/container/container_insert.sql -- same as above
+\i ./sql/ARK/container/container_slot_insert.sql
 --
 -- Data for Sofia
 \i ./sql/Sofia/ship.sql
@@ -168,4 +178,9 @@ DROP TABLE IF EXISTS ship_geometry, ship_parameters, ship CASCADE;
 \i ./sql/Sofia/loads/load_base.sql
 \i ./sql/Sofia/loads/hull.sql
 \i ./sql/Sofia/loads/compartment_curve.sql
+\i ./sql/Sofia/voyage/voyage_insert.sql
 
+
+-- For tests
+-- TODO: remove
+\i ./sql/ship/ship_draft_mark.sql

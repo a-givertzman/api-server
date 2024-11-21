@@ -20,6 +20,7 @@ FROM
 JOIN hold_part AS hp ON
     hp.group_index >= hc.group_start_index
     AND hp.group_index <= hc.group_end_index
+    AND hc.group_id = hp.group_id
     AND hc.ship_id = hp.ship_id
     AND hc.project_id IS NOT DISTINCT FROM hp.project_id
 JOIN grain_moment AS gm ON

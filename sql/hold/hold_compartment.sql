@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS hold_compartment (
     -- Stowage factor of bulk cargo loaded into this hold_compartment;
     -- TODO: add value unit to comment;
     stowage_factor FLOAT8,
-    -- Сargo density of solid cargo loaded into this hold_compartment;
+    -- Cargo density of solid cargo loaded into this hold_compartment;
     density FLOAT8,
     -- Boundaries of this hold_compartment along the longitudinal axis relative to the midsection of ship;
     bound_x1 FLOAT8 NOT NULL,
@@ -119,7 +119,8 @@ RETURNS TABLE (
     group_end_index INT,
     volume_max FLOAT8,
     bound_x1 FLOAT8,
-    bound_x2 FLOAT8
+    bound_x2 FLOAT8,
+    bulkhead_id INT
 )
 AS $$
 BEGIN
@@ -169,7 +170,7 @@ BEGIN
                     hold_part AS hp
                 JOIN
                     divided_part AS dp ON
-                    hp.right_bulkhead_place_id = dp.left_bulkhead_place_id
+                    hp.space_id = dp.left_bulkhead_place_id
                     AND hp.group_id = dp.group_id
                     AND hp.ship_id = dp.ship_id
                     AND hp.project_id IS NOT DISTINCT FROM dp.project_id
@@ -193,7 +194,8 @@ BEGIN
             dp.group_index AS group_end_index,
             dp.volume_max AS volume_max,
             dp.bound_x1 AS bound_x1,
-            dp.bound_x2 AS bound_x2
+            dp.bound_x2 AS bound_x2,
+            dp.bulkhead_id::INT AS bulkhead_id
         FROM
             divided_part AS dp
         ORDER BY dp.group_index DESC
@@ -217,7 +219,8 @@ RETURNS TABLE (
     group_end_index INT,
     volume_max FLOAT8,
     bound_x1 FLOAT8,
-    bound_x2 FLOAT8
+    bound_x2 FLOAT8,
+    bulkhead_id INT
 )
 AS $$
 BEGIN
@@ -230,14 +233,16 @@ BEGIN
             UNION
 
             (
-                WITH prev_end_index AS (
-                    SELECT hc.group_end_index AS value FROM hold_compartment AS hc
+                WITH next_group_start_index AS (
+                    SELECT
+                        CASE
+                            WHEN hc.bulkhead_id IS NOT DISTINCT FROM NULL THEN hc.group_end_index + 1 -- it is not hold part with bulkhead installed, and should be included in next hold compartment
+                            WHEN hc.bulkhead_id IS DISTINCT FROM NULL THEN hc.group_end_index + 2 -- it is hold part with bulkhead installed, and should not be included in next hold compartment
+                        END AS value
+                    FROM hold_compartment AS hc
                 )
-                SELECT * FROM extract_hold_compartment(project_id_param, ship_id_param, group_id_param, (SELECT value + 1 FROM prev_end_index))
+                SELECT * FROM extract_hold_compartment(project_id_param, ship_id_param, group_id_param, (SELECT value FROM next_group_start_index))
             )
-            -- SELECT
-            --     (extract_hold_compartment(1, hc.group_end_index+1)).*
-            -- FROM hold_compartment AS hc
         ) SELECT * FROM hold_compartment);
 END $$ LANGUAGE plpgsql;
 
