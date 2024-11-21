@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS ship CASCADE;
+
 CREATE TABLE if not exists ship (
   id INT NOT NULL,
   name TEXT NOT NULL,

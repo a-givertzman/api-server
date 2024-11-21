@@ -18,7 +18,7 @@ CREATE TABLE if not exists navigation_area (
 INSERT INTO navigation_area
   (id, area, p_v, m)
 VALUES
-  (1, 'Unlimited', 504, 0.5),
+  (1, 'Unrestricted', 504, 0.5),
   (2, 'R1', 353, 0.5),
   (3, 'R2', 252, 0.52),
   (4, 'R2-RSN', 252, 0.52),
