@@ -5,13 +5,15 @@ use log::debug;
 
 use crate::{
     config::Config, 
-    sql_query_sqlite::SqlQuerySqlite, 
-    python_query::PythonQuery, 
-    executable_query::ExecutableQuery, 
     api_service_type::ApiServiceType, 
-    sql_query::SqlQuery, 
-    sql_query_mysql::SqlQueryMysql, 
-    sql_query_postgre::SqlQueryPostgre, 
+    query::{
+        python::python_query::PythonQuery, 
+        executable::executable_query::ExecutableQuery, 
+        sql::sql_query::SqlQuery,
+        sql::sql_query_sqlite::SqlQuerySqlite, 
+        sql::sql_query_mysql::SqlQueryMysql, 
+        sql::sql_query_postgre::SqlQueryPostgre, 
+    },
 };
 
 ///

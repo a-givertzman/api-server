@@ -12,7 +12,7 @@ use serde_json::json;
 
 use log::{debug, warn, trace, LevelFilter};
 
-use crate::{sql_query::SqlQuery, config::ServiceConfig};
+use crate::{query::sql::sql_query::SqlQuery, config::ServiceConfig};
 
 
 /// 
