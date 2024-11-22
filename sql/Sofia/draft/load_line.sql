@@ -17,3 +17,21 @@ VALUES
   (2, 105, 'Осадка по зимнюю ГВЛ в Северной Атлантике ПрБ', 'Winter North Atlantic LL draft SB', 65.905, 7.935, 7.796),
   (2, 143, 'Высота на носовом перпендикуляре ПрБ', 'Depth at forward perpendicular SB', 130.500, 4.555, 12.630),
   (2, 144, 'Высота на носовом перпендикуляре ЛБ', 'Depth at forward perpendicular PS', 130.500, -4.555, 12.630);
+
+-- Types of load lines applicable to the ship
+
+INSERT INTO ship_available_load_line_types
+    (ship_id, project_id, load_line_type_id, is_active)
+VALUES
+    -- Summer
+    (2, NULL, 1, TRUE),
+    -- Fresh water in summer
+    (2, NULL, 5, FALSE),
+    -- Tropical
+    (2, NULL, 4, FALSE),
+    -- Tropical fresh water
+    (2, NULL, 6, FALSE),
+    -- Winter
+    (2, NULL, 2, FALSE),
+    -- Winter North Atlantic
+    (2, NULL, 3, FALSE);
