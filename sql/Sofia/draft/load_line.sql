@@ -15,3 +15,21 @@ VALUES
   (2, 'LL draft W SB', 65.905,	7.935,	7.846),
   (2, 'LL draft WNA PS', 65.905, -7.935, 7.796),
   (2, 'LL draft WNA SB', 65.905, 7.935,	7.796);
+
+-- Types of load lines applicable to the ship
+
+INSERT INTO ship_available_load_line_types
+    (ship_id, project_id, load_line_type_id, is_active)
+VALUES
+    -- Summer
+    (2, NULL, 1, TRUE),
+    -- Fresh water in summer
+    (2, NULL, 5, FALSE),
+    -- Tropical
+    (2, NULL, 4, FALSE),
+    -- Tropical fresh water
+    (2, NULL, 6, FALSE),
+    -- Winter
+    (2, NULL, 2, FALSE),
+    -- Winter North Atlantic
+    (2, NULL, 3, FALSE);

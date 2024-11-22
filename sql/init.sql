@@ -93,6 +93,11 @@ DROP TABLE IF EXISTS ship_geometry, ship_parameters, ship CASCADE;
 \i ./sql/result/draft_mark.sql
 \i ./sql/result/load_line.sql
 \i ./sql/result/screw.sql
+
+--
+-- Holds types of load lines applicable to the ship
+\i ./sql/ship/ship_load_line_types.sql
+
 --
 --triggers
 --\i ./sql/triggers/mass_sum.sql
@@ -179,8 +184,3 @@ DROP TABLE IF EXISTS ship_geometry, ship_parameters, ship CASCADE;
 \i ./sql/Sofia/loads/hull.sql
 \i ./sql/Sofia/loads/compartment_curve.sql
 \i ./sql/Sofia/voyage/voyage_insert.sql
-
-
--- For tests
--- TODO: remove
-\i ./sql/ship/ship_draft_mark.sql
