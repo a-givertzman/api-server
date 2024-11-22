@@ -102,7 +102,9 @@ VALUES
   (2, 0, 9.7, 145.1),
   (2, 0, 9.8, 151.5),
   (2, 0, 9.9, 158),
-  (2, 0, 10, 164.5);INSERT INTO frame_area
+  (2, 0, 10, 164.5);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 1, 0.1, 0),
@@ -204,7 +206,9 @@ VALUES
   (2, 1, 9.7, 39.98),
   (2, 1, 9.8, 40.83),
   (2, 1, 9.9, 41.67),
-  (2, 1, 10, 42.51);INSERT INTO frame_area
+  (2, 1, 10, 42.51);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 2, 0.1, 0),
@@ -306,7 +310,9 @@ VALUES
   (2, 2, 9.7, 110.7),
   (2, 2, 9.8, 113.8),
   (2, 2, 9.9, 116.9),
-  (2, 2, 10, 120.1);INSERT INTO frame_area
+  (2, 2, 10, 120.1);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 3, 0.1, 0.04),
@@ -408,7 +414,9 @@ VALUES
   (2, 3, 9.7, 143.2),
   (2, 3, 9.8, 146.5),
   (2, 3, 9.9, 149.8),
-  (2, 3, 10, 153.2);INSERT INTO frame_area
+  (2, 3, 10, 153.2);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 4, 0.1, 0.22),
@@ -510,7 +518,9 @@ VALUES
   (2, 4, 9.7, 173.9),
   (2, 4, 9.8, 177.3),
   (2, 4, 9.9, 180.7),
-  (2, 4, 10, 184.1);INSERT INTO frame_area
+  (2, 4, 10, 184.1);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 5, 0.1, 0.47),
@@ -612,7 +622,9 @@ VALUES
   (2, 5, 9.7, 200.5),
   (2, 5, 9.8, 202.3),
   (2, 5, 9.9, 204),
-  (2, 5, 10, 205.8);INSERT INTO frame_area
+  (2, 5, 10, 205.8);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 6, 0.1, 0.73),
@@ -714,7 +726,9 @@ VALUES
   (2, 6, 9.7, 222.5),
   (2, 6, 9.8, 222.5),
   (2, 6, 9.9, 222.5),
-  (2, 6, 10, 222.5);INSERT INTO frame_area
+  (2, 6, 10, 222.5);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 7, 0.1, 0.98),
@@ -816,7 +830,9 @@ VALUES
   (2, 7, 9.7, 246.7),
   (2, 7, 9.8, 246.7),
   (2, 7, 9.9, 246.7),
-  (2, 7, 10, 246.7);INSERT INTO frame_area
+  (2, 7, 10, 246.7);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 8, 0.1, 1.24),
@@ -918,7 +934,9 @@ VALUES
   (2, 8, 9.7, 269.7),
   (2, 8, 9.8, 270),
   (2, 8, 9.9, 270.3),
-  (2, 8, 10, 270.6);INSERT INTO frame_area
+  (2, 8, 10, 270.6);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 9, 0.1, 1.5),
@@ -1020,7 +1038,9 @@ VALUES
   (2, 9, 9.7, 286.7),
   (2, 9, 9.8, 289.1),
   (2, 9, 9.9, 291.5),
-  (2, 9, 10, 294);INSERT INTO frame_area
+  (2, 9, 10, 294);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 10, 0.1, 1.76),
@@ -1122,7 +1142,9 @@ VALUES
   (2, 10, 9.7, 298.2),
   (2, 10, 9.8, 301.1),
   (2, 10, 9.9, 304.1),
-  (2, 10, 10, 307.1);INSERT INTO frame_area
+  (2, 10, 10, 307.1);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 11, 0.1, 2),
@@ -1224,7 +1246,9 @@ VALUES
   (2, 11, 9.7, 308.1),
   (2, 11, 9.8, 311.5),
   (2, 11, 9.9, 314.9),
-  (2, 11, 10, 318.3);INSERT INTO frame_area
+  (2, 11, 10, 318.3);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 12, 0.1, 2.26),
@@ -1326,7 +1350,9 @@ VALUES
   (2, 12, 9.7, 316.5),
   (2, 12, 9.8, 320),
   (2, 12, 9.9, 323.4),
-  (2, 12, 10, 326.9);INSERT INTO frame_area
+  (2, 12, 10, 326.9);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 13, 0.1, 2.49),
@@ -1428,7 +1454,9 @@ VALUES
   (2, 13, 9.7, 323.3),
   (2, 13, 9.8, 326.7),
   (2, 13, 9.9, 330.2),
-  (2, 13, 10, 333.6);INSERT INTO frame_area
+  (2, 13, 10, 333.6);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 14, 0.1, 2.7),
@@ -1530,7 +1558,9 @@ VALUES
   (2, 14, 9.7, 328.4),
   (2, 14, 9.8, 331.8),
   (2, 14, 9.9, 335.3),
-  (2, 14, 10, 338.7);INSERT INTO frame_area
+  (2, 14, 10, 338.7);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 15, 0.1, 2.88),
@@ -1632,7 +1662,9 @@ VALUES
   (2, 15, 9.7, 331.6),
   (2, 15, 9.8, 335),
   (2, 15, 9.9, 338.5),
-  (2, 15, 10, 342);INSERT INTO frame_area
+  (2, 15, 10, 342);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 16, 0.1, 2.98),
@@ -1734,7 +1766,9 @@ VALUES
   (2, 16, 9.7, 333),
   (2, 16, 9.8, 336.5),
   (2, 16, 9.9, 339.9),
-  (2, 16, 10, 343.4);INSERT INTO frame_area
+  (2, 16, 10, 343.4);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 17, 0.1, 3),
@@ -1836,7 +1870,9 @@ VALUES
   (2, 17, 9.7, 333.2),
   (2, 17, 9.8, 336.6),
   (2, 17, 9.9, 340),
-  (2, 17, 10, 343.5);INSERT INTO frame_area
+  (2, 17, 10, 343.5);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 18, 0.1, 3),
@@ -1938,7 +1974,9 @@ VALUES
   (2, 18, 9.7, 333.2),
   (2, 18, 9.8, 336.6),
   (2, 18, 9.9, 340.1),
-  (2, 18, 10, 343.5);INSERT INTO frame_area
+  (2, 18, 10, 343.5);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 19, 0.1, 3),
@@ -2040,7 +2078,9 @@ VALUES
   (2, 19, 9.7, 333.2),
   (2, 19, 9.8, 336.6),
   (2, 19, 9.9, 340.1),
-  (2, 19, 10, 343.5);INSERT INTO frame_area
+  (2, 19, 10, 343.5);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 20, 0.1, 3),
@@ -2142,7 +2182,9 @@ VALUES
   (2, 20, 9.7, 333.2),
   (2, 20, 9.8, 336.6),
   (2, 20, 9.9, 340),
-  (2, 20, 10, 343.5);INSERT INTO frame_area
+  (2, 20, 10, 343.5);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 21, 0.1, 3),
@@ -2244,7 +2286,9 @@ VALUES
   (2, 21, 9.7, 333.2),
   (2, 21, 9.8, 336.6),
   (2, 21, 9.9, 340.1),
-  (2, 21, 10, 343.5);INSERT INTO frame_area
+  (2, 21, 10, 343.5);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 22, 0.1, 3),
@@ -2346,7 +2390,9 @@ VALUES
   (2, 22, 9.7, 333.2),
   (2, 22, 9.8, 336.6),
   (2, 22, 9.9, 340.1),
-  (2, 22, 10, 343.5);INSERT INTO frame_area
+  (2, 22, 10, 343.5);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 23, 0.1, 3),
@@ -2448,7 +2494,9 @@ VALUES
   (2, 23, 9.7, 333.2),
   (2, 23, 9.8, 336.6),
   (2, 23, 9.9, 340.1),
-  (2, 23, 10, 343.5);INSERT INTO frame_area
+  (2, 23, 10, 343.5);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 24, 0.1, 3),
@@ -2550,7 +2598,9 @@ VALUES
   (2, 24, 9.7, 333.2),
   (2, 24, 9.8, 336.6),
   (2, 24, 9.9, 340.1),
-  (2, 24, 10, 343.5);INSERT INTO frame_area
+  (2, 24, 10, 343.5);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 25, 0.1, 3),
@@ -2652,7 +2702,9 @@ VALUES
   (2, 25, 9.7, 333.2),
   (2, 25, 9.8, 336.6),
   (2, 25, 9.9, 340.1),
-  (2, 25, 10, 343.5);INSERT INTO frame_area
+  (2, 25, 10, 343.5);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 26, 0.1, 3),
@@ -2754,7 +2806,9 @@ VALUES
   (2, 26, 9.7, 333.2),
   (2, 26, 9.8, 336.6),
   (2, 26, 9.9, 340.1),
-  (2, 26, 10, 343.5);INSERT INTO frame_area
+  (2, 26, 10, 343.5);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 27, 0.1, 3),
@@ -2856,7 +2910,9 @@ VALUES
   (2, 27, 9.7, 333.2),
   (2, 27, 9.8, 336.6),
   (2, 27, 9.9, 340.1),
-  (2, 27, 10, 343.5);INSERT INTO frame_area
+  (2, 27, 10, 343.5);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 28, 0.1, 3),
@@ -2958,7 +3014,9 @@ VALUES
   (2, 28, 9.7, 333.2),
   (2, 28, 9.8, 336.6),
   (2, 28, 9.9, 340.1),
-  (2, 28, 10, 343.5);INSERT INTO frame_area
+  (2, 28, 10, 343.5);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 29, 0.1, 3),
@@ -3060,7 +3118,9 @@ VALUES
   (2, 29, 9.7, 333.2),
   (2, 29, 9.8, 336.6),
   (2, 29, 9.9, 340.1),
-  (2, 29, 10, 343.5);INSERT INTO frame_area
+  (2, 29, 10, 343.5);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 30, 0.1, 3),
@@ -3162,7 +3222,9 @@ VALUES
   (2, 30, 9.7, 333.2),
   (2, 30, 9.8, 336.6),
   (2, 30, 9.9, 340.1),
-  (2, 30, 10, 343.5);INSERT INTO frame_area
+  (2, 30, 10, 343.5);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 31, 0.1, 3),
@@ -3264,7 +3326,9 @@ VALUES
   (2, 31, 9.7, 333.2),
   (2, 31, 9.8, 336.6),
   (2, 31, 9.9, 340.1),
-  (2, 31, 10, 343.5);INSERT INTO frame_area
+  (2, 31, 10, 343.5);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 32, 0.1, 3),
@@ -3366,7 +3430,9 @@ VALUES
   (2, 32, 9.7, 333.1),
   (2, 32, 9.8, 336.4),
   (2, 32, 9.9, 339.8),
-  (2, 32, 10, 343.1);INSERT INTO frame_area
+  (2, 32, 10, 343.1);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 33, 0.1, 3),
@@ -3468,7 +3534,9 @@ VALUES
   (2, 33, 9.7, 332.1),
   (2, 33, 9.8, 333.5),
   (2, 33, 9.9, 334.9),
-  (2, 33, 10, 336.3);INSERT INTO frame_area
+  (2, 33, 10, 336.3);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 34, 0.1, 3),
@@ -3570,7 +3638,9 @@ VALUES
   (2, 34, 9.7, 332.8),
   (2, 34, 9.8, 335.5),
   (2, 34, 9.9, 338.2),
-  (2, 34, 10, 340.8);INSERT INTO frame_area
+  (2, 34, 10, 340.8);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 35, 0.1, 3),
@@ -3672,7 +3742,9 @@ VALUES
   (2, 35, 9.7, 333.2),
   (2, 35, 9.8, 336.6),
   (2, 35, 9.9, 340.1),
-  (2, 35, 10, 343.5);INSERT INTO frame_area
+  (2, 35, 10, 343.5);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 36, 0.1, 3),
@@ -3774,7 +3846,9 @@ VALUES
   (2, 36, 9.7, 333.2),
   (2, 36, 9.8, 336.6),
   (2, 36, 9.9, 340.1),
-  (2, 36, 10, 343.5);INSERT INTO frame_area
+  (2, 36, 10, 343.5);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 37, 0.1, 3),
@@ -3876,7 +3950,9 @@ VALUES
   (2, 37, 9.7, 333.2),
   (2, 37, 9.8, 336.6),
   (2, 37, 9.9, 340.1),
-  (2, 37, 10, 343.5);INSERT INTO frame_area
+  (2, 37, 10, 343.5);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 38, 0.1, 3),
@@ -3978,7 +4054,9 @@ VALUES
   (2, 38, 9.7, 333.2),
   (2, 38, 9.8, 336.6),
   (2, 38, 9.9, 340.1),
-  (2, 38, 10, 343.5);INSERT INTO frame_area
+  (2, 38, 10, 343.5);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 39, 0.1, 3),
@@ -4080,7 +4158,9 @@ VALUES
   (2, 39, 9.7, 333.2),
   (2, 39, 9.8, 336.6),
   (2, 39, 9.9, 340.1),
-  (2, 39, 10, 343.5);INSERT INTO frame_area
+  (2, 39, 10, 343.5);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 40, 0.1, 3),
@@ -4182,7 +4262,9 @@ VALUES
   (2, 40, 9.7, 333.2),
   (2, 40, 9.8, 336.6),
   (2, 40, 9.9, 340.1),
-  (2, 40, 10, 343.5);INSERT INTO frame_area
+  (2, 40, 10, 343.5);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 41, 0.1, 3),
@@ -4284,7 +4366,9 @@ VALUES
   (2, 41, 9.7, 333.2),
   (2, 41, 9.8, 336.6),
   (2, 41, 9.9, 340.1),
-  (2, 41, 10, 343.5);INSERT INTO frame_area
+  (2, 41, 10, 343.5);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 42, 0.1, 3),
@@ -4386,7 +4470,9 @@ VALUES
   (2, 42, 9.7, 333.2),
   (2, 42, 9.8, 336.6),
   (2, 42, 9.9, 340.1),
-  (2, 42, 10, 343.5);INSERT INTO frame_area
+  (2, 42, 10, 343.5);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 43, 0.1, 3),
@@ -4488,7 +4574,9 @@ VALUES
   (2, 43, 9.7, 333.2),
   (2, 43, 9.8, 336.6),
   (2, 43, 9.9, 340.1),
-  (2, 43, 10, 343.5);INSERT INTO frame_area
+  (2, 43, 10, 343.5);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 44, 0.1, 3),
@@ -4590,7 +4678,9 @@ VALUES
   (2, 44, 9.7, 333.2),
   (2, 44, 9.8, 336.6),
   (2, 44, 9.9, 340.1),
-  (2, 44, 10, 343.5);INSERT INTO frame_area
+  (2, 44, 10, 343.5);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 45, 0.1, 2.98),
@@ -4692,7 +4782,9 @@ VALUES
   (2, 45, 9.7, 332.8),
   (2, 45, 9.8, 336.2),
   (2, 45, 9.9, 339.7),
-  (2, 45, 10, 343.1);INSERT INTO frame_area
+  (2, 45, 10, 343.1);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 46, 0.1, 2.9),
@@ -4794,7 +4886,9 @@ VALUES
   (2, 46, 9.7, 331.1),
   (2, 46, 9.8, 334.6),
   (2, 46, 9.9, 338),
-  (2, 46, 10, 341.5);INSERT INTO frame_area
+  (2, 46, 10, 341.5);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 47, 0.1, 2.74),
@@ -4896,7 +4990,9 @@ VALUES
   (2, 47, 9.7, 328.1),
   (2, 47, 9.8, 331.6),
   (2, 47, 9.9, 335),
-  (2, 47, 10, 338.4);INSERT INTO frame_area
+  (2, 47, 10, 338.4);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 48, 0.1, 2.53),
@@ -4998,7 +5094,9 @@ VALUES
   (2, 48, 9.7, 323.5),
   (2, 48, 9.8, 327),
   (2, 48, 9.9, 330.4),
-  (2, 48, 10, 333.9);INSERT INTO frame_area
+  (2, 48, 10, 333.9);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 49, 0.1, 2.26),
@@ -5100,7 +5198,9 @@ VALUES
   (2, 49, 9.7, 316.4),
   (2, 49, 9.8, 319.9),
   (2, 49, 9.9, 323.3),
-  (2, 49, 10, 326.8);INSERT INTO frame_area
+  (2, 49, 10, 326.8);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 50, 0.1, 1.96),
@@ -5202,7 +5302,9 @@ VALUES
   (2, 50, 9.7, 304.1),
   (2, 50, 9.8, 307.5),
   (2, 50, 9.9, 311),
-  (2, 50, 10, 314.4);INSERT INTO frame_area
+  (2, 50, 10, 314.4);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 51, 0.1, 1.63),
@@ -5304,7 +5406,9 @@ VALUES
   (2, 51, 9.7, 286.1),
   (2, 51, 9.8, 289.6),
   (2, 51, 9.9, 293),
-  (2, 51, 10, 296.4);INSERT INTO frame_area
+  (2, 51, 10, 296.4);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 52, 0.1, 1.32),
@@ -5406,7 +5510,9 @@ VALUES
   (2, 52, 9.7, 266.2),
   (2, 52, 9.8, 269.6),
   (2, 52, 9.9, 273.1),
-  (2, 52, 10, 276.5);INSERT INTO frame_area
+  (2, 52, 10, 276.5);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 53, 0.1, 1.01),
@@ -5508,7 +5614,9 @@ VALUES
   (2, 53, 9.7, 244.4),
   (2, 53, 9.8, 247.8),
   (2, 53, 9.9, 251.3),
-  (2, 53, 10, 254.7);INSERT INTO frame_area
+  (2, 53, 10, 254.7);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 54, 0.1, 0.75),
@@ -5610,7 +5718,9 @@ VALUES
   (2, 54, 9.7, 219.6),
   (2, 54, 9.8, 223),
   (2, 54, 9.9, 226.3),
-  (2, 54, 10, 229.7);INSERT INTO frame_area
+  (2, 54, 10, 229.7);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 55, 0.1, 0.52),
@@ -5712,7 +5822,9 @@ VALUES
   (2, 55, 9.7, 191.9),
   (2, 55, 9.8, 195.1),
   (2, 55, 9.9, 198.3),
-  (2, 55, 10, 201.5);INSERT INTO frame_area
+  (2, 55, 10, 201.5);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 56, 0.1, 0.25),
@@ -5814,7 +5926,9 @@ VALUES
   (2, 56, 9.7, 100.9),
   (2, 56, 9.8, 102.6),
   (2, 56, 9.9, 104.4),
-  (2, 56, 10, 106.2);INSERT INTO frame_area
+  (2, 56, 10, 106.2);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 57, 0.1, -0.04),
@@ -5916,7 +6030,9 @@ VALUES
   (2, 57, 9.7, -64.55),
   (2, 57, 9.8, -65.81),
   (2, 57, 9.9, -67.09),
-  (2, 57, 10, -68.39);INSERT INTO frame_area
+  (2, 57, 10, -68.39);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 58, 0.1, 0.1),
@@ -6018,7 +6134,9 @@ VALUES
   (2, 58, 9.7, 79.43),
   (2, 58, 9.8, 81.16),
   (2, 58, 9.9, 82.92),
-  (2, 58, 10, 84.71);INSERT INTO frame_area
+  (2, 58, 10, 84.71);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 59, 0.1, 0.01),
@@ -6120,7 +6238,9 @@ VALUES
   (2, 59, 9.7, 53.15),
   (2, 59, 9.8, 54.55),
   (2, 59, 9.9, 55.98),
-  (2, 59, 10, 57.43);INSERT INTO frame_area
+  (2, 59, 10, 57.43);
+
+INSERT INTO frame_area
   (ship_id, frame_index, draft, area)
 VALUES
   (2, 60, 0.1, 0),

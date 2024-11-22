@@ -1,17 +1,19 @@
--- Осадки
+DELETE FROM load_line WHERE ship_id=2;
 
 INSERT INTO load_line
-  (ship_id, name, x, y, z)
+  (ship_id, parameter_id, name_rus, name_engl, x, y, z)
 VALUES
-  (2, 'LL draft S PS', 65.25,	-7.935,	8.012),
-  (2, 'LL draft S SB', 65.25,	7.935,	8.012),
-  (2, 'LL draft F PS', 65.675,	-7.935,	8.189),
-  (2, 'LL draft F SB', 65.675,	7.935,	8.189),
-  (2, 'LL draft T PS', 65.905,	-7.935,	8.178),
-  (2, 'LL draft T SB', 65.905,	7.935,	8.178),
-  (2, 'LL draft TF PS', 65.675,	-7.935,	8.354),
-  (2, 'LL draft TF SB', 65.675,	7.935,	8.354),
-  (2, 'LL draft W PS', 65.905,	-7.935,	7.846),
-  (2, 'LL draft W SB', 65.905,	7.935,	7.846),
-  (2, 'LL draft WNA PS', 65.905, -7.935, 7.796),
-  (2, 'LL draft WNA SB', 65.905, 7.935,	7.796);
+  (2, 102, 'Осадка по летнюю ГВЛ ЛБ', 'Summer LL draft PS', 65.25, -7.935, 8.012),
+  (2, 101, 'Осадка по летнюю ГВЛ ПрБ', 'Summer LL draft SB', 65.25, 7.935, 8.012),
+  (2, 110, 'Осадка по летнюю ГВЛ в пресной воде ЛБ', 'Fresh water LL draft in summer PS', 65.675, -7.935, 8.189),
+  (2, 109, 'Осадка по летнюю ГВЛ в пресной воде ПрБ', 'Fresh water LL draft in summer SB', 65.675, 7.935, 8.189),
+  (2, 108, 'Осадка по тропическую ГВЛ ЛБ', 'Tropical LL draft PS', 65.905, -7.935, 8.178),
+  (2, 107, 'Осадка по тропическую ГВЛ ПрБ', 'Tropical LL draft SB', 65.905, 7.935, 8.178),
+  (2, 112, 'Осадка по тропическую ГВЛ в пресной воде ЛБ', 'Tropical fresh water LL draft PS', 65.675, -7.935, 8.354),
+  (2, 111, 'Осадка по тропическую ГВЛ в пресной воде ПрБ', 'Tropical fresh water LL draft SB', 65.675, 7.935, 8.354),
+  (2, 104, 'Осадка по зимнюю ГВЛ ЛБ', 'Winter LL draft PS', 65.905, -7.935, 7.846),
+  (2, 103, 'Осадка по зимнюю ГВЛ ПрБ', 'Winter LL draft SB', 65.905, 7.935, 7.846),
+  (2, 106, 'Осадка по зимнюю ГВЛ в Северной Атлантике ЛБ', 'Winter North Atlantic LL draft PS', 65.905, -7.935, 7.796),
+  (2, 105, 'Осадка по зимнюю ГВЛ в Северной Атлантике ПрБ', 'Winter North Atlantic LL draft SB', 65.905, 7.935, 7.796),
+  (2, 143, 'Высота на носовом перпендикуляре ПрБ', 'Depth at forward perpendicular SB', 130.500, 4.555, 12.630),
+  (2, 144, 'Высота на носовом перпендикуляре ЛБ', 'Depth at forward perpendicular PS', 130.500, -4.555, 12.630);
