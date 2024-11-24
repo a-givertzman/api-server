@@ -30,7 +30,7 @@ pub struct TcpServer {
     pub is_connected: bool,
     // api_server: ApiServer,
     config: Config,
-    resources: Resources,
+    resources: Arc<Mutex<Resources>>,
 }
 //
 //
@@ -45,7 +45,7 @@ impl TcpServer {
             is_connected: false,
             // api_server,
             config,
-            resources: Resources::new()
+            resources: Arc::new(Mutex::new(Resources::new())),
         }
     }
     ///

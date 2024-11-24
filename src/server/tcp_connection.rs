@@ -1,5 +1,5 @@
 use std::{
-    net::TcpStream, sync::Arc 
+    net::TcpStream, sync::{Arc, Mutex} 
 };
 use api_tools::{
     api::{
@@ -13,19 +13,22 @@ use api_tools::{
     debug::dbg_id::DbgId,
 };
 use crate::{api_server::ApiServer, config::Config};
+
+use super::resources::Resources;
 ///
 /// Opens a connection via TCP Socket
 pub struct TcpConnection {
     dbgid: DbgId,
     config: Config,
     socket: TcpSocket,
+    resources: Arc<Mutex<Resources>>,
 }
 //
 // 
 impl TcpConnection {
     ///
     /// Returns TcpConnection new instance
-    pub fn new(dbgid: &DbgId, config: Config, stream: TcpStream) -> Self {
+    pub fn new(dbgid: &DbgId, config: Config, stream: TcpStream, resources: Arc<Mutex<Resources>>,) -> Self {
         let dbgid = DbgId(format!("{}/TcpConnection", dbgid));
         let message = TcpMessage::new(
             &dbgid,
@@ -61,13 +64,14 @@ impl TcpConnection {
             dbgid: dbgid.clone(),
             socket: TcpSocket::new(&dbgid, &config.address, message, Some(Arc::clone(&stream))),
             config,
+            resources,
         }
     }
     ///
     /// Listening incoming messages from remote client
     pub fn run(&mut self) {
         log::debug!("{}.run | Start reading...", self.dbgid);
-        let api_server = ApiServer::new(self.config.clone());
+        let api_server = ApiServer::new(self.config.clone(), self.resources.clone());
         let mut keep_alive = true;
         while keep_alive {
             match self.socket.read() {
@@ -76,7 +80,7 @@ impl TcpConnection {
                         let dbg_bytes = if bytes.len() > 16 {format!("{:?} ...", &bytes[..16])} else {format!("{:?}", bytes)};
                         log::debug!("{}.run | Received id: {:?},  bytes: {:?}", self.dbgid, id, dbg_bytes);
                         let result = api_server.build(&bytes);
-                        keep_alive = result.keepAlive;
+                        keep_alive = result.keep_alive;
                         match self.socket.send(&result.data) {
                             Ok(_) => {}
                             Err(err) => {
