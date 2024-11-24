@@ -60,6 +60,7 @@ impl TcpServer {
         let addr = this.lock().unwrap().addr;
         let config = this.lock().unwrap().config.clone();
         let reconnect_delay = this.lock().unwrap().reconnect_delay;
+        let resources = this.lock().unwrap().resources.clone();
         debug!("TcpServer.run | trying to open...");
         let handle = thread::Builder::new().name("TcpServer tread".to_string()).spawn(move || {
             let mut tcp_threads = vec![];
@@ -91,6 +92,7 @@ impl TcpServer {
                         let peer_addr = stream.peer_addr().unwrap().to_string();
                         let thread_name = format!("TcpServer {:?}", peer_addr);
                         let connection_config = config.clone();
+                        let resources = resources.clone();
                         let thread_join_handle = thread::Builder::new().name(thread_name.clone()).spawn(move || {
                             debug!("TcpServer.run | started in {:?}", thread::current().name().unwrap());
                             stream.set_nodelay(true).unwrap();
@@ -98,6 +100,7 @@ impl TcpServer {
                                 &DbgId(thread_name), 
                                 connection_config.clone(), 
                                 stream,
+                                resources.clone(),
                             );
                             connection.run();
                             // me.lock().unwrap().listen_stream(&mut stream, &thread_name);
