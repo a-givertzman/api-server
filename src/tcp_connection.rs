@@ -4,9 +4,7 @@ use std::{
 use api_tools::{
     api::{
         message::{
-            fields::{FieldData, FieldId, FieldKind, FieldSize, FieldSyn},
-            message::MessageField, message_kind::MessageKind, parse_data::ParseData,
-            parse_id::ParseId, parse_kind::ParseKind, parse_size::ParseSize, parse_syn::ParseSyn,
+            fields::{FieldData, FieldId, FieldKind, FieldSize, FieldSyn}, message::MessageField, message_kind::MessageKind, msg_kind::MsgKind, parse_data::ParseData, parse_id::ParseId, parse_kind::ParseKind, parse_size::ParseSize, parse_syn::ParseSyn
         },
         socket::tcp_socket::{TcpMessage, TcpSocket},
     },
@@ -71,16 +69,21 @@ impl TcpConnection {
         let mut keep_alive = true;
         while keep_alive {
             match self.socket.read() {
-                Ok((id, bytes)) => {
-                    let dbg_bytes = if bytes.len() > 16 {format!("{:?} ...", &bytes[..16])} else {format!("{:?}", bytes)};
-                    log::debug!("{}.run | Received id: {:?},  bytes: {:?}", self.dbgid, id, dbg_bytes);
-                    let result = api_server.build(&bytes);
-                    keep_alive = result.keepAlive;
-                    match self.socket.send(&result.data) {
-                        Ok(_) => {}
-                        Err(err) => {
-                            log::warn!("{}.run | Error sending reply: {:?}", self.dbgid, err);
+                Ok((id, msg)) => match msg {
+                    MsgKind::Bytes(bytes) => {
+                        let dbg_bytes = if bytes.len() > 16 {format!("{:?} ...", &bytes[..16])} else {format!("{:?}", bytes)};
+                        log::debug!("{}.run | Received id: {:?},  bytes: {:?}", self.dbgid, id, dbg_bytes);
+                        let result = api_server.build(&bytes);
+                        keep_alive = result.keepAlive;
+                        match self.socket.send(&result.data) {
+                            Ok(_) => {}
+                            Err(err) => {
+                                log::warn!("{}.run | Error sending reply: {:?}", self.dbgid, err);
+                            }
                         }
+                    }
+                    _ => {
+                        log::warn!("{}.run | Unexpected kind (Bytes expected) of TcpMessage: {:?}", self.dbgid, msg);
                     }
                 }
                 Err(_) => {
