@@ -47,11 +47,11 @@ services:                      # list of currently avalible API services
         pass: test_api_query
         # replaceNullWithDefault:
 
-    - database-postgres-flowers-app-server:
-        name: 'flowers_app_server'
+    - flowers-app:
+        name: 'flowers_app'
         type: postgres
         path: 'localhost:5432' 
-        user: flowers_app_server
+        user: flowers_app
         pass: 00d0-25e4-*&s2-ccds
         # replaceNullWithDefault:
 

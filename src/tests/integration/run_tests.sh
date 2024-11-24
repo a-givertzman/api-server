@@ -12,7 +12,7 @@ declare -a tests=(
 #
 # for local execution change python version here if required
 # for github actions change PYTHON_VERSION variable in the ./github/workflows/test.yaml 
-default_python_version=python3.10
+default_python_version=python3
 python="${PYTHON_VERSION:-$default_python_version}"
 echo "Python version used for testing: $python"
 #

@@ -2,18 +2,28 @@
 name = "api-server"
 version = "0.1.21"
 edition = "2021"
-
+#
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
+#
+# Update dependencies using command
+# rm ./Cargo.lock &&  cargo clean && cargo update
+#
 [dependencies]
 log = "^0.4"
 env_logger = "^0.11"
-
-api-tools = { git = "https://github.com/a-givertzman/rust-api-tools.git", tag = "0.0.6" }
-
+#
+# date & time
 chrono = { version = "^0.4", features = ["serde"] }
+#
+#
+testing = { git = "https://github.com/a-givertzman/rust-testing.git" }
+# testing = { git = "https://github.com/a-givertzman/rust-testing.git", tag = "0.1.2" }
+debugging = { git = "https://github.com/a-givertzman/rust-debuging.git", tag = "0.0.1" }
+api-tools = { git = "https://github.com/a-givertzman/rust-api-tools.git", branch = "Socket-Message" }
+# api-tools = { path = "../api-tools/" }
 
-rusqlite = { version = "^0.31", features = ["bundled"] }
+
+rusqlite = { version = "^0.32", features = ["bundled"] }
 
 postgres = { version = "^0.19", features = ["with-chrono-0_4", "with-serde_json-1"] }
 
