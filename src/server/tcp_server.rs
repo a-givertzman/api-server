@@ -18,7 +18,10 @@ use std::{
     time::Duration,
     error::Error, 
 };
-use crate::{config::Config, tcp_connection::TcpConnection};
+use crate::{
+    config::Config, server::tcp_connection::TcpConnection,
+    server::resources::Resources,
+};
 ///
 /// 
 pub struct TcpServer {
@@ -27,6 +30,7 @@ pub struct TcpServer {
     pub is_connected: bool,
     // api_server: ApiServer,
     config: Config,
+    resources: Resources,
 }
 //
 //
@@ -41,6 +45,7 @@ impl TcpServer {
             is_connected: false,
             // api_server,
             config,
+            resources: Resources::new()
         }
     }
     ///
