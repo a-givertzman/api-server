@@ -141,6 +141,8 @@ impl SqlQueryPostgre {
 }
 ///
 impl SqlQuery for SqlQueryPostgre {
+    //
+    //
     fn execute(&mut self) -> Result<Vec<RowMap>, ApiError> {
         let connection = self.resources
             .lock()
@@ -169,30 +171,6 @@ impl SqlQuery for SqlQueryPostgre {
                 },
                 |client| Ok(client),
             );
-        // let connection = match connection {
-        //     Some(connection) => {
-        //         Ok(connection)
-        //     }
-        //     None => {
-        //         let path = if !self.db_config.user.is_empty() && !self.db_config.pass.is_empty() {
-        //             format!("postgresql://{}:{}@{}/{}", self.db_config.user, self.db_config.pass, self.db_config.path, self.db_config.name)    // postgresql://user:secret@localhost
-        //         } else {
-        //             format!("postgresql://{}/{}", self.db_config.path, self.db_config.name)                                                  // postgresql://localhost
-        //         };
-        //         log::debug!("SqlQueryPostgre.execute | connecting with params: {:?}", &path);
-        //         match Client::connect(&path, NoTls) {
-        //             Ok(conn) => Ok(conn),
-        //             Err(err) => {
-        //                 let details = format!("SqlQueryPostgre.execute | connection error: {:?}", &err);
-        //                 log::warn!("{:?}", details);
-        //                 Err(ApiError::new(
-        //                     "Postgres database - connection error",
-        //                     details,
-        //                 ))
-        //             }
-        //         }
-        //     }
-        // };
         match connection {
             Ok(mut connection) => {
                 log::debug!("SqlQueryPostgre.execute | preparing sql: {:?}", self.sql);
