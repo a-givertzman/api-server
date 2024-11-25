@@ -92,13 +92,10 @@ impl ApiServer {
                                 }
                             },
                             ApiServiceType::PostgreSql => {
-                                let connection = self.resources.lock().map_or(None, |mut r| {
-                                    r.pop(ResorceKind::Postgres)
-                                });
                                 ApiServerResult {
                                     keep_alive: api_query.keep_alive,
                                     data: Self::execute(
-                                        Box::new(SqlQueryPostgre::new(db_config.clone(), sql_query.sql, None)),
+                                        Box::new(SqlQueryPostgre::new(db_config.clone(), sql_query.sql, self.resources.clone())),
                                         api_query.auth_token(),
                                         api_query.id(),
                                         api_query.keep_alive,

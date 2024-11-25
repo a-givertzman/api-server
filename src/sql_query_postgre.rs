@@ -1,3 +1,5 @@
+use std::sync::{Arc, Mutex};
+
 use api_tools::{error::api_error::ApiError, server::api_query::row_map::RowMap};
 use chrono::{DateTime, Utc, NaiveTime, NaiveDate, NaiveDateTime};
 use indexmap::IndexMap;
@@ -7,12 +9,12 @@ use postgres::{Client, NoTls, types::{Type, to_sql_checked, FromSql, self, Kind}
 use serde::Serialize;
 use serde_json::json;
 use log::LevelFilter;
-use crate::{sql_query::SqlQuery, config::ServiceConfig};
+use crate::{config::ServiceConfig, server::{resource_kind::ResorceKind, resources::Resources}, sql_query::SqlQuery};
 ///
 /// 
 pub struct SqlQueryPostgre {
     db_config: ServiceConfig,
-    connection: Option<Client>,
+    resources: Arc<Mutex<Resources>>,
     sql: String,
 }
 //
@@ -20,10 +22,10 @@ pub struct SqlQueryPostgre {
 impl SqlQueryPostgre {
     ///
     /// Returns SqlQueryPostgre new instance
-    pub fn new(db_config: ServiceConfig, sql: String, connection: Option<Client>) -> SqlQueryPostgre {
+    pub fn new(db_config: ServiceConfig, sql: String, resources: Arc<Mutex<Resources>>,) -> SqlQueryPostgre {
         Self {
-            connection,
             db_config,
+            resources,
             sql,
         }
     }
@@ -140,36 +142,59 @@ impl SqlQueryPostgre {
 ///
 impl SqlQuery for SqlQueryPostgre {
     fn execute(&mut self) -> Result<Vec<RowMap>, ApiError> {
-        let mut new_conn: Client;
-        let connection = match &mut self.connection {
-            Some(connection) => {
-                Ok(connection)
-            },
-            None => {
-                let path = if !self.db_config.user.is_empty() && !self.db_config.pass.is_empty() {
-                    format!("postgresql://{}:{}@{}/{}", self.db_config.user, self.db_config.pass, self.db_config.path, self.db_config.name)    // postgresql://user:secret@localhost
-                } else {
-                    format!("postgresql://{}/{}", self.db_config.path, self.db_config.name)                                                  // postgresql://localhost
-                };
-                log::debug!("SqlQueryPostgre.execute | connecting with params: {:?}", &path);
-                match Client::connect(&path, NoTls) {
-                    Ok(conn) => {
-                        new_conn = conn;
-                        Ok(&mut new_conn)
-                    },
-                    Err(err) => {
-                        let details = format!("SqlQueryPostgre.execute | connection error: {:?}", &err);
-                        log::warn!("{:?}", details);
-                        Err(ApiError::new(
-                            "Postgres database - connection error",
-                            details,
-                        ))
-                    },
-                }
-            },
-        };
+        let connection = self.resources
+            .lock()
+            .map_or(None, |mut resources| {
+                resources.pop(ResorceKind::Postgres).map(|r| r.as_postgres())
+            })
+            .map_or_else(
+                || {
+                    let path = if !self.db_config.user.is_empty() && !self.db_config.pass.is_empty() {
+                        format!("postgresql://{}:{}@{}/{}", self.db_config.user, self.db_config.pass, self.db_config.path, self.db_config.name)    // postgresql://user:secret@localhost
+                    } else {
+                        format!("postgresql://{}/{}", self.db_config.path, self.db_config.name)                                                  // postgresql://localhost
+                    };
+                    log::debug!("SqlQueryPostgre.execute | connecting with params: {:?}", &path);
+                    match Client::connect(&path, NoTls) {
+                        Ok(conn) => Ok(conn),
+                        Err(err) => {
+                            let details = format!("SqlQueryPostgre.execute | connection error: {:?}", &err);
+                            log::warn!("{:?}", details);
+                            Err(ApiError::new(
+                                "Postgres database - connection error",
+                                details,
+                            ))
+                        }
+                    }
+                },
+                |client| Ok(client),
+            );
+        // let connection = match connection {
+        //     Some(connection) => {
+        //         Ok(connection)
+        //     }
+        //     None => {
+        //         let path = if !self.db_config.user.is_empty() && !self.db_config.pass.is_empty() {
+        //             format!("postgresql://{}:{}@{}/{}", self.db_config.user, self.db_config.pass, self.db_config.path, self.db_config.name)    // postgresql://user:secret@localhost
+        //         } else {
+        //             format!("postgresql://{}/{}", self.db_config.path, self.db_config.name)                                                  // postgresql://localhost
+        //         };
+        //         log::debug!("SqlQueryPostgre.execute | connecting with params: {:?}", &path);
+        //         match Client::connect(&path, NoTls) {
+        //             Ok(conn) => Ok(conn),
+        //             Err(err) => {
+        //                 let details = format!("SqlQueryPostgre.execute | connection error: {:?}", &err);
+        //                 log::warn!("{:?}", details);
+        //                 Err(ApiError::new(
+        //                     "Postgres database - connection error",
+        //                     details,
+        //                 ))
+        //             }
+        //         }
+        //     }
+        // };
         match connection {
-            Ok(connection) => {
+            Ok(mut connection) => {
                 log::debug!("SqlQueryPostgre.execute | preparing sql: {:?}", self.sql);
                 match connection.prepare(self.sql.as_str()) {
                     Ok(stmt) => {
