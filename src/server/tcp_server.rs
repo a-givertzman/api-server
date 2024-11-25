@@ -45,7 +45,7 @@ impl TcpServer {
             is_connected: false,
             // api_server,
             config,
-            resources: Arc::new(Mutex::new(Resources::new())),
+            resources: Arc::new(Mutex::new(Resources::new(&DbgId("TcpServer".to_owned())))),
         }
     }
     ///

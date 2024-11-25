@@ -141,7 +141,7 @@ dependencies = [
 [[package]]
 name = "api-tools"
 version = "0.0.6"
-source = "git+https://github.com/a-givertzman/rust-api-tools.git?branch=Socket-Message#d950f13725abac14964eb9aeb95df9c532a0b8fb"
+source = "git+https://github.com/a-givertzman/rust-api-tools.git?tag=0.2.0#8b284f127079c02660629417478b0dd3ebf4bbf2"
 dependencies = [
  "chrono",
  "debugging",

@@ -201,7 +201,7 @@ impl SqlQuery for SqlQueryPostgre {
                                     log::trace!("SqlQueryPostgre.execute | result: {:?}", result);
                                 } else {
                                     log::debug!("SqlQueryPostgre.execute | result: {:?} rows fetched", result.len());
-                                    log::debug!("SqlQueryPostgre.execute | result: {:?}", result);
+                                    log::trace!("SqlQueryPostgre.execute | result: {:?}", result);
                                 }
                                 if parse_errors.is_empty() {
                                     Ok(result)

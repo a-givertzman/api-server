@@ -1,5 +1,5 @@
 use std::{
-    net::TcpStream, sync::{Arc, Mutex} 
+    net::TcpStream, sync::{Arc, Mutex}, time::Instant 
 };
 use api_tools::{
     api::{
@@ -79,7 +79,9 @@ impl TcpConnection {
                     MsgKind::Bytes(bytes) => {
                         let dbg_bytes = if bytes.len() > 16 {format!("{:?} ...", &bytes[..16])} else {format!("{:?}", bytes)};
                         log::debug!("{}.run | Received id: {:?},  bytes: {:?}", self.dbgid, id, dbg_bytes);
+                        let time = Instant::now();
                         let result = api_server.build(&bytes);
+                        log::debug!("{}.run | Elapsed: {:?}", self.dbgid, time.elapsed());
                         keep_alive = result.keep_alive;
                         match self.socket.send(&result.data) {
                             Ok(_) => {}

@@ -1,7 +1,9 @@
+use api_tools::debug::dbg_id::DbgId;
 use crate::server::{resource::Resource, resource_kind::ResourceKind};
 ///
 /// Shared stored resources for all server services
 pub struct Resources {
+    dbgid: DbgId,
     inner: Vec<Vec<Resource>>,
 }
 //
@@ -9,9 +11,10 @@ pub struct Resources {
 impl Resources {
     ///
     /// Returns [Resources] new instance
-    pub fn new() -> Self {
+    pub fn new(dbgid: &DbgId) -> Self {
         Self {
-            inner: (0..ResourceKind::len()).map(|_| vec![]).collect(),
+        dbgid: DbgId(format!("{}/Resources", dbgid)),
+        inner: (0..ResourceKind::len()).map(|_| vec![]).collect(),
         }
     }
     ///
@@ -30,5 +33,6 @@ impl Resources {
     /// Adds [Resource] to the collection
     pub fn push(&mut self, resource: Resource) {
         self.inner[resource.kind() as usize].push(resource);
+        log::debug!("{}.push | Resources: {}", self.dbgid, self.inner.len());
     }
 }
