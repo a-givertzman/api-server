@@ -2,7 +2,7 @@ use std::sync::{Arc, Mutex};
 use api_tools::{error::api_error::ApiError, api::reply::api_reply::ApiReply, server::api_query::{api_query::ApiQuery, api_query_type::ApiQueryType}};
 use log::debug;
 use crate::{
-    api_service_type::ApiServiceType, config::Config, executable_query::ExecutableQuery, python_query::PythonQuery, server::resources::Resources, sql_query::SqlQuery, sql_query_mysql::SqlQueryMysql, sql_query_postgre::SqlQueryPostgre, sql_query_sqlite::SqlQuerySqlite 
+    api_service_type::ApiServiceType, config::Config, executable_query::ExecutableQuery, python_query::PythonQuery, server::{resource_kind::ResorceKind, resources::Resources}, sql_query::SqlQuery, sql_query_mysql::SqlQueryMysql, sql_query_postgre::SqlQueryPostgre, sql_query_sqlite::SqlQuerySqlite 
 };
 ///
 /// 
@@ -92,6 +92,9 @@ impl ApiServer {
                                 }
                             },
                             ApiServiceType::PostgreSql => {
+                                let connection = self.resources.lock().map_or(None, |mut r| {
+                                    r.pop(ResorceKind::Postgres)
+                                });
                                 ApiServerResult {
                                     keep_alive: api_query.keep_alive,
                                     data: Self::execute(
