@@ -1,43 +1,42 @@
-use super::resource_kind::ResorceKind;
-
+use super::resource_kind::ResourceKind;
 ///
 /// The resource of kind 
 ///  - Postgres - stores postgres connection
-pub enum Resorce {
+pub enum Resource {
     Postgres(postgres::Client),
 }
 //
 //
-impl Resorce {
+impl Resource {
     ///
     /// Returns kind of the variant
-    pub fn kind(&self) -> ResorceKind {
+    pub fn kind(&self) -> ResourceKind {
         match self {
-            Resorce::Postgres(_) => ResorceKind::Postgres,
+            Resource::Postgres(_) => ResourceKind::Postgres,
         }
     }
     ///
     /// Returns extracted `Postgres` or panic
     pub fn as_postgres(self) -> postgres::Client {
         match self {
-            Resorce::Postgres(client) => client,
-            _ => panic!("Resorce.as_postgres | Can't be extracted as Postgres, because it: {:?}", self)
+            Resource::Postgres(client) => client,
+            // _ => panic!("Resource.as_postgres | Can't be extracted as Postgres, because it: {:?}", self)
         }
     }
 }
 //
 //
-impl std::fmt::Debug for Resorce {
+impl std::fmt::Debug for Resource {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
-            Self::Postgres(_) => write!(f, "Resorce::Postgres"),
+            Self::Postgres(_) => write!(f, "Resource::Postgres"),
         }
     }
 }
 //
 //
-impl Clone for Resorce {
+impl Clone for Resource {
     fn clone(&self) -> Self {
-        panic!("Resorce.clone | Not implemented")
+        panic!("Resource.clone | Not implemented")
     }
 }

@@ -9,7 +9,7 @@ use postgres::{Client, NoTls, types::{Type, to_sql_checked, FromSql, self, Kind}
 use serde::Serialize;
 use serde_json::json;
 use log::LevelFilter;
-use crate::{config::ServiceConfig, server::{resource_kind::ResorceKind, resources::Resources}, sql_query::SqlQuery};
+use crate::{config::ServiceConfig, server::{resource::Resource, resource_kind::ResourceKind, resources::Resources}, sql_query::SqlQuery};
 ///
 /// 
 pub struct SqlQueryPostgre {
@@ -145,7 +145,7 @@ impl SqlQuery for SqlQueryPostgre {
         let connection = self.resources
             .lock()
             .map_or(None, |mut resources| {
-                resources.pop(ResorceKind::Postgres).map(|r| r.as_postgres())
+                resources.pop(ResourceKind::Postgres).map(|r| r.as_postgres())
             })
             .map_or_else(
                 || {
@@ -203,7 +203,7 @@ impl SqlQuery for SqlQueryPostgre {
                             c_names.push(column.name().to_string());
                         }
                         let mut result = vec![];
-                        match connection.query(&stmt, &[]) {
+                        let result = match connection.query(&stmt, &[]) {
                             Ok(rows) => {
                                 let mut parse_errors = vec![];
                                 for row in rows {
@@ -244,7 +244,12 @@ impl SqlQuery for SqlQueryPostgre {
                                     details, 
                                 ))
                             },
+                        };
+                        match self.resources.lock() {
+                            Ok(mut r) => r.push(Resource::Postgres(connection)),
+                            Err(err) => log::warn!("SqlQueryPostgre.execute | Error push back resource: {:#?}", err),
                         }
+                        result
                     },
                     Err(err) => {
                         let details = format!("SqlQueryPostgre.execute | sql preparing error: {}", err);

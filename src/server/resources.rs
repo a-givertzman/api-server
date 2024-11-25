@@ -1,8 +1,8 @@
-use crate::server::{resource::Resorce, resource_kind::ResorceKind};
+use crate::server::{resource::Resource, resource_kind::ResourceKind};
 ///
 /// Shared stored resources for all server services
 pub struct Resources {
-    inner: Vec<Vec<Resorce>>,
+    inner: Vec<Vec<Resource>>,
 }
 //
 //
@@ -11,14 +11,14 @@ impl Resources {
     /// Returns [Resources] new instance
     pub fn new() -> Self {
         Self {
-            inner: (0..ResorceKind::len()).map(|_| vec![]).collect(),
+            inner: (0..ResourceKind::len()).map(|_| vec![]).collect(),
         }
     }
     ///
     /// Returns [Resource] of specified `kind` if exists
-    pub fn pop(&mut self, kind: ResorceKind) -> Option<Resorce> {
+    pub fn pop(&mut self, kind: ResourceKind) -> Option<Resource> {
         match kind {
-            ResorceKind::Postgres => {
+            ResourceKind::Postgres => {
                 if let Some(r) = self.inner.get_mut(kind as usize) {
                     return r.pop();
                 }
@@ -28,7 +28,7 @@ impl Resources {
     }
     ///
     /// Adds [Resource] to the collection
-    pub fn push(&mut self, resource: Resorce) {
+    pub fn push(&mut self, resource: Resource) {
         self.inner[resource.kind() as usize].push(resource);
     }
 }

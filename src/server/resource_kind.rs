@@ -3,12 +3,12 @@
 ///  - Postgres - stores postgres connection
 #[repr(usize)]
 #[derive(Debug, PartialEq, Eq)]
-pub enum ResorceKind {
+pub enum ResourceKind {
     Postgres,
 }
 //
 //
-impl ResorceKind {
+impl ResourceKind {
     ///
     /// Returns all ordered [ResorceKind] variants
     pub fn len() -> usize {
