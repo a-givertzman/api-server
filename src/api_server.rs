@@ -1,8 +1,12 @@
 use std::sync::{Arc, Mutex};
-use api_tools::{error::api_error::ApiError, api::reply::api_reply::ApiReply, server::api_query::{api_query::ApiQuery, api_query_type::ApiQueryType}};
-use log::debug;
+use api_tools::{
+    error::api_error::ApiError, api::reply::api_reply::ApiReply,
+    server::api_query::{api_query::ApiQuery, api_query_type::ApiQueryType},
+};
 use crate::{
-    api_service_type::ApiServiceType, config::Config, executable_query::ExecutableQuery, python_query::PythonQuery, server::{resource_kind::ResorceKind, resources::Resources}, sql_query::SqlQuery, sql_query_mysql::SqlQueryMysql, sql_query_postgre::SqlQueryPostgre, sql_query_sqlite::SqlQuerySqlite 
+    api_service_type::ApiServiceType, config::Config, executable_query::ExecutableQuery, python_query::PythonQuery,
+    server::resources::Resources, sql_query::SqlQuery, sql_query_mysql::SqlQueryMysql, sql_query_postgre::SqlQueryPostgre,
+    sql_query_sqlite::SqlQuerySqlite,
 };
 ///
 /// 
@@ -58,7 +62,7 @@ impl ApiServer {
                 }
             },
             ApiQueryType::Sql(sql_query) => {
-                debug!("ApiServer.build | ApiQueryType: Sql");
+                log::debug!("ApiServer.build | ApiQueryType: Sql");
                 match self.config.services.get(&sql_query.database) {
                     Some(db_config) => {
                         match db_config.service_type {
@@ -78,7 +82,7 @@ impl ApiServer {
                             ApiServiceType::MySql => {
                                 let dir = std::env::current_dir().unwrap();
                                 let path: &str = &format!("{}/{}", dir.to_str().unwrap(), db_config.path);
-                                debug!("ApiServer.build | database address: {:?}", path);
+                                log::debug!("ApiServer.build | database address: {:?}", path);
                                 ApiServerResult {
                                     keep_alive: api_query.keep_alive,
                                     data: Self::execute(
@@ -135,15 +139,15 @@ impl ApiServer {
                 }                    
             },
             ApiQueryType::Python(py_query) => {
-                debug!("ApiServer.build | ApiQueryType: Python");
-                debug!("ApiServer.build | ApiQueryType: Python script: {}", py_query.script);
+                log::debug!("ApiServer.build | ApiQueryType: Python");
+                log::debug!("ApiServer.build | ApiQueryType: Python script: {}", py_query.script);
                 match self.config.services.get(&py_query.script) {
                     Some(db_config) => {
                         // let path = "./database.sqlite";
                         // let path = self.config.dataBases[0].path.clone();
                         let dir = std::env::current_dir().unwrap();
                         let path: &str = &format!("{}/{}", dir.to_str().unwrap(), db_config.path);
-                        debug!("ApiServer.build | script path: {:?}", path);
+                        log::debug!("ApiServer.build | script path: {:?}", path);
                         // let connection = Connection::open_with_flags(path, OpenFlags::SQLITE_OPEN_READ_WRITE); // ::open(path).unwrap();
                         let exists = std::path::Path::new(path).exists();
                         match exists {
@@ -210,16 +214,16 @@ impl ApiServer {
                 }
             },
             ApiQueryType::Executable(ex_query) => {
-                debug!("ApiServer.build | ApiQueryType: Executable");
-                debug!("ApiServer.build | ApiQueryType: Executable name: {}", ex_query.name);
-                debug!("ApiServer.build | ApiQueryType: Executable name: {:?}", ex_query);
+                log::debug!("ApiServer.build | ApiQueryType: Executable");
+                log::debug!("ApiServer.build | ApiQueryType: Executable name: {}", ex_query.name);
+                log::debug!("ApiServer.build | ApiQueryType: Executable name: {:?}", ex_query);
                 match self.config.services.get(&ex_query.name) {
                     Some(db_config) => {
                         // let path = "./database.sqlite";
                         // let path = self.config.dataBases[0].path.clone();
                         let dir = std::env::current_dir().unwrap();
                         let path: &str = &format!("{}/{}", dir.to_str().unwrap(), db_config.path);
-                        debug!("ApiServer.build | script path: {:?}", path);
+                        log::debug!("ApiServer.build | script path: {:?}", path);
                         // let connection = Connection::open_with_flags(path, OpenFlags::SQLITE_OPEN_READ_WRITE); // ::open(path).unwrap();
                         let exists = std::path::Path::new(path).exists();
                         match exists {
