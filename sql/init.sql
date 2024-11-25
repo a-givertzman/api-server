@@ -184,3 +184,4 @@ DROP TABLE IF EXISTS ship_geometry, ship_parameters, ship CASCADE;
 \i ./sql/Sofia/loads/hull.sql
 \i ./sql/Sofia/loads/compartment_curve.sql
 \i ./sql/Sofia/voyage/voyage_insert.sql
+\i ./sql/Sofia/container/container_insert.sql
