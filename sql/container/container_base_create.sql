@@ -30,6 +30,8 @@ DROP TABLE IF EXISTS container_slot CASCADE;
 CREATE TABLE
 	IF NOT EXISTS container_slot (
 		id INT GENERATED ALWAYS AS IDENTITY, -- ID of the container slot, unique identifier
+		ship_id INT NOT NULL, -- ID of the ship
+		project_id INT, -- ID of the project
 		container_id INT, -- ID of the container, putted in this slot
 		bay_number INT NOT NULL, -- Number of the bay of the slot
 		row_number INT NOT NULL, -- Number of the row of the slot
@@ -44,6 +46,7 @@ CREATE TABLE
 		min_height FLOAT8 NOT NULL, -- Minimum possible value for the leftmost coordinate of the slot along the vertical axis, measured in meters
 		max_height FLOAT8 NOT NULL, -- Maximum possible value for the rightmost coordinate of the slot along the vertical axis, measured in meters
 		is_active BOOLEAN NOT NULL DEFAULT FALSE, -- Either slot is active or not
+		is_thirty_ft BOOLEAN NOT NULL DEFAULT FALSE, -- Either slot is for 30 ft container or not
 		CONSTRAINT container_slot_pk PRIMARY KEY (id),
 		CONSTRAINT container_slot_container_fk FOREIGN KEY (container_id) REFERENCES container (id),
 		CONSTRAINT container_slot_unique UNIQUE (container_id, bay_number, row_number, tier_number),
