@@ -5,6 +5,7 @@ CREATE TABLE if not exists bow_board (
   id INT GENERATED ALWAYS AS IDENTITY,
   project_id INT,
   ship_id INT NOT NULL,
+  criterion_id INT NOT NULL,
   name TEXT NOT NULL,
   x FLOAT8 NOT NULL,
   y FLOAT8 NOT NULL,
