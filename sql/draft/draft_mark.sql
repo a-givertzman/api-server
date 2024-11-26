@@ -15,5 +15,5 @@ CREATE TABLE if not exists draft_mark (
   CONSTRAINT draft_mark_pk PRIMARY KEY (id),
   CONSTRAINT draft_mark_name_check CHECK(char_length(name) > 0 AND char_length(name) <= 50),
   CONSTRAINT draft_mark_name_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, name, z),
-  CONSTRAINT draft_mark_id_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, mark_id, z)
+  CONSTRAINT draft_criterion_id_unique UNIQUE (project_id, ship_id, criterion_id, z)
 );

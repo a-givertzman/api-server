@@ -12,5 +12,6 @@ CREATE TABLE if not exists bow_board (
   z FLOAT8 NOT NULL,
   CONSTRAINT bow_board_pk PRIMARY KEY (id),
   CONSTRAINT bow_board_name_check CHECK(char_length(name) > 0 AND char_length(name) <= 50),
-  CONSTRAINT bow_board_name_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, name, z)
+  CONSTRAINT bow_board_name_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, name, z),
+  CONSTRAINT bow_board_criterion_id_unique UNIQUE (project_id, ship_id, criterion_id, z)
 );

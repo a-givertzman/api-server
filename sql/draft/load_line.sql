@@ -16,5 +16,5 @@ CREATE TABLE if not exists load_line (
   CONSTRAINT load_line_name_engl_unique UNIQUE (project_id, ship_id, name_engl),
   CONSTRAINT load_line_name_rus_check CHECK(char_length(name_rus) > 0 AND char_length(name_rus) <= 100),
   CONSTRAINT load_line_name_rus_unique UNIQUE (project_id, ship_id, name_rus),
-  CONSTRAINT load_line_parameter_id_unique UNIQUE (project_id, ship_id, parameter_id)
+  CONSTRAINT load_line_criterion_id_unique UNIQUE (project_id, ship_id, criterion_id)
 );
