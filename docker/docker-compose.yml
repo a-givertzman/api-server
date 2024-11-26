@@ -27,6 +27,8 @@ services:
 
   client:
     build: ./client
+    deploy:
+      replicas: 0
     environment:
       DISPLAY: ${DISPLAY}
     network_mode: host

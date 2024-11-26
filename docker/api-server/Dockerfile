@@ -1,12 +1,12 @@
-FROM rust:1.74 as builder
+FROM rust:1.80.1 as builder
 RUN apt update
 # compile the api-server binary executable
 WORKDIR /app
-RUN git clone --branch internal_v0.1.21 https://github.com/a-givertzman/api-server.git api-server
+RUN git clone --depth 1 --branch internal_v0.1.21 https://github.com/a-givertzman/api-server.git api-server
 RUN cd ./api-server && cargo build --release
 # compile the sss-computing-strength binary executable
 WORKDIR /back
-RUN git clone --branch 0.0.37 https://github.com/a-givertzman/sss-computing-strength.git sss-computing-strength
+RUN git clone --depth 1 --branch 0.0.37 https://github.com/a-givertzman/sss-computing-strength.git sss-computing-strength
 RUN cd ./sss-computing-strength && cargo build --release
 
 FROM debian:12.2 as runner
