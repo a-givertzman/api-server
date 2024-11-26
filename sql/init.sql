@@ -141,6 +141,7 @@ DROP TABLE IF EXISTS ship_geometry, ship_parameters, ship CASCADE;
 \i ./sql/ARK/draft/bow_board.sql
 \i ./sql/ARK/hold/hold_insert_empty.sql
 \i ./sql/voyage/voyage_waypoint_insert_test.sql -- for test, TODO: remove
+\i ./sql/ARK/voyage/voyage_insert.sql
 \i ./sql/ARK/container/container_insert.sql -- same as above
 \i ./sql/ARK/container/container_slot_insert.sql
 --

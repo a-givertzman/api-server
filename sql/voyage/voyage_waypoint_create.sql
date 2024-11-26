@@ -11,8 +11,7 @@ CREATE TABLE
         eta TIMESTAMP NOT NULL, -- ETA of the waypoint (elapsed time of arrival)
         etd TIMESTAMP NOT NULL, -- ETD of the waypoint (elapsed time of departure)
         hex_color TEXT NOT NULL, -- Color to identify waypoint when displaying, in hex color format
-        max_draught FLOAT8 NOT NULL DEFAULT 0.0, -- TODO
+        max_draught FLOAT8 NOT NULL DEFAULT 0.0, -- TODO: write doc comment
         use_max_draught BOOLEAN NOT NULL DEFAULT FALSE, -- Indicate whether some draft criteria should be calculated or not.
-        CONSTRAINT waypoint_pk PRIMARY KEY (id),
-        CONSTRAINT waypoint_time_check CHECK (eta <= etd)
+        CONSTRAINT waypoint_pk PRIMARY KEY (id)
     );
