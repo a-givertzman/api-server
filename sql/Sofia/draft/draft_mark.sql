@@ -1,7 +1,7 @@
 DELETE FROM draft_mark WHERE ship_id=2;
 
 INSERT INTO draft_mark
-  (ship_id, mark_id, name, x, y, z)
+  (ship_id, criterion_id, name, x, y, z)
 VALUES
   (2, 91, 'stern SB', -0, -0, 0.6),
   (2, 92, 'stern PS', -0, -0, 0.6),

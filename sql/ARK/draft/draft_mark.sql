@@ -3,7 +3,7 @@
 -- Z | X | Y
 
 INSERT INTO draft_mark
-  (ship_id, mark_id, name, z, x, y)
+  (ship_id, criterion_id, name, z, x, y)
 VALUES
 -- stern	
 -- (1, 91, 'stern SB', 0.6,	0,	     0),

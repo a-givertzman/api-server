@@ -5,7 +5,7 @@ CREATE TABLE if not exists load_line (
   id INT GENERATED ALWAYS AS IDENTITY,
   project_id INT,
   ship_id INT NOT NULL,
-  parameter_id INT NOT NULL,
+  criterion_id INT NOT NULL,
   name_engl TEXT NOT NULL,
   name_rus TEXT,
   x FLOAT8 NOT NULL,
