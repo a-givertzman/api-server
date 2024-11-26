@@ -83,7 +83,7 @@ impl TcpConnection {
                         let result = api_server.build(&bytes);
                         log::debug!("{}.run | Elapsed: {:?}", self.dbgid, time.elapsed());
                         keep_alive = result.keep_alive;
-                        match self.socket.send(&result.data) {
+                        match self.socket.send(&result.data,  Some(id.0)) {
                             Ok(_) => {}
                             Err(err) => {
                                 log::warn!("{}.run | Error sending reply: {:?}", self.dbgid, err);
@@ -95,8 +95,8 @@ impl TcpConnection {
                     }
                 }
                 Err(_) => {
-                    log::warn!("{}.run | Connection closed", self.dbgid);
-                    return
+                    log::info!("{}.run | Connection closed", self.dbgid);
+                    break;
                 }
             }
         }
