@@ -115,7 +115,7 @@ dependencies = [
 
 [[package]]
 name = "api-server"
-version = "0.2.0"
+version = "0.2.1"
 dependencies = [
  "api-tools",
  "bytes",
@@ -141,6 +141,7 @@ dependencies = [
 [[package]]
 name = "api-tools"
 version = "0.0.6"
+source = "git+https://github.com/a-givertzman/rust-api-tools.git?tag=0.2.0#7a82db221b1436af36ee97deb8082ab73f81a6ac"
 dependencies = [
  "chrono",
  "debugging",
