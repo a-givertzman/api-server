@@ -50,6 +50,8 @@ CREATE TABLE if not exists compartment (
   grain_moment FLOAT8, 
   svg_paths TEXT,
   category_id INT NOT NULL, -- ID of the cargo_category entry;
+  is_on_deck BOOLEAN NOT NULL DEFAULT FALSE, -- Indicator of whether the cargo is on deck or not, true - yes, false - no
+  is_timber BOOLEAN NOT NULL DEFAULT FALSE, -- Indicator of whether the cargo is timber or not, true - yes, false - no
   CONSTRAINT compartment_pk PRIMARY KEY (id),
   CONSTRAINT compartment_id_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, space_id),
   CONSTRAINT compartment_name_rus_unique UNIQUE (project_id, ship_id, name_rus),
