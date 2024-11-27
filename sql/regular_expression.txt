@@ -47,7 +47,7 @@
         WHERE 
             c.ship_id=1 AND active=TRUE AND mass>0;
 
-select data.parameter_id, head.title_rus, data.result, head.unit_rus from parameter_head as head
+select data.parameter_id, head.title_rus, data.result from parameter_head as head
 join parameter_data as data on data.parameter_id=head.id order by data.parameter_id;
 
 select head.id, head.title_rus, unit.symbol_rus from criterion as head
@@ -116,7 +116,7 @@ truncate table bulkhead cascade;
 
 
             SELECT 
-                h.name AS name,
+                h.name_rus AS name,
                 h.mass AS mass,
                 cgc.key::TEXT AS general_category,
                 p.bound_x1 AS bound_x1,
@@ -133,7 +133,7 @@ truncate table bulkhead cascade;
             JOIN 
                 bulkhead_place AS p ON h.id = p.bulkhead_id
             WHERE 
-                h.ship_id=1;
+                h.ship_id=2;
 
             SELECT 
                 h.name AS name,
