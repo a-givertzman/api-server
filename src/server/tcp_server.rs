@@ -18,7 +18,10 @@ use std::{
     time::Duration,
     error::Error, 
 };
-use crate::{config::Config, tcp_connection::TcpConnection};
+use crate::{
+    config::Config, server::tcp_connection::TcpConnection,
+    server::resources::Resources,
+};
 ///
 /// 
 pub struct TcpServer {
@@ -27,6 +30,7 @@ pub struct TcpServer {
     pub is_connected: bool,
     // api_server: ApiServer,
     config: Config,
+    resources: Arc<Mutex<Resources>>,
 }
 //
 //
@@ -41,6 +45,7 @@ impl TcpServer {
             is_connected: false,
             // api_server,
             config,
+            resources: Arc::new(Mutex::new(Resources::new(&DbgId("TcpServer".to_owned())))),
         }
     }
     ///
@@ -55,6 +60,7 @@ impl TcpServer {
         let addr = this.lock().unwrap().addr;
         let config = this.lock().unwrap().config.clone();
         let reconnect_delay = this.lock().unwrap().reconnect_delay;
+        let resources = this.lock().unwrap().resources.clone();
         debug!("TcpServer.run | trying to open...");
         let handle = thread::Builder::new().name("TcpServer tread".to_string()).spawn(move || {
             let mut tcp_threads = vec![];
@@ -86,6 +92,7 @@ impl TcpServer {
                         let peer_addr = stream.peer_addr().unwrap().to_string();
                         let thread_name = format!("TcpServer {:?}", peer_addr);
                         let connection_config = config.clone();
+                        let resources = resources.clone();
                         let thread_join_handle = thread::Builder::new().name(thread_name.clone()).spawn(move || {
                             debug!("TcpServer.run | started in {:?}", thread::current().name().unwrap());
                             stream.set_nodelay(true).unwrap();
@@ -93,6 +100,7 @@ impl TcpServer {
                                 &DbgId(thread_name), 
                                 connection_config.clone(), 
                                 stream,
+                                resources.clone(),
                             );
                             connection.run();
                             // me.lock().unwrap().listen_stream(&mut stream, &thread_name);
