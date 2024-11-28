@@ -73,8 +73,6 @@ impl TcpConnection {
         log::debug!("{}.run | Start reading...", self.dbgid);
         let api_server = ApiServer::new(self.config.clone(), self.resources.clone());
         let mut keep_alive = true;
-        // thread::sleep(Duration::from_secs(2));
-        // exit(0);
         while keep_alive {
             match self.socket.read() {
                 Ok((id, msg)) => match msg {
