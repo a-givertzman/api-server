@@ -2,7 +2,7 @@ FROM rust:1.80.1 as builder
 RUN apt update
 # compile the api-server binary executable
 WORKDIR /app
-RUN git clone --depth 1 --branch internal_v0.1.21 https://github.com/a-givertzman/api-server.git api-server
+RUN git clone --depth 1 --branch internal_v0.2.1 https://github.com/a-givertzman/api-server.git api-server
 RUN cd ./api-server && cargo build --release
 # compile the sss-computing-strength binary executable
 WORKDIR /back
