@@ -3,7 +3,6 @@ CREATE OR REPLACE FUNCTION init_n_parts () RETURNS TRIGGER
 AS $init_n_parts$
 DECLARE 
     changed_ship_id int;
-    length real;
     n_parts real;
 BEGIN 
 -- Ищем судно для которого отсутствует распределение 
@@ -45,9 +44,9 @@ CREATE OR REPLACE FUNCTION update_computed_frame_space () RETURNS TRIGGER
 AS $update_computed_frame_space$
 DECLARE 
     changed_ship_id int;
-    length real;
+    stern_x real;
+    bow_x real;
     n_parts real;
-    middle_x real;
 BEGIN 
 -- Ищем судно которое изменилось
     IF (TG_OP = 'DELETE') THEN
@@ -62,14 +61,16 @@ BEGIN
     END IF;
 
     SELECT 
-        value
+        pos_x
     INTO 
-        length
-    FROM 
-        ship_parameters s
-    WHERE
-        s.ship_id = changed_ship_id
-        AND key = 'L.O.A';
+        stern_x
+    FROM (SELECT * FROM physical_frame WHERE ship_id = changed_ship_id ORDER BY pos_x ASC LIMIT 1);
+
+    SELECT 
+        pos_x
+    INTO 
+        bow_x
+    FROM (SELECT * FROM physical_frame WHERE ship_id = changed_ship_id ORDER BY pos_x DESC LIMIT 1);
 
     SELECT 
         value
@@ -81,19 +82,15 @@ BEGIN
         s.ship_id = changed_ship_id
         AND key = 'Number of Parts';
 
-    SELECT 
-        value
-    INTO 
-        middle_x
-    FROM 
-        ship_parameters s
-    WHERE
-        s.ship_id = changed_ship_id
-        AND key = 'Length middle from stern';
-
-    IF ( length IS NULL ) 
+    IF ( bow_x IS NULL ) 
     THEN
-        RAISE NOTICE 'update_computed_frame_space no length for ship_id:[%]', changed_ship_id;
+        RAISE NOTICE 'update_computed_frame_space no bow_x for ship_id:[%]', changed_ship_id;
+        RETURN NEW;
+    END IF;
+
+    IF ( stern_x IS NULL ) 
+    THEN
+        RAISE NOTICE 'update_computed_frame_space no stern_x for ship_id:[%]', changed_ship_id;
         RETURN NEW;
     END IF;
 
@@ -103,13 +100,7 @@ BEGIN
         RETURN NEW;
     END IF;
 
-    IF ( middle_x IS NULL OR middle_x <= 0 ) 
-    THEN
-        RAISE NOTICE 'update_computed_frame_space no middle_x for ship_id:[%]', changed_ship_id;
-        RETURN NEW;
-    END IF;
-
-    RAISE NOTICE 'update_computed_frame_space calculate frames with n_parts:[%] for ship_id:[%]', n_parts, changed_ship_id;
+    RAISE NOTICE 'update_computed_frame_space calculate frames with n_parts:[%] bow_x:[%] stern_x:[%] for ship_id:[%]', n_parts, bow_x, stern_x, changed_ship_id;
 
     DELETE FROM 
         computed_frame_space 
@@ -120,7 +111,7 @@ BEGIN
         INSERT INTO
             computed_frame_space (ship_id, index, start_x, end_x)
         VALUES
-            (changed_ship_id, index, length*index/n_parts - middle_x, length*(index+1)/n_parts - middle_x);
+            (changed_ship_id, index, (bow_x - stern_x)*index/n_parts, (bow_x - stern_x)*(index+1)/n_parts);
     END LOOP;
 
     RETURN NEW;
