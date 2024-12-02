@@ -64,33 +64,23 @@ select * from hold_compartment;
 update hold_compartment set mass=5100, density=1 where id=6;
 update hold_compartment set category_id=12 where id=6;
 
-select id, name, density, volume, mass from hold_compartment order by id;
-
-select space_id, name, density, volume, mass from compartment order by space_id;
+select 
+    space_id, 
+    name_rus, 
+    mass, 
+    mass_shift_x, 
+    mass_shift_y, 
+    mass_shift_z,
+    m_f_s_x,
+    m_f_s_y
+from 
+    compartment 
+where 
+    mass!=0 and category_id<=8 and ship_id=2
+order by space_id;
 
 update compartment set mass=111 where space_id=1;
 
-select space_id, name, mass, mass_shift_x from compartment order by space_id;
-
-update compartment set density=2 where space_id=5;
-update compartment set category_id=12 where space_id=5;
-select space_id, name, category_id, mass, mass_shift_x from compartment order by space_id;
-
-
-select space_id, name, density, level, mass, volume from compartment where mass IS NOT NULL;
-update compartment set density=2, mass=100, volume=30 where space_id=5;
-
-select space_id, name, category_id from compartment where mass IS NOT NULL;
-update compartment set category_id=5 where space_id=5;
-
-
-select id, name, density, level, mass, volume from hold_compartment where mass IS NOT NULL;
-update hold_compartment set density=2, mass=100, volume=30 where id=7;
-
-select id, name, category_id from hold_compartment where mass IS NOT NULL;
-update hold_compartment set category_id=5 where id=7;
-
-select * from grain_moment;
 
 select * from hold_compartment;
 
