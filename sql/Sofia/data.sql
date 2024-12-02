@@ -3,7 +3,7 @@ UPDATE ship_parameters SET value=1.025 WHERE key='Water Density' AND ship_id=2;
 UPDATE ship SET icing_type_id=(SELECT id FROM ship_icing WHERE icing_type='none') WHERE id=2;
 UPDATE ship_parameters SET value=0 WHERE key='Wetting of deck timber' AND ship_id=2;
 
-UPDATE compartment SET density=1.025, mass=0, use_max_m_f_s=FALSE WHERE ship_id=2 AND space_id=205;
+UPDATE compartment SET density=1.025, mass=0, use_max_m_f_s=TRUE WHERE ship_id=2 AND space_id=205;
 UPDATE compartment SET density=1.025, mass=71.4, use_max_m_f_s=FALSE WHERE ship_id=2 AND space_id=206;
 UPDATE compartment SET density=1.025, mass=240.2, use_max_m_f_s=FALSE WHERE ship_id=2 AND space_id=207;
 UPDATE compartment SET density=1.025, mass=129.8, use_max_m_f_s=FALSE WHERE ship_id=2 AND space_id=208;
