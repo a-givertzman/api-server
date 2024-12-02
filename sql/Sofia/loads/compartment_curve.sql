@@ -2,7 +2,7 @@ DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartmen
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Форпик' AND ship_id=2), 0, 0, 0, 0, 0, 0, 0 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Форпик' AND ship_id=2), 0, 0, 125.78, 0, 0.07, 0, 0 UNION ALL
 SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Форпик' AND ship_id=2), 0.1, 0.08, 125.78, 0, 0.07, 1, 0 UNION ALL
 SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Форпик' AND ship_id=2), 0.2, 0.37, 126.1, 0, 0.14, 2, 1 UNION ALL
 SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Форпик' AND ship_id=2), 0.3, 0.84, 126.33, 0, 0.2, 5, 1 UNION ALL
@@ -106,38 +106,38 @@ DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartmen
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 0, 0, 121.96, -0.01, 1.64, 0, 0 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 0.1, 1, 121.96, -0.01, 1.64, 7.959, 27.294 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 0.2, 2.46, 121.96, -0.01, 1.64, 14.559, 34.46 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 0.3, 4.18, 121.96, -0.01, 1.64, 20.717, 39.215 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 0.4, 6.08, 121.96, -0.01, 1.64, 26.716, 42.963 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 0.5, 8.13, 121.96, -0.01, 1.64, 32.221, 45.935 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 0.6, 10.3, 121.96, -0.01, 1.64, 37.397, 48.491 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 0.7, 12.49, 121.96, -0.01, 1.64, 41.252, 41.162 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 0.8, 14.7, 121.96, -0.01, 1.64, 45.02, 39.325 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 0.9, 16.94, 121.96, -0.01, 1.64, 48.692, 38.31 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 1, 19.21, 121.96, -0.01, 1.64, 51.999, 37.743 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 1.1, 21.51, 121.96, -0.01, 1.64, 55.142, 37.44 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 1.2, 23.34, 121.96, -0.01, 1.64, 52.16, 18.946 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 1.3, 25.2, 121.96, -0.01, 1.64, 54.686, 19.321 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 1.4, 27.09, 121.96, -0.01, 1.64, 57.146, 19.659 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 1.5, 29.01, 121.96, -0.01, 1.64, 59.447, 19.981 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 1.6, 30.96, 121.96, -0.01, 1.64, 61.407, 20.242 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 1.7, 32.93, 121.96, -0.01, 1.64, 63.374, 20.5 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 1.8, 34.92, 121.96, -0.01, 1.64, 65.076, 20.729 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 1.9, 36.93, 121.96, -0.01, 1.64, 66.692, 20.934 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 2, 38.95, 121.96, -0.01, 1.64, 68.191, 21.124 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 2.1, 40.99, 121.96, -0.01, 1.64, 69.513, 21.286 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 2.2, 43.04, 121.96, -0.01, 1.64, 70.736, 21.434 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 2.3, 45.11, 121.96, -0.01, 1.64, 71.797, 21.56 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 2.4, 47.18, 121.96, -0.01, 1.64, 72.749, 21.676 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 2.5, 49.27, 121.96, -0.01, 1.64, 73.576, 21.771 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 2.6, 51.36, 121.96, -0.01, 1.64, 74.291, 21.852 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 2.7, 53.46, 121.96, -0.01, 1.64, 74.93, 21.927 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 2.8, 55.56, 121.96, -0.01, 1.64, 75.436, 21.974 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 2.9, 57.67, 121.96, -0.01, 1.64, 75.896, 22.026 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 3, 59.78, 121.96, -0.01, 1.64, 73.572, 20.629 UNION ALL
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 3.1, 61.8, 121.96, -0.01, 1.64, 74.036, 20.677 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 0, 0, 122.11, 0, 0.06, 0, 0 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 0.1, 1, 122.11, 0, 0.06, 7.959, 27.294 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 0.2, 2.46, 122.18, 0, 0.11, 14.559, 34.46 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 0.3, 4.18, 122.22, 0, 0.17, 20.717, 39.215 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 0.4, 6.08, 122.24, 0, 0.23, 26.716, 42.963 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 0.5, 8.13, 122.25, 0, 0.28, 32.221, 45.935 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 0.6, 10.3, 122.26, 0, 0.34, 37.397, 48.491 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 0.7, 12.49, 122.25, 0, 0.394, 41.252, 41.162 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 0.8, 14.7, 122.24, 0, 0.45, 45.02, 39.325 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 0.9, 16.94, 122.22, 0, 0.5, 48.692, 38.31 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 1, 19.21, 122.2, 0, 0.55, 51.999, 37.743 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 1.1, 21.51, 122.18, 0, 0.61, 55.142, 37.44 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 1.2, 23.34, 122.16, 0, 0.65, 52.16, 18.946 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 1.3, 25.2, 122.13, 0, 0.69, 54.686, 19.321 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 1.4, 27.09, 122.12, 0, 0.74, 57.146, 19.659 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 1.5, 29.01, 122.1, 0, 0.79, 59.447, 19.981 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 1.6, 30.96, 122.08, 0, 0.84, 61.407, 20.242 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 1.7, 32.93, 122.07, 0, 0.88, 63.374, 20.5 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 1.8, 34.92, 122.06, 0, 0.93, 65.076, 20.729 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 1.9, 36.93, 122.05, 0, 0.98, 66.692, 20.934 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 2, 38.95, 122.04, 0, 1.03, 68.191, 21.124 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 2.1, 40.99, 122.03, 0, 1.08, 69.513, 21.286 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 2.2, 43.04, 122.02, 0, 1.13, 70.736, 21.434 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 2.3, 45.11, 122.01, 0, 1.19, 71.797, 21.56 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 2.4, 47.18, 122, 0, 1.24, 72.749, 21.676 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 2.5, 49.27, 122, 0, 1.29, 73.576, 21.771 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 2.6, 51.36, 121.99, 0, 1.34, 74.291, 21.852 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 2.7, 53.46, 121.98, 0, 1.39, 74.93, 21.927 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 2.8, 55.56, 121.98, 0, 1.44, 75.436, 21.974 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 2.9, 57.67, 121.97, 0, 1.49, 75.896, 22.026 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 3, 59.78, 121.97, 0, 1.55, 73.572, 20.629 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 3.1, 61.8, 121.97, 0, 1.59, 74.036, 20.677 UNION ALL
 SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 3.2, 63.82, 121.96, -0.01, 1.64, 74.466, 20.733 UNION ALL
 SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 3.3, 65.84, 121.96, -0.01, 1.69, 74.902, 20.776 UNION ALL
 SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Диптанк' AND ship_id=2), 3.4, 67.87, 121.96, -0.01, 1.74, 75.387, 20.828 UNION ALL
@@ -177,7 +177,7 @@ DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartmen
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 1 ДП' AND ship_id=2), 0, 0, 0, 0, 0, 0, 0 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 1 ДП' AND ship_id=2), 0, 0, 92.23, 0, 0.05, 0, 0 UNION ALL
 SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 1 ДП' AND ship_id=2), 0.1, 20.15, 92.23, 0, 0.05, 1037.579, 11266.158 UNION ALL
 SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 1 ДП' AND ship_id=2), 0.2, 40.31, 92.23, 0, 0.1, 1037.579, 11266.158 UNION ALL
 SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 1 ДП' AND ship_id=2), 0.3, 60.46, 92.23, 0, 0.15, 1037.579, 11266.158 UNION ALL
@@ -195,7 +195,7 @@ DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartmen
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 2 ДП' AND ship_id=2), 0, 0, 0, 0, 0, 0, 0 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 2 ДП' AND ship_id=2), 0, 0, 75.21, 0, 0.05, 0, 0 UNION ALL
 SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 2 ДП' AND ship_id=2), 0.1, 6.33, 75.21, 0, 0.05, 326.113, 349.761 UNION ALL
 SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 2 ДП' AND ship_id=2), 0.2, 12.67, 75.21, 0, 0.1, 326.113, 349.761 UNION ALL
 SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 2 ДП' AND ship_id=2), 0.3, 19, 75.21, 0, 0.15, 326.113, 349.761 UNION ALL
@@ -213,7 +213,7 @@ DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartmen
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 3 ДП' AND ship_id=2), 0, 0, 0, 0, 0, 0, 0 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 3 ДП' AND ship_id=2), 0, 0, 57.45, 0, 0.05, 0, 0 UNION ALL
 SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 3 ДП' AND ship_id=2), 0.1, 21.31, 57.45, 0, 0.05, 1096.859, 13309.829 UNION ALL
 SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 3 ДП' AND ship_id=2), 0.2, 42.61, 57.45, 0, 0.1, 1096.859, 13309.829 UNION ALL
 SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 3 ДП' AND ship_id=2), 0.3, 63.92, 57.45, 0, 0.15, 1096.859, 13309.829 UNION ALL
@@ -231,7 +231,7 @@ DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartmen
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 4 ДП' AND ship_id=2), 0, 0, 0, 0, 0, 0, 0 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 4 ДП' AND ship_id=2), 0, 0, 36.36, 0, 0.05, 0, 0 UNION ALL
 SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 4 ДП' AND ship_id=2), 0.1, 11.52, 36.36, 0, 0.05, 592.902, 2102.14 UNION ALL
 SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 4 ДП' AND ship_id=2), 0.2, 23.03, 36.36, 0, 0.1, 592.902, 2102.14 UNION ALL
 SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Танк ДД 4 ДП' AND ship_id=2), 0.3, 34.55, 36.36, 0, 0.15, 592.902, 2102.14 UNION ALL
@@ -1653,7 +1653,7 @@ DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartmen
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Переливная цистерна' AND ship_id=2), 0, 0, 0, 0, 0, 0, 0 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Переливная цистерна' AND ship_id=2), 0, 0, 17.2, 0, 0.05, 0, 0 UNION ALL
 SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Переливная цистерна' AND ship_id=2), 0.1, 1.08, 17.2, 0, 0.05, 13.855, 7.062 UNION ALL
 SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Переливная цистерна' AND ship_id=2), 0.2, 2.16, 17.2, 0, 0.1, 13.855, 7.062 UNION ALL
 SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Переливная цистерна' AND ship_id=2), 0.3, 3.24, 17.2, 0, 0.15, 13.855, 7.062 UNION ALL
@@ -1858,7 +1858,7 @@ DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartmen
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Цистерна газойля 2' AND ship_id=2), 0, 0, 0, 0, 0, 0, 0 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Цистерна газойля 2' AND ship_id=2), 0, 0, 13, 0, 0.65, 0, 0 UNION ALL
 SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Цистерна газойля 2' AND ship_id=2), 0.1, 0.69, 13, 0, 0.65, 0.86, 18.126 UNION ALL
 SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Цистерна газойля 2' AND ship_id=2), 0.2, 1.39, 13, 0, 0.7, 0.86, 18.126 UNION ALL
 SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Цистерна газойля 2' AND ship_id=2), 0.3, 2.08, 13, 0, 0.75, 0.86, 18.126 UNION ALL
@@ -2222,7 +2222,7 @@ DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM compartmen
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
-SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Палубный колодец' AND ship_id=2), 0, 0, 0, 0, 0, 0, 0 UNION ALL
+SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Палубный колодец' AND ship_id=2), 0, 0, 14.45, 0, 9.7, 0, 0 UNION ALL
 SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Палубный колодец' AND ship_id=2), 0.1, 9.01, 14.45, 0, 9.7, 405, 1331 UNION ALL
 SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Палубный колодец' AND ship_id=2), 0.2, 18.01, 14.45, 0, 9.75, 405, 1331 UNION ALL
 SELECT 2, (SELECT space_id FROM compartment WHERE name_rus='Палубный колодец' AND ship_id=2), 0.3, 27.02, 14.45, 0, 9.8, 1330.816, 404.922 UNION ALL
