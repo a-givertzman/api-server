@@ -146,8 +146,8 @@ BEGIN
     res.mass_shift_x = r2.buoyancy_x*coeff1 + r1.buoyancy_x*coeff2;
     res.mass_shift_y = r2.buoyancy_y*coeff1 + r1.buoyancy_y*coeff2;
     res.mass_shift_z = r2.buoyancy_z*coeff1 + r1.buoyancy_z*coeff2;
-    res.m_f_s_y = r2.trans_inertia_moment_self*coeff1 + r1.trans_inertia_moment_self*coeff2;
-    res.m_f_s_x = r2.long_inertia_moment_self*coeff1 + r1.long_inertia_moment_self*coeff2;
+    res.m_f_s_x = r2.trans_inertia_moment_self*coeff1 + r1.trans_inertia_moment_self*coeff2;
+    res.m_f_s_y = r2.long_inertia_moment_self*coeff1 + r1.long_inertia_moment_self*coeff2;
 
     RAISE NOTICE 'get_compartment_curve_volume OK, res level:[%] volume:[%] m_f_s_y:[%] m_f_s_x:[%] coeff1:[%] coeff2:[%]', 
         res.level, res.volume, res.m_f_s_y, res.m_f_s_x, coeff1, coeff2;
@@ -181,8 +181,8 @@ BEGIN
 
     RAISE NOTICE 'get_compartment_curve_max_moment r1:[%] r2:[%] ', r1.trans_inertia_moment_self, r2.long_inertia_moment_self;
 
-    res.max_m_f_s_y = r1.trans_inertia_moment_self;
-    res.max_m_f_s_x = r2.long_inertia_moment_self;
+    res.max_m_f_s_x = r1.trans_inertia_moment_self;
+    res.max_m_f_s_y = r2.long_inertia_moment_self;
 
     RAISE NOTICE 'get_compartment_curve_max_moment OK, res max_m_f_s_y:[%]  max_m_f_s_x:[%]', res.max_m_f_s_y, res.max_m_f_s_x;
 
@@ -294,8 +294,8 @@ BEGIN
     res.mass_shift_x = r2.buoyancy_x*coeff1 + r1.buoyancy_x*coeff2;
     res.mass_shift_y = r2.buoyancy_y*coeff1 + r1.buoyancy_y*coeff2;
     res.mass_shift_z = r2.buoyancy_z*coeff1 + r1.buoyancy_z*coeff2;    
-    res.m_f_s_y = r2.trans_inertia_moment_self*coeff1 + r1.trans_inertia_moment_self*coeff2;
-    res.m_f_s_x = r2.long_inertia_moment_self*coeff1 + r1.long_inertia_moment_self*coeff2;
+    res.m_f_s_x = r2.trans_inertia_moment_self*coeff1 + r1.trans_inertia_moment_self*coeff2;
+    res.m_f_s_y = r2.long_inertia_moment_self*coeff1 + r1.long_inertia_moment_self*coeff2;
     
     RAISE NOTICE 'get_compartment_curve_level res level:[%]  volume:[%] ', res.level, res.volume;
 
