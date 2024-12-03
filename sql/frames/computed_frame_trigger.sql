@@ -111,7 +111,7 @@ BEGIN
         INSERT INTO
             computed_frame_space (ship_id, index, start_x, end_x)
         VALUES
-            (changed_ship_id, index, (bow_x - stern_x)*index/n_parts, (bow_x - stern_x)*(index+1)/n_parts);
+            (changed_ship_id, index, stern_x + (bow_x - stern_x)*index/n_parts, stern_x + (bow_x - stern_x)*(index+1)/n_parts);
     END LOOP;
 
     RETURN NEW;
