@@ -64,6 +64,9 @@ select * from hold_compartment;
 update hold_compartment set mass=5100, density=1 where id=6;
 update hold_compartment set category_id=12 where id=6;
 
+truncate table physical_frame;
+select * from computed_frame_space;
+
 select 
     space_id, 
     name_rus, 
