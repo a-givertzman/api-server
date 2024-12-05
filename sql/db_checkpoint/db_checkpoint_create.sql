@@ -160,7 +160,7 @@ BEGIN
         di.id = NEW.database_info_id;
     
     -- Load checkpoint;
-    IF NEW.is_active = TRUE THEN
+    IF OLD.is_active = FALSE AND NEW.is_active = TRUE THEN
         -- Restore database from dump file;
         EXECUTE format('COPY (SELECT 1) TO PROGRAM ''/bin/pg_restore -U %s -d %s --clean --single-transaction --exclude-schema=custom_metadata -Fc %s'' ', database_owner, database_name, NEW.dump_path);
         -- Mark previous checkpoint as inactive;
