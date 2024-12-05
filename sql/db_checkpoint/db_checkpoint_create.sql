@@ -65,14 +65,7 @@ DECLARE
     data_schema_name TEXT;
 BEGIN
     -- Check correctness of updated data;
-    CASE 
-        WHEN NEW.name IS NULL THEN
-            RAISE EXCEPTION 'Checkpoint name cannot be NULL';
-        WHEN EXISTS (SELECT 1 FROM custom_metadata.db_checkpoint WHERE name = NEW.name) THEN
-            RAISE EXCEPTION 'Checkpoint with name % already exists', NEW.name;
-        ELSE
-            -- do nothing
-    END CASE;
+    PERFORM custom_metadata.validate_checkpoint_name(NEW.name);
 
     -- Generate dump path, and get database owner and schema name in format: <backups_base_path>/<uuid>.<database_name>.<schema_name>.dump;
     SELECT 
@@ -147,7 +140,7 @@ BEGIN
         WHEN OLD.last_loaded_at != NEW.last_loaded_at THEN
             RAISE EXCEPTION 'Updating last_loaded_at is not allowed';
         WHEN OLD.name != NEW.name THEN
-            PERFORM validate_checkpoint_name(NEW.name);
+            PERFORM custom_metadata.validate_checkpoint_name(NEW.name);
         ELSE
             -- do nothing
     END CASE;
