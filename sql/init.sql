@@ -187,3 +187,6 @@ DROP TABLE IF EXISTS ship_geometry, ship_parameters, ship CASCADE;
 \i ./sql/Sofia/voyage/voyage_insert.sql
 \i ./sql/Sofia/container/container_insert.sql
 \i ./sql/Sofia/data.sql
+--
+-- Utility relations for storing database checkpoints
+\i ./sql/db_checkpoint/db_checkpoint_create.sql
