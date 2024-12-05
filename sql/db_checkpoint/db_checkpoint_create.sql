@@ -33,7 +33,6 @@ CREATE TABLE
         created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, -- Time when checkpoint was created;
         last_loaded_at TIMESTAMP, -- Time when checkpoint was loaded;
         is_active BOOLEAN NOT NULL DEFAULT FALSE, -- Either checkpoint is source of the current state of the database or it is not, creating of new checkpoint will override the current one;
-        -- is_data_changed BOOLEAN NOT NULL DEFAULT TRUE, -- Either data in checkpoint is different from the current state of the database or it is not;
         CONSTRAINT metadata_db_checkpoint_pk PRIMARY KEY (id),
         CONSTRAINT metadata_db_checkpoint_database_info_id_fk FOREIGN KEY (database_info_id) REFERENCES custom_metadata.db_info (id)
     );
@@ -47,11 +46,11 @@ BEGIN
     IF checkpoint_name IS NULL THEN
         RAISE EXCEPTION 'Checkpoint name cannot be NULL';
     END IF;
+    
     IF EXISTS (SELECT 1 FROM custom_metadata.db_checkpoint WHERE name = checkpoint_name) THEN
         RAISE EXCEPTION 'Checkpoint with name % already exists', checkpoint_name;
     END IF;
 END; $$;
-
 --
 -- Function for creating a new database checkpoint
 -- 
@@ -67,7 +66,7 @@ BEGIN
     -- Check correctness of updated data;
     PERFORM custom_metadata.validate_checkpoint_name(NEW.name);
 
-    -- Generate dump path, and get database owner and schema name in format: <backups_base_path>/<uuid>.<database_name>.<schema_name>.dump;
+    -- Get database information, and generate dump path in format: <backups_base_path>/<uuid>.<database_name>.<schema_name>.dump;
     SELECT 
         di.backups_base_path || '/' || gen_random_uuid() || '.' || di.database_name || '.' || di.data_schema_name || '.dump',
         di.database_name,
@@ -171,8 +170,6 @@ BEGIN
 
     RETURN NEW;
 END; $$;
-
-
 --
 -- Trigger for creating a new database checkpoint on inserting new row in db_checkpoint
 --
@@ -180,7 +177,6 @@ DROP TRIGGER IF EXISTS create_db_checkpoint_trigger ON custom_metadata.db_checkp
 
 CREATE TRIGGER create_db_checkpoint_trigger BEFORE
 INSERT ON custom_metadata.db_checkpoint FOR EACH ROW EXECUTE PROCEDURE custom_metadata.create_db_checkpoint();
-
 --
 -- Trigger for deleting database checkpoint on deleting row from db_checkpoint
 --
@@ -188,7 +184,6 @@ DROP TRIGGER IF EXISTS delete_db_checkpoint_trigger ON custom_metadata.db_checkp
 
 CREATE TRIGGER delete_db_checkpoint_trigger BEFORE
 DELETE ON custom_metadata.db_checkpoint FOR EACH ROW EXECUTE PROCEDURE custom_metadata.delete_db_checkpoint();
-
 --
 -- Trigger for updating database checkpoint on updating row in db_checkpoint
 --
@@ -196,21 +191,6 @@ DROP TRIGGER IF EXISTS update_db_checkpoint_trigger ON custom_metadata.db_checkp
 
 CREATE TRIGGER update_db_checkpoint_trigger BEFORE
 UPDATE ON custom_metadata.db_checkpoint FOR EACH ROW EXECUTE PROCEDURE custom_metadata.update_db_checkpoint();
-
--- TODO:
--- Function for updating database checkpoint state;
--- 
--- SELECT
---     'CREATE TRIGGER ' || quote_ident (tablename || '_changed_trigger')
---     || ' AFTER INSERT OR UPDATE OR DELETE OR TRUNCATE ON '
---     || quote_ident (schemaname) || '.' || quote_ident (tablename)
---     || ' FOR EACH ROW EXECUTE PROCEDURE update_db_checkpoint_state();' AS create_trigger_query
--- FROM
---     pg_tables
--- WHERE
---     schemaname IN ('public') AND
---     tableowner IN ('test');
-
 --
 -- Insert database info;
 --
