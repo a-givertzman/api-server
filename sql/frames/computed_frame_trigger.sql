@@ -27,9 +27,9 @@ BEGIN
         RAISE NOTICE 'init_n_parts ship_id:[%], set n_parts = 20', changed_ship_id;
         n_parts = 20;
         INSERT INTO ship_parameters
-            (ship_id, key, value, value_type, unit)
+            (ship_id, key, value)
         VALUES
-            (changed_ship_id, 'Number of Parts', n_parts, 'int', NULL);
+            (changed_ship_id, 'Number of Parts', n_parts);
     ELSE
         RAISE NOTICE 'init_n_parts no ship_id without n_parts';
     END IF;
@@ -130,5 +130,10 @@ CREATE OR REPLACE TRIGGER check_update_n_parts
     AFTER INSERT OR UPDATE ON ship_parameters
     FOR EACH ROW 
     WHEN (NEW.key = 'Number of Parts' OR NEW.key = 'L.O.A')
+    EXECUTE FUNCTION update_computed_frame_space();
+
+CREATE OR REPLACE TRIGGER check_update_physical_frame
+    AFTER INSERT OR UPDATE ON physical_frame
+    FOR EACH ROW 
     EXECUTE FUNCTION update_computed_frame_space();
 
