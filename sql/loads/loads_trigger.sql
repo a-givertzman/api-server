@@ -1,4 +1,4 @@
--- Заполнение данных по грузам в трюмах и цистернах 
+-- Заполнение данных по грузам в отсеках и цистернах 
 
 CREATE OR REPLACE FUNCTION update_compartment_parameters () RETURNS TRIGGER 
 AS $update_compartment_parameters$

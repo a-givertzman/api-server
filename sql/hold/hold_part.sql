@@ -35,6 +35,15 @@ CREATE TABLE IF NOT EXISTS hold_part (
     volume_max FLOAT8,
     -- JSON with svg path elements for projection of hold_part onto 3 main planes; 
     svg_paths TEXT,
+    -- Mass of bulk cargo loaded into this hold_compartment, measured in tons;
+    mass FLOAT8,
+    -- JSON with svg path elements for projection of hold_part onto 3 main planes; 
+    -- Coordinates of the center of mass, measured in meters;
+    mass_shift_x FLOAT8,
+    mass_shift_y FLOAT8,
+    mass_shift_z FLOAT8,
+    -- Moment from displacement of bulk cargo, measured in ton*meter;
+    grain_moment FLOAT8,
     CONSTRAINT hold_part_pk PRIMARY KEY (id),
     CONSTRAINT hold_part_group_fk FOREIGN KEY (group_id) REFERENCES hold_group (id),
     CONSTRAINT hold_part_group_index_unique UNIQUE (project_id, ship_id, group_id, group_index),
@@ -48,5 +57,7 @@ CREATE TABLE IF NOT EXISTS hold_part (
     CONSTRAINT hold_part_left_bulkhead_code_unique UNIQUE (project_id, ship_id, left_bulkhead_code),
     CONSTRAINT hold_part_left_bulkhead_code_check CHECK(char_length(left_bulkhead_code) <= 50),
     CONSTRAINT hold_part_right_bulkhead_code_unique UNIQUE (project_id, ship_id, right_bulkhead_code),
-    CONSTRAINT hold_part_right_bulkhead_code_check CHECK(char_length(right_bulkhead_code) <= 50)
+    CONSTRAINT hold_part_right_bulkhead_code_check CHECK(char_length(right_bulkhead_code) <= 50),
+    CONSTRAINT hold_part_mass_check CHECK(mass IS NULL OR mass >= 0),
+    CONSTRAINT hold_part_shift_x_check CHECK(mass_shift_x IS NULL OR (mass_shift_x >= bound_x1 AND mass_shift_x <= bound_x2))
 );
