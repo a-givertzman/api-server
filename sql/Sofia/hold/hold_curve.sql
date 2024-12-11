@@ -288,3 +288,235 @@ SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H206' AND ship_id=2), 
 SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H206' AND ship_id=2), 10.8, 908, 21.99, 0, 6.69;
 
 
+DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='P101' AND ship_id=2);
+
+INSERT INTO compartment_curve
+  (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z)
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2), 0, 0, 105.5, 0, 1.1 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2), 0.5, 4.37, 105.5, 0, 1.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2), 1, 8.73, 105.5, 0, 1.6 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2), 1.5, 13.1, 105.5, 0, 1.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2), 2, 17.46, 105.5, 0, 2.1 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2), 2.5, 21.83, 105.5, 0, 2.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2), 3, 26.2, 105.5, 0, 2.6 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2), 3.5, 30.56, 105.5, 0, 2.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2), 4, 34.93, 105.5, 0, 3.1 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2), 4.5, 39.3, 105.5, 0, 3.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2), 5, 43.66, 105.5, 0, 3.6 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2), 5.5, 48.03, 105.5, 0, 3.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2), 6, 52.39, 105.5, 0, 4.1 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2), 6.5, 56.76, 105.5, 0, 4.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2), 7, 61.13, 105.5, 0, 4.6 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2), 7.5, 65.49, 105.5, 0, 4.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2), 8, 69.86, 105.5, 0, 5.1 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2), 8.5, 74.23, 105.5, 0, 5.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2), 9, 78.59, 105.5, 0, 5.6 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2), 9.5, 82.96, 105.5, 0, 5.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2), 10, 87.32, 105.5, 0, 6.1 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2), 10.5, 91.69, 105.5, 0, 6.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2), 10.8, 94.35, 105.5, 0, 6.5;
+
+
+DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='P102' AND ship_id=2);
+
+INSERT INTO compartment_curve
+  (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z)
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2), 0, 0, 96.88, 0, 1.1 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2), 0.5, 4.37, 96.88, 0, 1.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2), 1, 8.73, 96.88, 0, 1.6 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2), 1.5, 13.1, 96.88, 0, 1.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2), 2, 17.46, 96.88, 0, 2.1 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2), 2.5, 21.83, 96.88, 0, 2.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2), 3, 26.2, 96.88, 0, 2.6 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2), 3.5, 30.56, 96.88, 0, 2.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2), 4, 34.93, 96.88, 0, 3.1 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2), 4.5, 39.3, 96.88, 0, 3.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2), 5, 43.66, 96.88, 0, 3.6 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2), 5.5, 48.03, 96.88, 0, 3.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2), 6, 52.39, 96.88, 0, 4.1 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2), 6.5, 56.76, 96.88, 0, 4.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2), 7, 61.13, 96.88, 0, 4.6 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2), 7.5, 65.49, 96.88, 0, 4.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2), 8, 69.86, 96.88, 0, 5.1 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2), 8.5, 74.23, 96.88, 0, 5.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2), 9, 78.59, 96.88, 0, 5.6 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2), 9.5, 82.96, 96.88, 0, 5.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2), 10, 87.32, 96.88, 0, 6.1 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2), 10.5, 91.69, 96.88, 0, 6.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2), 10.8, 94.35, 96.88, 0, 6.5;
+
+
+DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='P103' AND ship_id=2);
+
+INSERT INTO compartment_curve
+  (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z)
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2), 0, 0, 92.92, 0, 1.1 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2), 0.5, 4.37, 92.92, 0, 1.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2), 1, 8.73, 92.92, 0, 1.6 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2), 1.5, 13.1, 92.92, 0, 1.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2), 2, 17.46, 92.92, 0, 2.1 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2), 2.5, 21.83, 92.92, 0, 2.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2), 3, 26.2, 92.92, 0, 2.6 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2), 3.5, 30.56, 92.92, 0, 2.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2), 4, 34.93, 92.92, 0, 3.1 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2), 4.5, 39.3, 92.92, 0, 3.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2), 5, 43.66, 92.92, 0, 3.6 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2), 5.5, 48.03, 92.92, 0, 3.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2), 6, 52.39, 92.92, 0, 4.1 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2), 6.5, 56.76, 92.92, 0, 4.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2), 7, 61.13, 92.92, 0, 4.6 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2), 7.5, 65.49, 92.92, 0, 4.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2), 8, 69.86, 92.92, 0, 5.1 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2), 8.5, 74.22, 92.92, 0, 5.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2), 9, 78.59, 92.92, 0, 5.6 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2), 9.5, 82.96, 92.92, 0, 5.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2), 10, 87.32, 92.92, 0, 6.1 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2), 10.5, 91.69, 92.92, 0, 6.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2), 10.8, 94.35, 92.92, 0, 6.5;
+
+
+DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='P201' AND ship_id=2);
+
+INSERT INTO compartment_curve
+  (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z)
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2), 0, 0, 58.08, 0, 1.1 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2), 0.5, 4.37, 58.08, 0, 1.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2), 1, 8.73, 58.08, 0, 1.6 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2), 1.5, 13.1, 58.08, 0, 1.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2), 2, 17.46, 58.08, 0, 2.1 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2), 2.5, 21.83, 58.08, 0, 2.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2), 3, 26.2, 58.08, 0, 2.6 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2), 3.5, 30.56, 58.08, 0, 2.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2), 4, 34.93, 58.08, 0, 3.1 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2), 4.5, 39.3, 58.08, 0, 3.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2), 5, 43.66, 58.08, 0, 3.6 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2), 5.5, 48.03, 58.08, 0, 3.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2), 6, 52.39, 58.08, 0, 4.1 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2), 6.5, 56.76, 58.08, 0, 4.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2), 7, 61.13, 58.08, 0, 4.6 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2), 7.5, 65.49, 58.08, 0, 4.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2), 8, 69.86, 58.08, 0, 5.1 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2), 8.5, 74.22, 58.08, 0, 5.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2), 9, 78.59, 58.08, 0, 5.6 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2), 9.5, 82.96, 58.08, 0, 5.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2), 10, 87.32, 58.08, 0, 6.1 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2), 10.5, 91.69, 58.08, 0, 6.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2), 10.8, 94.35, 58.08, 0, 6.5;
+
+
+DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='P202' AND ship_id=2);
+
+INSERT INTO compartment_curve
+  (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z)
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2), 0, 0, 54.28, 0, 1.1 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2), 0.5, 4.37, 54.28, 0, 1.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2), 1, 8.73, 54.28, 0, 1.6 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2), 1.5, 13.1, 54.28, 0, 1.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2), 2, 17.46, 54.28, 0, 2.1 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2), 2.5, 21.83, 54.28, 0, 2.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2), 3, 26.2, 54.28, 0, 2.6 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2), 3.5, 30.56, 54.28, 0, 2.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2), 4, 34.93, 54.28, 0, 3.1 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2), 4.5, 39.3, 54.28, 0, 3.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2), 5, 43.66, 54.28, 0, 3.6 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2), 5.5, 48.03, 54.28, 0, 3.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2), 6, 52.39, 54.28, 0, 4.1 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2), 6.5, 56.76, 54.28, 0, 4.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2), 7, 61.13, 54.28, 0, 4.6 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2), 7.5, 65.49, 54.28, 0, 4.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2), 8, 69.86, 54.28, 0, 5.1 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2), 8.5, 74.22, 54.28, 0, 5.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2), 9, 78.59, 54.28, 0, 5.6 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2), 9.5, 82.96, 54.28, 0, 5.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2), 10, 87.32, 54.28, 0, 6.1 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2), 10.5, 91.69, 54.28, 0, 6.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2), 10.8, 94.35, 54.28, 0, 6.5;
+
+
+DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='P203' AND ship_id=2);
+
+INSERT INTO compartment_curve
+  (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z)
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 0, 0, 41.86, 0, 1.1 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 0.5, 4.37, 41.86, 0, 1.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 1, 8.73, 41.86, 0, 1.6 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 1.5, 13.1, 41.86, 0, 1.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 2, 17.46, 41.86, 0, 2.1 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 2.5, 21.83, 41.86, 0, 2.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 3, 26.2, 41.86, 0, 2.6 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 3.5, 30.56, 41.86, 0, 2.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 4, 34.93, 41.86, 0, 3.1 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 4.5, 39.3, 41.86, 0, 3.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 5, 43.66, 41.86, 0, 3.6 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 5.5, 48.03, 41.86, 0, 3.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 6, 52.39, 41.86, 0, 4.1 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 6.5, 56.76, 41.86, 0, 4.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 7, 61.13, 41.86, 0, 4.6 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 7.5, 65.49, 41.86, 0, 4.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 8, 69.86, 41.86, 0, 5.1 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 8.5, 74.22, 41.86, 0, 5.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 9, 78.59, 41.86, 0, 5.6 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 9.5, 82.96, 41.86, 0, 5.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 10, 87.32, 41.86, 0, 6.1 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 10.5, 91.69, 41.86, 0, 6.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 10.8, 94.35, 41.86, 0, 6.5;
+
+
+DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='P204' AND ship_id=2);
+
+INSERT INTO compartment_curve
+  (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z)
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 0, 0, 31.5, 0, 1.1 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 0.5, 4.37, 31.5, 0, 1.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 1, 8.73, 31.5, 0, 1.6 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 1.5, 13.1, 31.5, 0, 1.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 2, 17.46, 31.5, 0, 2.1 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 2.5, 21.83, 31.5, 0, 2.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 3, 26.2, 31.5, 0, 2.6 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 3.5, 30.56, 31.5, 0, 2.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 4, 34.93, 31.5, 0, 3.1 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 4.5, 39.3, 31.5, 0, 3.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 5, 43.66, 31.5, 0, 3.6 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 5.5, 48.03, 31.5, 0, 3.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 6, 52.39, 31.5, 0, 4.1 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 6.5, 56.76, 31.5, 0, 4.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 7, 61.13, 31.5, 0, 4.6 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 7.5, 65.49, 31.5, 0, 4.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 8, 69.86, 31.5, 0, 5.1 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 8.5, 74.23, 31.5, 0, 5.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 9, 78.59, 31.5, 0, 5.6 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 9.5, 82.96, 31.5, 0, 5.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 10, 87.32, 31.5, 0, 6.1 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 10.5, 91.69, 31.5, 0, 6.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 10.8, 94.35, 31.5, 0, 6.5;
+
+
+DELETE FROM compartment_curve WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='P205' AND ship_id=2);
+
+INSERT INTO compartment_curve
+  (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z)
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2), 0, 0, 25.58, 0, 1.1 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2), 0.5, 4.37, 25.58, 0, 1.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2), 1, 8.73, 25.58, 0, 1.6 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2), 1.5, 13.1, 25.58, 0, 1.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2), 2, 17.46, 25.58, 0, 2.1 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2), 2.5, 21.83, 25.58, 0, 2.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2), 3, 26.2, 25.58, 0, 2.6 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2), 3.5, 30.56, 25.58, 0, 2.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2), 4, 34.93, 25.58, 0, 3.1 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2), 4.5, 39.3, 25.58, 0, 3.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2), 5, 43.66, 25.58, 0, 3.6 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2), 5.5, 48.03, 25.58, 0, 3.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2), 6, 52.39, 25.58, 0, 4.1 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2), 6.5, 56.76, 25.58, 0, 4.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2), 7, 61.13, 25.58, 0, 4.6 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2), 7.5, 65.49, 25.58, 0, 4.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2), 8, 69.86, 25.58, 0, 5.1 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2), 8.5, 74.22, 25.58, 0, 5.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2), 9, 78.59, 25.58, 0, 5.6 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2), 9.5, 82.96, 25.58, 0, 5.85 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2), 10, 87.32, 25.58, 0, 6.1 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2), 10.5, 91.69, 25.58, 0, 6.35 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2), 10.8, 94.35, 25.58, 0, 6.5;
+
+
