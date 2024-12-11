@@ -288,3 +288,235 @@ SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H206' AND ship_id=2), 
 SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='H206' AND ship_id=2), 10.8, 70.35;
 
 
+DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='P101' AND ship_id=2);
+
+INSERT INTO grain_moment
+  (ship_id, space_id, level, moment)
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2), 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2), 0.5, 23.6 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2), 1, 40.02 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2), 1.5, 51.76 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2), 2, 59.72 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2), 2.5, 64.41 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2), 3, 66.19 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2), 3.5, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2), 4, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2), 4.5, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2), 5, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2), 5.5, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2), 6, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2), 6.5, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2), 7, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2), 7.5, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2), 8, 65.83 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2), 8.5, 62.95 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2), 9, 57.03 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2), 9.5, 47.67 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2), 10, 34.25 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2), 10.5, 15.56 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P101' AND ship_id=2), 10.8, 6.32;
+
+
+DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='P102' AND ship_id=2);
+
+INSERT INTO grain_moment
+  (ship_id, space_id, level, moment)
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2), 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2), 0.5, 23.6 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2), 1, 40.02 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2), 1.5, 51.76 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2), 2, 59.72 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2), 2.5, 64.41 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2), 3, 66.19 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2), 3.5, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2), 4, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2), 4.5, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2), 5, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2), 5.5, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2), 6, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2), 6.5, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2), 7, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2), 7.5, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2), 8, 65.83 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2), 8.5, 62.95 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2), 9, 57.03 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2), 9.5, 47.67 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2), 10, 34.25 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2), 10.5, 15.56 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P102' AND ship_id=2), 10.8, 6.32;
+
+
+DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='P103' AND ship_id=2);
+
+INSERT INTO grain_moment
+  (ship_id, space_id, level, moment)
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2), 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2), 0.5, 23.6 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2), 1, 40.02 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2), 1.5, 51.76 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2), 2, 59.72 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2), 2.5, 64.41 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2), 3, 66.19 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2), 3.5, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2), 4, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2), 4.5, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2), 5, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2), 5.5, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2), 6, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2), 6.5, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2), 7, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2), 7.5, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2), 8, 65.82 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2), 8.5, 62.94 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2), 9, 57.03 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2), 9.5, 47.67 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2), 10, 34.25 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2), 10.5, 15.56 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P103' AND ship_id=2), 10.8, 6.32;
+
+
+DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='P201' AND ship_id=2);
+
+INSERT INTO grain_moment
+  (ship_id, space_id, level, moment)
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2), 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2), 0.5, 23.6 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2), 1, 40.02 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2), 1.5, 51.76 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2), 2, 59.72 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2), 2.5, 64.41 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2), 3, 66.19 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2), 3.5, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2), 4, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2), 4.5, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2), 5, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2), 5.5, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2), 6, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2), 6.5, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2), 7, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2), 7.5, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2), 8, 65.82 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2), 8.5, 62.94 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2), 9, 57.03 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2), 9.5, 47.67 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2), 10, 34.251 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2), 10.5, 15.56 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P201' AND ship_id=2), 10.8, 6.32;
+
+
+DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='P202' AND ship_id=2);
+
+INSERT INTO grain_moment
+  (ship_id, space_id, level, moment)
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2), 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2), 0.5, 23.6 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2), 1, 40.02 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2), 1.5, 51.76 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2), 2, 59.72 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2), 2.5, 64.41 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2), 3, 66.19 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2), 3.5, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2), 4, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2), 4.5, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2), 5, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2), 5.5, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2), 6, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2), 6.5, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2), 7, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2), 7.5, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2), 8, 65.82 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2), 8.5, 62.94 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2), 9, 57.03 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2), 9.5, 47.67 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2), 10, 34.25 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2), 10.5, 15.56 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P202' AND ship_id=2), 10.8, 6.32;
+
+
+DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='P203' AND ship_id=2);
+
+INSERT INTO grain_moment
+  (ship_id, space_id, level, moment)
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 0.5, 23.6 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 1, 40.02 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 1.5, 51.76 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 2, 59.72 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 2.5, 64.41 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 3, 66.19 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 3.5, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 4, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 4.5, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 5, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 5.5, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 6, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 6.5, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 7, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 7.5, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 8, 65.82 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 8.5, 62.94 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 9, 57.03 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 9.5, 47.67 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 10, 34.25 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 10.5, 15.56 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P203' AND ship_id=2), 10.8, 6.32;
+
+
+DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='P204' AND ship_id=2);
+
+INSERT INTO grain_moment
+  (ship_id, space_id, level, moment)
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 0.5, 23.6 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 1, 40.02 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 1.5, 51.76 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 2, 59.72 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 2.5, 64.41 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 3, 66.19 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 3.5, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 4, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 4.5, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 5, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 5.5, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 6, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 6.5, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 7, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 7.5, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 8, 66.82 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 8.5, 62.94 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 9, 57.03 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 9.5, 47.67 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 10, 34.25 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 10.5, 15.56 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P204' AND ship_id=2), 10.8, 6.32;
+
+
+DELETE FROM grain_moment WHERE space_id IN (SELECT space_id FROM hold_part WHERE code='P205' AND ship_id=2);
+
+INSERT INTO grain_moment
+  (ship_id, space_id, level, moment)
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2), 0, 0 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2), 0.5, 23.6 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2), 1, 40.02 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2), 1.5, 51.76 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2), 2, 59.72 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2), 2.5, 64.41 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2), 3, 66.19 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2), 3.5, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2), 4, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2), 4.5, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2), 5, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2), 5.5, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2), 6, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2), 6.5, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2), 7, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2), 7.5, 66.22 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2), 8, 65.82 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2), 8.5, 62.94 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2), 9, 57.03 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2), 9.5, 47.67 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2), 10, 34.25 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2), 10.5, 15.56 UNION ALL
+SELECT  2, (SELECT space_id FROM hold_part_id WHERE code='P205' AND ship_id=2), 10.8, 6.32;
+
+
