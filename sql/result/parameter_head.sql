@@ -103,7 +103,7 @@ VALUES
   (37, 'Плечо динамического ветрового кренящего момента', 'Dynamic windage heeling lever', 2),
   (38, 'Ветровой статический угол крена', 'Static windage heeling angle', 1),
   (39, 'Ветровой динамический угол крена', 'Dynamic windage heeling angle', 1),
-  (40, 'Угол второго пересечения $l_{w2}$ с ДСО', 'Heeling angle of second point of intersection with', 1),
+  (40, 'Угол второго пересечения плеча динамического ветрового момента с ДСО', 'Heeling angle of second point of intersection with', 1),
   (41, 'Амплитуда качки', 'Roll amplitude', 1),
   (42, 'Период качки', 'Roll period', 9),
   (43, 'Площадь a', 'Area a', 3),
