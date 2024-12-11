@@ -171,7 +171,7 @@ update compartment set use_max_m_f_s=true where space_id=39;
             WHERE 
                 s.id=1;
 
-update ship_parameters set value=200 where key='Number of Parts' and ship_id=2;
+update ship_parameters set value=6943 where key='Number of Parts' and ship_id=2;
 select * from computed_frame_space;
 
 SELECT cc.matter_type FROM cargo_category AS cc WHERE id = 11;
