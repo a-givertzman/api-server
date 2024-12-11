@@ -96,6 +96,7 @@ BEGIN
             hold_part 
         SET 
             mass = compartment_curve_result.volume*NEW.density,
+            volume = compartment_curve_result.volume,
             mass_shift_x = compartment_curve_result.mass_shift_x,
             mass_shift_y = compartment_curve_result.mass_shift_y,
             mass_shift_z = compartment_curve_result.mass_shift_z
