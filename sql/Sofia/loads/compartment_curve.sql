@@ -1,4 +1,4 @@
-DELETE FROM compartment_curve WHERE space_id='201' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='201' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -102,7 +102,7 @@ VALUES
   (2, '201', 9.6, 165.099, 128.399, 0, 5.219, 148.024, 85.507),
   (2, '201', 9.65, 166.847, 128.397, 0, 5.265, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='202' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='202' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -173,7 +173,7 @@ VALUES
   (2, '202', 6.3, 133.059, 121.907, -0.039, 3.298, 161.05, 28.012),
   (2, '202', 6.313, 133.407, 121.907, -0.039, 3.306, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='205' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='205' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -191,7 +191,7 @@ VALUES
   (2, '205', 1, 201.538, 92.23, 0, 0.5, 1037.579, 11266.158),
   (2, '205', 1.1, 221.692, 92.23, 0, 0.55, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='206' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='206' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -209,7 +209,7 @@ VALUES
   (2, '206', 1, 63.344, 75.21, 0, 0.5, 326.113, 349.761),
   (2, '206', 1.1, 69.678, 75.21, 0, 0.55, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='207' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='207' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -227,7 +227,7 @@ VALUES
   (2, '207', 1, 213.053, 57.45, 0, 0.5, 1096.859, 13309.829),
   (2, '207', 1.1, 234.358, 57.45, 0, 0.55, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='208' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='208' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -245,7 +245,7 @@ VALUES
   (2, '208', 1, 115.165, 36.36, 0, 0.5, 592.902, 2102.14),
   (2, '208', 1.1, 126.681, 36.36, 0, 0.55, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='211' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='211' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -263,7 +263,7 @@ VALUES
   (2, '211', 1, 73.853, 110.627, -2.774, 0.535, 301.056, 1859.211),
   (2, '211', 1.1, 82.464, 110.636, -2.808, 0.589, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='212' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='212' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -281,7 +281,7 @@ VALUES
   (2, '212', 1, 73.858, 110.638, 2.759, 0.535, 303.229, 1857.954),
   (2, '212', 1.1, 82.462, 110.646, 2.792, 0.589, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='213' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='213' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -299,7 +299,7 @@ VALUES
   (2, '213', 1, 113.111, 86.383, -5.794, 0.518, 158.512, 9602.148),
   (2, '213', 1.1, 125.218, 86.398, -5.806, 0.57, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='214' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='214' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -317,7 +317,7 @@ VALUES
   (2, '214', 1, 113.111, 86.383, 5.794, 0.518, 158.512, 9602.148),
   (2, '214', 1.1, 125.218, 86.398, 5.806, 0.57, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='215' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='215' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -335,7 +335,7 @@ VALUES
   (2, '215', 1, 96.363, 58.19, -5.831, 0.516, 136.162, 5694.421),
   (2, '215', 1.1, 106.55, 58.19, -5.841, 0.567, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='216' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='216' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -353,7 +353,7 @@ VALUES
   (2, '216', 1, 96.363, 58.19, 5.831, 0.516, 136.162, 5694.421),
   (2, '216', 1.1, 106.55, 58.19, 5.841, 0.567, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='217' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='217' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -371,7 +371,7 @@ VALUES
   (2, '217', 1, 114.065, 30.957, -4.372, 0.523, 542.162, 7186.152),
   (2, '217', 1.1, 126.677, 30.928, -4.391, 0.576, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='218' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='218' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -389,7 +389,7 @@ VALUES
   (2, '218', 1, 114.077, 30.94, 4.361, 0.523, 546.647, 7184.351),
   (2, '218', 1.1, 126.687, 30.911, 4.38, 0.576, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='221' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='221' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -482,7 +482,7 @@ VALUES
   (2, '221', 8.5, 159.176, 112.681, -5.887, 5.518, 11.728, 466.603),
   (2, '221', 8.55, 160.421, 112.688, -5.894, 5.55, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='222' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='222' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -575,7 +575,7 @@ VALUES
   (2, '222', 8.5, 159.176, 112.681, 5.887, 5.518, 11.728, 466.603),
   (2, '222', 8.55, 160.421, 112.688, 5.894, 5.55, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='223' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='223' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -668,7 +668,7 @@ VALUES
   (2, '223', 8.5, 378.387, 88.037, -7.263, 5.375, 6.665, 4333.478),
   (2, '223', 8.55, 380.631, 88.038, -7.263, 5.4, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='224' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='224' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -761,7 +761,7 @@ VALUES
   (2, '224', 8.5, 378.387, 88.037, 7.263, 5.375, 6.665, 4333.478),
   (2, '224', 8.55, 380.631, 88.038, 7.263, 5.4, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='225' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='225' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -854,7 +854,7 @@ VALUES
   (2, '225', 8.5, 257.706, 59.67, -7.268, 5.35, 4.503, 1329.569),
   (2, '225', 8.55, 259.222, 59.67, -7.268, 5.375, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='226' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='226' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -947,7 +947,7 @@ VALUES
   (2, '226', 8.5, 257.706, 59.67, 7.268, 5.35, 4.503, 1329.569),
   (2, '226', 8.55, 259.222, 59.67, 7.268, 5.375, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='227' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='227' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -1040,7 +1040,7 @@ VALUES
   (2, '227', 8.5, 209.979, 36.866, -7.267, 6.306, 5.812, 2857.036),
   (2, '227', 8.55, 211.936, 36.834, -7.267, 6.337, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='228' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='228' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -1133,7 +1133,7 @@ VALUES
   (2, '228', 8.5, 209.979, 36.866, 7.267, 6.306, 5.812, 2857.036),
   (2, '228', 8.55, 211.936, 36.834, 7.267, 6.337, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='229' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='229' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -1171,7 +1171,7 @@ VALUES
   (2, '229', 3, 10.263, 8.104, -3.274, 5.591, 9.065, 10.745),
   (2, '229', 3.063, 10.951, 8.09, -3.304, 5.635, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='230' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='230' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -1209,7 +1209,7 @@ VALUES
   (2, '230', 3, 10.263, 8.104, 3.274, 5.591, 9.065, 10.745),
   (2, '230', 3.063, 10.951, 8.09, 3.304, 5.635, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='231' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='231' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -1240,7 +1240,7 @@ VALUES
   (2, '231', 2.3, 51.655, 1.528, -3.813, 8.539, 41.515, 152.406),
   (2, '231', 2.4, 54.66, 1.515, -3.832, 8.597, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='232' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='232' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -1271,7 +1271,7 @@ VALUES
   (2, '232', 2.3, 51.655, 1.528, 3.813, 8.539, 41.515, 152.406),
   (2, '232', 2.4, 54.66, 1.515, 3.832, 8.597, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='301' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='301' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -1312,7 +1312,7 @@ VALUES
   (2, '301', 3.3, 20.476, 17.496, -0.22, 7.963, 5.006, 2.207),
   (2, '301', 3.337, 20.706, 17.496, -0.22, 7.982, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='302' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='302' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -1353,7 +1353,7 @@ VALUES
   (2, '302', 3.3, 17.729, 17.371, -3.796, 7.963, 4.838, 1.599),
   (2, '302', 3.337, 17.928, 17.371, -3.796, 7.982, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='303' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='303' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -1413,7 +1413,7 @@ VALUES
   (2, '303', 5.2, 113.095, 27.702, -7.008, 3.762, 3.285, 584.534),
   (2, '303', 5.213, 113.389, 27.701, -7.009, 3.769, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='304' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='304' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -1473,7 +1473,7 @@ VALUES
   (2, '304', 5.2, 113.095, 27.702, 7.008, 3.762, 3.285, 584.534),
   (2, '304', 5.213, 113.389, 27.701, 7.009, 3.769, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='305' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='305' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -1561,7 +1561,7 @@ VALUES
   (2, '305', 8, 81.193, 15.964, -5.949, 6.252, 5.594, 65.976),
   (2, '305', 8.05, 81.824, 15.959, -5.957, 6.278, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='306' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='306' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -1649,7 +1649,7 @@ VALUES
   (2, '306', 8, 103.905, 15.888, 5.604, 6.439, 36.235, 81.306),
   (2, '306', 8.05, 104.765, 15.889, 5.608, 6.465, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='307' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='307' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -1667,7 +1667,7 @@ VALUES
   (2, '307', 1, 10.807, 17.2, 0, 0.5, 13.855, 7.062),
   (2, '307', 1.1, 11.888, 17.2, 0, 0.55, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='308' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='308' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -1705,7 +1705,7 @@ VALUES
   (2, '308', 3, 7.357, 12.057, -4.834, 5.386, 3.629, 2.049),
   (2, '308', 3.079, 7.806, 12.053, -4.858, 5.437, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='400' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='400' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -1746,7 +1746,7 @@ VALUES
   (2, '400', 3.3, 6.044, 10.2, -4.597, 7.963, 0.272, 0.299),
   (2, '400', 3.337, 6.112, 10.2, -4.597, 7.982, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='401' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='401' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -1769,7 +1769,7 @@ VALUES
   (2, '401', 1.5, 5.033, 15.119, 1.888, 0.826, 3.245, 0.675),
   (2, '401', 1.6, 5.45, 15.119, 1.908, 0.882, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='402' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='402' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -1810,7 +1810,7 @@ VALUES
   (2, '402', 3.3, 34.573, 7.128, -5.56, 8.306, 16.367, 25.958),
   (2, '402', 3.337, 35.146, 7.126, -5.566, 8.328, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='403' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='403' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -1851,7 +1851,7 @@ VALUES
   (2, '403', 3.3, 6.044, 8.8, -4.597, 7.963, 0.272, 0.299),
   (2, '403', 3.337, 6.112, 8.8, -4.597, 7.982, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='501' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='501' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -1892,7 +1892,7 @@ VALUES
   (2, '501', 3.3, 18.746, 7.086, 5.37, 8.217, 8.729, 2.853),
   (2, '501', 3.337, 19.034, 7.085, 5.376, 8.238, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='502' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='502' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -1909,7 +1909,7 @@ VALUES
   (2, '502', 0.9, 6.156, 13, 0, 1.044, 0.645, 7.647),
   (2, '502', 1, 6.676, 13, 0, 1.083, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='503' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='503' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -1933,7 +1933,7 @@ VALUES
   (2, '503', 1.6, 4.053, 9.151, 5.752, 8.821, 3.357, 0.11),
   (2, '503', 1.65, 4.188, 9.151, 5.756, 8.846, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='504' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='504' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -1957,7 +1957,7 @@ VALUES
   (2, '504', 1.6, 3.943, 8.452, 5.708, 8.825, 3.231, 0.108),
   (2, '504', 1.65, 4.076, 8.452, 5.713, 8.851, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='601' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='601' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -2002,7 +2002,7 @@ VALUES
   (2, '601', 3.7, 34.827, 2.715, -1.549, 6.348, 48.681, 140.389),
   (2, '601', 3.75, 36.317, 2.663, -1.57, 6.384, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='602' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='602' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -2047,7 +2047,7 @@ VALUES
   (2, '602', 3.7, 34.838, 2.713, 1.53, 6.344, 48.993, 139.914),
   (2, '602', 3.75, 36.321, 2.66, 1.551, 6.38, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='700' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='700' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -2071,7 +2071,7 @@ VALUES
   (2, '700', 1.6, 2.767, 8.455, 5.196, 7.19, 1.757, 0.089),
   (2, '700', 1.687, 2.959, 8.455, 5.216, 7.24, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='701' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='701' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -2095,7 +2095,7 @@ VALUES
   (2, '701', 1.6, 2.973, 9.154, 5.285, 7.179, 2.004, 0.093),
   (2, '701', 1.687, 3.172, 9.154, 5.303, 7.228, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='702' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='702' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -2126,7 +2126,7 @@ VALUES
   (2, '702', 2.3, 7.395, 5.413, 5.287, 8.519, 3.821, 0.491),
   (2, '702', 2.4, 7.807, 5.412, 5.304, 8.576, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='703' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='703' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -2149,7 +2149,7 @@ VALUES
   (2, '703', 1.5, 4.169, 13.721, 1.693, 0.832, 1.916, 0.56),
   (2, '703', 1.6, 4.515, 13.721, 1.709, 0.887, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='704' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='704' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -2172,7 +2172,7 @@ VALUES
   (2, '704', 1.5, 9.331, 14.48, -1.799, 0.829, 5.335, 4.986),
   (2, '704', 1.6, 10.106, 14.48, -1.817, 0.884, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='705' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='705' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -2195,7 +2195,7 @@ VALUES
   (2, '705', 1.5, 6.136, 11.702, 1.441, 0.847, 1.764, 3.332),
   (2, '705', 1.6, 6.655, 11.701, 1.454, 0.902, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='706' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='706' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
@@ -2218,7 +2218,7 @@ VALUES
   (2, '706', 1.5, 6.136, 11.702, -1.441, 0.847, 1.764, 3.332),
   (2, '706', 1.6, 6.655, 11.701, -1.454, 0.902, 0, 0);
 
-DELETE FROM compartment_curve WHERE space_id='991' AND ship_id=2);
+DELETE FROM compartment_curve WHERE space_id='991' AND ship_id=2;
 
 INSERT INTO compartment_curve
   (ship_id, space_id, level, volume, buoyancy_x, buoyancy_y, buoyancy_z, trans_inertia_moment_self, long_inertia_moment_self)
