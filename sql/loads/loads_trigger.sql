@@ -69,14 +69,17 @@ BEGIN
     END IF;
 
     IF (NEW.use_max_m_f_s = TRUE) THEN         
-        NEW.m_f_s_y = NEW.max_m_f_s_y;
         NEW.m_f_s_x = NEW.max_m_f_s_x;  
     ELSIF (NEW.volume_max IS NOT NULL AND NEW.volume >= NEW.volume_max*0.98) THEN 
-        NEW.m_f_s_y = 0;
         NEW.m_f_s_x = 0;  
     ELSE
-        NEW.m_f_s_y = result.m_f_s_y;
         NEW.m_f_s_x = result.m_f_s_x;  
+    END IF;
+
+    IF (NEW.volume_max IS NOT NULL AND NEW.volume >= NEW.volume_max*0.98) THEN 
+        NEW.m_f_s_y = 0;
+    ELSE
+        NEW.m_f_s_y = result.m_f_s_y;
     END IF;
 
     -- Check if new category is of bulk type and then update grain_moment for compartment entry;
