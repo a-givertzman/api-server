@@ -147,7 +147,8 @@ DROP TABLE IF EXISTS ship_geometry, ship_parameters, ship CASCADE;
 --
 -- Data for Sofia
 \i ./sql/Sofia/ship.sql
-\i ./sql/Sofia/strength_force_limit.sql
+\i ./sql/Sofia/strength_force_limit_sea.sql
+\i ./sql/Sofia/strength_force_limit_harbor.sql
 \i ./sql/Sofia/hidrostatic/center_draught.sql
 \i ./sql/Sofia/hidrostatic/center_waterline.sql
 \i ./sql/Sofia/hidrostatic/mean_draught.sql
