@@ -1,4 +1,4 @@
-DELETE FROM strength_force_limit WHERE ship_id=2;
+DELETE FROM strength_force_limit WHERE ship_id=2 AND limit_area='sea';
 
 INSERT INTO strength_force_limit
   ( ship_id, frame_x, value, limit_type, limit_area, force_type  )
