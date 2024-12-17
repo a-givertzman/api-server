@@ -74,3 +74,7 @@ CREATE OR REPLACE TRIGGER check_insert_update_hold_part_id_code
     ON hold_part_id
     FOR EACH ROW
     EXECUTE FUNCTION update_hold_part_id_code();
+
+
+
+    

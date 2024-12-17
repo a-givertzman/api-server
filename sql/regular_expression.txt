@@ -174,6 +174,15 @@ update compartment set use_max_m_f_s=true where space_id=39;
 update ship_parameters set value=6943 where key='Number of Parts' and ship_id=2;
 select * from computed_frame_space;
 
+SELECT cc.matter_type FROM cargo_category AS cc WHERE id = 11;
+
+select code, group_space_id, space_id, mass, mass_shift_x, grain_moment from hold_part;
+
+select * from hold_compartment;
+update hold_compartment set level=4 where id=54;
+update hold_compartment set level=5 where id=54;
+update hold_compartment set level=6 where id=208;
+
 COPY (select * from result_strength) to '/home/konstantin/Documents/str.txt';
 
 

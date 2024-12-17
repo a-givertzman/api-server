@@ -1,9 +1,11 @@
--- Заполнение данных по грузам в трюмах и цистернах 
+-- Заполнение данных по грузам в трюмах
 
 CREATE OR REPLACE FUNCTION update_hold_compartment_parameters () RETURNS TRIGGER 
 AS $update_hold_compartment_parameters$
 DECLARE 
-    result hold_compartment_curve%rowtype;
+    part_space_id INT;
+    compartment_curve_result compartment%rowtype;
+    hold_compartment_curve_result hold_compartment_curve%rowtype;
     matter_type cargo_category.matter_type%TYPE;
 BEGIN 
     RAISE NOTICE 'update_hold_compartment_parameters begin OLD:[%] NEW:[%]', OLD, NEW;
@@ -19,51 +21,51 @@ BEGIN
 
         if NEW.volume IS NOT NULL THEN 
             RAISE NOTICE 'update_hold_compartment_parameters INSERT NEW.volume';     
-            result = get_hold_compartment_curve_volume(NEW.ship_id, NEW.id, NEW.volume);
+            hold_compartment_curve_result = get_hold_compartment_curve_volume(NEW.ship_id, NEW.id, NEW.volume);
         ELSIF NEW.mass IS NOT NULL THEN  
             RAISE NOTICE 'update_hold_compartment_parameters INSERT NEW.mass';   
-            result = get_hold_compartment_curve_volume(NEW.ship_id, NEW.id, NEW.mass/NEW.density);
+            hold_compartment_curve_result = get_hold_compartment_curve_volume(NEW.ship_id, NEW.id, NEW.mass/NEW.density);
         ELSIF NEW.level IS NOT NULL THEN 
             RAISE NOTICE 'update_hold_compartment_parameters INSERT NEW.mass';  
-            result = get_hold_compartment_curve_level(NEW.ship_id, NEW.id, NEW.level);
+            hold_compartment_curve_result = get_hold_compartment_curve_level(NEW.ship_id, NEW.id, NEW.level);
         ELSE 
             RAISE NOTICE 'update_hold_compartment_parameters INSERT no data';  
-            result = get_hold_compartment_curve_volume(NEW.ship_id, NEW.id, 0);
+            hold_compartment_curve_result = get_hold_compartment_curve_volume(NEW.ship_id, NEW.id, 0);
         END IF;
     ELSIF TG_OP = 'UPDATE' THEN
         RAISE NOTICE 'update_hold_compartment_parameters UPDATE begin';
         if (NEW.volume IS NOT NULL AND OLD.volume IS NULL) OR NEW.volume != OLD.volume THEN
             RAISE NOTICE 'update_hold_compartment_parameters UPDATE NEW.volume != OLD.volume';
-            result = get_hold_compartment_curve_volume(NEW.ship_id, NEW.id, NEW.volume);
+            hold_compartment_curve_result = get_hold_compartment_curve_volume(NEW.ship_id, NEW.id, NEW.volume);
         ELSIF (NEW.mass IS NOT NULL AND OLD.mass IS NULL) OR NEW.mass != OLD.mass THEN 
             RAISE NOTICE 'update_hold_compartment_parameters UPDATE NEW.mass != OLD.mass';
-            result = get_hold_compartment_curve_volume(NEW.ship_id, NEW.id, NEW.mass/NEW.density);
+            hold_compartment_curve_result = get_hold_compartment_curve_volume(NEW.ship_id, NEW.id, NEW.mass/NEW.density);
         ELSIF (NEW.level IS NOT NULL AND OLD.level IS NULL) OR NEW.level != OLD.level THEN 
             RAISE NOTICE 'update_hold_compartment_parameters UPDATE NEW.level != OLD.level';
-            result = get_hold_compartment_curve_level(NEW.ship_id, NEW.id, NEW.level);
+            hold_compartment_curve_result = get_hold_compartment_curve_level(NEW.ship_id, NEW.id, NEW.level);
         ELSIF (NEW.density IS NOT NULL AND OLD.density IS NULL) OR NEW.density != OLD.density THEN 
             RAISE NOTICE 'update_hold_compartment_parameters UPDATE NEW.density != OLD.density';
-            result = get_hold_compartment_curve_volume(NEW.ship_id, NEW.id, NEW.volume);
+            hold_compartment_curve_result = get_hold_compartment_curve_volume(NEW.ship_id, NEW.id, NEW.volume);
         ELSE 
             RAISE NOTICE 'update_hold_compartment_parameters UPDATE no new data!';
-            result = get_hold_compartment_curve_volume(NEW.ship_id, NEW.id, NEW.volume);
+            hold_compartment_curve_result = get_hold_compartment_curve_volume(NEW.ship_id, NEW.id, NEW.volume);
         END IF;
     ELSE 
         RAISE NOTICE 'update_hold_compartment_parameters ERROR: no TG_OP';
         RETURN NEW;
     END IF;
 
-    NEW.level = result.level;
-    NEW.volume = result.volume;
+    NEW.level = hold_compartment_curve_result.level;
+    NEW.volume = hold_compartment_curve_result.volume;
     if NEW.volume_max IS NOT NULL THEN 
         NEW.stowage_factor = NEW.volume*100/NEW.volume_max;
     ELSE
         NEW.stowage_factor = NULL;
     END IF;
     NEW.mass = NEW.volume*NEW.density;
-    NEW.mass_shift_x = result.buoyancy_x;
-    NEW.mass_shift_y = result.buoyancy_y;
-    NEW.mass_shift_z = result.buoyancy_z;
+    NEW.mass_shift_x = hold_compartment_curve_result.buoyancy_x;
+    NEW.mass_shift_y = hold_compartment_curve_result.buoyancy_y;
+    NEW.mass_shift_z = hold_compartment_curve_result.buoyancy_z;
 
     -- Check if new category is of bulk type and then update grain_moment for hold_compartment entry;
     SELECT cc.matter_type INTO matter_type FROM cargo_category AS cc WHERE id = NEW.category_id;
@@ -72,6 +74,47 @@ BEGIN
     END IF;
 
     RAISE NOTICE 'update_hold_compartment_parameters OK, NEW:[%]', NEW;
+
+
+    FOR index in NEW.group_start_index..NEW.group_end_index LOOP
+        RAISE NOTICE 'update_hold_compartment_parameters update part, index:[%]', index;
+        
+        SELECT space_id 
+        INTO part_space_id
+        FROM hold_part 
+        WHERE ship_id=NEW.ship_id AND group_id=NEW.group_id AND group_index=index;
+
+        if NEW.level IS NOT NULL THEN 
+            compartment_curve_result = get_compartment_curve_level(NEW.ship_id, part_space_id, NEW.level);
+            RAISE NOTICE 'update_hold_compartment_parameters part result mass:[%], shift x:[%] y:[%] z:[%]', compartment_curve_result.volume*NEW.density, compartment_curve_result.mass_shift_x, compartment_curve_result.mass_shift_y, compartment_curve_result.mass_shift_z; 
+        ELSE 
+            RAISE NOTICE 'update_hold_compartment_parameters part error: no level';  
+            compartment_curve_result = get_compartment_curve_level(NEW.ship_id, part_space_id, 0);
+        END IF;
+
+        UPDATE 
+            hold_part 
+        SET 
+            mass = compartment_curve_result.volume*NEW.density,
+            volume = compartment_curve_result.volume,
+            mass_shift_x = compartment_curve_result.mass_shift_x,
+            mass_shift_y = compartment_curve_result.mass_shift_y,
+            mass_shift_z = compartment_curve_result.mass_shift_z
+        WHERE 
+            ship_id = NEW.ship_id AND space_id = part_space_id;
+
+        RAISE NOTICE 'update_hold_compartment_parameters part cargo type:[%]', matter_type; 
+        -- Check if new category is of bulk type and then update grain_moment for compartment entry;
+        IF (matter_type = 'bulk') THEN
+            RAISE NOTICE 'update_hold_compartment_parameters part bulk'; 
+            UPDATE 
+                hold_part 
+            SET 
+                grain_moment = get_grain_moment(NEW.ship_id, part_space_id, NEW.level)
+            WHERE 
+                ship_id = NEW.ship_id AND space_id = part_space_id;
+        END IF;
+    END LOOP;
 
     RETURN NEW;
 END;
