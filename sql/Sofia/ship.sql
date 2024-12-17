@@ -18,7 +18,7 @@ VALUES
 INSERT INTO ship
   (id, name, imo, mmsi, ship_type_id, icing_type_id, icing_timber_type_id, navigation_area_id, freeboard_type, geometry_id, year_of_built, place_of_built, yard_of_build, ship_builder_name, ship_builder_hull_number, call_sign, port_of_registry, classification_society, registration_number, flag_state, ship_owner, ship_owner_code)
 VALUES
-  (2, 'Sofia', 9245263, 273251830, 1, 1, 1, 1, 'B', 2, 2002, 'Westerbroek, the Netherlands', NULL, 'Bodewes Scheepswerp Volharding B.V.', 506, 'UACA5', 'Novorossiysk', 'RS', 010869, 'Russian Federation', 'LLC "Кubаn Маrinе Cоmраnу"', NULL);
+  (2, 'Sofia', 9245263, 273251830, 1, 1, 1, 1, 'B', 2, 2002, 'the Netherlands', 'Westerbroek', 'Bodewes Scheepswerp Volharding B.V.', 506, 'UACA5', 'Novorossiysk', 'RS', 010869, 'Russian Federation', 'LLC "Кubаn Маrinе Cоmраnу"', NULL);
 
 INSERT INTO ship_parameters
   (ship_id, key, value, unit_id)
