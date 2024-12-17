@@ -1,6 +1,6 @@
- DELETE FROM waterline_breadth WHERE ship_id=2;
+DELETE FROM waterline_breadth WHERE ship_id=2;
 
- INSERT INTO waterline_breadth
+INSERT INTO waterline_breadth
   (ship_id, trim, draught, value)
 VALUES
   (2, 0, 2.5, 15.87),

@@ -9,8 +9,8 @@ CREATE TABLE if not exists draft_mark_result (
   name TEXT NOT NULL,
   x FLOAT8 NOT NULL,
   y FLOAT8 NOT NULL,
-  value FLOAT8 NOT NULL,
+  value FLOAT8,
   CONSTRAINT draft_mark_result_pk PRIMARY KEY (id),
   CONSTRAINT draft_mark_result_name_check CHECK(char_length(name) > 0 AND char_length(name) <= 50),
-  CONSTRAINT draft_mark_result_name_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, name, value)
+  CONSTRAINT draft_mark_result_name_unique UNIQUE NULLS NOT DISTINCT (project_id, ship_id, name)
 );
