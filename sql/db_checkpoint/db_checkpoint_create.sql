@@ -33,6 +33,7 @@ CREATE TABLE
         created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, -- Time when checkpoint was created;
         last_loaded_at TIMESTAMP, -- Time when checkpoint was loaded;
         is_active BOOLEAN NOT NULL DEFAULT FALSE, -- Either checkpoint is source of the current state of the database or it is not, creating of new checkpoint will override the current one;
+        is_deletable BOOLEAN NOT NULL DEFAULT TRUE, -- Either checkpoint is deletable or not;
         CONSTRAINT metadata_db_checkpoint_pk PRIMARY KEY (id),
         CONSTRAINT metadata_db_checkpoint_database_info_id_fk FOREIGN KEY (database_info_id) REFERENCES custom_metadata.db_info (id)
     );
@@ -111,6 +112,9 @@ CREATE OR REPLACE FUNCTION custom_metadata.delete_db_checkpoint()
 RETURNS TRIGGER
 LANGUAGE plpgsql AS $$
 BEGIN
+    IF OLD.is_deletable = FALSE THEN
+        RAISE EXCEPTION 'Checkpoint cannot be deleted';
+    END IF;
     -- Delete dump file;
     EXECUTE format('COPY (SELECT 1) TO PROGRAM ''rm -f %s'' ', OLD.dump_path);
     
@@ -138,6 +142,8 @@ BEGIN
             RAISE EXCEPTION 'Updating created_at is not allowed';
         WHEN OLD.last_loaded_at != NEW.last_loaded_at THEN
             RAISE EXCEPTION 'Updating last_loaded_at is not allowed';
+        WHEN OLD.is_deletable != NEW.is_deletable THEN
+            RAISE EXCEPTION 'Updating is_deletable is not allowed';
         WHEN OLD.name != NEW.name THEN
             PERFORM custom_metadata.validate_checkpoint_name(NEW.name);
         ELSE
