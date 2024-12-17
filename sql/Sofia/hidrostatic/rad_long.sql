@@ -1,6 +1,6 @@
- DELETE FROM rad_long WHERE ship_id=2;
+DELETE FROM rad_long WHERE ship_id=2;
 
- INSERT INTO rad_long
+INSERT INTO rad_long
   (ship_id, trim, volume, value)
 VALUES
   (2, 0, 3965.38, 411.959),

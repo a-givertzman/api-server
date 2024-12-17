@@ -1,6 +1,6 @@
- DELETE FROM waterline_area WHERE ship_id=2;
+DELETE FROM waterline_area WHERE ship_id=2;
 
- INSERT INTO waterline_area
+INSERT INTO waterline_area
   (ship_id, trim, volume, value)
 VALUES
   (2, 0, 3965.38, 1669.5),

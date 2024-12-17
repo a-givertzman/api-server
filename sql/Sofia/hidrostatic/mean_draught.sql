@@ -1,6 +1,6 @@
- DELETE FROM mean_draught WHERE ship_id=2;
+DELETE FROM mean_draught WHERE ship_id=2;
 
- INSERT INTO mean_draught
+INSERT INTO mean_draught
   (ship_id, trim, volume, value)
 VALUES
   (2, 0, 3965.38, 2.5),
