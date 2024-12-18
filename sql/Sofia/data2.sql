@@ -47,23 +47,7 @@ UPDATE bulkhead_place SET bulkhead_id=(SELECT id FROM bulkhead WHERE name_engl='
 UPDATE bulkhead_place SET bulkhead_id=(SELECT id FROM bulkhead WHERE name_engl='Grain Bulkhead №2') WHERE ship_id=2 AND code='none';
 
 
-UPDATE hold_compartment SET density=0.543, mass=900.2, category_id=12 WHERE ship_id=2 AND group_id=(SELECT id FROM hold_group WHERE ship_id=2 AND space_id=H101);
-UPDATE hold_compartment SET density=0.543, mass=51.3, category_id=12 WHERE ship_id=2 AND group_id=(SELECT id FROM hold_group WHERE ship_id=2 AND space_id=P101);
-UPDATE hold_compartment SET density=0.543, mass=617.7, category_id=12 WHERE ship_id=2 AND group_id=(SELECT id FROM hold_group WHERE ship_id=2 AND space_id=H102);
-UPDATE hold_compartment SET density=0.543, mass=51.3, category_id=12 WHERE ship_id=2 AND group_id=(SELECT id FROM hold_group WHERE ship_id=2 AND space_id=P102);
-UPDATE hold_compartment SET density=0.543, mass=256.4, category_id=12 WHERE ship_id=2 AND group_id=(SELECT id FROM hold_group WHERE ship_id=2 AND space_id=H103);
-UPDATE hold_compartment SET density=0.543, mass=51.3, category_id=12 WHERE ship_id=2 AND group_id=(SELECT id FROM hold_group WHERE ship_id=2 AND space_id=P103);
-UPDATE hold_compartment SET density=0.543, mass=1493.5, category_id=12 WHERE ship_id=2 AND group_id=(SELECT id FROM hold_group WHERE ship_id=2 AND space_id=H104);
-UPDATE hold_compartment SET density=0.543, mass=988.3, category_id=12 WHERE ship_id=2 AND group_id=(SELECT id FROM hold_group WHERE ship_id=2 AND space_id=H201);
-UPDATE hold_compartment SET density=0.543, mass=51.3, category_id=12 WHERE ship_id=2 AND group_id=(SELECT id FROM hold_group WHERE ship_id=2 AND space_id=P201);
-UPDATE hold_compartment SET density=0.543, mass=244.5, category_id=12 WHERE ship_id=2 AND group_id=(SELECT id FROM hold_group WHERE ship_id=2 AND space_id=H202);
-UPDATE hold_compartment SET density=0.543, mass=51.3, category_id=12 WHERE ship_id=2 AND group_id=(SELECT id FROM hold_group WHERE ship_id=2 AND space_id=P202);
-UPDATE hold_compartment SET density=0.543, mass=912.7, category_id=12 WHERE ship_id=2 AND group_id=(SELECT id FROM hold_group WHERE ship_id=2 AND space_id=H203);
-UPDATE hold_compartment SET density=0.543, mass=51.3, category_id=12 WHERE ship_id=2 AND group_id=(SELECT id FROM hold_group WHERE ship_id=2 AND space_id=P203);
-UPDATE hold_compartment SET density=0.543, mass=748.7, category_id=12 WHERE ship_id=2 AND group_id=(SELECT id FROM hold_group WHERE ship_id=2 AND space_id=H204);
-UPDATE hold_compartment SET density=0.543, mass=51.3, category_id=12 WHERE ship_id=2 AND group_id=(SELECT id FROM hold_group WHERE ship_id=2 AND space_id=P204);
-UPDATE hold_compartment SET density=0.543, mass=408.6, category_id=12 WHERE ship_id=2 AND group_id=(SELECT id FROM hold_group WHERE ship_id=2 AND space_id=H205);
-UPDATE hold_compartment SET density=0.543, mass=51.3, category_id=12 WHERE ship_id=2 AND group_id=(SELECT id FROM hold_group WHERE ship_id=2 AND space_id=P205);
-UPDATE hold_compartment SET density=0.543, mass=493.3, category_id=12 WHERE ship_id=2 AND group_id=(SELECT id FROM hold_group WHERE ship_id=2 AND space_id=H206);
+UPDATE hold_compartment SET density=0.54449, mass=3421.7, category_id=12 WHERE ship_id=2 AND group_id=(SELECT id FROM hold_group WHERE ship_id=2 AND space_id=1001);
+UPDATE hold_compartment SET density=0.54449, mass=4052.6, category_id=12 WHERE ship_id=2 AND group_id=(SELECT id FROM hold_group WHERE ship_id=2 AND space_id=1002);
 
 
