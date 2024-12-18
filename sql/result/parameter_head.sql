@@ -112,4 +112,7 @@ VALUES
   (92, 'Осадка на носовых марках ЛБ', 'Draft fwd at marks PS', 2),
   (93, 'Осадка на носовых марках осредненная', 'Draft fwd at marks mean', 2),
   (94, 'Осадка на миделе', 'Draft at midship', 2),
-  (95, 'Поправка к поперечной метацентрической высоте', 'Correction to transverse metacentric height', 2);
+  (95, 'Поправка к поперечной метацентрической высоте', 'Correction to transverse metacentric height', 2),
+  (96, 'Аппликата центра тяжести дэдвейта', 'Vertical center of gravity of deadweight', 2),
+  (97, 'Ордината центра тяжести дэдвейта', 'Transverse center of gravity of deadweight', 2),
+  (98, 'Абсцисса центра тяжести дэдвейта', 'Longitudinal center of gravity of deadweight', 2);
