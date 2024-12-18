@@ -50,7 +50,7 @@
 select data.parameter_id, head.title_rus, data.result from parameter_head as head
 join parameter_data as data on data.parameter_id=head.id order by data.parameter_id;
 
-select head.id, head.title_rus, values.actual_value, unit.symbol_rus from criterion as head
+select head.id, head.title_rus, values.actual_value, values.limit_value, values.zg_value, values.state, unit.symbol_rus from criterion as head
 join unit as unit on head.unit_id=unit.id 
 join criterion_values as values on head.id=values.criterion_id 
 order by head.id;
