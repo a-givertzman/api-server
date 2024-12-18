@@ -13,6 +13,8 @@ CREATE TABLE IF NOT EXISTS criterion_values (
   limit_value FLOAT8,
   -- Zg value for specific criterion;
   zg_value FLOAT8,
+  -- State of criterion, true if passed
+  state BOOLEAN,
   -- TODO: add documentation comments for column below
   error_message TEXT,
   CONSTRAINT criterion_values_pk PRIMARY KEY (id),
