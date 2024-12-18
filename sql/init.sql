@@ -191,3 +191,6 @@ DROP TABLE IF EXISTS ship_geometry, ship_parameters, ship CASCADE;
 --
 -- Utility relations for storing database checkpoints
 \i ./sql/db_checkpoint/db_checkpoint_create.sql
+--
+-- Initial non-deletable database checkpoint for Sofia vessel
+\i ./sql/Sofia/db_checkpoint/insert.sql
