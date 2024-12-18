@@ -8,7 +8,7 @@ BEGIN
     RAISE NOTICE 'update_bulkhead_place_place_id begin';
 
     IF NEW.code IS NOT NULL AND NEW.space_id IS NULL THEN
-        RAISE NOTICE 'update_hold_compartment_parameters get space_id';
+        RAISE NOTICE 'update_bulkhead_place_place_id get space_id';
         SELECT space_id
         INTO NEW.space_id
         FROM hold_part_id
