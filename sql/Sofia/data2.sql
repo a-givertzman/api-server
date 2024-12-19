@@ -47,7 +47,7 @@ UPDATE bulkhead_place SET bulkhead_id=(SELECT id FROM bulkhead WHERE name_engl='
 UPDATE bulkhead_place SET bulkhead_id=(SELECT id FROM bulkhead WHERE name_engl='Grain Bulkhead №2') WHERE ship_id=2 AND code='none';
 
 
-UPDATE hold_compartment SET density=0.54449, mass=3421.7, category_id=12 WHERE ship_id=2 AND group_id=(SELECT id FROM hold_group WHERE ship_id=2 AND space_id=1001);
-UPDATE hold_compartment SET density=0.54449, mass=4052.6, category_id=12 WHERE ship_id=2 AND group_id=(SELECT id FROM hold_group WHERE ship_id=2 AND space_id=1002);
+UPDATE hold_compartment SET density=0.543295147, mass=3421.7, category_id=12 WHERE ship_id=2 AND group_id=(SELECT id FROM hold_group WHERE ship_id=2 AND space_id=1001);
+UPDATE hold_compartment SET density=0.543295147, mass=4052.6, category_id=12 WHERE ship_id=2 AND group_id=(SELECT id FROM hold_group WHERE ship_id=2 AND space_id=1002);
 
 
