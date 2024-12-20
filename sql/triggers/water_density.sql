@@ -48,9 +48,9 @@ BEGIN
     RAISE NOTICE 'check_water_density no water_density for ship:[%]', changed_ship_id;
 
     INSERT INTO ship_parameters
-        (ship_id, key, value, value_type, unit)
+        (ship_id, key, value, unit_id)
     VALUES
-        (changed_ship_id, 'Water Density', '1.025', 'real', 'g/ml'); 
+        (changed_ship_id, 'Water Density', '1.025', 7); 
 
     RETURN NULL;
 END;
