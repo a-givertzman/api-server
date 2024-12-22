@@ -10,8 +10,8 @@ CREATE TABLE IF NOT EXISTS hold_compartment (
     -- ID of ship for this hold_part;
     ship_id INT NOT NULL,
     -- Name of hold_compartment;
-    name_rus TEXT NOT NULL UNIQUE,
-    name_engl TEXT UNIQUE,
+    name_rus TEXT NOT NULL,
+    name_engl TEXT,
     -- ID of hold_group to which this hold_compartment belongs;
     group_id INT NOT NULL,
     -- Index of first hold_part in corresponding hold_group;
@@ -73,10 +73,10 @@ CREATE TABLE IF NOT EXISTS hold_compartment (
 --
 
 -- Generates and returns name for hold_compartment in following format:
--- '${hold_group.name} ${frame index of the leftmost part of ending hold_part}-${frame index of the rightmost part of starting hold_part} шп.';
-DROP FUNCTION IF EXISTS generate_hold_compartment_name;
+-- '${hold_group.name} Шп. ${frame index of the leftmost part of ending hold_part}-${frame index of the rightmost part of starting hold_part}';
+DROP FUNCTION IF EXISTS generate_hold_compartment_name_ru;
 
-CREATE OR REPLACE FUNCTION generate_hold_compartment_name(
+CREATE OR REPLACE FUNCTION generate_hold_compartment_name_ru(
     project_id_param INT, -- ID of project to which all hold_part's of this hold_compartment's belong;
     ship_id_param INT, -- ID of ship to which all hold_part's of this hold_compartment's belong;
     group_id_param INT, -- ID of hold_group to which all hold_part's of hold_compartment belong;
@@ -93,11 +93,38 @@ BEGIN
     SELECT bound_x1 INTO left_bound_x FROM hold_part WHERE group_id = group_id_param AND group_index = group_end_index_param AND ship_id = ship_id_param AND project_id IS NOT DISTINCT FROM project_id_param;
     RETURN CONCAT(
         (SELECT name_rus FROM hold_group WHERE id = group_id_param AND ship_id = ship_id_param AND project_id IS NOT DISTINCT FROM project_id_param ),
-        ' ',
+        ' Шп. ',
         (SELECT frame_index FROM physical_frame WHERE ship_id = ship_id_param AND project_id IS NOT DISTINCT FROM project_id_param ORDER BY ABS(pos_x - left_bound_x) LIMIT 1), -- Frame index for most left part of compartment;
         '-',
-        (SELECT frame_index FROM physical_frame WHERE ship_id = ship_id_param AND project_id IS NOT DISTINCT FROM project_id_param ORDER BY ABS(pos_x - right_bound_x) LIMIT 1), -- Frame index for most right part of compartment;
-        ' шп.'
+        (SELECT frame_index FROM physical_frame WHERE ship_id = ship_id_param AND project_id IS NOT DISTINCT FROM project_id_param ORDER BY ABS(pos_x - right_bound_x) LIMIT 1) -- Frame index for most right part of compartment;
+    );
+END $$ LANGUAGE plpgsql;
+
+-- Generates and returns name for hold_compartment in following format:
+-- '${hold_group.name} Fr. ${frame index of the leftmost part of ending hold_part}-${frame index of the rightmost part of starting hold_part}';
+DROP FUNCTION IF EXISTS generate_hold_compartment_name_en;
+
+CREATE OR REPLACE FUNCTION generate_hold_compartment_name_en(
+    project_id_param INT, -- ID of project to which all hold_part's of this hold_compartment's belong;
+    ship_id_param INT, -- ID of ship to which all hold_part's of this hold_compartment's belong;
+    group_id_param INT, -- ID of hold_group to which all hold_part's of hold_compartment belong;
+    group_start_index_param INT, -- Index in group of the rightmost hold_part of this hold_compartment;
+    group_end_index_param INT -- Index in group of the leftmost hold_part of this hold_compartment;
+)
+RETURNS TEXT
+AS $$
+DECLARE 
+    right_bound_x FLOAT8;
+    left_bound_x FLOAT8;
+BEGIN
+    SELECT bound_x2 INTO right_bound_x FROM hold_part WHERE group_id = group_id_param AND group_index = group_start_index_param AND ship_id = ship_id_param AND project_id IS NOT DISTINCT FROM project_id_param;
+    SELECT bound_x1 INTO left_bound_x FROM hold_part WHERE group_id = group_id_param AND group_index = group_end_index_param AND ship_id = ship_id_param AND project_id IS NOT DISTINCT FROM project_id_param;
+    RETURN CONCAT(
+        (SELECT name_rus FROM hold_group WHERE id = group_id_param AND ship_id = ship_id_param AND project_id IS NOT DISTINCT FROM project_id_param ),
+        ' Fr. ',
+        (SELECT frame_index FROM physical_frame WHERE ship_id = ship_id_param AND project_id IS NOT DISTINCT FROM project_id_param ORDER BY ABS(pos_x - left_bound_x) LIMIT 1), -- Frame index for most left part of compartment;
+        '-',
+        (SELECT frame_index FROM physical_frame WHERE ship_id = ship_id_param AND project_id IS NOT DISTINCT FROM project_id_param ORDER BY ABS(pos_x - right_bound_x) LIMIT 1) -- Frame index for most right part of compartment;
     );
 END $$ LANGUAGE plpgsql;
 
@@ -112,6 +139,7 @@ CREATE OR REPLACE FUNCTION extract_hold_compartment(
 )
 RETURNS TABLE (
     name_rus TEXT,
+    name_engl TEXT,
     project_id INT,
     ship_id INT,
     group_id INT,
@@ -186,7 +214,8 @@ BEGIN
                     AND hp.project_id IS NOT DISTINCT FROM project_id_param
             )
         SELECT
-            generate_hold_compartment_name(project_id_param, ship_id_param, group_id_param, group_start_index_param, dp.group_index) AS name_rus,
+            generate_hold_compartment_name_ru(project_id_param, ship_id_param, group_id_param, group_start_index_param, dp.group_index) AS name_rus,
+            generate_hold_compartment_name_en(project_id_param, ship_id_param, group_id_param, group_start_index_param, dp.group_index) AS name_engl,
             project_id_param AS project_id,
             ship_id_param AS ship_id,
             group_id_param AS group_id,
@@ -212,6 +241,7 @@ CREATE OR REPLACE FUNCTION extract_hold_compartments(
 )
 RETURNS TABLE (
     name_rus TEXT,
+    name_engl TEXT,
     project_id INT,
     ship_id INT,
     group_id INT,
@@ -267,6 +297,7 @@ BEGIN
     INSERT INTO
         hold_compartment (
             name_rus,
+            name_engl,
             project_id,
             ship_id,
             group_id,
@@ -278,6 +309,7 @@ BEGIN
         )
     SELECT
         name_rus,
+        name_engl,
         project_id,
         ship_id,
         group_id,
