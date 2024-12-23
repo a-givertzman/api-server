@@ -26,7 +26,7 @@ VALUES
   (2, 'Minimum draft', 2.001, (SELECT id FROM unit WHERE symbol_eng = 'm')),
   (2, 'Minimum operating draft', 4.308, (SELECT id FROM unit WHERE symbol_eng = 'm')),
   (2, 'Length middle from stern', 68.82, (SELECT id FROM unit WHERE symbol_eng = 'm')),
-  (2, 'Оverall height up to non-removable parts', 27.78, (SELECT id FROM unit WHERE symbol_eng = 'm')),
+  (2, 'Overall height up to non-removable parts', 27.78, (SELECT id FROM unit WHERE symbol_eng = 'm')),
   (2, 'Draught corresponding  to summer load line', 7.997, (SELECT id FROM unit WHERE symbol_eng = 'm')),
   (2, 'Calculated minimum bow height', 4.653, (SELECT id FROM unit WHERE symbol_eng = 'm')),
   (2, 'Calculated minimum bow area', 82, (SELECT id FROM unit WHERE symbol_eng = 'm^2')),
