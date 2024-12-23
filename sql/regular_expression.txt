@@ -47,6 +47,23 @@
         WHERE 
             c.ship_id=1 AND active=TRUE AND mass>0;
 
+
+        SELECT 
+            c.space_id AS space_id, 
+            c.volume AS volume, 
+            c.volume_max AS volume_max, 
+            c.m_f_s_x AS m_f_s_x,
+            c.max_m_f_s_x AS max_m_f_s_x
+        FROM 
+            compartment c
+        JOIN 
+            cargo_category AS cc ON c.category_id = cc.id
+        JOIN 
+            cargo_general_category AS cgc ON cc.general_category_id = cgc.id
+        WHERE 
+            c.ship_id=2 AND use_max_m_f_s = true order by space_id;
+
+
 select data.parameter_id, head.title_rus, data.result from parameter_head as head
 join parameter_data as data on data.parameter_id=head.id order by data.parameter_id;
 

@@ -68,7 +68,8 @@ BEGIN
         NEW.max_m_f_s_x = result_max_moment.max_m_f_s_x;
     END IF;
 
-    IF (NEW.use_max_m_f_s = TRUE) THEN         
+    IF (NEW.use_max_m_f_s = TRUE) THEN    
+        RAISE NOTICE 'update_compartment_parameters use_max_m_f_s = TRUE, m_f_s_x:[%]', NEW.max_m_f_s_x;     
         NEW.m_f_s_x = NEW.max_m_f_s_x;  
     ELSIF (NEW.volume_max IS NOT NULL AND NEW.volume >= NEW.volume_max*0.98) THEN 
         NEW.m_f_s_x = 0;  
