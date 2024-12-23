@@ -17,6 +17,7 @@ UPDATE compartment SET density=0.97, mass=7.8, use_max_m_f_s=TRUE WHERE ship_id=
 UPDATE compartment SET density=0.97, mass=10, use_max_m_f_s=TRUE WHERE ship_id=2 AND space_id=306;
 UPDATE compartment SET density=0.97, mass=2, use_max_m_f_s=TRUE WHERE ship_id=2 AND space_id=301;
 UPDATE compartment SET density=0.97, mass=17, use_max_m_f_s=TRUE WHERE ship_id=2 AND space_id=302;
+UPDATE compartment SET density=0.97, mass=0, use_max_m_f_s=TRUE WHERE ship_id=2 AND space_id=307;
 UPDATE compartment SET density=0.85, mass=0.5, use_max_m_f_s=TRUE WHERE ship_id=2 AND space_id=400;
 UPDATE compartment SET density=0.85, mass=4.4, use_max_m_f_s=TRUE WHERE ship_id=2 AND space_id=401;
 UPDATE compartment SET density=0.85, mass=3, use_max_m_f_s=TRUE WHERE ship_id=2 AND space_id=402;
