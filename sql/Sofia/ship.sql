@@ -33,7 +33,7 @@ VALUES
   (2, 'Moulded depth', 11.15, 2),
   (2, 'X midship from Fr0', 0, 2),
   (2, 'LightShip Weight', 3230.55, 6),
-  (2, 'Number of Parts', 20, NULL),
+  (2, 'Number of Parts', 200, NULL),
   (2, 'LCG from middle', 59.837, 2),
   (2, 'VCG from BL', 7.81, 2),
   (2, 'TCG from CL', -0.44, 2),
