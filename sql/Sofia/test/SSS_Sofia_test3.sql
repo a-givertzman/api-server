@@ -33,20 +33,24 @@ UPDATE compartment SET density=1, mass=3.6, use_max_m_f_s=TRUE WHERE ship_id=2 A
 UPDATE compartment SET density=1, mass=3.6, use_max_m_f_s=TRUE WHERE ship_id=2 AND space_id=602;
 
 
+UPDATE bulkhead_place SET bulkhead_id=(SELECT id FROM bulkhead WHERE name_engl='Grain Bulkhead №1') WHERE ship_id=2 AND code='SP101';
+UPDATE bulkhead_place SET bulkhead_id=(SELECT id FROM bulkhead WHERE name_engl='Grain Bulkhead №2') WHERE ship_id=2 AND code='SP102';
+
+
 INSERT INTO cargo
   (ship_id, name, mass, bound_x1, bound_x2, mass_shift_x, mass_shift_y, mass_shift_z, category_id)
 VALUES
   (2, 'Crew', 40, -3.6, 135.26, 58.9, 0, 7.5, 9);
 
-UPDATE bulkhead_place SET bulkhead_id=(SELECT id FROM bulkhead WHERE name_engl='Grain Bulkhead №1') WHERE ship_id=2 AND code='SP101';
-UPDATE bulkhead_place SET bulkhead_id=(SELECT id FROM bulkhead WHERE name_engl='Grain Bulkhead №2') WHERE ship_id=2 AND code='SP102';
+
+
+DELETE FROM cargo WHERE ship_id=2;
 
 INSERT INTO cargo
   (ship_id, name, mass, timber, is_on_deck, bound_x1, bound_x2, bound_y1, bound_y2, bound_z1, bound_z2,mass_shift_x, mass_shift_y, mass_shift_z, category_id)
-VALUES    
-  (2, 'Aft', 4959, false, true, 29.45, 62.51, -5, 5, 1.1, 5.8, 45.98,  0,  4, 10),
-  (2, 'Fwd', 4959, false, true, 76.81, 109.87, -5, 5, 1.1, 5.8, 93.34,  0,  4, 10);
-
+VALUES
+  (2, 'Aft', 4959, FALSE, TRUE, 29.45, 62.51, -5, 5, 1.1, 5.8, 45.98, 0, 4, 10),
+  (2, 'Fwd', 4959, FALSE, TRUE, 76.81, 109.87, -5, 5, 1.1, 5.8, 93.34, 0, 4, 10);
 
 
 

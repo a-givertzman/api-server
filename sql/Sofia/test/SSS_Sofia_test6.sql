@@ -51,14 +51,2089 @@ UPDATE compartment SET density=1, mass=3.6, use_max_m_f_s=TRUE WHERE ship_id=2 A
 UPDATE compartment SET density=1, mass=3.6, use_max_m_f_s=TRUE WHERE ship_id=2 AND space_id=602;
 
 
+UPDATE bulkhead_place SET bulkhead_id=(SELECT id FROM bulkhead WHERE name_engl='Grain Bulkhead №1') WHERE ship_id=2 AND code='P101';
+UPDATE bulkhead_place SET bulkhead_id=(SELECT id FROM bulkhead WHERE name_engl='Grain Bulkhead №2') WHERE ship_id=2 AND code='P102';
+
+
 INSERT INTO cargo
   (ship_id, name, mass, bound_x1, bound_x2, mass_shift_x, mass_shift_y, mass_shift_z, category_id)
 VALUES
   (2, 'Crew', 40, -3.6, 135.26, 58.9, 0, 7.5, 9);
 
-UPDATE bulkhead_place SET bulkhead_id=(SELECT id FROM bulkhead WHERE name_engl='Grain Bulkhead №1') WHERE ship_id=2 AND code='P101';
-UPDATE bulkhead_place SET bulkhead_id=(SELECT id FROM bulkhead WHERE name_engl='Grain Bulkhead №2') WHERE ship_id=2 AND code='P102';
 
+UPDATE container_slot SET container_id = NULL WHERE ship_id=2 AND project_id IS NOT DISTINCT FROM NULL;
+
+DELETE FROM container WHERE ship_id=2;
+
+INSERT INTO container
+  (project_id, ship_id, iso_code, max_gross_mass, gross_mass, tare_mass)
+VALUES
+  (NULL, 2, '1CC', 36.0, 12.0, 0.0);
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 1 AND row_number = 0 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 3 AND row_number = 0 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 3 AND row_number = 1 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 3 AND row_number = 2 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 5 AND row_number = 0 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 5 AND row_number = 1 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 5 AND row_number = 2 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 5 AND row_number = 3 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 5 AND row_number = 4 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 7 AND row_number = 0 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 7 AND row_number = 1 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 7 AND row_number = 2 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 7 AND row_number = 3 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 7 AND row_number = 4 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 9 AND row_number = 0 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 9 AND row_number = 1 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 9 AND row_number = 2 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 9 AND row_number = 3 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 9 AND row_number = 4 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 11 AND row_number = 0 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 11 AND row_number = 1 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 11 AND row_number = 2 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 11 AND row_number = 3 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 11 AND row_number = 4 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 13 AND row_number = 0 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 13 AND row_number = 1 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 13 AND row_number = 2 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 13 AND row_number = 3 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 13 AND row_number = 4 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 15 AND row_number = 0 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 15 AND row_number = 1 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 15 AND row_number = 2 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 15 AND row_number = 3 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 15 AND row_number = 4 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 17 AND row_number = 0 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 17 AND row_number = 1 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 17 AND row_number = 2 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 17 AND row_number = 3 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 17 AND row_number = 4 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 19 AND row_number = 0 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 19 AND row_number = 1 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 19 AND row_number = 2 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 19 AND row_number = 3 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 19 AND row_number = 4 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 21 AND row_number = 0 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 21 AND row_number = 1 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 21 AND row_number = 2 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 21 AND row_number = 3 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 21 AND row_number = 4 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 23 AND row_number = 0 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 23 AND row_number = 1 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 23 AND row_number = 2 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 23 AND row_number = 3 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 23 AND row_number = 4 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 25 AND row_number = 0 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 25 AND row_number = 1 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 25 AND row_number = 2 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 25 AND row_number = 3 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 25 AND row_number = 4 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 27 AND row_number = 0 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 27 AND row_number = 1 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 27 AND row_number = 2 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 27 AND row_number = 3 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 27 AND row_number = 4 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 29 AND row_number = 0 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 29 AND row_number = 1 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 29 AND row_number = 2 AND tier_number = 2;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 1 AND row_number = 0 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 3 AND row_number = 0 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 3 AND row_number = 1 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 3 AND row_number = 2 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 5 AND row_number = 0 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 5 AND row_number = 1 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 5 AND row_number = 2 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 5 AND row_number = 3 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 5 AND row_number = 4 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 7 AND row_number = 0 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 7 AND row_number = 1 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 7 AND row_number = 2 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 7 AND row_number = 3 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 7 AND row_number = 4 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 9 AND row_number = 0 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 9 AND row_number = 1 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 9 AND row_number = 2 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 9 AND row_number = 3 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 9 AND row_number = 4 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 11 AND row_number = 0 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 11 AND row_number = 1 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 11 AND row_number = 2 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 11 AND row_number = 3 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 11 AND row_number = 4 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 13 AND row_number = 0 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 13 AND row_number = 1 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 13 AND row_number = 2 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 13 AND row_number = 3 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 13 AND row_number = 4 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 15 AND row_number = 0 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 15 AND row_number = 1 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 15 AND row_number = 2 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 15 AND row_number = 3 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 15 AND row_number = 4 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 17 AND row_number = 0 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 17 AND row_number = 1 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 17 AND row_number = 2 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 17 AND row_number = 3 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 17 AND row_number = 4 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 19 AND row_number = 0 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 19 AND row_number = 1 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 19 AND row_number = 2 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 19 AND row_number = 3 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 19 AND row_number = 4 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 21 AND row_number = 0 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 21 AND row_number = 1 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 21 AND row_number = 2 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 21 AND row_number = 3 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 21 AND row_number = 4 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 23 AND row_number = 0 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 23 AND row_number = 1 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 23 AND row_number = 2 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 23 AND row_number = 3 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 23 AND row_number = 4 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 25 AND row_number = 0 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 25 AND row_number = 1 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 25 AND row_number = 2 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 25 AND row_number = 3 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 25 AND row_number = 4 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 27 AND row_number = 0 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 27 AND row_number = 1 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 27 AND row_number = 2 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 27 AND row_number = 3 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 27 AND row_number = 4 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 29 AND row_number = 0 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 29 AND row_number = 1 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 29 AND row_number = 2 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 1 AND row_number = 1 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 1 AND row_number = 2 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 29 AND row_number = 3 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 29 AND row_number = 4 AND tier_number = 4;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 1 AND row_number = 0 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 3 AND row_number = 0 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 3 AND row_number = 1 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 3 AND row_number = 2 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 5 AND row_number = 0 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 5 AND row_number = 1 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 5 AND row_number = 2 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 5 AND row_number = 3 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 5 AND row_number = 4 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 7 AND row_number = 0 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 7 AND row_number = 1 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 7 AND row_number = 2 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 7 AND row_number = 3 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 7 AND row_number = 4 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 9 AND row_number = 0 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 9 AND row_number = 1 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 9 AND row_number = 2 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 9 AND row_number = 3 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 9 AND row_number = 4 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 11 AND row_number = 0 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 11 AND row_number = 1 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 11 AND row_number = 2 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 11 AND row_number = 3 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 11 AND row_number = 4 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 13 AND row_number = 0 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 13 AND row_number = 1 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 13 AND row_number = 2 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 13 AND row_number = 3 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 13 AND row_number = 4 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 15 AND row_number = 0 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 15 AND row_number = 1 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 15 AND row_number = 2 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 15 AND row_number = 3 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 15 AND row_number = 4 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 17 AND row_number = 0 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 17 AND row_number = 1 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 17 AND row_number = 2 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 17 AND row_number = 3 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 17 AND row_number = 4 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 19 AND row_number = 0 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 19 AND row_number = 1 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 19 AND row_number = 2 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 19 AND row_number = 3 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 19 AND row_number = 4 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 21 AND row_number = 0 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 21 AND row_number = 1 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 21 AND row_number = 2 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 21 AND row_number = 3 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 21 AND row_number = 4 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 23 AND row_number = 0 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 23 AND row_number = 1 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 23 AND row_number = 2 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 23 AND row_number = 3 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 23 AND row_number = 4 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 25 AND row_number = 0 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 25 AND row_number = 1 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 25 AND row_number = 2 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 25 AND row_number = 3 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 25 AND row_number = 4 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 27 AND row_number = 0 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 27 AND row_number = 1 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 27 AND row_number = 2 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 27 AND row_number = 3 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 27 AND row_number = 4 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 29 AND row_number = 0 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 29 AND row_number = 1 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 29 AND row_number = 2 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 1 AND row_number = 1 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 1 AND row_number = 2 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 29 AND row_number = 3 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 29 AND row_number = 4 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 3 AND row_number = 3 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 3 AND row_number = 4 AND tier_number = 6;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 1 AND row_number = 0 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 3 AND row_number = 0 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 3 AND row_number = 1 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 3 AND row_number = 2 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 5 AND row_number = 0 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 5 AND row_number = 1 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 5 AND row_number = 2 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 5 AND row_number = 3 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 5 AND row_number = 4 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 7 AND row_number = 0 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 7 AND row_number = 1 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 7 AND row_number = 2 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 7 AND row_number = 3 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 7 AND row_number = 4 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 9 AND row_number = 0 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 9 AND row_number = 1 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 9 AND row_number = 2 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 9 AND row_number = 3 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 9 AND row_number = 4 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 11 AND row_number = 0 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 11 AND row_number = 1 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 11 AND row_number = 2 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 11 AND row_number = 3 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 11 AND row_number = 4 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 13 AND row_number = 0 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 13 AND row_number = 1 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 13 AND row_number = 2 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 13 AND row_number = 3 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 13 AND row_number = 4 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 15 AND row_number = 0 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 15 AND row_number = 1 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 15 AND row_number = 2 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 15 AND row_number = 3 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 15 AND row_number = 4 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 17 AND row_number = 0 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 17 AND row_number = 1 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 17 AND row_number = 2 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 17 AND row_number = 3 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 17 AND row_number = 4 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 19 AND row_number = 0 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 19 AND row_number = 1 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 19 AND row_number = 2 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 19 AND row_number = 3 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 19 AND row_number = 4 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 21 AND row_number = 0 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 21 AND row_number = 1 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 21 AND row_number = 2 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 21 AND row_number = 3 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 21 AND row_number = 4 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 23 AND row_number = 0 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 23 AND row_number = 1 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 23 AND row_number = 2 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 23 AND row_number = 3 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 23 AND row_number = 4 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 25 AND row_number = 0 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 25 AND row_number = 1 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 25 AND row_number = 2 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 25 AND row_number = 3 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 25 AND row_number = 4 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 27 AND row_number = 0 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 27 AND row_number = 1 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 27 AND row_number = 2 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 27 AND row_number = 3 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 27 AND row_number = 4 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 29 AND row_number = 0 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 29 AND row_number = 1 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 29 AND row_number = 2 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 1 AND row_number = 1 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 1 AND row_number = 2 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 29 AND row_number = 3 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 29 AND row_number = 4 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 3 AND row_number = 3 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 3 AND row_number = 4 AND tier_number = 8;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 11 AND row_number = 3 AND tier_number = 82;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 13 AND row_number = 3 AND tier_number = 82;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 15 AND row_number = 3 AND tier_number = 82;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 17 AND row_number = 3 AND tier_number = 82;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 19 AND row_number = 3 AND tier_number = 82;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 21 AND row_number = 3 AND tier_number = 82;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 23 AND row_number = 3 AND tier_number = 82;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 25 AND row_number = 3 AND tier_number = 82;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 27 AND row_number = 3 AND tier_number = 82;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 29 AND row_number = 3 AND tier_number = 82;
+
+UPDATE
+  container_slot
+SET
+  container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
+WHERE
+  ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 31 AND row_number = 3 AND tier_number = 82;;
 
 
 
