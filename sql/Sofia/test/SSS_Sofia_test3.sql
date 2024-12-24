@@ -7,7 +7,7 @@ UPDATE ship_parameters SET value=0 WHERE key='Wetting of deck timber' AND ship_i
 UPDATE compartment SET density=1.025, mass=0, use_max_m_f_s=TRUE WHERE ship_id=2 AND space_id=214;
 UPDATE compartment SET density=1.025, mass=21.9, use_max_m_f_s=TRUE WHERE ship_id=2 AND space_id=216;
 UPDATE compartment SET density=1.025, mass=129.9, use_max_m_f_s=FALSE WHERE ship_id=2 AND space_id=218;
-UPDATE compartment SET density=1.025, mass=51.5, use_max_m_f_s=TRUE WHERE ship_id=2 AND space_id=227;
+UPDATE compartment SET density=1.025, mass=111.9, use_max_m_f_s=TRUE WHERE ship_id=2 AND space_id=227;
 UPDATE compartment SET density=1.025, mass=217.2, use_max_m_f_s=TRUE WHERE ship_id=2 AND space_id=228;
 UPDATE compartment SET density=0.97, mass=6.6, use_max_m_f_s=TRUE WHERE ship_id=2 AND space_id=303;
 UPDATE compartment SET density=0.97, mass=15, use_max_m_f_s=TRUE WHERE ship_id=2 AND space_id=304;
