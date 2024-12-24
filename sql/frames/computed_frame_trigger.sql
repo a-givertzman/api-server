@@ -25,7 +25,7 @@ BEGIN
     IF ( changed_ship_id IS NOT NULL )
     THEN
         RAISE NOTICE 'init_n_parts ship_id:[%], set n_parts = 20', changed_ship_id;
-        n_parts = 20;
+        n_parts = 200;
         INSERT INTO ship_parameters
             (ship_id, key, value)
         VALUES
