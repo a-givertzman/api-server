@@ -43,3 +43,9 @@ VALUES
 
 UPDATE hold_compartment SET density=0.6268736344697932, mass=3948, category_id=11 WHERE ship_id=2 AND group_id=(SELECT id FROM hold_group WHERE ship_id=2 AND space_id=1001);
 UPDATE hold_compartment SET density=0.6270990342433835, mass=4683, category_id=11 WHERE ship_id=2 AND group_id=(SELECT id FROM hold_group WHERE ship_id=2 AND space_id=1002);
+
+
+DELETE FROM cargo WHERE ship_id=2;
+
+
+

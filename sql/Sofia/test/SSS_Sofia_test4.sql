@@ -58,3 +58,9 @@ INSERT INTO cargo
 VALUES
   (2, 'Crew', 40, -3.6, 135.26, 58.9, 0, 7.5, 9);
 
+
+
+DELETE FROM cargo WHERE ship_id=2;
+
+
+

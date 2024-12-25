@@ -61,6 +61,11 @@ VALUES
   (2, 'Crew', 40, -3.6, 135.26, 58.9, 0, 7.5, 9);
 
 
+
+DELETE FROM cargo WHERE ship_id=2;
+
+
+
 UPDATE container_slot SET container_id = NULL WHERE ship_id=2 AND project_id IS NOT DISTINCT FROM NULL;
 
 DELETE FROM container WHERE ship_id=2;
