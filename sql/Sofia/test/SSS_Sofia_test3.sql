@@ -37,13 +37,6 @@ UPDATE bulkhead_place SET bulkhead_id=(SELECT id FROM bulkhead WHERE name_engl='
 UPDATE bulkhead_place SET bulkhead_id=(SELECT id FROM bulkhead WHERE name_engl='Grain Bulkhead №2') WHERE ship_id=2 AND code='SP102';
 
 
-INSERT INTO cargo
-  (ship_id, name, mass, bound_x1, bound_x2, mass_shift_x, mass_shift_y, mass_shift_z, category_id)
-VALUES
-  (2, 'Crew', 40, -3.6, 135.26, 58.9, 0, 7.5, 9);
-
-
-
 DELETE FROM cargo WHERE ship_id=2;
 
 INSERT INTO cargo
@@ -51,6 +44,13 @@ INSERT INTO cargo
 VALUES
   (2, 'Aft', 4959, FALSE, TRUE, 29.45, 62.51, -5, 5, 1.1, 5.8, 45.98, 0, 4, 10),
   (2, 'Fwd', 4959, FALSE, TRUE, 76.81, 109.87, -5, 5, 1.1, 5.8, 93.34, 0, 4, 10);
+
+
+
+INSERT INTO cargo
+  (ship_id, name, mass, bound_x1, bound_x2, mass_shift_x, mass_shift_y, mass_shift_z, category_id)
+VALUES
+  (2, 'Crew', 40, -3.6, 135.26, 58.9, 0, 7.5, 9);
 
 
 

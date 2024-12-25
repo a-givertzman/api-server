@@ -36,6 +36,10 @@ UPDATE bulkhead_place SET bulkhead_id=(SELECT id FROM bulkhead WHERE name_engl='
 UPDATE bulkhead_place SET bulkhead_id=(SELECT id FROM bulkhead WHERE name_engl='Grain Bulkhead №2') WHERE ship_id=2 AND code='SP202';
 
 
+DELETE FROM cargo WHERE ship_id=2;
+
+
+
 INSERT INTO cargo
   (ship_id, name, mass, bound_x1, bound_x2, mass_shift_x, mass_shift_y, mass_shift_z, category_id)
 VALUES
@@ -43,9 +47,5 @@ VALUES
 
 UPDATE hold_compartment SET density=0.6268736344697932, mass=3948, category_id=11 WHERE ship_id=2 AND group_id=(SELECT id FROM hold_group WHERE ship_id=2 AND space_id=1001);
 UPDATE hold_compartment SET density=0.6270990342433835, mass=4683, category_id=11 WHERE ship_id=2 AND group_id=(SELECT id FROM hold_group WHERE ship_id=2 AND space_id=1002);
-
-
-DELETE FROM cargo WHERE ship_id=2;
-
 
 
