@@ -1,7 +1,7 @@
 DELETE FROM horizontal_area_stability WHERE ship_id=2;
 
 INSERT INTO horizontal_area_stability
-  (ship_id, name, value, shift_x, shift_y, shift_z)
+  (ship_id, name, value, shift_x, shift_z, shift_y)
 VALUES
   (2, 'Poopdeck', 204, 5.5, 11.6, 0),
   (2, 'Emergency generator room', 12, 3, 15, 3.5),
