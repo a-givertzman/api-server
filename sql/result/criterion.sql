@@ -43,7 +43,7 @@ VALUES
   (10, 'Максимальный угол ДСО', 'Heel with maximum LC', '>=', 1, 1),  
   (11, 'Первый максимум ДСО', 'Heel with first maximum LC', '>=', 1, 1),  
   (12, 'Исправленная метацентрическая высота', 'Min. metacentric height', '>=', 2, 1),
-  (14, 'Крен на циркуляции', 'Heel on turning', '>=', 1, 1),
+  (14, 'Крен на циркуляции', 'Heel on turning', '<=', 1, 1),
   (15, 'Крен от смещения зерна', 'Heel from grain displacement', '<=', 1, 1),
   (16, 'Площадь ДСО при смещении зерна', 'Area of LC from grain displacement', '>=', 5, 1),
   (17, 'Минимальная метацентрическая высота деления на отсеки', 'Min. metacentric height due to subdivision index', '>=', 2, 1),
