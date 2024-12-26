@@ -7,6 +7,8 @@ CREATE VIEW heel_trim_general AS SELECT
     (0.0 - x_origin_shift.value) AS "draft_ap_shift",
     draft_avg.value AS "draft_avg_value",
     draft_avg_shift.value AS "draft_avg_shift",
+    draft_mid.value AS "draft_mid_value",
+    (0.0 + lbp.value / 2.0) AS "draft_mid_shift",
     draft_ap.value AS "draft_ap_value",
     (lbp.value - x_origin_shift.value) AS "draft_fp_shift",
     heel.value AS "heel",
@@ -24,6 +26,11 @@ FULL OUTER JOIN (
 ) AS draft_avg_shift ON
     draft_fp.ship_id = draft_avg_shift.ship_id AND
     draft_fp.project_id IS NOT DISTINCT FROM draft_avg_shift.project_id
+FULL OUTER JOIN (
+    SELECT ship_id, project_id, result AS "value" FROM parameter_data WHERE parameter_id = 94
+) AS draft_mid ON
+    draft_fp.ship_id = draft_mid.ship_id AND
+    draft_fp.project_id IS NOT DISTINCT FROM draft_mid.project_id
 FULL OUTER JOIN (
     SELECT ship_id, project_id, result AS "value" FROM parameter_data WHERE parameter_id = 5
 ) AS draft_ap ON
