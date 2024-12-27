@@ -203,3 +203,5 @@ update hold_compartment set level=6 where id=208;
 COPY (select * from result_strength) to '/home/konstantin/Documents/str.txt';
 
 
+
+
