@@ -193,43 +193,43 @@ DROP TABLE IF EXISTS ship_geometry, ship_parameters, ship CASCADE;
 \i ./sql/db_checkpoint/db_checkpoint_create.sql
 --
 -- Initial non-deletable database checkpoint for Sofia vessel
--- \i ./sql/Sofia/db_checkpoint/insert.sql
+\i ./sql/Sofia/db_checkpoint/insert.sql
 
 --
 -- Insert checkpoints with tests for Sofia 
 --
 
 -- Test 1
--- \i ./sql/Sofia/test/SSS_Sofia_test1.sql
--- INSERT INTO
---     custom_metadata.db_checkpoint (name, database_info_id, is_deletable)
--- VALUES
---     ('Test 1', 1, FALSE);
--- UPDATE custom_metadata.db_checkpoint SET is_active = TRUE WHERE name = 'Empty';
+\i ./sql/Sofia/test/SSS_Sofia_test1.sql
+INSERT INTO
+    custom_metadata.db_checkpoint (name, database_info_id, is_deletable)
+VALUES
+    ('Test 1', 1, FALSE);
+UPDATE custom_metadata.db_checkpoint SET is_active = TRUE WHERE name = 'Empty';
 
--- -- Test 2
--- \i ./sql/Sofia/test/SSS_Sofia_test2.sql
--- INSERT INTO
---     custom_metadata.db_checkpoint (name, database_info_id, is_deletable)
--- VALUES
---     ('Test 2', 1, FALSE);
--- UPDATE custom_metadata.db_checkpoint SET is_active = TRUE WHERE name = 'Empty';
+-- Test 2
+\i ./sql/Sofia/test/SSS_Sofia_test2.sql
+INSERT INTO
+    custom_metadata.db_checkpoint (name, database_info_id, is_deletable)
+VALUES
+    ('Test 2', 1, FALSE);
+UPDATE custom_metadata.db_checkpoint SET is_active = TRUE WHERE name = 'Empty';
 
--- -- Test 3
--- \i ./sql/Sofia/test/SSS_Sofia_test3.sql
--- INSERT INTO
---     custom_metadata.db_checkpoint (name, database_info_id, is_deletable)
--- VALUES
---     ('Test 3', 1, FALSE);
--- UPDATE custom_metadata.db_checkpoint SET is_active = TRUE WHERE name = 'Empty';
+-- Test 3
+\i ./sql/Sofia/test/SSS_Sofia_test3.sql
+INSERT INTO
+    custom_metadata.db_checkpoint (name, database_info_id, is_deletable)
+VALUES
+    ('Test 3', 1, FALSE);
+UPDATE custom_metadata.db_checkpoint SET is_active = TRUE WHERE name = 'Empty';
 
--- -- Test 4
--- \i ./sql/Sofia/test/SSS_Sofia_test4.sql
--- INSERT INTO
---     custom_metadata.db_checkpoint (name, database_info_id, is_deletable)
--- VALUES
---     ('Test 4', 1, FALSE);
--- UPDATE custom_metadata.db_checkpoint SET is_active = TRUE WHERE name = 'Empty';
+-- Test 4
+\i ./sql/Sofia/test/SSS_Sofia_test4.sql
+INSERT INTO
+    custom_metadata.db_checkpoint (name, database_info_id, is_deletable)
+VALUES
+    ('Test 4', 1, FALSE);
+UPDATE custom_metadata.db_checkpoint SET is_active = TRUE WHERE name = 'Empty';
 
 -- Test 5, as default loading
 \i ./sql/Sofia/test/SSS_Sofia_test5.sql
