@@ -173,6 +173,13 @@ BEGIN
         -- Update last_loaded_at for current checkpoint;
         NEW.last_loaded_at = CURRENT_TIMESTAMP;
     END IF;
+    --
+    IF OLD.is_active = TRUE AND NEW.is_active = TRUE THEN
+        -- Restore database from dump file;
+        EXECUTE format('COPY (SELECT 1) TO PROGRAM ''/bin/pg_restore -U %s -d %s --clean --single-transaction --exclude-schema=custom_metadata -Fc %s'' ', database_owner, database_name, NEW.dump_path);
+        -- Update last_loaded_at for current checkpoint;
+        NEW.last_loaded_at = CURRENT_TIMESTAMP;
+    END IF;
 
     RETURN NEW;
 END; $$;
