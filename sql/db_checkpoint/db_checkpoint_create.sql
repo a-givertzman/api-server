@@ -1,9 +1,7 @@
 --
 -- Schema for storing custom metadata
 --
-DROP SCHEMA IF EXISTS custom_metadata CASCADE;
-
-CREATE SCHEMA custom_metadata;
+CREATE SCHEMA IF NOT EXISTS custom_metadata;
 --
 -- Relation for storing a database related information;
 --
