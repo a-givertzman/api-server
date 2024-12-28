@@ -77,6 +77,7 @@ VALUES
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 1 AND row_number = 0 AND tier_number = 2;
@@ -84,6 +85,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 3 AND row_number = 0 AND tier_number = 2;
@@ -91,6 +93,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 3 AND row_number = 1 AND tier_number = 2;
@@ -98,6 +101,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 3 AND row_number = 2 AND tier_number = 2;
@@ -105,6 +109,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 5 AND row_number = 0 AND tier_number = 2;
@@ -112,6 +117,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 5 AND row_number = 1 AND tier_number = 2;
@@ -119,6 +125,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 5 AND row_number = 2 AND tier_number = 2;
@@ -126,6 +133,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 5 AND row_number = 3 AND tier_number = 2;
@@ -133,6 +141,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 5 AND row_number = 4 AND tier_number = 2;
@@ -140,6 +149,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 7 AND row_number = 0 AND tier_number = 2;
@@ -147,6 +157,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 7 AND row_number = 1 AND tier_number = 2;
@@ -154,6 +165,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 7 AND row_number = 2 AND tier_number = 2;
@@ -161,6 +173,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 7 AND row_number = 3 AND tier_number = 2;
@@ -168,6 +181,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 7 AND row_number = 4 AND tier_number = 2;
@@ -175,6 +189,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 9 AND row_number = 0 AND tier_number = 2;
@@ -182,6 +197,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 9 AND row_number = 1 AND tier_number = 2;
@@ -189,6 +205,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 9 AND row_number = 2 AND tier_number = 2;
@@ -196,6 +213,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 9 AND row_number = 3 AND tier_number = 2;
@@ -203,6 +221,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 9 AND row_number = 4 AND tier_number = 2;
@@ -210,6 +229,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 11 AND row_number = 0 AND tier_number = 2;
@@ -217,6 +237,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 11 AND row_number = 1 AND tier_number = 2;
@@ -224,6 +245,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 11 AND row_number = 2 AND tier_number = 2;
@@ -231,6 +253,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 11 AND row_number = 3 AND tier_number = 2;
@@ -238,6 +261,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 11 AND row_number = 4 AND tier_number = 2;
@@ -245,6 +269,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 13 AND row_number = 0 AND tier_number = 2;
@@ -252,6 +277,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 13 AND row_number = 1 AND tier_number = 2;
@@ -259,6 +285,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 13 AND row_number = 2 AND tier_number = 2;
@@ -266,6 +293,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 13 AND row_number = 3 AND tier_number = 2;
@@ -273,6 +301,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 13 AND row_number = 4 AND tier_number = 2;
@@ -280,6 +309,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 15 AND row_number = 0 AND tier_number = 2;
@@ -287,6 +317,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 15 AND row_number = 1 AND tier_number = 2;
@@ -294,6 +325,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 15 AND row_number = 2 AND tier_number = 2;
@@ -301,6 +333,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 15 AND row_number = 3 AND tier_number = 2;
@@ -308,6 +341,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 15 AND row_number = 4 AND tier_number = 2;
@@ -315,6 +349,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 17 AND row_number = 0 AND tier_number = 2;
@@ -322,6 +357,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 17 AND row_number = 1 AND tier_number = 2;
@@ -329,6 +365,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 17 AND row_number = 2 AND tier_number = 2;
@@ -336,6 +373,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 17 AND row_number = 3 AND tier_number = 2;
@@ -343,6 +381,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 17 AND row_number = 4 AND tier_number = 2;
@@ -350,6 +389,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 19 AND row_number = 0 AND tier_number = 2;
@@ -357,6 +397,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 19 AND row_number = 1 AND tier_number = 2;
@@ -364,6 +405,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 19 AND row_number = 2 AND tier_number = 2;
@@ -371,6 +413,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 19 AND row_number = 3 AND tier_number = 2;
@@ -378,6 +421,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 19 AND row_number = 4 AND tier_number = 2;
@@ -385,6 +429,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 21 AND row_number = 0 AND tier_number = 2;
@@ -392,6 +437,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 21 AND row_number = 1 AND tier_number = 2;
@@ -399,6 +445,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 21 AND row_number = 2 AND tier_number = 2;
@@ -406,6 +453,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 21 AND row_number = 3 AND tier_number = 2;
@@ -413,6 +461,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 21 AND row_number = 4 AND tier_number = 2;
@@ -420,6 +469,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 23 AND row_number = 0 AND tier_number = 2;
@@ -427,6 +477,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 23 AND row_number = 1 AND tier_number = 2;
@@ -434,6 +485,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 23 AND row_number = 2 AND tier_number = 2;
@@ -441,6 +493,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 23 AND row_number = 3 AND tier_number = 2;
@@ -448,6 +501,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 23 AND row_number = 4 AND tier_number = 2;
@@ -455,6 +509,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 25 AND row_number = 0 AND tier_number = 2;
@@ -462,6 +517,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 25 AND row_number = 1 AND tier_number = 2;
@@ -469,6 +525,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 25 AND row_number = 2 AND tier_number = 2;
@@ -476,6 +533,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 25 AND row_number = 3 AND tier_number = 2;
@@ -483,6 +541,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 25 AND row_number = 4 AND tier_number = 2;
@@ -490,6 +549,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 27 AND row_number = 0 AND tier_number = 2;
@@ -497,6 +557,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 27 AND row_number = 1 AND tier_number = 2;
@@ -504,6 +565,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 27 AND row_number = 2 AND tier_number = 2;
@@ -511,6 +573,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 27 AND row_number = 3 AND tier_number = 2;
@@ -518,6 +581,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 27 AND row_number = 4 AND tier_number = 2;
@@ -525,6 +589,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 29 AND row_number = 0 AND tier_number = 2;
@@ -532,6 +597,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 29 AND row_number = 1 AND tier_number = 2;
@@ -539,6 +605,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 29 AND row_number = 2 AND tier_number = 2;
@@ -546,6 +613,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 1 AND row_number = 0 AND tier_number = 4;
@@ -553,6 +621,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 3 AND row_number = 0 AND tier_number = 4;
@@ -560,6 +629,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 3 AND row_number = 1 AND tier_number = 4;
@@ -567,6 +637,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 3 AND row_number = 2 AND tier_number = 4;
@@ -574,6 +645,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 5 AND row_number = 0 AND tier_number = 4;
@@ -581,6 +653,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 5 AND row_number = 1 AND tier_number = 4;
@@ -588,6 +661,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 5 AND row_number = 2 AND tier_number = 4;
@@ -595,6 +669,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 5 AND row_number = 3 AND tier_number = 4;
@@ -602,6 +677,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 5 AND row_number = 4 AND tier_number = 4;
@@ -609,6 +685,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 7 AND row_number = 0 AND tier_number = 4;
@@ -616,6 +693,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 7 AND row_number = 1 AND tier_number = 4;
@@ -623,6 +701,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 7 AND row_number = 2 AND tier_number = 4;
@@ -630,6 +709,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 7 AND row_number = 3 AND tier_number = 4;
@@ -637,6 +717,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 7 AND row_number = 4 AND tier_number = 4;
@@ -644,6 +725,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 9 AND row_number = 0 AND tier_number = 4;
@@ -651,6 +733,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 9 AND row_number = 1 AND tier_number = 4;
@@ -658,6 +741,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 9 AND row_number = 2 AND tier_number = 4;
@@ -665,6 +749,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 9 AND row_number = 3 AND tier_number = 4;
@@ -672,6 +757,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 9 AND row_number = 4 AND tier_number = 4;
@@ -679,6 +765,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 11 AND row_number = 0 AND tier_number = 4;
@@ -686,6 +773,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 11 AND row_number = 1 AND tier_number = 4;
@@ -693,6 +781,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 11 AND row_number = 2 AND tier_number = 4;
@@ -700,6 +789,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 11 AND row_number = 3 AND tier_number = 4;
@@ -707,6 +797,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 11 AND row_number = 4 AND tier_number = 4;
@@ -714,6 +805,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 13 AND row_number = 0 AND tier_number = 4;
@@ -721,6 +813,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 13 AND row_number = 1 AND tier_number = 4;
@@ -728,6 +821,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 13 AND row_number = 2 AND tier_number = 4;
@@ -735,6 +829,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 13 AND row_number = 3 AND tier_number = 4;
@@ -742,6 +837,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 13 AND row_number = 4 AND tier_number = 4;
@@ -749,6 +845,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 15 AND row_number = 0 AND tier_number = 4;
@@ -756,6 +853,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 15 AND row_number = 1 AND tier_number = 4;
@@ -763,6 +861,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 15 AND row_number = 2 AND tier_number = 4;
@@ -770,6 +869,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 15 AND row_number = 3 AND tier_number = 4;
@@ -777,6 +877,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 15 AND row_number = 4 AND tier_number = 4;
@@ -784,6 +885,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 17 AND row_number = 0 AND tier_number = 4;
@@ -791,6 +893,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 17 AND row_number = 1 AND tier_number = 4;
@@ -798,6 +901,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 17 AND row_number = 2 AND tier_number = 4;
@@ -805,6 +909,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 17 AND row_number = 3 AND tier_number = 4;
@@ -812,6 +917,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 17 AND row_number = 4 AND tier_number = 4;
@@ -819,6 +925,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 19 AND row_number = 0 AND tier_number = 4;
@@ -826,6 +933,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 19 AND row_number = 1 AND tier_number = 4;
@@ -833,6 +941,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 19 AND row_number = 2 AND tier_number = 4;
@@ -840,6 +949,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 19 AND row_number = 3 AND tier_number = 4;
@@ -847,6 +957,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 19 AND row_number = 4 AND tier_number = 4;
@@ -854,6 +965,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 21 AND row_number = 0 AND tier_number = 4;
@@ -861,6 +973,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 21 AND row_number = 1 AND tier_number = 4;
@@ -868,6 +981,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 21 AND row_number = 2 AND tier_number = 4;
@@ -875,6 +989,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 21 AND row_number = 3 AND tier_number = 4;
@@ -882,6 +997,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 21 AND row_number = 4 AND tier_number = 4;
@@ -889,6 +1005,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 23 AND row_number = 0 AND tier_number = 4;
@@ -896,6 +1013,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 23 AND row_number = 1 AND tier_number = 4;
@@ -903,6 +1021,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 23 AND row_number = 2 AND tier_number = 4;
@@ -910,6 +1029,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 23 AND row_number = 3 AND tier_number = 4;
@@ -917,6 +1037,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 23 AND row_number = 4 AND tier_number = 4;
@@ -924,6 +1045,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 25 AND row_number = 0 AND tier_number = 4;
@@ -931,6 +1053,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 25 AND row_number = 1 AND tier_number = 4;
@@ -938,6 +1061,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 25 AND row_number = 2 AND tier_number = 4;
@@ -945,6 +1069,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 25 AND row_number = 3 AND tier_number = 4;
@@ -952,6 +1077,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 25 AND row_number = 4 AND tier_number = 4;
@@ -959,6 +1085,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 27 AND row_number = 0 AND tier_number = 4;
@@ -966,6 +1093,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 27 AND row_number = 1 AND tier_number = 4;
@@ -973,6 +1101,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 27 AND row_number = 2 AND tier_number = 4;
@@ -980,6 +1109,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 27 AND row_number = 3 AND tier_number = 4;
@@ -987,6 +1117,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 27 AND row_number = 4 AND tier_number = 4;
@@ -994,6 +1125,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 29 AND row_number = 0 AND tier_number = 4;
@@ -1001,6 +1133,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 29 AND row_number = 1 AND tier_number = 4;
@@ -1008,6 +1141,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 29 AND row_number = 2 AND tier_number = 4;
@@ -1015,6 +1149,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 1 AND row_number = 1 AND tier_number = 4;
@@ -1022,6 +1157,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 1 AND row_number = 2 AND tier_number = 4;
@@ -1029,6 +1165,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 29 AND row_number = 3 AND tier_number = 4;
@@ -1036,6 +1173,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 29 AND row_number = 4 AND tier_number = 4;
@@ -1043,6 +1181,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 1 AND row_number = 0 AND tier_number = 6;
@@ -1050,6 +1189,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 3 AND row_number = 0 AND tier_number = 6;
@@ -1057,6 +1197,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 3 AND row_number = 1 AND tier_number = 6;
@@ -1064,6 +1205,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 3 AND row_number = 2 AND tier_number = 6;
@@ -1071,6 +1213,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 5 AND row_number = 0 AND tier_number = 6;
@@ -1078,6 +1221,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 5 AND row_number = 1 AND tier_number = 6;
@@ -1085,6 +1229,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 5 AND row_number = 2 AND tier_number = 6;
@@ -1092,6 +1237,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 5 AND row_number = 3 AND tier_number = 6;
@@ -1099,6 +1245,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 5 AND row_number = 4 AND tier_number = 6;
@@ -1106,6 +1253,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 7 AND row_number = 0 AND tier_number = 6;
@@ -1113,6 +1261,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 7 AND row_number = 1 AND tier_number = 6;
@@ -1120,6 +1269,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 7 AND row_number = 2 AND tier_number = 6;
@@ -1127,6 +1277,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 7 AND row_number = 3 AND tier_number = 6;
@@ -1134,6 +1285,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 7 AND row_number = 4 AND tier_number = 6;
@@ -1141,6 +1293,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 9 AND row_number = 0 AND tier_number = 6;
@@ -1148,6 +1301,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 9 AND row_number = 1 AND tier_number = 6;
@@ -1155,6 +1309,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 9 AND row_number = 2 AND tier_number = 6;
@@ -1162,6 +1317,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 9 AND row_number = 3 AND tier_number = 6;
@@ -1169,6 +1325,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 9 AND row_number = 4 AND tier_number = 6;
@@ -1176,6 +1333,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 11 AND row_number = 0 AND tier_number = 6;
@@ -1183,6 +1341,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 11 AND row_number = 1 AND tier_number = 6;
@@ -1190,6 +1349,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 11 AND row_number = 2 AND tier_number = 6;
@@ -1197,6 +1357,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 11 AND row_number = 3 AND tier_number = 6;
@@ -1204,6 +1365,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 11 AND row_number = 4 AND tier_number = 6;
@@ -1211,6 +1373,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 13 AND row_number = 0 AND tier_number = 6;
@@ -1218,6 +1381,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 13 AND row_number = 1 AND tier_number = 6;
@@ -1225,6 +1389,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 13 AND row_number = 2 AND tier_number = 6;
@@ -1232,6 +1397,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 13 AND row_number = 3 AND tier_number = 6;
@@ -1239,6 +1405,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 13 AND row_number = 4 AND tier_number = 6;
@@ -1246,6 +1413,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 15 AND row_number = 0 AND tier_number = 6;
@@ -1253,6 +1421,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 15 AND row_number = 1 AND tier_number = 6;
@@ -1260,6 +1429,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 15 AND row_number = 2 AND tier_number = 6;
@@ -1267,6 +1437,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 15 AND row_number = 3 AND tier_number = 6;
@@ -1274,6 +1445,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 15 AND row_number = 4 AND tier_number = 6;
@@ -1281,6 +1453,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 17 AND row_number = 0 AND tier_number = 6;
@@ -1288,6 +1461,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 17 AND row_number = 1 AND tier_number = 6;
@@ -1295,6 +1469,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 17 AND row_number = 2 AND tier_number = 6;
@@ -1302,6 +1477,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 17 AND row_number = 3 AND tier_number = 6;
@@ -1309,6 +1485,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 17 AND row_number = 4 AND tier_number = 6;
@@ -1316,6 +1493,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 19 AND row_number = 0 AND tier_number = 6;
@@ -1323,6 +1501,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 19 AND row_number = 1 AND tier_number = 6;
@@ -1330,6 +1509,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 19 AND row_number = 2 AND tier_number = 6;
@@ -1337,6 +1517,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 19 AND row_number = 3 AND tier_number = 6;
@@ -1344,6 +1525,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 19 AND row_number = 4 AND tier_number = 6;
@@ -1351,6 +1533,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 21 AND row_number = 0 AND tier_number = 6;
@@ -1358,6 +1541,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 21 AND row_number = 1 AND tier_number = 6;
@@ -1365,6 +1549,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 21 AND row_number = 2 AND tier_number = 6;
@@ -1372,6 +1557,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 21 AND row_number = 3 AND tier_number = 6;
@@ -1379,6 +1565,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 21 AND row_number = 4 AND tier_number = 6;
@@ -1386,6 +1573,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 23 AND row_number = 0 AND tier_number = 6;
@@ -1393,6 +1581,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 23 AND row_number = 1 AND tier_number = 6;
@@ -1400,6 +1589,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 23 AND row_number = 2 AND tier_number = 6;
@@ -1407,6 +1597,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 23 AND row_number = 3 AND tier_number = 6;
@@ -1414,6 +1605,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 23 AND row_number = 4 AND tier_number = 6;
@@ -1421,6 +1613,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 25 AND row_number = 0 AND tier_number = 6;
@@ -1428,6 +1621,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 25 AND row_number = 1 AND tier_number = 6;
@@ -1435,6 +1629,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 25 AND row_number = 2 AND tier_number = 6;
@@ -1442,6 +1637,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 25 AND row_number = 3 AND tier_number = 6;
@@ -1449,6 +1645,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 25 AND row_number = 4 AND tier_number = 6;
@@ -1456,6 +1653,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 27 AND row_number = 0 AND tier_number = 6;
@@ -1463,6 +1661,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 27 AND row_number = 1 AND tier_number = 6;
@@ -1470,6 +1669,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 27 AND row_number = 2 AND tier_number = 6;
@@ -1477,6 +1677,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 27 AND row_number = 3 AND tier_number = 6;
@@ -1484,6 +1685,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 27 AND row_number = 4 AND tier_number = 6;
@@ -1491,6 +1693,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 29 AND row_number = 0 AND tier_number = 6;
@@ -1498,6 +1701,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 29 AND row_number = 1 AND tier_number = 6;
@@ -1505,6 +1709,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 29 AND row_number = 2 AND tier_number = 6;
@@ -1512,6 +1717,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 1 AND row_number = 1 AND tier_number = 6;
@@ -1519,6 +1725,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 1 AND row_number = 2 AND tier_number = 6;
@@ -1526,6 +1733,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 29 AND row_number = 3 AND tier_number = 6;
@@ -1533,6 +1741,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 29 AND row_number = 4 AND tier_number = 6;
@@ -1540,6 +1749,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 3 AND row_number = 3 AND tier_number = 6;
@@ -1547,6 +1757,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 3 AND row_number = 4 AND tier_number = 6;
@@ -1554,6 +1765,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 1 AND row_number = 0 AND tier_number = 8;
@@ -1561,6 +1773,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 3 AND row_number = 0 AND tier_number = 8;
@@ -1568,6 +1781,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 3 AND row_number = 1 AND tier_number = 8;
@@ -1575,6 +1789,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 3 AND row_number = 2 AND tier_number = 8;
@@ -1582,6 +1797,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 5 AND row_number = 0 AND tier_number = 8;
@@ -1589,6 +1805,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 5 AND row_number = 1 AND tier_number = 8;
@@ -1596,6 +1813,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 5 AND row_number = 2 AND tier_number = 8;
@@ -1603,6 +1821,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 5 AND row_number = 3 AND tier_number = 8;
@@ -1610,6 +1829,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 5 AND row_number = 4 AND tier_number = 8;
@@ -1617,6 +1837,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 7 AND row_number = 0 AND tier_number = 8;
@@ -1624,6 +1845,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 7 AND row_number = 1 AND tier_number = 8;
@@ -1631,6 +1853,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 7 AND row_number = 2 AND tier_number = 8;
@@ -1638,6 +1861,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 7 AND row_number = 3 AND tier_number = 8;
@@ -1645,6 +1869,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 7 AND row_number = 4 AND tier_number = 8;
@@ -1652,6 +1877,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 9 AND row_number = 0 AND tier_number = 8;
@@ -1659,6 +1885,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 9 AND row_number = 1 AND tier_number = 8;
@@ -1666,6 +1893,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 9 AND row_number = 2 AND tier_number = 8;
@@ -1673,6 +1901,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 9 AND row_number = 3 AND tier_number = 8;
@@ -1680,6 +1909,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 9 AND row_number = 4 AND tier_number = 8;
@@ -1687,6 +1917,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 11 AND row_number = 0 AND tier_number = 8;
@@ -1694,6 +1925,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 11 AND row_number = 1 AND tier_number = 8;
@@ -1701,6 +1933,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 11 AND row_number = 2 AND tier_number = 8;
@@ -1708,6 +1941,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 11 AND row_number = 3 AND tier_number = 8;
@@ -1715,6 +1949,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 11 AND row_number = 4 AND tier_number = 8;
@@ -1722,6 +1957,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 13 AND row_number = 0 AND tier_number = 8;
@@ -1729,6 +1965,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 13 AND row_number = 1 AND tier_number = 8;
@@ -1736,6 +1973,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 13 AND row_number = 2 AND tier_number = 8;
@@ -1743,6 +1981,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 13 AND row_number = 3 AND tier_number = 8;
@@ -1750,6 +1989,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 13 AND row_number = 4 AND tier_number = 8;
@@ -1757,6 +1997,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 15 AND row_number = 0 AND tier_number = 8;
@@ -1764,6 +2005,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 15 AND row_number = 1 AND tier_number = 8;
@@ -1771,6 +2013,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 15 AND row_number = 2 AND tier_number = 8;
@@ -1778,6 +2021,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 15 AND row_number = 3 AND tier_number = 8;
@@ -1785,6 +2029,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 15 AND row_number = 4 AND tier_number = 8;
@@ -1792,6 +2037,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 17 AND row_number = 0 AND tier_number = 8;
@@ -1799,6 +2045,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 17 AND row_number = 1 AND tier_number = 8;
@@ -1806,6 +2053,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 17 AND row_number = 2 AND tier_number = 8;
@@ -1813,6 +2061,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 17 AND row_number = 3 AND tier_number = 8;
@@ -1820,6 +2069,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 17 AND row_number = 4 AND tier_number = 8;
@@ -1827,6 +2077,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 19 AND row_number = 0 AND tier_number = 8;
@@ -1834,6 +2085,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 19 AND row_number = 1 AND tier_number = 8;
@@ -1841,6 +2093,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 19 AND row_number = 2 AND tier_number = 8;
@@ -1848,6 +2101,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 19 AND row_number = 3 AND tier_number = 8;
@@ -1855,6 +2109,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 19 AND row_number = 4 AND tier_number = 8;
@@ -1862,6 +2117,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 21 AND row_number = 0 AND tier_number = 8;
@@ -1869,6 +2125,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 21 AND row_number = 1 AND tier_number = 8;
@@ -1876,6 +2133,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 21 AND row_number = 2 AND tier_number = 8;
@@ -1883,6 +2141,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 21 AND row_number = 3 AND tier_number = 8;
@@ -1890,6 +2149,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 21 AND row_number = 4 AND tier_number = 8;
@@ -1897,6 +2157,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 23 AND row_number = 0 AND tier_number = 8;
@@ -1904,6 +2165,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 23 AND row_number = 1 AND tier_number = 8;
@@ -1911,6 +2173,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 23 AND row_number = 2 AND tier_number = 8;
@@ -1918,6 +2181,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 23 AND row_number = 3 AND tier_number = 8;
@@ -1925,6 +2189,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 23 AND row_number = 4 AND tier_number = 8;
@@ -1932,6 +2197,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 25 AND row_number = 0 AND tier_number = 8;
@@ -1939,6 +2205,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 25 AND row_number = 1 AND tier_number = 8;
@@ -1946,6 +2213,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 25 AND row_number = 2 AND tier_number = 8;
@@ -1953,6 +2221,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 25 AND row_number = 3 AND tier_number = 8;
@@ -1960,6 +2229,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 25 AND row_number = 4 AND tier_number = 8;
@@ -1967,6 +2237,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 27 AND row_number = 0 AND tier_number = 8;
@@ -1974,6 +2245,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 27 AND row_number = 1 AND tier_number = 8;
@@ -1981,6 +2253,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 27 AND row_number = 2 AND tier_number = 8;
@@ -1988,6 +2261,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 27 AND row_number = 3 AND tier_number = 8;
@@ -1995,6 +2269,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 27 AND row_number = 4 AND tier_number = 8;
@@ -2002,6 +2277,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 29 AND row_number = 0 AND tier_number = 8;
@@ -2009,6 +2285,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 29 AND row_number = 1 AND tier_number = 8;
@@ -2016,6 +2293,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 29 AND row_number = 2 AND tier_number = 8;
@@ -2023,6 +2301,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 1 AND row_number = 1 AND tier_number = 8;
@@ -2030,6 +2309,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 1 AND row_number = 2 AND tier_number = 8;
@@ -2037,6 +2317,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 29 AND row_number = 3 AND tier_number = 8;
@@ -2044,6 +2325,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 29 AND row_number = 4 AND tier_number = 8;
@@ -2051,6 +2333,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 3 AND row_number = 3 AND tier_number = 8;
@@ -2058,6 +2341,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 3 AND row_number = 4 AND tier_number = 8;
@@ -2065,6 +2349,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 11 AND row_number = 3 AND tier_number = 82;
@@ -2072,6 +2357,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 13 AND row_number = 3 AND tier_number = 82;
@@ -2079,6 +2365,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 15 AND row_number = 3 AND tier_number = 82;
@@ -2086,6 +2373,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 17 AND row_number = 3 AND tier_number = 82;
@@ -2093,6 +2381,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 19 AND row_number = 3 AND tier_number = 82;
@@ -2100,6 +2389,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 21 AND row_number = 3 AND tier_number = 82;
@@ -2107,6 +2397,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 23 AND row_number = 3 AND tier_number = 82;
@@ -2114,6 +2405,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 25 AND row_number = 3 AND tier_number = 82;
@@ -2121,6 +2413,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 27 AND row_number = 3 AND tier_number = 82;
@@ -2128,6 +2421,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 29 AND row_number = 3 AND tier_number = 82;
@@ -2135,6 +2429,7 @@ WHERE
 UPDATE
   container_slot
 SET
+  is_active = TRUE,
   container_id = (SELECT id FROM container WHERE ship_id = 2 AND gross_mass = 12)
 WHERE
   ship_id = 2 AND project_id IS NOT DISTINCT FROM NULL AND bay_number = 31 AND row_number = 3 AND tier_number = 82;;
