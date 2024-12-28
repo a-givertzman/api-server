@@ -210,4 +210,4 @@ UPDATE ON custom_metadata.db_checkpoint FOR EACH ROW EXECUTE PROCEDURE custom_me
 INSERT INTO
     custom_metadata.db_info (id, database_name, data_schema_name, database_owner, backups_base_path)
 VALUES
-    (1, 'sss-computing', 'public', 'postgres', '/home/boardtrix');
+    (1, 'sss-computing', 'public', 'sss-computing', '/home/boardtrix');
