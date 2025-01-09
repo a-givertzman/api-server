@@ -113,12 +113,20 @@ BEGIN
     SELECT 
         *
     INTO 
-        res
+        r1
     FROM compartment_curve t
     WHERE ship_id = src_ship_id AND space_id = src_space_id AND src_volume = volume;
 
     -- если нашли точное значение возвращаем его
-    if res IS NULL THEN -- если не нашли ищем два ближайших и интерполируем
+    if r1 IS NOT NULL THEN 
+        res.level = r1.level;  
+        res.volume = r1.volume;
+        res.mass_shift_x = r1.buoyancy_x;
+        res.mass_shift_y = r1.buoyancy_y;
+        res.mass_shift_z = r1.buoyancy_z;
+        res.m_f_s_x = r1.trans_inertia_moment_self;
+        res.m_f_s_y = r1.long_inertia_moment_self;        
+    ELSE -- если не нашли ищем два ближайших и интерполируем
         SELECT *
         INTO r1
         FROM compartment_curve t
@@ -138,9 +146,21 @@ BEGIN
             r2.volume, r2.level, r2.trans_inertia_moment_self, r2.long_inertia_moment_self;
 
         IF r2 IS NULL THEN
-            res = r1;
+            res.level = r1.level;  
+            res.volume = r1.volume;
+            res.mass_shift_x = r1.buoyancy_x;
+            res.mass_shift_y = r1.buoyancy_y;
+            res.mass_shift_z = r1.buoyancy_z;
+            res.m_f_s_x = r1.trans_inertia_moment_self;
+            res.m_f_s_y = r1.long_inertia_moment_self; 
         ELSIF r1 IS NULL THEN
-            res = r2;
+            res.level = r2.level;  
+            res.volume = r2.volume;
+            res.mass_shift_x = r2.buoyancy_x;
+            res.mass_shift_y = r2.buoyancy_y;
+            res.mass_shift_z = r2.buoyancy_z;
+            res.m_f_s_x = r2.trans_inertia_moment_self;
+            res.m_f_s_y = r2.long_inertia_moment_self; 
         ELSE
             IF r1.volume = r2.volume THEN
                 coeff1 = 1;
@@ -282,13 +302,21 @@ BEGIN
     SELECT 
         *
     INTO 
-        res
+        r1
     FROM compartment_curve t
     WHERE ship_id = src_ship_id AND space_id = src_space_id AND src_level = level;
 
     -- если нашли точное значение возвращаем его
-    if res IS NULL THEN -- если не нашли ищем два ближайших и интерполируем
-    SELECT *
+    if r1 IS NOT NULL THEN 
+        res.level = r1.level;  
+        res.volume = r1.volume;
+        res.mass_shift_x = r1.buoyancy_x;
+        res.mass_shift_y = r1.buoyancy_y;
+        res.mass_shift_z = r1.buoyancy_z;    
+        res.m_f_s_x = r1.trans_inertia_moment_self;
+        res.m_f_s_y = r1.long_inertia_moment_self;
+    ELSE -- если не нашли ищем два ближайших и интерполируем
+        SELECT *
         INTO r1
         FROM compartment_curve t
         WHERE ship_id = src_ship_id AND space_id = src_space_id AND src_level < level
@@ -303,9 +331,21 @@ BEGIN
         RAISE NOTICE 'get_compartment_curve_level res r1 volume:[%] level:[%]  r2 volume:[%] level:[%] ', r1.volume, r1.level, r2.volume, r2.level;
 
         IF r2 IS NULL THEN
-            res = r1;
+            res.level = r1.level;  
+            res.volume = r1.volume;
+            res.mass_shift_x = r1.buoyancy_x;
+            res.mass_shift_y = r1.buoyancy_y;
+            res.mass_shift_z = r1.buoyancy_z;    
+            res.m_f_s_x = r1.trans_inertia_moment_self;
+            res.m_f_s_y = r1.long_inertia_moment_self;
         ELSIF r1 IS NULL THEN
-            res = r2;
+            res.level = r2.level;  
+            res.volume = r2.volume;
+            res.mass_shift_x = r2.buoyancy_x;
+            res.mass_shift_y = r2.buoyancy_y;
+            res.mass_shift_z = r2.buoyancy_z;    
+            res.m_f_s_x = r2.trans_inertia_moment_self;
+            res.m_f_s_y = r2.long_inertia_moment_self;
         ELSE
             IF r1.level = r2.level THEN
                 coeff1 = 0;
