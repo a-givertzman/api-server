@@ -1,7 +1,7 @@
-UPDATE ship SET limit_area='sea' WHERE id=2;
-UPDATE ship_parameters SET value=1.025 WHERE key='Water Density' AND ship_id=2;
-UPDATE ship SET icing_type_id=(SELECT id FROM ship_icing WHERE icing_type='none') WHERE id=2;
-UPDATE ship_parameters SET value=0 WHERE key='Wetting of deck timber' AND ship_id=2;
+UPDATE voyage SET water_area_id=1 WHERE ship_id=2;
+UPDATE voyage SET density=1.025 WHERE ship_id=2;
+UPDATE voyage SET icing_type_id=(SELECT id FROM ship_icing WHERE icing_type='none') WHERE id=2;
+UPDATE voyage SET wetting_timber=0 WHERE ship_id=2;
 
 
 UPDATE compartment SET density=1.025, mass=227.2, use_max_m_f_s=FALSE WHERE ship_id=2 AND space_id=205;
