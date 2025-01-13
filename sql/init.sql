@@ -50,7 +50,7 @@ DROP TABLE IF EXISTS ship_geometry, ship_parameters, ship CASCADE;
 \i ./sql/draft/bow_board.sql
 --
 -- Ship voyage relations
-\i ./sql/voyage/load_line_types.sql
+\i ./sql/voyage/load_line_type.sql
 \i ./sql/voyage/icing_timber.sql
 \i ./sql/voyage/icing.sql
 \i ./sql/voyage/ship_water_area.sql
