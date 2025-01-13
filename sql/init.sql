@@ -15,10 +15,7 @@
 -- Ship data
 DROP TABLE IF EXISTS ship_geometry, ship_parameters, ship CASCADE;
 \i ./sql/ship/geometry.sql
-\i ./sql/ship/icing_timber.sql
-\i ./sql/ship/icing.sql
 \i ./sql/ship/type.sql
-\i ./sql/ship/ship_water_area.sql
 \i ./sql/ship/ship.sql
 \i ./sql/ship/parameters.sql
 --
@@ -53,6 +50,10 @@ DROP TABLE IF EXISTS ship_geometry, ship_parameters, ship CASCADE;
 \i ./sql/draft/bow_board.sql
 --
 -- Ship voyage relations
+\i ./sql/voyage/ship_load_line_types.sql
+\i ./sql/voyage/icing_timber.sql
+\i ./sql/voyage/icing.sql
+\i ./sql/voyage/ship_water_area.sql
 \i ./sql/voyage/voyage_create.sql
 \i ./sql/voyage/voyage_waypoint_create.sql
 --
@@ -93,10 +94,6 @@ DROP TABLE IF EXISTS ship_geometry, ship_parameters, ship CASCADE;
 \i ./sql/result/draft_mark.sql
 \i ./sql/result/load_line.sql
 \i ./sql/result/screw.sql
-
---
--- Holds types of load lines applicable to the ship
-\i ./sql/ship/ship_load_line_types.sql
 
 --
 --triggers

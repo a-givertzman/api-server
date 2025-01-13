@@ -14,16 +14,13 @@ VALUES
 }');
 
 INSERT INTO ship
-  (id, name, project, IMO, ship_type_id, icing_type_id, icing_timber_type_id, navigation_area_id, freeboard_type, geometry_id)
+  (id, name, project, IMO, ship_type_id, navigation_area_id, freeboard_type, geometry_id)
 VALUES
-  (1, 'M/V "YURIY ARSHENEVSKIY"', 'АРК-2023', 1072191, 1, 1, 1, 3, 'B', 1);  
+  (1, 'M/V "YURIY ARSHENEVSKIY"', 'АРК-2023', 1072191, 1, 3, 'B', 1);  
 
 INSERT INTO ship_parameters
   (ship_id, key, value, unit_id)
 VALUES
-  (1, 'Wetting of deck timber', 10, NULL),
-  (1, 'Ship operating speed', 16, 14),
-  (1, 'Water Density', 1.025, 15),
   (1, 'Keel area', 24.69, 3),
   (1, 'L.O.A', 119.95, 2),
   (1, 'LBP', 118.388, 2),
