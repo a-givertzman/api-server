@@ -110,48 +110,76 @@ DECLARE
 BEGIN 
     RAISE NOTICE 'get_compartment_curve_volume ship_id:[%] space_id:[%] volume:[%]', src_ship_id, src_space_id, src_volume;
 
-    SELECT *
-    INTO r1
+    SELECT 
+        *
+    INTO 
+        r1
     FROM compartment_curve t
-    WHERE ship_id = src_ship_id AND space_id = src_space_id
-    ORDER BY ABS(src_volume - t.volume) ASC LIMIT 1;
+    WHERE ship_id = src_ship_id AND space_id = src_space_id AND src_volume = volume;
 
-    SELECT *
-    INTO r2
-    FROM compartment_curve t
-    WHERE ship_id = src_ship_id AND space_id = src_space_id
-    ORDER BY ABS(src_volume - t.volume) ASC LIMIT 1 OFFSET 1;
+    -- если нашли точное значение возвращаем его
+    if r1 IS NOT NULL THEN 
+        res.level = r1.level;  
+        res.volume = r1.volume;
+        res.mass_shift_x = r1.buoyancy_x;
+        res.mass_shift_y = r1.buoyancy_y;
+        res.mass_shift_z = r1.buoyancy_z;
+        res.m_f_s_x = r1.trans_inertia_moment_self;
+        res.m_f_s_y = r1.long_inertia_moment_self;        
+    ELSE -- если не нашли ищем два ближайших и интерполируем
+        SELECT *
+        INTO r1
+        FROM compartment_curve t
+        WHERE ship_id = src_ship_id AND space_id = src_space_id AND src_volume < volume
+        ORDER BY ABS(src_volume - t.volume) ASC LIMIT 1;
 
-    RAISE NOTICE 'get_compartment_curve_volume res 
-        r1 volume:[%] level:[%]  trans_inertia_moment_self:[%] long_inertia_moment_self:[%]
-        r2 volume:[%] level:[%]  trans_inertia_moment_self:[%] long_inertia_moment_self:[%]', 
-        r1.volume, r1.level, r1.trans_inertia_moment_self, r1.long_inertia_moment_self,
-        r2.volume, r2.level, r2.trans_inertia_moment_self, r2.long_inertia_moment_self;
+        SELECT *
+        INTO r2
+        FROM compartment_curve t
+        WHERE ship_id = src_ship_id AND space_id = src_space_id AND src_volume > volume
+        ORDER BY ABS(src_volume - t.volume) ASC LIMIT 1;
 
-    IF (r1.volume < src_volume AND r2.volume < r1.volume) THEN
-        src_volume = r1.volume;
+        RAISE NOTICE 'get_compartment_curve_volume res 
+            r1 volume:[%] level:[%]  trans_inertia_moment_self:[%] long_inertia_moment_self:[%]
+            r2 volume:[%] level:[%]  trans_inertia_moment_self:[%] long_inertia_moment_self:[%]', 
+            r1.volume, r1.level, r1.trans_inertia_moment_self, r1.long_inertia_moment_self,
+            r2.volume, r2.level, r2.trans_inertia_moment_self, r2.long_inertia_moment_self;
+
+        IF r2 IS NULL THEN
+            res.level = r1.level;  
+            res.volume = r1.volume;
+            res.mass_shift_x = r1.buoyancy_x;
+            res.mass_shift_y = r1.buoyancy_y;
+            res.mass_shift_z = r1.buoyancy_z;
+            res.m_f_s_x = r1.trans_inertia_moment_self;
+            res.m_f_s_y = r1.long_inertia_moment_self; 
+        ELSIF r1 IS NULL THEN
+            res.level = r2.level;  
+            res.volume = r2.volume;
+            res.mass_shift_x = r2.buoyancy_x;
+            res.mass_shift_y = r2.buoyancy_y;
+            res.mass_shift_z = r2.buoyancy_z;
+            res.m_f_s_x = r2.trans_inertia_moment_self;
+            res.m_f_s_y = r2.long_inertia_moment_self; 
+        ELSE
+            IF r1.volume = r2.volume THEN
+                coeff1 = 1;
+                coeff2 = 0;
+            ELSE 
+                delta = r1.volume - r2.volume;
+                coeff1 = (r1.volume - src_volume) / delta;
+                coeff2 = (src_volume - r2.volume) / delta;
+            END IF;
+
+            res.level = r2.level*coeff1 + r1.level*coeff2;  
+            res.volume = r2.volume*coeff1 + r1.volume*coeff2;
+            res.mass_shift_x = r2.buoyancy_x*coeff1 + r1.buoyancy_x*coeff2;
+            res.mass_shift_y = r2.buoyancy_y*coeff1 + r1.buoyancy_y*coeff2;
+            res.mass_shift_z = r2.buoyancy_z*coeff1 + r1.buoyancy_z*coeff2;
+            res.m_f_s_x = r2.trans_inertia_moment_self*coeff1 + r1.trans_inertia_moment_self*coeff2;
+            res.m_f_s_y = r2.long_inertia_moment_self*coeff1 + r1.long_inertia_moment_self*coeff2;
+        END IF;    
     END IF;
-
-    IF (r1.volume > src_volume AND r2.volume > r1.volume)THEN
-        src_volume = r1.volume;
-    END IF;
-
-    IF r1.volume = r2.volume THEN
-        coeff1 = 1;
-        coeff2 = 0;
-    ELSE 
-        delta = r1.volume - r2.volume;
-        coeff1 = (r1.volume - src_volume) / delta;
-        coeff2 = (src_volume - r2.volume) / delta;
-    END IF;
-
-    res.level = r2.level*coeff1 + r1.level*coeff2;  
-    res.volume = r2.volume*coeff1 + r1.volume*coeff2;
-    res.mass_shift_x = r2.buoyancy_x*coeff1 + r1.buoyancy_x*coeff2;
-    res.mass_shift_y = r2.buoyancy_y*coeff1 + r1.buoyancy_y*coeff2;
-    res.mass_shift_z = r2.buoyancy_z*coeff1 + r1.buoyancy_z*coeff2;
-    res.m_f_s_x = r2.trans_inertia_moment_self*coeff1 + r1.trans_inertia_moment_self*coeff2;
-    res.m_f_s_y = r2.long_inertia_moment_self*coeff1 + r1.long_inertia_moment_self*coeff2;
 
     RAISE NOTICE 'get_compartment_curve_volume OK, res level:[%] volume:[%] m_f_s_y:[%] m_f_s_x:[%] coeff1:[%] coeff2:[%]', 
         res.level, res.volume, res.m_f_s_y, res.m_f_s_x, coeff1, coeff2;
@@ -181,7 +209,7 @@ BEGIN
     INTO r2
     FROM compartment_curve t
     WHERE ship_id = src_ship_id AND space_id = src_space_id
-    ORDER BY t.long_inertia_moment_self DESC LIMIT 1 OFFSET 1;
+    ORDER BY t.long_inertia_moment_self DESC LIMIT 1;
 
     RAISE NOTICE 'get_compartment_curve_max_moment r1:[%] r2:[%] ', r1.trans_inertia_moment_self, r2.long_inertia_moment_self;
 
@@ -208,39 +236,48 @@ DECLARE
 BEGIN 
     RAISE NOTICE 'get_grain_moment ship_id:[%] space_id:[%] level:[%]', src_ship_id, src_space_id, src_level;
 
-    SELECT *
-    INTO r1
+    SELECT 
+        *
+    INTO 
+        r1
     FROM grain_moment t
-    WHERE ship_id = src_ship_id AND space_id = src_space_id
-    ORDER BY ABS(src_level - t.level) ASC LIMIT 1;
+    WHERE ship_id = src_ship_id AND space_id = src_space_id AND src_level = level;
 
-    SELECT *
-    INTO r2
-    FROM grain_moment t
-    WHERE ship_id = src_ship_id AND space_id = src_space_id
-    ORDER BY ABS(src_level - t.level) ASC LIMIT 1 OFFSET 1;
+    -- если нашли точное значение возвращаем его
+    if r1 IS NOT NULL THEN 
+        res_moment = r1.moment;
+    ELSE-- если не нашли ищем два ближайших и интерполируем    
+        SELECT *
+        INTO r1
+        FROM grain_moment t
+        WHERE ship_id = src_ship_id AND space_id = src_space_id AND src_level < level
+        ORDER BY ABS(src_level - t.level) ASC LIMIT 1;
 
-    RAISE NOTICE 'get_grain_moment res r1 level:[%] moment:[%]  r2 level:[%] moment:[%] ', r1.level, r1.moment, r2.level, r2.moment;
+        SELECT *
+        INTO r2
+        FROM grain_moment t
+        WHERE ship_id = src_ship_id AND space_id = src_space_id AND src_level > level
+        ORDER BY ABS(src_level - t.level) ASC LIMIT 1;
 
-    IF (r1.level < src_level AND r2.level < r1.level) THEN
-        src_level = r1.level;
+        RAISE NOTICE 'get_grain_moment res r1 level:[%] moment:[%]  r2 level:[%] moment:[%] ', r1.level, r1.moment, r2.level, r2.moment;
+
+        IF r2 IS NULL THEN
+            res_moment = r1.moment;
+        ELSIF r1 IS NULL THEN
+            res_moment = r2.moment;
+        ELSE
+            IF r1.level = r2.level THEN
+                coeff1 = 0;
+                coeff2 = 1;
+            ELSE 
+                delta = r1.level - r2.level;
+                coeff1 = (r1.level - src_level) / delta;
+                coeff2 = (src_level - r2.level) / delta;
+            END IF;
+
+            res_moment = r2.moment*coeff1 + r1.moment*coeff2;
+        END IF;
     END IF;
-
-    IF (r1.level > src_level AND r2.level > r1.level)THEN
-        src_level = r1.level;
-    END IF;
-
-    IF r1.level = r2.level THEN
-        coeff1 = 0;
-        coeff2 = 1;
-    ELSE 
-        delta = r1.level - r2.level;
-        coeff1 = (r1.level - src_level) / delta;
-        coeff2 = (src_level - r2.level) / delta;
-    END IF;
-
-    res_moment = r2.moment*coeff1 + r1.moment*coeff2;
-    
     RAISE NOTICE 'get_grain_moment OK, src_level:[%] res_moment:[%]', src_level, res_moment;
 
     RETURN res_moment;
@@ -262,45 +299,72 @@ DECLARE
 BEGIN 
     RAISE NOTICE 'get_compartment_curve_level ship_id:[%] space_id:[%] level:[%]', src_ship_id, src_space_id, src_level;
 
-    SELECT *
-    INTO r1
+    SELECT 
+        *
+    INTO 
+        r1
     FROM compartment_curve t
-    WHERE ship_id = src_ship_id AND space_id = src_space_id
-    ORDER BY ABS(src_level - t.level) ASC LIMIT 1;
+    WHERE ship_id = src_ship_id AND space_id = src_space_id AND src_level = level;
 
-    SELECT *
-    INTO r2
-    FROM compartment_curve t
-    WHERE ship_id = src_ship_id AND space_id = src_space_id
-    ORDER BY ABS(src_level - t.level) ASC LIMIT 1 OFFSET 1;
+    -- если нашли точное значение возвращаем его
+    if r1 IS NOT NULL THEN 
+        res.level = r1.level;  
+        res.volume = r1.volume;
+        res.mass_shift_x = r1.buoyancy_x;
+        res.mass_shift_y = r1.buoyancy_y;
+        res.mass_shift_z = r1.buoyancy_z;    
+        res.m_f_s_x = r1.trans_inertia_moment_self;
+        res.m_f_s_y = r1.long_inertia_moment_self;
+    ELSE -- если не нашли ищем два ближайших и интерполируем
+        SELECT *
+        INTO r1
+        FROM compartment_curve t
+        WHERE ship_id = src_ship_id AND space_id = src_space_id AND src_level < level
+        ORDER BY ABS(src_level - t.level) ASC LIMIT 1;
 
-    RAISE NOTICE 'get_compartment_curve_level res r1 volume:[%] level:[%]  r2 volume:[%] level:[%] ', r1.volume, r1.level, r2.volume, r2.level;
+        SELECT *
+        INTO r2
+        FROM compartment_curve t
+        WHERE ship_id = src_ship_id AND space_id = src_space_id AND src_level > level
+        ORDER BY ABS(src_level - t.level) ASC LIMIT 1;
 
-    IF (r1.level < src_level AND r2.level < r1.level) THEN
-        src_level = r1.level;
+        RAISE NOTICE 'get_compartment_curve_level res r1 volume:[%] level:[%]  r2 volume:[%] level:[%] ', r1.volume, r1.level, r2.volume, r2.level;
+
+        IF r2 IS NULL THEN
+            res.level = r1.level;  
+            res.volume = r1.volume;
+            res.mass_shift_x = r1.buoyancy_x;
+            res.mass_shift_y = r1.buoyancy_y;
+            res.mass_shift_z = r1.buoyancy_z;    
+            res.m_f_s_x = r1.trans_inertia_moment_self;
+            res.m_f_s_y = r1.long_inertia_moment_self;
+        ELSIF r1 IS NULL THEN
+            res.level = r2.level;  
+            res.volume = r2.volume;
+            res.mass_shift_x = r2.buoyancy_x;
+            res.mass_shift_y = r2.buoyancy_y;
+            res.mass_shift_z = r2.buoyancy_z;    
+            res.m_f_s_x = r2.trans_inertia_moment_self;
+            res.m_f_s_y = r2.long_inertia_moment_self;
+        ELSE
+            IF r1.level = r2.level THEN
+                coeff1 = 0;
+                coeff2 = 1;
+            ELSE 
+                delta = r1.level - r2.level;
+                coeff1 = (r1.level - src_level) / delta;
+                coeff2 = (src_level - r2.level) / delta;
+            END IF;
+
+            res.level = r2.level*coeff1 + r1.level*coeff2;  
+            res.volume = r2.volume*coeff1 + r1.volume*coeff2;
+            res.mass_shift_x = r2.buoyancy_x*coeff1 + r1.buoyancy_x*coeff2;
+            res.mass_shift_y = r2.buoyancy_y*coeff1 + r1.buoyancy_y*coeff2;
+            res.mass_shift_z = r2.buoyancy_z*coeff1 + r1.buoyancy_z*coeff2;    
+            res.m_f_s_x = r2.trans_inertia_moment_self*coeff1 + r1.trans_inertia_moment_self*coeff2;
+            res.m_f_s_y = r2.long_inertia_moment_self*coeff1 + r1.long_inertia_moment_self*coeff2;
+        END IF;
     END IF;
-
-    IF (r1.level > src_level AND r2.level > r1.level)THEN
-        src_level = r1.level;
-    END IF;
-
-    IF r1.level = r2.level THEN
-        coeff1 = 0;
-        coeff2 = 1;
-    ELSE 
-        delta = r1.level - r2.level;
-        coeff1 = (r1.level - src_level) / delta;
-        coeff2 = (src_level - r2.level) / delta;
-    END IF;
-
-    res.level = r2.level*coeff1 + r1.level*coeff2;  
-    res.volume = r2.volume*coeff1 + r1.volume*coeff2;
-    res.mass_shift_x = r2.buoyancy_x*coeff1 + r1.buoyancy_x*coeff2;
-    res.mass_shift_y = r2.buoyancy_y*coeff1 + r1.buoyancy_y*coeff2;
-    res.mass_shift_z = r2.buoyancy_z*coeff1 + r1.buoyancy_z*coeff2;    
-    res.m_f_s_x = r2.trans_inertia_moment_self*coeff1 + r1.trans_inertia_moment_self*coeff2;
-    res.m_f_s_y = r2.long_inertia_moment_self*coeff1 + r1.long_inertia_moment_self*coeff2;
-    
     RAISE NOTICE 'get_compartment_curve_level res level:[%]  volume:[%] ', res.level, res.volume;
 
     RETURN NEXT res;

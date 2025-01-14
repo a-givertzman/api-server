@@ -138,43 +138,51 @@ BEGIN
     SELECT 
         *
     INTO 
-        r1
+        res
     FROM hold_compartment_curve t
-    WHERE ship_id = src_ship_id AND hold_compartment_id = src_id
-    ORDER BY ABS(src_volume - t.volume) ASC LIMIT 1;
+    WHERE ship_id = src_ship_id AND hold_compartment_id = src_id AND src_volume = volume;
 
-    SELECT 
-        *
-    INTO 
-        r2
-    FROM hold_compartment_curve t
-    WHERE ship_id = src_ship_id AND hold_compartment_id = src_id
-    ORDER BY ABS(src_volume - t.volume) ASC LIMIT 1 OFFSET 1;
+    -- если нашли точное значение возвращаем его
+    if res IS NULL THEN -- если не нашли ищем два ближайших и интерполируем
+        SELECT 
+            *
+        INTO 
+            r1
+        FROM hold_compartment_curve t
+        WHERE ship_id = src_ship_id AND hold_compartment_id = src_id AND src_volume < volume
+        ORDER BY ABS(src_volume - t.volume) ASC LIMIT 1;
 
-    RAISE NOTICE 'get_hold_compartment_curve_volume r1 volume:[%] level:[%]  r2 volume:[%] level:[%] ', r1.volume, r1.level, r2.volume, r2.level;
+        SELECT 
+            *
+        INTO 
+            r2
+        FROM hold_compartment_curve t
+        WHERE ship_id = src_ship_id AND hold_compartment_id = src_id AND src_volume > volume
+        ORDER BY ABS(src_volume - t.volume) ASC LIMIT 1;
 
-    IF (r1.volume < src_volume AND r2.volume < r1.volume) THEN
-        src_volume = r1.volume;
+        RAISE NOTICE 'get_hold_compartment_curve_volume r1 volume:[%] level:[%]  r2 volume:[%] level:[%] ', r1.volume, r1.level, r2.volume, r2.level;
+
+        IF r2 IS NULL THEN
+            res = r1;
+        ELSIF r1 IS NULL THEN
+            res = r2;
+        ELSE
+            IF r1.volume = r2.volume THEN
+                coeff1 = 1;
+                coeff2 = 0;
+            ELSE 
+                delta = r1.volume - r2.volume;
+                coeff1 = (r1.volume - src_volume) / delta;
+                coeff2 = (src_volume - r2.volume) / delta;
+            END IF;
+
+            res.level = r2.level*coeff1 + r1.level*coeff2;  
+            res.volume = r2.volume*coeff1 + r1.volume*coeff2;
+            res.buoyancy_x = r2.buoyancy_x*coeff1 + r1.buoyancy_x*coeff2;
+            res.buoyancy_y = r2.buoyancy_y*coeff1 + r1.buoyancy_y*coeff2;
+            res.buoyancy_z = r2.buoyancy_z*coeff1 + r1.buoyancy_z*coeff2;
+        END IF;
     END IF;
-
-    IF (r1.volume > src_volume AND r2.volume > r1.volume)THEN
-        src_volume = r1.volume;
-    END IF;
-
-    IF r1.volume = r2.volume THEN
-        coeff1 = 1;
-        coeff2 = 0;
-    ELSE 
-        delta = r1.volume - r2.volume;
-        coeff1 = (r1.volume - src_volume) / delta;
-        coeff2 = (src_volume - r2.volume) / delta;
-    END IF;
-
-    res.level = r2.level*coeff1 + r1.level*coeff2;  
-    res.volume = r2.volume*coeff1 + r1.volume*coeff2;
-    res.buoyancy_x = r2.buoyancy_x*coeff1 + r1.buoyancy_x*coeff2;
-    res.buoyancy_y = r2.buoyancy_y*coeff1 + r1.buoyancy_y*coeff2;
-    res.buoyancy_z = r2.buoyancy_z*coeff1 + r1.buoyancy_z*coeff2;
 
     RAISE NOTICE 'get_hold_compartment_curve_volume OK, res level:[%]  volume:[%]', res.level, res.volume;
 
@@ -202,40 +210,47 @@ BEGIN
     INTO 
         r1
     FROM hold_grain_moment t
-    WHERE ship_id = src_ship_id AND hold_compartment_id = src_id
-    ORDER BY ABS(src_level - t.level) ASC LIMIT 1;
+    WHERE ship_id = src_ship_id AND hold_compartment_id = src_id AND src_level = level;
 
-    SELECT 
-        *
-    INTO 
-        r2
-    FROM hold_grain_moment t
-    WHERE ship_id = src_ship_id AND hold_compartment_id = src_id
-    ORDER BY ABS(src_level - t.level) ASC LIMIT 1 OFFSET 1;
+    -- если нашли точное значение возвращаем его
+    if r1 IS NOT NULL THEN 
+        res_moment = r1.moment;
+    ELSE-- если не нашли ищем два ближайших и интерполируем       
+        SELECT 
+            *
+        INTO 
+            r1
+        FROM hold_grain_moment t
+        WHERE ship_id = src_ship_id AND hold_compartment_id = src_id AND src_level < level
+        ORDER BY ABS(src_level - t.level) ASC LIMIT 1;
 
-    RAISE NOTICE 'get_hold_grain_moment r1 level:[%] moment:[%]  r2 level:[%] moment:[%] ', r1.level, r1.moment, r2.level, r2.moment;
+        SELECT 
+            *
+        INTO 
+            r2
+        FROM hold_grain_moment t
+        WHERE ship_id = src_ship_id AND hold_compartment_id = src_id AND src_level > level
+        ORDER BY ABS(src_level - t.level) ASC LIMIT 1;
 
+        RAISE NOTICE 'get_hold_grain_moment r1 level:[%] moment:[%]  r2 level:[%] moment:[%] ', r1.level, r1.moment, r2.level, r2.moment;
 
-    IF (r1.level < src_level AND r2.level < r1.level) THEN
-        src_level = r1.level;
+        IF r2 IS NULL THEN
+            res_moment = r1.moment;
+        ELSIF r1 IS NULL THEN
+            res_moment = r2.moment;
+        ELSE
+            IF r1.level = r2.level THEN
+                coeff1 = 0;
+                coeff2 = 1;
+            ELSE 
+                delta = r1.level - r2.level;
+                coeff1 = (r1.level - src_level) / delta;
+                coeff2 = (src_level - r2.level) / delta;
+            END IF;
+        END IF;
+
+        res_moment = r2.moment*coeff1 + r1.moment*coeff2;
     END IF;
-
-    IF (r1.level > src_level AND r2.level > r1.level)THEN
-        src_level = r1.level;
-    END IF;
-
-    IF r1.level = r2.level THEN
-        coeff1 = 0;
-        coeff2 = 1;
-    ELSE 
-        delta = r1.level - r2.level;
-        coeff1 = (r1.level - src_level) / delta;
-        coeff2 = (src_level - r2.level) / delta;
-    END IF;
-
-    --res.level = r2.level*coeff1 + r1.level*coeff2;  
-    res_moment = r2.moment*coeff1 + r1.moment*coeff2;
-    
     RAISE NOTICE 'get_hold_grain_moment OK, src_level:[%] res_moment:[%]', src_level, res_moment;
 
     RETURN res_moment;
@@ -260,45 +275,51 @@ BEGIN
     SELECT 
         *
     INTO 
-        r1
+        res
     FROM hold_compartment_curve t
-    WHERE ship_id = src_ship_id AND hold_compartment_id = src_id
-    ORDER BY ABS(src_level - t.level) ASC LIMIT 1;
+    WHERE ship_id = src_ship_id AND hold_compartment_id = src_id AND src_level = level;
 
-    SELECT 
-        *
-    INTO 
-        r2
-    FROM hold_compartment_curve t
-    WHERE ship_id = src_ship_id AND hold_compartment_id = src_id
-    ORDER BY ABS(src_level - t.level) ASC LIMIT 1 OFFSET 1;
+    -- если нашли точное значение возвращаем его
+    if res IS NULL THEN -- если не нашли ищем два ближайших и интерполируем
+        SELECT 
+            *
+        INTO 
+            r1
+        FROM hold_compartment_curve t
+        WHERE ship_id = src_ship_id AND hold_compartment_id = src_id AND src_level < level
+        ORDER BY ABS(src_level - t.level) ASC LIMIT 1;
 
-    RAISE NOTICE 'get_hold_compartment_curve_level res r1 volume:[%] level:[%]  r2 volume:[%] level:[%] ', r1.volume, r1.level, r2.volume, r2.level;
+        SELECT 
+            *
+        INTO 
+            r2
+        FROM hold_compartment_curve t
+        WHERE ship_id = src_ship_id AND hold_compartment_id = src_id AND src_level > level
+        ORDER BY ABS(src_level - t.level) ASC LIMIT 1;
 
+        RAISE NOTICE 'get_hold_compartment_curve_level res r1 volume:[%] level:[%]  r2 volume:[%] level:[%] ', r1.volume, r1.level, r2.volume, r2.level;
 
-    IF (r1.level < src_level AND r2.level < r1.level) THEN
-        src_level = r1.level;
+        IF r2 IS NULL THEN
+            res = r1;
+        ELSIF r1 IS NULL THEN
+            res = r2;
+        ELSE
+            IF r1.level = r2.level THEN
+                coeff1 = 0;
+                coeff2 = 1;
+            ELSE 
+                delta = r1.level - r2.level;
+                coeff1 = (r1.level - src_level) / delta;
+                coeff2 = (src_level - r2.level) / delta;
+            END IF;
+
+            res.level = r2.level*coeff1 + r1.level*coeff2;  
+            res.volume = r2.volume*coeff1 + r1.volume*coeff2;
+            res.buoyancy_x = r2.buoyancy_x*coeff1 + r1.buoyancy_x*coeff2;
+            res.buoyancy_y = r2.buoyancy_y*coeff1 + r1.buoyancy_y*coeff2;
+            res.buoyancy_z = r2.buoyancy_z*coeff1 + r1.buoyancy_z*coeff2;
+        END IF;
     END IF;
-
-    IF (r1.level > src_level AND r2.level > r1.level)THEN
-        src_level = r1.level;
-    END IF;
-
-    IF r1.level = r2.level THEN
-        coeff1 = 0;
-        coeff2 = 1;
-    ELSE 
-        delta = r1.level - r2.level;
-        coeff1 = (r1.level - src_level) / delta;
-        coeff2 = (src_level - r2.level) / delta;
-    END IF;
-
-    res.level = r2.level*coeff1 + r1.level*coeff2;  
-    res.volume = r2.volume*coeff1 + r1.volume*coeff2;
-    res.buoyancy_x = r2.buoyancy_x*coeff1 + r1.buoyancy_x*coeff2;
-    res.buoyancy_y = r2.buoyancy_y*coeff1 + r1.buoyancy_y*coeff2;
-    res.buoyancy_z = r2.buoyancy_z*coeff1 + r1.buoyancy_z*coeff2;
-    
     RAISE NOTICE 'get_hold_compartment_curve_level res level:[%]  volume:[%] ', res.level, res.volume;
 
     RETURN NEXT res;
@@ -309,3 +330,6 @@ CREATE OR REPLACE TRIGGER check_update_hold_compartment_parameters
     BEFORE INSERT OR UPDATE ON hold_compartment
     FOR EACH ROW 
     EXECUTE FUNCTION update_hold_compartment_parameters();
+
+
+
