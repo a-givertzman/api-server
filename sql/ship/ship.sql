@@ -22,13 +22,9 @@ CREATE TABLE IF NOT EXISTS ship (
   ship_master TEXT, -- Captain of the ship
   ship_chief_mate TEXT, -- Assistant of captain of the ship
   ship_type_id INT NOT NULL,
-  icing_type_id INT NOT NULL DEFAULT 1,
-  icing_timber_type_id INT NOT NULL DEFAULT 1,
   navigation_area_id INT NOT NULL DEFAULT 1,
-  water_area_id INT NOT NULL DEFAULT 1,
   freeboard_type TEXT NOT NULL DEFAULT 'B',
   geometry_id INT NOT NULL,
-  limit_area strength_limit_area NOT NULL DEFAULT 'sea',
   CONSTRAINT ship_pk PRIMARY KEY (id),
   CONSTRAINT ship_unique UNIQUE NULLS NOT DISTINCT (name, project, year_of_built, place_of_built, IMO, MMSI),
   CONSTRAINT ship_name_check CHECK(char_length(name) > 0 AND char_length(name) <= 50),
@@ -38,10 +34,7 @@ CREATE TABLE IF NOT EXISTS ship (
   CONSTRAINT ship_imo_check CHECK(IMO > 999999 AND IMO <= 99999999),
   CONSTRAINT ship_mmsi_check CHECK(MMSI > 99999999 AND MMSI <= 999999999),
   CONSTRAINT ship_type_general_fk FOREIGN KEY (ship_type_id) REFERENCES ship_type (id),
-  CONSTRAINT ship_type_icing_type_fk FOREIGN KEY (icing_type_id) REFERENCES ship_icing (id),
-  CONSTRAINT ship_type_icing_timber_type_fk FOREIGN KEY (icing_timber_type_id) REFERENCES ship_icing_timber (id),
   CONSTRAINT ship_type_navigation_area_type_fk FOREIGN KEY (navigation_area_id) REFERENCES navigation_area (id),
-  CONSTRAINT ship_type_water_area_type_fk FOREIGN KEY (water_area_id) REFERENCES ship_water_area (id),
   CONSTRAINT ship_type_freeboard_type_check CHECK (char_length(freeboard_type) > 0 AND char_length(freeboard_type) < 10 ),
   CONSTRAINT ship_parameters_geometry_fk FOREIGN KEY (geometry_id) REFERENCES ship_geometry (id)
 );

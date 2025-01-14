@@ -16,16 +16,13 @@ VALUES
 }');
 
 INSERT INTO ship
-  (id, name, imo, mmsi, ship_type_id, icing_type_id, icing_timber_type_id, navigation_area_id, freeboard_type, geometry_id, year_of_built, place_of_built, yard_of_build, ship_builder_name, ship_builder_hull_number, call_sign, port_of_registry, classification_society, registration_number, flag_state, ship_owner, ship_owner_code)
+  (id, name, imo, mmsi, ship_type_id, navigation_area_id, freeboard_type, geometry_id, year_of_built, place_of_built, yard_of_build, ship_builder_name, ship_builder_hull_number, call_sign, port_of_registry, classification_society, registration_number, flag_state, ship_owner, ship_owner_code)
 VALUES
-  (2, 'Sofia', 9245263, 273251830, 1, 1, 1, 1, 'B', 2, 2002, 'the Netherlands', 'Westerbroek', 'Bodewes Scheepswerp Volharding B.V.', 506, 'UACA5', 'Novorossiysk', 'RS', 010869, 'Russian Federation', 'LLC "Кubаn Маrinе Cоmраnу"', NULL);
+  (2, 'Sofia', 9245263, 273251830, 1, 1, 'B', 2, 2002, 'the Netherlands', 'Westerbroek', 'Bodewes Scheepswerp Volharding B.V.', 506, 'UACA5', 'Novorossiysk', 'RS', 010869, 'Russian Federation', 'LLC "Кubаn Маrinе Cоmраnу"', NULL);
 
 INSERT INTO ship_parameters
   (ship_id, key, value, unit_id)
 VALUES
-  (2, 'Wetting of deck timber', 10, NULL),
-  (2, 'Operational speed', 14.7, 14),
-  (2, 'Water Density', 1.025, 15),
   (2, 'Keel area', 0, 3),
   (2, 'L.O.A', 138.86, 2),
   (2, 'LBP', 130.5, 2),
@@ -35,8 +32,8 @@ VALUES
   (2, 'LightShip Weight', 3230.55, 6),
   (2, 'Number of Parts', 200, NULL),
   (2, 'LCG from middle', 59.837, 2),
+  (2, 'TCG from CL', -0.44, 2),  
   (2, 'VCG from BL', 7.81, 2),
-  (2, 'TCG from CL', -0.44, 2),
   (2, 'Minimum draft', 2.001, 2),
   (2, 'Minimum operating draft', 4.308, 2),
   (2, 'Length middle from stern', 68.82, 2),
