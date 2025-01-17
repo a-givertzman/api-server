@@ -41,7 +41,7 @@ VALUES
   (21, 'Продольная метацентрическая высота', 'Longitudinal metacentric height', 2),  
   (22, 'Поправка от цистерн запаса к продольной метацентрической высоте', 'Correction to longitudinal metacentric height of stores', 2),
   (23, 'Поправка от балласта к продольной метацентрической высоте', 'Correction to longitudinal metacentric height of ballast', 2),
-  (24, 'Продольная метацентрическая высота исправленная', '	Longitudinal metacentric height fixed', 2),
+  (24, 'Продольная метацентрическая высота исправленная', 'Longitudinal metacentric height fixed', 2),
   (25, 'Масса балласта', 'Weight of ballast', 6),
   (26, 'Масса запасов', 'Weight of stores', 6),
   (27, 'Масса груза', 'Weight of cargo', 6),
