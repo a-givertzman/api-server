@@ -120,7 +120,7 @@ BEGIN
     SELECT bound_x2 INTO right_bound_x FROM hold_part WHERE group_id = group_id_param AND group_index = group_start_index_param AND ship_id = ship_id_param AND project_id IS NOT DISTINCT FROM project_id_param;
     SELECT bound_x1 INTO left_bound_x FROM hold_part WHERE group_id = group_id_param AND group_index = group_end_index_param AND ship_id = ship_id_param AND project_id IS NOT DISTINCT FROM project_id_param;
     RETURN CONCAT(
-        (SELECT name_rus FROM hold_group WHERE id = group_id_param AND ship_id = ship_id_param AND project_id IS NOT DISTINCT FROM project_id_param ),
+        (SELECT name_engl FROM hold_group WHERE id = group_id_param AND ship_id = ship_id_param AND project_id IS NOT DISTINCT FROM project_id_param ),
         ' Fr. ',
         (SELECT frame_index FROM physical_frame WHERE ship_id = ship_id_param AND project_id IS NOT DISTINCT FROM project_id_param ORDER BY ABS(pos_x - left_bound_x) LIMIT 1), -- Frame index for most left part of compartment;
         '-',
