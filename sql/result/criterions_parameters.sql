@@ -1,20 +1,21 @@
 DROP TABLE IF EXISTS criterions_parameters CASCADE;
 
 -- Specifies relation between parameters and stability criteria (or lack of connection between them).
-CREATE TABLE IF NOT EXISTS criterions_parameters (
-    id INT GENERATED ALWAYS AS IDENTITY,
-    -- ID of the criterion entry;
-    criterion_id INT,
-    -- ID of the parameter_head entry;
-    parameter_id INT NOT NULL,
-    -- Boolean flag to identify head_parameter entries
-    -- that should be visible regardless of presence of corresponding entry in criterion
-    -- (TODO: remove, by splitting parameters relations into new ones)
-    always_visible BOOLEAN DEFAULT FALSE NOT NULL,
-    CONSTRAINT criterions_parameters_pk PRIMARY KEY (id),
-    CONSTRAINT criterions_parameters_criterion_fk FOREIGN KEY (criterion_id) REFERENCES criterion (id),
-    CONSTRAINT criterions_parameters_parameter_fk FOREIGN KEY (parameter_id) REFERENCES parameter_head (id)
-);
+CREATE TABLE
+    IF NOT EXISTS criterions_parameters (
+        id INT GENERATED ALWAYS AS IDENTITY,
+        -- ID of the criterion entry;
+        criterion_id INT,
+        -- ID of the parameter_head entry;
+        parameter_id INT NOT NULL,
+        -- Boolean flag to identify head_parameter entries
+        -- that should be visible regardless of presence of corresponding entry in criterion
+        -- (TODO: remove, by splitting parameters relations into new ones)
+        always_visible BOOLEAN DEFAULT FALSE NOT NULL,
+        CONSTRAINT criterions_parameters_pk PRIMARY KEY (id),
+        CONSTRAINT criterions_parameters_criterion_fk FOREIGN KEY (criterion_id) REFERENCES criterion (id),
+        CONSTRAINT criterions_parameters_parameter_fk FOREIGN KEY (parameter_id) REFERENCES parameter_head (id)
+    );
 
 -- Inserting parameters that depend on criteria;
 INSERT INTO
@@ -118,11 +119,11 @@ VALUES
     (22, TRUE),
     (23, TRUE),
     (24, TRUE),
-    (25, TRUE),
-    (26, TRUE),
-    (27, TRUE),
-    (28, TRUE),
-    (29, TRUE),
-    (30, TRUE),
-    (31, TRUE),
+    (25, FALSE),
+    (26, FALSE),
+    (27, FALSE),
+    (28, FALSE),
+    (29, FALSE),
+    (30, FALSE),
+    (31, FALSE),
     (32, TRUE);
