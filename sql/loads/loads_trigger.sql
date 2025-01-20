@@ -118,7 +118,7 @@ BEGIN
     WHERE ship_id = src_ship_id AND space_id = src_space_id AND src_volume = volume;
 
     -- если нашли точное значение возвращаем его
-    if r1 IS NOT NULL THEN 
+    IF r1.space_id IS NOT NULL THEN 
         res.level = r1.level;  
         res.volume = r1.volume;
         res.mass_shift_x = r1.buoyancy_x;
@@ -145,7 +145,7 @@ BEGIN
             r1.volume, r1.level, r1.trans_inertia_moment_self, r1.long_inertia_moment_self,
             r2.volume, r2.level, r2.trans_inertia_moment_self, r2.long_inertia_moment_self;
 
-        IF r2 IS NULL THEN
+        IF r2.space_id IS NULL THEN
             res.level = r1.level;  
             res.volume = r1.volume;
             res.mass_shift_x = r1.buoyancy_x;
@@ -153,7 +153,7 @@ BEGIN
             res.mass_shift_z = r1.buoyancy_z;
             res.m_f_s_x = r1.trans_inertia_moment_self;
             res.m_f_s_y = r1.long_inertia_moment_self; 
-        ELSIF r1 IS NULL THEN
+        ELSIF r1.space_id IS NULL THEN
             res.level = r2.level;  
             res.volume = r2.volume;
             res.mass_shift_x = r2.buoyancy_x;
@@ -244,7 +244,7 @@ BEGIN
     WHERE ship_id = src_ship_id AND space_id = src_space_id AND src_level = level;
 
     -- если нашли точное значение возвращаем его
-    if r1 IS NOT NULL THEN 
+    if r1.space_id IS NOT NULL THEN 
         res_moment = r1.moment;
     ELSE-- если не нашли ищем два ближайших и интерполируем    
         SELECT *
@@ -261,9 +261,9 @@ BEGIN
 
         RAISE NOTICE 'get_grain_moment res r1 level:[%] moment:[%]  r2 level:[%] moment:[%] ', r1.level, r1.moment, r2.level, r2.moment;
 
-        IF r2 IS NULL THEN
+        IF r2.space_id IS NULL THEN
             res_moment = r1.moment;
-        ELSIF r1 IS NULL THEN
+        ELSIF r1.space_id IS NULL THEN
             res_moment = r2.moment;
         ELSE
             IF r1.level = r2.level THEN
@@ -307,7 +307,7 @@ BEGIN
     WHERE ship_id = src_ship_id AND space_id = src_space_id AND src_level = level;
 
     -- если нашли точное значение возвращаем его
-    if r1 IS NOT NULL THEN 
+    if r1.space_id IS NOT NULL THEN 
         res.level = r1.level;  
         res.volume = r1.volume;
         res.mass_shift_x = r1.buoyancy_x;
@@ -330,7 +330,7 @@ BEGIN
 
         RAISE NOTICE 'get_compartment_curve_level res r1 volume:[%] level:[%]  r2 volume:[%] level:[%] ', r1.volume, r1.level, r2.volume, r2.level;
 
-        IF r2 IS NULL THEN
+        IF r2.space_id IS NULL THEN
             res.level = r1.level;  
             res.volume = r1.volume;
             res.mass_shift_x = r1.buoyancy_x;
@@ -338,7 +338,7 @@ BEGIN
             res.mass_shift_z = r1.buoyancy_z;    
             res.m_f_s_x = r1.trans_inertia_moment_self;
             res.m_f_s_y = r1.long_inertia_moment_self;
-        ELSIF r1 IS NULL THEN
+        ELSIF r1.space_id IS NULL THEN
             res.level = r2.level;  
             res.volume = r2.volume;
             res.mass_shift_x = r2.buoyancy_x;
