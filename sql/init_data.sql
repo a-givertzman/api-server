@@ -35,7 +35,11 @@ VALUES
 UPDATE custom_metadata.db_checkpoint SET is_active = TRUE WHERE name = 'Empty';
 
 -- Test 5, as default loading
-\i ./sql/Sofia/test/SSS_Sofia_test5.sql
+\i ./sql/Sofia/test/SSS_Sofia_test1.sql
+
+-- Delete "Empty" loading
+DELETE FROM custom_metadata.db_checkpoint WHERE name = 'Empty';
+
 -- INSERT INTO
 --     custom_metadata.db_checkpoint (name, database_info_id, is_deletable)
 -- VALUES
