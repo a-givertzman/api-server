@@ -133,7 +133,7 @@ impl TcpServer {
         let mut index = 0;
         while index < threads.len() {
             let thread = &threads[index];
-            info!("TcpServer.clean_threads | Checking connection '{}' - finished: {}", thread.name, thread.handle.is_finished());
+            log::debug!("TcpServer.clean_threads | Checking connection '{}' - finished: {}", thread.name, thread.handle.is_finished());
             if thread.handle.is_finished() {
                 let _ = threads.remove(index);
             } else {
@@ -141,9 +141,9 @@ impl TcpServer {
             }
 
         }
-        info!("TcpServer.clean_threads | Remaining threads ({}):", threads.len());
+        log::info!("TcpServer.clean_threads | Remaining threads ({}):", threads.len());
         for th in threads {
-            info!("TcpServer.clean_threads | \tthread: '{}' - is finished: {}", th.name, th.handle.is_finished());
+            log::debug!("TcpServer.clean_threads | \tthread: '{}' - is finished: {}", th.name, th.handle.is_finished());
         }
     }
 }
