@@ -1,3 +1,4 @@
+use api_tools::debug::dbg_id::DbgId;
 use log::{
     info,
     // trace,
@@ -7,9 +8,7 @@ use log::{
 use std::{
     net::{
         SocketAddr, 
-        TcpStream, 
         TcpListener, 
-        // Shutdown,
     }, 
     sync::{
         Arc, 
@@ -19,17 +18,10 @@ use std::{
     time::Duration,
     error::Error, 
 };
-// use std::time::SystemTime;
-// use chrono::{
-//     DateTime,
-//     Utc,
-//     SecondsFormat,
-// };
-
-use crate::{config::Config, tcp_connection::TcpConnection};
-
-
-
+use crate::{
+    config::Config, server::tcp_connection::TcpConnection,
+    server::resources::Resources,
+};
 ///
 /// 
 pub struct TcpServer {
@@ -38,7 +30,10 @@ pub struct TcpServer {
     pub is_connected: bool,
     // api_server: ApiServer,
     config: Config,
+    resources: Arc<Mutex<Resources>>,
 }
+//
+//
 impl TcpServer {
     ///
     /// creates new instance of the TcpServer
@@ -50,6 +45,7 @@ impl TcpServer {
             is_connected: false,
             // api_server,
             config,
+            resources: Arc::new(Mutex::new(Resources::new(&DbgId("TcpServer".to_owned())))),
         }
     }
     ///
@@ -64,6 +60,7 @@ impl TcpServer {
         let addr = this.lock().unwrap().addr;
         let config = this.lock().unwrap().config.clone();
         let reconnect_delay = this.lock().unwrap().reconnect_delay;
+        let resources = this.lock().unwrap().resources.clone();
         debug!("TcpServer.run | trying to open...");
         let handle = thread::Builder::new().name("TcpServer tread".to_string()).spawn(move || {
             let mut tcp_threads = vec![];
@@ -95,13 +92,15 @@ impl TcpServer {
                         let peer_addr = stream.peer_addr().unwrap().to_string();
                         let thread_name = format!("TcpServer {:?}", peer_addr);
                         let connection_config = config.clone();
+                        let resources = resources.clone();
                         let thread_join_handle = thread::Builder::new().name(thread_name.clone()).spawn(move || {
                             debug!("TcpServer.run | started in {:?}", thread::current().name().unwrap());
                             stream.set_nodelay(true).unwrap();
                             let mut connection = TcpConnection::new(
-                                &thread_name, 
+                                &DbgId(thread_name), 
                                 connection_config.clone(), 
                                 stream,
+                                resources.clone(),
                             );
                             connection.run();
                             // me.lock().unwrap().listen_stream(&mut stream, &thread_name);
@@ -134,7 +133,7 @@ impl TcpServer {
         let mut index = 0;
         while index < threads.len() {
             let thread = &threads[index];
-            info!("TcpServer.clean_threads | Checking connection '{}' - finished: {}", thread.name, thread.handle.is_finished());
+            log::debug!("TcpServer.clean_threads | Checking connection '{}' - finished: {}", thread.name, thread.handle.is_finished());
             if thread.handle.is_finished() {
                 let _ = threads.remove(index);
             } else {
@@ -142,38 +141,15 @@ impl TcpServer {
             }
 
         }
-        info!("TcpServer.clean_threads | Remaining threads ({}):", threads.len());
+        log::info!("TcpServer.clean_threads | Remaining threads ({}):", threads.len());
         for th in threads {
-            info!("TcpServer.clean_threads | \tthread: '{}' - is finished: {}", th.name, th.handle.is_finished());
+            log::debug!("TcpServer.clean_threads | \tthread: '{}' - is finished: {}", th.name, th.handle.is_finished());
         }
     }
-    ///
-    /// configuring TCP socket:
-    ///  - read timeout (if exceeded reading fails)
-    ///  - nonblocking mode (must be false in current case)
-    fn configure_socket(&self, stream: &mut TcpStream, thread_name: &str, read_timeout: Duration, nonblocking: bool) {
-        match stream.set_read_timeout(Some(read_timeout)) {
-            Ok(_) => {
-                debug!("TcpServer.configureSocket ({}) | set read timeout - ok", thread_name);
-            },
-            Err(err) => {
-                warn!("TcpServer.configureSocket ({}) | setting read timeout error: {:?}", thread_name, err);
-            },
-        };
-        match stream.set_nonblocking(nonblocking) {
-            Ok(_) => {
-                debug!("TcpServer.configureSocket ({}) | switching to bloking mode - ok", thread_name);
-            },
-            Err(err) => {
-                warn!("TcpServer.configureSocket ({}) | switching to bloking mode error: {:?}", thread_name, err);
-            },
-        };
-    }    
 }
-
-
-
+///
+/// Just contains Tread JoinHandle
 struct TcpThread {
-    handle: JoinHandle<()>,
     name: String,
+    handle: JoinHandle<()>,
 }

@@ -2,6 +2,15 @@
 
 Just a simple api server
 
+- data transmittion
+  - json message with header
+  - message format
+
+      Field name | Start | Kind |  Size  | Data |
+       ---       |  ---  | ---  |  ---   | ---  |
+       Data type |  u8   | u8   | u32    | [u8; Size] |
+       Value     |  22   | StringValue | xxx    | [..., ...]  |
+
 - wrapping databases:
   - [x] SQLite
   - [ ] MySQL

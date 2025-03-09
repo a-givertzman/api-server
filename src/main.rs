@@ -3,10 +3,10 @@
 extern crate postgres;
 
 mod tests;
-mod core_;
+mod domain;
 mod config;
 mod api_server;
-mod tcp_server;
+mod server;
 mod python_query;
 mod executable_query;
 mod api_service_type;
@@ -14,13 +14,13 @@ mod sql_query;
 mod sql_query_sqlite;
 mod sql_query_postgre;
 mod sql_query_mysql;
-mod tcp_connection;
 
 use std::{path::{Path, PathBuf}, sync::{Arc, Mutex}};
 use clap::Parser;
+use debugging::session::debug_session::{Backtrace, DebugSession, LogLevel};
 use log::debug;
 use crate::{
-    config::Config, core_::{cli::cli::Cli, debug::debug_session::{Backtrace, DebugSession, LogLevel}}, tcp_server::TcpServer
+    config::Config, domain::cli::cli::Cli, server::tcp_server::TcpServer
 };
 
 fn main() {
