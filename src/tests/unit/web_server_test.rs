@@ -2,8 +2,8 @@
 
 mod web_serwer {
     use core::str;
-    use std::{io::Read, net::TcpListener, sync::Once, time::{Duration, Instant}};
-    use api_tools::{api::{message::{fields::{FieldData, FieldId, FieldKind, FieldSize, FieldSyn}, message::{MessageField, MessageParse}, message_kind::MessageKind, parse_data::ParseData, parse_id::ParseId, parse_kind::ParseKind, parse_size::ParseSize, parse_syn::ParseSyn}, socket::tcp_socket::TcpMessage}, debug::dbg_id::DbgId};
+    use std::{io::Read, net::TcpListener, sync::Once, time::Duration};
+    use api_tools::{api::{message::{fields::{FieldData, FieldId, FieldKind, FieldSize, FieldSyn}, message::MessageField, message_kind::MessageKind, parse_data::ParseData, parse_id::ParseId, parse_kind::ParseKind, parse_size::ParseSize, parse_syn::ParseSyn}, socket::tcp_socket::TcpMessage}, debug::dbg_id::DbgId};
     use testing::stuff::max_test_duration::TestDuration;
     use debugging::session::debug_session::{DebugSession, LogLevel, Backtrace};
     ///
@@ -33,7 +33,7 @@ mod web_serwer {
         let test_duration = TestDuration::new(&dbgid, Duration::from_secs(120));
         test_duration.run().unwrap();
         let addr = "0.0.0.0:8080";
-        let mut message = TcpMessage::new(
+        let message = TcpMessage::new(
             &dbgid,
             vec![
                 MessageField::Syn(FieldSyn::default()),

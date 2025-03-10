@@ -1,5 +1,5 @@
 use std::{
-    net::TcpStream, process::exit, sync::{Arc, Mutex}, thread, time::{Duration, Instant} 
+    net::TcpStream, sync::{Arc, Mutex}, time::Instant 
 };
 use api_tools::{
     api::{
