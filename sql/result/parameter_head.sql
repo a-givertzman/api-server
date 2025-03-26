@@ -116,7 +116,12 @@ VALUES
   (96, 'Аппликата центра тяжести дэдвейта', 'Vertical center of gravity of deadweight', 2),
   (97, 'Ордината центра тяжести дэдвейта', 'Transverse center of gravity of deadweight', 2),
   (98, 'Абсцисса центра тяжести дэдвейта', 'Longitudinal center of gravity of deadweight', 2),
-  (99, 'Плечо кренящего момента от смещения зерна', 'Heeling lever due to the transverse shift of grain', 2),
+  (99, 'Плечо кренящего момента от смещения зерна при нулевом крене', 'Heeling lever due to the transverse shift of grain with zero difference', 2),
   (100, 'Плечо кривой кренящих моментов при макс. разности', 'Heeling lever of curve with maximum difference', 2),
   (101, 'Крен от смещения зерна', 'Heeling angle due to the transverse shift of grain', 1),
-  (102, 'Плечо кривой ДСО при макс. разности', 'Heeling lever of DSO with maximum difference', 2);
+  (102, 'Плечо кривой ДСО при макс. разности', 'Heeling lever of DSO with maximum difference', 2),
+  (103, 'Плечо кренящего момента при крене от смещения зерна', 'Heeling lever due to the transverse shift of grain', 2),
+  (104, 'Минимум из углов заливания, второго пересечения и 50 градусов', 'Minimum of fluding angle, second intersection and 50 degrees', 1),
+  (105, 'Плечо ДСО соответствующее минимальному из углов', 'Heeling lever of DSO corresponding to the minimum angle', 2),
+  (106, 'Плечо ДСО соответствующее крену от качки на наветренный борт', 'Heeling lever of DSO corresponding to the roll to the windward side', 2),
+  (107, 'Угол крена от качки на наветренный борт', 'Roll to the windward side', 1);
