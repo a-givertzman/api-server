@@ -4,11 +4,11 @@
 
 -- Test 1
 \i ./sql/Sofia/test/SSS_Sofia_test1.sql
-INSERT INTO
-    custom_metadata.db_checkpoint (name, database_info_id, is_deletable)
-VALUES
-    ('Test 1', 1, FALSE);
-UPDATE custom_metadata.db_checkpoint SET is_active = TRUE WHERE name = 'Empty';
+--INSERT INTO
+--    custom_metadata.db_checkpoint (name, database_info_id, is_deletable)
+--VALUES
+--    ('Test 1', 1, FALSE);
+--UPDATE custom_metadata.db_checkpoint SET is_active = TRUE WHERE name = 'Empty';
 
 -- Test 2
 \i ./sql/Sofia/test/SSS_Sofia_test2.sql

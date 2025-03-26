@@ -115,4 +115,8 @@ VALUES
   (95, 'Поправка к поперечной метацентрической высоте', 'Correction to transverse metacentric height', 2),
   (96, 'Аппликата центра тяжести дэдвейта', 'Vertical center of gravity of deadweight', 2),
   (97, 'Ордината центра тяжести дэдвейта', 'Transverse center of gravity of deadweight', 2),
-  (98, 'Абсцисса центра тяжести дэдвейта', 'Longitudinal center of gravity of deadweight', 2);
+  (98, 'Абсцисса центра тяжести дэдвейта', 'Longitudinal center of gravity of deadweight', 2),
+  (99, 'Плечо кренящего момента от смещения зерна', 'Heeling lever due to the transverse shift of grain', 2),
+  (100, 'Плечо кривой кренящих моментов при макс. разности', 'Heeling lever of curve with maximum difference', 2),
+  (101, 'Крен от смещения зерна', 'Heeling angle due to the transverse shift of grain', 1),
+  (102, 'Плечо кривой ДСО при макс. разности', 'Heeling lever of DSO with maximum difference', 2);
