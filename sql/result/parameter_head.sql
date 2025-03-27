@@ -125,4 +125,4 @@ VALUES
   (105, 'Плечо ДСО соответствующее минимальному из углов', 'Heeling lever of SC corresponding to the minimum angle', 2),
   (106, 'Плечо ДСО соответствующее крену от качки на наветренный борт', 'Heeling lever of SC corresponding to the roll to the windward side', 2),
   (107, 'Угол крена от качки на наветренный борт', 'Roll to the windward side', 1),
-  (108, 'Площадь ДСО при смещении зерна', 'Area of SC with transverse shift of grain', 3)
+  (108, 'Площадь ДСО при смещении зерна', 'Area of SC with transverse shift of grain', 3);
