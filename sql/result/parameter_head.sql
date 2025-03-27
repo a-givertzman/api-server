@@ -124,4 +124,5 @@ VALUES
   (104, 'Минимум из углов заливания, второго пересечения и 50 градусов', 'Minimum of fluding angle, second intersection and 50 degrees', 1),
   (105, 'Плечо ДСО соответствующее минимальному из углов', 'Heeling lever of DSO corresponding to the minimum angle', 2),
   (106, 'Плечо ДСО соответствующее крену от качки на наветренный борт', 'Heeling lever of DSO corresponding to the roll to the windward side', 2),
-  (107, 'Угол крена от качки на наветренный борт', 'Roll to the windward side', 1);
+  (107, 'Угол крена от качки на наветренный борт', 'Roll to the windward side', 1),
+  (108, 'Остаточная площадь между кривой кренящих и кривой восстанавливающих плеч', 'Grain area', 3)
