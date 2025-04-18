@@ -9,6 +9,7 @@ use crate::api_service_type::ApiServiceType;
 #[derive(Debug, Clone)]
 pub struct Config {
     pub address: String,
+    pub treads: usize,
     pub services: HashMap<String, ServiceConfig>,
 }
 impl Config {
@@ -40,13 +41,10 @@ impl Config {
                     }
                 }
                 Config {
-                    address: String::from(
-                        yaml_doc["address"]
-                            .as_str()
-                            .unwrap_or_else(
-                                || panic!("Config | error reading 'address' from config file {:?}", path.as_ref()),
-                            )
-                    ),
+                    address: yaml_doc["address"].as_str().unwrap_or_else(
+                        || panic!("Config | error reading 'address' from config file {:?}", path.as_ref()),
+                    ).to_owned(),
+                    treads: yaml_doc["treads"].as_i64().unwrap_or(250) as usize,
                     services,
                 }
             },
