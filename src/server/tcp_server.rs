@@ -97,6 +97,7 @@ impl TcpServer {
                             );
                             connection.run();
                             // me.lock().unwrap().listen_stream(&mut stream, &thread_name);
+                            Ok(())
                         });
                         // Self::clean_threads(&mut tcp_threads);                        
                         // tcp_threads.push(TcpThread{
