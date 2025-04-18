@@ -1,9 +1,9 @@
-use api_tools::debug::dbg_id::DbgId;
+use sal_core::dbg::Dbg;
 use crate::server::{resource::Resource, resource_kind::ResourceKind};
 ///
 /// Shared stored resources for all server services
 pub struct Resources {
-    dbgid: DbgId,
+    dbgid: Dbg,
     inner: Vec<Vec<Resource>>,
 }
 //
@@ -11,9 +11,9 @@ pub struct Resources {
 impl Resources {
     ///
     /// Returns [Resources] new instance
-    pub fn new(dbgid: &DbgId) -> Self {
+    pub fn new(parent: impl Into<String>) -> Self {
         Self {
-        dbgid: DbgId(format!("{}/Resources", dbgid)),
+        dbgid: Dbg::new(parent, "Resources"),
         inner: (0..ResourceKind::len()).map(|_| vec![]).collect(),
         }
     }

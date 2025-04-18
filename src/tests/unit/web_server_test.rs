@@ -3,7 +3,8 @@
 mod web_serwer {
     use core::str;
     use std::{io::Read, net::TcpListener, sync::Once, time::Duration};
-    use api_tools::{api::{message::{fields::{FieldData, FieldId, FieldKind, FieldSize, FieldSyn}, message::MessageField, message_kind::MessageKind, parse_data::ParseData, parse_id::ParseId, parse_kind::ParseKind, parse_size::ParseSize, parse_syn::ParseSyn}, socket::tcp_socket::TcpMessage}, debug::dbg_id::DbgId};
+    use api_tools::api::{message::{fields::{FieldData, FieldId, FieldKind, FieldSize, FieldSyn}, message::MessageField, message_kind::MessageKind, parse_data::ParseData, parse_id::ParseId, parse_kind::ParseKind, parse_size::ParseSize, parse_syn::ParseSyn}, socket::tcp_socket::TcpMessage};
+    use sal_core::dbg::Dbg;
     use testing::stuff::max_test_duration::TestDuration;
     use debugging::session::debug_session::{DebugSession, LogLevel, Backtrace};
     ///
@@ -28,7 +29,7 @@ mod web_serwer {
         init_once();
         init_each();
         log::debug!("");
-        let dbgid = DbgId("test".into());
+        let dbgid = Dbg::own("web_serwer::bind");
         log::debug!("\n{}", dbgid);
         let test_duration = TestDuration::new(&dbgid, Duration::from_secs(120));
         test_duration.run().unwrap();

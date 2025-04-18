@@ -1,4 +1,3 @@
-use api_tools::debug::dbg_id::DbgId;
 use log::{
     info,
     // trace,
@@ -45,7 +44,7 @@ impl TcpServer {
             is_connected: false,
             // api_server,
             config,
-            resources: Arc::new(Mutex::new(Resources::new(&DbgId("TcpServer".to_owned())))),
+            resources: Arc::new(Mutex::new(Resources::new("TcpServer"))),
         }
     }
     ///
@@ -97,7 +96,7 @@ impl TcpServer {
                             debug!("TcpServer.run | started in {:?}", thread::current().name().unwrap());
                             stream.set_nodelay(true).unwrap();
                             let mut connection = TcpConnection::new(
-                                &DbgId(thread_name), 
+                                thread_name, 
                                 connection_config.clone(), 
                                 stream,
                                 resources.clone(),

@@ -1,24 +1,21 @@
 use std::{
     net::TcpStream, sync::{Arc, Mutex}, time::Instant 
 };
-use api_tools::{
-    api::{
-        message::{
-            fields::{FieldData, FieldId, FieldKind, FieldSize, FieldSyn},
-            message::MessageField, message_kind::MessageKind, msg_kind::MsgKind,
-            parse_data::ParseData, parse_id::ParseId, parse_kind::ParseKind, parse_size::ParseSize, parse_syn::ParseSyn,
-        },
-        socket::tcp_socket::{TcpMessage, TcpSocket},
+use api_tools::api::{
+    message::{
+        fields::{FieldData, FieldId, FieldKind, FieldSize, FieldSyn},
+        message::MessageField, message_kind::MessageKind, msg_kind::MsgKind,
+        parse_data::ParseData, parse_id::ParseId, parse_kind::ParseKind, parse_size::ParseSize, parse_syn::ParseSyn,
     },
-    debug::dbg_id::DbgId,
+    socket::tcp_socket::{TcpMessage, TcpSocket},
 };
+use sal_core::dbg::Dbg;
 use crate::{api_server::ApiServer, config::Config};
-
 use super::resources::Resources;
 ///
 /// Opens a connection via TCP Socket
 pub struct TcpConnection {
-    dbgid: DbgId,
+    dbgid: Dbg,
     config: Config,
     socket: TcpSocket,
     resources: Arc<Mutex<Resources>>,
@@ -28,8 +25,8 @@ pub struct TcpConnection {
 impl TcpConnection {
     ///
     /// Returns TcpConnection new instance
-    pub fn new(dbgid: &DbgId, config: Config, stream: TcpStream, resources: Arc<Mutex<Resources>>,) -> Self {
-        let dbgid = DbgId(format!("{}/TcpConnection", dbgid));
+    pub fn new(parent: impl Into<String>, config: Config, stream: TcpStream, resources: Arc<Mutex<Resources>>,) -> Self {
+        let dbgid = Dbg::new(parent, "TcpConnection");
         let message = TcpMessage::new(
             &dbgid,
             vec![
