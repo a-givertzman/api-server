@@ -87,7 +87,7 @@ impl TcpServer {
                         let connection_config = config.clone();
                         let resources = resources.clone();
                         tread_pool.spawn(move || {
-                            log::debug!("TcpServer.run | started in {:?}", thread::current().name().unwrap());
+                            log::debug!("TcpServer.run | started in {:?}", thread::current().name());
                             stream.set_nodelay(true).unwrap();
                             let mut connection = TcpConnection::new(
                                 thread_name, 
