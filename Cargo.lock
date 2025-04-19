@@ -353,9 +353,9 @@ dependencies = [
 
 [[package]]
 name = "clap"
-version = "4.5.36"
+version = "4.5.37"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2df961d8c8a0d08aa9945718ccf584145eee3f3aa06cddbeac12933781102e04"
+checksum = "eccb054f56cbd38340b380d4a8e69ef1f02f1af43db2f0cc817a4774d80ae071"
 dependencies = [
  "clap_builder",
  "clap_derive",
@@ -363,9 +363,9 @@ dependencies = [
 
 [[package]]
 name = "clap_builder"
-version = "4.5.36"
+version = "4.5.37"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "132dbda40fb6753878316a489d5a1242a8ef2f0d9e47ba01c951ea8aa7d013a5"
+checksum = "efd9466fac8543255d3b1fcad4762c5e116ffe808c8a3043d4263cd4fd4862a2"
 dependencies = [
  "anstream",
  "anstyle",
@@ -390,6 +390,16 @@ name = "clap_lex"
 version = "0.7.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f46ad14479a25103f283c0f10005961cf086d8dc42205bb44c46ac563475dca6"
+
+[[package]]
+name = "coco"
+version = "0.3.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "04d5eef9c9354cbb35d5069c39054c657469d2aa7789d4c71d0a6b686dc48bea"
+dependencies = [
+ "either",
+ "scopeguard 0.3.3",
+]
 
 [[package]]
 name = "colorchoice"
@@ -522,6 +532,12 @@ dependencies = [
  "crypto-common",
  "subtle",
 ]
+
+[[package]]
+name = "either"
+version = "1.15.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "48c757948c5ede0e46177b7add2e67155f70e33c07fea8284df6576da70b3719"
 
 [[package]]
 name = "env_filter"
@@ -958,7 +974,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "07af8b9cdd281b7915f413fa73f29ebd5d55d0d3f0155584dade1ff18cea1b17"
 dependencies = [
  "autocfg",
- "scopeguard",
+ "scopeguard 1.2.0",
 ]
 
 [[package]]
@@ -1432,10 +1448,11 @@ dependencies = [
 [[package]]
 name = "sal-sync"
 version = "0.0.4"
-source = "git+https://github.com/a-givertzman/rust-sal-sync.git?tag=0.0.4#a57498a353cdc065c58698f040f6bc4eb8d71cc7"
+source = "git+https://github.com/a-givertzman/rust-sal-sync.git?tag=0.0.4#59a9d4ce7fcd1ba105e9d0f194d8dd9043badc05"
 dependencies = [
  "api-tools 0.0.6",
  "chrono",
+ "coco",
  "concat-in-place",
  "concat-string",
  "crossbeam-skiplist",
@@ -1456,6 +1473,12 @@ dependencies = [
  "strum_macros",
  "testing 0.1.1",
 ]
+
+[[package]]
+name = "scopeguard"
+version = "0.3.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "94258f53601af11e6a49f722422f6e3425c52b06245a5cf9bc09908b174f5e27"
 
 [[package]]
 name = "scopeguard"
