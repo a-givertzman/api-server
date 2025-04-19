@@ -86,7 +86,7 @@ impl TcpServer {
                         let thread_name = format!("TcpServer {:?}", peer_addr);
                         let connection_config = config.clone();
                         let resources = resources.clone();
-                        tread_pool.spawn(move || {
+                        let result = tread_pool.spawn(move || {
                             log::debug!("TcpServer.run | started in {:?}", thread::current().name());
                             stream.set_nodelay(true).unwrap();
                             let mut connection = TcpConnection::new(
@@ -99,6 +99,9 @@ impl TcpServer {
                             // me.lock().unwrap().listen_stream(&mut stream, &thread_name);
                             Ok(())
                         });
+                        if let Err(err) = result {
+                            log::warn!("TcpServer.run | spawn job error: {:?}", err);
+                        }
                         // Self::clean_threads(&mut tcp_threads);                        
                         // tcp_threads.push(TcpThread{
                         //     handle: thread_join_handle,
