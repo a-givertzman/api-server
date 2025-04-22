@@ -17,14 +17,14 @@ chrono = { version = "^0.4", features = ["serde"] }
 #
 #
 sal-core = { git = "https://github.com/a-givertzman/rust-sal-core.git", tag = "0.0.3" }
-sal-sync = { git = "https://github.com/a-givertzman/rust-sal-sync.git", tag = "0.0.4" }
+sal-sync = { git = "https://github.com/a-givertzman/rust-sal-sync.git", tag = "0.1.0" }
 testing = { git = "https://github.com/a-givertzman/rust-testing.git", tag = "0.1.2" }
 debugging = { git = "https://github.com/a-givertzman/rust-debuging.git", tag = "0.0.1" }
 api-tools = { git = "https://github.com/a-givertzman/rust-api-tools.git", tag = "0.2.1" }
 # api-tools = { path = "../api-tools/" }
 
 
-rusqlite = { version = "^0.34", features = ["bundled"] }
+rusqlite = { version = "^0.35", features = ["bundled"] }
 
 postgres = { version = "^0.19", features = ["with-chrono-0_4", "with-serde_json-1"] }
 
