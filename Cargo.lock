@@ -149,7 +149,7 @@ dependencies = [
 [[package]]
 name = "api-tools"
 version = "0.2.1"
-source = "git+https://github.com/a-givertzman/rust-api-tools.git?tag=0.2.1#5c74958a291566ed35afe9c462200f2f6b97536b"
+source = "git+https://github.com/a-givertzman/rust-api-tools.git?tag=0.2.1#a911ed250b5c044c01a7053038cdcd26de50056e"
 dependencies = [
  "chrono",
  "debugging",
