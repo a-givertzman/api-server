@@ -1,5 +1,5 @@
 use std::{
-    net::TcpStream, sync::{Arc, Mutex}, time::Instant 
+    net::TcpStream, sync::Arc, time::Instant,
 };
 use api_tools::api::{
     message::{
@@ -18,14 +18,14 @@ pub struct TcpConnection {
     dbgid: Dbg,
     config: Config,
     socket: TcpSocket,
-    resources: Arc<Mutex<Resources>>,
+    resources: Arc<Resources>
 }
 //
 // 
 impl TcpConnection {
     ///
     /// Returns TcpConnection new instance
-    pub fn new(parent: impl Into<String>, config: Config, stream: TcpStream, resources: Arc<Mutex<Resources>>,) -> Self {
+    pub fn new(parent: impl Into<String>, config: Config, stream: TcpStream, resources: Arc<Resources>,) -> Self {
         let dbgid = Dbg::new(parent, "TcpConnection");
         let message = TcpMessage::new(
             &dbgid,

@@ -1,17 +1,12 @@
-use sal_core::dbg::Dbg;
+use sal_core::{dbg::Dbg, error::Error};
 use sal_sync::thread_pool::tread_pool::ThreadPool;
 use std::{
     net::{
         SocketAddr, 
         TcpListener, 
-    }, 
-    sync::{
-        Arc, 
-        Mutex,
-    },     
-    thread::{self},
-    time::Duration,
-    error::Error, 
+    }, sync::{
+        atomic::{AtomicBool, Ordering}, Arc,
+    }, thread::{self}, time::Duration 
 };
 use crate::{
     config::Config, server::tcp_connection::TcpConnection,
@@ -22,9 +17,9 @@ use crate::{
 pub struct TcpServer {
     addr: SocketAddr,
     reconnect_delay: Duration,
-    pub is_connected: bool,
+    is_connected: Arc<AtomicBool>,
     config: Config,
-    resources: Arc<Mutex<Resources>>,
+    resources: Arc<Resources>,
 }
 //
 //
@@ -36,26 +31,32 @@ impl TcpServer {
         Self {
             addr,
             reconnect_delay: Duration::from_secs(3),
-            is_connected: false,
+            is_connected: Arc::new(AtomicBool::new(false)),
             // api_server,
             config,
-            resources: Arc::new(Mutex::new(Resources::new("TcpServer"))),
+            resources: Arc::new(Resources::new("TcpServer"))
         }
     }
     ///
-    /// main loop of the TcpServer
+    /// Returns `true` if [TcpServer] is connected
+    pub fn is_connected(&self) -> bool {
+        self.is_connected.load(Ordering::SeqCst)
+    }
+    ///
+    /// main loop of the [TcpServer]
     /// - listening incoming TCP connections
     /// - handling incoming connections in the separate threads
-    pub fn run(this: Arc<Mutex<Self>>) -> Result<(), Box<dyn Error>> {
+    pub fn run(&self) -> Result<(), Error> {
         let dbg = Dbg::own("TcpServer");
         log::debug!("{dbg}.run | starting...");
         log::info!("{dbg}.run | enter");
         let mut listener: Option<TcpListener> = None;
         let mut try_again = 3;
-        let addr = this.lock().unwrap().addr;
-        let config = this.lock().unwrap().config.clone();
-        let reconnect_delay = this.lock().unwrap().reconnect_delay;
-        let resources = this.lock().unwrap().resources.clone();
+        let addr = self.addr;
+        let config = self.config.clone();
+        let reconnect_delay = self.reconnect_delay;
+        let resources = self.resources.clone();
+        let is_connected = self.is_connected.clone();
         let tread_pool = ThreadPool::new(&dbg, Some(config.treads));
         log::debug!("{dbg}.run | trying to open...");
         let dbg_clone = dbg.clone();
@@ -66,13 +67,13 @@ impl TcpServer {
                 log::debug!("{dbg}.run | {:?} attempts left", try_again);
                 listener = match TcpListener::bind(addr) {
                     Ok(stream) => {
-                        this.clone().lock().unwrap().is_connected = true;
+                        is_connected.store(true, Ordering::SeqCst);
                         log::info!("{dbg}.run | opened on: {:?}\n", addr);
                         try_again = -1;
                         Some(stream)
                     },
                     Err(err) => {
-                        this.clone().lock().unwrap().is_connected = false;
+                        is_connected.store(false, Ordering::SeqCst);
                         log::debug!("{dbg}.run | binding error on: {:?}\n\tdetailes: {:?}", addr, err);
                         std::thread::sleep(reconnect_delay);
                         None
@@ -101,57 +102,21 @@ impl TcpServer {
                                 resources.clone(),
                             );
                             connection.run();
-                            // me.lock().unwrap().listen_stream(&mut stream, &thread_name);
                             Ok(())
                         });
                         if let Err(err) = result {
                             log::warn!("{dbg}.run | spawn job error: {:?}", err);
                         }
-                        // Self::clean_threads(&mut tcp_threads);                        
-                        // tcp_threads.push(TcpThread{
-                        //     handle: thread_join_handle,
-                        //     name: thread::current().name().unwrap().into(),
-                        // });
                     }
                 },
                 None => {
                     log::warn!("{dbg}.run | connection failed");
                 },
             };
-            // log::info!("{dbg}.run | | waiting while all threads beeng finished: {:?}", tcp_threads.len());
-            // for tcp_thread in tcp_threads {
-            //     log::info!("main | thread joining: {:?}\n", tcp_thread.name);
-            //     tcp_thread.handle.join().unwrap();
-            // }        
         }).unwrap();
         log::debug!("{dbg}.run | started\n");
         handle.join().unwrap();
         log::debug!("{dbg}.run | exit\n");
         Ok(())
     }
-    // ///
-    // /// 
-    // fn clean_threads(threads: &mut Vec<TcpThread>) {
-    //     let mut index = 0;
-    //     while index < threads.len() {
-    //         let thread = &threads[index];
-    //         log::debug!("TcpServer.clean_threads | Checking connection '{}' - finished: {}", thread.name, thread.handle.is_finished());
-    //         if thread.handle.is_finished() {
-    //             let _ = threads.remove(index);
-    //         } else {
-    //             index += 1;
-    //         }
-
-    //     }
-    //     log::info!("TcpServer.clean_threads | Remaining threads ({}):", threads.len());
-    //     for th in threads {
-    //         log::debug!("TcpServer.clean_threads | \tthread: '{}' - is finished: {}", th.name, th.handle.is_finished());
-    //     }
-    // }
 }
-// ///
-// /// Just contains Tread JoinHandle
-// struct TcpThread {
-//     name: String,
-//     handle: JoinHandle<()>,
-// }

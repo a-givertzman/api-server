@@ -110,6 +110,8 @@ dependencies = [
  "bytes",
  "chrono",
  "clap",
+ "coco",
+ "dashmap",
  "debugging",
  "env_logger",
  "indexmap 2.9.0",
@@ -505,6 +507,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "dashmap"
+version = "6.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5041cc499144891f3790297212f32a74fb938e5136a14943f338ef9e0ae276cf"
+dependencies = [
+ "cfg-if",
+ "crossbeam-utils",
+ "hashbrown 0.14.5",
+ "lock_api",
+ "once_cell",
+ "parking_lot_core",
+]
+
+[[package]]
 name = "debugging"
 version = "0.0.1"
 source = "git+https://github.com/a-givertzman/rust-debuging.git?tag=0.0.1#18c3318af218aa8caa094a7dfda0d71f08a9eeda"
@@ -714,6 +730,12 @@ checksum = "8a9ee70c43aaf417c914396645a0fa852624801b24ebb7ae78fe8272889ac888"
 dependencies = [
  "ahash",
 ]
+
+[[package]]
+name = "hashbrown"
+version = "0.14.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e5274423e17b7c9fc20b6e7e208532f9b19825d82dfd615708b70edd83df41f1"
 
 [[package]]
 name = "hashbrown"

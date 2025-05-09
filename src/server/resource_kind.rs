@@ -1,8 +1,7 @@
 ///
 /// The kind of the resource
 ///  - Postgres - stores postgres connection
-#[repr(usize)]
-#[derive(Debug, PartialEq, Eq)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum ResourceKind {
     Postgres,
 }
@@ -10,8 +9,15 @@ pub enum ResourceKind {
 //
 impl ResourceKind {
     ///
-    /// Returns all ordered [ResorceKind] variants
+    /// Number of [ResourceKind] variants
     pub fn len() -> usize {
         1
+    }
+    ///
+    /// Returns all ordered [ResourceKind] variants
+    pub fn values() -> Vec<ResourceKind> {
+        vec![
+            ResourceKind::Postgres,
+        ]
     }
 }

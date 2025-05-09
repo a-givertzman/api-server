@@ -1,5 +1,4 @@
-use std::sync::{Arc, Mutex};
-
+use std::sync::Arc;
 use api_tools::{error::api_error::ApiError, server::api_query::row_map::RowMap};
 use chrono::{DateTime, Utc, NaiveTime, NaiveDate, NaiveDateTime};
 use indexmap::IndexMap;
@@ -14,7 +13,7 @@ use crate::{config::ServiceConfig, server::{resource::Resource, resource_kind::R
 /// 
 pub struct SqlQueryPostgre {
     db_config: ServiceConfig,
-    resources: Arc<Mutex<Resources>>,
+    resources: Arc<Resources>,
     sql: String,
 }
 //
@@ -22,7 +21,7 @@ pub struct SqlQueryPostgre {
 impl SqlQueryPostgre {
     ///
     /// Returns SqlQueryPostgre new instance
-    pub fn new(db_config: ServiceConfig, sql: String, resources: Arc<Mutex<Resources>>,) -> SqlQueryPostgre {
+    pub fn new(db_config: ServiceConfig, sql: String, resources: Arc<Resources>,) -> SqlQueryPostgre {
         Self {
             db_config,
             resources,
@@ -145,10 +144,7 @@ impl SqlQuery for SqlQueryPostgre {
     //
     fn execute(&mut self) -> Result<Vec<RowMap>, ApiError> {
         let connection = self.resources
-            .lock()
-            .map_or(None, |mut resources| {
-                resources.pop(ResourceKind::Postgres).map(|r| r.as_postgres())
-            })
+            .pop(ResourceKind::Postgres).map(|r| r.as_postgres())
             .map_or_else(
                 || {
                     let path = if !self.db_config.user.is_empty() && !self.db_config.pass.is_empty() {
@@ -223,10 +219,7 @@ impl SqlQuery for SqlQueryPostgre {
                                 ))
                             },
                         };
-                        match self.resources.lock() {
-                            Ok(mut r) => r.push(Resource::Postgres(connection)),
-                            Err(err) => log::warn!("SqlQueryPostgre.execute | Error push back resource: {:#?}", err),
-                        }
+                        self.resources.push(Resource::Postgres(connection));
                         result
                     },
                     Err(err) => {

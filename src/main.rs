@@ -15,7 +15,7 @@ mod sql_query_sqlite;
 mod sql_query_postgre;
 mod sql_query_mysql;
 
-use std::{path::{Path, PathBuf}, sync::{Arc, Mutex}};
+use std::path::{Path, PathBuf};
 use clap::Parser;
 use debugging::session::debug_session::{Backtrace, DebugSession, LogLevel};
 use log::debug;
@@ -34,11 +34,9 @@ fn main() {
     let path = Path::new(&path);
     debug!("reading config file: {}", path.to_str().unwrap());
     let config = Config::new(path);
-    let tcp_server = Arc::new(Mutex::new(
-        TcpServer::new(
-            &config.address.clone(),
-            config,
-        ),
-    ));
-    TcpServer::run(tcp_server.clone()).unwrap();
+    let tcp_server = TcpServer::new(
+        &config.address.clone(),
+        config,
+    );
+    tcp_server.run().unwrap();
 }

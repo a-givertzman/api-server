@@ -1,4 +1,4 @@
-use std::sync::{Arc, Mutex};
+use std::sync::Arc;
 use api_tools::{
     error::api_error::ApiError, api::reply::api_reply::ApiReply,
     server::api_query::{api_query::ApiQuery, api_query_type::ApiQueryType},
@@ -12,12 +12,12 @@ use crate::{
 /// 
 pub struct ApiServer {
     config: Config,
-    resources: Arc<Mutex<Resources>>,
+    resources: Arc<Resources>,
 }
 impl ApiServer {
     ///
     /// 
-    pub fn new(config: Config, resources: Arc<Mutex<Resources>>) -> ApiServer {
+    pub fn new(config: Config, resources: Arc<Resources>) -> ApiServer {
         ApiServer {
             config,
             resources

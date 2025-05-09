@@ -22,35 +22,30 @@ testing = { git = "https://github.com/a-givertzman/rust-testing.git", tag = "0.1
 debugging = { git = "https://github.com/a-givertzman/rust-debuging.git", tag = "0.0.1" }
 api-tools = { git = "https://github.com/a-givertzman/rust-api-tools.git", tag = "0.2.1" }
 # api-tools = { path = "../api-tools/" }
-
-
+#
+# Database
 rusqlite = { version = "^0.35", features = ["bundled"] }
-
 postgres = { version = "^0.19", features = ["with-chrono-0_4", "with-serde_json-1"] }
-
-# [features]
-# with-bit-vec-0_6 = ["tokio-postgres/with-bit-vec-0_6"]
-# with-chrono-0_4 = ["tokio-postgres/with-chrono-0_4"]
-# with-eui48-0_4 = ["tokio-postgres/with-eui48-0_4"]
-# with-geo-types-0_4 = ["tokio-postgres/with-geo-types-0_4"]
-# with-serde_json-1 = ["tokio-postgres/with-serde_json-1"]
-# with-uuid-0_8 = ["tokio-postgres/with-uuid-0_8"]
-
+rust_decimal = { version = "^1.36", features = [ "tokio-pg" ] }
+#
+# Serde
 serde_yaml = "^0.9"
-
 serde = { version = "^1.0", features = ["derive"] }
 serde_json = "^1.0"
 serde_with = "^3.0"
-
 yaml-rust = "^0.4"
+#
+# Collections
 linked-hash-map = "^0.5"
-
-bytes = "^1.10"
-
-rust_decimal = { version = "^1.36", features = [ "tokio-pg" ] }
-
-rand = "^0.9"
-
 indexmap = { version = "^2.7", features = ["serde"] }
-
+#
+# Collections thread safe
+dashmap = "6.1.0"
+coco = "^0.3"
+#
+# Misc
+bytes = "^1.10"
+rand = "^0.9"
+#
+# Cli
 clap = { version = "^4.5", features = ["derive"] }
