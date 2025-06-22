@@ -1,8 +1,5 @@
-#![allow(non_snake_case)]
-
 use std::io::Write;
 use std::process::{Command, Stdio};
-
 use api_tools::{
     error::api_error::ApiError,
     server::api_query::row_map::RowMap,
@@ -48,9 +45,9 @@ impl ExecutableQuery {
                         debug!("ExecutableQuery.execute | command output: {:?}", output);
                         if output.status.success() {
                             let mut result: Vec<RowMap> = vec![];
-                            let rawOutput = String::from_utf8(output.stdout).unwrap();
-                            debug!("ExecutableQuery.execute | rawOutput: {:?}", rawOutput);
-                            match serde_json::from_str(rawOutput.as_str()) {
+                            let raw_output = String::from_utf8(output.stdout).unwrap();
+                            debug!("ExecutableQuery.execute | rawOutput: {:?}", raw_output);
+                            match serde_json::from_str(raw_output.as_str()) {
                                 Ok(row) => {
                                     result.push(row);
                                     Ok(result)        

@@ -1,11 +1,9 @@
-#![allow(non_snake_case)]
-
 use serde::{
     Serialize, 
     Deserialize, 
 };
-
-
+///
+/// The kind of Api Service
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "lowercase")]
 // #[serde(tag = "type", content = "value")]

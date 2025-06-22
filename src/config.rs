@@ -2,10 +2,9 @@ use log::{trace, debug};
 use std::{collections::HashMap, fs, path::Path};
 use linked_hash_map::LinkedHashMap;
 use yaml_rust::{YamlLoader, Yaml};
-
 use crate::api_service_type::ApiServiceType;
-
-
+///
+/// The configuration parameters of the API Server
 #[derive(Debug, Clone)]
 pub struct Config {
     pub address: String,
