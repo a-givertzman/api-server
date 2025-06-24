@@ -50,6 +50,6 @@ rand = "~0.9"
 # Cli
 clap = { version = "~4.5", features = ["derive"] }
 #
-# Web
+# WebSocket
 # openssl = { version = "~0.10", features = ["vendored"] }
 tungstenite = "~0.27"

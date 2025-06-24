@@ -9,8 +9,7 @@ use std::{
     }, thread::{self}, time::Duration 
 };
 use crate::{
-    config::Config, server::tcp_connection::TcpConnection,
-    server::resources::Resources,
+    config::Config, server::{TcpConnection, Resources},
 };
 ///
 /// 
@@ -69,7 +68,7 @@ impl TcpServer {
         let dbg_clone = dbg.clone();
         let handle = self.scheduler.spawn(move || {
             let dbg = dbg_clone;
-            log::debug!("{dbg}.run | started in {:?}", thread::current().name().unwrap());
+            log::debug!("{dbg}.run | started");
             while try_again > 0 {
                 log::debug!("{dbg}.run | {:?} attempts left", try_again);
                 listener = match TcpListener::bind(addr) {

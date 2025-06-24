@@ -1,4 +1,5 @@
-address: '0.0.0.0:8080'       # self ip:port address where API service will be alvalible
+address: '0.0.0.0:8080'       # self TCP-Server ip:port address where API service will be alvalible
+web-address: '0.0.0.0:8081'   # self Web-Socket ip:port address where API service will be alvalible
 services:                      # list of currently avalible API services
     - database-sqlite:                 # internal unique API service name
         name: 'database'        # database instance name

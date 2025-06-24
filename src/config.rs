@@ -6,7 +6,7 @@ use crate::api_service_type::ApiServiceType;
 ///
 /// The configuration parameters of the API Server
 /// - `address` - TCP Server socket address: 'ip:port'
-/// - `web_socket` - Web-Socket Server address 'ip:port' (optional)
+/// - `web_address` - Web-Socket Server address 'ip:port' (optional)
 #[derive(Debug, Clone)]
 pub struct Config {
     pub address: String,
@@ -46,7 +46,7 @@ impl Config {
                     address: yaml_doc["address"].as_str().unwrap_or_else(
                         || panic!("Config | error reading 'address' from config file {:?}", path.as_ref()),
                     ).to_owned(),
-                    web_address: yaml_doc["web-addres"].as_str().map_or_else(
+                    web_address: yaml_doc["web-address"].as_str().map_or_else(
                         || {
                             log::info!("Config | 'web-address' is not specified, by default web-socket is disable");
                             None

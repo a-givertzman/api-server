@@ -9,7 +9,7 @@ use std::{
     }, thread::{self}, time::Duration 
 };
 use crate::{
-    config::Config, server::resources::Resources,
+    config::Config, server::{WebConnection, Resources},
 };
 ///
 /// 
@@ -68,7 +68,7 @@ impl WebServer {
         let dbg_clone = dbg.clone();
         let handle = self.scheduler.spawn(move || {
             let dbg = dbg_clone;
-            log::debug!("{dbg}.run | started in {:?}", thread::current().name().unwrap());
+            log::debug!("{dbg}.run | started");
             while try_again > 0 {
                 log::debug!("{dbg}.run | {:?} attempts left", try_again);
                 listener = match TcpListener::bind(addr) {
@@ -93,32 +93,29 @@ impl WebServer {
                     for socket in listener.incoming() {
                         match socket {
                             Ok(stream) => {
-                                let peer_addr = stream.peer_addr();
-                                match tungstenite::accept(stream) {
-                                    Ok(ws) => {
-                                        log::info!("{dbg}.run | incoming connection: {:?}", peer_addr);
-
-                                    }
-                                    Err(err) => {
-                                        log::warn!("{dbg}.run | Accept Websocket error: {:?}", err);
-                                    }
+                                let peer_addr = stream.peer_addr().map_or_else(|_| "-".to_string(), |addr| addr.to_string());
+                                if let Err(err) = stream.set_nodelay(true) {
+                                    log::warn!("{dbg}.run | TcpStream.set_nodelay error: {:?}", err);
                                 }
-                                // let peer_addr = stream.peer_addr().unwrap().to_string();
-                                // let thread_name = format!("TcpServer-{:?}", peer_addr);
-                                // let connection_config = config.clone();
-                                // let resources = resources.clone();
-                                // if let Err(err) = stream.set_nodelay(true) {
-                                //     log::warn!("{dbg}.run | TcpStream.set_nodelay error: {:?}", err);
-                                // }
-                                // let connection = TcpConnection::new(
-                                //     thread_name, 
-                                //     connection_config.clone(), 
-                                //     stream,
-                                //     resources.clone(),
-                                //     scheduler.clone()
-                                // );
-                                // if let Err(err) = connection.run() {
-                                //     log::warn!("{dbg}.run | run connection error: {:?}", err);
+                                let stream = tungstenite::WebSocket::from_raw_socket(stream, tungstenite::protocol::Role::Server, None);
+                                log::info!("{dbg}.run | incoming connection: {:?}", peer_addr);
+                                let thread_name = format!("TcpServer-{:?}", peer_addr);
+                                let connection = WebConnection::new(
+                                    thread_name, 
+                                    config.clone(), 
+                                    stream,
+                                    resources.clone(),
+                                    scheduler.clone(),
+                                );
+                                if let Err(err) = connection.run() {
+                                    log::warn!("{dbg}.run | run connection error: {:?}", err);
+                                }
+                                // match  {
+                                //     Ok(stream) => {
+                                //     }
+                                //     Err(err) => {
+                                //         log::warn!("{dbg}.run | Accept Websocket error: {:?}", err);
+                                //     }
                                 // }
                             }
                             Err(err) => log::warn!("{dbg}.run | incoming failed: {:?}", err),

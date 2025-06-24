@@ -62,5 +62,6 @@ fn main() {
     if let Err(err) = tcp_server.wait() {
         log::error!("{dbg} | TcpServer error: {:?}", err)
     }
+    log::debug!("{dbg} | Shutting down...");
     tp.shutdown().unwrap()
 }
