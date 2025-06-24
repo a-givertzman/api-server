@@ -10,14 +10,15 @@ pub enum ResourceKind {
 impl ResourceKind {
     ///
     /// Number of [ResourceKind] variants
+    #[allow(unused)]
     pub fn len() -> usize {
         1
     }
     ///
     /// Returns all ordered [ResourceKind] variants
-    pub fn values() -> Vec<ResourceKind> {
+    pub fn values() -> Vec<Self> {
         vec![
-            ResourceKind::Postgres,
+            Self::Postgres,
         ]
     }
 }

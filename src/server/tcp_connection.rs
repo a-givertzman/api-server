@@ -9,26 +9,42 @@ use api_tools::api::{
     },
     socket::tcp_socket::{TcpMessage, TcpSocket},
 };
-use sal_core::dbg::Dbg;
+use sal_core::{dbg::Dbg, error::Error};
+use sal_sync::{sync::{Handles, Owner}, thread_pool::Scheduler};
 use crate::{api_server::ApiServer, config::Config};
 use super::resources::Resources;
 ///
 /// Opens a connection via TCP Socket
 pub struct TcpConnection {
-    dbgid: Dbg,
     config: Config,
-    socket: TcpSocket,
-    resources: Arc<Resources>
+    // socket: TcpSocket,
+    stream: Owner<TcpStream>,
+    resources: Arc<Resources>,
+    scheduler: Scheduler,
+    handles: Handles<()>,
+    dbg: Dbg,
 }
 //
 // 
 impl TcpConnection {
     ///
     /// Returns TcpConnection new instance
-    pub fn new(parent: impl Into<String>, config: Config, stream: TcpStream, resources: Arc<Resources>,) -> Self {
-        let dbgid = Dbg::new(parent, "TcpConnection");
-        let message = TcpMessage::new(
-            &dbgid,
+    pub fn new(parent: impl Into<String>, config: Config, stream: TcpStream, resources: Arc<Resources>, scheduler: Scheduler) -> Self {
+        let dbg = Dbg::new(parent, "TcpConnection");
+        Self {
+            config,
+            stream: Owner::new(stream),
+            resources,
+            scheduler,
+            handles: Handles::new(&dbg),
+            dbg,
+        }
+    }
+    ///
+    /// Returns configured [TcpSocket]
+    fn message(dbg: &Dbg, ) -> TcpMessage {
+        TcpMessage::new(
+            dbg,
             vec![
                 MessageField::Syn(FieldSyn::default()),
                 MessageField::Id(FieldId(4)),
@@ -37,67 +53,75 @@ impl TcpConnection {
                 MessageField::Data(FieldData(vec![]))
             ],
             ParseData::new(
-                &dbgid,
+                dbg,
                 ParseSize::new(
-                    &dbgid,
+                    dbg,
                     FieldSize(4),
                     ParseKind::new(
-                        &dbgid,
+                        dbg,
                         FieldKind(MessageKind::Bytes),
                         ParseId::new(
-                            &dbgid,
+                            dbg,
                             FieldId(4),
                             ParseSyn::new(
-                                &dbgid,
+                                dbg,
                                 FieldSyn::default(),
                             ),
                         ),
                     ),
                 ),
             ),
-        );
-        let stream = Arc::new(stream);
-        Self {
-            dbgid: dbgid.clone(),
-            socket: TcpSocket::new(&dbgid, &config.address, message, Some(Arc::clone(&stream))),
-            config,
-            resources,
-        }
+        )
     }
     ///
     /// Listening incoming messages from remote client
-    pub fn run(&mut self) {
-        log::debug!("{}.run | Start reading...", self.dbgid);
+    pub fn run(self) -> Result<(), Error> {
+        let dbg = self.dbg.clone();
+        log::debug!("{dbg}.run | Start reading...");
+        let stream = Arc::new(self.stream.take().unwrap());
         let api_server = ApiServer::new(self.config.clone(), self.resources.clone());
         let mut keep_alive = true;
-        while keep_alive {
-            match self.socket.read() {
-                Ok((id, msg)) => match msg {
-                    MsgKind::Bytes(bytes) => {
-                        let dbg_bytes = if bytes.len() > 16 {format!("{:?} ...", &bytes[..16])} else {format!("{:?}", bytes)};
-                        log::debug!("{}.run | Received id: {:?},  bytes: {:?}", self.dbgid, id, dbg_bytes);
-                        let time = Instant::now();
-                        let result = api_server.build(&bytes);
-                        log::debug!("{}.run | Elapsed: {:?}", self.dbgid, time.elapsed());
-                        keep_alive = result.keep_alive;
-                        match self.socket.send(&result.data,  Some(id.0)) {
-                            Ok(_) => {}
-                            Err(err) => {
-                                log::warn!("{}.run | Error sending reply: {:?}", self.dbgid, err);
+        let handle = self.scheduler.spawn(move || {
+            let message = Self::message(&dbg);
+            let mut socket = TcpSocket::new(&dbg, &self.config.address, message, Some(Arc::clone(&stream)));
+            while keep_alive {
+                match socket.read() {
+                    Ok((id, msg)) => match msg {
+                        MsgKind::Bytes(bytes) => {
+                            let dbg_bytes = if bytes.len() > 16 {format!("{:?} ...", &bytes[..16])} else {format!("{:?}", bytes)};
+                            log::trace!("{}.run | Received id: {:?},  bytes: {:?}", dbg, id, dbg_bytes);
+                            let time = Instant::now();
+                            let result = api_server.build(&bytes);
+                            log::trace!("{}.run | Elapsed: {:?}", dbg, time.elapsed());
+                            keep_alive = result.keep_alive;
+                            match socket.send(&result.data,  Some(id.0)) {
+                                Ok(_) => {}
+                                Err(err) => {
+                                    log::warn!("{}.run | Error sending reply: {:?}", dbg, err);
+                                }
                             }
                         }
+                        _ => {
+                            log::warn!("{}.run | Unexpected kind (Bytes expected) of TcpMessage: {:?}", dbg, msg);
+                        }
                     }
-                    _ => {
-                        log::warn!("{}.run | Unexpected kind (Bytes expected) of TcpMessage: {:?}", self.dbgid, msg);
+                    Err(_) => {
+                        log::info!("{}.run | Connection closed", dbg);
+                        break;
                     }
-                }
-                Err(_) => {
-                    log::info!("{}.run | Connection closed", self.dbgid);
-                    break;
                 }
             }
+            log::info!("{}.run | Exit", dbg);
+            Ok(())
+        });
+        match handle {
+            Ok(handle) => {
+                self.handles.push(handle);
+                log::debug!("{}.run | started\n", self.dbg);
+                Ok(())
+            }
+            Err(err) => Err(Error::new(&self.dbg, "run").pass(err.to_string())),
         }
-        log::info!("{}.run | Exit", self.dbgid);
     }
 
 }

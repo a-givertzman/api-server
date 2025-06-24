@@ -19,12 +19,15 @@ use std::path::{Path, PathBuf};
 use clap::Parser;
 use debugging::session::debug_session::{Backtrace, DebugSession, LogLevel};
 use log::debug;
+use sal_core::dbg::Dbg;
+use sal_sync::thread_pool::ThreadPool;
 use crate::{
-    config::Config, domain::cli::cli::Cli, server::tcp_server::TcpServer
+    config::Config, domain::Cli, server::{TcpServer, WebServer}
 };
 
 fn main() {
     DebugSession::init(LogLevel::Debug, Backtrace::Short);
+    let dbg = Dbg::own("main");
     let cli = Cli::parse();
     debug!("starting api server...");
     let path = cli.config.map_or_else(
@@ -34,9 +37,30 @@ fn main() {
     let path = Path::new(&path);
     debug!("reading config file: {}", path.to_str().unwrap());
     let config = Config::new(path);
+    let tp = ThreadPool::new(&dbg, Some(config.treads));
     let tcp_server = TcpServer::new(
         &config.address.clone(),
-        config,
+        config.clone(),
+        tp.scheduler(),
     );
-    tcp_server.run().unwrap();
+    if let Err(err) = tcp_server.run() {
+        log::error!("{dbg} | TcpServer can't start: {:?}", err)
+    }
+    if let Some(address) = config.web_address.clone() {
+        let web_server = WebServer::new(
+            &address,
+            config,
+            tp.scheduler(),
+        );
+        if let Err(err) = web_server.run() {
+            log::error!("{dbg} | TcpServer can't start: {:?}", err)
+        }
+        if let Err(err) = web_server.wait() {
+            log::error!("{dbg} | TcpServer error: {:?}", err)
+        }
+    }
+    if let Err(err) = tcp_server.wait() {
+        log::error!("{dbg} | TcpServer error: {:?}", err)
+    }
+    tp.shutdown().unwrap()
 }

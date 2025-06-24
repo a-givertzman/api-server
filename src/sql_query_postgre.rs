@@ -8,7 +8,7 @@ use postgres::{Client, NoTls, types::{Type, to_sql_checked, FromSql, self, Kind}
 use serde::Serialize;
 use serde_json::json;
 use log::LevelFilter;
-use crate::{config::ServiceConfig, server::{resource::Resource, resource_kind::ResourceKind, resources::Resources}, sql_query::SqlQuery};
+use crate::{config::ServiceConfig, server::{Resource, ResourceKind, Resources}, sql_query::SqlQuery};
 ///
 /// 
 pub struct SqlQueryPostgre {
