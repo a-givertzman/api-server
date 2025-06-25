@@ -83,7 +83,7 @@ impl WebConnection {
     /// Listening incoming messages from remote client
     pub fn run(&self) -> Result<(), Error> {
         let dbg = self.dbg.clone();
-        log::debug!("{dbg}.run | Start reading...");
+        log::debug!("{dbg}.run | Starting...");
         let mut stream = self.stream.take().unwrap();
         let timeout = self.timeout;
         let api_server = ApiServer::new(self.config.clone(), self.resources.clone());

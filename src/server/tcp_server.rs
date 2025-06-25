@@ -6,7 +6,7 @@ use std::{
         TcpListener, 
     }, sync::{
         atomic::{AtomicBool, Ordering}, Arc,
-    }, thread::{self}, time::Duration 
+    }, time::Duration,
 };
 use crate::{
     config::Config, server::{TcpConnection, Resources},
@@ -54,8 +54,7 @@ impl TcpServer {
     /// - handling incoming connections in the separate threads
     pub fn run(&self) -> Result<(), Error> {
         let dbg = self.dbg.clone();
-        log::debug!("{dbg}.run | starting...");
-        log::info!("{dbg}.run | enter");
+        log::info!("{dbg}.run | Starting...");
         let mut listener: Option<TcpListener> = None;
         let mut try_again = 3;
         let addr = self.addr;
@@ -64,36 +63,35 @@ impl TcpServer {
         let resources = self.resources.clone();
         let is_connected = self.is_connected.clone();
         let scheduler = self.scheduler.clone();
-        log::debug!("{dbg}.run | trying to open...");
+        log::debug!("{dbg}.run | Trying to open...");
         let dbg_clone = dbg.clone();
         let handle = self.scheduler.spawn(move || {
             let dbg = dbg_clone;
-            log::debug!("{dbg}.run | started");
             while try_again > 0 {
                 log::debug!("{dbg}.run | {:?} attempts left", try_again);
                 listener = match TcpListener::bind(addr) {
                     Ok(stream) => {
                         is_connected.store(true, Ordering::SeqCst);
-                        log::info!("{dbg}.run | opened on: {:?}\n", addr);
+                        log::info!("{dbg}.run | Opened on: {:?}", addr);
                         try_again = -1;
                         Some(stream)
                     },
                     Err(err) => {
                         is_connected.store(false, Ordering::SeqCst);
-                        log::debug!("{dbg}.run | binding error on: {:?}\n\tdetailes: {:?}", addr, err);
+                        log::debug!("{dbg}.run | Binding error on: {:?}\n\tdetailes: {:?}", addr, err);
                         std::thread::sleep(reconnect_delay);
                         None
                     },
                 };
                 try_again -= 1;
             };
-            log::debug!("{dbg}.run | listening for incoming clients");
+            log::debug!("{dbg}.run | Listening for incoming clients");
             match listener {
                 Some(listener) => {
                     for socket in listener.incoming() {
                         match socket {
                             Ok(stream) => {
-                                log::info!("{dbg}.run | incoming connection: {:?}", stream.peer_addr());
+                                log::debug!("{dbg}.run | Incoming connection: {:?}", stream.peer_addr());
                                 let peer_addr = stream.peer_addr().map_or_else(|_| "".to_string(), |addr| addr.to_string());
                                 let thread_name = format!("TcpServer-{:?}", peer_addr);
                                 if let Err(err) = stream.set_nodelay(true) {
@@ -107,24 +105,24 @@ impl TcpServer {
                                     scheduler.clone()
                                 );
                                 if let Err(err) = connection.run() {
-                                    log::warn!("{dbg}.run | run connection error: {:?}", err);
+                                    log::warn!("{dbg}.run | Run connection error: {:?}", err);
                                 }
                             }
-                            Err(err) => log::warn!("{dbg}.run | incoming failed: {:?}", err),
+                            Err(err) => log::warn!("{dbg}.run | Incoming failed: {:?}", err),
                         }
                     }
                 },
                 None => {
-                    log::warn!("{dbg}.run | connection failed");
+                    log::warn!("{dbg}.run | Connection failed");
                 },
             };
-            log::debug!("{dbg}.run | exit\n");
+            log::info!("{dbg}.run | Exit");
             Ok(())
         });
         match handle {
             Ok(handle) => {
                 self.handles.push(handle);
-                log::debug!("{dbg}.run | started\n");
+                log::info!("{dbg}.run | Started");
                 Ok(())
             }
             Err(err) => Err(Error::new(&dbg, "run").pass(err.to_string())),
