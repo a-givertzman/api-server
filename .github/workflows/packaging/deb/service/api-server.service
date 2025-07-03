@@ -3,7 +3,7 @@ Description=API Server
 After=syslog.target network.target multi-user.target
 
 [Service]
-User=scada
+User=www-data
 Type=simple
 Restart=always
 RestartSec=5
