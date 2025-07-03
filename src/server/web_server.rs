@@ -120,7 +120,7 @@ impl WebServer {
                                             log::warn!("{dbg}.run | Run connection error: {:?}", err);
                                         }
                                     }
-                                    Err(_) => todo!(),
+                                    Err(err) => log::warn!("{dbg}.run | Incoming failed: {:?}", err),
                                 }
                                 // match  {
                                 //     Ok(stream) => {

@@ -42,7 +42,7 @@ assets=(
 	# "./target/release/api-server /usr/bin/ 755"
 	"./target/x86_64-unknown-linux-musl/release/api-server /usr/bin/ 755"
 	"./.github/workflows/packaging/deb/service/api-server.service /etc/systemd/system/ 644"
-	"./config.yaml /home/scada/api-server/"
+	"./config.yaml /home/api-server/"
 )
 outputDir=target/
 # 'any', 'all' or one of the supported architecture (e.g., 'amd64', 'arm64', 'i386', 'armhf')
