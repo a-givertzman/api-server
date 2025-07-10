@@ -167,3 +167,9 @@ if __name__ == '__main__':
 ```bash
 cargo build --target x86_64-pc-windows-gnu
 ```
+
+## Deploy for Flowers
+
+```bash
+rsync -avz -e 'ssh' /home/lobanov/code/rust/api-server/target/api-server_0.2.2_amd64.deb root@95.142.42.240:/tmp
+```
