@@ -24,7 +24,7 @@ api-tools = { git = "https://github.com/a-givertzman/rust-api-tools.git", tag = 
 # api-tools = { path = "../api-tools/" }
 #
 # Database
-rusqlite = { version = "~0.36", features = ["bundled"] }
+rusqlite = { version = "~0.37", features = ["bundled"] }
 postgres = { version = "~0.19", features = ["with-chrono-0_4", "with-serde_json-1"] }
 rust_decimal = { version = "~1.37", features = [ "tokio-pg" ] }
 #
@@ -32,12 +32,12 @@ rust_decimal = { version = "~1.37", features = [ "tokio-pg" ] }
 serde_yaml = "~0.9"
 serde = { version = "~1.0", features = ["derive"] }
 serde_json = "~1.0"
-serde_with = "~3.13"
+serde_with = "~3.14"
 yaml-rust = "~0.4"
 #
 # Collections
 linked-hash-map = "~0.5"
-indexmap = { version = "~2.9", features = ["serde"] }
+indexmap = { version = "~2.10", features = ["serde"] }
 #
 # Collections thread safe
 dashmap = "6.1.0"
