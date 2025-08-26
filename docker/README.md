@@ -2,11 +2,11 @@
 
 ## Database with api-server only
 
-Run the following command to get the database and api-server up and running:
+Run the following command from `./docker` directory to start the database and api-server:
 
 ```bash
 mkdir ./postgres
-docker compose up --scale client=0
+docker compose up
 ```
 
 If configuration has changed, run following commands to recreate database and api-server with updated configuration:
@@ -14,19 +14,19 @@ If configuration has changed, run following commands to recreate database and ap
 ```bash
 docker compose down -v
 sudo rm -rf ./postgres
-docker compose up --scale client=0 --build --no-deps --force-recreate
+docker compose up --build --no-deps --force-recreate
 ```
 
-## Database, api-server and GUI
+## Database, api-server and GUI (Temporally disabled)
 
 It is also possible to run app with GUI by replacing the commands above with:
 
 ```bash
-docker compose up
+docker compose up --scale client=1
 ```
 or
 ```bash
-docker compose up --build --no-deps --force-recreate
+docker compose up --scale client=1 --build --no-deps --force-recreate
 ```
 
 ### Prerequisites
