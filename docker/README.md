@@ -1,5 +1,14 @@
 # Running inside docker
 
+## Prerequisites
+
+Inside `./docker` directory create `.env` file with following content:
+
+```dotenv
+# Token to access private Github repositories
+GITHUB_TOKEN=<PUT GITHUB TOKEN HERE>
+```
+
 ## Database with api-server only
 
 Run the following command from `./docker` directory to start the database and api-server:
@@ -34,4 +43,17 @@ On Linux, ensure that XServer and Xhost installed and run the following command 
 
 ```bash
 xhost + local:docker
+```
+
+## Connecting to a psql DB session
+
+You can connect to a psql DB session by running the following commands:
+
+```bash
+docker exec -it docker-db-1 psql -U test -d sss-computing
+```
+or
+```bash
+docker ls # check id of container with db
+docker exec -it <Container id here> psql -U test -d sss-computing
 ```
