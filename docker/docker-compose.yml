@@ -19,16 +19,22 @@ services:
       - api-server
 
   api:
-    build: ./api-server
+    build:
+      context: ./api-server
+      args:
+        - GITHUB_TOKEN=$GITHUB_TOKEN
     ports:
       - 8080:8080
     networks:
       - api-server
 
-  client:
-    build: ./client
-    deploy:
-      replicas: 0
-    environment:
-      DISPLAY: ${DISPLAY}
-    network_mode: host
+  # client:
+  #   build:
+  #     context: ./client
+  #     args:
+  #       - GITHUB_TOKEN=$GITHUB_TOKEN
+  #   deploy:
+  #     replicas: 0
+  #   environment:
+  #     DISPLAY: ${DISPLAY}
+  #   network_mode: host
