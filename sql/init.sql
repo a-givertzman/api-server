@@ -187,6 +187,9 @@ DROP TABLE IF EXISTS ship_geometry, ship_parameters, ship CASCADE;
 \i ./sql/Sofia/container/container_insert.sql
 --\i ./sql/Sofia/test/SSS_Sofia_test6.sql
 --
+-- Fake seakeeping data for Sofia vessel
+\i ./sql/result/seakeeping_zones.sql
+--
 -- Utility relations for storing database checkpoints
 \i ./sql/db_checkpoint/db_checkpoint_create.sql
 --
