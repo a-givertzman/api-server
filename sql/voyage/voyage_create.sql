@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS voyage (
     icing_timber_type_id INT NOT NULL DEFAULT 1,
     water_area_id INT NOT NULL DEFAULT 1,
     load_line_id INT NOT NULL DEFAULT 1,
-    wave_length FLOAT8 NOT NULL DEFAULT 1.0, -- Length of wave, m
+    wave_length FLOAT8 NOT NULL DEFAULT 5.0, -- Length of wave, m
     course_angle FLOAT8 NOT NULL DEFAULT 1.0, -- Angle of vessel course in northeastern coordinate's, degrees
     CONSTRAINT voyage_pk PRIMARY KEY (id),
     CONSTRAINT voyage_name_check CHECK(char_length(name) > 0 AND char_length(name) <= 250),
