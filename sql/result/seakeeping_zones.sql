@@ -1,4 +1,5 @@
-CREATE TYPE IF NOT EXISTS zone_type AS ENUM ('Parametric', 'Main', 'Broaching', 'HighWaves');
+DROP TYPE IF EXISTS zone_type CASCADE;
+CREATE TYPE zone_type AS ENUM ('Parametric', 'Main', 'Broaching', 'HighWaves');
 
 -- Stores points for seakeeping zones
 CREATE TABLE IF NOT EXISTS seakeeping_zones (
