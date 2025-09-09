@@ -22,7 +22,7 @@ If you need to recreate the database with new data (for example, if SQL scripts 
 ```bash
 docker compose down -v
 sudo rm -rf ./postgres
-docker compose up --build --no-deps --force-recreate
+docker compose up
 ```
 
 To recreate containers from scratch or after updating a configuration (e.g., if versions of the database, API, or client have changed), execute the following commands.
