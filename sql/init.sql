@@ -56,6 +56,7 @@ DROP TABLE IF EXISTS ship_geometry, ship_parameters, ship CASCADE;
 \i ./sql/voyage/ship_water_area.sql
 \i ./sql/voyage/voyage_create.sql
 \i ./sql/voyage/voyage_waypoint_create.sql
+\i ./sql/voyage/port_create.sql
 --
 -- Compartment and cargo relations
 \i ./sql/cargo_categories/cargo_categories.sql
