@@ -14,11 +14,18 @@ GITHUB_TOKEN=<PUT GITHUB TOKEN HERE>
 Run the following command from `./docker` directory to start the database and api-server:
 
 ```bash
-mkdir ./postgres
 docker compose up
 ```
 
-If configuration has changed, run following commands to recreate database and api-server with updated configuration:
+If you need to recreate the database with new data (for example, if SQL scripts have been updated or you need to restore the database to its initial state), execute the following commands:
+
+```bash
+docker compose down -v
+sudo rm -rf ./postgres
+docker compose up --build --no-deps --force-recreate
+```
+
+To recreate containers from scratch or after updating a configuration (e.g., if versions of the database, API, or client have changed), execute the following commands.
 
 ```bash
 docker compose down -v
