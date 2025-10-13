@@ -3,8 +3,8 @@ use api_tools::{error::api_error::ApiError, server::api_query::row_map::RowMap};
 use chrono::{DateTime, Utc, NaiveTime, NaiveDate, NaiveDateTime};
 use indexmap::IndexMap;
 use rust_decimal::Decimal;
-use bytes::BytesMut;
-use postgres::{Client, NoTls, types::{Type, to_sql_checked, FromSql, self, Kind}};
+use postgres::{Client, NoTls, types::{Type, Kind}};
+use sal_core::error::Error;
 use serde::Serialize;
 use serde_json::json;
 use log::LevelFilter;
@@ -29,44 +29,45 @@ impl SqlQueryPostgre {
         }
     }
     ///
-    fn as_json(&self, t: &Type, row: &postgres::Row, idx: &str) -> (serde_json::Value, String) {
+    fn as_json(&self, t: &Type, row: &postgres::Row, idx: &str) -> Result<serde_json::Value, Error> {
         match t.to_owned() {
-            Type::BOOL => (self.as_json_::<bool>(t, row, idx), String::new()),
-            Type::INT2 => (self.as_json_::<i16>(t, row, idx), String::new()),
-            Type::INT4 => (self.as_json_::<i32>(t, row, idx), String::new()),
-            Type::INT8 => (self.as_json_::<i64>(t, row, idx), String::new()),
-            Type::FLOAT4 => (self.as_json_::<f32>(t, row, idx), String::new()),
-            Type::FLOAT8 => (self.as_json_::<f64>(t, row, idx), String::new()),
-            Type::NUMERIC => (self.as_json_::<Decimal>(t, row, idx), String::new()),
-            Type::BPCHAR => (self.as_json_::<String>(t, row, idx), String::new()),
+            Type::BOOL => Ok(self.as_json_::<bool>(t, row, idx)),
+            Type::INT2 => Ok(self.as_json_::<i16>(t, row, idx)),
+            Type::INT4 => Ok(self.as_json_::<i32>(t, row, idx)),
+            Type::INT8 => Ok(self.as_json_::<i64>(t, row, idx)),
+            Type::FLOAT4 => Ok(self.as_json_::<f32>(t, row, idx)),
+            Type::FLOAT8 => Ok(self.as_json_::<f64>(t, row, idx)),
+            Type::NUMERIC => Ok(self.as_json_::<Decimal>(t, row, idx)),
+            Type::BPCHAR => Ok(self.as_json_::<String>(t, row, idx)),
             Type::CHAR 
-            | Type::TEXT | Type::VARCHAR => (self.as_json_::<String>(t, row, idx), String::new()),
-            Type::NAME => (self.as_json_::<String>(t, row, idx), String::new()),
-            Type::TIMESTAMP => (self.as_json_::<NaiveDateTime>(t, row, idx), String::new()),
-            Type::TIMESTAMPTZ => (self.as_json_::<DateTime<Utc>>(t, row, idx), String::new()),
-            Type::DATE => (self.as_json_::<NaiveDate>(t, row, idx), String::new()),
-            Type::TIME => (self.as_json_::<NaiveTime>(t, row, idx), String::new()),
+            | Type::TEXT | Type::VARCHAR => Ok(self.as_json_::<String>(t, row, idx)),
+            Type::NAME => Ok(self.as_json_::<String>(t, row, idx)),
+            Type::TIMESTAMP => Ok(self.as_json_::<NaiveDateTime>(t, row, idx)),
+            Type::TIMESTAMPTZ => Ok(self.as_json_::<DateTime<Utc>>(t, row, idx)),
+            Type::DATE => Ok(self.as_json_::<NaiveDate>(t, row, idx)),
+            Type::TIME => Ok(self.as_json_::<NaiveTime>(t, row, idx)),
             Type::JSON 
-            | Type::JSONB => (self.as_json_::<serde_json::Value>(t, row, idx), String::new()),
-            Type::BOOL_ARRAY => (self.as_json_::<Vec<bool>>(t, row, idx), String::new()),
-            Type::INT2_ARRAY => (self.as_json_::<Vec<i16>>(t, row, idx), String::new()),
-            Type::INT4_ARRAY => (self.as_json_::<Vec<i32>>(t, row, idx), String::new()),
-            Type::INT8_ARRAY => (self.as_json_::<Vec<i64>>(t, row, idx), String::new()),
-            Type::FLOAT4_ARRAY => (self.as_json_::<Vec<f32>>(t, row, idx), String::new()),
-            Type::FLOAT8_ARRAY => (self.as_json_::<Vec<f64>>(t, row, idx), String::new()),
-            Type::BPCHAR_ARRAY => (self.as_json_::<Vec<String>>(t, row, idx), String::new()),
+            | Type::JSONB => Ok(self.as_json_::<serde_json::Value>(t, row, idx)),
+            Type::BOOL_ARRAY => Ok(self.as_json_::<Vec<bool>>(t, row, idx)),
+            Type::INT2_ARRAY => Ok(self.as_json_::<Vec<i16>>(t, row, idx)),
+            Type::INT4_ARRAY => Ok(self.as_json_::<Vec<i32>>(t, row, idx)),
+            Type::INT8_ARRAY => Ok(self.as_json_::<Vec<i64>>(t, row, idx)),
+            Type::FLOAT4_ARRAY => Ok(self.as_json_::<Vec<f32>>(t, row, idx)),
+            Type::FLOAT8_ARRAY => Ok(self.as_json_::<Vec<f64>>(t, row, idx)),
+            Type::BPCHAR_ARRAY => Ok(self.as_json_::<Vec<String>>(t, row, idx)),
             Type::CHAR_ARRAY 
             | Type::TEXT_ARRAY 
-            | Type::VARCHAR_ARRAY => (self.as_json_::<Vec<String>>(t, row, idx), String::new()),
+            | Type::VARCHAR_ARRAY => Ok(self.as_json_::<Vec<String>>(t, row, idx)),
             _ => {
                 return match t.to_owned().kind() {
                     Kind::Enum(_) => {
-                        (self.as_json_::<GenericEnum>(t, row, idx), String::new())
+                        Ok(self.as_json_::<super::GenericEnum>(t, row, idx))
                     },
+                    Kind::Composite(_) => {
+                        Ok(self.as_json_::<super::GenericComposite>(t, row, idx))
+                    }
                     _ => {
-                        let msg = format!("SqlQueryPostgre.asJson | Error parsing value of unknown type '{:?}'", t.to_owned());
-                        log::warn!("{}", msg);
-                        (serde_json::Value::default(), msg)
+                        Err(Error::new("SqlQueryPostgre", "as_json").err(format!("Can't parse value of unknown type '{:?}'", t.to_owned())))
                     },
                 }
             }
@@ -185,11 +186,10 @@ impl SqlQuery for SqlQueryPostgre {
                                     let mut row_map = IndexMap::new();
                                     for column in row.columns() {
                                         let idx = column.name();
-                                        let (value, err): (serde_json::Value, String) = self.as_json(column.type_(), &row, &idx);
-                                        if !err.is_empty() {
-                                            parse_errors.push(err);
+                                        match self.as_json(column.type_(), &row, &idx) {
+                                            Ok(value) => _ = row_map.insert(String::from(idx), value),
+                                            Err(err) => parse_errors.push(err),
                                         }
-                                        row_map.insert(String::from(idx), value);
                                     }
                                     result.push(row_map);
                                 }
@@ -202,7 +202,9 @@ impl SqlQuery for SqlQueryPostgre {
                                 if parse_errors.is_empty() {
                                     Ok(result)
                                 } else {
-                                    let details = format!("SqlQueryPostgre.execute | rows parsing errors: {:?}", parse_errors.join("\n"));
+                                    let details = format!(
+                                        "SqlQueryPostgre.execute | rows parsing errors: {:?}",
+                                        parse_errors.into_iter().fold(String::new(), |acc, e| format!("{acc}\n\t{e}")));
                                     log::warn!("{}", details);
                                     Err(ApiError::new(
                                         "Postgres database - rows parsing errors", 
@@ -234,50 +236,6 @@ impl SqlQuery for SqlQueryPostgre {
             },
             Err(err) => Err(err),
         }
-    }
-}
-
-
-///
-/// 
-#[derive(Debug, Serialize)]
-struct GenericEnum(String);
-
-impl postgres::types::ToSql for GenericEnum {
-    ///
-    fn to_sql(&self, _ty: &types::Type, out: &mut BytesMut) -> Result<types::IsNull, Box<dyn std::error::Error + Sync + Send>> {
-        if self.0.is_empty() {
-            Ok(types::IsNull::Yes)
-        } else {
-            out.extend_from_slice(self.0.as_bytes());
-            Ok(types::IsNull::No)
-        }
-    }
-    ///
-    fn accepts(_ty: &types::Type) -> bool { true }
-    //
-    to_sql_checked!();
-}
-//
-//
-impl FromSql<'_> for GenericEnum {
-    ///
-    fn from_sql(
-        _sql_type: &Type, 
-        value: &[u8]
-    ) -> Result<Self, Box<dyn std::error::Error + Sync + Send>> {
-        match value {
-            // b"variant_a" => Ok(MyEnum::VariantA),
-            // b"variant_b" => Ok(MyEnum::VariantB),
-            _ => {
-                let str_value = String::from_utf8(value.into()).unwrap();
-                Ok(GenericEnum {0: str_value})
-            },
-        }
-    }
-    ///
-    fn accepts(ty: &Type) -> bool {
-        ty.name().contains("enum")
     }
 }
 

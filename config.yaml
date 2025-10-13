@@ -25,7 +25,7 @@ services:                      # list of currently avalible API services
         type: postgres
         path: 'localhost:5432'
         user: cma
-        pass: 00d0-25e4-*&s2-ccds
+        pass: 00d0                  # 00d0-25e4-*&s2-ccds
         # replaceNullWithDefault:
     - py-test-script:                   # internal unique API service name
         name: 'py-test'          # the name of the python script (must be specified in the API request, field 'path')

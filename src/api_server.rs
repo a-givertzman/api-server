@@ -5,8 +5,7 @@ use api_tools::{
 };
 use crate::{
     api_service_type::ApiServiceType, config::Config, executable_query::ExecutableQuery, python_query::PythonQuery,
-    server::Resources, sql_query::SqlQuery, sql_query_mysql::SqlQueryMysql, sql_query_postgre::SqlQueryPostgre,
-    sql_query_sqlite::SqlQuerySqlite,
+    server::Resources, sql_query::{SqlQuery, SqlQueryMysql, SqlQueryPostgre, SqlQuerySqlite},
 };
 ///
 /// 

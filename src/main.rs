@@ -11,31 +11,26 @@ mod python_query;
 mod executable_query;
 mod api_service_type;
 mod sql_query;
-mod sql_query_sqlite;
-mod sql_query_postgre;
-mod sql_query_mysql;
 
 use std::path::{Path, PathBuf};
 use clap::Parser;
 use debugging::session::debug_session::{Backtrace, DebugSession, LogLevel};
-use log::debug;
 use sal_core::dbg::Dbg;
 use sal_sync::thread_pool::ThreadPool;
-use crate::{
-    config::Config, domain::Cli, server::{TcpServer, WebServer}
-};
+use crate::{config::Config, domain::Cli, server::{TcpServer, WebServer}};
 
 fn main() {
     DebugSession::init(LogLevel::Debug, Backtrace::Short);
     let dbg = Dbg::own("main");
     let cli = Cli::parse();
-    debug!("starting api server...");
+    std::process::Command::new("clear").status().unwrap();
+    log::debug!("starting api server...");
     let path = cli.config.map_or_else(
         || PathBuf::from("config.yaml"),        // || std::env::current_dir().unwrap().join("config.yaml"),
         PathBuf::from
     );
     let path = Path::new(&path);
-    debug!("reading config file: {}", path.to_str().unwrap());
+    log::debug!("reading config file: {}", path.to_str().unwrap());
     let config = Config::new(path);
     let tp = ThreadPool::new(&dbg, Some(config.treads));
     let tcp_server = TcpServer::new(
