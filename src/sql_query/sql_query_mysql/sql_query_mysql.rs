@@ -57,7 +57,7 @@ impl SqlQuery for SqlQueryMysql {
         };
         match connection {
             Ok(connection) => {
-                debug!("SqlQueryMysql.execute | preparing sql: {:?}", self.sql);
+                debug!("SqlQueryMysql.execute | preparing sql: {}", self.sql);
                 match connection.prepare(self.sql.as_str()) {
                     Ok(stmt) => {
                         let mut cNames = vec![];

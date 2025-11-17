@@ -170,7 +170,7 @@ impl SqlQuery for SqlQueryPostgre {
             );
         match connection {
             Ok(mut connection) => {
-                log::debug!("SqlQueryPostgre.execute | preparing sql: {:?}", self.sql);
+                log::debug!("SqlQueryPostgre.execute | preparing sql: {}", self.sql);
                 match connection.prepare(self.sql.as_str()) {
                     Ok(stmt) => {
                         let mut c_names = vec![];

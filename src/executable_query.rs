@@ -24,7 +24,7 @@ impl ExecutableQuery {
     ///
     pub fn execute(&self) -> Result<Vec<RowMap>, ApiError> {
         let program = self.path.clone();
-        debug!("ExecutableQuery.execute | executing: {:?}\n\twith params: {:?}", self.path, self.params);
+        debug!("ExecutableQuery.execute | executing: {}\n\twith params: {:#?}", self.path, self.params);
         debug!("ExecutableQuery.execute | executing command: {:?}", program);
         match serde_json::to_string(&(self.params)) {
             Ok(params) => {

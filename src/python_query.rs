@@ -24,7 +24,7 @@ impl PythonQuery {
     ///
     pub fn execute(&self) -> Result<Vec<RowMap>, ApiError> {
         let path = self.path.clone();
-        debug!("PythonQuery.execute | script: {:?}\n\twith params: {:?}", self.path, self.params);
+        debug!("PythonQuery.execute | script: {}\n\twith params: {:#?}", self.path, self.params);
         let program = "python3";
         debug!("PythonQuery.execute | executing command: {:?}", program);
         match serde_json::to_string(&(self.params)) {

@@ -82,7 +82,7 @@ impl SqlQuery for SqlQuerySqlite {
         };
         match connection {
             Ok(connection) => {
-                debug!("SqlQuerySqlite.execute | preparing sql: {:?}", self.sql);
+                debug!("SqlQuerySqlite.execute | preparing sql: {}", self.sql);
                 match connection.prepare(self.sql.as_str()) {
                     Ok(stmt) => {
                         let mut cNames = vec![];
