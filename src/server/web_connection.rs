@@ -123,7 +123,7 @@ impl WebConnection {
         match handle {
             Ok(handle) => {
                 self.handles.push(handle);
-                log::debug!("{}.run | started\n", self.dbg);
+                log::info!("{}.run | Starting - Ok", self.dbg);
                 Ok(())
             }
             Err(err) => Err(Error::new(&self.dbg, "run").pass(err.to_string())),

@@ -22,7 +22,7 @@ mod tests {
     /// Testing such functionality / behavior
     #[test]
     fn test_task_cycle() {
-        DebugSession::init(LogLevel::Info, Backtrace::Short);
+        DebugSession::new().filter(LogLevel::Debug).init()  ;
         init_once();
         init_each();
         log::debug!("");

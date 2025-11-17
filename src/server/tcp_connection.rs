@@ -77,7 +77,7 @@ impl TcpConnection {
     /// Listening incoming messages from remote client
     pub fn run(self) -> Result<(), Error> {
         let dbg = self.dbg.clone();
-        log::debug!("{dbg}.run | Start reading...");
+        log::info!("{dbg}.run | Starting...");
         let stream = Arc::new(self.stream.take().unwrap());
         let api_server = ApiServer::new(self.config.clone(), self.resources.clone());
         let mut keep_alive = true;
@@ -117,7 +117,7 @@ impl TcpConnection {
         match handle {
             Ok(handle) => {
                 self.handles.push(handle);
-                log::debug!("{}.run | started\n", self.dbg);
+                log::debug!("{}.run | Starting - Ok", self.dbg);
                 Ok(())
             }
             Err(err) => Err(Error::new(&self.dbg, "run").pass(err.to_string())),

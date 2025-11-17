@@ -14,13 +14,18 @@ mod sql_query;
 
 use std::path::{Path, PathBuf};
 use clap::Parser;
-use debugging::session::debug_session::{Backtrace, DebugSession, LogLevel};
+use debugging::session::debug_session::{DebugSession, LogLevel};
 use sal_core::dbg::Dbg;
 use sal_sync::thread_pool::ThreadPool;
 use crate::{config::Config, domain::Cli, server::{TcpServer, WebServer}};
 
 fn main() {
-    DebugSession::init(LogLevel::Debug, Backtrace::Short);
+    DebugSession::new()
+        .filter(LogLevel::Debug)
+        .module("tokio_postgres", LogLevel::Info)
+        .module("sal_sync::thread_pool", LogLevel::Info)
+        .module("tungstenite", LogLevel::Info)
+        .init();
     let dbg = Dbg::own("main");
     let cli = Cli::parse();
     std::process::Command::new("clear").status().unwrap();
