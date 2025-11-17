@@ -12,7 +12,7 @@ use api_tools::api::{
 use sal_core::{dbg::Dbg, error::Error};
 use sal_sync::{sync::{Handles, Owner}, thread_pool::Scheduler};
 use tungstenite::WebSocket;
-use crate::{api_server::ApiServer, config::Config};
+use crate::{api_server::ApiServer, conf::Config};
 use super::resources::Resources;
 ///
 /// Opens a connection via TCP Socket

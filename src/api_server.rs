@@ -4,7 +4,7 @@ use api_tools::{
     server::api_query::{api_query::ApiQuery, api_query_type::ApiQueryType},
 };
 use crate::{
-    api_service_type::ApiServiceType, config::Config, executable_query::ExecutableQuery, python_query::PythonQuery,
+    api_service_type::ApiServiceType, conf::Config, executable_query::ExecutableQuery, python_query::PythonQuery,
     server::Resources, sql_query::{SqlQuery, SqlQueryMysql, SqlQueryPostgre, SqlQuerySqlite},
 };
 ///

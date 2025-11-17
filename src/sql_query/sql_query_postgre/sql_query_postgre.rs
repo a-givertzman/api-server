@@ -8,7 +8,7 @@ use sal_core::error::Error;
 use serde::Serialize;
 use serde_json::json;
 use log::LevelFilter;
-use crate::{config::ServiceConfig, server::{Resource, ResourceKind, Resources}, sql_query::SqlQuery};
+use crate::{conf::ServiceConfig, server::{Resource, ResourceKind, Resources}, sql_query::SqlQuery};
 ///
 /// 
 pub struct SqlQueryPostgre {

@@ -5,7 +5,7 @@ use indexmap::IndexMap;
 use log::{debug, warn};
 use rusqlite::{Connection, Statement, OpenFlags};
 
-use crate::{sql_query::SqlQuery, config::ServiceConfig};
+use crate::{sql_query::SqlQuery, conf::ServiceConfig};
 
 ///
 /// 

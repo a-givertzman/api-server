@@ -7,7 +7,7 @@ use api_tools::{
 use crate::{
     server::TcpServer, 
     sql_query::SqlQuery, 
-    config::Config, 
+    conf::Config, 
     api_server::ApiServer,
 };
 
