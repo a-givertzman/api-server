@@ -7,7 +7,7 @@ use api_tools::api::{
         message::{MessageField, MessageParse}, message_kind::MessageKind, msg_kind::MsgKind,
         parse_data::ParseData, parse_id::ParseId, parse_kind::ParseKind, parse_size::ParseSize, parse_syn::ParseSyn,
     },
-    socket::tcp_socket::{IsConnected, TcpMessage},
+    socket::tcp_socket::TcpMessage,
 };
 use sal_core::{dbg::Dbg, error::Error};
 use sal_sync::{sync::{Handles, Owner}, thread_pool::Scheduler};
@@ -94,36 +94,36 @@ impl WebConnection {
                 match Self::read(&dbg, &mut stream, &mut message, timeout) {
                     Ok((id, msg)) => match msg {
                         MsgKind::Bytes(bytes) => {
-                            let dbg_bytes = if bytes.len() > 16 {format!("{:?} ...", &bytes[..16])} else {format!("{:?}", bytes)};
-                            log::trace!("{}.run | Received id: {:?},  bytes: {:?}", dbg, id, dbg_bytes);
-                            let time = Instant::now();
+                            // let dbg_bytes = if bytes.len() > 16 {format!("{:?} ...", &bytes[..16])} else {format!("{:?}", bytes)};
+                            // log::trace!("{dbg}.run | Received id: {:?},  bytes: {:?}", id, dbg_bytes);
+                            // let time = Instant::now();
                             let result = api_server.build(&bytes);
-                            log::trace!("{}.run | Elapsed: {:?}", dbg, time.elapsed());
+                            // log::trace!("{dbg}.run | Elapsed: {:?}", time.elapsed());
                             keep_alive = result.keep_alive;
                             match Self::send(&dbg, &mut stream, &mut message, &result.data, Some(id.0)) {
                                 Ok(_) => {}
                                 Err(err) => {
-                                    log::warn!("{}.run | Error sending reply: {:?}", dbg, err);
+                                    log::warn!("{dbg}.run | Error sending reply: {:?}", err);
                                     break;
                                 }
                             }
                         }
-                        _ => log::warn!("{}.run | Unexpected kind (Bytes expected) of TcpMessage: {:?}", dbg, msg),
+                        _ => log::warn!("{dbg}.run | Unexpected kind (Bytes expected) of TcpMessage: {:?}", msg),
                     }
-                    Err(err) => {
-                        log::warn!("{dbg}.run | Read error; {:?}", err);
-                        log::info!("{dbg}.run | Connection closed");
+                    Err(_) => {
+                        // log::warn!("{dbg}.run | Read error; {:?}", err);
+                        log::debug!("{dbg}.run | Connection closed");
                         break;
                     }
                 }
             }
-            log::info!("{}.run | Exit", dbg);
+            log::debug!("{}.run | Exit", dbg);
             Ok(())
         });
         match handle {
             Ok(handle) => {
                 self.handles.push(handle);
-                log::info!("{}.run | Starting - Ok", self.dbg);
+                log::debug!("{}.run | Starting - Ok", self.dbg);
                 Ok(())
             }
             Err(err) => Err(Error::new(&self.dbg, "run").pass(err.to_string())),
@@ -267,56 +267,6 @@ impl WebConnection {
                     error.err(format!("No valid message received in specified timeout {:?}", timeout)),
                 );
             }
-        }
-    }
-    ///
-    /// Returns Connection status dipending on IO Error
-    fn parse_err(dbg: &Dbg, input: std::io::Error) -> IsConnected<(), Error> {
-        log::warn!("{}.parse_err | error reading from socket: {:?}", dbg, input);
-        log::warn!("{}.parse_err | error kind: {:?}", dbg, input.kind());
-        let err = Error::new(dbg, "parse_err").pass(&input.to_string());
-        match input.kind() {
-            // std::io::ErrorKind::NotFound => todo!(),
-            std::io::ErrorKind::PermissionDenied => IsConnected::Closed(err),
-            std::io::ErrorKind::ConnectionRefused => IsConnected::Closed(err),
-            std::io::ErrorKind::ConnectionReset => IsConnected::Closed(err),
-            std::io::ErrorKind::HostUnreachable => IsConnected::Closed(err),
-            std::io::ErrorKind::NetworkUnreachable => IsConnected::Closed(err),
-            std::io::ErrorKind::ConnectionAborted => IsConnected::Closed(err),
-            std::io::ErrorKind::NotConnected => IsConnected::Closed(err),
-            std::io::ErrorKind::AddrInUse => IsConnected::Closed(err),
-            std::io::ErrorKind::AddrNotAvailable => IsConnected::Closed(err),
-            std::io::ErrorKind::NetworkDown => IsConnected::Closed(err),
-            std::io::ErrorKind::BrokenPipe => IsConnected::Closed(err),
-            std::io::ErrorKind::AlreadyExists => IsConnected::Closed(err),
-            std::io::ErrorKind::WouldBlock => IsConnected::Closed(err),
-            // std::io::ErrorKind::NotADirectory => todo!(),
-            // std::io::ErrorKind::IsADirectory => todo!(),
-            // std::io::ErrorKind::DirectoryNotEmpty => todo!(),
-            // std::io::ErrorKind::ReadOnlyFilesystem => todo!(),
-            // std::io::ErrorKind::FilesystemLoop => todo!(),
-            // std::io::ErrorKind::StaleNetworkFileHandle => todo!(),
-            // std::io::ErrorKind::InvalidInput => todo!(),
-            // std::io::ErrorKind::InvalidData => todo!(),
-            std::io::ErrorKind::TimedOut => IsConnected::Closed(err),
-            // std::io::ErrorKind::WriteZero => todo!(),
-            // std::io::ErrorKind::StorageFull => todo!(),
-            // std::io::ErrorKind::NotSeekable => todo!(),
-            // std::io::ErrorKind::FilesystemQuotaExceeded => todo!(),
-            // std::io::ErrorKind::FileTooLarge => todo!(),
-            // std::io::ErrorKind::ResourceBusy => todo!(),
-            // std::io::ErrorKind::ExecutableFileBusy => todo!(),
-            // std::io::ErrorKind::Deadlock => todo!(),
-            // std::io::ErrorKind::CrossesDevices => todo!(),
-            // std::io::ErrorKind::TooManyLinks => todo!(),
-            // std::io::ErrorKind::InvalidFilename => todo!(),
-            // std::io::ErrorKind::ArgumentListTooLong => todo!(),
-            // std::io::ErrorKind::Interrupted => todo!(),
-            // std::io::ErrorKind::Unsupported => todo!(),
-            // std::io::ErrorKind::UnexpectedEof => todo!(),
-            // std::io::ErrorKind::OutOfMemory => todo!(),
-            // std::io::ErrorKind::Other => todo!(),
-            _ => IsConnected::Closed(err),
         }
     }
 }

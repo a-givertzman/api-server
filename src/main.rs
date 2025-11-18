@@ -38,6 +38,7 @@ fn main() {
         .module("tungstenite", LogLevel::Info)
         .init();
     log::debug!("{dbg} | Log level: {:?}", conf.logging.level);
+    log::debug!("{dbg} | services: {:#?}", conf.services);
     let tp = ThreadPool::new(&dbg, Some(conf.treads));
     let tcp_server = TcpServer::new(
         &conf.address.clone(),

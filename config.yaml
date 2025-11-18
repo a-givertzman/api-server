@@ -1,7 +1,7 @@
 address: '0.0.0.0:8081'       # self TCP-Server ip:port address where API service will be alvalible
 web-address: '0.0.0.0:8082'   # self Web-Socket ip:port address where API service will be alvalible
 logging:
-    level: info               # logging level info/debug/trace, default info
+    level: debug               # logging level info/debug/trace, default info
 services:                      # list of currently avalible API services
     - database-sqlite:                 # internal unique API service name
         name: 'database'        # database instance name

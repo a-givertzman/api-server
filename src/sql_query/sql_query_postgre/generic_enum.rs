@@ -1,6 +1,6 @@
 use serde::Serialize;
 use bytes::BytesMut;
-use postgres::{Client, NoTls, types::{Type, to_sql_checked, FromSql, self, Kind}};
+use postgres::types::{Type, to_sql_checked, FromSql, self};
 
 ///
 /// Generic deserialize Enum type into [ToSql]

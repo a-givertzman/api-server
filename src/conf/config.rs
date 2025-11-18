@@ -26,6 +26,8 @@ impl Config {
             .iter().fold(IndexMap::new(), |mut acc, item| {
                 let (key, service) = item.as_mapping().expect(&format!("{dbg}.new | 'services' - wrong configuration")).into_iter()
                     .next().expect(&format!("{dbg}.new | 'services' - wrong configuration"));
+                log::info!("{dbg}.new | key: {:#?}", key);
+                log::info!("{dbg}.new | service: {:#?}", service);
                 let key = key.as_str().expect(&format!("{dbg}.new | 'services':'{:?}' - wrong key", key));
                 let service = ServiceConfig::new(key, service);
                 if acc.contains_key(&service.name) {
@@ -80,7 +82,7 @@ impl ServiceConfig {
         let api_service_type = conf.get("type")
             .expect(&format!("{dbg}.new | 'type' - not found or wrong configuration"))
             .as_str().expect(&format!("{dbg}.new | 'type' - wrong configuration"));
-            log::debug!("{dbg}.new | ApiServiceType {:?}", &api_service_type);
+            log::trace!("{dbg}.new | ApiServiceType {:?}", &api_service_type);
         let service_type = serde_yaml::from_str(api_service_type)
             .unwrap_or_else(
                 |_| panic!("{dbg}.new | error reading 'type' from config {:?}", &conf),
@@ -95,7 +97,7 @@ impl ServiceConfig {
             .expect(&format!("{dbg}.new | 'pass' - not found or wrong configuration"))
             .as_str().expect(&format!("{dbg}.new | 'pass' - wrong configuration"));
         let replace_null_with_default = conf.get("replaceNullWithDefault").map(|_| ());
-        log::debug!("{dbg}.new | replace_null_with_default {:?}", replace_null_with_default);
+        log::trace!("{dbg}.new | replace_null_with_default {:?}", replace_null_with_default);
         ServiceConfig {
             name: name.to_string(),
             service_type,

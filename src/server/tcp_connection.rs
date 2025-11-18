@@ -1,6 +1,4 @@
-use std::{
-    net::TcpStream, sync::Arc, time::Instant,
-};
+use std::{net::TcpStream, sync::Arc};
 use api_tools::api::{
     message::{
         fields::{FieldData, FieldId, FieldKind, FieldSize, FieldSyn},
@@ -77,7 +75,7 @@ impl TcpConnection {
     /// Listening incoming messages from remote client
     pub fn run(self) -> Result<(), Error> {
         let dbg = self.dbg.clone();
-        log::info!("{dbg}.run | Starting...");
+        log::debug!("{dbg}.run | Starting...");
         let stream = Arc::new(self.stream.take().unwrap());
         let api_server = ApiServer::new(self.config.clone(), self.resources.clone());
         let mut keep_alive = true;
@@ -88,11 +86,11 @@ impl TcpConnection {
                 match socket.read() {
                     Ok((id, msg)) => match msg {
                         MsgKind::Bytes(bytes) => {
-                            let dbg_bytes = if bytes.len() > 16 {format!("{:?} ...", &bytes[..16])} else {format!("{:?}", bytes)};
-                            log::trace!("{}.run | Received id: {:?},  bytes: {:?}", dbg, id, dbg_bytes);
-                            let time = Instant::now();
+                            // let dbg_bytes = if bytes.len() > 16 {format!("{:?} ...", &bytes[..16])} else {format!("{:?}", bytes)};
+                            // log::trace!("{}.run | Received id: {:?},  bytes: {:?}", dbg, id, dbg_bytes);
+                            // let time = Instant::now();
                             let result = api_server.build(&bytes);
-                            log::trace!("{}.run | Elapsed: {:?}", dbg, time.elapsed());
+                            // log::trace!("{}.run | Elapsed: {:?}", dbg, time.elapsed());
                             keep_alive = result.keep_alive;
                             match socket.send(&result.data,  Some(id.0)) {
                                 Ok(_) => {}
@@ -106,12 +104,12 @@ impl TcpConnection {
                         }
                     }
                     Err(_) => {
-                        log::info!("{}.run | Connection closed", dbg);
+                        log::debug!("{}.run | Connection closed", dbg);
                         break;
                     }
                 }
             }
-            log::info!("{}.run | Exit", dbg);
+            log::debug!("{}.run | Exit", dbg);
             Ok(())
         });
         match handle {

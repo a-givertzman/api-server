@@ -61,7 +61,7 @@ impl ApiServer {
                 }
             },
             ApiQueryType::Sql(sql_query) => {
-                log::debug!("ApiServer.build | ApiQueryType: Sql");
+                log::trace!("ApiServer.build | ApiQueryType: Sql");
                 match self.config.services.get(&sql_query.database) {
                     Some(db_config) => {
                         match db_config.service_type {
@@ -138,8 +138,8 @@ impl ApiServer {
                 }                    
             },
             ApiQueryType::Python(py_query) => {
-                log::debug!("ApiServer.build | ApiQueryType: Python");
-                log::debug!("ApiServer.build | ApiQueryType: Python script: {}", py_query.script);
+                log::trace!("ApiServer.build | ApiQueryType: Python");
+                log::trace!("ApiServer.build | ApiQueryType: Python script: {}", py_query.script);
                 match self.config.services.get(&py_query.script) {
                     Some(db_config) => {
                         // let path = "./database.sqlite";
@@ -213,9 +213,9 @@ impl ApiServer {
                 }
             },
             ApiQueryType::Executable(ex_query) => {
-                log::debug!("ApiServer.build | ApiQueryType: Executable");
-                log::debug!("ApiServer.build | ApiQueryType: Executable name: {}", ex_query.name);
-                log::debug!("ApiServer.build | ApiQueryType: Executable name: {:?}", ex_query);
+                log::trace!("ApiServer.build | ApiQueryType: Executable");
+                log::trace!("ApiServer.build | ApiQueryType: Executable name: {}", ex_query.name);
+                log::trace!("ApiServer.build | ApiQueryType: Executable name: {:?}", ex_query);
                 match self.config.services.get(&ex_query.name) {
                     Some(db_config) => {
                         // let path = "./database.sqlite";
