@@ -20,7 +20,7 @@ sal-core = { git = "https://github.com/a-givertzman/rust-sal-core.git", tag = "0
 sal-sync = { git = "https://github.com/a-givertzman/rust-sal-sync.git", tag = "0.3.0" }
 testing = { git = "https://github.com/a-givertzman/rust-testing.git", tag = "0.1.2" }
 debugging = { git = "https://github.com/a-givertzman/rust-debuging.git", tag = "0.1.0" }
-api-tools = { git = "https://github.com/a-givertzman/rust-api-tools.git", tag = "0.2.1" }
+api-tools = { git = "https://github.com/a-givertzman/rust-api-tools.git", tag = "0.2.2" }
 # api-tools = { path = "../api-tools/" }
 #
 # Database

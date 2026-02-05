@@ -22,7 +22,7 @@ services:                      # list of currently avalible API services
         user: db_postgres_test
         pass: db_postgres_test
         # replaceNullWithDefault:
-    - database-postgres-crane-data-server:
+    - crane-data-server:
         name: 'cma'
         type: postgres
         path: 'localhost:5432'
