@@ -1,4 +1,4 @@
-address: '0.0.0.0:8081'       # self TCP-Server ip:port address where API service will be alvalible
+address: '0.0.0.0:8080'       # self TCP-Server ip:port address where API service will be alvalible
 web-address: '0.0.0.0:8082'   # self Web-Socket ip:port address where API service will be alvalible
 logging:
     level: debug               # logging level info/debug/trace, default info
@@ -22,7 +22,7 @@ services:                      # list of currently avalible API services
         user: db_postgres_test
         pass: db_postgres_test
         # replaceNullWithDefault:
-    - crane-data-server:
+    - crane_data_server:
         name: 'cma'
         type: postgres
         path: 'localhost:5432'

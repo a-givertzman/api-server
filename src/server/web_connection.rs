@@ -187,6 +187,10 @@ impl WebConnection {
                                         Ok(value) => return Ok((id.clone(), MsgKind::String(value))),
                                         Err(err) => return Err(format!("{}.read | Message::string parse error: {}", dbg, err).into()),
                                     },
+                                    MessageKind::Json => match String::from_utf8(bytes) {
+                                        Ok(value) => return Ok((id.clone(), MsgKind::Json(value))),
+                                        Err(err) => return Err(format!("{}.read | Message::json parse error: {}", dbg, err).into()),
+                                    },
                                     MessageKind::Timestamp => log::warn!("{}.read | Message of kind '{:?}' - is not implemented yet", dbg, kind),
                                     MessageKind::Duration => log::warn!("{}.read | Message of kind '{:?}' - is not implemented yet", dbg, kind),
                                 }
