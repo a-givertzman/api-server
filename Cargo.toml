@@ -17,10 +17,10 @@ chrono = { version = "~0.4", features = ["serde"] }
 #
 #
 sal-core = { git = "https://github.com/a-givertzman/rust-sal-core.git", tag = "0.1.0" }
-sal-sync = { git = "https://github.com/a-givertzman/rust-sal-sync.git", tag = "0.3.0" }
+sal-sync = { git = "https://github.com/a-givertzman/rust-sal-sync.git", tag = "0.3.2" }
 testing = { git = "https://github.com/a-givertzman/rust-testing.git", tag = "0.1.2" }
 debugging = { git = "https://github.com/a-givertzman/rust-debuging.git", tag = "0.1.0" }
-api-tools = { git = "https://github.com/a-givertzman/rust-api-tools.git", tag = "0.2.1" }
+api-tools = { git = "https://github.com/a-givertzman/rust-api-tools.git", tag = "0.2.3" }
 # api-tools = { path = "../api-tools/" }
 #
 # Database
@@ -35,7 +35,7 @@ serde_json = "~1.0"
 serde_with = "~3.16"
 #
 # Collections
-indexmap = { version = "~2.12", features = ["serde"] }
+indexmap = { version = "~2.14", features = ["serde"] }
 #
 # Collections thread safe
 dashmap = "6.1.0"

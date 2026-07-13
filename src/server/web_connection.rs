@@ -118,7 +118,7 @@ impl WebConnection {
                 }
             }
             log::debug!("{}.run | Exit", dbg);
-            Ok(())
+            // Ok(())
         });
         match handle {
             Ok(handle) => {
@@ -189,6 +189,7 @@ impl WebConnection {
                                     },
                                     MessageKind::Timestamp => log::warn!("{}.read | Message of kind '{:?}' - is not implemented yet", dbg, kind),
                                     MessageKind::Duration => log::warn!("{}.read | Message of kind '{:?}' - is not implemented yet", dbg, kind),
+                                    MessageKind::Json => log::warn!("{}.read | Message of kind '{:?}' - is not implemented yet", dbg, kind),
                                 }
                             }
                             Err(err) => {

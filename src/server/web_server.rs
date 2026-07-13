@@ -139,7 +139,7 @@ impl WebServer {
                 },
             };
             log::info!("{dbg}.run | Exit");
-            Ok(())
+            // Ok(())
         });
         match handle {
             Ok(handle) => {
