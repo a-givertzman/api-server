@@ -6,7 +6,7 @@ mod web_serwer {
     use api_tools::api::{message::{fields::{FieldData, FieldId, FieldKind, FieldSize, FieldSyn}, message::MessageField, message_kind::MessageKind, parse_data::ParseData, parse_id::ParseId, parse_kind::ParseKind, parse_size::ParseSize, parse_syn::ParseSyn}, socket::tcp_socket::TcpMessage};
     use sal_core::dbg::Dbg;
     use testing::stuff::max_test_duration::TestDuration;
-    use debugging::session::debug_session::{DebugSession, LogLevel};
+    use debugging::session::{DebugSession, LogLevel};
     ///
     ///
     static INIT: Once = Once::new();

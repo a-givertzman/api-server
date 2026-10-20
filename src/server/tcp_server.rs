@@ -117,7 +117,6 @@ impl TcpServer {
                 },
             };
             log::info!("{dbg}.run | Exit");
-            Ok(())
         });
         match handle {
             Ok(handle) => {
@@ -125,7 +124,11 @@ impl TcpServer {
                 log::info!("{dbg}.run | Started");
                 Ok(())
             }
-            Err(err) => Err(Error::new(&dbg, "run").pass(err.to_string())),
+            Err(err) => {
+                let err = Error::new(&self.dbg, "run").pass_with("Start failed", err.to_string());
+                log::warn!("{}", err);
+                Err(err)
+            }
         }
     }
     ///

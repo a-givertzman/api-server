@@ -110,7 +110,6 @@ impl TcpConnection {
                 }
             }
             log::debug!("{}.run | Exit", dbg);
-            Ok(())
         });
         match handle {
             Ok(handle) => {

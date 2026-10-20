@@ -1,4 +1,4 @@
-use debugging::session::debug_session::LogLevel;
+use debugging::session::LogLevel;
 use serde::{Deserialize, Deserializer};
 
 ///

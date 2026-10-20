@@ -14,7 +14,7 @@ mod sql_query;
 
 use std::path::{Path, PathBuf};
 use clap::Parser;
-use debugging::session::debug_session::{DebugSession, LogLevel};
+use debugging::session::{DebugSession, LogLevel};
 use sal_core::dbg::Dbg;
 use sal_sync::thread_pool::ThreadPool;
 use crate::{conf::Config, domain::Cli, server::{TcpServer, WebServer}};
